@@ -1,0 +1,2 @@
+@PACKAGE@ device::app_logging rw---- ------
+@PACKAGE@ device::sys_logging rw---- ------

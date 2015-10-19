@@ -1,0 +1,8 @@
+<manifest>
+	<define>
+		<domain name="@PACKAGE@" />
+	</define>
+	<request>
+		<domain name="@PACKAGE@" />
+	</request>
+</manifest>
