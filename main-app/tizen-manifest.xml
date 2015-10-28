@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="2.4" package="org.tizen.contacts" version="1.0.0">
+    <profile name="mobile"/>
+    <ui-application appid="org.tizen.contacts" exec="contacts" hw-acceleration="on" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+        <label>Contacts</label>
+        <label xml:lang="as-in">সম্পর্কসমূহ</label>
+        <label xml:lang="bn-in">পরিচিতিসমূহ</label>
+        <label xml:lang="en-gb">Contacts</label>
+        <label xml:lang="en-ph">Contacts</label>
+        <label xml:lang="en-us">Contacts</label>
+        <label xml:lang="gu-in">સંપર્કો</label>
+        <label xml:lang="hi-in">संपर्क</label>
+        <label xml:lang="id-id">Kontak</label>
+        <label xml:lang="km-kh">ទំនាក់ទំនង</label>
+        <label xml:lang="kn-in">ಸಂಪರ್ಕಗಳು</label>
+        <label xml:lang="ko-kr">연락처</label>
+        <label xml:lang="lo-la">ຜູ້ຕິດຕໍ່</label>
+        <label xml:lang="ml-in">സമ്പർക്കങ്ങൾ</label>
+        <label xml:lang="mr-in">संपर्क</label>
+        <label xml:lang="ms-my">Kenalan</label>
+        <label xml:lang="my-mm">အဆက္အသြယ္မ်ား</label>
+        <label xml:lang="ne-np">सम्पर्कहरू</label>
+        <label xml:lang="or-in">ସମ୍ପର୍କଗୁଡିକ</label>
+        <label xml:lang="pa-in">ਸੰਪਰਕ</label>
+        <label xml:lang="pt-br">Contatos</label>
+        <label xml:lang="si-lk">සබඳතා</label>
+        <label xml:lang="ta-in">தொடர்புகள்</label>
+        <label xml:lang="te-in">పరిచయాలు</label>
+        <label xml:lang="th-th">รายชื่อ</label>
+        <label xml:lang="tl-ph">Mga Contact</label>
+        <label xml:lang="ur-pk">رابطے</label>
+        <label xml:lang="vi-vn">Danh bạ</label>
+        <label xml:lang="zh-cn">联系人</label>
+        <icon>org.tizen.contacts.png</icon>
+    </ui-application>
+    <ui-application appid="org.tizen.phone" exec="contacts" hw-acceleration="on" mainapp="false" multiple="false" taskmanage="true" type="capp">
+        <label>Phone</label>
+        <label xml:lang="as-in">ফোন</label>
+        <label xml:lang="bn-in">ফোন</label>
+        <label xml:lang="en-gb">Phone</label>
+        <label xml:lang="en-ph">Phone</label>
+        <label xml:lang="en-us">Phone</label>
+        <label xml:lang="gu-in">ફોન</label>
+        <label xml:lang="hi-in">फ़ोन</label>
+        <label xml:lang="id-id">Telepon</label>
+        <label xml:lang="km-kh">ទូរសព្ទ</label>
+        <label xml:lang="kn-in">ಫೋನ್</label>
+        <label xml:lang="ko-kr">전화</label>
+        <label xml:lang="lo-la">ໂທລະສັບ</label>
+        <label xml:lang="ml-in">ഫോണ്</label>
+        <label xml:lang="mr-in">फोन</label>
+        <label xml:lang="ms-my">Telefon</label>
+        <label xml:lang="my-mm">ဖုန္း</label>
+        <label xml:lang="ne-np">फोन</label>
+        <label xml:lang="or-in">ଫୋନ୍</label>
+        <label xml:lang="pa-in">ਫ਼ੋਨ</label>
+        <label xml:lang="pt-br">Telefone</label>
+        <label xml:lang="si-lk">දුරකථනය</label>
+        <label xml:lang="ta-in">ஃபோன்</label>
+        <label xml:lang="te-in">ఫోన్</label>
+        <label xml:lang="th-th">โทรศัพท์</label>
+        <label xml:lang="tl-ph">Telepono</label>
+        <label xml:lang="ur-pk">فون</label>
+        <label xml:lang="vi-vn">Điện thoại</label>
+        <label xml:lang="zh-cn">电话</label>
+        <icon>org.tizen.phone.png</icon>
+        <app-control>
+            <operation name="http://tizen.org/appcontrol/operation/dial"/>
+            <uri name="tel"/>
+        </app-control>
+    </ui-application>
+    <ui-application appid="org.tizen.contacts.edit" exec="contacts" hw-acceleration="on" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+        <app-control>
+            <operation name="http://tizen.org/appcontrol/operation/add"/>
+            <mime name="application/vnd.tizen.contact"/>
+        </app-control>
+        <app-control>
+            <operation name="http://tizen.org/appcontrol/operation/edit"/>
+            <mime name="application/vnd.tizen.contact"/>
+        </app-control>
+    </ui-application>
+    <ui-application appid="org.tizen.contacts.view" exec="contacts" hw-acceleration="on" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+        <app-control>
+            <operation name="http://tizen.org/appcontrol/operation/view"/>
+            <mime name="application/vnd.tizen.contact"/>
+            <mime name="text/vcard"/>
+            <mime name="text/x-vcard"/>
+        </app-control>
+    </ui-application>
+    <ui-application appid="org.tizen.contacts.pick" exec="contacts" hw-acceleration="on" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+        <app-control>
+            <operation name="http://tizen.org/appcontrol/operation/pick"/>
+            <mime name="application/vnd.tizen.contact"/>
+        </app-control>
+    </ui-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/call</privilege>
+        <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        <privilege>http://tizen.org/privilege/contact.read</privilege>
+        <privilege>http://tizen.org/privilege/contact.write</privilege>
+        <privilege>http://tizen.org/privilege/account.read</privilege>
+        <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        <privilege>http://tizen.org/privilege/notification</privilege>
+        <privilege>http://tizen.org/privilege/externalstorage</privilege>
+    </privileges>
+</manifest>

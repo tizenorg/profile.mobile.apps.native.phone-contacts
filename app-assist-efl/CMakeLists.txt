@@ -1,0 +1,16 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+PROJECT(app-assist-efl CXX)
+
+FILE(GLOB SRCS "src/*.cpp")
+
+pkg_check_modules(TIZEN_WIDGET_PKGS REQUIRED
+	capi-appfw-widget-application
+)
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc ${TIZEN_WIDGET_PKGS_INCLUDE_DIRS})
+ADD_LIBRARY(${PROJECT_NAME} SHARED ${SRCS})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${TIZEN_PKGS_LDFLAGS} ${TIZEN_WIDGET_PKGS_LDFLAGS})
+INSTALL(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_APP_LIB_DIR})
+
+## comment out the following line to reduce resource size, if page view and sample view are not used
+ADD_SUBDIRECTORY(res)

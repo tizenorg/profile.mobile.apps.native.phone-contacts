@@ -1,0 +1,32 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+SET(CT_EDJ_DIR "${CMAKE_APP_RES_DIR}/contacts/edje")
+
+INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/images DESTINATION ${CMAKE_APP_RES_DIR}/contacts)
+
+ADD_CUSTOM_TARGET(contacts.edj
+	COMMAND edje_cc ${EDJE_CFLAGS}
+	-id ${CMAKE_CURRENT_SOURCE_DIR}/images
+	${CMAKE_CURRENT_SOURCE_DIR}/edje/contacts.edc contacts.edj
+	DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/edje/contacts.edc
+)
+ADD_DEPENDENCIES(${PROJECT_NAME} contacts.edj)
+INSTALL(FILES contacts.edj DESTINATION ${CT_EDJ_DIR})
+
+ADD_CUSTOM_TARGET(list.edj
+	COMMAND edje_cc ${EDJE_CFLAGS}
+	-id ${CMAKE_CURRENT_SOURCE_DIR}/images
+	${CMAKE_CURRENT_SOURCE_DIR}/edje/list.edc list.edj
+	DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/edje/list.edc
+)
+ADD_DEPENDENCIES(${PROJECT_NAME} list.edj)
+INSTALL(FILES list.edj DESTINATION ${CT_EDJ_DIR})
+
+ADD_CUSTOM_TARGET(detail_layout.edj
+	COMMAND edje_cc ${EDJE_CFLAGS}
+	-id ${CMAKE_CURRENT_SOURCE_DIR}/images
+	${CMAKE_CURRENT_SOURCE_DIR}/edje/detail_layout.edc detail_layout.edj
+	DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/edje/detail_layout.edc
+)
+ADD_DEPENDENCIES(${PROJECT_NAME} detail_layout.edj)
+INSTALL(FILES detail_layout.edj DESTINATION ${CT_EDJ_DIR})

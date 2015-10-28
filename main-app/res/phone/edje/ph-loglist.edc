@@ -1,0 +1,745 @@
+/*
+ * Copyright (c) 2009-2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "../../../../lib-phone/ph-common/inc/PhPath.h"
+#include "ph-loglist-colors.edc"
+
+#define COLORBOX(n,rr,gg,bb,opa) \
+	part { \
+		name: n".color"; \
+		type: RECT; \
+		scale: 1; \
+		description { \
+			state: "default" 0.0; \
+			color: rr gg bb opa; \
+			rel1 { relative: 0.0 0.0; to: n;} \
+			rel2 { relative: 1.0 1.0; to: n;} \
+		} \
+	}
+
+#define MAIN_H 1280
+#define MAIN_W 720
+
+////////////// IMAGE ////////////////////////
+
+#define RESOURCE_IMAGE_AND_PRESS( FILE_NAME , DEFAULT_COLOR_CODE, PRESSED_COLOR_CODE ) \
+	group { \
+		name: FILE_NAME; \
+		images.image: FILE_NAME COMP; \
+		parts { \
+			part { \
+				name: "image"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: FILE_NAME; \
+					aspect: 1 1; \
+					aspect_preference: BOTH; \
+				} \
+				description { \
+					state: "pressed" 0.0; \
+					inherit: "default" 0.0;\
+				} \
+			}\
+		}\
+		programs{\
+			program {\
+				name: "mouse.down";\
+				source: "image";\
+				signal: "mouse,down,*";\
+				action: STATE_SET "pressed" 0.0;\
+				target: "image";\
+			}\
+			program {\
+				name: "mouse.up";\
+				source: "image";\
+				signal: "mouse,up,*";\
+				action: STATE_SET "default" 0.0;\
+				target: "image";\
+			}\
+		}\
+	}
+
+#define RESOURCE_IMAGE( FILE_NAME , COLOR_CODE ) \
+	group { \
+		name: FILE_NAME; \
+		images.image: FILE_NAME COMP; \
+		parts { \
+			part { name: "image"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: FILE_NAME; \
+					aspect: 1 1; \
+					aspect_preference: BOTH; \
+				} \
+			} \
+		} \
+	}
+
+#define RESOURCE_IMAGE_NOT_SQ( FILE_NAME, COLOR_CODE ) \
+	group { \
+		name: FILE_NAME; \
+		images.image: FILE_NAME COMP; \
+		parts { \
+			part { name: "image"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: FILE_NAME; \
+					aspect: 1 1; \
+					aspect_preference: SOURCE; \
+				} \
+			} \
+		} \
+	}
+
+////////////////////////////////////////////////CALL TYPE ICON ///////////////////////////////////////////////////////
+#define LOG_INFO_OFFSET_X 32
+#define LOG_INFO_ICON_SIZE 80
+#define LOG_INFO_ICONS_DIVIDER_X 12
+#define LOG_ICON_SQ_NUMBER_SIZE (MAIN_W-3*LOG_INFO_OFFSET_X-2*LOG_INFO_ICON_SIZE-LOG_INFO_ICONS_DIVIDER_X)
+#define SUB_TEXT_PART_SIZE 	43
+#define MAIN_TEXT_PART_SIZE	54
+
+////////////////////////////////////////////////LOG LIST VIEW LAYOUT//////////////////////////////////////////////////
+#define LOG_LIST_THUMBNAIL_PADDING_RIGHT_SIZE		7
+#define LOG_LIST_THUMBNAIL_PADDING_BOTTOM_SIZE		6
+#define LOG_LIST_THUMBNAIL_SIZE						98
+#define LOG_LIST_CALL_TYPE_SIZE						45
+#define LOG_LIST_THUMBNAIL_WIDTH_SIZE				(LOG_LIST_THUMBNAIL_SIZE+LOG_LIST_THUMBNAIL_PADDING_RIGHT_SIZE)
+#define LOG_LIST_THUMBNAIL_HEIGHT_SIZE				(LOG_LIST_THUMBNAIL_SIZE+LOG_LIST_THUMBNAIL_PADDING_BOTTOM_SIZE)
+#define LOG_LIST_CALL_TYPE_PADDING_LEFT_SIZE		(LOG_LIST_THUMBNAIL_WIDTH_SIZE-LOG_LIST_CALL_TYPE_SIZE)
+#define LOG_LIST_CALL_TYPE_PADDING_TOP_SIZE			(LOG_LIST_THUMBNAIL_HEIGHT_SIZE-LOG_LIST_CALL_TYPE_SIZE)
+
+#define LOG_LIST_THUMBNAIL_PADDING_RIGHT_REL_SIZE	(LOG_LIST_THUMBNAIL_SIZE/LOG_LIST_THUMBNAIL_WIDTH_SIZE)
+#define LOG_LIST_THUMBNAIL_PADDING_BOTTOM_REL_SIZE	(LOG_LIST_THUMBNAIL_SIZE/LOG_LIST_THUMBNAIL_HEIGHT_SIZE)
+#define LOG_LIST_CALL_TYPE_PADDING_LEFT_REL_SIZE	(LOG_LIST_CALL_TYPE_PADDING_LEFT_SIZE/LOG_LIST_THUMBNAIL_WIDTH_SIZE)
+#define LOG_LIST_CALL_TYPE_PADDING_TOP_REL_SIZE		(LOG_LIST_CALL_TYPE_PADDING_TOP_SIZE/LOG_LIST_THUMBNAIL_HEIGHT_SIZE)
+
+#define LOG_ICON( BASE_IMAGE_NAME, BASE_IMAGE_COLOR_CODE, IMAGE_NAME, IMAGE_COLOR_CODE, ASPECT ) \
+	group { \
+		name: IMAGE_NAME; \
+		images.image: IMAGE_NAME COMP; \
+		images.image: BASE_IMAGE_NAME COMP; \
+		parts { \
+			part { name: "base"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: BASE_IMAGE_NAME; \
+					color_class: BASE_IMAGE_COLOR_CODE; \
+					aspect: 1 1; \
+					aspect_preference: ASPECT; \
+				} \
+			} \
+			part { name: "image"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: IMAGE_NAME; \
+					aspect: 1 1; \
+					color_class: IMAGE_COLOR_CODE; \
+					aspect_preference: ASPECT; \
+				} \
+			} \
+		} \
+	}
+
+#define NOTIFICATION_PANEL_INFO_HEIGHT 						57
+
+//////////////////////////// LOG DETAIL VIEW LAYOUT //////////////////////////////////////////
+#define CONTACT_INFO_TOTAL_HEIGHT 							440
+#define CONTACT_INFO_TOTAL_WIDTH							MAIN_W
+#define CONTACT_INFO_THUMBNAIL_SIZE 						240
+#define CONTACT_INFO_BACK_BTN_SIZE 							80
+#define CONTACT_INFO_UNSAVED_BTNS_HEIGHT					78
+#define DETAIL_VIEW_TOTAL_HEIGHT 							(MAIN_H-NOTIFICATION_PANEL_INFO_HEIGHT)
+
+////////////////////////////////// PADDING SIZE//////////////////////////////////////////////
+
+#define CONTACT_INFO_THUMBNAIL_PADDING_TOP_SIZE				44
+#define CONTACT_INFO_THUMBNAIL_PADDING_LEFT_SIZE 			((CONTACT_INFO_TOTAL_WIDTH-CONTACT_INFO_THUMBNAIL_SIZE)/2)
+#define CONTACT_INFO_THUMBNAIL_PADDING_RIGHT_SIZE 			((CONTACT_INFO_TOTAL_WIDTH-CONTACT_INFO_THUMBNAIL_SIZE)/2)
+#define CONTACT_INFO_THUMBNAIL_PADDING_BOTTOM_SIZE 			(CONTACT_INFO_TOTAL_HEIGHT-CONTACT_INFO_THUMBNAIL_PADDING_TOP_SIZE-CONTACT_INFO_THUMBNAIL_SIZE)
+
+#define CONTACT_INFO_TEXT_PADDING_LEFT_SIZE					24
+#define CONTACT_INFO_TEXT_PADDING_RIGHT_SIZE				24
+#define CONTACT_INFO_TEXT_PADDING_BOTTOM_SIZE				78
+#define CONTACT_INFO_TEXT_PADDING_TOP_SIZE					286
+
+#define CONTACT_INFO_BACK_BTN_PADDING_LEFT_SIZE				10
+#define CONTACT_INFO_BACK_BTN_PADDING_TOP_SIZE				13
+#define CONTACT_INFO_BACK_BTN_PADDING_RIGHT_SIZE			90
+#define CONTACT_INFO_BACK_BTN_PADDING_BOTTOM_SIZE			93
+
+#define CONTACT_INFO_UNSAVED_BTN_PADDING_BOTTOM_SIZE		30
+#define CONTACT_INFO_UNSAVED_BTN_PADDING_TOP_SIZE			332
+#define CONTACT_INFO_UNSAVED_BTN_PADDING_LEFT_SIZE			32
+#define CONTACT_INFO_UNSAVED_BTN_PADDING_RIGHT_SIZE			32
+
+////////////////////////////////// PADDING RELATIVE SIZE//////////////////////////////////////////////
+
+#define CONTACT_INFO_BOTTOM_REL_SIZE						(CONTACT_INFO_TOTAL_HEIGHT/MAIN_H)
+
+#define CONTACT_INFO_THUMBNAIL_PADDING_TOP_REL_SIZE			(CONTACT_INFO_THUMBNAIL_PADDING_TOP_SIZE/CONTACT_INFO_TOTAL_HEIGHT)
+#define CONTACT_INFO_THUMBNAIL_PADDING_BOTTOM_REL_SIZE		(1-CONTACT_INFO_THUMBNAIL_PADDING_BOTTOM_SIZE/CONTACT_INFO_TOTAL_HEIGHT)
+#define CONTACT_INFO_THUMBNAIL_PADDING_LEFT_REL_SIZE		(CONTACT_INFO_THUMBNAIL_PADDING_LEFT_SIZE/CONTACT_INFO_TOTAL_WIDTH)
+#define CONTACT_INFO_THUMBNAIL_PADDING_RIGHT_REL_SIZE		(1-CONTACT_INFO_THUMBNAIL_PADDING_RIGHT_SIZE/CONTACT_INFO_TOTAL_WIDTH)
+
+#define CONTACT_INFO_TEXT_PADDING_TOP_REL_SIZE				(CONTACT_INFO_TEXT_PADDING_TOP_SIZE/CONTACT_INFO_TOTAL_HEIGHT)
+#define CONTACT_INFO_TEXT_PADDING_BOTTOM_REL_SIZE			(1-CONTACT_INFO_TEXT_PADDING_BOTTOM_SIZE/CONTACT_INFO_TOTAL_HEIGHT)
+#define CONTACT_INFO_TEXT_PADDING_LEFT_REL_SIZE				(CONTACT_INFO_TEXT_PADDING_LEFT_SIZE/CONTACT_INFO_TOTAL_WIDTH)
+#define CONTACT_INFO_TEXT_PADDING_RIGHT_REL_SIZE			(1-CONTACT_INFO_TEXT_PADDING_RIGHT_SIZE/CONTACT_INFO_TOTAL_WIDTH)
+
+#define CONTACT_INFO_BACK_BTN_PADDING_TOP_REL_SIZE			(CONTACT_INFO_BACK_BTN_PADDING_TOP_SIZE/CONTACT_INFO_TOTAL_HEIGHT)
+#define CONTACT_INFO_BACK_BTN_PADDING_BOTTOM_REL_SIZE		(CONTACT_INFO_BACK_BTN_PADDING_BOTTOM_SIZE/CONTACT_INFO_TOTAL_HEIGHT)
+#define CONTACT_INFO_BACK_BTN_PADDING_LEFT_REL_SIZE			(CONTACT_INFO_BACK_BTN_PADDING_LEFT_SIZE/CONTACT_INFO_TOTAL_WIDTH)
+#define CONTACT_INFO_BACK_BTN_PADDING_RIGHT_REL_SIZE		(CONTACT_INFO_BACK_BTN_PADDING_RIGHT_SIZE/CONTACT_INFO_TOTAL_WIDTH)
+
+#define CONTACT_INFO_UNSAVED_BTN_PADDING_TOP_REL_SIZE		(CONTACT_INFO_UNSAVED_BTN_PADDING_TOP_SIZE/CONTACT_INFO_TOTAL_HEIGHT)
+#define CONTACT_INFO_UNSAVED_BTN_PADDING_BOTTOM_REL_SIZE	(1-CONTACT_INFO_UNSAVED_BTN_PADDING_BOTTOM_SIZE/CONTACT_INFO_TOTAL_HEIGHT)
+#define CONTACT_INFO_UNSAVED_BTN_PADDING_LEFT_REL_SIZE		(CONTACT_INFO_UNSAVED_BTN_PADDING_LEFT_SIZE/CONTACT_INFO_TOTAL_WIDTH)
+#define CONTACT_INFO_UNSAVED_BTN_PADDING_RIGHT_REL_SIZE		(1-CONTACT_INFO_UNSAVED_BTN_PADDING_RIGHT_SIZE/CONTACT_INFO_TOTAL_WIDTH)
+
+#define PADDING_TOP( param_padding_size ) \
+	part { \
+		name: "padding.top"; \
+		type: SPACER; \
+		scale: 1; \
+		description { \
+			state: "default" 0.0; \
+			min: 0 param_padding_size; \
+			max: -1 param_padding_size; \
+			fixed: 0 1; \
+			rel2.relative: 1.0 0.0; \
+			align: 0.5 0.0; \
+		} \
+	}
+
+#define PADDING_BOTTOM( param_padding_size ) \
+	part { \
+		name: "padding.bottom"; \
+		type: SPACER; \
+		scale: 1; \
+		description { \
+			state: "default" 0.0; \
+			min: 0 param_padding_size; \
+			max: -1 param_padding_size; \
+			fixed: 0 1; \
+			rel1.relative: 0.0 1.0; \
+			align: 0.5 1.0; \
+		} \
+	}
+
+#define PADDING_LEFT( param_padding_size ) \
+	part { \
+		name: "padding.left"; \
+		type: SPACER; \
+		scale: 1; \
+		description { \
+			state: "default" 0.0; \
+			min: param_padding_size 0; \
+			max: param_padding_size -1; \
+			fixed: 1 0; \
+			rel2.relative: 0.0 1.0; \
+			align: 0.0 0.5; \
+		} \
+	}
+
+#define PADDING_RIGHT( param_padding_size ) \
+	part { \
+		name: "padding.right"; \
+		type: SPACER; \
+		scale: 1; \
+		description { \
+			state: "default" 0.0; \
+			min: param_padding_size 0; \
+			max: param_padding_size -1; \
+			fixed: 1 0; \
+			rel1.relative: 1.0  0.0; \
+			align: 1.0 0.5; \
+		} \
+	}
+
+#define PADDING_H_MIDDLE( param_padding_size, offset_size ) \
+	part { \
+		name: "padding.middle.h"; \
+		type: SPACER; \
+		scale: 1; \
+		description { \
+			state: "default" 0.0; \
+			min: 0 param_padding_size; \
+			fixed: 0 1; \
+			rel1 { relative: 0.0 0.0; offset: 0 offset_size; } \
+			rel2 { relative: 1.0 0.0; offset: 0 offset_size; } \
+			align: 0.5 0.0; \
+		} \
+	}
+
+#define PART(TYPE, NAME, DESCRIPION) \
+   part { name: NAME; \
+	  scale: 1; \
+	  type: TYPE; \
+	  DESCRIPION \
+   }
+
+#define LIST_PART_BG \
+   PART(RECT, "bg", \
+	  description { state: "default" 0.0; \
+	  } \
+	  description { state: "pressed" 0.0; \
+		 inherit: "default" 0.0; \
+	  } \
+	  description { state: "disabled" 0.0; \
+	  } \
+	  description { state: "reorder" 0.0; \
+		 color: 0 0 0 0; \
+	  } \
+   )
+
+
+#define PLAY_TOUCH_SOUND(DES)\
+	program { name: "play.sound."DES;\
+		signal: "mouse,clicked,1";\
+		source: DES;\
+		action: RUN_PLUGIN "touch_sound";\
+	}
+
+styles {
+	style {
+		name: "contact_info_name_textblock_style";
+		base: "font=Tizen:style=Medium text_class=list_item color=#ffffff font_size=30 align=center wrap=mixed ellipsis=1.0";
+	}
+}
+
+styles {
+	style {
+		name: "contact_number_textblock_style";
+		base: "font=Tizen:style=Regular text_class=list_item color=#4C4C4CFF font_size=32 /*align=left wrap=mixed*/ ellipsis=1.0";
+	}
+}
+
+collections
+{
+	base_scale: 2.6;
+	plugins {
+		  plugin {
+			 name: "touch_sound";  // Name run by RUN_PLUGIN
+			 source: "feedback";	 // External edje plugin name
+			 param: "FEEDBACK_TYPE_SOUND FEEDBACK_PATTERN_TAP";			  // feedback edje plugin parameters: FEEDBACK_TYPE_SOUND, FEEDBACK_PATTERN_TOUCH_TAP
+		  }
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 						LOG IMAGE													///
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	RESOURCE_IMAGE_AND_PRESS(PH_LOG_ICON_DETAIL_MESSAGE, "A02O007", "A02O007P");
+	RESOURCE_IMAGE_AND_PRESS(PH_LOG_ICON_DETAIL_VOICE_CALL, "A02O007", "A02O007P");
+
+	LOG_ICON(PH_LOG_ICON_CONTAINER, "call_status_blue_bg", PH_LOG_ICON_INCOMING, "log_list_white_bg", BOTH);
+	LOG_ICON(PH_LOG_ICON_CONTAINER, "call_status_green_bg", PH_LOG_ICON_OUTGOING, "log_list_white_bg", BOTH);
+	LOG_ICON(PH_LOG_ICON_CONTAINER, "call_status_red_bg", PH_LOG_ICON_MISSED, "log_list_white_bg", BOTH);
+	LOG_ICON(PH_LOG_ICON_CONTAINER, "call_status_red_bg", PH_LOG_ICON_REJECTED, "log_list_white_bg", BOTH);
+	LOG_ICON(PH_LOG_ICON_CONTAINER, "call_status_red_bg", PH_LOG_ICON_AUTO_REJECTED, "log_list_white_bg", BOTH);
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 						LOG  Checked View													///
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	group {
+		name: "log/list/check/main";
+		parts {
+			part {
+				name: "elm.swallow.select";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					fixed: 1 1;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 0.0;}
+					rel2 { relative: 1.0 0.0;}
+				}
+			}
+			part {
+				name: "elm.swallow.content";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					fixed: 1 1;
+					align: 0.5 0.5;
+					rel1 { relative: 0.0 1.0; to:"elm.swallow.select"; }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+		}
+	}
+
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 						LOG DETAIL													///
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	group {
+		name: "log/detail/info/contact/contact_info";
+		images.image: PH_LOG_ICON_DETAIL_BACK_ICON COMP;
+		inherit_only: 1;
+		parts {
+			part {
+				name: "image.thumbnail";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					fixed: 1 1;
+					rel1 { relative: CONTACT_INFO_THUMBNAIL_PADDING_LEFT_REL_SIZE CONTACT_INFO_THUMBNAIL_PADDING_TOP_REL_SIZE; }
+					rel2 { relative: CONTACT_INFO_THUMBNAIL_PADDING_RIGHT_REL_SIZE CONTACT_INFO_THUMBNAIL_PADDING_BOTTOM_REL_SIZE; }
+					aspect: 1 1;
+					aspect_preference: BOTH;
+				}
+			}
+			part {
+				name: "back.btn.bg";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: CONTACT_INFO_BACK_BTN_PADDING_LEFT_REL_SIZE CONTACT_INFO_BACK_BTN_PADDING_TOP_REL_SIZE; }
+					rel2 { relative: CONTACT_INFO_BACK_BTN_PADDING_RIGHT_REL_SIZE CONTACT_INFO_BACK_BTN_PADDING_BOTTOM_REL_SIZE; }
+					aspect: 1 1;
+					aspect_preference: BOTH;
+					color: 0 0 0 0;
+				}
+				description {
+					state: "pressed" 0.0;
+					inherit: "default" 0.0;
+					color: 0 0 0 50;
+				}
+			}
+			part {
+				name: "back.btn";
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					fixed: 1 1;
+					rel1 { relative: CONTACT_INFO_BACK_BTN_PADDING_LEFT_REL_SIZE CONTACT_INFO_BACK_BTN_PADDING_TOP_REL_SIZE; }
+					rel2 { relative: CONTACT_INFO_BACK_BTN_PADDING_RIGHT_REL_SIZE CONTACT_INFO_BACK_BTN_PADDING_BOTTOM_REL_SIZE; }
+					image.normal: PH_LOG_ICON_DETAIL_BACK_ICON;
+					aspect: 1 1;
+					aspect_preference: BOTH;
+				}
+			}
+			part {
+				name: "touch.back.btn";
+				type: RECT;
+				mouse_events: 1;
+				repeat_events: 0;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: CONTACT_INFO_BACK_BTN_PADDING_LEFT_REL_SIZE CONTACT_INFO_BACK_BTN_PADDING_TOP_REL_SIZE; }
+					rel2 { relative: CONTACT_INFO_BACK_BTN_PADDING_RIGHT_REL_SIZE CONTACT_INFO_BACK_BTN_PADDING_BOTTOM_REL_SIZE; }
+					color: 0 0 0 0;
+				}
+			}
+		}
+		programs {
+			program {
+				name: "mouse.down.back.btn";
+				source: "touch.back.btn";
+				signal: "mouse,down,*";
+				action: STATE_SET "pressed" 0.0;
+				target: "back.btn.bg";
+			}
+			program {
+				name: "mouse.up.back.btn";
+				source: "touch.back.btn";
+				signal: "mouse,up,*";
+				action: STATE_SET "default" 0.0;
+				target: "back.btn.bg";
+			}
+			PLAY_TOUCH_SOUND("touch.back.btn")
+		}
+	}
+
+	group {
+		name: "log/detail/info/contact/contact_info/saved";
+		inherit: "log/detail/info/contact/contact_info";
+		parts {
+			part {
+				name: "text.name";
+				type: TEXTBLOCK;
+				mouse_events: 0;
+				repeat_events: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: CONTACT_INFO_TEXT_PADDING_LEFT_REL_SIZE CONTACT_INFO_TEXT_PADDING_TOP_REL_SIZE; }
+					rel2 { relative: CONTACT_INFO_TEXT_PADDING_RIGHT_REL_SIZE CONTACT_INFO_TEXT_PADDING_BOTTOM_REL_SIZE; }
+					text {
+						style: "contact_info_name_textblock_style";
+						fit: 0 1;
+					}
+				}
+			}
+		}
+	}
+
+	group {
+		name: "log/detail/info/contact/contact_info/unsaved";
+		inherit: "log/detail/info/contact/contact_info";
+		parts {
+			part {
+				name: "box.buttons";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					fixed: 0 1;
+					rel1 { relative: CONTACT_INFO_UNSAVED_BTN_PADDING_LEFT_REL_SIZE CONTACT_INFO_UNSAVED_BTN_PADDING_TOP_REL_SIZE; }
+					rel2 { relative: CONTACT_INFO_UNSAVED_BTN_PADDING_RIGHT_REL_SIZE CONTACT_INFO_UNSAVED_BTN_PADDING_BOTTOM_REL_SIZE; }
+					aspect: 0 1;
+				}
+			}
+		}
+	}
+
+	group {
+		name: "log/detail/info/contact/main_layout";
+		parts {
+			part {
+				name: "contact_info";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					fixed: 1 0;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: 1.0 CONTACT_INFO_BOTTOM_REL_SIZE; }
+				}
+			}
+			part {
+				name: "elm.swallow.content";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					fixed: 0 0;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: "contact_info"; }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+		}
+	}
+
+	group { name: "log/detail/info/button";
+		parts {
+			PADDING_LEFT(55)
+			PADDING_RIGHT(55)
+
+			part {
+				name: "elm.swallow.message";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					fixed: 1 0;
+					align: 1.0 0.5;
+					min: 52 52;
+					max: 52 52;
+					rel1 { relative: 0.0 0.0; to_x: "padding.right"; }
+					rel2 { relative: 0.0 1.0; to_x: "padding.right"; }
+				}
+			}
+			part {
+				name: "padding.middle.1";
+				type: SPACER;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					fixed: 1 0;
+					align: 1.0 0.5;
+					min: 94 0;
+					max: 94 -1;
+					rel1 { relative: 0.0 0.0; to_x: "elm.swallow.message"; }
+					rel2 { relative: 0.0 1.0; to_x: "elm.swallow.message";}
+				}
+			}
+			part {
+				name: "elm.swallow.video";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					fixed: 1 0;
+					align: 1.0 0.5;
+					min: 52 52;
+					max: 52 52;
+					rel1 { relative: 0.0 0.0; to_x: "padding.middle.1"; }
+					rel2 { relative: 0.0 1.0; to_x: "padding.middle.1";}
+				}
+			}
+			part {
+				name: "padding.middle.2";
+				type: SPACER;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					fixed: 1 0;
+					align: 1.0 0.5;
+					min: 94 0;
+					max: 94 -1;
+					rel1 { relative: 0.0 0.0; to_x: "elm.swallow.video"; }
+					rel2 { relative: 0.0 1.0; to_x: "elm.swallow.video";}
+				}
+			}
+			part {
+				name: "elm.swallow.voice";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					min: 52 52;
+					max: 52 52;
+					rel1 { relative: 1.0 0.0; to_x: "padding.left"; }
+					rel2 { relative: 0.0 1.0; to_x: "padding.middle.2";}
+				}
+			}
+		}
+		programs {
+			PLAY_TOUCH_SOUND("elm.swallow.message");
+			PLAY_TOUCH_SOUND("elm.swallow.video");
+			PLAY_TOUCH_SOUND("elm.swallow.voice");
+		}
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 						Log List 														///
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	group { name: "list/B/log/thumbnail";
+		parts {
+			part {
+				name: "elm.swallow.content";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: LOG_LIST_THUMBNAIL_PADDING_RIGHT_REL_SIZE LOG_LIST_THUMBNAIL_PADDING_BOTTOM_REL_SIZE; }
+				}
+			}
+			part {
+				name: "elm.swallow.call.type";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: LOG_LIST_CALL_TYPE_PADDING_LEFT_REL_SIZE LOG_LIST_CALL_TYPE_PADDING_TOP_REL_SIZE; }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+	   }
+	}
+	group {
+		name: "list/C/log/log_info";
+		images.image: PH_LOG_ICON_INFO_CONTAINER COMP;
+		images.image: PH_LOG_ICON_INFO COMP;
+		parts {
+			part {
+				name: "image.bg";
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					image.normal: PH_LOG_ICON_INFO_CONTAINER;
+					color_class: "info_icon_blue_bg";
+					aspect: 1 1;
+					aspect_preference: BOTH;
+				}
+				description {
+					state: "pressed" 0.0;
+					inherit: "default" 0.0;
+					//color_class: "info_icon_blue_bg_pressed";
+				}
+			}
+			part {
+				name: "image";
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					image.normal: PH_LOG_ICON_INFO;
+					aspect: 1 1;
+					aspect_preference: BOTH;
+					color_class: "info_icon";
+				}
+			}
+			part {
+				name: "touch.rect";
+				type: RECT;
+				mouse_events: 1;
+				repeat_events: 0;
+				description {
+					state: "default" 0.0;
+					color: 0 0 0 0;
+				}
+			}
+		}
+		programs{
+			program {
+				name: "mouse.down";
+				source: "touch.rect";
+				signal: "mouse,down,*";
+				action: STATE_SET "pressed" 0.0;
+				target: "image.bg";
+			}
+			program {
+				name: "mouse.up";
+				source: "touch.rect";
+				signal: "mouse,up,*";
+				action: STATE_SET "default" 0.0;
+				target: "image.bg";
+			}
+			PLAY_TOUCH_SOUND("touch.rect")
+		}
+	}
+
+	group { name: "list/detail/log_number.type";
+		parts {
+			part {
+				name: "elm.text.part";
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					align: 0.5 0;
+					min: 0 SUB_TEXT_PART_SIZE;
+					rel1 { relative: 0.0 0.0;}
+					rel2 { relative: 1.0 0.0;}
+					text {
+						style: "contact_number_textblock_style";
+					}
+					text.min: 0 1;
+				}
+			}
+			part {
+				name: "elm.swallow.2";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					min: LOG_ICON_SQ_NUMBER_SIZE MAIN_TEXT_PART_SIZE;
+					rel1 { relative: 0.0 1; to_y: "elm.text.part";}
+					rel2 { relative: 1.0 1.0;}
+				}
+			}
+	   }
+	}
+}
+

@@ -1,0 +1,1221 @@
+msgid "IDS_CLOG_BODY_DIALLED_CALLS"
+msgstr "已拨电话"
+
+msgid "IDS_CLOG_BODY_LAST_CALL"
+msgstr "最近呼叫"
+
+msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
+msgstr "已接电话"
+
+msgid "IDS_CLOG_HEADER_SELECT_LOGS"
+msgstr "选择记录"
+
+msgid "IDS_CLOG_OPT_VIEW_BY"
+msgstr "查看方式"
+
+msgid "IDS_PB_BODY_HOME_2"
+msgstr "本地2"
+
+msgid "IDS_PB_POP_MOVE_COMPLETED"
+msgstr "移动已完成"
+
+msgid "IDS_PB_BODY_MOVING_ING"
+msgstr "移动中..."
+
+msgid "IDS_ST_POP_PUK2_VERIFIED"
+msgstr "PUK2 已验证。"
+
+msgid "IDS_ST_POP_PUK1_VERIFIED"
+msgstr "PUK1 已验证。"
+
+msgid "IDS_ST_POP_PIN_UNBLOCKED"
+msgstr "PIN 码解锁"
+
+msgid "IDS_ST_POP_PIN2_UNBLOCKED"
+msgstr "PIN2 码解锁"
+
+msgid "IDS_ST_POP_PIN2_CHANGED"
+msgstr "PIN2码已更改"
+
+msgid "IDS_ST_POP_PIN2_BLOCKED"
+msgstr "PIN2码锁定"
+
+msgid "IDS_ST_POP_PIN1_CHANGED"
+msgstr "PIN1码已更改。"
+
+msgid "IDS_ST_POP_PIN1_BLOCKED"
+msgstr "PIN1码已锁定。"
+
+msgid "IDS_ST_POP_INCORRECT_PIN2"
+msgstr "错误的PIN2码"
+
+msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
+msgstr "新 PIN2 码与确认 PIN2 码不匹配"
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
+msgstr "PUK1 码错误。"
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
+msgstr "PUK1 错误。剩余 %d 次机会。"
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
+msgstr "PUK2 错误。剩余 %d 次机会。"
+
+msgid "IDS_ST_POP_PIN_CHANGED"
+msgstr "PIN 码已更改"
+
+msgid "IDS_PB_TAB_CONTACTS"
+msgstr "联系人"
+
+msgid "IDS_PB_BODY_ADD_ACCOUNT"
+msgstr "添加账户"
+
+msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "已达到最大字符限制"
+
+msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
+msgstr "正在搜索设备…"
+
+msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
+msgstr "PIN 码不正确"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
+msgstr "完成"
+
+msgid "IDS_TPLATFORM_ACBUTTON_CANCEL_ABB"
+msgstr "取消"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
+msgstr "删除"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "连接问题或无效MMI代码。"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "私人号码"
+
+msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
+msgstr "发送"
+
+msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
+msgstr "PIN2 码被锁定。联系提供商（需要 SIM 卡 PUK2 码）。"
+
+msgid "IDS_CLOG_BODY_NO_LOGS"
+msgstr "无记录"
+
+msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
+msgstr "在您呼叫/被叫或发送/接收信息后，将显示记录。"
+
+msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
+msgstr "SIM 卡忙。请稍后再试"
+
+msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
+msgstr "已锁定SIM/RUIM卡。"
+
+msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
+msgstr "未找到 SIM 卡。 请在手机中插入 SIM 卡。"
+
+msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
+msgstr "网络或SIM卡故障。"
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
+msgstr "振动反馈已启用"
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
+msgstr "振动反馈已禁用"
+
+msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
+msgstr "无法拨打号码。%d 不是紧急号码。"
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
+msgstr "快速拨号号码 %d 已移除"
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
+msgstr "快速拨号号码已指定"
+
+msgid "IDS_KPD_TPOP_ENTER_NUMBER"
+msgstr "输入号码"
+
+msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
+msgstr "您 PIN 码的长度必须介于 %1$d 至 %2$d 位数之间。请重试。"
+
+msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
+msgstr "您的 PIN2 码必须为 %1$d 至 %2$d 位数。请重试。"
+
+msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
+msgstr "未为该快速拨号号码指定联系人。点击确定以立即指定联系人。"
+
+msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
+msgstr "PIN 码已禁用。更改前启用 PIN 码。"
+
+msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
+msgstr "语音邮件"
+
+msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
+msgstr "更新联系人"
+
+msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
+msgstr "快速拨号设定"
+
+msgid "IDS_KPD_OPT_REMOVE"
+msgstr "移除"
+
+msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
+msgstr "新建联系人"
+
+msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
+msgstr "通话设定"
+
+msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
+msgstr "添加等待"
+
+msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
+msgstr "添加 2 秒暂停"
+
+msgid "IDS_KPD_ITAB3_KEYPAD"
+msgstr "键盘"
+
+msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
+msgstr "无法连接至网络"
+
+msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "选择用于通话的 SIM 卡"
+
+msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
+msgstr "搜索结果 (%d)"
+
+msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
+msgstr "紧急呼叫"
+
+msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
+msgstr "指定为快速拨号号码"
+
+msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
+msgstr "设置号码"
+
+msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
+msgstr "发送信息"
+
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "取消"
+
+msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
+msgstr "添加至联系人"
+
+msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
+msgstr "密码不匹配"
+
+msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
+msgstr "PIN 码被锁定。 输入 PUK 码。"
+
+msgid "IDS_IDLE_BODY_SIM_BLOCKED"
+msgstr "SIM 卡已锁定。"
+
+msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
+msgstr "未保存"
+
+msgid "IDS_LOGS_SBODY_SAVED_M_STATUS"
+msgstr "已保存"
+
+msgid "IDS_LOGS_SBODY_MISSEDM_CALL_STATUS"
+msgstr "未接"
+
+msgid "IDS_LOGS_SBODY_FAILED_M_STATUS"
+msgstr "失败"
+
+msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
+msgstr "已取消"
+
+msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "将删除 %d 个记录项目。"
+
+msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "将删除所有记录项目。"
+
+msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
+msgstr "将删除 1 个记录项目。"
+
+msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
+msgstr "查看联系人详情"
+
+msgid "IDS_LOGS_OPT_SEND_NUMBER"
+msgstr "发送号码"
+
+msgid "IDS_LOGS_OPT_MISSED_CALLS"
+msgstr "未接来电"
+
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "删除"
+
+msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
+msgstr "通话持续时间"
+
+msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
+msgstr "未接来电"
+
+msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
+msgstr "不再显示"
+
+msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
+msgstr "未知号码"
+
+msgid "IDS_LOGS_MBODY_UNKNOWN"
+msgstr "未知"
+
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "全选"
+
+msgid "IDS_LOGS_ITAB3_LOGS"
+msgstr "记录"
+
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "昨天"
+
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "今天"
+
+msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
+msgstr "已选中 %d 个"
+
+msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
+msgstr "删除 %d 个记录"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
+msgstr "删除记录项目"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
+msgstr "删除记录"
+
+msgid "IDS_LOGS_HEADER_DELETE"
+msgstr "删除"
+
+msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
+msgstr "更新联系人"
+
+msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
+msgstr "删除"
+
+msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
+msgstr "新建联系人"
+
+msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
+msgstr "取消"
+
+msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
+msgstr "语音通话"
+
+msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
+msgstr "视频通话"
+
+msgid "IDS_LOGS_BODY_SIM_CARD"
+msgstr "SIM卡"
+
+msgid "IDS_LOGS_BODY_ALL_CALLS"
+msgstr "全部通话"
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
+msgstr "拨打或接听来电后，它们将记录在此处。"
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
+msgstr "拨打或接听来电后，记录项目将显示在此处。"
+
+msgid "IDS_QP_ACBUTTON_EDIT_ABB"
+msgstr "编辑"
+
+msgid "IDS_MF_POP_INPUT_TEXT"
+msgstr "输入文本"
+
+msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
+msgstr "您的部分联系人显示为重复"
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
+msgstr "%d 个联系人已导入"
+
+msgid "IDS_PB_TPOP_CONTACTS_LINKED"
+msgstr "联系人已链接。"
+
+msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
+msgstr "1 个号码已从自动拒绝列表中移除"
+
+msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
+msgstr "1 位联系人已导入"
+
+msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
+msgstr "服务号码"
+
+msgid "IDS_PB_TMBODY_NAME_FORMAT"
+msgstr "姓名格式"
+
+msgid "IDS_PB_TMBODY_LINK_CONTACTS"
+msgstr "链接联系人"
+
+msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
+msgstr "要显示的联系人"
+
+msgid "IDS_PB_SK_SET"
+msgstr "设定"
+
+msgid "IDS_PB_SK_CREATE_ABB"
+msgstr "创建"
+
+msgid "IDS_PB_SK_ADD_FIELDS"
+msgstr "添加字段"
+
+msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
+msgstr "正在导入联系人..."
+
+msgid "IDS_PB_SBODY_IMPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "导入已取消"
+
+msgid "IDS_PB_SBODY_EXPORTING_CONTACTS_ING_ABB"
+msgstr "正在导出联系人..."
+
+msgid "IDS_PB_SBODY_EXPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "导出已取消"
+
+msgid "IDS_PB_SBODY_CONTACTS_IMPORTED_M_STATUS_ABB"
+msgstr "联系人已导入"
+
+msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
+msgstr "联系人已导出"
+
+msgid "IDS_PB_SBODY_ALL_CONTACTS"
+msgstr "全部联系人"
+
+msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
+msgstr "您无法从只读账户删除联系人，但是您可以在联系人中隐藏他们。"
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
+msgstr "同步启用时，该联系人将会从其保存至的任何已同步账户中删除。"
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
+msgstr "同步启用时，如果信息来自只读账户，将删除或隐藏该联系人以及已在其他同步账户中与其链接的所有联系人。"
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
+msgstr "同步启用时，该联系人和其他已同步账户中所有与其链接的联系人均会被删除。"
+
+msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
+msgstr "正在更新服务提供商信息…"
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "无法添加联系人。已达到最大可链接联系人数 (%d)。"
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "无法添加联系人。已达到最大可链接联系人数 (%d)。"
+
+msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "此联系人将被删除。"
+
+msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "将删除该联系人和所有与其链接的联系人。"
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "已超过可选择的最大项目数 (%d)。"
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
+msgstr "已超过一次可共享的最大联系人数量 (%1$d)。仅会共享前 %2$d 位。"
+
+msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
+msgstr "Chamada Certa 功能可用于识别您联系人的服务提供商，并在您的联系人列表中进行显示。您可通过按菜单键并选择更新服务提供商信息以执行此操作。现在点击确定以识别您联系人的服务提供商。"
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
+msgstr "点击确定以停止从 SIM 卡中导入联系人。"
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
+msgstr "点击确定以停止将联系人导出至 %s。"
+
+msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "点击导出以选择要导出的联系人。部分联系人信息可能丢失。"
+
+msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
+msgstr "部分或全部联系人可能未更新。"
+
+msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "部分联系人信息可能丢失。"
+
+msgid "IDS_PB_POP_SIM_MEMROY_FULL"
+msgstr "SIM卡内存已满。"
+
+msgid "IDS_PB_POP_REMOVING"
+msgstr "正在移除..."
+
+msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
+msgstr "%d 个手机号码已更新。"
+
+msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
+msgstr "%d个联系人将被删除。"
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
+msgstr "%1$d 个联系人已导出至 %2$s。"
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
+msgstr "%1$d 个联系人已导出至设备/联系人/已导入/%2$s.vcf。"
+
+msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
+msgstr "没有足够内存。"
+
+msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
+msgstr "新联系人将保存至设备上的联系人。"
+
+msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
+msgstr "固定拨号模式已启动"
+
+msgid "IDS_PB_POP_FAILED"
+msgstr "失败"
+
+msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
+msgstr "放弃变更？"
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
+msgstr "正在删除联系人…"
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
+msgstr "删除联系人已取消。一些联系人可能已被删除。"
+
+msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
+msgstr "联系人将停止从 %s 导入。"
+
+msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
+msgstr "已存在。"
+
+msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "全部链接的联系人将被删除。"
+
+msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
+msgstr "全部联系人将被删除。"
+
+msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
+msgstr "将丢弃全部更改"
+
+msgid "IDS_PB_POP_ADDING_ING"
+msgstr "添加中..."
+
+msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
+msgstr "1 个手机号码已更新。"
+
+msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
+msgstr "1个联系人将被删除。"
+
+msgid "IDS_PB_POP_1_CONTACT_REMOVED"
+msgstr "1 位联系人已移除。"
+
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "雅虎"
+
+msgid "IDS_PB_OPT_WORK"
+msgstr "工作"
+
+msgid "IDS_PB_OPT_VOICE_CALL"
+msgstr "语音呼叫"
+
+msgid "IDS_PB_OPT_VIDEO_CALL"
+msgstr "视频呼叫"
+
+msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
+msgstr "更新服务提供商信息"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
+msgstr "取消联系人链接"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACTS"
+msgstr "取消联系人链接"
+
+msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
+msgstr "拍照"
+
+msgid "IDS_PB_OPT_TAKE_A_PHOTO"
+msgstr "拍照"
+
+msgid "IDS_PB_OPT_SPOUSE"
+msgstr "配偶"
+
+msgid "IDS_PB_OPT_SKYPE"
+msgstr "Skype"
+
+msgid "IDS_PB_OPT_SISTER"
+msgstr "姐妹"
+
+msgid "IDS_PB_OPT_SIM_CARD"
+msgstr "SIM卡"
+
+msgid "IDS_PB_OPT_SHARE_VIA"
+msgstr "共享通过"
+
+msgid "IDS_PB_OPT_SHARE"
+msgstr "共享"
+
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "设定"
+
+msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
+msgstr "从联系人选择"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD 卡"
+
+msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
+msgstr "将联系人保存至"
+
+msgid "IDS_PB_OPT_REORDER"
+msgstr "重新排序"
+
+msgid "IDS_PB_OPT_REMOVE"
+msgstr "移除"
+
+msgid "IDS_PB_OPT_RELATIVE"
+msgstr "亲戚"
+
+msgid "IDS_PB_OPT_RELATIONSHIP_ABB2"
+msgstr "关系"
+
+msgid "IDS_PB_OPT_REFERRED_BY_ABB"
+msgstr "介绍人"
+
+msgid "IDS_PB_OPT_QQ"
+msgstr "QQ"
+
+msgid "IDS_PB_OPT_PARTNER"
+msgstr "合作伙伴"
+
+msgid "IDS_PB_OPT_PARENT"
+msgstr "父母"
+
+msgid "IDS_PB_OPT_PAGER"
+msgstr "寻呼机"
+
+msgid "IDS_PB_OPT_OTHER"
+msgstr "其它"
+
+msgid "IDS_PB_OPT_ORGANISATION_ABB"
+msgstr "组织"
+
+msgid "IDS_PB_OPT_MOTHER"
+msgstr "母亲"
+
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "手机"
+
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "信息"
+
+msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
+msgstr "管理收藏"
+
+msgid "IDS_PB_OPT_MANAGER"
+msgstr "经理"
+
+msgid "IDS_PB_OPT_MAIN"
+msgstr "主号"
+
+msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
+msgstr "姓氏在前"
+
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "姓"
+
+msgid "IDS_PB_OPT_JABBER"
+msgstr "Jabber"
+
+msgid "IDS_PB_OPT_ICQ"
+msgstr "ICQ"
+
+msgid "IDS_PB_OPT_HOME_ABB"
+msgstr "家庭"
+
+msgid "IDS_PB_OPT_HOME"
+msgstr "Home"
+
+msgid "IDS_PB_OPT_HANGOUTS"
+msgstr "谷歌环聊"
+
+msgid "IDS_PB_OPT_FROM_GALLERY_ABB2"
+msgstr "从相册"
+
+msgid "IDS_PB_OPT_FRIEND"
+msgstr "朋友"
+
+msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
+msgstr "名字在前"
+
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "名字"
+
+msgid "IDS_PB_OPT_FDN_CONTACT"
+msgstr "指定拨号联系人"
+
+msgid "IDS_PB_OPT_FAX_HWORK_ABB"
+msgstr "传真(工作)"
+
+msgid "IDS_PB_OPT_FAX_HHOME_ABB"
+msgstr "传真(家庭)"
+
+msgid "IDS_PB_OPT_FATHER"
+msgstr "父亲"
+
+msgid "IDS_PB_OPT_EDIT"
+msgstr "编辑"
+
+msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
+msgstr "不再显示"
+
+msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
+msgstr "同居伴侣"
+
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "设备"
+
+msgid "IDS_PB_OPT_CUSTOM"
+msgstr "自定义"
+
+msgid "IDS_PB_OPT_CREATE"
+msgstr "创建"
+
+msgid "IDS_PB_OPT_CHILD"
+msgstr "子女"
+
+msgid "IDS_PB_OPT_BROTHER"
+msgstr "兄弟"
+
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "生日"
+
+msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
+msgstr "助手"
+
+msgid "IDS_PB_OPT_ANNIVERSARY_ABB"
+msgstr "周年纪念日"
+
+msgid "IDS_PB_OPT_AIM"
+msgstr "AIM"
+
+msgid "IDS_PB_OPT_ADD_FIELD"
+msgstr "添加字段"
+
+msgid "IDS_PB_OPT_ADD"
+msgstr "添加"
+
+msgid "IDS_PB_OPT_ACCOUNT"
+msgstr "账户"
+
+msgid "IDS_PB_NPBODY_SEARCH"
+msgstr "搜索"
+
+msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
+msgstr "无服务号码"
+
+msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
+msgstr "未找到结果"
+
+msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
+msgstr "无紧急联系人"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "无联系人"
+
+msgid "IDS_PB_MBODY_SORT_BY"
+msgstr "排序方式"
+
+msgid "IDS_PB_MBODY_SET_PROFILE"
+msgstr "设置个人资料"
+
+msgid "IDS_PB_MBODY_SET_MY_PROFILE"
+msgstr "设置我的个人资料"
+
+msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
+msgstr "一起发送"
+
+msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
+msgstr "逐个发送"
+
+msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
+msgstr "发送联系人信息"
+
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "全选"
+
+msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
+msgstr "%d 位联系人"
+
+msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
+msgstr "仅显示有电话号码的联系人"
+
+msgid "IDS_PB_MBODY_IMPORT"
+msgstr "导入"
+
+msgid "IDS_PB_MBODY_EXPORT"
+msgstr "导出"
+
+msgid "IDS_PB_MBODY_EVENT"
+msgstr "事件"
+
+msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
+msgstr "显示含有号码的联系人"
+
+msgid "IDS_PB_MBODY_1_CONTACT_ABB"
+msgstr "1 位联系人"
+
+msgid "IDS_PB_ITAB3_CONTACTS"
+msgstr "联系人"
+
+msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
+msgstr "USB 存储不可用"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
+msgstr "无法添加"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
+msgstr "无法添加"
+
+msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
+msgstr "建议的联系人"
+
+msgid "IDS_PB_HEADER_SHARE_VIA"
+msgstr "共享通过"
+
+msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
+msgstr "设置联系人头像"
+
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "设定"
+
+msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
+msgstr "服务提供商"
+
+msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
+msgstr "发送联系人信息"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
+msgstr "选择用于通话的 SIM 卡"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "选择用于通话的 SIM 卡"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "选择用于通话的 SIM 卡"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
+msgstr "选择联系人"
+
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "选择"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
+msgstr "保存联系人至"
+
+msgid "IDS_PB_HEADER_REORDER"
+msgstr "重新排序"
+
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "移除"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
+msgstr "主要联系人 (%d)"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
+msgstr "主要联系人 (%1$d/%2$d)"
+
+msgid "IDS_PB_HEADER_PHONE_M_CALL"
+msgstr "手机"
+
+msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
+msgstr "个人联系人"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
+msgstr "已选中 %d 个"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
+msgstr "%d 已选择"
+
+msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
+msgstr "姓名格式"
+
+msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
+msgstr "最常用联系人"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "我"
+
+msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
+msgstr "管理收藏"
+
+msgid "IDS_PB_HEADER_MAINLIST"
+msgstr "联系人列表"
+
+msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
+msgstr "已链接联系人"
+
+msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
+msgstr "导入联系人"
+
+msgid "IDS_PB_HEADER_IMPORT"
+msgstr "导入"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "我的收藏"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
+msgstr "导出联系人至 SIM 卡"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
+msgstr "导出联系人"
+
+msgid "IDS_PB_HEADER_EXPORT"
+msgstr "导出"
+
+msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
+msgstr "输入自定义标签"
+
+msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
+msgstr "紧急通话服务"
+
+msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
+msgstr "紧急联系人"
+
+msgid "IDS_PB_HEADER_EDIT"
+msgstr "编辑"
+
+msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
+msgstr "显示名称方式"
+
+msgid "IDS_PB_HEADER_DISPLAY"
+msgstr "显示"
+
+msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
+msgstr "放弃更改"
+
+msgid "IDS_PB_HEADER_DELETE_ITEM"
+msgstr "删除项目"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "新建"
+
+msgid "IDS_PB_HEADER_CONTACT_IMAGE"
+msgstr "联系人图像"
+
+msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
+msgstr "要显示的联系人"
+
+msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
+msgstr "联系人"
+
+msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
+msgstr "联系人已导出"
+
+msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
+msgstr "更改保存位置"
+
+msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
+msgstr "取消导入"
+
+msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
+msgstr "取消导出"
+
+msgid "IDS_PB_BUTTON_TRY_AGAIN"
+msgstr "重试"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "保存"
+
+msgid "IDS_PB_BUTTON_PHONE"
+msgstr "手机"
+
+msgid "IDS_PB_BUTTON_OK_ABB2"
+msgstr "确定"
+
+msgid "IDS_PB_BUTTON_NOTES"
+msgstr "笔记"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "更多"
+
+msgid "IDS_PB_BUTTON_EXPORT"
+msgstr "导出"
+
+msgid "IDS_PB_BUTTON_EMAIL_ABB3"
+msgstr "电子邮件"
+
+msgid "IDS_PB_BUTTON_DONE_ABB3"
+msgstr "完成"
+
+msgid "IDS_PB_BUTTON_DISCARD_ABB"
+msgstr "放弃"
+
+msgid "IDS_PB_BUTTON_DELETE_ABB4"
+msgstr "删除"
+
+msgid "IDS_PB_BUTTON_CREATE_ABB2"
+msgstr "创建"
+
+msgid "IDS_PB_BUTTON_CHANGE_ABB"
+msgstr "更改"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "取消"
+
+msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
+msgstr "添加账户"
+
+msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
+msgstr "Windows Live"
+
+msgid "IDS_PB_BODY_WEBSITE_ABB"
+msgstr "网站"
+
+msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
+msgstr "正在更新联系人列表…"
+
+msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
+msgstr "因为发生 SIM 错误而无法保存。"
+
+msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
+msgstr "标题"
+
+msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "此联系人将被删除。"
+
+msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
+msgstr "选中联系人的服务提供商信息将更新。该功能需要网络连接且可能产生额外费用。完成该过程所需的时间将取决于您的网络连接状态。"
+
+msgid "IDS_PB_BODY_TELEPHONE"
+msgstr "电话"
+
+msgid "IDS_PB_BODY_SKYPE"
+msgstr "Skype"
+
+msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
+msgstr "SIM卡初始化中…"
+
+msgid "IDS_PB_BODY_SERVICE_NUMBER"
+msgstr "服务号码"
+
+msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
+msgstr "逐个发送名片可能需要更长时间，因为接收设备必须一次接收一个名片。"
+
+msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
+msgstr "一起发送联系人号码以减少传输时间。但是，如果其他设备不支持该功能，则仅会发送一个联系人。"
+
+msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
+msgstr "选择如何发送联系人信息。"
+
+msgid "IDS_PB_BODY_SELECTED_MADJ"
+msgstr "已选定"
+
+msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
+msgstr "从收藏中移除"
+
+msgid "IDS_PB_BODY_PHOTO"
+msgstr "照片"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "电话号码"
+
+msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
+msgstr "拼音姓名"
+
+msgid "IDS_PB_BODY_PHONETIC_MIDDLE_NAME_ABB"
+msgstr "拼音中间名"
+
+msgid "IDS_PB_BODY_PHONETIC_LAST_NAME_ABB"
+msgstr "拼音姓氏"
+
+msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
+msgstr "音译名"
+
+msgid "IDS_PB_BODY_OTHER_EMAILS"
+msgstr "其他电子邮件"
+
+msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
+msgstr "无搜索结果"
+
+msgid "IDS_PB_BODY_NO_GROUPS"
+msgstr "无群组"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "注释"
+
+msgid "IDS_PB_BODY_NICKNAME_ABB"
+msgstr "昵称"
+
+msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
+msgstr "名称后缀"
+
+msgid "IDS_PB_BODY_NAME_PREFIX"
+msgstr "姓名前缀"
+
+msgid "IDS_PB_BODY_NAME"
+msgstr "名称"
+
+msgid "IDS_PB_BODY_MY_CONTACTS"
+msgstr "我的联系人"
+
+msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
+msgstr "中间名"
+
+msgid "IDS_PB_BODY_LAST_NAME_ABB"
+msgstr "姓"
+
+msgid "IDS_PB_BODY_JOB_TITLE_ABB"
+msgstr "职位名称"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
+msgstr "从 SIM 卡导入"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
+msgstr "从 SIM2 导入"
+
+msgid "IDS_PB_BODY_IMPORTING_ING"
+msgstr "导入中…"
+
+msgid "IDS_PB_BODY_IMAGE"
+msgstr "图片"
+
+msgid "IDS_PB_BODY_IM"
+msgstr "即时信息"
+
+msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
+msgstr "如果您的服务提供商已在 SIM 卡上预先载入服务号码，其将显示在此处。"
+
+msgid "IDS_PB_BODY_GALLERY"
+msgstr "相册"
+
+msgid "IDS_PB_BODY_FIRST_NAME_ABB"
+msgstr "名"
+
+msgid "IDS_PB_BODY_FAX"
+msgstr "传真"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
+msgstr "导出到 SIM 卡"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
+msgstr "导出至 SIM2"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
+msgstr "导出到SD卡"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "电子邮件"
+
+msgid "IDS_PB_BODY_DISCARD_CHANGES"
+msgstr "放弃更改"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
+msgstr "好友"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
+msgstr "家人"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "日期"
+
+msgid "IDS_PB_BODY_CO_WORKERS"
+msgstr "同事"
+
+msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
+msgstr "将自动建议已标识为重复的联系人。"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "联系人"
+
+msgid "IDS_PB_BODY_COMPANY_ABB"
+msgstr "公司"
+
+msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
+msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
+
+msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
+msgstr "展开列表的按钮"
+
+msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
+msgstr "自动建议可从声音文件中提取最精彩的部分。"
+
+msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "创建联系人后，其将显示在此处。"
+
+msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "添加联系人后，其将显示在此处。"
+
+msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
+msgstr "添加到收藏"
+
+msgid "IDS_PB_BODY_ADDRESS_ABB2"
+msgstr "地址"
+
+msgid "IDS_PB_BODY_ACCOUNTS"
+msgstr "账户"
+
+msgid "IDS_PB_BODY_AB_M_BLOOD"
+msgstr "AB"
+
+msgid "IDS_ST_POP_PIN_BLOCKED"
+msgstr "PIN 码锁定"
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
+msgstr "PUK2 码错误"
+
+msgid "IDS_ST_POP_INCORRECT_PIN1"
+msgstr "PIN1码错误。"
+
+msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
+msgstr "添加现有联系人"
+
+msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
+msgstr "无主要联系人"
+
+msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
+msgstr "主要联系人"
+
+msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
+msgstr "创建主要联系人"
+
+msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
+msgstr "添加主要联系人"
+
+msgid "IDS_ST_BODY_SET_DATE"
+msgstr "设置日期"
+
+msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
+msgstr "新 PIN 与确认 PIN 不匹配。"
+
+msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "创建主要联系人后，其将显示在此处。"
+
+msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
+msgstr "无法选择更多项目"
+
+msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
+msgstr "插入 SIM 卡"
+
+msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
+msgstr "您呼叫联系人的服务提供商为 %1$s。点击确定以使用 %2$s SIM 卡拨打该通话。"
+
+msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
+msgstr "使用 %s SIM 卡"
+
+msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
+msgstr "当前 SIM 卡"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "投币式公用电话"
+
+msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
+msgstr "字符无效"
+
+msgid "IDS_HS_BUTTON_PHONE_M_CALL"
+msgstr "手机"
+
+msgid "IDS_ST_BODY_OUTGOING_CALL"
+msgstr "已拨"
+
+msgid "IDS_CALL_BODY_INCOMING_CALL"
+msgstr "来电"
+
+msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
+msgstr "仅显示前 %d 个联系人"
+
+msgid "IDS_PB_BODY_MY_PROFILE"
+msgstr "我的信息"
+
+msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
+msgstr "点击此处以添加快捷方式"
+

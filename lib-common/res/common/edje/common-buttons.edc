@@ -1,0 +1,340 @@
+/*
+ * Copyright (c) 2009-2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "CommonButtons.h"
+#include "common-colors.edc"
+
+styles {
+	style {
+		name: "button_dropdown";
+		base: "font=Tizen:style=Large font_size=40 color=#3DB9CC /*color_class=T1235*/ ellipsis=1.0";
+		tag:  "br" "\n";
+		tag:  "ps" "ps";
+		tag:  "tab" "\t";
+		tag:  "b" "+ font_weight=Bold";
+	}
+	style {
+		name: "button_main";
+		base: "font=Tizen:style=Light font_size=40 align=center color=#ffffffff text_class=button_text ellipsis=1.0";
+	}
+}
+
+collections {
+	base_scale: 2.6;
+	group {
+		name: "elm/button/base/custom_dropdown";
+		script {
+			public mouse_down = 0;
+			public multi_down = 0;
+		}
+		images {
+			image: CORE_DROPDOWN_LABLE_ICON_ARROW COMP;
+		}
+		parts {
+			part {
+				name: "base";
+				scale: 1;
+				type: SPACER;
+				description {
+					state: "default" 0.0;
+					min: BUTTON_DROPDOWN_MIN_WIDTH BUTTON_DROPDOWN_MIN_HEIGHT;
+				}
+				description {
+					state: "disabled" 0.0;
+					inherit: "default" 0.0;
+				}
+			}
+			part {
+				name: "padding_top";
+				type: SPACER;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					align: 0.0 0.0;
+					rel1.to: "base";
+					rel2 {
+						relative: 0.0 0.0;
+						to: "base";
+					}
+					min: 0 BUTTON_DROPDOWN_PADDING_TOP_BOTTOM;
+					fixed: 1 1;
+				}
+			}
+			part {
+				name: "elm.text";
+				type: TEXTBLOCK;
+				mouse_events: 0;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					fixed: 1 1;
+					align: 0.0 0.5;
+					rel1 {
+						relative: 1.0 1.0;
+						to: "padding_top";
+					}
+					rel2 {
+						relative: 0.0 1.0;
+						to: "padding_after_text";
+					}
+					text {
+						style: "button_dropdown";
+					}
+				}
+				description {
+					state: "invisible" 0.0;
+					inherit: "default" 0.0;
+					visible: 0;
+				}
+			}
+			part {
+				name: "arrow_icon";
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					min: BUTTON_DROPDOWN_ICON_SIZE;
+					max: BUTTON_DROPDOWN_ICON_SIZE;
+					image.normal: CORE_DROPDOWN_LABLE_ICON_ARROW;
+					color_class: "predictive_icon";
+					rel2 {
+						to_x: "base";
+						to_y: "underline_bottom";
+						relative: 1.0 0.0;
+						offset: 0 -BUTTON_DROPDOWN_PADDING_UNDERLINE_HEIGHT;
+					}
+					align: 1.0 1.0;
+				}
+			}
+			part {
+				name: "underline_bottom";
+				type: RECT;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					min: 0 BUTTON_DROPDOWN_UNDERLINE_HEIGHT;
+					color_class:"predictive_icon";
+					rel1 {
+						relative: 0.0 1.0;
+						to: "base";
+					}
+					rel2.to:"base";
+					align: 1.0 1.0 ;
+					fixed: 1 1;
+				}
+			}
+			part {
+				name: "padding_after_text";
+				type: SPACER;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					min: BUTTON_DROPDOWN_PADDING_TEXT_WIDTH 0;
+					rel1 {
+						relative: 0.0 0.0;
+						to: "arrow_icon";
+					}
+					rel2 {
+						relative: 0.0 1.0;
+						to: "arrow_icon";
+					}
+					align: 0.0 0.0;
+					fixed: 1 1;
+				}
+			}
+			part {
+				name: "event";
+				scale: 1;
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					rel1.to: "base";
+					rel2.to: "base";
+					color: 0 0 0 0;
+				}
+			}
+		}
+		programs {
+			program {
+				name: "touch_snd";
+				signal: "mouse,clicked,1";
+				source: "event";
+				script {
+					new st[31];
+					new Float:vl;
+					if (get_int(multi_down) == 0) {
+						get_state(PART:"base", st, 30, vl);
+						if (strcmp(st, "disabled")) {
+							run_program(PROGRAM:"touch_sound");
+							emit("elm,action,click", "");
+						}
+					}
+				}
+			}
+			program {
+				name: "touch_sound";
+				action: RUN_PLUGIN "touch_sound";
+			}
+			program {
+				name: "text_show";
+				signal: "elm,state,text,visible";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: elm.text;
+			}
+			program {
+				name: "text_hide";
+				signal: "elm,state,text,hidden";
+				source: "elm";
+				action: STATE_SET "invisible" 0.0;
+				target: elm.text;
+			}
+			program {
+				name: "disable";
+				signal: "elm,state,disabled";
+				source: "elm";
+				action: STATE_SET "disabled" 0.0;
+				target: "base";
+			}
+			program {
+				name: "enable";
+				signal: "elm,state,enabled";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: "base";
+			}
+			program {
+				name: "multi_down";
+				signal: "elm,action,multi,down";
+				source: "elm";
+				script {
+					set_int(multi_down, 1);
+				}
+			}
+			program {
+				name: "multi_up";
+				signal: "elm,action,multi,up";
+				source: "elm";
+				script {
+					set_int(multi_down, 0);
+				}
+			}
+		}
+	}
+
+	group {
+		name: "elm/button/base/custom_colored";
+
+		parts {
+			part {
+				name: "tizen_vg_shape";
+				type: SWALLOW;
+				scale: 1;
+				clip_to: "bg";
+				description {
+					state: "default" 0.0;
+				}
+			}
+			part {
+				name: "bg";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					color_class: "button_normal";
+				}
+				description {
+					state: "pressed" 0.0;
+					color_class: "button_pressed";
+				}
+			}
+		}
+		programs {
+			program {
+				name: "pressed";
+				signal: "mouse,down,*";
+				source: "*";
+				action: STATE_SET "pressed" 0.0;
+				target: "bg";
+			}
+			program {
+				name: "unpressed";
+				signal: "mouse,up,*";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: "bg";
+			}
+			program {
+				name: "clicked";
+				signal: "mouse,clicked,*";
+				source: "*";
+				action: SIGNAL_EMIT "elm,action,click" "";
+			}
+		}
+	}
+
+	group {
+		name: "elm/button/base/custom_default";
+		inherit: "elm/button/base/custom_colored";
+		data.item: "vector_ux" "default";
+		data.item: "corner_radius" BUTTON_CORNER_RADIUS;
+
+		parts {
+			part {
+				name: "elm.text";
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 {
+						relative: 0.0 (BUTTON_TEXT_Y/BUTTON_DEFAULT_H);
+						offset: BUTTON_TEXT_X 0;
+					}
+					rel2 {
+						relative: 1.0 (1.0-(BUTTON_TEXT_Y/BUTTON_DEFAULT_H));
+						offset: -BUTTON_TEXT_X 0;
+					}
+					text {
+						style: "button_main";
+						min: 1 1;
+						ellipsis: -1;
+					}
+				}
+			}
+		}
+	}
+
+	group {
+		name: "elm/button/base/custom_circle";
+		inherit: "elm/button/base/custom_colored";
+		data.item: "vector_ux" "circle";
+
+		parts {
+			part {
+				name: "elm.swallow.content";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1 {
+						relative: BUTTON_CONTENT_REL BUTTON_CONTENT_REL;
+					}
+					rel2 {
+						relative: (1.0-BUTTON_CONTENT_REL) (1.0-BUTTON_CONTENT_REL);
+					}
+				}
+			}
+		}
+	}
+}

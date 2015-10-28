@@ -1,0 +1,12 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+SET(PH_EDJ_DIR "${CMAKE_APP_RES_DIR}/phone/edje")
+
+ADD_CUSTOM_TARGET(ph-loglist.edj
+	COMMAND edje_cc ${EDJE_CFLAGS}
+	-id ${CMAKE_CURRENT_SOURCE_DIR}/images
+	${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-loglist.edc ph-loglist.edj
+	DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-loglist.edc
+)
+ADD_DEPENDENCIES(${PROJECT_NAME} ph-loglist.edj)
+INSTALL(FILES ph-loglist.edj DESTINATION ${PH_EDJ_DIR})

@@ -1,0 +1,130 @@
+/*
+ * Copyright (c) 2009-2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "PhDialerLayout.h"
+#include "PhDialerLayoutMetrics.h"
+#include "PhDialerLayoutColors.h"
+
+#define PART_BG \
+	part { \
+		name: "bg"; \
+		type: RECT; \
+		description { \
+			state: "default" 0.0; \
+			color_class: "keypad_bg_normal"; \
+		} \
+		description { \
+			state: "pressed" 0.0; \
+			color_class: "keypad_bg_pressed"; \
+		} \
+	}
+
+#define PART_NUMBER(IMAGE_PATH) \
+	part { \
+		name: "image.number"; \
+		type: IMAGE; \
+		images.image: IMAGE_PATH COMP; \
+		description { \
+			state: "default" 0.0; \
+			aspect: 0.0 1.0; \
+			aspect_preference: SOURCE; \
+			color_class: "button_number"; \
+			rel1 { relative: (OFFSET_BUTTON_PART_X/BUTTON_NUMBER_W) (OFFSET_BUTTON_PART_Y/BUTTON_NUMBER_H); } \
+			rel2 { relative: ((OFFSET_BUTTON_PART_X+BUTTON_PART_W)/BUTTON_NUMBER_W) ((OFFSET_BUTTON_PART_Y+BUTTON_PART_NUMBER_H)/BUTTON_NUMBER_H); } \
+			image.normal: IMAGE_PATH; \
+		} \
+		description { \
+			inherit: "default" 0.0; \
+			state: "pressed" 0.0; \
+			color_class: "button_number_pressed"; \
+		} \
+	}
+
+#define PART_LETTERS(IMAGE_PATH) \
+	part { \
+		name: "image.letters"; \
+		type: IMAGE; \
+		images.image: IMAGE_PATH COMP; \
+		description { \
+			state: "default" 0.0; \
+			aspect: 1.0 1.0; \
+			aspect_preference: SOURCE; \
+			color_class: "button_letter"; \
+			rel1 { relative: (OFFSET_BUTTON_PART_X/BUTTON_NUMBER_W) ((OFFSET_BUTTON_PART_Y+BUTTON_PART_NUMBER_H)/BUTTON_NUMBER_H); } \
+			rel2 { relative: ((OFFSET_BUTTON_PART_X+BUTTON_PART_W)/BUTTON_NUMBER_W) ((OFFSET_BUTTON_PART_Y+BUTTON_PART_NUMBER_H+BUTTON_PART_LETTERS_H)/BUTTON_NUMBER_H); } \
+			image.normal: IMAGE_PATH; \
+		} \
+		description { \
+			inherit: "default" 0.0; \
+			state: "pressed" 0.0; \
+			color_class: "button_letter_pressed"; \
+		} \
+	}
+
+#define PROGRAMS \
+	programs { \
+		program { \
+			name: "pressed"; \
+			signal: "mouse,down,*"; \
+			source: "*"; \
+			action: STATE_SET "pressed" 0.0; \
+			target: "bg"; \
+		} \
+		program { \
+			name: "unpressed"; \
+			signal: "mouse,up,*"; \
+			source: "*"; \
+			action: STATE_SET "default" 0.0; \
+			target: "bg"; \
+		} \
+	}
+
+#define KEYPAD_BUTTON_WITH_LETTERS( GROUP_NAME, NUMBER_PATH, LETTERS_PATH ) \
+	group { \
+		name: GROUP_NAME; \
+		parts { \
+			PART_BG \
+			PART_NUMBER(NUMBER_PATH) \
+			PART_LETTERS(LETTERS_PATH) \
+		} \
+		PROGRAMS \
+	}
+
+#define KEYPAD_BUTTON_WITHOUT_LETTERS( GROUP_NAME, NUMBER_PATH ) \
+	group { \
+		name: GROUP_NAME; \
+		parts { \
+			PART_BG \
+			PART_NUMBER(NUMBER_PATH) \
+		} \
+		PROGRAMS \
+	}
+
+collections {
+	KEYPAD_BUTTON_WITHOUT_LETTERS(GROUP_BUTTON_1, KEYPAD_NUMBER_1);
+	KEYPAD_BUTTON_WITH_LETTERS(GROUP_BUTTON_2, KEYPAD_NUMBER_2, KEYPAD_LETTERS_2);
+	KEYPAD_BUTTON_WITH_LETTERS(GROUP_BUTTON_3, KEYPAD_NUMBER_3, KEYPAD_LETTERS_3);
+	KEYPAD_BUTTON_WITH_LETTERS(GROUP_BUTTON_4, KEYPAD_NUMBER_4, KEYPAD_LETTERS_4);
+	KEYPAD_BUTTON_WITH_LETTERS(GROUP_BUTTON_5, KEYPAD_NUMBER_5, KEYPAD_LETTERS_5);
+	KEYPAD_BUTTON_WITH_LETTERS(GROUP_BUTTON_6, KEYPAD_NUMBER_6, KEYPAD_LETTERS_6);
+	KEYPAD_BUTTON_WITH_LETTERS(GROUP_BUTTON_7, KEYPAD_NUMBER_7, KEYPAD_LETTERS_7);
+	KEYPAD_BUTTON_WITH_LETTERS(GROUP_BUTTON_8, KEYPAD_NUMBER_8, KEYPAD_LETTERS_8);
+	KEYPAD_BUTTON_WITH_LETTERS(GROUP_BUTTON_9, KEYPAD_NUMBER_9, KEYPAD_LETTERS_9);
+	KEYPAD_BUTTON_WITHOUT_LETTERS(GROUP_BUTTON_ASTERISK, KEYPAD_NUMBER_ASTERISK);
+	KEYPAD_BUTTON_WITH_LETTERS(GROUP_BUTTON_0, KEYPAD_NUMBER_0, KEYPAD_LETTERS_0);
+	KEYPAD_BUTTON_WITHOUT_LETTERS(GROUP_BUTTON_SHARP, KEYPAD_NUMBER_SHARP);
+}

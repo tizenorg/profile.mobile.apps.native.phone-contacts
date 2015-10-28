@@ -1,0 +1,49 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+FILE(GLOB SRCS "*.cpp")
+
+SET(CMAKE_INSTALL_RPATH ${CMAKE_APP_LIB_DIR})
+SET(COMMON_LIB common)
+
+IF("${CMAKE_BUILD_TYPE}" STREQUAL "")
+	SET(CMAKE_BUILD_TYPE "Release")
+ENDIF()
+MESSAGE(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+
+IF("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+	ADD_DEFINITIONS("-DCLD_DEBUG")
+	ADD_DEFINITIONS("-DCLD_FILE_LOGGING")
+ENDIF()
+
+FIND_PROGRAM(UNAME NAMES uname)
+EXEC_PROGRAM("${UNAME}" ARGS "-m" OUTPUT_VARIABLE "ARCH")
+IF("${ARCH}" STREQUAL "arm")
+	ADD_DEFINITIONS("-DTARGET")
+	MESSAGE(STATUS "add -DTARGET")
+ENDIF()
+
+INCLUDE_DIRECTORIES(
+	${CMAKE_SOURCE_DIR}/app-assist-efl/inc
+	${CMAKE_SOURCE_DIR}/lib-common/inc
+	${CMAKE_SOURCE_DIR}/lib-phone/ph-common/inc
+	${CMAKE_SOURCE_DIR}/lib-phone/ph-loglist/inc
+	${CMAKE_SOURCE_DIR}/lib-phone/ph-dialer/inc
+	${CMAKE_SOURCE_DIR}/lib-contact/ct-list/inc
+	${CMAKE_SOURCE_DIR}/lib-contact/ct-detail/inc
+	${CMAKE_SOURCE_DIR}/lib-contact/ct-tab/inc
+	${CMAKE_SOURCE_DIR}/lib-contact/ct-common/inc
+	${CMAKE_SOURCE_DIR}/main-app/inc
+)
+
+ADD_EXECUTABLE(${PROJECT_NAME} ${SRCS})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${TIZEN_PKGS_LDFLAGS}
+	"app-assist-efl"
+	"ph-loglist"
+	"ph-dialer"
+	"ct-tab"
+	"ct-list"
+	"ct-detail"
+	"-pie"
+)
+
+INSTALL(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_APP_BIN_DIR})

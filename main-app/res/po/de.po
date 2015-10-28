@@ -1,0 +1,1221 @@
+msgid "IDS_CLOG_BODY_DIALLED_CALLS"
+msgstr "Gewählte Rufnummern"
+
+msgid "IDS_CLOG_BODY_LAST_CALL"
+msgstr "Letzter Anruf"
+
+msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
+msgstr "Empfangene Anrufe"
+
+msgid "IDS_CLOG_HEADER_SELECT_LOGS"
+msgstr "Protokolle auswählen"
+
+msgid "IDS_CLOG_OPT_VIEW_BY"
+msgstr "Anzeige"
+
+msgid "IDS_PB_BODY_HOME_2"
+msgstr "Zuhause 2"
+
+msgid "IDS_PB_POP_MOVE_COMPLETED"
+msgstr "Verschieben abgeschlossen"
+
+msgid "IDS_PB_BODY_MOVING_ING"
+msgstr "Verschiebevorgang aktiv..."
+
+msgid "IDS_ST_POP_PUK2_VERIFIED"
+msgstr "PUK2 verifiziert"
+
+msgid "IDS_ST_POP_PUK1_VERIFIED"
+msgstr "PUK1 verifiziert"
+
+msgid "IDS_ST_POP_PIN_UNBLOCKED"
+msgstr "PIN entsperrt"
+
+msgid "IDS_ST_POP_PIN2_UNBLOCKED"
+msgstr "PIN2 entsperrt"
+
+msgid "IDS_ST_POP_PIN2_CHANGED"
+msgstr "PIN2 geändert"
+
+msgid "IDS_ST_POP_PIN2_BLOCKED"
+msgstr "PIN2 gesperrt"
+
+msgid "IDS_ST_POP_PIN1_CHANGED"
+msgstr "PIN1-Code geändert"
+
+msgid "IDS_ST_POP_PIN1_BLOCKED"
+msgstr "PIN1-Code blockiert"
+
+msgid "IDS_ST_POP_INCORRECT_PIN2"
+msgstr "Falsche PIN2"
+
+msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
+msgstr "Neue PIN2 und bestätigte PIN2 stimmen nicht überein"
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
+msgstr "Falscher PUK1-Code"
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
+msgstr "Falsche PUK1. Noch %d Versuche"
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
+msgstr "Falsche PUK2. Noch %d Versuche"
+
+msgid "IDS_ST_POP_PIN_CHANGED"
+msgstr "PIN geändert"
+
+msgid "IDS_PB_TAB_CONTACTS"
+msgstr "Kontakte"
+
+msgid "IDS_PB_BODY_ADD_ACCOUNT"
+msgstr "Konto hinzufügen"
+
+msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Maximal zulässige Zeichenanzahl erreicht."
+
+msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
+msgstr "Geräte werden gesucht..."
+
+msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
+msgstr "Falsche PIN"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
+msgstr "FERTIG"
+
+msgid "IDS_TPLATFORM_ACBUTTON_CANCEL_ABB"
+msgstr "ABBRECHEN"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
+msgstr "LÖSCHEN"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Verbindungsprobleme oder ungültiger MMI-Code"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Private Nummer"
+
+msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
+msgstr "SENDEN"
+
+msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
+msgstr "PIN2 blockiert. An Anbieter wenden (SIM PUK2 erforderlich)"
+
+msgid "IDS_CLOG_BODY_NO_LOGS"
+msgstr "Keine Protokolle"
+
+msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
+msgstr "Nach dem Tätigen/Empfangen eines Anrufs oder dem Senden/Empfangen von Nachrichten werden Protokolle angezeigt."
+
+msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
+msgstr "SIM-Karte besetzt. Später erneut versuchen"
+
+msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
+msgstr "SIM-Karte ist gesperrt."
+
+msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
+msgstr "Keine SIM-Karte gefunden. Setzen Sie eine SIM-Karte in das Telefon ein"
+
+msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
+msgstr "Netz- oder SIM-Karten-Fehler"
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
+msgstr "Vibrationsfeedback aktiviert."
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
+msgstr "Vibrationsfeedback deaktiviert."
+
+msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
+msgstr "Anrufen der Nummer nicht möglich. %d ist keine Notrufnummer."
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
+msgstr "Kurzwahlnummer %d entfernt."
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
+msgstr "Kurzwahlnummer zugewiesen."
+
+msgid "IDS_KPD_TPOP_ENTER_NUMBER"
+msgstr "Nummer eingeben."
+
+msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
+msgstr "Ihre PIN muss %1$d bis %2$d Ziffern lang sein. Erneut versuchen."
+
+msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
+msgstr "Ihre PIN2 muss %1$d bis %2$d Stellen umfassen. Versuchen Sie es erneut."
+
+msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
+msgstr "Dieser Kurzwahlnummer ist kein Kontakt zugeordnet. Auf „OK“ tippen, um jetzt eine Nummer zuzuweisen."
+
+msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
+msgstr "PIN wurde deaktiviert. Aktivieren Sie vor der Änderung die PIN."
+
+msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
+msgstr "Voicemail"
+
+msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
+msgstr "Kontakt aktual."
+
+msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
+msgstr "Kurzwahleinst."
+
+msgid "IDS_KPD_OPT_REMOVE"
+msgstr "Entfernen"
+
+msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
+msgstr "Neuer Kontakt"
+
+msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
+msgstr "Anrufeinstellungen"
+
+msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
+msgstr "Pause hinzufügen"
+
+msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
+msgstr "2 Sekunden Pause hinzufügen"
+
+msgid "IDS_KPD_ITAB3_KEYPAD"
+msgstr "Tasten"
+
+msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
+msgstr "Netzwerkverbindung nicht mgl."
+
+msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "SIM-Kartenauswahl für Anruf"
+
+msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
+msgstr "Suchergebnisse (%d)"
+
+msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
+msgstr "Notruf"
+
+msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
+msgstr "Zuweisen als Kurzwahlnummer"
+
+msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
+msgstr "Nummer festl."
+
+msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
+msgstr "Nachr. send."
+
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Abbrechen"
+
+msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
+msgstr "Zu Kontakten hinzufügen"
+
+msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
+msgstr "Kennwörter stimmen nicht überein"
+
+msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
+msgstr "PIN blockiert. PUK-Code eingeben"
+
+msgid "IDS_IDLE_BODY_SIM_BLOCKED"
+msgstr "SIM gesperrt"
+
+msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
+msgstr "Nicht gespeichert"
+
+msgid "IDS_LOGS_SBODY_SAVED_M_STATUS"
+msgstr "Gespeichert"
+
+msgid "IDS_LOGS_SBODY_MISSEDM_CALL_STATUS"
+msgstr "Entgangen"
+
+msgid "IDS_LOGS_SBODY_FAILED_M_STATUS"
+msgstr "Fehler"
+
+msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
+msgstr "Abgebrochen"
+
+msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "%d Protokollelemente werden gelöscht."
+
+msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "Alle Protokollemente werden gelöscht."
+
+msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
+msgstr "1 Protokollelement wird gelöscht."
+
+msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
+msgstr "Kontaktdet. anz."
+
+msgid "IDS_LOGS_OPT_SEND_NUMBER"
+msgstr "Nummer senden"
+
+msgid "IDS_LOGS_OPT_MISSED_CALLS"
+msgstr "Verpasste Anrufe"
+
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Löschen"
+
+msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
+msgstr "Anrufdauerübersicht"
+
+msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
+msgstr "Verpasste Anrufe"
+
+msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
+msgstr "Nicht erneut anzeigen."
+
+msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
+msgstr "Unbekannte Nr."
+
+msgid "IDS_LOGS_MBODY_UNKNOWN"
+msgstr "Unbekannt"
+
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Alle auswählen"
+
+msgid "IDS_LOGS_ITAB3_LOGS"
+msgstr "Protokolle"
+
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Gestern"
+
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Heute"
+
+msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
+msgstr "Auswahl von %d"
+
+msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
+msgstr "%d Protokolle löschen"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
+msgstr "Löschen von Protokollelementen"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
+msgstr "Protokoll löschen"
+
+msgid "IDS_LOGS_HEADER_DELETE"
+msgstr "Löschen"
+
+msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
+msgstr "Kontakt aktual."
+
+msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
+msgstr "Löschen"
+
+msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
+msgstr "Neuer Kontakt"
+
+msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
+msgstr "Abbrechen"
+
+msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
+msgstr "Sprachanrufe"
+
+msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
+msgstr "Videoanrufe"
+
+msgid "IDS_LOGS_BODY_SIM_CARD"
+msgstr "SIM-Karte"
+
+msgid "IDS_LOGS_BODY_ALL_CALLS"
+msgstr "Alle Anrufe"
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
+msgstr "Nach dem Tätigen oder Empfangen von Anrufen werden diese Anrufe hier protokolliert."
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
+msgstr "Nach dem Tätigen oder Empfangen eines Anrufs werden hier Protokollelemente angezeigt."
+
+msgid "IDS_QP_ACBUTTON_EDIT_ABB"
+msgstr "BEARBEITEN"
+
+msgid "IDS_MF_POP_INPUT_TEXT"
+msgstr "Text eingeben"
+
+msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
+msgstr "Einige Ihrer Kontakte sind anscheinend doppelt vorhanden."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
+msgstr "%d Kontakte importiert."
+
+msgid "IDS_PB_TPOP_CONTACTS_LINKED"
+msgstr "Kontakte verknüpft."
+
+msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
+msgstr "1 Nummer aus der Liste für automatisches Ablehnen entfernt."
+
+msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
+msgstr "1 Kontakt importiert."
+
+msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
+msgstr "Dienstnummern"
+
+msgid "IDS_PB_TMBODY_NAME_FORMAT"
+msgstr "Namensformat"
+
+msgid "IDS_PB_TMBODY_LINK_CONTACTS"
+msgstr "Kontakte verknüpfen"
+
+msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
+msgstr "Anzuzeigende Kontakte"
+
+msgid "IDS_PB_SK_SET"
+msgstr "Einstellen"
+
+msgid "IDS_PB_SK_CREATE_ABB"
+msgstr "Erstellen"
+
+msgid "IDS_PB_SK_ADD_FIELDS"
+msgstr "Feld hzfg."
+
+msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
+msgstr "Kont. werd. importiert..."
+
+msgid "IDS_PB_SBODY_IMPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "Import abgebrochen."
+
+msgid "IDS_PB_SBODY_EXPORTING_CONTACTS_ING_ABB"
+msgstr "Kont. werd. exportiert..."
+
+msgid "IDS_PB_SBODY_EXPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "Export abgebrochen."
+
+msgid "IDS_PB_SBODY_CONTACTS_IMPORTED_M_STATUS_ABB"
+msgstr "Kontakte importiert."
+
+msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
+msgstr "Kontakte exportiert."
+
+msgid "IDS_PB_SBODY_ALL_CONTACTS"
+msgstr "Alle Kontakte"
+
+msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
+msgstr "Sie können keine Kontakte aus schreibgeschützten Konten löschen, aber Sie können sie in den Kontakten ausblenden."
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
+msgstr "Wenn die Synchronisierung aktiviert ist, wird dieser Kontakt aus allen synchronisierten Konten gelöscht, in denen er gespeichert ist."
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
+msgstr "Ist „Sync“ aktiviert, wird der Kontakt und alle verknüpften Kontakte in anderen synchronisierten Konten gelöscht oder, wenn es sich um ein schreibgeschütztes Konto handelt, verborgen."
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
+msgstr "Wenn die Synchronisierung aktiviert ist, werden dieser Kontakt und alle mit ihm verknüpften Kontakte aus anderen synchronisierten Konten gelöscht."
+
+msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
+msgstr "Info zum Netzbetreiber wird aktualisiert..."
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "Hinzufügen des Kontakts nicht möglich. Maximale Anzahl an verknüpfbaren Kontakten (%d) erreicht."
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "Hinzufügen von Kontakten nicht möglich. Maximale Anzahl an verknüpfbaren Kontakten (%d) erreicht."
+
+msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "Dieser Kontakt wird gelöscht."
+
+msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "Dieser Kontakt und die mit ihm verknüpften Kontakte werden gelöscht."
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "Die maximale Anzahl von auswählbaren Elementen (%d) wurde überschritten."
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
+msgstr "Die maximale Anzahl von Kontakten, die gleichzeitig freigegeben werden können (%1$d), wurde überschritten. Es werden nur die ersten %2$d Kontakte freigegeben."
+
+msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
+msgstr "Die Funktion Chamada Certa kann zum Ermitteln des Dienstanbieters Ihrer Kontakte und deren Darstellung in der Kontaktliste verwendet werden. Sie können dies später durchführen, indem Sie die Menü-Taste drücken und „Info zum Dienstanbieter aktualisieren“ auswählen. Tippen Sie auf „OK“, um jetzt die Dienstanbieter Ihrer Kontakte zu ermitteln."
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
+msgstr "Auf „OK“ tippen, um den Import der Kontakte von der SIM-Karte zu beenden."
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
+msgstr "Auf „OK“ tippen, um den Export der Kontakte nach %s zu beenden."
+
+msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "Tippen Sie auf „Exportieren“, um die zu exportierenden Kontakte auszuwählen. Einige Kontaktinformationen gehen möglicherweise verloren."
+
+msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
+msgstr "Möglicherweise wurden keine oder manche Kontakte nicht aktualisiert"
+
+msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "Einige Kontaktinformationen gehen u.U. verloren."
+
+msgid "IDS_PB_POP_SIM_MEMROY_FULL"
+msgstr "SIM-Speicher voll"
+
+msgid "IDS_PB_POP_REMOVING"
+msgstr "Entferne..."
+
+msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
+msgstr "%d Telefonnummern wurden aktualisiert"
+
+msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
+msgstr "%d Kontakte werden gelöscht."
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
+msgstr "%1$d Kontakte wurden zu %2$s exportiert."
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
+msgstr "%1$d Kontakte wurden nach „Gerät/Kontakte/Importiert/%2$s.vcf“ exportiert."
+
+msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
+msgstr "Speicher voll"
+
+msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
+msgstr "Neue Kontakte werden auf Ihrem Gerät in Kontakte gespeichert."
+
+msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
+msgstr "FDN-Modus aktiviert"
+
+msgid "IDS_PB_POP_FAILED"
+msgstr "Fehlgeschlagen"
+
+msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
+msgstr "Änderungen verwerfen?"
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
+msgstr "Kontakte werden gelöscht..."
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
+msgstr "Das Löschen von Kontakten wurde abgebrochen. Einige Kontakte wurden möglicherweise bereits gelöscht."
+
+msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
+msgstr "Der Import von Kontakten von %s wird angehalten."
+
+msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
+msgstr "Bereits vorhanden"
+
+msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "Alle verknüpften Kontakte werden gelöscht."
+
+msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
+msgstr "Alle Kontakte werden gelöscht."
+
+msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
+msgstr "Alle Änderungen werden verworfen."
+
+msgid "IDS_PB_POP_ADDING_ING"
+msgstr "Wird hinzugefügt..."
+
+msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
+msgstr "1 Telefonnummer wurde aktualisiert"
+
+msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
+msgstr "1 Kontakt wird gelöscht."
+
+msgid "IDS_PB_POP_1_CONTACT_REMOVED"
+msgstr "1 Kontakt entfernt."
+
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
+
+msgid "IDS_PB_OPT_WORK"
+msgstr "Arbeit"
+
+msgid "IDS_PB_OPT_VOICE_CALL"
+msgstr "Sprachanruf"
+
+msgid "IDS_PB_OPT_VIDEO_CALL"
+msgstr "Videoanruf"
+
+msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
+msgstr "Info zum Dienstanbieter aktualisieren"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
+msgstr "KONTAKTVERKN. AUFHEBEN"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACTS"
+msgstr "Markierung entfernen"
+
+msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
+msgstr "Foto aufnehmen"
+
+msgid "IDS_PB_OPT_TAKE_A_PHOTO"
+msgstr "Foto aufnehmen"
+
+msgid "IDS_PB_OPT_SPOUSE"
+msgstr "Ehepartner"
+
+msgid "IDS_PB_OPT_SKYPE"
+msgstr "Skype"
+
+msgid "IDS_PB_OPT_SISTER"
+msgstr "Schwester"
+
+msgid "IDS_PB_OPT_SIM_CARD"
+msgstr "SIM-Karte"
+
+msgid "IDS_PB_OPT_SHARE_VIA"
+msgstr "Senden via"
+
+msgid "IDS_PB_OPT_SHARE"
+msgstr "Senden"
+
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Einstellungen"
+
+msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
+msgstr "Aus Kontakten auswählen"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-Karte"
+
+msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
+msgstr "Kontakt speichern unter"
+
+msgid "IDS_PB_OPT_REORDER"
+msgstr "Neu sortieren"
+
+msgid "IDS_PB_OPT_REMOVE"
+msgstr "Entfernen"
+
+msgid "IDS_PB_OPT_RELATIVE"
+msgstr "Verwandter"
+
+msgid "IDS_PB_OPT_RELATIONSHIP_ABB2"
+msgstr "Beziehung"
+
+msgid "IDS_PB_OPT_REFERRED_BY_ABB"
+msgstr "Vorgestellt von"
+
+msgid "IDS_PB_OPT_QQ"
+msgstr "QQ"
+
+msgid "IDS_PB_OPT_PARTNER"
+msgstr "Partner"
+
+msgid "IDS_PB_OPT_PARENT"
+msgstr "Elternteil"
+
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Pager"
+
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Andere"
+
+msgid "IDS_PB_OPT_ORGANISATION_ABB"
+msgstr "Organisation"
+
+msgid "IDS_PB_OPT_MOTHER"
+msgstr "Mutter"
+
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Mobil"
+
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Nachricht"
+
+msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
+msgstr "Favoriten verwalten"
+
+msgid "IDS_PB_OPT_MANAGER"
+msgstr "Manager"
+
+msgid "IDS_PB_OPT_MAIN"
+msgstr "Haupt"
+
+msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
+msgstr "Nachname zuerst"
+
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Nachname"
+
+msgid "IDS_PB_OPT_JABBER"
+msgstr "Jabber"
+
+msgid "IDS_PB_OPT_ICQ"
+msgstr "ICQ"
+
+msgid "IDS_PB_OPT_HOME_ABB"
+msgstr "Privat"
+
+msgid "IDS_PB_OPT_HOME"
+msgstr "Startbildschirm"
+
+msgid "IDS_PB_OPT_HANGOUTS"
+msgstr "Hangouts"
+
+msgid "IDS_PB_OPT_FROM_GALLERY_ABB2"
+msgstr "Aus Galerie"
+
+msgid "IDS_PB_OPT_FRIEND"
+msgstr "Freund"
+
+msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
+msgstr "Vorname zuerst"
+
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Vorname"
+
+msgid "IDS_PB_OPT_FDN_CONTACT"
+msgstr "FDN-Kontakt"
+
+msgid "IDS_PB_OPT_FAX_HWORK_ABB"
+msgstr "Fax (Arbeit)"
+
+msgid "IDS_PB_OPT_FAX_HHOME_ABB"
+msgstr "Fax (Privat)"
+
+msgid "IDS_PB_OPT_FATHER"
+msgstr "Vater"
+
+msgid "IDS_PB_OPT_EDIT"
+msgstr "Bearbeiten"
+
+msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
+msgstr "Nicht erneut anzeigen"
+
+msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
+msgstr "Lebensgefährte"
+
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Gerät"
+
+msgid "IDS_PB_OPT_CUSTOM"
+msgstr "Benutzerdefiniert"
+
+msgid "IDS_PB_OPT_CREATE"
+msgstr "Erstellen"
+
+msgid "IDS_PB_OPT_CHILD"
+msgstr "Kind"
+
+msgid "IDS_PB_OPT_BROTHER"
+msgstr "Bruder"
+
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Geburtstag"
+
+msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
+msgstr "Assistent"
+
+msgid "IDS_PB_OPT_ANNIVERSARY_ABB"
+msgstr "Jahrestag"
+
+msgid "IDS_PB_OPT_AIM"
+msgstr "AIM"
+
+msgid "IDS_PB_OPT_ADD_FIELD"
+msgstr "Feld hinzufügen"
+
+msgid "IDS_PB_OPT_ADD"
+msgstr "Hinzufügen"
+
+msgid "IDS_PB_OPT_ACCOUNT"
+msgstr "Konto"
+
+msgid "IDS_PB_NPBODY_SEARCH"
+msgstr "Suche"
+
+msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
+msgstr "Keine Dienstnummern"
+
+msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
+msgstr "Keine Ergebnisse"
+
+msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
+msgstr "Keine Notfallkontakte"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Keine Kontakte"
+
+msgid "IDS_PB_MBODY_SORT_BY"
+msgstr "Sortieren nach"
+
+msgid "IDS_PB_MBODY_SET_PROFILE"
+msgstr "Profil festlegen"
+
+msgid "IDS_PB_MBODY_SET_MY_PROFILE"
+msgstr "Eigenes Profil festlegen"
+
+msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
+msgstr "Zusammen senden"
+
+msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
+msgstr "Einzeln senden"
+
+msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
+msgstr "Kontaktinfos senden"
+
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Alle auswählen"
+
+msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
+msgstr "%d Kontakte"
+
+msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
+msgstr "Nur Kontakte mit Telefonnr."
+
+msgid "IDS_PB_MBODY_IMPORT"
+msgstr "Importieren"
+
+msgid "IDS_PB_MBODY_EXPORT"
+msgstr "Exportieren"
+
+msgid "IDS_PB_MBODY_EVENT"
+msgstr "Ereignis"
+
+msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
+msgstr "Kontakte mit Nummern anzeigen"
+
+msgid "IDS_PB_MBODY_1_CONTACT_ABB"
+msgstr "1 Kontakt"
+
+msgid "IDS_PB_ITAB3_CONTACTS"
+msgstr "Kontakte"
+
+msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
+msgstr "Kein USB-Speicher verfügbar"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
+msgstr "Hzfg. nicht möglich"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
+msgstr "Hinzufügen nicht möglich"
+
+msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
+msgstr "Vorgeschlagene Kontakte"
+
+msgid "IDS_PB_HEADER_SHARE_VIA"
+msgstr "Senden via"
+
+msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
+msgstr "Festlegen von Kontaktbild"
+
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Einstellungen"
+
+msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
+msgstr "Dienstanbieter"
+
+msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
+msgstr "Senden von Kontaktinfos"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
+msgstr "SIM für Anruf auswählen"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Auswahl der SIM-Karte für Anruf"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "SIM-Kartenauswahl für Anruf"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
+msgstr "Auswahl eines Kontakts"
+
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "Auswählen"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
+msgstr "Speichern von Kontakt unter"
+
+msgid "IDS_PB_HEADER_REORDER"
+msgstr "Neue Sortierung"
+
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Entfernen"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
+msgstr "Wichtigste Kontakte (%d)"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
+msgstr "Wichtige Kontakte (%1$d/%2$d)"
+
+msgid "IDS_PB_HEADER_PHONE_M_CALL"
+msgstr "Telefon"
+
+msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
+msgstr "Persönliche Kontakte"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
+msgstr "Auswahl von %d"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
+msgstr "%d ausgewählt"
+
+msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
+msgstr "Namensformat"
+
+msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
+msgstr "Häufigste Kontakte"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "Mich"
+
+msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
+msgstr "Favoriten-Verwaltung"
+
+msgid "IDS_PB_HEADER_MAINLIST"
+msgstr "Kontaktliste"
+
+msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
+msgstr "Verknüpfte Kontakte"
+
+msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
+msgstr "Kontakteimport"
+
+msgid "IDS_PB_HEADER_IMPORT"
+msgstr "Importieren"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Favoriten"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
+msgstr "Exportieren von Kontakten"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
+msgstr "Exportieren von Kontakten"
+
+msgid "IDS_PB_HEADER_EXPORT"
+msgstr "Exportieren"
+
+msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
+msgstr "Benutzerdefin. Beschriftung"
+
+msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
+msgstr "Notdienste"
+
+msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
+msgstr "Notfallkontakte"
+
+msgid "IDS_PB_HEADER_EDIT"
+msgstr "Bearbeiten"
+
+msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
+msgstr "Namen anzeigen nach"
+
+msgid "IDS_PB_HEADER_DISPLAY"
+msgstr "Anzeige"
+
+msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
+msgstr "Änderungen verwerfen"
+
+msgid "IDS_PB_HEADER_DELETE_ITEM"
+msgstr "Element löschen"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Erstellen"
+
+msgid "IDS_PB_HEADER_CONTACT_IMAGE"
+msgstr "Kontaktfoto"
+
+msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
+msgstr "Anzuzeigende Kontakte"
+
+msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
+msgstr "Kontakte"
+
+msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
+msgstr "Exportierte Kontakte"
+
+msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
+msgstr "Wechseln von Speicherort"
+
+msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
+msgstr "Importabbruch"
+
+msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
+msgstr "Exportabbruch"
+
+msgid "IDS_PB_BUTTON_TRY_AGAIN"
+msgstr "Erneut versuchen"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Speichern"
+
+msgid "IDS_PB_BUTTON_PHONE"
+msgstr "Telefon"
+
+msgid "IDS_PB_BUTTON_OK_ABB2"
+msgstr "OK"
+
+msgid "IDS_PB_BUTTON_NOTES"
+msgstr "Notizen"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Weitere"
+
+msgid "IDS_PB_BUTTON_EXPORT"
+msgstr "Exportieren"
+
+msgid "IDS_PB_BUTTON_EMAIL_ABB3"
+msgstr "E-Mail"
+
+msgid "IDS_PB_BUTTON_DONE_ABB3"
+msgstr "OK"
+
+msgid "IDS_PB_BUTTON_DISCARD_ABB"
+msgstr "Verwerfen"
+
+msgid "IDS_PB_BUTTON_DELETE_ABB4"
+msgstr "Löschen"
+
+msgid "IDS_PB_BUTTON_CREATE_ABB2"
+msgstr "Erstellen"
+
+msgid "IDS_PB_BUTTON_CHANGE_ABB"
+msgstr "Ändern"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Abbruch"
+
+msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
+msgstr "Konto hzfg."
+
+msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
+msgstr "Windows Live"
+
+msgid "IDS_PB_BODY_WEBSITE_ABB"
+msgstr "Webseite"
+
+msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
+msgstr "Kontaktliste wird aktualisiert..."
+
+msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
+msgstr "Kann aufgrund eines SIM-Fehlers nicht gespeichert werden"
+
+msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
+msgstr "Titel"
+
+msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "Dieser Kontakt wird gelöscht."
+
+msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
+msgstr "Die Angaben zu den Dienstanbietern für die ausgewählten Kontakte werden aktualisiert. Für diesen Vorgang ist eine Netzwerkverbindung erforderlich und es können zusätzliche Gebühren anfallen. Die zur Durchführung dieses Vorgangs erforderliche Zeit hängt vom Status Ihrer Netzwerkverbindung ab."
+
+msgid "IDS_PB_BODY_TELEPHONE"
+msgstr "Telefon"
+
+msgid "IDS_PB_BODY_SKYPE"
+msgstr "Skype"
+
+msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
+msgstr "SIM wird initialisiert..."
+
+msgid "IDS_PB_BODY_SERVICE_NUMBER"
+msgstr "Dienstnummer"
+
+msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
+msgstr "Das Senden von einzelnen Visitenkarten kann länger dauern, da sie vom empfangenden Gerät nacheinander akzeptiert werden müssen."
+
+msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
+msgstr "Durch das gleichzeitige Senden mehrerer Kontakte wird die Übertragungszeit verkürzt. Wenn dieser Vorgang jedoch von dem anderen Gerät nicht unterstützt wird, wird nur ein Kontakt gesendet."
+
+msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
+msgstr "Wählen Sie, wie Kontaktinformationen gesendet werden."
+
+msgid "IDS_PB_BODY_SELECTED_MADJ"
+msgstr "Ausgewählt"
+
+msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
+msgstr "Aus Favoriten entfernen"
+
+msgid "IDS_PB_BODY_PHOTO"
+msgstr "Foto"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Telefonnr."
+
+msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
+msgstr "Phonetischer Name"
+
+msgid "IDS_PB_BODY_PHONETIC_MIDDLE_NAME_ABB"
+msgstr "Phonet. zw. Vorname"
+
+msgid "IDS_PB_BODY_PHONETIC_LAST_NAME_ABB"
+msgstr "Phonet. Nachname"
+
+msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
+msgstr "Phonetischer Vorname"
+
+msgid "IDS_PB_BODY_OTHER_EMAILS"
+msgstr "Andere E-Mails"
+
+msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
+msgstr "Kein Suchergebnis"
+
+msgid "IDS_PB_BODY_NO_GROUPS"
+msgstr "Keine Gruppen"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Memos"
+
+msgid "IDS_PB_BODY_NICKNAME_ABB"
+msgstr "Spitzname"
+
+msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
+msgstr "Namenszusatz"
+
+msgid "IDS_PB_BODY_NAME_PREFIX"
+msgstr "Namenspräfix"
+
+msgid "IDS_PB_BODY_NAME"
+msgstr "Name"
+
+msgid "IDS_PB_BODY_MY_CONTACTS"
+msgstr "Meine Kontakte"
+
+msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
+msgstr "Zweiter Vorname"
+
+msgid "IDS_PB_BODY_LAST_NAME_ABB"
+msgstr "Nachname"
+
+msgid "IDS_PB_BODY_JOB_TITLE_ABB"
+msgstr "Beruf"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
+msgstr "Von SIM-Karte importieren"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
+msgstr "Von SIM2-Karte importieren"
+
+msgid "IDS_PB_BODY_IMPORTING_ING"
+msgstr "Importieren..."
+
+msgid "IDS_PB_BODY_IMAGE"
+msgstr "Bilder"
+
+msgid "IDS_PB_BODY_IM"
+msgstr "Chat"
+
+msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
+msgstr "Wenn Ihr Dienstanbieter auf Ihrer SIM-Karte Service-Telefonnummern voreingestellt hat, werden diese hier angezeigt."
+
+msgid "IDS_PB_BODY_GALLERY"
+msgstr "Galerie"
+
+msgid "IDS_PB_BODY_FIRST_NAME_ABB"
+msgstr "Vorname"
+
+msgid "IDS_PB_BODY_FAX"
+msgstr "Fax"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
+msgstr "Auf SIM-Karte exportieren"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
+msgstr "Auf SIM2-Karte exportieren"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
+msgstr "Auf SD-Karte exportieren"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "E-Mail"
+
+msgid "IDS_PB_BODY_DISCARD_CHANGES"
+msgstr "Änderungen verwerfen"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
+msgstr "Freunde"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
+msgstr "Familie"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Datum"
+
+msgid "IDS_PB_BODY_CO_WORKERS"
+msgstr "Arbeitskollegen"
+
+msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
+msgstr "Kontakte, die als Duplikate identifiziert werden, werden automatisch vorgeschlagen."
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Kontakte"
+
+msgid "IDS_PB_BODY_COMPANY_ABB"
+msgstr "Firma"
+
+msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
+msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
+
+msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
+msgstr "Taste für die Erweiterung der Liste"
+
+msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
+msgstr "Die automatischen Empfehlungen können Highlights aus Sound-Dateien extrahieren."
+
+msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "Nach dem Erstellen von Kontakten werden sie hier angezeigt."
+
+msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "Nachdem Sie Kontakte hinzugefügt haben, werden diese hier angezeigt."
+
+msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
+msgstr "Zu Favoriten hinzufügen"
+
+msgid "IDS_PB_BODY_ADDRESS_ABB2"
+msgstr "Adresse"
+
+msgid "IDS_PB_BODY_ACCOUNTS"
+msgstr "Konten"
+
+msgid "IDS_PB_BODY_AB_M_BLOOD"
+msgstr "AB"
+
+msgid "IDS_ST_POP_PIN_BLOCKED"
+msgstr "PIN gesperrt"
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
+msgstr "Falscher PUK2"
+
+msgid "IDS_ST_POP_INCORRECT_PIN1"
+msgstr "Falscher PIN1-Code"
+
+msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
+msgstr "Vorhandenen Kontakt hinzufügen"
+
+msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
+msgstr "Keine wichtigen Kontakte"
+
+msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
+msgstr "Wichtigste Kontakte"
+
+msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
+msgstr "Wichtigen Kontakt erstellen"
+
+msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
+msgstr "Hinzufügen wichtiger Kontakte"
+
+msgid "IDS_ST_BODY_SET_DATE"
+msgstr "Datum einstellen"
+
+msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
+msgstr "Neue PIN und bestätigte PIN stimmen nicht überein"
+
+msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "Nach dem Erstellen von wichtigen Kontakten werden diese hier angezeigt."
+
+msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
+msgstr "Keine weiteren Elemente mgl."
+
+msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
+msgstr "Legen Sie eine SIM-Karte ein."
+
+msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
+msgstr "Der Dienstanbieter des von Ihnen angerufenen Kontakts ist %1$s. Tippen Sie auf „OK“, um den Anruf über Ihre %2$s-SIM-Karte zu tätigen."
+
+msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
+msgstr "Verwenden von %s-SIM-Karte"
+
+msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
+msgstr "Aktuelle SIM"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Payphone"
+
+msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
+msgstr "Ungültiges Zeichen"
+
+msgid "IDS_HS_BUTTON_PHONE_M_CALL"
+msgstr "Telefon"
+
+msgid "IDS_ST_BODY_OUTGOING_CALL"
+msgstr "Ausgehender Anruf"
+
+msgid "IDS_CALL_BODY_INCOMING_CALL"
+msgstr "Eingehender Anruf"
+
+msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
+msgstr "Nur die ersten %d Kontakte werden angezeigt."
+
+msgid "IDS_PB_BODY_MY_PROFILE"
+msgstr "Eigenes Profil"
+
+msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
+msgstr "Hier tippen, um Verknüpfung hinzuzufügen."
+

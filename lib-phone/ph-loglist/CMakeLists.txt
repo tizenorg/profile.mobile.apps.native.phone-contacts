@@ -1,0 +1,27 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+PROJECT(ph-loglist CXX)
+
+INCLUDE_DIRECTORIES(
+	${CMAKE_SOURCE_DIR}/app-assist-efl/inc
+	${CMAKE_SOURCE_DIR}/lib-common/inc
+	${CMAKE_SOURCE_DIR}/lib-common/res/common/edje
+	${CMAKE_SOURCE_DIR}/lib-phone/ph-common/inc
+	${CMAKE_CURRENT_SOURCE_DIR}/src
+	${CMAKE_CURRENT_SOURCE_DIR}/inc
+	${CMAKE_CURRENT_SOURCE_DIR}/icu
+)
+
+FILE(GLOB SRCS
+	"src/*.cpp"
+	"icu/*.cpp"
+)
+
+ADD_LIBRARY(${PROJECT_NAME} SHARED ${SRCS})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${TIZEN_PKGS_LDFLAGS}
+	"app-assist-efl"
+	"contacts-common"
+	"ph-common"
+)
+
+INSTALL(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_APP_LIB_DIR})
+

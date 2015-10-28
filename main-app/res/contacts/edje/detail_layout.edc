@@ -1,0 +1,347 @@
+/*
+ * Copyright (c) 2009-2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "genlist_macro.edc"
+#include "WVGA-inc.edc"
+#include "../../../../lib-contact/ct-common/inc/CtPath.h"
+#include "../../../../lib-common/res/common/edje/common-colors.edc"
+#include "../../../../lib-common/res/common/edje/common-utils.edc"
+
+#define MAIN_H 1280
+#define MAIN_W 720
+
+#define BACK_BTN_SIZE 80
+#define BACK_BTN_OFFSET_L 10
+#define BACK_BTN_OFFSET_T 13
+
+#define FAVOR_BTN_SIZE 80
+#define FAVOR_BTN_OFFSET_R (MAIN_W-17-FAVOR_BTN_SIZE)
+#define FAVOR_BTN_OFFSET_T 13
+
+#define THUMBNAIL_SIZE 240
+#define THUMBNAIL_OFFSET_L 240
+#define THUMBNAIL_OFFSET_T 44
+
+#define TEXT_BLOCK_W 672
+#define BIG_TEXT_BLOCK_H 82
+#define SMALL_TEXT_BLOCK_H 52
+#define TEXT_BLOCK_OFFSET_L 24
+
+#define FIRST_BLOCK_OFFSET_T (THUMBNAIL_OFFSET_T+THUMBNAIL_SIZE+2)
+#define SECOND_BLOCK_OFFSET_T (FIRST_BLOCK_OFFSET_T+BIG_TEXT_BLOCK_H+2)
+#define THIRD_BLOCK_OFFSET_T (SECOND_BLOCK_OFFSET_T+SMALL_TEXT_BLOCK_H+2)
+
+#define BASE_INFO_OFFSET_B 28
+
+#define BASE_INFO_1LINE_H (FIRST_BLOCK_OFFSET_T+BIG_TEXT_BLOCK_H+BASE_INFO_OFFSET_B)
+#define BASE_INFO_2LINE_H (BASE_INFO_1LINE_H+SMALL_TEXT_BLOCK_H+2)
+#define BASE_INFO_3LINE_H (BASE_INFO_2LINE_H+SMALL_TEXT_BLOCK_H+2)
+
+#define CT_DETAILS_BACK_IC "contact_details_back_ic.png"
+#define CT_IMG_ICON_INPUT_RELATIONSHIP "contacts_btn_ic_multiple.png"
+#define CT_IMG_ICON_INPUT_OPEN "contacts_icon_open.png"
+#define CT_IMG_ICON_INPUT_CLOSE "contacts_icon_close.png"
+
+images {
+	image: CT_DETAILS_BACK_IC COMP;
+}
+
+#define BUTTON_STYLES(style_name, button_image, COLOR_CLASS_NORMAL, COLOR_CLASS_PRESSED)\
+	group { name: style_name;\
+		images {\
+			image: button_image COMP;\
+		}\
+		parts {\
+			part { name: "button_content";\
+				scale: 1;\
+				description { state: "default" 0.0;\
+					image.normal: button_image;\
+					color_class: COLOR_CLASS_NORMAL;\
+				}\
+				description {\
+					state: "clicked" 0.0;\
+					inherit: "default" 0.0;\
+					color_class: COLOR_CLASS_PRESSED;\
+				}\
+			}\
+		}\
+		programs {\
+			 program { name: "button_click";\
+				signal: "mouse,down,1";\
+				source: "*";\
+				action: STATE_SET "clicked" 0.0;\
+				target: "button_content";\
+			}\
+			program { name: "button_unclick";\
+				signal: "mouse,up,1";\
+				source: "*";\
+				action: STATE_SET "default" 0.0;\
+				target: "button_content";\
+			}\
+		}\
+	}
+
+#define BASE_INFO_TEXT( PART_NAME, TEXT_OFFSET_T, TEXT_BLOCK_H, BASE_INFO_HEIGHT, TEXT_STYLE ) \
+	part { \
+		name: PART_NAME; \
+		type: TEXTBLOCK; \
+		scale: 1; \
+		description { \
+			state: "default" 0.0; \
+			rel1 { relative: (TEXT_BLOCK_OFFSET_L/MAIN_W) (TEXT_OFFSET_T/BASE_INFO_HEIGHT); } \
+			rel2 { relative: ((TEXT_BLOCK_OFFSET_L+TEXT_BLOCK_W)/MAIN_W) ((TEXT_OFFSET_T+TEXT_BLOCK_H)/BASE_INFO_HEIGHT); } \
+			text { \
+				style: TEXT_STYLE; \
+			} \
+		} \
+	}
+
+#define BASE_INFO( PART_NAME, BASE_INFO_HEIGHT ) \
+	group { \
+		name: PART_NAME; \
+		parts { \
+			part { \
+				name: "back_btn_bg"; \
+				type: RECT; \
+				description { \
+					state: "default" 0.0; \
+					rel1 { relative: (BACK_BTN_OFFSET_L/MAIN_W) (BACK_BTN_OFFSET_T/BASE_INFO_HEIGHT); } \
+					rel2 { relative: ((BACK_BTN_OFFSET_L+BACK_BTN_SIZE)/MAIN_W) ((BACK_BTN_OFFSET_T+BACK_BTN_SIZE)/BASE_INFO_HEIGHT); } \
+					color: 0 0 0 0; \
+				} \
+				description { \
+					state: "pressed" 0.0; \
+					inherit: "default" 0.0; \
+					color: 0 0 0 50; \
+				} \
+			} \
+			part { \
+				name: "back_btn"; \
+				type: IMAGE; \
+				description { \
+					state: "default" 0.0; \
+					fixed: 1 1; \
+					aspect: 1 1; \
+					aspect_preference: BOTH; \
+					image.normal: CT_DETAILS_BACK_IC; \
+					rel1.to: "back_btn_bg"; \
+					rel2.to: "back_btn_bg"; \
+				} \
+			} \
+			part { \
+				name: "swallow.image_thumbnail"; \
+				type: SWALLOW; \
+				description { \
+					state: "default" 0.0; \
+					rel1 { relative: (THUMBNAIL_OFFSET_L/MAIN_W) (THUMBNAIL_OFFSET_T/BASE_INFO_HEIGHT); } \
+					rel2 { relative: ((THUMBNAIL_OFFSET_L+THUMBNAIL_SIZE)/MAIN_W) ((THUMBNAIL_OFFSET_T+THUMBNAIL_SIZE)/BASE_INFO_HEIGHT); } \
+					aspect: 1 1; \
+					aspect_preference: BOTH; \
+				} \
+			} \
+			part { \
+				name: "swallow.favor_btn"; \
+				type: SWALLOW; \
+				description { \
+					state: "default" 0.0; \
+					fixed: 1 1; \
+					rel1 { relative: ((FAVOR_BTN_OFFSET_R)/MAIN_W) ((FAVOR_BTN_OFFSET_T)/BASE_INFO_HEIGHT); } \
+					rel2 { relative: ((FAVOR_BTN_OFFSET_R+FAVOR_BTN_SIZE)/MAIN_W) ((FAVOR_BTN_OFFSET_T+FAVOR_BTN_SIZE)/BASE_INFO_HEIGHT); } \
+				} \
+			} \
+			BASE_INFO_TEXT( "text_1line", FIRST_BLOCK_OFFSET_T, BIG_TEXT_BLOCK_H, BASE_INFO_HEIGHT, "contact_display_name_textblock_style" ); \
+		} \
+		programs { \
+			program { \
+				name: "mouse_down_back_btn"; \
+				source: "back_btn"; \
+				signal: "mouse,down,*"; \
+				action: STATE_SET "pressed" 0.0; \
+				target: "back_btn_bg"; \
+			} \
+			program { \
+				name: "mouse_up_back_btn"; \
+				source: "back_btn"; \
+				signal: "mouse,up,*"; \
+				action: STATE_SET "default" 0.0; \
+				target: "back_btn_bg"; \
+			} \
+			PLAY_TOUCH_SOUND(back_btn); \
+			PLAY_TOUCH_SOUND(favor_btn.bg); \
+		} \
+	}
+
+styles {
+	style {
+		name: "contact_display_name_textblock_style";
+		base: "font=Tizen:style=Light align=center font_size=56 color=#FAFAFA ellipsis=1.0";
+	}
+	style {
+		name: "contact_display_subname_textblock_style";
+		base: "font=Tizen:style=Light align=center font_size=36 color=#FAFAFA ellipsis=1.0";
+	}
+}
+
+collections {
+	base_scale: 2.6;
+	plugins {
+		plugin {
+			name: "touch_sound";  // Name run by RUN_PLUGIN
+			source: "feedback";	 // External edje plugin name
+			param: "FEEDBACK_TYPE_SOUND FEEDBACK_PATTERN_TAP";
+		}
+	}
+
+	group {
+		name: "main_layout";
+		parts {
+			part {
+				name: "swallow.base_info";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: 1.0 (BASE_INFO_1LINE_H/MAIN_H); }
+				}
+				description {
+					state: "2lines" 0.0;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: 1.0 (BASE_INFO_2LINE_H/MAIN_H); }
+				}
+				description {
+					state: "3lines" 0.0;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: 1.0 (BASE_INFO_3LINE_H/MAIN_H); }
+				}
+			}
+			part {
+				name: "swallow.content";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 1.0; to_y: "swallow.base_info"; }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+		}
+
+		programs {
+			program {
+				name: "base_info_1line";
+				signal: "set_1line";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: "swallow.base_info";
+			}
+			program {
+				name: "base_info_2lines";
+				signal: "set_2lines";
+				source: "*";
+				action: STATE_SET "2lines" 0.0;
+				target: "swallow.base_info";
+			}
+			program {
+				name: "base_info_3lines";
+				signal: "set_3lines";
+				source: "*";
+				action: STATE_SET "3lines" 0.0;
+				target: "swallow.base_info";
+			}
+		}
+	}
+
+	BASE_INFO("base_info_1line", BASE_INFO_1LINE_H);
+	BASE_INFO("base_info_for_2lines", BASE_INFO_2LINE_H);
+	BASE_INFO("base_info_for_3lines", BASE_INFO_3LINE_H);
+
+	group {
+		name: "base_info_2lines";
+		inherit: "base_info_for_2lines";
+		parts {
+			BASE_INFO_TEXT( "text_2line", SECOND_BLOCK_OFFSET_T, SMALL_TEXT_BLOCK_H, BASE_INFO_2LINE_H, "contact_display_subname_textblock_style" );
+		}
+	}
+
+	group {
+		name: "base_info_3lines";
+		inherit: "base_info_for_3lines";
+		parts {
+			BASE_INFO_TEXT( "text_2line", SECOND_BLOCK_OFFSET_T, SMALL_TEXT_BLOCK_H, BASE_INFO_3LINE_H, "contact_display_subname_textblock_style" );
+			BASE_INFO_TEXT( "text_3line", THIRD_BLOCK_OFFSET_T, SMALL_TEXT_BLOCK_H, BASE_INFO_3LINE_H, "contact_display_subname_textblock_style" );
+		}
+	}
+
+	group { name: "list/A/log/call_state";
+		parts {
+			part {
+				name: "base";
+				type: SPACER;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: 1.0 1.0; }
+					min: 34 38;
+					max: 34 38;
+					align: 0.0 0.0;
+				}
+			}
+			part {
+				name: "padding_top";
+				type: SPACER;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: 0.0 0.0; }
+					min: 34 2;
+					max: 34 2;
+					align: 0.0 0.0;
+				}
+			}
+			part {
+				name: "elm.swallow.content";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 1.0; to: "padding_top"; }
+					rel2 { relative: 1.0 1.0; to: "base"; }
+					min: 34 34;
+					max: 34 34;
+					align: 0.0 0.0;
+				}
+			}
+			part {
+				name: "padding_left";
+				type: SPACER;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 1.0 0.0; to_x: "elm.swallow.content"; }
+					min: 15 34;
+					max: 15 34;
+					align: 0.0 0.0;
+				}
+			}
+		}
+	}
+
+	BUTTON_STYLES("input_open", CT_IMG_ICON_INPUT_OPEN, "contact_btn_ic", "contact_btn_ic");
+	BUTTON_STYLES("input_close", CT_IMG_ICON_INPUT_CLOSE, "contact_btn_ic", "contact_btn_ic");
+	RESOURCE_IMAGE_WITH_TOUCH(GROUP_BTN_IC_MULTIPLE, CT_IMG_ICON_INPUT_RELATIONSHIP, "contact_btn_ic", "contact_btn_ic_pressed")
+}
