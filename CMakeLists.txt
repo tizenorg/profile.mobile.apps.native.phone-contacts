@@ -3,7 +3,9 @@ project(${PACKAGE} C CXX)
 
 include(FindPkgConfig)
 pkg_check_modules(TIZEN_PACKAGES REQUIRED
+	badge
 	capi-appfw-application
+	capi-appfw-preference
 	contacts-service2
 	dlog
 	efl-extension
@@ -31,4 +33,4 @@ add_definitions("-DEDJDIR=\"${EDJDIR}\"")
 add_definitions("-DIMGDIR=\"${IMGDIR}\"")
 
 add_subdirectory(lib-common)
-add_subdirectory(contacts)
+add_subdirectory(main-app)
