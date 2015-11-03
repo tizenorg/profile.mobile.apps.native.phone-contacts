@@ -8,7 +8,9 @@ Source: %{name}-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: edje-bin
+BuildRequires: pkgconfig(badge)
 BuildRequires: pkgconfig(capi-appfw-application)
+BuildRequires: pkgconfig(capi-appfw-preference)
 BuildRequires: pkgconfig(contacts-service2)
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(efl-extension)
