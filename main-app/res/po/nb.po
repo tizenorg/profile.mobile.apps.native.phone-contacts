@@ -1,0 +1,1221 @@
+msgid "IDS_CLOG_BODY_DIALLED_CALLS"
+msgstr "Utgående samtaler"
+
+msgid "IDS_CLOG_BODY_LAST_CALL"
+msgstr "Siste samtale"
+
+msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
+msgstr "Mottatte anrop"
+
+msgid "IDS_CLOG_HEADER_SELECT_LOGS"
+msgstr "Velg logger"
+
+msgid "IDS_CLOG_OPT_VIEW_BY"
+msgstr "Vis"
+
+msgid "IDS_PB_BODY_HOME_2"
+msgstr "Hjem 2"
+
+msgid "IDS_PB_POP_MOVE_COMPLETED"
+msgstr "Flytting fullført."
+
+msgid "IDS_PB_BODY_MOVING_ING"
+msgstr "Flytter..."
+
+msgid "IDS_ST_POP_PUK2_VERIFIED"
+msgstr "PUK2 godkjent."
+
+msgid "IDS_ST_POP_PUK1_VERIFIED"
+msgstr "PUK1 godkjent."
+
+msgid "IDS_ST_POP_PIN_UNBLOCKED"
+msgstr "PIN-kode ikke blokkert."
+
+msgid "IDS_ST_POP_PIN2_UNBLOCKED"
+msgstr "PIN2-blokkering opphevet."
+
+msgid "IDS_ST_POP_PIN2_CHANGED"
+msgstr "PIN2 endret."
+
+msgid "IDS_ST_POP_PIN2_BLOCKED"
+msgstr "PIN2 blokkert."
+
+msgid "IDS_ST_POP_PIN1_CHANGED"
+msgstr "PIN1-kode endret."
+
+msgid "IDS_ST_POP_PIN1_BLOCKED"
+msgstr "PIN1-kode sperret."
+
+msgid "IDS_ST_POP_INCORRECT_PIN2"
+msgstr "Feil PIN2-kode."
+
+msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
+msgstr "Ny PIN2-kode og bekreft PIN2-kode stemmer ikke overens."
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
+msgstr "Feil PUK1-kode."
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
+msgstr "Feil PUK1. %d forsøk gjenstår."
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
+msgstr "Feil PUK2. %d forsøk gjenstår."
+
+msgid "IDS_ST_POP_PIN_CHANGED"
+msgstr "PIN-kode endret."
+
+msgid "IDS_PB_TAB_CONTACTS"
+msgstr "Kontakter"
+
+msgid "IDS_PB_BODY_ADD_ACCOUNT"
+msgstr "Legg til konto"
+
+msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Nådd maksimalt antall tegn."
+
+msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
+msgstr "Søker etter enheter..."
+
+msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
+msgstr "Feil PIN-kode"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
+msgstr "FULLFØRT"
+
+msgid "IDS_TPLATFORM_ACBUTTON_CANCEL_ABB"
+msgstr "AVBRYT"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
+msgstr "SLETT"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Tilkoblingsproblem eller ugyldig MMI-kode."
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Privat nummer"
+
+msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
+msgstr "SEND"
+
+msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
+msgstr "PIN2 blokkert. Kontakt leverandør (SIM PUK2 kreves)."
+
+msgid "IDS_CLOG_BODY_NO_LOGS"
+msgstr "Ingen logger"
+
+msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
+msgstr "Logger vises etter at du har ringt/mottatt et anrop eller sendt/mottatt en melding."
+
+msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
+msgstr "SIM-kort opptatt. Prøv igjen senere"
+
+msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
+msgstr "SIM/RUIM-kort låst."
+
+msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
+msgstr "Ingen SIM-kort funnet. Sett inn et SIM-kort i telefonen."
+
+msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
+msgstr "Feil ved nettverk eller SIM-kort."
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
+msgstr "Vibrasjonstilbakemelding er aktivert."
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
+msgstr "Vibrasjonstilbakemelding er deaktivert."
+
+msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
+msgstr "Kan ikke ringe nummer. %d er ikke nødnummer."
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
+msgstr "Hurtigtastnummer %d er fjernet."
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
+msgstr "Hurtigtastnummer er tilordnet."
+
+msgid "IDS_KPD_TPOP_ENTER_NUMBER"
+msgstr "Angi nummer."
+
+msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
+msgstr "PIN-koden må være på mellom %1$d og %2$d sifre. Prøv igjen"
+
+msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
+msgstr "PIN2-koden må være på mellom %1$d og %2$d sifre. Prøv igjen."
+
+msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
+msgstr "Ingen kontakt er tilordnet dette hurtigtastnummeret. Trykk på OK for å tilordne en kontakt nå."
+
+msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
+msgstr "PIN-koden har blitt deaktivert. Aktiver PIN-koden før du endrer den."
+
+msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
+msgstr "Mobilsvar"
+
+msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
+msgstr "Oppd. kontakt"
+
+msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
+msgstr "Innst. hurtigtastnr"
+
+msgid "IDS_KPD_OPT_REMOVE"
+msgstr "Fjern"
+
+msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
+msgstr "Opprett kontakt"
+
+msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
+msgstr "Anropsinnstillinger"
+
+msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
+msgstr "Legg til ventetid"
+
+msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
+msgstr "Legg til 2-sekunders pause"
+
+msgid "IDS_KPD_ITAB3_KEYPAD"
+msgstr "Tastatur"
+
+msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
+msgstr "Kan ikke koble til nettverket"
+
+msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "Velg SIM-kort for anrop"
+
+msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
+msgstr "Søkeresultater (%d)"
+
+msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
+msgstr "Nødanrop"
+
+msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
+msgstr "Tilordne som hurtigtastnummer"
+
+msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
+msgstr "Angi nummer"
+
+msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
+msgstr "Send melding"
+
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Avbryt"
+
+msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
+msgstr "Legg til i Kontakter"
+
+msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
+msgstr "Passordene stemmer ikke overens."
+
+msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
+msgstr "PIN-kode blokkert. Angi PUK-kode."
+
+msgid "IDS_IDLE_BODY_SIM_BLOCKED"
+msgstr "SIM-kort låst."
+
+msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
+msgstr "Ikke lagret"
+
+msgid "IDS_LOGS_SBODY_SAVED_M_STATUS"
+msgstr "Lagret"
+
+msgid "IDS_LOGS_SBODY_MISSEDM_CALL_STATUS"
+msgstr "Tapt"
+
+msgid "IDS_LOGS_SBODY_FAILED_M_STATUS"
+msgstr "Mislykket"
+
+msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
+msgstr "Avbrutt"
+
+msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "%d loggelementer vil bli slettet."
+
+msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "Alle loggelementer vil bli slettet."
+
+msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
+msgstr "1 loggelement blir slettet."
+
+msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
+msgstr "Vis kontaktdetaljer"
+
+msgid "IDS_LOGS_OPT_SEND_NUMBER"
+msgstr "Send nummer"
+
+msgid "IDS_LOGS_OPT_MISSED_CALLS"
+msgstr "Tapte anrop"
+
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Slett"
+
+msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
+msgstr "Samtalelengde"
+
+msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
+msgstr "Tapte anrop"
+
+msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
+msgstr "Ikke vis igjen"
+
+msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
+msgstr "Ukjent nummer"
+
+msgid "IDS_LOGS_MBODY_UNKNOWN"
+msgstr "Ukjent"
+
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Merk alle"
+
+msgid "IDS_LOGS_ITAB3_LOGS"
+msgstr "Logger"
+
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "I går"
+
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "I dag"
+
+msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
+msgstr "%d valgt"
+
+msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
+msgstr "Slett %d logger"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
+msgstr "Slett loggelementer"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
+msgstr "Slett logg"
+
+msgid "IDS_LOGS_HEADER_DELETE"
+msgstr "Slett"
+
+msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
+msgstr "Oppdat. kontakt"
+
+msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
+msgstr "Slett"
+
+msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
+msgstr "Oppr. kontakt"
+
+msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
+msgstr "Avbryt"
+
+msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
+msgstr "Taleanrop"
+
+msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
+msgstr "Videoanrop"
+
+msgid "IDS_LOGS_BODY_SIM_CARD"
+msgstr "SIM-kort"
+
+msgid "IDS_LOGS_BODY_ALL_CALLS"
+msgstr "Alle anrop"
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
+msgstr "Når du har ringt ut eller mottatt anrop, blir de logget her."
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
+msgstr "Når du har ringt ut eller mottatt anrop, vises loggelementer her."
+
+msgid "IDS_QP_ACBUTTON_EDIT_ABB"
+msgstr "REDIGER"
+
+msgid "IDS_MF_POP_INPUT_TEXT"
+msgstr "Skriv tekst"
+
+msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
+msgstr "Noen av kontaktene dine ser ut til å være duplikater."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
+msgstr "%d kontakter ble importert."
+
+msgid "IDS_PB_TPOP_CONTACTS_LINKED"
+msgstr "Kontakter er koblet sammen."
+
+msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
+msgstr "1 nummer er fjernet fra Liste for automatisk avvisning."
+
+msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
+msgstr "1 kontakt er importert."
+
+msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
+msgstr "Servicenumre"
+
+msgid "IDS_PB_TMBODY_NAME_FORMAT"
+msgstr "Navneformat"
+
+msgid "IDS_PB_TMBODY_LINK_CONTACTS"
+msgstr "Koble kontakter"
+
+msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
+msgstr "Kontakter som skal vises"
+
+msgid "IDS_PB_SK_SET"
+msgstr "Angi"
+
+msgid "IDS_PB_SK_CREATE_ABB"
+msgstr "Oppr."
+
+msgid "IDS_PB_SK_ADD_FIELDS"
+msgstr "Nye felt"
+
+msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
+msgstr "Importerer kontakter..."
+
+msgid "IDS_PB_SBODY_IMPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "Importering ble avbrutt"
+
+msgid "IDS_PB_SBODY_EXPORTING_CONTACTS_ING_ABB"
+msgstr "Eksporterer kontakter..."
+
+msgid "IDS_PB_SBODY_EXPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "Eksportering ble avbrutt"
+
+msgid "IDS_PB_SBODY_CONTACTS_IMPORTED_M_STATUS_ABB"
+msgstr "Kontakter ble importert"
+
+msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
+msgstr "Kontakter ble eksportert"
+
+msgid "IDS_PB_SBODY_ALL_CONTACTS"
+msgstr "Alle kontakter"
+
+msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
+msgstr "Du kan ikke slette kontakter fra skrivebeskyttede kontoer, men du kan skjule dem i kontakter."
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
+msgstr "Når Synkronisering er aktivert, blir denne kontakten slettet fra alle synkroniserte kontoer den er lagret i."
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
+msgstr "Når Synkronisering er aktivert, blir denne kontakten og dens koblede kontakter i andre synkroniserte kontoer slettet eller skjult, hvis informasjonen er fra en skrivebeskyttet konto."
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
+msgstr "Når Synkronisering er aktivert, blir denne kontakten og dens koblede kontakter i andre synkroniserte kontoer slettet."
+
+msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
+msgstr "Oppdaterer informasjon om tjenesteleverandør..."
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "Kan ikke legge til kontakt. Maksimalt antall kontakter som kan kobles (%d), er nådd."
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "Kan ikke legge til kontakter. Maksimalt antall kontakter som kan kobles (%d), er nådd."
+
+msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "Denne kontakten vil bli slettet."
+
+msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "Denne kontakten og alle dens koblede kontakter blir slettet."
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "Maksimalt antall elementer som kan velges (%d), er overskredet."
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
+msgstr "Maksimalt antall kontakter som kan deles på én gang (%1$d), er overskredet. Bare de første %2$d blir delt."
+
+msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
+msgstr "Chamada Certa-funksjonen kan brukes til å identifisere tjenesteleverandørene til kontaktene dine samt vise dem i kontaktlisten din. Du kan gjøre dette senere ved å trykke på menytasten og velge Oppdater informasjon om tjenesteleverandør. Trykk på OK for å identifisere tjenesteleverandørene til kontaktene dine nå."
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
+msgstr "Trykk på OK for å stoppe å importere kontakter fra SIM-kort."
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
+msgstr "Trykk på OK for å stoppe å eksportere kontakter til %s."
+
+msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "Trykk på Eksporter for å velge kontaktene du vil eksportere. Noe kontaktinformasjon kan gå tapt."
+
+msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
+msgstr "Noe av eller alt innholdet har muligens ikke blitt oppdatert."
+
+msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "Noe kontaktinformasjon kan gå tapt."
+
+msgid "IDS_PB_POP_SIM_MEMROY_FULL"
+msgstr "SIM-minne fullt."
+
+msgid "IDS_PB_POP_REMOVING"
+msgstr "Tar bort..."
+
+msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
+msgstr "%d telefonnumre har blitt oppdatert."
+
+msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
+msgstr "%d kontakter vil bli slettet."
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
+msgstr "%1$d kontakter er eksportert til %2$s."
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
+msgstr "%1$d kontakter er eksportert til Enhet/Kontakter/Importert/%2$s.vcf."
+
+msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
+msgstr "Ikke nok minne."
+
+msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
+msgstr "Nye kontakter blir lagret i Kontakter på enheten."
+
+msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
+msgstr "Tillatte numre-modus aktivert."
+
+msgid "IDS_PB_POP_FAILED"
+msgstr "Det oppstod en feil."
+
+msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
+msgstr "Forkaste endringer?"
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
+msgstr "Sletter kontakter ..."
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
+msgstr "Sletting av kontakter avbrutt. Noen kontakter kan allerede ha blitt slettet."
+
+msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
+msgstr "Kontakter blir ikke lenger importert fra %s."
+
+msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
+msgstr "Finnes allerede."
+
+msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "Alle koblede kontakter vil bli slettet."
+
+msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
+msgstr "Alle kontakter vil bli slettet."
+
+msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
+msgstr "Alle endringer vil bli forkastet."
+
+msgid "IDS_PB_POP_ADDING_ING"
+msgstr "Legger til..."
+
+msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
+msgstr "1 telefonnummer har blitt oppdatert."
+
+msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
+msgstr "1 kontakt vil bli slettet."
+
+msgid "IDS_PB_POP_1_CONTACT_REMOVED"
+msgstr "1 kontakt fjernet."
+
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
+
+msgid "IDS_PB_OPT_WORK"
+msgstr "Arbeid"
+
+msgid "IDS_PB_OPT_VOICE_CALL"
+msgstr "Taleanrop"
+
+msgid "IDS_PB_OPT_VIDEO_CALL"
+msgstr "Videoanrop"
+
+msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
+msgstr "Oppdater informasjon om tjenesteleverandør"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
+msgstr "Fjern kobling til kontakt"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACTS"
+msgstr "Fjern kontaktkobling"
+
+msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
+msgstr "Ta et bilde"
+
+msgid "IDS_PB_OPT_TAKE_A_PHOTO"
+msgstr "Ta et bilde"
+
+msgid "IDS_PB_OPT_SPOUSE"
+msgstr "Ektefelle"
+
+msgid "IDS_PB_OPT_SKYPE"
+msgstr "Skype"
+
+msgid "IDS_PB_OPT_SISTER"
+msgstr "Søster"
+
+msgid "IDS_PB_OPT_SIM_CARD"
+msgstr "SIM-kort"
+
+msgid "IDS_PB_OPT_SHARE_VIA"
+msgstr "Del via"
+
+msgid "IDS_PB_OPT_SHARE"
+msgstr "Del"
+
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Innstillinger"
+
+msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
+msgstr "Velg fra kontakter"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-kort"
+
+msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
+msgstr "Lagre kontakt i"
+
+msgid "IDS_PB_OPT_REORDER"
+msgstr "Omorganiser"
+
+msgid "IDS_PB_OPT_REMOVE"
+msgstr "Fjern"
+
+msgid "IDS_PB_OPT_RELATIVE"
+msgstr "Slektning"
+
+msgid "IDS_PB_OPT_RELATIONSHIP_ABB2"
+msgstr "Relasjon"
+
+msgid "IDS_PB_OPT_REFERRED_BY_ABB"
+msgstr "Henvist av"
+
+msgid "IDS_PB_OPT_QQ"
+msgstr "QQ"
+
+msgid "IDS_PB_OPT_PARTNER"
+msgstr "Partner"
+
+msgid "IDS_PB_OPT_PARENT"
+msgstr "Forelder"
+
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Personsøker"
+
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Annet"
+
+msgid "IDS_PB_OPT_ORGANISATION_ABB"
+msgstr "Organisasjon"
+
+msgid "IDS_PB_OPT_MOTHER"
+msgstr "Mor"
+
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Mobil"
+
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Melding"
+
+msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
+msgstr "Administrer favoritter"
+
+msgid "IDS_PB_OPT_MANAGER"
+msgstr "Leder"
+
+msgid "IDS_PB_OPT_MAIN"
+msgstr "Hoved"
+
+msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
+msgstr "Etternavn først"
+
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Etternavn"
+
+msgid "IDS_PB_OPT_JABBER"
+msgstr "Jabber"
+
+msgid "IDS_PB_OPT_ICQ"
+msgstr "ICQ"
+
+msgid "IDS_PB_OPT_HOME_ABB"
+msgstr "Hjem"
+
+msgid "IDS_PB_OPT_HOME"
+msgstr "Hjem"
+
+msgid "IDS_PB_OPT_HANGOUTS"
+msgstr "Hangouts"
+
+msgid "IDS_PB_OPT_FROM_GALLERY_ABB2"
+msgstr "Fra Galleri"
+
+msgid "IDS_PB_OPT_FRIEND"
+msgstr "Venn"
+
+msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
+msgstr "Fornavn først"
+
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Fornavn"
+
+msgid "IDS_PB_OPT_FDN_CONTACT"
+msgstr "Kontakt i Tillatte numre"
+
+msgid "IDS_PB_OPT_FAX_HWORK_ABB"
+msgstr "Faks (arbeid)"
+
+msgid "IDS_PB_OPT_FAX_HHOME_ABB"
+msgstr "Faks (hjem)"
+
+msgid "IDS_PB_OPT_FATHER"
+msgstr "Far"
+
+msgid "IDS_PB_OPT_EDIT"
+msgstr "Rediger"
+
+msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
+msgstr "Ikke vis igjen"
+
+msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
+msgstr "Samboer"
+
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Enhet"
+
+msgid "IDS_PB_OPT_CUSTOM"
+msgstr "Egendefinert"
+
+msgid "IDS_PB_OPT_CREATE"
+msgstr "Opprett"
+
+msgid "IDS_PB_OPT_CHILD"
+msgstr "Barn"
+
+msgid "IDS_PB_OPT_BROTHER"
+msgstr "Bror"
+
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Fødselsdag"
+
+msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
+msgstr "Assistent"
+
+msgid "IDS_PB_OPT_ANNIVERSARY_ABB"
+msgstr "Årsdag"
+
+msgid "IDS_PB_OPT_AIM"
+msgstr "AIM"
+
+msgid "IDS_PB_OPT_ADD_FIELD"
+msgstr "Legg til felt"
+
+msgid "IDS_PB_OPT_ADD"
+msgstr "Legg til"
+
+msgid "IDS_PB_OPT_ACCOUNT"
+msgstr "Konto"
+
+msgid "IDS_PB_NPBODY_SEARCH"
+msgstr "Søk"
+
+msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
+msgstr "Ingen tjenestenumre"
+
+msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
+msgstr "Fant ingen resultater"
+
+msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
+msgstr "Ingen nødkontakter"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Ingen kontakter"
+
+msgid "IDS_PB_MBODY_SORT_BY"
+msgstr "Sorter etter"
+
+msgid "IDS_PB_MBODY_SET_PROFILE"
+msgstr "Angi profil"
+
+msgid "IDS_PB_MBODY_SET_MY_PROFILE"
+msgstr "Angi min profil"
+
+msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
+msgstr "Send sammen"
+
+msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
+msgstr "Send enkeltvis"
+
+msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
+msgstr "Send kontaktopplysninger"
+
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Merk alle"
+
+msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
+msgstr "%d kontakter"
+
+msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
+msgstr "Bare kontakter med tlf."
+
+msgid "IDS_PB_MBODY_IMPORT"
+msgstr "Importer"
+
+msgid "IDS_PB_MBODY_EXPORT"
+msgstr "Eksporter"
+
+msgid "IDS_PB_MBODY_EVENT"
+msgstr "Hendelse"
+
+msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
+msgstr "Vis kontakter med numre"
+
+msgid "IDS_PB_MBODY_1_CONTACT_ABB"
+msgstr "1 kontakt"
+
+msgid "IDS_PB_ITAB3_CONTACTS"
+msgstr "Kontakter"
+
+msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
+msgstr "USB-minne ikke tilgjengelig"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
+msgstr "Kan ikke legge til"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
+msgstr "Kan ikke legge til"
+
+msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
+msgstr "Foreslåtte kontakter"
+
+msgid "IDS_PB_HEADER_SHARE_VIA"
+msgstr "Del via"
+
+msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
+msgstr "Angi kontaktbilde"
+
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Innstillinger"
+
+msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
+msgstr "Tjenesteleverandør"
+
+msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
+msgstr "Send kontaktopplysninger"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
+msgstr "Velg SIM-kort til samtalen"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Velg SIM-kort for å ringe"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "Velg SIM-kort for anrop"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
+msgstr "Velg kontakt"
+
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "Velg"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
+msgstr "Lagre kontakter i"
+
+msgid "IDS_PB_HEADER_REORDER"
+msgstr "Omordne"
+
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Fjern"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
+msgstr "Primærkontakter (%d)"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
+msgstr "Primærkontakter (%1$d/%2$d)"
+
+msgid "IDS_PB_HEADER_PHONE_M_CALL"
+msgstr "Telefon"
+
+msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
+msgstr "Personlige kontakter"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
+msgstr "%d valgt"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
+msgstr "%d er valgt"
+
+msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
+msgstr "Navneformat"
+
+msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
+msgstr "Oftest brukte kontakter"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "MEG"
+
+msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
+msgstr "Administrer favoritter"
+
+msgid "IDS_PB_HEADER_MAINLIST"
+msgstr "Kontaktliste"
+
+msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
+msgstr "Koblede kontakter"
+
+msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
+msgstr "Importer kontakter"
+
+msgid "IDS_PB_HEADER_IMPORT"
+msgstr "Importer"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Favoritter"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
+msgstr "Ekspor. kontakter til SIM-kort"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
+msgstr "Eksporter kontakter"
+
+msgid "IDS_PB_HEADER_EXPORT"
+msgstr "Eksporter"
+
+msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
+msgstr "Angi egendefinert etikett"
+
+msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
+msgstr "Nødtjenester"
+
+msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
+msgstr "Nødkontakter"
+
+msgid "IDS_PB_HEADER_EDIT"
+msgstr "Rediger"
+
+msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
+msgstr "Vis navn sortert etter"
+
+msgid "IDS_PB_HEADER_DISPLAY"
+msgstr "Vis"
+
+msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
+msgstr "Forkast endringer"
+
+msgid "IDS_PB_HEADER_DELETE_ITEM"
+msgstr "Slett element"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Opprett"
+
+msgid "IDS_PB_HEADER_CONTACT_IMAGE"
+msgstr "Kontaktbilde"
+
+msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
+msgstr "Kontakter som skal vises"
+
+msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
+msgstr "Kontakter"
+
+msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
+msgstr "Kontakter ble eksportert"
+
+msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
+msgstr "Endre lagringsplassering"
+
+msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
+msgstr "Avbryt importering"
+
+msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
+msgstr "Avbryt eksportering"
+
+msgid "IDS_PB_BUTTON_TRY_AGAIN"
+msgstr "Prøv på nytt"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Lagre"
+
+msgid "IDS_PB_BUTTON_PHONE"
+msgstr "Telefon"
+
+msgid "IDS_PB_BUTTON_OK_ABB2"
+msgstr "OK"
+
+msgid "IDS_PB_BUTTON_NOTES"
+msgstr "Notater"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Mer"
+
+msgid "IDS_PB_BUTTON_EXPORT"
+msgstr "Eksporter"
+
+msgid "IDS_PB_BUTTON_EMAIL_ABB3"
+msgstr "E-post"
+
+msgid "IDS_PB_BUTTON_DONE_ABB3"
+msgstr "Utført"
+
+msgid "IDS_PB_BUTTON_DISCARD_ABB"
+msgstr "Forkast"
+
+msgid "IDS_PB_BUTTON_DELETE_ABB4"
+msgstr "Slett"
+
+msgid "IDS_PB_BUTTON_CREATE_ABB2"
+msgstr "Opprett"
+
+msgid "IDS_PB_BUTTON_CHANGE_ABB"
+msgstr "Endre"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Avbryt"
+
+msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
+msgstr "Tilføy konto"
+
+msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
+msgstr "Windows Live"
+
+msgid "IDS_PB_BODY_WEBSITE_ABB"
+msgstr "Nettsted"
+
+msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
+msgstr "Oppdaterer kontaktliste..."
+
+msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
+msgstr "Kan ikke lagre på grunn av SIM-kortfeil."
+
+msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
+msgstr "Tittel"
+
+msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "Denne kontakten vil bli slettet."
+
+msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
+msgstr "Informasjonen om tjenesteleverandør vil bli oppdatert for de valgte kontaktene. Denne funksjonene krever en nettverkstilkobling og kan føre til at det påløper ekstrakostnader. Tiden det tar å fullføre prosessen, vil avhenge av statusen til nettverkstilkoblingen."
+
+msgid "IDS_PB_BODY_TELEPHONE"
+msgstr "Telefon"
+
+msgid "IDS_PB_BODY_SKYPE"
+msgstr "Skype"
+
+msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
+msgstr "Initialiserer SIM-kort ..."
+
+msgid "IDS_PB_BODY_SERVICE_NUMBER"
+msgstr "Tjenestenummer"
+
+msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
+msgstr "Hvis du sender navnekort enkeltvis, kan det ta lenger tid fordi mottaksenheten må godta én og én om gangen."
+
+msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
+msgstr "Hvis du sender en rekke kontakter sammen, reduseres overføringstiden. Hvis den andre enheten ikke støtter dette, blir imidlertid bare én kontakt sendt."
+
+msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
+msgstr "Velg hvordan du sender kontaktinformasjon."
+
+msgid "IDS_PB_BODY_SELECTED_MADJ"
+msgstr "Valgt"
+
+msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
+msgstr "Ta bort fra favoritter"
+
+msgid "IDS_PB_BODY_PHOTO"
+msgstr "Foto"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Tel.nummer"
+
+msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
+msgstr "Fonetisk navn"
+
+msgid "IDS_PB_BODY_PHONETIC_MIDDLE_NAME_ABB"
+msgstr "Fonetisk mellomnavn"
+
+msgid "IDS_PB_BODY_PHONETIC_LAST_NAME_ABB"
+msgstr "Fonetisk etternavn"
+
+msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
+msgstr "Fonetisk fornavn"
+
+msgid "IDS_PB_BODY_OTHER_EMAILS"
+msgstr "Annen e-post"
+
+msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
+msgstr "Ingen søketreff"
+
+msgid "IDS_PB_BODY_NO_GROUPS"
+msgstr "Ingen grupper"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Notater"
+
+msgid "IDS_PB_BODY_NICKNAME_ABB"
+msgstr "Kallenavn"
+
+msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
+msgstr "Navnesuffiks"
+
+msgid "IDS_PB_BODY_NAME_PREFIX"
+msgstr "Navneprefiks"
+
+msgid "IDS_PB_BODY_NAME"
+msgstr "Navn"
+
+msgid "IDS_PB_BODY_MY_CONTACTS"
+msgstr "Mine kontakter"
+
+msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
+msgstr "Mellomnavn"
+
+msgid "IDS_PB_BODY_LAST_NAME_ABB"
+msgstr "Etternavn"
+
+msgid "IDS_PB_BODY_JOB_TITLE_ABB"
+msgstr "Jobbtittel"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
+msgstr "Importer fra SIM-kort"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
+msgstr "Importer fra SIM2-kort"
+
+msgid "IDS_PB_BODY_IMPORTING_ING"
+msgstr "Importerer..."
+
+msgid "IDS_PB_BODY_IMAGE"
+msgstr "Bilde"
+
+msgid "IDS_PB_BODY_IM"
+msgstr "IM"
+
+msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
+msgstr "Hvis tjenesteleverandøren har forhåndslastet tjenestenumre på SIM-kortet, vises de her."
+
+msgid "IDS_PB_BODY_GALLERY"
+msgstr "Galleri"
+
+msgid "IDS_PB_BODY_FIRST_NAME_ABB"
+msgstr "Fornavn"
+
+msgid "IDS_PB_BODY_FAX"
+msgstr "Faks"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
+msgstr "Eksporter til SIM-kort"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
+msgstr "Eksporter til SIM2-kort"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
+msgstr "Eksporter til SD-kort"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "E-post"
+
+msgid "IDS_PB_BODY_DISCARD_CHANGES"
+msgstr "Forkast endringer"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
+msgstr "Venner"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
+msgstr "Familie"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Dato"
+
+msgid "IDS_PB_BODY_CO_WORKERS"
+msgstr "Medarbeidere"
+
+msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
+msgstr "Kontakter som er identifisert som å være duplikater, blir foreslått automatisk."
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Kontakter"
+
+msgid "IDS_PB_BODY_COMPANY_ABB"
+msgstr "Bedrift"
+
+msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
+msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
+
+msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
+msgstr "Tast for å utvide listen"
+
+msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
+msgstr "Automatiske anbefalinger kan trekke ut høydepunktene fra lydfiler."
+
+msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "Når du har opprettet kontakter, vises de her."
+
+msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "Når du har lagt til kontakter, vises de her."
+
+msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
+msgstr "Legg til i Favoritter"
+
+msgid "IDS_PB_BODY_ADDRESS_ABB2"
+msgstr "Adresse"
+
+msgid "IDS_PB_BODY_ACCOUNTS"
+msgstr "Kontoer"
+
+msgid "IDS_PB_BODY_AB_M_BLOOD"
+msgstr "AB"
+
+msgid "IDS_ST_POP_PIN_BLOCKED"
+msgstr "PIN-kode blokkert."
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
+msgstr "Feil PUK2-kode."
+
+msgid "IDS_ST_POP_INCORRECT_PIN1"
+msgstr "Feil PIN1-kode."
+
+msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
+msgstr "Legg til eksisterende kontakt"
+
+msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
+msgstr "Ingen primærkontakter"
+
+msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
+msgstr "Primærkontakter"
+
+msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
+msgstr "Opprett primærkontakt"
+
+msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
+msgstr "Legg til primærkontakter"
+
+msgid "IDS_ST_BODY_SET_DATE"
+msgstr "Still inn dato"
+
+msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
+msgstr "Ny PIN-kode og bekreftet PIN-kode samsvarer ikke."
+
+msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "Når du har opprettet primærkontakter, vises de her."
+
+msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
+msgstr "Kan ikke velge flere elementer"
+
+msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
+msgstr "Sett inn SIM-kort."
+
+msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
+msgstr "Tjenesteleverandøren til kontakten du ringer, er %1$s. Trykk på OK for å ringe ved å bruke SIM-kortet for %2$s."
+
+msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
+msgstr "Bruk SIM-kort for %s"
+
+msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
+msgstr "Gjeldende SIM"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telefonautomat"
+
+msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
+msgstr "Ugyldig tegn."
+
+msgid "IDS_HS_BUTTON_PHONE_M_CALL"
+msgstr "Telefon"
+
+msgid "IDS_ST_BODY_OUTGOING_CALL"
+msgstr "Utgående anrop"
+
+msgid "IDS_CALL_BODY_INCOMING_CALL"
+msgstr "Innkommende anrop"
+
+msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
+msgstr "Bare de første %d kontaktene vises."
+
+msgid "IDS_PB_BODY_MY_PROFILE"
+msgstr "Min profil"
+
+msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
+msgstr "Trykk her for å legge til snarveien"
+

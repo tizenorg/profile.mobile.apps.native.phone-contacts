@@ -8,6 +8,8 @@ Source: %{name}-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: edje-bin
+BuildRequires: gettext
+
 BuildRequires: pkgconfig(badge)
 BuildRequires: pkgconfig(capi-appfw-application)
 BuildRequires: pkgconfig(capi-appfw-preference)
@@ -23,9 +25,10 @@ Contacts and Phone Reference Applications.
 %define _bindir %{_pkgdir}/bin
 %define _libdir %{_pkgdir}/lib
 %define _resdir %{_pkgdir}/res
-%define _manifestdir /usr/share/packages
-%define _icondir /usr/share/icons/default/small
-%define _smackdir /etc/smack/accesses.d
+%define _localedir %{_resdir}/locale
+%define _manifestdir %{_datadir}/packages
+%define _icondir %{_datadir}/icons/default/small
+%define _smackdir /etc/smack/accesses2.d
 
 %prep
 %setup -q
@@ -38,6 +41,7 @@ cmake \
 	'-DBINDIR=%{_bindir}'\
 	'-DLIBDIR=%{_libdir}'\
 	'-DRESDIR=%{_resdir}'\
+	'-DLOCALEDIR=%{_localedir}'\
 	'-DMANIFESTDIR=%{_manifestdir}'\
 	'-DICONDIR=%{_icondir}'\
 	'-DSMACKDIR=%{_smackdir}'
@@ -53,8 +57,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %manifest %{name}.manifest
-%{_bindir}/*
-%{_libdir}/*.so
+%{_pkgdir}/*
 %{_manifestdir}/%{name}.xml
 %{_icondir}/*.png
 %{_smackdir}/%{name}.efl

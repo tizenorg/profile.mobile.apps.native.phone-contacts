@@ -27,10 +27,9 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMPILER_FLAGS} -std=gnu99")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMPILER_FLAGS} -std=c++11")
 
 add_definitions("-DPACKAGE=\"${PACKAGE}\"")
-add_definitions("-DLABEL=\"${LABEL}\"")
+add_definitions("-DTEXT_DOMAIN=\"${PACKAGE}\"")
 add_definitions("-DRESDIR=\"${RESDIR}\"")
-add_definitions("-DEDJDIR=\"${EDJDIR}\"")
-add_definitions("-DIMGDIR=\"${IMGDIR}\"")
+add_definitions("-DLOCALEDIR=\"${LOCALEDIR}\"")
 
 add_subdirectory(lib-common)
 add_subdirectory(main-app)

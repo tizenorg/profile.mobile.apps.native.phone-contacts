@@ -18,6 +18,7 @@
 #include <contacts.h>
 
 #include "MainApp.h"
+#include "App/Path.h"
 #include "Ui/Window.h"
 #include "Ui/Naviframe.h"
 #include "Utils/Logger.h"
@@ -50,6 +51,9 @@ bool MainApp::onCreate()
 {
 	int err = contacts_connect();
 	RETVM_IF(err != CONTACTS_ERROR_NONE, false, "contacts_connect() failed(%d)", err);
+
+	bindtextdomain(TEXT_DOMAIN, App::getLocaleDir().c_str());
+	textdomain(TEXT_DOMAIN);
 
 	app_event_handler_h handle = nullptr;
 	ui_app_add_event_handler(&handle, APP_EVENT_LANGUAGE_CHANGED,

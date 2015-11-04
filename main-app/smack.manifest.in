@@ -1,8 +1,5 @@
 <manifest>
-	<define>
-		<domain name="@PACKAGE@" />
-	</define>
 	<request>
-		<domain name="@PACKAGE@" />
+		<domain name="_"/>
 	</request>
 </manifest>

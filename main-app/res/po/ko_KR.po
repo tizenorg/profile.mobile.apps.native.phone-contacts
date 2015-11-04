@@ -1,0 +1,1221 @@
+msgid "IDS_CLOG_BODY_DIALLED_CALLS"
+msgstr "발신전화"
+
+msgid "IDS_CLOG_BODY_LAST_CALL"
+msgstr "마지막 통화시간"
+
+msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
+msgstr "수신전화"
+
+msgid "IDS_CLOG_HEADER_SELECT_LOGS"
+msgstr "기록 선택"
+
+msgid "IDS_CLOG_OPT_VIEW_BY"
+msgstr "보기 방식"
+
+msgid "IDS_PB_BODY_HOME_2"
+msgstr "Home 2"
+
+msgid "IDS_PB_POP_MOVE_COMPLETED"
+msgstr "이동하였습니다."
+
+msgid "IDS_PB_BODY_MOVING_ING"
+msgstr "이동 중..."
+
+msgid "IDS_ST_POP_PUK2_VERIFIED"
+msgstr "PUK2를 인증하였습니다."
+
+msgid "IDS_ST_POP_PUK1_VERIFIED"
+msgstr "PUK1을 인증하였습니다."
+
+msgid "IDS_ST_POP_PIN_UNBLOCKED"
+msgstr "PIN을 사용할 수 있습니다."
+
+msgid "IDS_ST_POP_PIN2_UNBLOCKED"
+msgstr "PIN2를 해제하였습니다."
+
+msgid "IDS_ST_POP_PIN2_CHANGED"
+msgstr "PIN2를 변경하였습니다."
+
+msgid "IDS_ST_POP_PIN2_BLOCKED"
+msgstr "PIN2 사용이 차단된 상태입니다."
+
+msgid "IDS_ST_POP_PIN1_CHANGED"
+msgstr "PIN1을 변경하였습니다."
+
+msgid "IDS_ST_POP_PIN1_BLOCKED"
+msgstr "PIN1 사용이 차단된 상태입니다."
+
+msgid "IDS_ST_POP_INCORRECT_PIN2"
+msgstr "PIN2가 바르지 않습니다."
+
+msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
+msgstr "새 PIN2와 확인을 위해 한 번 더 입력한 PIN2가 일치하지 않습니다"
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
+msgstr "PUK1이 바르지 않습니다."
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
+msgstr "PUK1이 바르지 않습니다. 입력 기회가 %d회 남았습니다."
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
+msgstr "PUK2가 바르지 않습니다. 입력 기회가 %d회 남았습니다."
+
+msgid "IDS_ST_POP_PIN_CHANGED"
+msgstr "PIN을 변경하였습니다."
+
+msgid "IDS_PB_TAB_CONTACTS"
+msgstr "연락처"
+
+msgid "IDS_PB_BODY_ADD_ACCOUNT"
+msgstr "계정 추가"
+
+msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "최대 글자 수에 도달하였습니다."
+
+msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
+msgstr "디바이스 찾는 중..."
+
+msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
+msgstr "PIN 잘못 입력"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
+msgstr "완료"
+
+msgid "IDS_TPLATFORM_ACBUTTON_CANCEL_ABB"
+msgstr "취소"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
+msgstr "삭제"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "네트워크 연결에 문제가 발생했거나 MMI 코드가 바르지 않습니다."
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "발신번호 표시제한"
+
+msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
+msgstr "보내기"
+
+msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
+msgstr "PIN2가 잠겼습니다. 서비스 사업자에 문의하세요.(PUK2 입력 필요)"
+
+msgid "IDS_CLOG_BODY_NO_LOGS"
+msgstr "기록이 없습니다"
+
+msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
+msgstr "전화 및 메시지의 최근기록이 표시됩니다."
+
+msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
+msgstr "SIM 카드 정보를 읽을 수 없습니다. 나중에 시도하세요"
+
+msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
+msgstr "잠금이 설정된 SIM/RUIM 카드입니다."
+
+msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
+msgstr "SIM 카드가 없습니다. SIM 카드를 삽입하세요."
+
+msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
+msgstr "네트워크 또는 SIM 카드에 오류가 발생하였습니다."
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
+msgstr "진동 피드백을 실행하였습니다."
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
+msgstr "진동 피드백을 해제하였습니다."
+
+msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
+msgstr "%d번은 긴급 전화번호가 아니어서 전화를 걸 수 없습니다."
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
+msgstr "단축번호 %d번을 제거하였습니다."
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
+msgstr "단축번호로 지정하였습니다."
+
+msgid "IDS_KPD_TPOP_ENTER_NUMBER"
+msgstr "번호를 입력하세요."
+
+msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
+msgstr "PIN은 %1$d-%2$d자 사이여야 합니다. 다시 시도하세요."
+
+msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
+msgstr "PIN2는 %1$d-%2$d 자 사이의 숫자로 입력해야 합니다. 다시 시도하세요."
+
+msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
+msgstr "이 번호에 지정된 단축번호 연락처가 없습니다. 단축번호를 설정하려면 [확인]을 누르세요."
+
+msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
+msgstr "PIN이 해제된 상태입니다. PIN을 변경하려면 먼저 실행하세요."
+
+msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
+msgstr "음성 메시지"
+
+msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
+msgstr "연락처 업데이트"
+
+msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
+msgstr "단축번호 설정"
+
+msgid "IDS_KPD_OPT_REMOVE"
+msgstr "제거"
+
+msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
+msgstr "새 연락처 추가"
+
+msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
+msgstr "통화 설정"
+
+msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
+msgstr "대기시간 추가"
+
+msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
+msgstr "2초 간 일시정지 추가"
+
+msgid "IDS_KPD_ITAB3_KEYPAD"
+msgstr "키패드"
+
+msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
+msgstr "네트워크에 연결할 수 없음"
+
+msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "통화에 사용할 SIM 카드 선택"
+
+msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
+msgstr "검색 결과(%d)"
+
+msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
+msgstr "긴급전화"
+
+msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
+msgstr "단축번호로 지정"
+
+msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
+msgstr "번호 설정"
+
+msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
+msgstr "메시지 보내기"
+
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "취소"
+
+msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
+msgstr "연락처에 추가"
+
+msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
+msgstr "비밀번호가 일치하지 않습니다."
+
+msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
+msgstr "PIN 사용이 차단된 상태입니다. PUK을 입력하세요."
+
+msgid "IDS_IDLE_BODY_SIM_BLOCKED"
+msgstr "SIM 카드 사용이 차단된 상태입니다."
+
+msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
+msgstr "저장 안 됨"
+
+msgid "IDS_LOGS_SBODY_SAVED_M_STATUS"
+msgstr "저장됨"
+
+msgid "IDS_LOGS_SBODY_MISSEDM_CALL_STATUS"
+msgstr "부재중"
+
+msgid "IDS_LOGS_SBODY_FAILED_M_STATUS"
+msgstr "연결 안 됨"
+
+msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
+msgstr "취소됨"
+
+msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "기록 항목 %d개를 삭제합니다."
+
+msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "기록을 모두 삭제합니다."
+
+msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
+msgstr "기록 항목 1개를 삭제합니다."
+
+msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
+msgstr "연락처 상세 보기"
+
+msgid "IDS_LOGS_OPT_SEND_NUMBER"
+msgstr "번호 전송"
+
+msgid "IDS_LOGS_OPT_MISSED_CALLS"
+msgstr "부재중 전화"
+
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "삭제"
+
+msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
+msgstr "통화 시간"
+
+msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
+msgstr "부재중 전화"
+
+msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
+msgstr "다시 표시하지 않습니다"
+
+msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
+msgstr "번호정보 없음"
+
+msgid "IDS_LOGS_MBODY_UNKNOWN"
+msgstr "알 수 없음"
+
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "모두 선택"
+
+msgid "IDS_LOGS_ITAB3_LOGS"
+msgstr "최근통화"
+
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "어제"
+
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "오늘"
+
+msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
+msgstr "%d개 선택"
+
+msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
+msgstr "기록 %d개 삭제"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
+msgstr "기록 항목 삭제"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
+msgstr "기록 삭제"
+
+msgid "IDS_LOGS_HEADER_DELETE"
+msgstr "삭제"
+
+msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
+msgstr "연락처 업데이트"
+
+msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
+msgstr "삭제"
+
+msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
+msgstr "새 연락처 추가"
+
+msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
+msgstr "취소"
+
+msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
+msgstr "음성통화"
+
+msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
+msgstr "영상통화"
+
+msgid "IDS_LOGS_BODY_SIM_CARD"
+msgstr "SIM 카드"
+
+msgid "IDS_LOGS_BODY_ALL_CALLS"
+msgstr "모든 전화"
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
+msgstr "전화를 걸거나 받으면, 여기에 기록됩니다."
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
+msgstr "전화를 걸거나 받으면, 기록 항목이 여기에 표시됩니다."
+
+msgid "IDS_QP_ACBUTTON_EDIT_ABB"
+msgstr "편집"
+
+msgid "IDS_MF_POP_INPUT_TEXT"
+msgstr "내용 입력"
+
+msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
+msgstr "중복된 연락처가 있습니다."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
+msgstr "연락처 %d개를 가져왔습니다."
+
+msgid "IDS_PB_TPOP_CONTACTS_LINKED"
+msgstr "연락처를 연결하였습니다."
+
+msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
+msgstr "[자동 거절 목록]에서 번호 1개를 제거하였습니다."
+
+msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
+msgstr "연락처 1개를 가져왔습니다."
+
+msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
+msgstr "서비스 번호"
+
+msgid "IDS_PB_TMBODY_NAME_FORMAT"
+msgstr "이름 표시 방법"
+
+msgid "IDS_PB_TMBODY_LINK_CONTACTS"
+msgstr "연락처 연결"
+
+msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
+msgstr "표시할 연락처"
+
+msgid "IDS_PB_SK_SET"
+msgstr "설정"
+
+msgid "IDS_PB_SK_CREATE_ABB"
+msgstr "추가"
+
+msgid "IDS_PB_SK_ADD_FIELDS"
+msgstr "항목 추가"
+
+msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
+msgstr "연락처 가져오는 중..."
+
+msgid "IDS_PB_SBODY_IMPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "가져오기 취소"
+
+msgid "IDS_PB_SBODY_EXPORTING_CONTACTS_ING_ABB"
+msgstr "연락처 내보내는 중..."
+
+msgid "IDS_PB_SBODY_EXPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "내보내기 취소"
+
+msgid "IDS_PB_SBODY_CONTACTS_IMPORTED_M_STATUS_ABB"
+msgstr "연락처 가져오기 완료"
+
+msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
+msgstr "연락처 내보내기 완료"
+
+msgid "IDS_PB_SBODY_ALL_CONTACTS"
+msgstr "모든 연락처"
+
+msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
+msgstr "읽기 전용 계정에서 연락처를 삭제할 수는 없지만 숨기기는 가능합니다."
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
+msgstr "[동기화]가 실행되면, 이 연락처가 저장된 모든 동기화된 계정에서 해당 연락처를 삭제합니다."
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
+msgstr "[동기화]가 실행된 경우, 동기화된 다른 계정에서 이 연락처 및 연결된 연락처를 삭제하며, 읽기 전용 계정인 경우에는 연락처를 숨깁니다."
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
+msgstr "[동기화]가 실행되면, 이 연락처 및 동기화된 다른 계정에 있는 이 연락처와 연결된 연락처를 모두 삭제합니다."
+
+msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
+msgstr "서비스 공급자 정보 업데이트 중..."
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "연결 가능한 최대 연락처 수(%d)에 도달하여 연락처를 추가할 수 없습니다."
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "연결 가능한 최대 연락처 수(%d)에 도달하여 연락처를 추가할 수 없습니다."
+
+msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "연락처를 삭제합니다."
+
+msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "이 연락처 및 연결된 연락처를 모두 삭제합니다."
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "선택 가능한 최대 항목 수(%d)를 초과하였습니다."
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
+msgstr "한 번에 공유 가능한 최대 연락처 수(%1$d)를 초과하였습니다. 먼저 선택한 %2$d개만 공유합니다."
+
+msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
+msgstr "Chamada Certa 기능을 사용하면 연락처의 서비스 공급자를 식별하고 연락처 목록에 표시합니다. 메뉴 버튼을 누른 후 [서비스 사업자 정보 업데이트]를 눌러 나중에 표시할 수도 있습니다. 연락처의 서비스 공급자를 식별하려면 [확인]을 누르세요."
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
+msgstr "SIM 카드에서 연락처 가져오기를 중지하려면 [확인]을 누르세요."
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
+msgstr "%s 폴더로 연락처 내보내기를 중지하려면 [확인]을 누르세요."
+
+msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "내보낼 연락처를 선택하려면 [내보내기]를 누르세요. 일부 연락처 정보가 누락될 수 있습니다."
+
+msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
+msgstr "일부 또는 모든 연락처가 업데이트되지 않았습니다."
+
+msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "일부 연락처 정보가 누락될 수 있습니다."
+
+msgid "IDS_PB_POP_SIM_MEMROY_FULL"
+msgstr "SIM 카드 저장공간을 모두 사용 중입니다."
+
+msgid "IDS_PB_POP_REMOVING"
+msgstr "제거 중..."
+
+msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
+msgstr "전화번호 %d개를 업데이트하였습니다."
+
+msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
+msgstr "연락처 %d개를 삭제합니다."
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
+msgstr "연락처 %1$d개를 %2$s 파일로 내보냈습니다."
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
+msgstr "연락처 %1$d개를 디바이스/Contacts/Imported/%2$s.vcf 파일로 내보냈습니다."
+
+msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
+msgstr "저장공간이 부족합니다."
+
+msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
+msgstr "새 연락처를 디바이스의 [연락처]에 저장합니다."
+
+msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
+msgstr "[발신 허용번호]를 실행하였습니다."
+
+msgid "IDS_PB_POP_FAILED"
+msgstr "완료하지 못하였습니다."
+
+msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
+msgstr "변경사항을 저장하지 않고 종료할까요?"
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
+msgstr "연락처 삭제 중..."
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
+msgstr "연락처 삭제를 취소하였습니다. 일부 연락처는 이미 삭제되었을 수 있습니다."
+
+msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
+msgstr "%s에서 연락처 가져오기를 중지합니다."
+
+msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
+msgstr "동일한 항목이 있습니다."
+
+msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "연결된 연락처를 모두 삭제합니다."
+
+msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
+msgstr "모든 연락처를 삭제합니다."
+
+msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
+msgstr "모든 변경사항을 저장하지 않습니다."
+
+msgid "IDS_PB_POP_ADDING_ING"
+msgstr "추가 중..."
+
+msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
+msgstr "전화번호 1개를 업데이트하였습니다."
+
+msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
+msgstr "연락처 1개를 삭제합니다."
+
+msgid "IDS_PB_POP_1_CONTACT_REMOVED"
+msgstr "연락처 1개를 제거하였습니다."
+
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
+
+msgid "IDS_PB_OPT_WORK"
+msgstr "직장"
+
+msgid "IDS_PB_OPT_VOICE_CALL"
+msgstr "음성통화"
+
+msgid "IDS_PB_OPT_VIDEO_CALL"
+msgstr "영상통화"
+
+msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
+msgstr "서비스 공급자 정보 업데이트"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
+msgstr "연락처 연결 해제"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACTS"
+msgstr "연락처 연결 해제"
+
+msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
+msgstr "사진 촬영"
+
+msgid "IDS_PB_OPT_TAKE_A_PHOTO"
+msgstr "사진 촬영"
+
+msgid "IDS_PB_OPT_SPOUSE"
+msgstr "배우자"
+
+msgid "IDS_PB_OPT_SKYPE"
+msgstr "Skype"
+
+msgid "IDS_PB_OPT_SISTER"
+msgstr "자매"
+
+msgid "IDS_PB_OPT_SIM_CARD"
+msgstr "SIM 카드"
+
+msgid "IDS_PB_OPT_SHARE_VIA"
+msgstr "공유"
+
+msgid "IDS_PB_OPT_SHARE"
+msgstr "공유"
+
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "설정"
+
+msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
+msgstr "연락처에서 선택"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD 카드"
+
+msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
+msgstr "연락처 저장 위치"
+
+msgid "IDS_PB_OPT_REORDER"
+msgstr "순서 변경"
+
+msgid "IDS_PB_OPT_REMOVE"
+msgstr "제거"
+
+msgid "IDS_PB_OPT_RELATIVE"
+msgstr "친척"
+
+msgid "IDS_PB_OPT_RELATIONSHIP_ABB2"
+msgstr "관계"
+
+msgid "IDS_PB_OPT_REFERRED_BY_ABB"
+msgstr "추천인"
+
+msgid "IDS_PB_OPT_QQ"
+msgstr "QQ"
+
+msgid "IDS_PB_OPT_PARTNER"
+msgstr "파트너"
+
+msgid "IDS_PB_OPT_PARENT"
+msgstr "부모"
+
+msgid "IDS_PB_OPT_PAGER"
+msgstr "호출기"
+
+msgid "IDS_PB_OPT_OTHER"
+msgstr "기타"
+
+msgid "IDS_PB_OPT_ORGANISATION_ABB"
+msgstr "소속"
+
+msgid "IDS_PB_OPT_MOTHER"
+msgstr "어머니"
+
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "휴대전화"
+
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "메시지"
+
+msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
+msgstr "즐겨찾기 관리"
+
+msgid "IDS_PB_OPT_MANAGER"
+msgstr "관리자"
+
+msgid "IDS_PB_OPT_MAIN"
+msgstr "주음성"
+
+msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
+msgstr "성 먼저"
+
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "성"
+
+msgid "IDS_PB_OPT_JABBER"
+msgstr "Jabber"
+
+msgid "IDS_PB_OPT_ICQ"
+msgstr "ICQ"
+
+msgid "IDS_PB_OPT_HOME_ABB"
+msgstr "홈"
+
+msgid "IDS_PB_OPT_HOME"
+msgstr "홈"
+
+msgid "IDS_PB_OPT_HANGOUTS"
+msgstr "행아웃"
+
+msgid "IDS_PB_OPT_FROM_GALLERY_ABB2"
+msgstr "갤러리"
+
+msgid "IDS_PB_OPT_FRIEND"
+msgstr "친구"
+
+msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
+msgstr "이름 먼저"
+
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "이름"
+
+msgid "IDS_PB_OPT_FDN_CONTACT"
+msgstr "FDN 연락처"
+
+msgid "IDS_PB_OPT_FAX_HWORK_ABB"
+msgstr "팩스(직장)"
+
+msgid "IDS_PB_OPT_FAX_HHOME_ABB"
+msgstr "팩스(집)"
+
+msgid "IDS_PB_OPT_FATHER"
+msgstr "아버지"
+
+msgid "IDS_PB_OPT_EDIT"
+msgstr "편집"
+
+msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
+msgstr "다시 보지 않기"
+
+msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
+msgstr "동거인"
+
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "디바이스"
+
+msgid "IDS_PB_OPT_CUSTOM"
+msgstr "직접 설정"
+
+msgid "IDS_PB_OPT_CREATE"
+msgstr "추가"
+
+msgid "IDS_PB_OPT_CHILD"
+msgstr "아이"
+
+msgid "IDS_PB_OPT_BROTHER"
+msgstr "형제"
+
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "생일"
+
+msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
+msgstr "비서"
+
+msgid "IDS_PB_OPT_ANNIVERSARY_ABB"
+msgstr "기념일"
+
+msgid "IDS_PB_OPT_AIM"
+msgstr "AIM"
+
+msgid "IDS_PB_OPT_ADD_FIELD"
+msgstr "영역 추가"
+
+msgid "IDS_PB_OPT_ADD"
+msgstr "추가"
+
+msgid "IDS_PB_OPT_ACCOUNT"
+msgstr "계정"
+
+msgid "IDS_PB_NPBODY_SEARCH"
+msgstr "검색"
+
+msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
+msgstr "서비스 번호가 없습니다"
+
+msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
+msgstr "검색 결과가 없습니다"
+
+msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
+msgstr "긴급 연락처가 없습니다"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "연락처가 없습니다"
+
+msgid "IDS_PB_MBODY_SORT_BY"
+msgstr "정렬 방식"
+
+msgid "IDS_PB_MBODY_SET_PROFILE"
+msgstr "프로필 설정"
+
+msgid "IDS_PB_MBODY_SET_MY_PROFILE"
+msgstr "내 프로필 설정"
+
+msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
+msgstr "통합 전송"
+
+msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
+msgstr "개별 전송"
+
+msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
+msgstr "연락처 정보 전송"
+
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "모두 선택"
+
+msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
+msgstr "연락처 %d개"
+
+msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
+msgstr "전화번호가 있는 연락처만"
+
+msgid "IDS_PB_MBODY_IMPORT"
+msgstr "가져오기"
+
+msgid "IDS_PB_MBODY_EXPORT"
+msgstr "내보내기"
+
+msgid "IDS_PB_MBODY_EVENT"
+msgstr "일정"
+
+msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
+msgstr "번호가 저장된 연락처만 표시"
+
+msgid "IDS_PB_MBODY_1_CONTACT_ABB"
+msgstr "연락처 1개"
+
+msgid "IDS_PB_ITAB3_CONTACTS"
+msgstr "연락처"
+
+msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
+msgstr "USB 저장공간을 사용할 수 없음"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
+msgstr "추가할 수 없음"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
+msgstr "추가할 수 없음"
+
+msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
+msgstr "추천 연락처"
+
+msgid "IDS_PB_HEADER_SHARE_VIA"
+msgstr "공유"
+
+msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
+msgstr "연락처 사진 설정"
+
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "설정"
+
+msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
+msgstr "서비스 공급자"
+
+msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
+msgstr "연락처 정보 전송"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
+msgstr "통화에 사용할 SIM 카드 선택"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "통화 전용 SIM 카드 선택"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "통화에 사용할 SIM 카드 선택"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
+msgstr "연락처 선택"
+
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "선택"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
+msgstr "연락처 저장 위치"
+
+msgid "IDS_PB_HEADER_REORDER"
+msgstr "순서 변경"
+
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "제거"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
+msgstr "주요 연락처(%d)"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
+msgstr "주요 연락처(%1$d/%2$d)"
+
+msgid "IDS_PB_HEADER_PHONE_M_CALL"
+msgstr "전화"
+
+msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
+msgstr "개인 연락처"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
+msgstr "%d개 선택"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
+msgstr "%d개 선택"
+
+msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
+msgstr "이름 표시 방법"
+
+msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
+msgstr "자주 사용하는 연락처"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "나"
+
+msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
+msgstr "즐겨찾기 관리"
+
+msgid "IDS_PB_HEADER_MAINLIST"
+msgstr "연락처 목록"
+
+msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
+msgstr "연결된 연락처"
+
+msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
+msgstr "연락처 가져오기"
+
+msgid "IDS_PB_HEADER_IMPORT"
+msgstr "가져오기"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "즐겨찾기"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
+msgstr "SIM 카드로 연락처 내보내기"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
+msgstr "연락처 내보내기"
+
+msgid "IDS_PB_HEADER_EXPORT"
+msgstr "내보내기"
+
+msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
+msgstr "라벨 직접 입력"
+
+msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
+msgstr "긴급 서비스"
+
+msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
+msgstr "긴급 연락처"
+
+msgid "IDS_PB_HEADER_EDIT"
+msgstr "편집"
+
+msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
+msgstr "이름 표시 방식"
+
+msgid "IDS_PB_HEADER_DISPLAY"
+msgstr "표시"
+
+msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
+msgstr "변경사항 저장 안 함"
+
+msgid "IDS_PB_HEADER_DELETE_ITEM"
+msgstr "항목 삭제"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "추가"
+
+msgid "IDS_PB_HEADER_CONTACT_IMAGE"
+msgstr "연락처 사진"
+
+msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
+msgstr "표시할 연락처"
+
+msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
+msgstr "연락처"
+
+msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
+msgstr "연락처 내보내기 완료"
+
+msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
+msgstr "저장 위치 변경"
+
+msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
+msgstr "가져오기 취소"
+
+msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
+msgstr "내보내기 취소"
+
+msgid "IDS_PB_BUTTON_TRY_AGAIN"
+msgstr "다시 시도"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "저장"
+
+msgid "IDS_PB_BUTTON_PHONE"
+msgstr "휴대전화"
+
+msgid "IDS_PB_BUTTON_OK_ABB2"
+msgstr "확인"
+
+msgid "IDS_PB_BUTTON_NOTES"
+msgstr "노트"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "더보기"
+
+msgid "IDS_PB_BUTTON_EXPORT"
+msgstr "내보내기"
+
+msgid "IDS_PB_BUTTON_EMAIL_ABB3"
+msgstr "이메일"
+
+msgid "IDS_PB_BUTTON_DONE_ABB3"
+msgstr "완료"
+
+msgid "IDS_PB_BUTTON_DISCARD_ABB"
+msgstr "저장 안 함"
+
+msgid "IDS_PB_BUTTON_DELETE_ABB4"
+msgstr "삭제"
+
+msgid "IDS_PB_BUTTON_CREATE_ABB2"
+msgstr "추가"
+
+msgid "IDS_PB_BUTTON_CHANGE_ABB"
+msgstr "변경"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "취소"
+
+msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
+msgstr "계정 추가"
+
+msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
+msgstr "Windows Live"
+
+msgid "IDS_PB_BODY_WEBSITE_ABB"
+msgstr "웹사이트"
+
+msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
+msgstr "연락처 목록 업데이트 중..."
+
+msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
+msgstr "SIM 카드 오류가 발생하여 저장할 수 없습니다."
+
+msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
+msgstr "호칭"
+
+msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "연락처를 삭제합니다."
+
+msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
+msgstr "선택한 연락처의 서비스 공급자 정보가 업데이트됩니다. 이 기능을 사용하려면 네트워크 연결이 필요하며 추가요금이 부과될 수 있습니다. 이 과정의 소요시간은 네트워크 연결 상태에 따라 달라질 수 있습니다."
+
+msgid "IDS_PB_BODY_TELEPHONE"
+msgstr "일반 전화"
+
+msgid "IDS_PB_BODY_SKYPE"
+msgstr "Skype"
+
+msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
+msgstr "SIM 카드 초기화 중..."
+
+msgid "IDS_PB_BODY_SERVICE_NUMBER"
+msgstr "서비스 번호"
+
+msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
+msgstr "한 번에 1개씩 연락처 파일을 보내면 상대방 디바이스가 한 번에 1개씩 수락하기 때문에 더 많은 시간이 걸릴 수 있습니다."
+
+msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
+msgstr "여러 연락처를 한 번에 보내면 전송 시간이 줄어듭니다. 그러나 상대 디바이스에서 이 기능을 지원하지 않으면 연락처 1개만 보내집니다."
+
+msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
+msgstr "연락처 정보 전송 방법을 선택하세요."
+
+msgid "IDS_PB_BODY_SELECTED_MADJ"
+msgstr "이 항목만"
+
+msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
+msgstr "즐겨찾기에서 제거"
+
+msgid "IDS_PB_BODY_PHOTO"
+msgstr "사진"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "전화번호"
+
+msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
+msgstr "이름(소리나는 대로)"
+
+msgid "IDS_PB_BODY_PHONETIC_MIDDLE_NAME_ABB"
+msgstr "중간 이름(표음식)"
+
+msgid "IDS_PB_BODY_PHONETIC_LAST_NAME_ABB"
+msgstr "성(표음식)"
+
+msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
+msgstr "이름(표음식)"
+
+msgid "IDS_PB_BODY_OTHER_EMAILS"
+msgstr "다른 이메일"
+
+msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
+msgstr "검색 결과가 없습니다"
+
+msgid "IDS_PB_BODY_NO_GROUPS"
+msgstr "그룹이 없습니다"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "노트"
+
+msgid "IDS_PB_BODY_NICKNAME_ABB"
+msgstr "별명"
+
+msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
+msgstr "경칭"
+
+msgid "IDS_PB_BODY_NAME_PREFIX"
+msgstr "호칭"
+
+msgid "IDS_PB_BODY_NAME"
+msgstr "이름"
+
+msgid "IDS_PB_BODY_MY_CONTACTS"
+msgstr "내 연락처"
+
+msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
+msgstr "중간 이름"
+
+msgid "IDS_PB_BODY_LAST_NAME_ABB"
+msgstr "성"
+
+msgid "IDS_PB_BODY_JOB_TITLE_ABB"
+msgstr "직위"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
+msgstr "SIM 카드에서 가져오기"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
+msgstr "SIM2 카드에서 가져오기"
+
+msgid "IDS_PB_BODY_IMPORTING_ING"
+msgstr "가져오는 중..."
+
+msgid "IDS_PB_BODY_IMAGE"
+msgstr "이미지"
+
+msgid "IDS_PB_BODY_IM"
+msgstr "메신저"
+
+msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
+msgstr "SIM 카드에 서비스 공급자가 설치한 기본 서비스 번호가 있으면, 여기에 표시됩니다."
+
+msgid "IDS_PB_BODY_GALLERY"
+msgstr "갤러리"
+
+msgid "IDS_PB_BODY_FIRST_NAME_ABB"
+msgstr "이름"
+
+msgid "IDS_PB_BODY_FAX"
+msgstr "팩스"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
+msgstr "SIM 카드로 내보내기"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
+msgstr "SIM2 카드로 내보내기"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
+msgstr "SD 카드로 내보내기"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "이메일"
+
+msgid "IDS_PB_BODY_DISCARD_CHANGES"
+msgstr "변경사항 저장 안 함"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
+msgstr "친구"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
+msgstr "가족"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "날짜"
+
+msgid "IDS_PB_BODY_CO_WORKERS"
+msgstr "동료"
+
+msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
+msgstr "중복된 연락처는 자동으로 추천합니다."
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "연락처"
+
+msgid "IDS_PB_BODY_COMPANY_ABB"
+msgstr "회사"
+
+msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
+msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
+
+msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
+msgstr "목록을 확대하는 버튼입니다."
+
+msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
+msgstr "음악 파일의 하이라이트 부분만 추출합니다."
+
+msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "새 연락처를 추가하면, 여기에 표시됩니다."
+
+msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "연락처를 추가하면, 여기에 표시됩니다."
+
+msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
+msgstr "즐겨찾기에 추가"
+
+msgid "IDS_PB_BODY_ADDRESS_ABB2"
+msgstr "주소"
+
+msgid "IDS_PB_BODY_ACCOUNTS"
+msgstr "계정"
+
+msgid "IDS_PB_BODY_AB_M_BLOOD"
+msgstr "AB"
+
+msgid "IDS_ST_POP_PIN_BLOCKED"
+msgstr "PIN 사용이 차단된 상태입니다."
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
+msgstr "PUK2가 바르지 않습니다."
+
+msgid "IDS_ST_POP_INCORRECT_PIN1"
+msgstr "PIN1이 바르지 않습니다."
+
+msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
+msgstr "기존 연락처에서 추가"
+
+msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
+msgstr "주요 연락처가 없습니다"
+
+msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
+msgstr "주요 연락처"
+
+msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
+msgstr "새 주요 연락처 추가"
+
+msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
+msgstr "주요 연락처 추가"
+
+msgid "IDS_ST_BODY_SET_DATE"
+msgstr "날짜 설정"
+
+msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
+msgstr "새 PIN과 PIN 확인이 일치하지 않습니다."
+
+msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "새 주요 연락처를 추가하면, 여기에 표시됩니다."
+
+msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
+msgstr "더 이상 선택할 수 없음"
+
+msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
+msgstr "SIM 카드를 삽입하세요."
+
+msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
+msgstr "전화를 걸려는 연락처의 서비스 공급자는 %1$s입니다. 내 %2$s SIM 카드를 사용하여 전화를 걸려면 [확인]을 누르세요."
+
+msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
+msgstr "%s SIM 카드 사용"
+
+msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
+msgstr "현재 SIM 카드"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "공중전화"
+
+msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
+msgstr "문자가 바르지 않습니다."
+
+msgid "IDS_HS_BUTTON_PHONE_M_CALL"
+msgstr "전화"
+
+msgid "IDS_ST_BODY_OUTGOING_CALL"
+msgstr "발신전화"
+
+msgid "IDS_CALL_BODY_INCOMING_CALL"
+msgstr "수신전화"
+
+msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
+msgstr "처음 %d개 연락처만 표시합니다."
+
+msgid "IDS_PB_BODY_MY_PROFILE"
+msgstr "내 정보 설정"
+
+msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
+msgstr "바로가기를 추가하려면 여기를 누르세요"
+

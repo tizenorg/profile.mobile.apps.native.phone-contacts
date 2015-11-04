@@ -16,7 +16,6 @@
  */
 
 #include "Ui/NaviframePage.h"
-
 using namespace Ui;
 
 NaviframePage::NaviframePage(Elm_Object_Item *naviItem)
@@ -37,7 +36,7 @@ NaviframePage::~NaviframePage()
 
 void NaviframePage::setTitle(const char *title)
 {
-	elm_object_item_part_text_set(m_NaviItem, "elm.text.title", title);
+	elm_object_item_domain_translatable_part_text_set(m_NaviItem, "elm.text.title", nullptr, title);
 	elm_naviframe_item_title_enabled_set(m_NaviItem, title != nullptr, EINA_TRUE);
 }
 

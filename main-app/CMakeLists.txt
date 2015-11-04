@@ -19,3 +19,5 @@ configure_file(smack.efl.in ${PACKAGE}.efl)
 install(DIRECTORY shared/res/ DESTINATION ${ICONDIR})
 install(FILES ${PACKAGE}.xml DESTINATION ${MANIFESTDIR})
 install(FILES ${PACKAGE}.efl DESTINATION ${SMACKDIR})
+
+add_subdirectory(res)

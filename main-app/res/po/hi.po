@@ -1,0 +1,1221 @@
+msgid "IDS_CLOG_BODY_DIALLED_CALLS"
+msgstr "डायल की गई कॉल्स"
+
+msgid "IDS_CLOG_BODY_LAST_CALL"
+msgstr "अंतिम कॉल"
+
+msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
+msgstr "प्राप्त कॉल्स"
+
+msgid "IDS_CLOG_HEADER_SELECT_LOGS"
+msgstr "लॉग्स चुनें"
+
+msgid "IDS_CLOG_OPT_VIEW_BY"
+msgstr "द्वारा देखें"
+
+msgid "IDS_PB_BODY_HOME_2"
+msgstr "घर 2"
+
+msgid "IDS_PB_POP_MOVE_COMPLETED"
+msgstr "ले जाना पूर्ण।"
+
+msgid "IDS_PB_BODY_MOVING_ING"
+msgstr "ले जा रहा है..."
+
+msgid "IDS_ST_POP_PUK2_VERIFIED"
+msgstr "PUK2 सत्यापित।"
+
+msgid "IDS_ST_POP_PUK1_VERIFIED"
+msgstr "PUK1 सत्यापित।"
+
+msgid "IDS_ST_POP_PIN_UNBLOCKED"
+msgstr "PIN अनावरुद्ध हुआ।"
+
+msgid "IDS_ST_POP_PIN2_UNBLOCKED"
+msgstr "PIN2 अनावरुद्ध है।"
+
+msgid "IDS_ST_POP_PIN2_CHANGED"
+msgstr "PIN2 बदला।"
+
+msgid "IDS_ST_POP_PIN2_BLOCKED"
+msgstr "PIN2 अवरुद्ध है"
+
+msgid "IDS_ST_POP_PIN1_CHANGED"
+msgstr "PIN1 बदला गया।"
+
+msgid "IDS_ST_POP_PIN1_BLOCKED"
+msgstr "PIN1 अवरुद्ध।"
+
+msgid "IDS_ST_POP_INCORRECT_PIN2"
+msgstr "गलत PIN2."
+
+msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
+msgstr "नया PIN2 और पुष्टि किया गया PIN2 मेल नहीं खाते हैं।"
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
+msgstr "गलत PUK1."
+
+msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
+msgstr "ग़लत PUK1. %d प्रयास बाकी।"
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
+msgstr "ग़लत PUK2. %d प्रयास बाकी।"
+
+msgid "IDS_ST_POP_PIN_CHANGED"
+msgstr "PIN बदला।"
+
+msgid "IDS_PB_TAB_CONTACTS"
+msgstr "संपर्क"
+
+msgid "IDS_PB_BODY_ADD_ACCOUNT"
+msgstr "खाता जोड़ें"
+
+msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "वर्णो की संख्‍या अधिकतम पहुँची।"
+
+msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
+msgstr "डिवाइस स्कैन हो रही है..."
+
+msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
+msgstr "गलत PIN"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
+msgstr "पूर्ण"
+
+msgid "IDS_TPLATFORM_ACBUTTON_CANCEL_ABB"
+msgstr "रद्द करें"
+
+msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
+msgstr "हटाएँ"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "कनेक्शन समस्‍या या अमान्‍य MMI कोड।"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "निजी नंबर"
+
+msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
+msgstr "भेजें"
+
+msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
+msgstr "PIN2 अवरुद्ध किया गया। प्रदाता से संपर्क करें (SIM PUK2 आवश्यक)"
+
+msgid "IDS_CLOG_BODY_NO_LOGS"
+msgstr "कोई लॉग नहीं"
+
+msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
+msgstr "आपके द्वारा कॉल किए जाने/प्राप्त करने या संदेश भेजने/प्राप्त करने के बाद, लॉग दिखाए जाएँगे"
+
+msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
+msgstr "SIM कार्ड व्‍यस्‍त है। बाद में कोशिश करें"
+
+msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
+msgstr "SIM/RUIM कार्ड लॉक किया गया।"
+
+msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
+msgstr "कोई SIM कार्ड नहीं मिला। कृपया फोन में एक SIM कार्ड इंसर्ट करें।"
+
+msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
+msgstr "नेटवर्क या SIM कार्ड त्रुटि।"
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
+msgstr "कंपन प्रतिपुष्टि सक्षम की गई।"
+
+msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
+msgstr "कंपन प्रतिपुष्टि अक्षम की गई।"
+
+msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
+msgstr "नंबर पर कॉल करने में असमर्थ। %d आपातकालीन नंबर नहीं है।"
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
+msgstr "स्पीड डायल नंबर %d निकाला गया।"
+
+msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
+msgstr "स्पीड डायल नंबर असाइन किया गया।"
+
+msgid "IDS_KPD_TPOP_ENTER_NUMBER"
+msgstr "नंबर प्रविष्ट करें।"
+
+msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
+msgstr "आपका PIN, %1$d और %2$d अंकों के बीच का होना चाहिए। फिर से प्रयास करें।"
+
+msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
+msgstr "आपका PIN2 %1$d से %2$d अंकों के बीच होना चाहिए। फिर से प्रयास करें।"
+
+msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
+msgstr "इस शीघ्र डायल नंबर के लिए कोई संपर्क असाइन नहीं किया गया है। अभी कोई एक नंबर असाइन करने के लिए ओके टैप करें।"
+
+msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
+msgstr "PIN अक्षम की गई है। बदलने से पहले PIN सक्षम करें।"
+
+msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
+msgstr "वॉइसमेल"
+
+msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
+msgstr "संपर्क अपडेट करें"
+
+msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
+msgstr "स्पीड डायल सेटिंग्स"
+
+msgid "IDS_KPD_OPT_REMOVE"
+msgstr "निकालें"
+
+msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
+msgstr "संपर्क बनाएँ"
+
+msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
+msgstr "कॉल सेटिंग्स"
+
+msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
+msgstr "प्रतीक्षा समय जोड़ें"
+
+msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
+msgstr "2-सेकंड का विराम जोड़ें"
+
+msgid "IDS_KPD_ITAB3_KEYPAD"
+msgstr "कीपैड"
+
+msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
+msgstr "नेटवर्क से कनेक्‍ट करने में असमर्थ"
+
+msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "कॉल हेतु SIM कार्ड चुनें"
+
+msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
+msgstr "खोज परिणाम (%d)"
+
+msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
+msgstr "आपात कॉल"
+
+msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
+msgstr "स्पीड डायल नंबर के रूप में असाइन करें"
+
+msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
+msgstr "नंबर सेट करें"
+
+msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
+msgstr "सन्देश भेजें"
+
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "रद्द करें"
+
+msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
+msgstr "संपर्क में जोड़ें"
+
+msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
+msgstr "पासवर्ड मेल\nनहीं खाते।"
+
+msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
+msgstr "PIN blocked. Enter PUK."
+
+msgid "IDS_IDLE_BODY_SIM_BLOCKED"
+msgstr "SIM अवरुद्ध कर दी गई।"
+
+msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
+msgstr "सुरक्षित नहीं"
+
+msgid "IDS_LOGS_SBODY_SAVED_M_STATUS"
+msgstr "सुरक्षित"
+
+msgid "IDS_LOGS_SBODY_MISSEDM_CALL_STATUS"
+msgstr "छूटी हुई"
+
+msgid "IDS_LOGS_SBODY_FAILED_M_STATUS"
+msgstr "विफल"
+
+msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
+msgstr "रद्द हुआ"
+
+msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "%d लॉग मदें हटा दी जाएँगी।"
+
+msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
+msgstr "सभी लॉग मदें हटा दी जाएंगी।"
+
+msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
+msgstr "1 लॉग मद हटा दी जाएगी।"
+
+msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
+msgstr "संपर्क विवरण देखें"
+
+msgid "IDS_LOGS_OPT_SEND_NUMBER"
+msgstr "नंबर भेजें"
+
+msgid "IDS_LOGS_OPT_MISSED_CALLS"
+msgstr "छूटी कॉल्स"
+
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "हटाएँ"
+
+msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
+msgstr "कॉल अवधियाँ"
+
+msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
+msgstr "छूटी कॉल्स"
+
+msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
+msgstr "दोबारा न दिखाएँ"
+
+msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
+msgstr "अज्ञात नंबर"
+
+msgid "IDS_LOGS_MBODY_UNKNOWN"
+msgstr "अज्ञात"
+
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "सभी चुनें"
+
+msgid "IDS_LOGS_ITAB3_LOGS"
+msgstr "लॉग्स"
+
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "बीता हुआ कल"
+
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "आज"
+
+msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
+msgstr "%d चयनित"
+
+msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
+msgstr "%d लॉग हटाएँ"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
+msgstr "लॉग मदें हटाएँ"
+
+msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
+msgstr "लॉग हटाएँ"
+
+msgid "IDS_LOGS_HEADER_DELETE"
+msgstr "हटाएँ"
+
+msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
+msgstr "संपर्क अपडेट करें"
+
+msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
+msgstr "हटाएँ"
+
+msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
+msgstr "संपर्क बनाएँ"
+
+msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
+msgstr "रद्द करें"
+
+msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
+msgstr "वॉइस कॉल्स"
+
+msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
+msgstr "वीडियो कॉल्‍स"
+
+msgid "IDS_LOGS_BODY_SIM_CARD"
+msgstr "SIM कार्ड"
+
+msgid "IDS_LOGS_BODY_ALL_CALLS"
+msgstr "सभी कॉल्स"
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
+msgstr "आपके द्वारा कॉल्स करने या प्राप्त करने के बाद वे यहाँ लॉग की जाएँगी।"
+
+msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
+msgstr "आपके द्वारा कॉल्स करने या प्राप्त करने के बाद, लॉग मदें यहां दिखाई देंगी।"
+
+msgid "IDS_QP_ACBUTTON_EDIT_ABB"
+msgstr "संपादन"
+
+msgid "IDS_MF_POP_INPUT_TEXT"
+msgstr "टेक्स्ट इनपुट करें"
+
+msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
+msgstr "आपके कुछ संपर्क डुप्लिकेट्स लग रहे हैं।"
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
+msgstr "%d संपर्क आयात किए गए।"
+
+msgid "IDS_PB_TPOP_CONTACTS_LINKED"
+msgstr "संपर्क लिंक किए गए।"
+
+msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
+msgstr "1 नंबर स्वतः अस्वीकृत सूची से निकाला गया।"
+
+msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
+msgstr "1 संपर्क आयात किया गया।"
+
+msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
+msgstr "सेवा नंबर्स"
+
+msgid "IDS_PB_TMBODY_NAME_FORMAT"
+msgstr "नाम फॉर्मेट"
+
+msgid "IDS_PB_TMBODY_LINK_CONTACTS"
+msgstr "सपंर्कों को लिंक करें"
+
+msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
+msgstr "प्रदर्शित करने के लिए संपर्क"
+
+msgid "IDS_PB_SK_SET"
+msgstr "सेट"
+
+msgid "IDS_PB_SK_CREATE_ABB"
+msgstr "बनाएँ"
+
+msgid "IDS_PB_SK_ADD_FIELDS"
+msgstr "फ़ील्‍ड्स जोड़ें"
+
+msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
+msgstr "संपर्क आयात हो रहे हैं..."
+
+msgid "IDS_PB_SBODY_IMPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "आयात करना रद्द किया गया"
+
+msgid "IDS_PB_SBODY_EXPORTING_CONTACTS_ING_ABB"
+msgstr "संपर्क निर्यात हो रहे..."
+
+msgid "IDS_PB_SBODY_EXPORTING_CANCELLED_M_STATUS_ABB"
+msgstr "निर्यात करना रद्द किया"
+
+msgid "IDS_PB_SBODY_CONTACTS_IMPORTED_M_STATUS_ABB"
+msgstr "संपर्क आयात किए गए"
+
+msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
+msgstr "संपर्क निर्यात किए गए"
+
+msgid "IDS_PB_SBODY_ALL_CONTACTS"
+msgstr "सभी संपर्क"
+
+msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
+msgstr "आप केवल-पढ़ें खातों से संपर्क हटा नहीं सकते हैं, लेकिन आप संपर्क में उन्हें छिपा सकते हैं।"
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
+msgstr "सिंक करें सक्षम होने पर, यह संपर्क किसी भी ऐसे सिंक किए गए खातों से हटाया जाएगा, जिनमें इसे सुरक्षित किया गया है।"
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
+msgstr "यदि जानकारी किसी केवल पढ़ने के लिए खाते से है, तो सिंक सक्षम होने पर, यह संपर्क और अन्य सिंक किए गए खातों में लिंक किए गए इसके सभी संपर्क हटाए जाएँगे या छिपा दिए जाएँगे।"
+
+msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
+msgstr "सिंक करें सक्षम होने पर, अन्य सिंक किए गए खातों में यह संपर्क और इससे लिंक किए गए सभी संपर्कों को हटाया जाएगा।"
+
+msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
+msgstr "सेवा प्रदाता जानकारी अपडेट कर रहा है..."
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "संपर्क जोड़ने में अक्षम। लिंक करने योग्य संपर्को की अधिकतम संख्या (%d) तक पहुँच गया।"
+
+msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
+msgstr "संपर्कों को जोड़ने में अक्षम। लिंक करने योग्य संपर्को की अधिकतम संख्या (%d) तक पहुँच गया।"
+
+msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "यह संपर्क हटाया जाएगा।"
+
+msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "यह संपर्क और इससे लिंक किए गए सभी संपर्कों को हटाया जाएगा।"
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "चुने जा सकने वाली मदों की अधिकतम संख्या (%d) सीमा से अधिक हो गई है।"
+
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
+msgstr "एक बार में साझा किए जा सकने वाले संपर्कों की अधिकतम संख्या (%1$d) पार हो गयी है। केवल पहले %2$d साझा किए जाएँगे।"
+
+msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
+msgstr "अपने संपर्कों के सेवा प्रदाताओं को पहचानने और उन्हें अपनी संपर्क सूची में प्रदर्शित करने के लिए Chamada Certa सुविधा का उपयोग किया जा सकता है। आप मेन्यू कुंजी दबाकर और सेवा प्रदाता जानकारी अपडेट करें चुनकर बाद में यह कर सकते हैं। अपने संपर्क के सेवा प्रदाताओं को पहचानने के लिए अभी ठीक पर टैप करें।"
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
+msgstr "SIM कार्ड से संपर्क आयात करने से रोकने के लिए ओके टैप करें।"
+
+msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
+msgstr "%s में संपर्क निर्यात करने से रोकने के लिए ओके टैप करें।"
+
+msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "निर्यात किए जाने वाले संपर्क चुनने के लिए निर्यात करें टैप करें। कुछ संपर्क सूचना गुम हो सकती है।"
+
+msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
+msgstr "कुछ या सभी संपर्कों को अपडेट नहीं किया गया होगा।"
+
+msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
+msgstr "कुछ संपर्क जानकारी खो सकती है।"
+
+msgid "IDS_PB_POP_SIM_MEMROY_FULL"
+msgstr "SIM मेमोरी पूर्ण।"
+
+msgid "IDS_PB_POP_REMOVING"
+msgstr "हटा रहा है..."
+
+msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
+msgstr "%d फोन नंबर अपडेट किए गए हैं।"
+
+msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
+msgstr "%d संपर्क हटाए जाएँगे"
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
+msgstr "%1$d संपर्क %2$s पर निर्यात किए गए हैं।"
+
+msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
+msgstr "डिवाइस/संपर्क/आयात किए गए/%2$s.vcf में %1$d संपर्क निर्यात किए जा चुके हैं।"
+
+msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
+msgstr "पर्याप्‍त मेमोरी नहीं।"
+
+msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
+msgstr "नए संपर्क आपके डिवाइस पर संपर्क में सुरक्षित किए जाएँगे।"
+
+msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
+msgstr "FDN मोड सक्रिय है।"
+
+msgid "IDS_PB_POP_FAILED"
+msgstr "विफल।"
+
+msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
+msgstr "बदलाव निरस्त करें?"
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
+msgstr "संपर्क हटाए जा रहे हैं..."
+
+msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
+msgstr "संपर्क हटाना रद्द किया गया। हो सकता है कुछ संपर्क पहले ही हटा दिए गए हों।"
+
+msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
+msgstr "%s से संपर्क आयात किया जाना रोक दिया जाएगा।"
+
+msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
+msgstr "पहले से ही मौजूद।"
+
+msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
+msgstr "सभी लिंक किए हुए संपर्क हटाए जाएँगे।"
+
+msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
+msgstr "सभी संपर्क हटाए जाएँगे"
+
+msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
+msgstr "सभी बदलाव निरस्त कर दिए जाएँगें।"
+
+msgid "IDS_PB_POP_ADDING_ING"
+msgstr "जोड़ रहा है..."
+
+msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
+msgstr "1 फोन नंबर अपडेट किया गया है।"
+
+msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
+msgstr "1 संपर्क हटाया जाएगा"
+
+msgid "IDS_PB_POP_1_CONTACT_REMOVED"
+msgstr "1 संपर्क हटाया गया।"
+
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
+
+msgid "IDS_PB_OPT_WORK"
+msgstr "काम"
+
+msgid "IDS_PB_OPT_VOICE_CALL"
+msgstr "वॉइस कॉल"
+
+msgid "IDS_PB_OPT_VIDEO_CALL"
+msgstr "वीडियो कॉल"
+
+msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
+msgstr "सेवा प्रदाता जानकारी अपडेट करें"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
+msgstr "संपर्क से लिंक हटाएँ"
+
+msgid "IDS_PB_OPT_UNLINK_CONTACTS"
+msgstr "संपर्कों से लिंक हटाएँ"
+
+msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
+msgstr "तस्वीर लें"
+
+msgid "IDS_PB_OPT_TAKE_A_PHOTO"
+msgstr "एक फोटो लें"
+
+msgid "IDS_PB_OPT_SPOUSE"
+msgstr "पति या पत्नी"
+
+msgid "IDS_PB_OPT_SKYPE"
+msgstr "स्काइप"
+
+msgid "IDS_PB_OPT_SISTER"
+msgstr "बहन"
+
+msgid "IDS_PB_OPT_SIM_CARD"
+msgstr "SIM कार्ड"
+
+msgid "IDS_PB_OPT_SHARE_VIA"
+msgstr "इसके द्वारा साझा करें"
+
+msgid "IDS_PB_OPT_SHARE"
+msgstr "साझा करें"
+
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "सेटिंग्स"
+
+msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
+msgstr "संपर्क से चुनें"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD कार्ड"
+
+msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
+msgstr "निम्न पर संपर्क सुरक्षित करें"
+
+msgid "IDS_PB_OPT_REORDER"
+msgstr "क्रम बदलें"
+
+msgid "IDS_PB_OPT_REMOVE"
+msgstr "निकालें"
+
+msgid "IDS_PB_OPT_RELATIVE"
+msgstr "संबंधी"
+
+msgid "IDS_PB_OPT_RELATIONSHIP_ABB2"
+msgstr "संबंध"
+
+msgid "IDS_PB_OPT_REFERRED_BY_ABB"
+msgstr "इनके द्वारा संदर्भ"
+
+msgid "IDS_PB_OPT_QQ"
+msgstr "QQ"
+
+msgid "IDS_PB_OPT_PARTNER"
+msgstr "पार्टनर"
+
+msgid "IDS_PB_OPT_PARENT"
+msgstr "अभिभावक"
+
+msgid "IDS_PB_OPT_PAGER"
+msgstr "पेजर"
+
+msgid "IDS_PB_OPT_OTHER"
+msgstr "अन्य"
+
+msgid "IDS_PB_OPT_ORGANISATION_ABB"
+msgstr "संगठन"
+
+msgid "IDS_PB_OPT_MOTHER"
+msgstr "माता"
+
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "मोबाइल"
+
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "सन्देश"
+
+msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
+msgstr "पसंदीदा को प्रबंधित करें"
+
+msgid "IDS_PB_OPT_MANAGER"
+msgstr "प्रबंधक"
+
+msgid "IDS_PB_OPT_MAIN"
+msgstr "मुख्य"
+
+msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
+msgstr "अंतिम नाम पहले"
+
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "अंतिम नाम"
+
+msgid "IDS_PB_OPT_JABBER"
+msgstr "जेब्बर"
+
+msgid "IDS_PB_OPT_ICQ"
+msgstr "ICQ"
+
+msgid "IDS_PB_OPT_HOME_ABB"
+msgstr "घर"
+
+msgid "IDS_PB_OPT_HOME"
+msgstr "होम"
+
+msgid "IDS_PB_OPT_HANGOUTS"
+msgstr "हैंगआउट्स"
+
+msgid "IDS_PB_OPT_FROM_GALLERY_ABB2"
+msgstr "गैलरी से"
+
+msgid "IDS_PB_OPT_FRIEND"
+msgstr "मित्र"
+
+msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
+msgstr "पहला नाम पहले"
+
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "पहला नाम"
+
+msgid "IDS_PB_OPT_FDN_CONTACT"
+msgstr "FDN संपर्क"
+
+msgid "IDS_PB_OPT_FAX_HWORK_ABB"
+msgstr "फ़ैक्स (कार्यस्थल)"
+
+msgid "IDS_PB_OPT_FAX_HHOME_ABB"
+msgstr "फैक्स (घर)"
+
+msgid "IDS_PB_OPT_FATHER"
+msgstr "पिता"
+
+msgid "IDS_PB_OPT_EDIT"
+msgstr "संपादन"
+
+msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
+msgstr "दोबारा न दिखाएँ"
+
+msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
+msgstr "घरेलू सहभागी"
+
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "डिवाइस"
+
+msgid "IDS_PB_OPT_CUSTOM"
+msgstr "कस्‍टम"
+
+msgid "IDS_PB_OPT_CREATE"
+msgstr "बनाएँ"
+
+msgid "IDS_PB_OPT_CHILD"
+msgstr "बच्चा"
+
+msgid "IDS_PB_OPT_BROTHER"
+msgstr "भाई"
+
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "जन्मदिन"
+
+msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
+msgstr "सहायक"
+
+msgid "IDS_PB_OPT_ANNIVERSARY_ABB"
+msgstr "वर्षगांठ"
+
+msgid "IDS_PB_OPT_AIM"
+msgstr "AIM"
+
+msgid "IDS_PB_OPT_ADD_FIELD"
+msgstr "फील्ड जोड़ें"
+
+msgid "IDS_PB_OPT_ADD"
+msgstr "जोड़ें"
+
+msgid "IDS_PB_OPT_ACCOUNT"
+msgstr "खाता"
+
+msgid "IDS_PB_NPBODY_SEARCH"
+msgstr "खोजें"
+
+msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
+msgstr "कोई सेवा नंबर्स नहीं हैं"
+
+msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
+msgstr "कोई परिणाम नहीं मिला"
+
+msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
+msgstr "कोई आपातकालीन संपर्क नहीं"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "कोई संपर्क नहीं"
+
+msgid "IDS_PB_MBODY_SORT_BY"
+msgstr "इसके द्वारा क्रमबद्ध करें"
+
+msgid "IDS_PB_MBODY_SET_PROFILE"
+msgstr "प्रोफाइल सेट करें"
+
+msgid "IDS_PB_MBODY_SET_MY_PROFILE"
+msgstr "मेरी प्रोफाइल सेट करें"
+
+msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
+msgstr "एक साथ भेजें"
+
+msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
+msgstr "व्यक्तिगत रूप से भेजें"
+
+msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
+msgstr "संपर्क सूचना भेजें"
+
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "सभी चुनें"
+
+msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
+msgstr "%d संपर्क"
+
+msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
+msgstr "केवल फोन के साथ संपर्क"
+
+msgid "IDS_PB_MBODY_IMPORT"
+msgstr "आयात करें"
+
+msgid "IDS_PB_MBODY_EXPORT"
+msgstr "निर्यात करें"
+
+msgid "IDS_PB_MBODY_EVENT"
+msgstr "प्रसंग"
+
+msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
+msgstr "नंबर्स के साथ संपर्क दर्शाएँ"
+
+msgid "IDS_PB_MBODY_1_CONTACT_ABB"
+msgstr "1 संपर्क"
+
+msgid "IDS_PB_ITAB3_CONTACTS"
+msgstr "संपर्क"
+
+msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
+msgstr "आंतरिक फोन मेमोरी उपलब्ध नहीं"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
+msgstr "जोड़ने में अक्षम"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
+msgstr "जोड़ने में अक्षम"
+
+msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
+msgstr "सुझावित संपर्क"
+
+msgid "IDS_PB_HEADER_SHARE_VIA"
+msgstr "इसके द्वारा साझा करें"
+
+msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
+msgstr "संपर्क तस्वीर सेट करें"
+
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "सेटिंग्स"
+
+msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
+msgstr "सेवा प्रदाता"
+
+msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
+msgstr "संपर्क सूचना भेजें"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
+msgstr "कॉल करने के लिए SIM चुनें"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "कॉल करने के लिए SIM कार्ड का चयन करें"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
+msgstr "कॉल हेतु SIM कार्ड चुनें"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
+msgstr "संपर्क चुनें"
+
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "चुनें"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
+msgstr "इसमें संपर्क सुरक्षित करें"
+
+msgid "IDS_PB_HEADER_REORDER"
+msgstr "क्रम बदलना"
+
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "हटायें"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
+msgstr "प्राथमिक संपर्क (%d)"
+
+msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
+msgstr "प्राथमिक संपर्क(%1$d/%2$d)"
+
+msgid "IDS_PB_HEADER_PHONE_M_CALL"
+msgstr "फोन"
+
+msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
+msgstr "व्यक्तिगत संपर्क"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
+msgstr "%d चयनित"
+
+msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
+msgstr "%d चयनित"
+
+msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
+msgstr "नाम फॉर्मेट"
+
+msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
+msgstr "अक्सर उपयोग किए गए संपर्क"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "मेरा"
+
+msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
+msgstr "पसंदीदा को प्रबंधित करें"
+
+msgid "IDS_PB_HEADER_MAINLIST"
+msgstr "संपर्क सूची"
+
+msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
+msgstr "लिंक किए हुए संपर्क"
+
+msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
+msgstr "संपर्क आयात करें"
+
+msgid "IDS_PB_HEADER_IMPORT"
+msgstr "आयात करें"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "पसंदीदा"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
+msgstr "संपर्क SIM कार्ड पर निर्यात करें"
+
+msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
+msgstr "संपर्क निर्यात करें"
+
+msgid "IDS_PB_HEADER_EXPORT"
+msgstr "निर्यात करें"
+
+msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
+msgstr "कस्टम लेबल प्रविष्ट करें"
+
+msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
+msgstr "आपातकालीन सेवाएँ"
+
+msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
+msgstr "आपातकालीन संपर्क"
+
+msgid "IDS_PB_HEADER_EDIT"
+msgstr "संपादन"
+
+msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
+msgstr "इसके द्वारा नाम प्रदर्शित करें"
+
+msgid "IDS_PB_HEADER_DISPLAY"
+msgstr "प्रदर्शन"
+
+msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
+msgstr "बदलाव निरस्त करें"
+
+msgid "IDS_PB_HEADER_DELETE_ITEM"
+msgstr "मद हटाएँ"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "बनाएँ"
+
+msgid "IDS_PB_HEADER_CONTACT_IMAGE"
+msgstr "संपर्क छवि"
+
+msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
+msgstr "प्रदर्शित करने के लिए संपर्क"
+
+msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
+msgstr "संपर्क"
+
+msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
+msgstr "संपर्क निर्यात किए गए"
+
+msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
+msgstr "सुरक्षित स्थान बदलें"
+
+msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
+msgstr "आयात करना रद्द करें"
+
+msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
+msgstr "निर्यात करना रद्द करें"
+
+msgid "IDS_PB_BUTTON_TRY_AGAIN"
+msgstr "फिर प्रयास करें"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "सुरक्षित"
+
+msgid "IDS_PB_BUTTON_PHONE"
+msgstr "फोन"
+
+msgid "IDS_PB_BUTTON_OK_ABB2"
+msgstr "ओके"
+
+msgid "IDS_PB_BUTTON_NOTES"
+msgstr "नोट्स"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "अधिक"
+
+msgid "IDS_PB_BUTTON_EXPORT"
+msgstr "निर्यात करें"
+
+msgid "IDS_PB_BUTTON_EMAIL_ABB3"
+msgstr "ईमेल"
+
+msgid "IDS_PB_BUTTON_DONE_ABB3"
+msgstr "पूर्ण"
+
+msgid "IDS_PB_BUTTON_DISCARD_ABB"
+msgstr "निरस्त करें"
+
+msgid "IDS_PB_BUTTON_DELETE_ABB4"
+msgstr "हटाएँ"
+
+msgid "IDS_PB_BUTTON_CREATE_ABB2"
+msgstr "बनाएँ"
+
+msgid "IDS_PB_BUTTON_CHANGE_ABB"
+msgstr "बदलें"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "रद्द"
+
+msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
+msgstr "खाता जोड़ें"
+
+msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
+msgstr "विंडोज लाइव"
+
+msgid "IDS_PB_BODY_WEBSITE_ABB"
+msgstr "वेबसाइट"
+
+msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
+msgstr "संपर्क सूची अपडेट हो रही है..."
+
+msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
+msgstr "SIM त्रुटि के कारण सुरक्षित करने में अक्षम।"
+
+msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
+msgstr "उपाधि"
+
+msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
+msgstr "यह संपर्क हटाया जाएगा"
+
+msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
+msgstr "चयनित संपर्कों की सेवा प्रदाता जानकारी अपडेट की जाएगी। इस सुविधा के लिए नेटवर्क कनेक्शन आवश्‍यक है और इसके कारण अतिरिक्त शुल्क लग सकते हैं। प्रक्रिया को पूर्ण होने में लगने वाला समय आपके नेटवर्क कनेक्शन स्थिति पर निर्भर करेगा।"
+
+msgid "IDS_PB_BODY_TELEPHONE"
+msgstr "टेलीफोन"
+
+msgid "IDS_PB_BODY_SKYPE"
+msgstr "स्काइप"
+
+msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
+msgstr "SIM कार्ड आरंभ हो रहा है..."
+
+msgid "IDS_PB_BODY_SERVICE_NUMBER"
+msgstr "सेवा नंबर"
+
+msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
+msgstr "नाम कार्ड्स व्यक्तिगत रूप से भेजने में अधिक समय लग सकता है क्योंकि प्राप्त करने वाला डिवाइस द्वारा भी उन्हें एक बार में एक ही स्वीकार करना चाहिए।"
+
+msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
+msgstr "कई संपर्कों को एक साथ भेजना ट्रांसमिशन समय कम करता है। हालाँकि, यदि अन्य डिवाइस इसका समर्थन नहीं करते हैं, तो केवल एक संपर्क भेजा जाएगा।"
+
+msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
+msgstr "संपर्क जानकारी भेजने का तरीका चुनें।"
+
+msgid "IDS_PB_BODY_SELECTED_MADJ"
+msgstr "चयनित"
+
+msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
+msgstr "पसंदीदा से निकालें"
+
+msgid "IDS_PB_BODY_PHOTO"
+msgstr "फोटो"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "फोन नंबर"
+
+msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
+msgstr "फोनेटिक नाम"
+
+msgid "IDS_PB_BODY_PHONETIC_MIDDLE_NAME_ABB"
+msgstr "ध्वन्यात्मक मध्य का नाम"
+
+msgid "IDS_PB_BODY_PHONETIC_LAST_NAME_ABB"
+msgstr "ध्वन्यात्मक अंतिम नाम"
+
+msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
+msgstr "फोनॅटिक पहला नाम"
+
+msgid "IDS_PB_BODY_OTHER_EMAILS"
+msgstr "अन्य ईमेल्स"
+
+msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
+msgstr "खोज का कोई परिणाम नहीं"
+
+msgid "IDS_PB_BODY_NO_GROUPS"
+msgstr "कोई समूह नहीं"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "टिप्पणी"
+
+msgid "IDS_PB_BODY_NICKNAME_ABB"
+msgstr "उपनाम"
+
+msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
+msgstr "नाम का सफिक्स"
+
+msgid "IDS_PB_BODY_NAME_PREFIX"
+msgstr "नाम प्रिफ़िक्स"
+
+msgid "IDS_PB_BODY_NAME"
+msgstr "नाम"
+
+msgid "IDS_PB_BODY_MY_CONTACTS"
+msgstr "मेरे संपर्क"
+
+msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
+msgstr "मध्य नाम"
+
+msgid "IDS_PB_BODY_LAST_NAME_ABB"
+msgstr "अंतिम नाम"
+
+msgid "IDS_PB_BODY_JOB_TITLE_ABB"
+msgstr "जॉब शीर्षक"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
+msgstr "SIM कार्ड से आयात करें"
+
+msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
+msgstr "SIM2 कार्ड से आयात करें"
+
+msgid "IDS_PB_BODY_IMPORTING_ING"
+msgstr "आयात कर रहा है..."
+
+msgid "IDS_PB_BODY_IMAGE"
+msgstr "छवि"
+
+msgid "IDS_PB_BODY_IM"
+msgstr "IM"
+
+msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
+msgstr "यदि आपके सेवा प्रदाता ने आपके SIM कार्ड पर सेवा नंबर्स प्रीलोड किए हैं, तो वे यहां दिखाई देंगे।"
+
+msgid "IDS_PB_BODY_GALLERY"
+msgstr "गैलरी"
+
+msgid "IDS_PB_BODY_FIRST_NAME_ABB"
+msgstr "पहला नाम"
+
+msgid "IDS_PB_BODY_FAX"
+msgstr "फैक्स"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
+msgstr "SIM कार्ड पर निर्यात करें"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
+msgstr "SIM2 कार्ड पर निर्यात करें"
+
+msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
+msgstr "SD कार्ड पर निर्यात करें"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "ईमेल"
+
+msgid "IDS_PB_BODY_DISCARD_CHANGES"
+msgstr "बदलाव निरस्त करें"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
+msgstr "मित्र"
+
+msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
+msgstr "परिवार"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "तिथि"
+
+msgid "IDS_PB_BODY_CO_WORKERS"
+msgstr "सहयोगी"
+
+msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
+msgstr "डुप्लिकेट्स होने के रूप में पहचाने गए संपर्कों का सुझाव स्वचालित रूप से दिया जाएगा।"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "संपर्क"
+
+msgid "IDS_PB_BODY_COMPANY_ABB"
+msgstr "कंपनी"
+
+msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
+msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
+
+msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
+msgstr "सूची विस्तृत करने का बटन"
+
+msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
+msgstr "स्वतः अनुशंसाएँ ध्वनि फाइलों से हाइलाइट्स को निकाल सकता है।"
+
+msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "आपके द्वारा संपर्क बनाने के बाद, वे यहाँ दिखाई जाएँगे।"
+
+msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "आपके द्वारा संपर्क जोड़ने के बाद, वे यहां दिखाई देंगे।"
+
+msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
+msgstr "पसंदीदा में जोड़ें"
+
+msgid "IDS_PB_BODY_ADDRESS_ABB2"
+msgstr "पता"
+
+msgid "IDS_PB_BODY_ACCOUNTS"
+msgstr "खातें"
+
+msgid "IDS_PB_BODY_AB_M_BLOOD"
+msgstr "AB"
+
+msgid "IDS_ST_POP_PIN_BLOCKED"
+msgstr "PIN अवरुद्ध है।"
+
+msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
+msgstr "गलत PUK2."
+
+msgid "IDS_ST_POP_INCORRECT_PIN1"
+msgstr "गलत PIN1."
+
+msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
+msgstr "मौजूदा संपर्क जोड़ें"
+
+msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
+msgstr "कोई प्राथमिक संपर्क नहीं"
+
+msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
+msgstr "प्राथमिक संपर्क"
+
+msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
+msgstr "प्राथमिक संपर्क बनाएँ"
+
+msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
+msgstr "प्राथमिक संपर्क जोड़ें"
+
+msgid "IDS_ST_BODY_SET_DATE"
+msgstr "तिथि सेट करें"
+
+msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
+msgstr "नया PIN और पुष्‍टि PIN मेल नही हो रहा"
+
+msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
+msgstr "आपके द्वारा प्राथमिक संपर्क बनाने के बाद वे यहाँ दिखाई देंगे।"
+
+msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
+msgstr "अधिक मद का चयन करने में असमर्थ"
+
+msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
+msgstr "SIM कार्ड इंसर्ट करें।"
+
+msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
+msgstr "आपके द्वारा कॉल किए जा रहे संपर्क का सेवा प्रदाता %1$s है। आपके %2$s SIM कार्ड का उपयोग कर यह कॉल करने के लिए ओके टैप करें।"
+
+msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
+msgstr "%s SIM कार्ड का उपयोग करें"
+
+msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
+msgstr "वर्तमान SIM"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "पेफोन"
+
+msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
+msgstr "अमान्य अक्षर।"
+
+msgid "IDS_HS_BUTTON_PHONE_M_CALL"
+msgstr "फोन"
+
+msgid "IDS_ST_BODY_OUTGOING_CALL"
+msgstr "जानेवाली कॉल"
+
+msgid "IDS_CALL_BODY_INCOMING_CALL"
+msgstr "आनेवाली कॉल"
+
+msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
+msgstr "केवल पहले %d संपर्क ही प्रदर्शित किए गए।"
+
+msgid "IDS_PB_BODY_MY_PROFILE"
+msgstr "मेरा प्रारूप"
+
+msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
+msgstr "शॉर्टकट जोड़ने के लिए यहां टैप करें"
+
