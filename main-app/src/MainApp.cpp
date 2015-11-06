@@ -19,8 +19,9 @@
 
 #include "MainApp.h"
 #include "App/Path.h"
-#include "Ui/Window.h"
 #include "Ui/Naviframe.h"
+#include "Ui/Scale.h"
+#include "Ui/Window.h"
 #include "Utils/Logger.h"
 
 #include "OperationDefaultController.h"
@@ -29,8 +30,6 @@
 #include "OperationViewController.h"
 #include "OperationPickController.h"
  */
-
-#define APP_BASE_SCALE 2.6
 
 MainApp::MainApp()
 	: m_Window(nullptr), m_Navigator(nullptr), m_Controller(nullptr)
@@ -59,7 +58,7 @@ bool MainApp::onCreate()
 	ui_app_add_event_handler(&handle, APP_EVENT_LANGUAGE_CHANGED,
 			&MainApp::onLanguageChanged, this);
 
-	elm_app_base_scale_set(APP_BASE_SCALE);
+	elm_app_base_scale_set(UI_BASE_SCALE);
 
 	m_Window = new Ui::Window();
 	m_Window->create(nullptr);

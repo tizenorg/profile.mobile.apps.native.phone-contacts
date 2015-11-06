@@ -1,0 +1,88 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#define IMAGE_WITH_COLOR(GROUP_NAME, IMAGE_PATH, COLOR_CLASS) \
+	group { \
+		name: GROUP_NAME; \
+		images.image: IMAGE_PATH COMP; \
+		parts { \
+			part { name: "image"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: IMAGE_PATH; \
+					color_class: COLOR_CLASS; \
+					aspect: 1 1; \
+					aspect_preference: SOURCE; \
+				} \
+			} \
+		} \
+	}
+
+#define IMAGE_WITH_BG_AND_COLOR(GROUP_NAME, IMAGE_PATH, COLOR_CLASS, BG_IMAGE_PATH, BG_COLOR_CLASS) \
+	group { \
+		name: GROUP_NAME; \
+		images.image: BG_IMAGE_PATH COMP; \
+		images.image: IMAGE_PATH COMP; \
+		parts { \
+			part { name: "image.bg"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: BG_IMAGE_PATH; \
+					color_class: BG_COLOR_CLASS; \
+					aspect: 1 1; \
+					aspect_preference: SOURCE; \
+				} \
+			} \
+		} \
+		parts { \
+			part { name: "image"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: IMAGE_PATH; \
+					color_class: COLOR_CLASS; \
+					aspect: 1 1; \
+					aspect_preference: SOURCE; \
+				} \
+			} \
+		} \
+	}
+
+#define IMAGE_WITH_MASK(GROUP_NAME, MASK_PATH) \
+	group { \
+		name: GROUP_NAME; \
+		images.image: MASK_PATH COMP; \
+		parts { \
+			part { name: "image.mask"; \
+				precise_is_inside: 1; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: MASK_PATH; \
+					aspect: 1.0 1.0; \
+					aspect_preference: SOURCE; \
+				} \
+			} \
+		} \
+		parts { \
+			part { name: "elm.swallow.content"; \
+				type: SWALLOW; \
+				clip_to: "image.mask"; \
+				description { \
+					state: "default" 0.0; \
+				} \
+			} \
+		} \
+	}
