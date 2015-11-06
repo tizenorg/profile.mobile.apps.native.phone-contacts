@@ -38,7 +38,7 @@ namespace Ui
 	/**
 	 * @brief Represents content of a Window or Navigator page
 	 */
-	class View : public Control
+	class EXPORT_API View : public Control
 	{
 	public:
 		/**

@@ -19,13 +19,14 @@
 #define UTILS_TRACER_H
 
 #include <time.h>
+#include <tizen.h>
 
 namespace Utils
 {
 	/**
 	 * @brief Code block logger. Writes logs when created and destroyed. Outputs elapsed time.
 	 */
-	class Tracer
+	class EXPORT_API Tracer
 	{
 	public:
 		/**

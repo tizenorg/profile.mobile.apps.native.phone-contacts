@@ -22,7 +22,7 @@
 
 namespace Ui
 {
-	class Thumbnail : public Control
+	class EXPORT_API Thumbnail : public Control
 	{
 	public:
 		enum Size

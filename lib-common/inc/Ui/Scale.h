@@ -18,6 +18,8 @@
 #ifndef UI_SCALE_H
 #define UI_SCALE_H
 
+#include <tizen.h>
+
 #define UI_BASE_SCALE 2.6
 
 namespace Ui
@@ -27,7 +29,7 @@ namespace Ui
 	 * @param[in]   value   Value to scale (usually pixels)
 	 * @return Value multiplied by scale factor
 	 */
-	int getScaledValue(int value);
+	EXPORT_API int getScaledValue(int value);
 }
 
 #endif /* UI_SCALE_H */

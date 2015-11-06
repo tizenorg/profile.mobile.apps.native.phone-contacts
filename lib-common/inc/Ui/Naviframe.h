@@ -25,7 +25,7 @@ namespace Ui
 	/**
 	 * @brief Naviframe wrapper
 	 */
-	class Naviframe : public Navigator
+	class EXPORT_API Naviframe : public Navigator
 	{
 	public:
 		Naviframe();

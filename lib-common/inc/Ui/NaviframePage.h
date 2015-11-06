@@ -22,7 +22,7 @@
 
 namespace Ui
 {
-	class NaviframePage : public NavigatorPage
+	class EXPORT_API NaviframePage : public NavigatorPage
 	{
 	public:
 		NaviframePage(Elm_Object_Item *naviItem);

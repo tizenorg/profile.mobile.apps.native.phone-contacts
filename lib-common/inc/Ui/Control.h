@@ -19,6 +19,7 @@
 #define UI_CONTROL_H
 
 #include <Elementary.h>
+#include <tizen.h>
 
 namespace Ui
 {
@@ -27,7 +28,7 @@ namespace Ui
 	 * @details Ties the lifetime of this object to the underlying Evas_Object.
 	 * @remark Should always be allocated with operator "new".
 	 */
-	class Control
+	class EXPORT_API Control
 	{
 	public:
 		Control();

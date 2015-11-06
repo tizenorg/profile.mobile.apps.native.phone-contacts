@@ -19,25 +19,26 @@
 #define APP_PATH_H
 
 #include <string>
+#include <tizen.h>
 
 namespace App
 {
 	/**
 	 * @return Resource directory path
 	 */
-	const std::string &getResourceDir();
+	EXPORT_API const std::string &getResourceDir();
 
 	/**
 	 * @return Localization files directory path
 	 */
-	const std::string &getLocaleDir();
+	EXPORT_API const std::string &getLocaleDir();
 
 	/**
 	 * @brief Get resource file path.
 	 * @param[in]   relativePath    File path relative to resource directory
 	 * @return Full file path
 	 */
-	std::string getResourcePath(const std::string &relativePath);
+	EXPORT_API std::string getResourcePath(const std::string &relativePath);
 }
 
 #endif /* APP_PATH_H */

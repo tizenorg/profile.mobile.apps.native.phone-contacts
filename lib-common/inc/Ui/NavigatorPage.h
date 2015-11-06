@@ -19,13 +19,14 @@
 #define UI_NAVIGATOR_PAGE_H
 
 #include <Elementary.h>
+#include <tizen.h>
 
 namespace Ui
 {
 	/**
 	 * @brief Navigator page interface
 	 */
-	class NavigatorPage
+	class EXPORT_API NavigatorPage
 	{
 	public:
 		virtual ~NavigatorPage() { }

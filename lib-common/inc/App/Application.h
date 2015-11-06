@@ -25,7 +25,7 @@ namespace App
 	/**
 	 * @brief Application lifecycle controller.
 	 */
-	class Application
+	class EXPORT_API Application
 	{
 	public:
 		/**

@@ -23,7 +23,7 @@
 
 namespace Ui
 {
-	class TabPage : public Control, public NavigatorPage
+	class EXPORT_API TabPage : public Control, public NavigatorPage
 	{
 	public:
 		TabPage(size_t index, Elm_Object_Item *tabItem);

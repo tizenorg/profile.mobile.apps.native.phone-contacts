@@ -25,7 +25,7 @@
 
 namespace Ui
 {
-	class Popup : public Control
+	class EXPORT_API Popup : public Control
 	{
 	public:
 		/**

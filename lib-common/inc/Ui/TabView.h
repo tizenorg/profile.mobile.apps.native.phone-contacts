@@ -26,7 +26,7 @@ namespace Ui
 	/**
 	 * @brief Scrollable tab navigator
 	 */
-	class TabView : public Navigator
+	class EXPORT_API TabView : public Navigator
 	{
 	public:
 		TabView();

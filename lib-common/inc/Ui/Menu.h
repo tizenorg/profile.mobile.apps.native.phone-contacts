@@ -23,7 +23,7 @@
 
 namespace Ui
 {
-	class Menu : public Control
+	class EXPORT_API Menu : public Control
 	{
 	public:
 		/**

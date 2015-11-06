@@ -23,7 +23,7 @@
 namespace Ui
 {
 	class NavigatorPage;
-	class Navigator : public View
+	class EXPORT_API Navigator : public View
 	{
 	public:
 		/**

@@ -27,7 +27,7 @@ namespace Ui
 	/**
 	 * @brief Application main window
 	 */
-	class Window : public Control
+	class EXPORT_API Window : public Control
 	{
 	public:
 		Window();
