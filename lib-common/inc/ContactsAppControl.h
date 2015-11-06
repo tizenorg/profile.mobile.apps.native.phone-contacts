@@ -38,13 +38,6 @@
 #define APP_CONTROL_DATA_TYPE_PHONE_CALL "phone_call"
 #define APP_CONTROL_DATA_TYPE_PHONE_MESSAGE "phone_message"
 
-#define APP_CONTROL_DATA_ID "http://tizen.org/appcontrol/data/id"
-#define APP_CONTROL_DATA_TYPE "http://tizen.org/appcontrol/data/type"
-#define APP_CONTROL_DATA_PHONE "http://tizen.org/appcontrol/data/phone"
-#define APP_CONTROL_OPERATION_ADD "http://tizen.org/appcontrol/operation/add"
-#define APP_CONTROL_DATA_TOTAL_COUNT  "http://tizen.org/appcontrol/data/total_count"
-#define APP_CONTROL_DATA_EMAIL "http://tizen.org/appcontrol/data/email"
-#define APP_CONTROL_DATA_URL  "http://tizen.org/appcontrol/data/url"
 
 /**
  * @brief Get integer extra data from app_control
