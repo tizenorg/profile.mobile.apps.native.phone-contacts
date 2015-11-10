@@ -64,11 +64,15 @@ Evas_Object *Window::getConformant() const
 	return m_Conform;
 }
 
+Evas_Object *Window::getBaseLayout() const
+{
+	return m_Layout;
+}
+
 void Window::attachView(View *view)
 {
 	m_MainView = view;
 	elm_object_part_content_set(m_Layout, "elm.swallow.content", view->create(m_Layout));
-	view->onViewAttached(this, nullptr, nullptr);
 }
 
 void Window::onBackPressed(Evas_Object *obj, void *eventInfo)

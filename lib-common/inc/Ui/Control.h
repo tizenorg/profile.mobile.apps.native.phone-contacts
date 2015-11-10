@@ -23,6 +23,8 @@
 
 namespace Ui
 {
+	class Window;
+
 	/**
 	 * @brief Evas_Object wrapper.
 	 * @details Ties the lifetime of this object to the underlying Evas_Object.
@@ -51,6 +53,18 @@ namespace Ui
 		 */
 		Evas_Object *getEvasObject() const;
 
+		/**
+		 * @return Main application window.
+		 */
+		Window *getWindow() const;
+
+		/**
+		 * @brief Get Control object from Evas_Object
+		 * @param[in]   obj     Evas_Object that belongs to some Control
+		 * @return Control tied to Evas_Object
+		 */
+		static Control *getControl(Evas_Object *obj);
+
 	protected:
 		/**
 		 * @brief Called after create() is called
@@ -58,6 +72,11 @@ namespace Ui
 		 * @return Created Evas_Object on success, otherwise nullptr
 		 */
 		virtual Evas_Object *onCreate(Evas_Object *parent) = 0;
+
+		/**
+		 * @brief Called after onCreate() has returned
+		 */
+		virtual void onCreated() { }
 
 	private:
 		void setEvasObject(Evas_Object *object);

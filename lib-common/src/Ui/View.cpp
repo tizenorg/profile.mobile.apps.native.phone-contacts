@@ -20,7 +20,7 @@
 using namespace Ui;
 
 View::View()
-	: m_Window(nullptr), m_StackNavi(nullptr), m_TabNavi(nullptr),
+	: m_StackNavi(nullptr), m_TabNavi(nullptr),
 	  m_NaviPage(nullptr)
 {
 }
@@ -28,11 +28,6 @@ View::View()
 View::~View()
 {
 	delete m_NaviPage;
-}
-
-Window *View::getWindow() const
-{
-	return m_Window;
 }
 
 Navigator *View::getNavigator(NavigatorType type) const
@@ -45,9 +40,8 @@ NavigatorPage *View::getPage() const
 	return m_NaviPage;
 }
 
-void View::onViewAttached(Window *window, Navigator *stackNavi, Navigator *tabNavi)
+void View::onViewAttached(Navigator *stackNavi, Navigator *tabNavi)
 {
-	m_Window = window;
 	m_StackNavi = stackNavi;
 	m_TabNavi = tabNavi;
 }

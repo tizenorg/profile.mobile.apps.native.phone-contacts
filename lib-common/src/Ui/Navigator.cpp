@@ -42,7 +42,7 @@ void Navigator::navigateTo(View *view)
 		}
 
 		view->create(getEvasObject());
-		view->onViewAttached(m_Window, stackNavi, tabNavi);
+		view->onViewAttached(stackNavi, tabNavi);
 		view->onPageAttached(attachView(view));
 	}
 

@@ -16,6 +16,7 @@
  */
 
 #include "Ui/Control.h"
+#include "Ui/Window.h"
 #include "Utils/Callback.h"
 
 using namespace Ui;
@@ -34,6 +35,7 @@ Evas_Object *Control::create(Evas_Object *parent)
 {
 	if (!m_Object) {
 		setEvasObject(onCreate(parent));
+		onCreated();
 	}
 
 	return m_Object;
@@ -44,10 +46,21 @@ Evas_Object *Control::getEvasObject() const
 	return m_Object;
 }
 
+Window *Control::getWindow() const
+{
+	return static_cast<Window *>(getControl(elm_object_top_widget_get(getEvasObject())));
+}
+
+Control *Control::getControl(Evas_Object *obj)
+{
+	return (Control *) evas_object_smart_data_get(obj);
+}
+
 void Control::setEvasObject(Evas_Object *object)
 {
 	m_Object = object;
-	evas_object_event_callback_add(object, EVAS_CALLBACK_FREE,
+	evas_object_smart_data_set(m_Object, this);
+	evas_object_event_callback_add(m_Object, EVAS_CALLBACK_FREE,
 			makeCallback(&Control::onDestroy), this);
 }
 
@@ -56,6 +69,7 @@ Evas_Object *Control::resetEvasObject()
 	Evas_Object *object = m_Object;
 	evas_object_event_callback_del(m_Object, EVAS_CALLBACK_FREE,
 			makeCallback(&Control::onDestroy));
+	evas_object_smart_data_set(m_Object, nullptr);
 	m_Object = nullptr;
 	return object;
 }
