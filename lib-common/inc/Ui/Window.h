@@ -38,6 +38,11 @@ namespace Ui
 		Evas_Object *getConformant() const;
 
 		/**
+		 * @return Basic Window layout Evas_Object.
+		 */
+		Evas_Object *getBaseLayout() const;
+
+		/**
 		 * @brief Attach main View to be displayed in the Window.
 		 * @param[in]   view    Window main View
 		 */

@@ -42,11 +42,6 @@ namespace Ui
 	{
 	public:
 		/**
-		 * @return Parent Window
-		 */
-		Window *getWindow() const;
-
-		/**
 		 * @brief Get parent Navigator
 		 * @param[in]   type    Navigator type
 		 * @return Innermost parent Navigator of the specified type if exists,
@@ -87,13 +82,11 @@ namespace Ui
 		virtual Evas_Object *onMenuPressed() { return nullptr; }
 
 	private:
-		friend class Window;
 		friend class Navigator;
 
-		void onViewAttached(Window *window, Navigator *stackNavi, Navigator *tabNavi);
+		void onViewAttached(Navigator *stackNavi, Navigator *tabNavi);
 		void onPageAttached(NavigatorPage *page);
 
-		Window        *m_Window;
 		Navigator     *m_StackNavi;
 		Navigator     *m_TabNavi;
 		NavigatorPage *m_NaviPage;
