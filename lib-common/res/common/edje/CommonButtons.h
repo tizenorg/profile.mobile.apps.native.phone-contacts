@@ -15,10 +15,18 @@
  *
  */
 
-#ifndef COMMON_PATH_H
-#define COMMON_PATH_H
+#ifndef COMMON_BUTTONS_H
+#define COMMON_BUTTONS_H
 
-#define COMMON_IMG_DIR "common/images/"
-#define COMMON_EDJ_DIR "common/edje/"
+#include "CommonPath.h"
 
-#endif /* COMMON_PATH_H */
+#define COMMON_BUTTONS_EDJ          COMMON_EDJ_DIR"common-buttons.edj"
+
+#define BUTTON_STYLE_CUSTOM_DEFAULT "custom_default"
+#define BUTTON_STYLE_CUSTOM_CIRCLE  "custom_circle"
+
+#define BUTTON_TEXT_CLASS           "button_text"
+#define BUTTON_COLOR_CLASS_NORMAL   "button_normal"
+#define BUTTON_COLOR_CLASS_PRESSED  "button_pressed"
+
+#endif /* COMMON_BUTTONS_H */

@@ -1,0 +1,138 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "common-colors.edc"
+
+#define BUTTON_CORNER_RADIUS "35"
+#define BUTTON_DEFAULT_H 78
+#define BUTTON_TEXT_H 54
+#define BUTTON_TEXT_X 20
+#define BUTTON_TEXT_Y ((BUTTON_DEFAULT_H-BUTTON_TEXT_H)/2)
+
+#define BUTTON_CIRCLE_SIZE 98
+#define BUTTON_CONTENT_SIZE 60
+#define BUTTON_CONTENT_REL (((BUTTON_CIRCLE_SIZE-BUTTON_CONTENT_SIZE)/2)/BUTTON_CIRCLE_SIZE)
+
+styles {
+	style {
+		name: "button_main";
+		base: "font=Tizen:style=Light font_size=40 align=center color=#ffffffff text_class="BUTTON_TEXT_CLASS" ellipsis=1.0";
+	}
+}
+
+collections {
+	base_scale: 2.6;
+
+	group {
+		name: "elm/button/base/custom";
+
+		parts {
+			part {
+				name: "tizen_vg_shape";
+				type: SWALLOW;
+				scale: 1;
+				clip_to: "bg";
+				description {
+					state: "default" 0.0;
+				}
+			}
+			part {
+				name: "bg";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					color_class: BUTTON_COLOR_CLASS_NORMAL;
+				}
+				description {
+					state: "pressed" 0.0;
+					color_class: BUTTON_COLOR_CLASS_PRESSED;
+				}
+			}
+		}
+		programs {
+			program {
+				name: "pressed";
+				signal: "mouse,down,*";
+				source: "*";
+				action: STATE_SET "pressed" 0.0;
+				target: "bg";
+			}
+			program {
+				name: "unpressed";
+				signal: "mouse,up,*";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: "bg";
+			}
+			program {
+				name: "clicked";
+				signal: "mouse,clicked,*";
+				source: "*";
+				action: SIGNAL_EMIT "elm,action,click" "";
+			}
+		}
+	}
+
+	group {
+		name: "elm/button/base/"BUTTON_STYLE_CUSTOM_DEFAULT;
+		inherit: "elm/button/base/custom";
+		data.item: "vector_ux" "default";
+		data.item: "corner_radius" BUTTON_CORNER_RADIUS;
+
+		parts {
+			part {
+				name: "elm.text";
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 {
+						relative: 0.0 (BUTTON_TEXT_Y/BUTTON_DEFAULT_H);
+						offset: BUTTON_TEXT_X 0;
+					}
+					rel2 {
+						relative: 1.0 (1.0-(BUTTON_TEXT_Y/BUTTON_DEFAULT_H));
+						offset: -BUTTON_TEXT_X 0;
+					}
+					text {
+						style: "button_main";
+						min: 1 1;
+						ellipsis: -1;
+					}
+				}
+			}
+		}
+	}
+
+	group {
+		name: "elm/button/base/"BUTTON_STYLE_CUSTOM_CIRCLE;
+		inherit: "elm/button/base/custom";
+		data.item: "vector_ux" "circle";
+
+		parts {
+			part {
+				name: "elm.swallow.content";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1.relative: BUTTON_CONTENT_REL BUTTON_CONTENT_REL;
+					rel2.relative: (1.0-BUTTON_CONTENT_REL) (1.0-BUTTON_CONTENT_REL);
+				}
+			}
+		}
+	}
+}

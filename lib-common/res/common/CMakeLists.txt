@@ -1,4 +1,4 @@
-set(EDCFILES common-thumbnail.edc)
+set(EDCFILES common-thumbnail.edc common-buttons.edc)
 set(EDJDIR "${RESDIR}/common/edje")
 
 foreach(EDCFILE ${EDCFILES})
