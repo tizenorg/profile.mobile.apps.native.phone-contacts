@@ -115,7 +115,7 @@ SearchResults SearchEngine::searchInDB(const std::string &number)
 	SearchResults searchList;
 	contacts_record_h record = NULL;
 
-	for (int i = ResultSpeeddial; i < ResultMax; ++i) {
+	for (int i = ResultSpeedDial; i < ResultMax; ++i) {
 		contacts_list_h list = contactListGetters[i](number.front());
 		CONTACTS_LIST_FOREACH(list, record) {
 			SearchResult searchInfo((ResultType)i, record);

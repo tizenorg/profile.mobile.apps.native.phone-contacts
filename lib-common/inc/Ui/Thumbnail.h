@@ -58,6 +58,12 @@ namespace Ui
 		 */
 		void setImagePath(const char *path);
 
+		/**
+		 * @brief Set whether minimal size hint is set for image
+		 * @param[in]   isSet   Whether to set image size hint
+		 */
+		void setSizeHint(bool isSet);
+
 	protected:
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 

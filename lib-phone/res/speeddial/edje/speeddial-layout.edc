@@ -1,0 +1,215 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "SpeedDialLayout.h"
+#include "SpeedDialLayoutMetrics.h"
+
+styles {
+	style {
+		name: "text_style";
+		base: "font=Tizen:style=Regular font_size="TEXT_FONT_SIZE" color=#000000 align=center wrap=word ellipsis=1.0";
+	}
+}
+
+images {
+	image: ICON_BG COMP;
+}
+
+collections {
+	base_scale: 2.6;
+
+	group {
+		name: GROUP_MAIN_LAYOUT;
+
+		parts {
+			part {
+				name: "bg";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					color: 255 255 255 255;
+				}
+			}
+			part {
+				name: PART_CONTENT;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					fixed: 1 1;
+					rel1.relative: LAYOUT_X/VIEW_W LAYOUT_Y/VIEW_H;
+					rel2.relative: 1.0-LAYOUT_X/VIEW_W 1.0-LAYOUT_Y/VIEW_H;
+				}
+			}
+		}
+	}
+
+	group {
+		name: GROUP_ITEM_ICON;
+		images.image: ICON_ADD COMP;
+
+		parts {
+			part {
+				name: "image.bg";
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					color: 61 185 204 127;
+					aspect: 1 1;
+					aspect_preference: SOURCE;
+					image.normal: ICON_BG;
+				}
+			}
+			part {
+				name: "image.icon";
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					aspect: 1 1;
+					aspect_preference: SOURCE;
+					image.normal: ICON_ADD;
+					rel1.relative: ICON_ADD_POS/ICON_SIZE ICON_ADD_POS/ICON_SIZE;
+					rel2.relative: (ICON_ADD_SIZE+ICON_ADD_POS)/ICON_SIZE (ICON_ADD_SIZE+ICON_ADD_POS)/ICON_SIZE;
+				}
+			}
+			part {
+				name: "image.mask";
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					visible: 0;
+					color: 0 0 0 50;
+					aspect: 1 1;
+					aspect_preference: SOURCE;
+					image.normal: ICON_BG;
+				}
+				description {
+					state: "pressed" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+				}
+			}
+		}
+		programs {
+			program {
+				name: "pressed";
+				signal: "mouse,down,*";
+				source: "*";
+				action: STATE_SET "pressed" 0.0;
+				target: "image.mask";
+			}
+			program {
+				name: "unpressed";
+				signal: "mouse,up,*";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: "image.mask";
+			}
+		}
+	}
+
+	group {
+		name: GROUP_DELETE_BUTTON;
+		images.image: ICON_DELETE COMP;
+
+		parts {
+			part {
+				name: "image.icon";
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					aspect: 1 1;
+					aspect_preference: SOURCE;
+					image.normal: ICON_DELETE;
+				}
+			}
+			part {
+				name: "image.mask";
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					visible: 0;
+					color: 0 0 0 50;
+					aspect: 1 1;
+					aspect_preference: SOURCE;
+					image.normal: ICON_BG;
+					rel1.to: "image.icon";
+					rel2.to: "image.icon";
+				}
+				description {
+					state: "pressed" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+				}
+			}
+		}
+		programs {
+			program {
+				name: "pressed";
+				signal: "mouse,down,*";
+				source: "*";
+				action: STATE_SET "pressed" 0.0;
+				target: "image.mask";
+			}
+			program {
+				name: "unpressed";
+				signal: "mouse,up,*";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: "image.mask";
+			}
+		}
+	}
+
+	group {
+		name: GROUP_ITEM_LAYOUT;
+
+		parts {
+			part {
+				name: PART_ICON;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: ICON_SIZE/ITEM_W ICON_SIZE/ITEM_H;
+				}
+			}
+			part {
+				name: PART_DELETE_BUTTON;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: ICON_DELETE_SIZE/ITEM_W ICON_DELETE_SIZE/ITEM_H;
+				}
+			}
+			part {
+				name: PART_NAME;
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1.relative: 0.0 TEXT_Y/ITEM_H;
+					rel2.relative: 1.0 (TEXT_H+TEXT_Y)/ITEM_H;
+					text {
+						align: 0.5 0.0;
+						style: "text_style";
+					}
+				}
+			}
+		}
+	}
+}

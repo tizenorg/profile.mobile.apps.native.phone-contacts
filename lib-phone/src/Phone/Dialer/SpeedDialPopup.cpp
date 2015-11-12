@@ -15,7 +15,7 @@
  *
  */
 
-#include "Phone/Dialer/SpeeddialPopup.h"
+#include "Phone/Dialer/SpeedDialPopup.h"
 #include "App/AppControlRequest.h"
 #include "Phone/Utils.h"
 #include "Utils/Logger.h"
@@ -25,37 +25,37 @@
 
 using namespace Phone::Dialer;
 
-SpeeddialPopup::SpeeddialPopup(int speedNumber)
+SpeedDialPopup::SpeedDialPopup(int speedNumber)
 	: m_SpeedNumber(speedNumber)
 {
 }
 
-void SpeeddialPopup::onCreated()
+void SpeedDialPopup::onCreated()
 {
 	setTitle("IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB");
 	setText("IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW");
 
 	using namespace std::placeholders;
 	addButton("IDS_LOGS_BUTTON_CANCEL_ABB3");
-	addButton("IDS_PB_BUTTON_OK_ABB2", std::bind(&SpeeddialPopup::onOkPressed, this));
+	addButton("IDS_PB_BUTTON_OK_ABB2", std::bind(&SpeedDialPopup::onOkPressed, this));
 }
 
-bool SpeeddialPopup::onOkPressed()
+bool SpeedDialPopup::onOkPressed()
 {
 	App::AppControl request = App::requestContactPick(APP_CONTROL_SELECT_SINGLE,
 			APP_CONTROL_RESULT_PHONE);
 
-	int err = request.launch(&SpeeddialPopup::onPickResult, this);
+	int err = request.launch(&SpeedDialPopup::onPickResult, this);
 	RETVM_IF(err != APP_CONTROL_ERROR_NONE, true, "launchContactPick() failed(0x%x)", err);
 
 	request.detach();
 	return false;
 }
 
-void SpeeddialPopup::onPickResult(app_control_h request, app_control_h reply,
+void SpeedDialPopup::onPickResult(app_control_h request, app_control_h reply,
 		app_control_result_e result, void *data)
 {
-	SpeeddialPopup *popup = (SpeeddialPopup*) data;
+	SpeedDialPopup *popup = (SpeedDialPopup*) data;
 
 	char **numberIds = 0;
 	int count = 0;

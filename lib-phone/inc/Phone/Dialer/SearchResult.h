@@ -33,7 +33,7 @@ namespace Phone
 		 */
 		enum ResultType {
 			ResultNone = -1,    /**< Invalid result */
-			ResultSpeeddial,    /**< From speed dial */
+			ResultSpeedDial,    /**< From speed dial */
 			ResultLog,          /**< From call logs */
 			ResultName,         /**< From contacts matched by name */
 			ResultNumber,       /**< From contacts matched by number */
@@ -65,7 +65,7 @@ namespace Phone
 			int getId() const;
 
 			/**
-			 * @return speeddial ID on success or 0 if object constructed with errors
+			 * @return speed dial ID on success or 0 if object constructed with errors
 			 */
 			int getSpeedDialId() const;
 
