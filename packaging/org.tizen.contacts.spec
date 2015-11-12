@@ -17,6 +17,8 @@ BuildRequires: pkgconfig(contacts-service2)
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(efl-extension)
 BuildRequires: pkgconfig(elementary)
+BuildRequires: pkgconfig(feedback)
+BuildRequires: pkgconfig(notification)
 
 %description
 Contacts and Phone Reference Applications.

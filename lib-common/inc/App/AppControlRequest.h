@@ -20,6 +20,8 @@
 
 #include "App/AppControl.h"
 
+#define APP_CONTROL_OPERATION_SETTING_CALL "http://tizen.org/appcontrol/operation/setting/call"
+
 #define APP_CONTROL_MIME_CONTACT "application/vnd.tizen.contact"
 
 #define APP_CONTROL_SELECT_SINGLE "single"
@@ -68,6 +70,12 @@ namespace App
 	 * @return AppControl wrapper
 	 */
 	AppControl EXPORT_API requestTelephonyCall(const char *number);
+
+	/**
+	 * @brief Request launch call settings
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestCallSettings();
 
 	/**
 	 * @brief Request message composer

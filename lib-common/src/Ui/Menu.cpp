@@ -16,6 +16,7 @@
  */
 
 #include "Ui/Menu.h"
+#include "Ui/Window.h"
 #include "Utils/Callback.h"
 
 #include <efl_extension.h>
@@ -33,6 +34,11 @@ Elm_Object_Item *Menu::addItem(const char *text, ItemCallback callback)
 
 Evas_Object *Menu::onCreate(Evas_Object *parent)
 {
+	Window *window = static_cast<Window *>(getControl(elm_object_top_widget_get(parent)));
+	if (window) {
+		parent = window->getBaseLayout();
+	}
+
 	Evas_Object *menu = elm_ctxpopup_add(parent);
 	elm_object_style_set(menu, "more/default");
 

@@ -1,14 +1,18 @@
 cmake_minimum_required(VERSION 2.6)
-project(contacts C CXX)
+project(contacts CXX)
 
-file(GLOB_RECURSE SOURCES src/*.c src/*.cpp)
+file(GLOB_RECURSE SOURCES src/*.cpp)
 include_directories(
 	${CMAKE_SOURCE_DIR}/lib-common/inc
+	${CMAKE_SOURCE_DIR}/lib-phone/inc
 	${CMAKE_CURRENT_SOURCE_DIR}/inc
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} ${LIBRARIES} common -pie)
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES} -pie
+	common
+	phone
+)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${BINDIR})
 
