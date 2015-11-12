@@ -28,14 +28,14 @@ namespace Phone
 		/**
 		 * @brief "Add to speed dial" prompt popup.
 		 */
-		class SpeeddialPopup : public Ui::Popup
+		class SpeedDialPopup : public Ui::Popup
 		{
 		public:
 			/**
 			 * @brief Create speed dial popup.
 			 * @param[in]   speedNumber Dialer key value
 			 */
-			SpeeddialPopup(int speedNumber);
+			SpeedDialPopup(int speedNumber);
 
 		private:
 			virtual void onCreated() override;

@@ -76,8 +76,8 @@ namespace Phone
 			void onDbChanged(const char *uri);
 
 			static void launchCall(const std::string &number);
-			void launchSpeeddial(int digit);
-			static std::string getSpeeddialNumber(int digit);
+			void launchSpeedDial(int digit);
+			static std::string getSpeedDialNumber(int digit);
 			static std::string getLastNumber();
 
 			App::AppControl m_AppControl;

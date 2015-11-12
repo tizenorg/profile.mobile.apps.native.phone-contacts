@@ -145,15 +145,15 @@ void SearchResultsWidget::setResultInfo(SearchResultPtr result)
 		elm_object_part_text_set(layout, PART_TEXT_NUMBER, result->getNumber(true).c_str());
 	}
 
-	if (result->getType() == ResultSpeeddial) {
-		setResultSpeeddial(result);
+	if (result->getType() == ResultSpeedDial) {
+		setResultSpeedDial(result);
 		elm_object_signal_emit(getEvasObject(), "show,speeddial,icon", "");
 	} else {
 		elm_object_signal_emit(getEvasObject(), "hide,speeddial,icon", "");
 	}
 }
 
-void SearchResultsWidget::setResultSpeeddial(SearchResultPtr result)
+void SearchResultsWidget::setResultSpeedDial(SearchResultPtr result)
 {
 	Evas_Object *speeddialLayout = elm_layout_add(getEvasObject());
 	elm_layout_file_set(speeddialLayout, layoutFilePath.c_str(), GROUP_SPEEDDIAL_NUMBER);

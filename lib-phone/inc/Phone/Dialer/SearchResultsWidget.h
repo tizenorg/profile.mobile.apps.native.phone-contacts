@@ -75,7 +75,7 @@ namespace Phone
 			void setResultsCount(size_t count);
 
 			void setResultInfo(SearchResultPtr result);
-			void setResultSpeeddial(SearchResultPtr result);
+			void setResultSpeedDial(SearchResultPtr result);
 
 			void onResultPressed();
 			void onShowResultsPressed();

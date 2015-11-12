@@ -60,7 +60,7 @@ void Thumbnail::setImagePath(const char *path)
 	}
 }
 
-Evas_Object *Thumbnail::onCreate(Evas_Object *parent)
+void Thumbnail::setSizeHint(bool isSet)
 {
 	static int sizes[] = {
 		getScaledValue(THUMBNAIL_SMALL_SIZE),
@@ -68,15 +68,22 @@ Evas_Object *Thumbnail::onCreate(Evas_Object *parent)
 		getScaledValue(THUMBNAIL_LARGE_SIZE)
 	};
 
+	int size = 0;
+	if (isSet) {
+		size = sizes[m_Size];
+	}
+
+	evas_object_size_hint_min_set(m_Image, size, size);
+}
+
+Evas_Object *Thumbnail::onCreate(Evas_Object *parent)
+{
 	Evas_Object *layout = elm_layout_add(parent);
 	elm_layout_file_set(layout, layoutPath.c_str(), params[m_Size].groupMask);
 
 	m_Image = elm_image_add(layout);
 	elm_image_aspect_fixed_set(m_Image, EINA_TRUE);
 	elm_image_fill_outside_set(m_Image, EINA_TRUE);
-
-	int size = sizes[m_Size];
-	evas_object_size_hint_min_set(m_Image, size, size);
 	elm_object_part_content_set(layout, "elm.swallow.content", m_Image);
 
 	return layout;

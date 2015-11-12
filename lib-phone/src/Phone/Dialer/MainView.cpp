@@ -20,11 +20,13 @@
 #include "Phone/Dialer/KeypadButton.h"
 #include "Phone/Dialer/KeypadEntry.h"
 #include "Phone/Dialer/SearchResultsWidget.h"
-#include "Phone/Dialer/SpeeddialPopup.h"
+#include "Phone/Dialer/SpeedDialPopup.h"
+#include "Phone/SpeedDial/SettingsView.h"
 
 #include "App/AppControlRequest.h"
 #include "App/Path.h"
 #include "Ui/Menu.h"
+#include "Ui/Navigator.h"
 #include "Ui/Window.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
@@ -126,7 +128,7 @@ Evas_Object *MainView::onMenuPressed()
 	}
 
 	menu->addItem("IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2", [this] {
-		//TODO: getNavigator()->navigateTo(new SpeeddialView());
+		getNavigator()->navigateTo(new SpeedDial::SettingsView());
 	});
 	menu->addItem("IDS_KPD_OPT_CALL_SETTINGS_ABB", [this] {
 		m_AppControl = App::requestCallSettings();
@@ -245,7 +247,7 @@ bool MainView::onKeyLongpressed(Ui::Button &button)
 
 	if (m_Entry->getNumber().empty()) {
 		if (id >= KeypadButton::ID_1 && id <= KeypadButton::ID_9) {
-			launchSpeeddial(key.getValue() - '0');
+			launchSpeedDial(key.getValue() - '0');
 			return true;
 		}
 	}
@@ -295,18 +297,18 @@ void MainView::launchCall(const std::string &number)
 	request.detach();
 }
 
-void MainView::launchSpeeddial(int digit)
+void MainView::launchSpeedDial(int digit)
 {
-	std::string number = getSpeeddialNumber(digit);
+	std::string number = getSpeedDialNumber(digit);
 	if (!number.empty()) {
 		launchCall(number);
 	} else {
-		Ui::Popup *popup = new SpeeddialPopup(digit);
+		Ui::Popup *popup = new SpeedDialPopup(digit);
 		popup->create(getEvasObject());
 	}
 }
 
-std::string MainView::getSpeeddialNumber(int digit)
+std::string MainView::getSpeedDialNumber(int digit)
 {
 	std::string number;
 	contacts_filter_h filter = NULL;

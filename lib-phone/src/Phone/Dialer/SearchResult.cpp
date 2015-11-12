@@ -34,7 +34,7 @@ SearchResult::SearchResult(ResultType type, const contacts_record_h record)
 std::string SearchResult::getSearchString() const
 {
 	switch (m_Type) {
-		case ResultSpeeddial:
+		case ResultSpeedDial:
 			return std::string(1, (m_SpeedDialId + '0'));
 		case ResultLog:
 		case ResultNumber:
@@ -92,7 +92,7 @@ bool SearchResult::updateHighlightText(const std::string searchStr, size_t posit
 			m_HighlightedText = Utils::highlightTextByPos(m_Name, position, searchStr.size());
 			return true;
 		case ResultNone:
-		case ResultSpeeddial:
+		case ResultSpeedDial:
 		case ResultMax:
 		default:
 			return false;
@@ -103,7 +103,7 @@ bool SearchResult::fillWithRecord(ResultType type, const contacts_record_h recor
 {
 	switch(type)
 	{
-		case ResultSpeeddial:
+		case ResultSpeedDial:
 			fillSpeedDial(record);
 			return true;
 		case ResultLog:
