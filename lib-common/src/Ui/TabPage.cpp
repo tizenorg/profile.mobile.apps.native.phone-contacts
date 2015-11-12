@@ -52,7 +52,7 @@ Evas_Object *TabPage::onCreate(Evas_Object *parent)
 
 void TabPage::setTitle(const char *title)
 {
-	elm_object_item_domain_translatable_text_set(m_TabItem, nullptr, title);
+	elm_object_item_translatable_text_set(m_TabItem, title);
 }
 
 void TabPage::setStyle(const char *style)

@@ -19,6 +19,8 @@
 #include "Ui/Window.h"
 #include "Utils/Callback.h"
 
+#define CONTROL_DATA_KEY "Ui::Control"
+
 using namespace Ui;
 
 Control::Control()
@@ -53,13 +55,13 @@ Window *Control::getWindow() const
 
 Control *Control::getControl(Evas_Object *obj)
 {
-	return (Control *) evas_object_smart_data_get(obj);
+	return (Control *) evas_object_data_get(obj, CONTROL_DATA_KEY);
 }
 
 void Control::setEvasObject(Evas_Object *object)
 {
 	m_Object = object;
-	evas_object_smart_data_set(m_Object, this);
+	evas_object_data_set(m_Object, CONTROL_DATA_KEY, this);
 	evas_object_event_callback_add(m_Object, EVAS_CALLBACK_FREE,
 			makeCallback(&Control::onDestroy), this);
 }
@@ -69,7 +71,7 @@ Evas_Object *Control::resetEvasObject()
 	Evas_Object *object = m_Object;
 	evas_object_event_callback_del(m_Object, EVAS_CALLBACK_FREE,
 			makeCallback(&Control::onDestroy));
-	evas_object_smart_data_set(m_Object, nullptr);
+	evas_object_data_del(m_Object, CONTROL_DATA_KEY);
 	m_Object = nullptr;
 	return object;
 }

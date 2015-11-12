@@ -24,7 +24,7 @@
 #define __MODULE__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
 #include "Utils/Tracer.h"
-#define TRACE Utils::Tracer tracer(LOG_TAG, __MODULE__, __func__, __LINE__)
+#define TRACE ::Utils::Tracer tracer(LOG_TAG, __MODULE__, __func__, __LINE__)
 
 #define DLOG(prio, fmt, arg...) dlog_print(prio, LOG_TAG, "%s: %s(%d) > " fmt, __MODULE__, __func__, __LINE__, ##arg)
 #define DBG(fmt, arg...) DLOG(DLOG_DEBUG, fmt, ##arg)

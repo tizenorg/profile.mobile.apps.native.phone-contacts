@@ -88,7 +88,7 @@ namespace App
 		void reset();
 
 		app_control_h m_AppControl;
-		bool m_Detached;
+		bool m_AutoTerminate;
 	};
 }
 

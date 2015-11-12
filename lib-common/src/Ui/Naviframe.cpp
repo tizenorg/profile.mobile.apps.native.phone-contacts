@@ -58,7 +58,7 @@ void Naviframe::navigateToView(View *view)
 {
 	if (view != getCurrentView()) {
 		NaviframePage *page = static_cast<NaviframePage*>(view->getPage());
-		elm_naviframe_item_promote(page->m_NaviItem);
+		elm_naviframe_item_pop_to(page->m_NaviItem);
 	}
 }
 

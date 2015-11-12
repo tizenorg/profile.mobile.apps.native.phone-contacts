@@ -23,7 +23,7 @@
 using namespace App;
 
 AppControl::AppControl()
-	: m_AppControl(nullptr), m_Detached(false)
+	: m_AppControl(nullptr), m_AutoTerminate(true)
 {
 }
 
@@ -37,7 +37,7 @@ AppControl::AppControl(const char *operation, const char *mime, const char *uri)
 }
 
 AppControl::AppControl(AppControl &&that)
-	: m_AppControl(that.m_AppControl), m_Detached(that.m_Detached)
+	: m_AppControl(that.m_AppControl), m_AutoTerminate(that.m_AutoTerminate)
 {
 	that.m_AppControl = nullptr;
 }
@@ -65,7 +65,6 @@ void AppControl::addExtra(const char *key, const char **array, int length)
 int AppControl::launch(app_control_reply_cb replyCallback, void *userData,
 		bool groupMode)
 {
-	m_Detached = !groupMode;
 	if (groupMode) {
 		app_control_set_launch_mode(m_AppControl, APP_CONTROL_LAUNCH_MODE_GROUP);
 	}
@@ -83,14 +82,14 @@ void AppControl::terminate()
 
 void AppControl::detach()
 {
-	m_Detached = true;
+	m_AutoTerminate = false;
 }
 
 AppControl &AppControl::operator=(AppControl &&that)
 {
 	reset();
 	m_AppControl = that.m_AppControl;
-	m_Detached = that.m_Detached;
+	m_AutoTerminate = that.m_AutoTerminate;
 	that.m_AppControl = nullptr;
 
 	return *this;
@@ -99,7 +98,7 @@ AppControl &AppControl::operator=(AppControl &&that)
 void AppControl::reset()
 {
 	if (m_AppControl) {
-		if (!m_Detached) {
+		if (m_AutoTerminate) {
 			terminate();
 		}
 		app_control_destroy(m_AppControl);

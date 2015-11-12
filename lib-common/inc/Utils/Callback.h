@@ -45,13 +45,13 @@
  * @endcode
  */
 #define makeCallback(method) \
-	Utils::Callback<decltype(method)>::makeWithFirstParam<method>()
+	::Utils::Callback<decltype(method)>::makeWithFirstParam<method>()
 
 /**
  * @brief Make C-style callback from non-static class method with object as last parameter.
  * @see makeCallback()
  */
 #define makeCallbackWithLastParam(method) \
-	Utils::Callback<decltype(method)>::makeWithLastParam<method>()
+	::Utils::Callback<decltype(method)>::makeWithLastParam<method>()
 
 #endif /* UTILS_CALLBACK_H */

@@ -47,13 +47,12 @@ Popup *Popup::create(Evas_Object *parent, const char *title,
 
 void Popup::setTitle(const char *title)
 {
-	elm_object_domain_translatable_part_text_set(getEvasObject(), PART_POPUP_TITLE,
-			nullptr, title);
+	elm_object_translatable_part_text_set(getEvasObject(), PART_POPUP_TITLE, title);
 }
 
 void Popup::setText(const char *text)
 {
-	elm_object_domain_translatable_text_set(getEvasObject(), nullptr, text);
+	elm_object_translatable_text_set(getEvasObject(), text);
 }
 
 void Popup::setContent(Evas_Object *content)
@@ -69,7 +68,7 @@ Evas_Object *Popup::addButton(const char *text, ButtonCallback callback)
 
 	Evas_Object *button = elm_button_add(getEvasObject());
 	elm_object_style_set(button, "bottom");
-	elm_object_domain_translatable_text_set(button, nullptr, text);
+	elm_object_translatable_text_set(button, text);
 	elm_object_part_content_set(getEvasObject(), buttonParts[m_ButtonCount], button);
 
 	m_ButtonCbs[m_ButtonCount] = std::move(callback);
@@ -84,10 +83,7 @@ Evas_Object *Popup::addButton(const char *text, ButtonCallback callback)
 Evas_Object *Popup::onCreate(Evas_Object *parent)
 {
 	Evas_Object *popup = elm_popup_add(parent);
-
 	elm_popup_align_set(popup, ELM_NOTIFY_ALIGN_FILL, 1.0);
-	evas_object_size_hint_weight_set(popup, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-
 	eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, eext_popup_back_cb, nullptr);
 	evas_object_show(popup);
 
