@@ -18,6 +18,7 @@
 #include "OperationDefaultController.h"
 
 #include "MainApp.h"
+#include "Phone/Dialer/MainView.h"
 #include "Ui/TabView.h"
 
 #include <app_preference.h>
@@ -45,8 +46,8 @@ void OperationDefaultController::onCreate()
 	m_Navigator = new Ui::TabView();
 	mainNavigator->navigateTo(m_Navigator);
 
+	m_Tabs[TabDialer] = new Phone::Dialer::MainView();
 	/* TODO:
-	m_Tabs[TabDialer] = new Phone::DialerView();
 	m_Tabs[TabLogs] = new Phone::Logs::ListView();
 	m_Tabs[TabContacts] = new Contacts::ListView();
 	 */
@@ -63,11 +64,8 @@ void OperationDefaultController::onRequest(Operation operation, app_control_h re
 
 	TabId selectedTab = TabContacts;
 	if (operation == OPERATION_DIAL) {
-		/* TODO:
-		Phone::DialerView *dialer = static_cast<Phone::DialerView *>(m_Tabs[TabDialer]);
+		auto dialer = static_cast<Phone::Dialer::MainView *>(m_Tabs[TabDialer]);
 		dialer->setNumber(getPhoneNumber(request));
-		 */
-
 		selectedTab = TabDialer;
 	} else if (appId && strcmp(appId, APP_CONTROL_PHONE_APPID) == 0) {
 		if (getBadgeCount(APP_CONTROL_PHONE_APPID) > 0) {

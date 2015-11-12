@@ -16,6 +16,7 @@
  */
 
 #include "Ui/Popup.h"
+#include "Ui/Window.h"
 #include "Utils/Callback.h"
 
 #include <efl_extension.h>
@@ -82,6 +83,11 @@ Evas_Object *Popup::addButton(const char *text, ButtonCallback callback)
 
 Evas_Object *Popup::onCreate(Evas_Object *parent)
 {
+	Window *window = static_cast<Window *>(getControl(elm_object_top_widget_get(parent)));
+	if (window) {
+		parent = window->getBaseLayout();
+	}
+
 	Evas_Object *popup = elm_popup_add(parent);
 	elm_popup_align_set(popup, ELM_NOTIFY_ALIGN_FILL, 1.0);
 	eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, eext_popup_back_cb, nullptr);

@@ -59,6 +59,11 @@ AppControl App::requestTelephonyCall(const char *number)
 			std::string("tel:").append(number).c_str());
 }
 
+AppControl App::requestCallSettings()
+{
+	return AppControl(APP_CONTROL_OPERATION_SETTING_CALL);
+}
+
 AppControl App::requestMessageComposer(const char *scheme, const char *to,
 		const char *subject, const char *text)
 {

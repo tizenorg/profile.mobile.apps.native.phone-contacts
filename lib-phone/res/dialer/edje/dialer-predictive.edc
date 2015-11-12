@@ -1,0 +1,388 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "DialerLayout.h"
+#include "DialerLayoutMetrics.h"
+#include "DialerLayoutColors.h"
+
+images {
+	image: PREDICTIVE_ADD COMP;
+	image: PREDICTIVE_ARROW COMP;
+	image: SPEEDDIAL_IC_BG COMP;
+	image: SPEEDDIAL_IC COMP;
+}
+
+styles {
+	style {
+		name: "add_to_contacts_style";
+		base: "font=Tizen:style=Light font_size=46 color=#FAFAFA ellipsis=1.0";
+	}
+	style {
+		name: "highlight_style";
+		base: "font=Tizen:style=Light font_size=40 color=#FAFAFA ellipsis=1.0";
+		tag: "match" "+color=#86EDFC";
+	}
+	style {
+		name: "small_highlight_style";
+		base: "font=Tizen:style=Light font_size=32 color=#FAFAFA ellipsis=1.0";
+		tag: "match" "+color=#86EDFC";
+	}
+	style {
+		name: "count_style";
+		base: "font=Tizen:style=Regular font_size=36 align=center color=#FAFAFA ellipsis=1.0";
+	}
+	style {
+		name: "predictive_speeddial_style";
+		base: "font=Tizen:style=Regular font_size=32 color=#FFFAFA";
+	}
+
+}
+
+collections {
+	base_scale: 2.6;
+	group {
+		name: GROUP_PREDICTIVE_NO_RESULTS;
+		parts {
+			part {
+				name: "bg";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					color_class: "predictive_bg";
+				}
+				description {
+					state: "pressed" 0.0;
+					inherit: "default" 0.0;
+					color_class: "predictive_bg_pressed";
+				}
+			}
+			part {
+				name: PART_TEXT_ADD;
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					text {
+						align: 0.1 0.5;
+						style: "add_to_contacts_style";
+					}
+					rel1 { relative: ((OFFSET_PREDICTIVE_ADD+1)/TOTAL_W) ((OFFSET_PREDICTIVE_ADD+1)/PREDICTIVE_H); }
+					rel2 { relative: ((TOTAL_W-PREDICTIVE_H)/TOTAL_W) ((OFFSET_PREDICTIVE_ADD+PREDICTIVE_ADD_SIZE)/PREDICTIVE_H); to_x: "add_bg"; }
+				}
+			}
+			part {
+				name: "add_bg";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					color_class: "transparent_bg";
+					rel1 { relative: ((TOTAL_W-PREDICTIVE_H+1)/TOTAL_W) 0.0; }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+			part {
+				name: "image.add";
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					aspect: 1.0 1.0;
+					aspect_preference: SOURCE;
+					image.normal: PREDICTIVE_ADD;
+					rel1 { relative: ((OFFSET_PREDICTIVE_ADD+1)/PREDICTIVE_H) ((OFFSET_PREDICTIVE_ADD+1)/PREDICTIVE_H); to:"add_bg"; }
+					rel2 { relative: ((OFFSET_PREDICTIVE_ADD+PREDICTIVE_ADD_SIZE)/PREDICTIVE_H) ((OFFSET_PREDICTIVE_ADD+PREDICTIVE_ADD_SIZE)/PREDICTIVE_H); to:"add_bg"; }
+				}
+			}
+		}
+
+		programs {
+			program {
+				name: "pressed";
+				signal: "mouse,down,*";
+				source: "*";
+				action: STATE_SET "pressed" 0.0;
+				target: "bg";
+			}
+			program {
+				name: "unpressed";
+				signal: "mouse,up,*";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: "bg";
+			}
+		}
+	}
+
+	group {
+		name: GROUP_PREDICTIVE;
+		parts {
+			part {
+				name: "bg";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					color_class: "predictive_bg";
+				}
+				description {
+					state: "pressed" 0.0;
+					inherit: "default" 0.0;
+					color_class: "predictive_bg_pressed";
+				}
+			}
+			part {
+				name: "thumbnail_bg";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					color_class: "transparent_bg";
+					rel2 { relative: (PREDICTIVE_PICTURE_BG_W/TOTAL_W) 1.0; }
+				}
+			}
+			part {
+				name: PART_SWALLOW_THUMBNAIL;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: ((SPACER_PREDICTIVE_X+1)/PREDICTIVE_PICTURE_BG_W) ((OFFSET_PREDICTIVE_Y+1)/PREDICTIVE_H); to: "thumbnail_bg"; }
+					rel2 { relative: ((SPACER_PREDICTIVE_X+PREDICTIVE_PICTURE_SIZE)/PREDICTIVE_PICTURE_BG_W) ((OFFSET_PREDICTIVE_Y+PREDICTIVE_PICTURE_SIZE)/PREDICTIVE_H); to: "thumbnail_bg"; }
+				}
+			}
+			part {
+				name: PART_SWALLOW_SPEEDDIAL;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					visible: 0;
+					rel1 { relative: 1.0 ((OFFSET_PREDICTIVE_TEXT_Y+1)/PREDICTIVE_H); to_x: "thumbnail_bg"; }
+					rel2 { relative: ((PREDICTIVE_PICTURE_BG_W+SPEEDDIAL_AREA_W)/TOTAL_W) ((OFFSET_PREDICTIVE_TEXT_Y+PREDICTIVE_MAIN_TEXT_H)/PREDICTIVE_H); }
+				}
+				description {
+					state: "speeddial" 0.0;
+					inherit: "default" 0.0;
+					visible: 1;
+				}
+			}
+			part {
+				name: PART_TEXT_NAME;
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					text {
+						align: 0.0 0.5;
+						style: "highlight_style";
+					}
+					rel1 { relative: 1.0 ((OFFSET_PREDICTIVE_TEXT_Y+1)/PREDICTIVE_H); to_x: "thumbnail_bg"; }
+					rel2 { relative: 0.0 ((OFFSET_PREDICTIVE_TEXT_Y+PREDICTIVE_MAIN_TEXT_H)/PREDICTIVE_H); to_x: "result_bg"; }
+				}
+				description {
+					state: "speeddial" 0.0;
+					inherit: "default" 0.0;
+					rel1 {
+						relative: ((PREDICTIVE_PICTURE_BG_W+SPEEDDIAL_AREA_W + SPEEDDIAL_SPACER)/TOTAL_W) ((OFFSET_PREDICTIVE_TEXT_Y+1)/PREDICTIVE_H);
+						to_x: "";
+					}
+					rel2 {
+						relative: 0.0 ((OFFSET_PREDICTIVE_TEXT_Y+PREDICTIVE_MAIN_TEXT_H)/PREDICTIVE_H);
+						to_x: "result_bg";
+					}
+				}
+			}
+			part {
+				name: PART_TEXT_NUMBER;
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					text {
+						align: 0.0 0.5;
+						style: "small_highlight_style";
+					}
+					rel1 { relative: 1.0 ((OFFSET_PREDICTIVE_TEXT_Y+PREDICTIVE_MAIN_TEXT_H+1)/PREDICTIVE_H); to_x: "thumbnail_bg"; }
+					rel2 { relative: 0.0 ((OFFSET_PREDICTIVE_TEXT_Y+PREDICTIVE_MAIN_TEXT_H+PREDICTIVE_SUB_TEXT_H)/PREDICTIVE_H); to_x: "result_bg"; }
+				}
+			}
+			part {
+				name: PART_TEXT_1_LINE;
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					text {
+						align: 0.0 0.5;
+						style: "highlight_style";
+					}
+					rel1 { relative: 1.0 ((OFFSET_PREDICTIVE_1_LINE_TEXT_Y+1)/PREDICTIVE_H); to_x: "thumbnail_bg"; }
+					rel2 { relative: 0.0 ((OFFSET_PREDICTIVE_1_LINE_TEXT_Y+PREDICTIVE_MAIN_TEXT_H)/PREDICTIVE_H); to_x: "result_bg"; }
+				}
+			}
+			part {
+				name: "result_bg";
+				type: RECT;
+				description {
+					state: "default" 0.0;
+					color_class: "transparent_bg";
+					rel1 { relative: ((PREDICTIVE_PICTURE_BG_W+PREDICTIVE_TEXT_W+1)/TOTAL_W) 0.0; }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+			part {
+				name: PART_SWALLOW_RESULTS;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1.to: "result_bg";
+					rel2.to: "result_bg";
+				}
+			}
+		}
+		programs {
+			program {
+				name: "pressed";
+				signal: "mouse,down,*";
+				source: "*";
+				action: STATE_SET "pressed" 0.0;
+				target: "bg";
+			}
+			program {
+				name: "unpressed";
+				signal: "mouse,up,*";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: "bg";
+			}
+			program {
+				name: "show_speeddial_icon";
+				signal: "show,speeddial,icon";
+				action: STATE_SET "speeddial" 0.0;
+				target: PART_SWALLOW_SPEEDDIAL;
+				target: PART_TEXT_NAME;
+			}
+			program {
+				name: "hide_speeddial_icon";
+				signal: "hide,speeddial,icon";
+				action: STATE_SET "default" 0.0;
+				target: PART_SWALLOW_SPEEDDIAL;
+				target: PART_TEXT_NAME;
+			}
+		}
+	}
+
+	group {
+		name: GROUP_SPEEDDIAL_NUMBER;
+		parts {
+			part {
+				name: "bg";
+				type: IMAGE;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					image.normal: SPEEDDIAL_IC_BG;
+					color_class: "speeddial_ic_bg";
+				}
+			}
+			part {
+				name: "swallow.icon";
+				type: IMAGE;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1.relative: (OFFSET_INNER_SPEEDDIAL_AREA_H/SPEEDDIAL_AREA_W) (OFFSET_T_SPEEDDIAL_IC/SPEEDDIAL_AREA_H);
+					rel2.relative: ((OFFSET_INNER_SPEEDDIAL_AREA_H+SPEEDDIAL_IC_SIZE)/SPEEDDIAL_AREA_W) ((OFFSET_T_SPEEDDIAL_IC+SPEEDDIAL_IC_SIZE)/SPEEDDIAL_AREA_H);
+					image.normal: SPEEDDIAL_IC;
+				}
+			}
+			part {
+				name: PART_TEXT_NUMBER;
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 {
+						relative: 1.0 0.0;
+						to_x: "swallow.icon";
+					}
+					rel2.relative: 1.0 1.0;
+					text {
+						align: 0.0 0.5;
+						style: "predictive_speeddial_style";
+					}
+				}
+			}
+		}
+	}
+
+	group {
+		name: GROUP_PREDICTIVE_RES_COUNT;
+		parts {
+			part {
+				name: "bg";
+				type: "RECT";
+				description {
+					state: "default" 0.0;
+					color_class: "transparent_bg";
+				}
+			}
+			part {
+				name: PART_TEXT_COUNT;
+				type: TEXTBLOCK;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					text {
+						align: 0.5 0.0;
+						style: "count_style";
+					}
+					rel1 { relative: 0.0 ((OFFSET_PREDICTIVE_Y+1)/PREDICTIVE_H); }
+					rel2 { relative: 1.0 ((OFFSET_PREDICTIVE_Y+PREDICTIVE_PARTS_H)/PREDICTIVE_H); }
+				}
+			}
+			part {
+				name: PART_SWALLOW_ARROW;
+				type: IMAGE;
+				description {
+					state: "default" 0.0;
+					aspect: 1.0 1.0;
+					aspect_preference: SOURCE;
+					rel1 { relative: ((SPACER_PREDICTIVE_X+1)/PREDICTIVE_RESULTS_BG_W) ((OFFSET_PREDICTIVE_Y+PREDICTIVE_PARTS_H+SPACER_PREDICTIVE_Y+1)/PREDICTIVE_H); }
+					rel2 { relative: ((SPACER_PREDICTIVE_X+PREDICTIVE_PARTS_W)/PREDICTIVE_RESULTS_BG_W) ((OFFSET_PREDICTIVE_Y+2*PREDICTIVE_PARTS_H+SPACER_PREDICTIVE_Y)/PREDICTIVE_H); }
+					image.normal: PREDICTIVE_ARROW;
+				}
+				description {
+					state: "pressed" 0.0;
+					inherit: "default" 0.0;
+					color_class: "predictive_icon";
+				}
+			}
+		}
+		programs {
+			program {
+				name: "pressed";
+				signal: "mouse,down,*";
+				source: "*";
+				action: STATE_SET "pressed" 0.0;
+				target: PART_SWALLOW_ARROW;
+			}
+			program {
+				name: "unpressed";
+				signal: "mouse,up,*";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: PART_SWALLOW_ARROW;
+			}
+		}
+	}
+}

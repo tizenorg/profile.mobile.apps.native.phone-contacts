@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-project(${PACKAGE} C CXX)
+project(${PACKAGE} CXX)
 
 include(FindPkgConfig)
 pkg_check_modules(TIZEN_PACKAGES REQUIRED
@@ -10,6 +10,8 @@ pkg_check_modules(TIZEN_PACKAGES REQUIRED
 	dlog
 	efl-extension
 	elementary
+	feedback
+	notification
 )
 
 set(INCLUDES      "${TIZEN_PACKAGES_INCLUDE_DIRS};inc")
@@ -23,13 +25,13 @@ set(CMAKE_INSTALL_RPATH ${LIBDIR})
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 
 set(COMPILER_FLAGS "-fpie -fPIC -Wall")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMPILER_FLAGS} -std=gnu99")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMPILER_FLAGS} -std=c++11")
 
 add_definitions("-DPACKAGE=\"${PACKAGE}\"")
 add_definitions("-DTEXT_DOMAIN=\"${PACKAGE}\"")
-add_definitions("-DRESDIR=\"${RESDIR}\"")
+add_definitions("-DRESDIR=\"${RESDIR}/\"")
 add_definitions("-DLOCALEDIR=\"${LOCALEDIR}\"")
 
 add_subdirectory(lib-common)
+add_subdirectory(lib-phone)
 add_subdirectory(main-app)
