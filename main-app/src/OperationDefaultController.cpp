@@ -18,6 +18,7 @@
 #include "OperationDefaultController.h"
 
 #include "MainApp.h"
+#include "Contacts/List/MainView.h"
 #include "Phone/Dialer/MainView.h"
 #include "Ui/TabView.h"
 
@@ -49,8 +50,8 @@ void OperationDefaultController::onCreate()
 	m_Tabs[TabDialer] = new Phone::Dialer::MainView();
 	/* TODO:
 	m_Tabs[TabLogs] = new Phone::Logs::ListView();
-	m_Tabs[TabContacts] = new Contacts::ListView();
 	 */
+	m_Tabs[TabContacts] = new Contacts::List::MainView();
 
 	for (auto &&tab : m_Tabs) {
 		m_Navigator->navigateTo(tab);
