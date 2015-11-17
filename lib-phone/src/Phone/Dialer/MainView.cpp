@@ -19,9 +19,10 @@
 #include "Phone/Dialer/AddNumberPopup.h"
 #include "Phone/Dialer/KeypadButton.h"
 #include "Phone/Dialer/KeypadEntry.h"
-#include "Phone/Dialer/SearchResultsWidget.h"
+#include "Phone/Dialer/SearchResultsControl.h"
 #include "Phone/Dialer/SpeedDialPopup.h"
 #include "Phone/SpeedDial/SettingsView.h"
+#include "Phone/Utils.h"
 
 #include "App/AppControlRequest.h"
 #include "App/Path.h"
@@ -147,7 +148,7 @@ Evas_Object *MainView::createEntry(Evas_Object *parent)
 
 Evas_Object *MainView::createSearchWidget(Evas_Object *parent)
 {
-	m_SearchWidget = new SearchResultsWidget();
+	m_SearchWidget = new SearchResultsControl();
 	m_SearchWidget->setSelectedCallback(std::bind(&MainView::onResultSelected, this, _1));
 	return m_SearchWidget->create(parent);
 }
@@ -157,9 +158,9 @@ Evas_Object *MainView::createKeypad(Evas_Object *parent)
 	Evas_Object *table = elm_table_add(parent);
 	elm_table_padding_set(table, 2, 2);
 
-	int id = 0;
-	for(int i = 0; i < KEYPAD_ROWS; ++i) {
-		for(int j = 0; j < KEYPAD_COLS; ++j, ++id) {
+	int id = KeypadButton::ID_1;
+	for (int i = 0; i < KEYPAD_ROWS; ++i) {
+		for (int j = 0; j < KEYPAD_COLS; ++j, ++id) {
 			KeypadButton *key = new KeypadButton((KeypadButton::Id) id);
 			key->setPressedCallback(std::bind(&MainView::onKeyPressed, this, _1));
 			key->setLongpressedCallback(std::bind(&MainView::onKeyLongpressed, this, _1));
@@ -279,7 +280,7 @@ void MainView::onCallPressed(Evas_Object *obj, void *event_info)
 		launchCall(number);
 		m_Entry->clear();
 	} else {
-		m_Entry->setNumber(getLastNumber());
+		m_Entry->setNumber(Phone::getLastCallNumber());
 	}
 }
 
@@ -299,86 +300,11 @@ void MainView::launchCall(const std::string &number)
 
 void MainView::launchSpeedDial(int digit)
 {
-	std::string number = getSpeedDialNumber(digit);
+	std::string number = Phone::getSpeedDialNumber(digit);
 	if (!number.empty()) {
 		launchCall(number);
 	} else {
 		Ui::Popup *popup = new SpeedDialPopup(digit);
 		popup->create(getEvasObject());
 	}
-}
-
-std::string MainView::getSpeedDialNumber(int digit)
-{
-	std::string number;
-	contacts_filter_h filter = NULL;
-	contacts_query_h query = NULL;
-	contacts_list_h list = NULL;
-
-	contacts_filter_create(_contacts_speeddial._uri, &filter);
-	contacts_filter_add_int(filter, _contacts_speeddial.speeddial_number, CONTACTS_MATCH_EQUAL, digit);
-
-	contacts_query_create(_contacts_speeddial._uri, &query);
-	contacts_query_set_filter(query, filter);
-
-	int err = contacts_db_get_records_with_query(query, 0, 1, &list);
-	WARN_IF(err != CONTACTS_ERROR_NONE, "contacts_db_get_records_with_query() failed(0x%x)", err);
-	if (list) {
-		contacts_record_h record = NULL;
-		contacts_list_get_current_record_p(list, &record);
-		if (record) {
-			char *str = NULL;
-			contacts_record_get_str_p(record, _contacts_speeddial.number, &str);
-			if (str) {
-				number = str;
-			}
-		}
-
-		contacts_list_destroy(list, true);
-	}
-
-	contacts_query_destroy(query);
-	contacts_filter_destroy(filter);
-
-	return number;
-}
-
-std::string MainView::getLastNumber()
-{
-	std::string number;
-	contacts_list_h list = NULL;
-	contacts_query_h query = NULL;
-	contacts_filter_h filter = NULL;
-
-	contacts_filter_create(_contacts_person_phone_log._uri, &filter);
-	contacts_filter_add_int(filter, _contacts_person_phone_log.log_type,
-			CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING);
-	contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-	contacts_filter_add_int(filter, _contacts_person_phone_log.log_type,
-			CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_BLOCKED);
-
-	contacts_query_create(_contacts_person_phone_log._uri, &query);
-	contacts_query_set_filter(query, filter);
-	contacts_query_set_sort(query, _contacts_person_phone_log.log_time, false);
-
-	int err = contacts_db_get_records_with_query(query, 0, 1, &list);
-	WARN_IF(err != CONTACTS_ERROR_NONE, "contacts_db_get_records_with_query() failed(0x%x)", err);
-	if (list) {
-		contacts_record_h record = NULL;
-		contacts_list_get_current_record_p(list, &record);
-		if (record) {
-			char *str = NULL;
-			contacts_record_get_str_p(record, _contacts_person_phone_log.address, &str);
-			if (str) {
-				number = str;
-			}
-		}
-
-		contacts_list_destroy(list, true);
-	}
-
-	contacts_query_destroy(query);
-	contacts_filter_destroy(filter);
-
-	return number;
 }
