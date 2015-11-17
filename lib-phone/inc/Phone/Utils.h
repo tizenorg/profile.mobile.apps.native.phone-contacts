@@ -17,8 +17,17 @@
 #ifndef PHONE_UTILS_H
 #define PHONE_UTILS_H
 
+#include <string>
+
 namespace Phone
 {
+	/**
+	 * @brief Get phone number assigned to specific speed dial number.
+	 * @param[in]   speedNumber Number on the dialer
+	 * @return Speed dial number or empty string if not assigned.
+	 */
+	std::string getSpeedDialNumber(int speedNumber);
+
 	/**
 	 * @brief Add speed dial number.
 	 * @param[in]   speedNumber Number on the dialer
@@ -26,6 +35,11 @@ namespace Phone
 	 * @return true on success, false if number with this @a numberId already exists.
 	 */
 	bool addSpeedDialNumber(int speedNumber, int numberId);
+
+	/**
+	 * @return Last incoming or outgoing call number.
+	 */
+	std::string getLastCallNumber();
 }
 
 #endif /* PHONE_UTILS_H */

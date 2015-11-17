@@ -57,7 +57,7 @@ void SpeedDialPopup::onPickResult(app_control_h request, app_control_h reply,
 {
 	SpeedDialPopup *popup = (SpeedDialPopup*) data;
 
-	char **numberIds = 0;
+	char **numberIds = nullptr;
 	int count = 0;
 
 	int err = app_control_get_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, &numberIds, &count);

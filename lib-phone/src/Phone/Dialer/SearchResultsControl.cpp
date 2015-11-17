@@ -15,7 +15,7 @@
  *
  */
 
-#include "Phone/Dialer/SearchResultsWidget.h"
+#include "Phone/Dialer/SearchResultsControl.h"
 #include "Phone/Dialer/SearchResultsPopup.h"
 #include "Phone/Dialer/SearchUtils.h"
 
@@ -32,13 +32,13 @@ namespace
 	const std::string layoutFilePath = App::getResourcePath(DIALER_PREDICTIVE_EDJ);
 }
 
-SearchResultsWidget::SearchResultsWidget()
+SearchResultsControl::SearchResultsControl()
 	: m_Results(nullptr), m_State(ResultsNone),
 	  m_ResultsCount(nullptr)
 {
 }
 
-void SearchResultsWidget::setResults(const SearchResults *results)
+void SearchResultsControl::setResults(const SearchResults *results)
 {
 	m_Results = results;
 	if (!m_Results || m_Results->empty()) {
@@ -49,33 +49,33 @@ void SearchResultsWidget::setResults(const SearchResults *results)
 	}
 }
 
-void SearchResultsWidget::clearResults()
+void SearchResultsControl::clearResults()
 {
 	setLayout(nullptr);
 	m_State = ResultsNone;
 	m_Results = nullptr;
 }
 
-void SearchResultsWidget::setSelectedCallback(SelectedCallback callback)
+void SearchResultsControl::setSelectedCallback(SelectedCallback callback)
 {
 	m_OnSelected = std::move(callback);
 }
 
-Evas_Object *SearchResultsWidget::onCreate(Evas_Object *parent)
+Evas_Object *SearchResultsControl::onCreate(Evas_Object *parent)
 {
 	Evas_Object *layout = elm_layout_add(parent);
 	evas_object_event_callback_add(layout, EVAS_CALLBACK_MOUSE_DOWN,
-			(Evas_Object_Event_Cb) makeCallback(&SearchResultsWidget::onResultPressed), this);
+			(Evas_Object_Event_Cb) makeCallback(&SearchResultsControl::onResultPressed), this);
 	return layout;
 }
 
-void SearchResultsWidget::setLayout(const char *groupName)
+void SearchResultsControl::setLayout(const char *groupName)
 {
 	clearLayout();
 	elm_layout_file_set(getEvasObject(), layoutFilePath.c_str(), groupName);
 }
 
-void SearchResultsWidget::clearLayout()
+void SearchResultsControl::clearLayout()
 {
 	Eina_List *list = elm_layout_content_swallow_list_get(getEvasObject());
 	Eina_List *node = nullptr;
@@ -87,7 +87,7 @@ void SearchResultsWidget::clearLayout()
 	eina_list_free(list);
 }
 
-void SearchResultsWidget::setResultsEmpty()
+void SearchResultsControl::setResultsEmpty()
 {
 	if (m_State != ResultsEmpty) {
 		m_State = ResultsEmpty;
@@ -96,7 +96,7 @@ void SearchResultsWidget::setResultsEmpty()
 	}
 }
 
-void SearchResultsWidget::setResultsPresent()
+void SearchResultsControl::setResultsPresent()
 {
 	if (m_State != ResultsPresent && m_State != ResultsMany) {
 		m_State = ResultsPresent;
@@ -106,7 +106,7 @@ void SearchResultsWidget::setResultsPresent()
 	setResultInfo(m_Results->front());
 }
 
-void SearchResultsWidget::setResultsCount(size_t count)
+void SearchResultsControl::setResultsCount(size_t count)
 {
 	if (count > 1) {
 		if (m_State != ResultsMany) {
@@ -116,7 +116,7 @@ void SearchResultsWidget::setResultsCount(size_t count)
 			elm_layout_file_set(m_ResultsCount, layoutFilePath.c_str(), GROUP_PREDICTIVE_RES_COUNT);
 			evas_object_propagate_events_set(m_ResultsCount, EINA_FALSE);
 			evas_object_event_callback_add(m_ResultsCount, EVAS_CALLBACK_MOUSE_DOWN,
-					(Evas_Object_Event_Cb) makeCallback(&SearchResultsWidget::onShowResultsPressed), this);
+					(Evas_Object_Event_Cb) makeCallback(&SearchResultsControl::onShowResultsPressed), this);
 		}
 
 		elm_object_part_text_set(m_ResultsCount, PART_TEXT_COUNT,
@@ -129,7 +129,7 @@ void SearchResultsWidget::setResultsCount(size_t count)
 	elm_object_part_content_set(getEvasObject(), PART_SWALLOW_RESULTS, m_ResultsCount);
 }
 
-void SearchResultsWidget::setResultInfo(SearchResultPtr result)
+void SearchResultsControl::setResultInfo(SearchResultPtr result)
 {
 	Evas_Object *layout = getEvasObject();
 	elm_object_part_content_set(layout, PART_SWALLOW_THUMBNAIL,
@@ -153,7 +153,7 @@ void SearchResultsWidget::setResultInfo(SearchResultPtr result)
 	}
 }
 
-void SearchResultsWidget::setResultSpeedDial(SearchResultPtr result)
+void SearchResultsControl::setResultSpeedDial(SearchResultPtr result)
 {
 	Evas_Object *speeddialLayout = elm_layout_add(getEvasObject());
 	elm_layout_file_set(speeddialLayout, layoutFilePath.c_str(), GROUP_SPEEDDIAL_NUMBER);
@@ -161,9 +161,8 @@ void SearchResultsWidget::setResultSpeedDial(SearchResultPtr result)
 	elm_object_part_content_set(getEvasObject(), PART_SWALLOW_SPEEDDIAL, speeddialLayout);
 }
 
-void SearchResultsWidget::onResultPressed()
+void SearchResultsControl::onResultPressed()
 {
-	TRACE;
 	if (m_OnSelected) {
 		if (m_Results && !m_Results->empty()) {
 			m_OnSelected(m_Results->front());
@@ -173,9 +172,8 @@ void SearchResultsWidget::onResultPressed()
 	}
 }
 
-void SearchResultsWidget::onShowResultsPressed()
+void SearchResultsControl::onShowResultsPressed()
 {
-	TRACE;
 	SearchResultsPopup *popup = new SearchResultsPopup(m_Results);
 	popup->setSelectedCallback(m_OnSelected);
 	popup->create(getEvasObject());

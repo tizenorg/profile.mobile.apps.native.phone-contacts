@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef PHONE_DIALER_SEARCH_RESULTS_WIDGET_H
-#define PHONE_DIALER_SEARCH_RESULTS_WIDGET_H
+#ifndef PHONE_DIALER_SEARCH_RESULTS_CONTROL_H
+#define PHONE_DIALER_SEARCH_RESULTS_CONTROL_H
 
 #include "Ui/Control.h"
 #include "Phone/Dialer/SearchTypes.h"
@@ -28,7 +28,7 @@ namespace Phone
 		/**
 		 * @brief Predictive search result widget.
 		 */
-		class SearchResultsWidget : public Ui::Control
+		class SearchResultsControl : public Ui::Control
 		{
 		public:
 			/**
@@ -37,7 +37,7 @@ namespace Phone
 			 */
 			typedef std::function<void(SearchResultPtr)> SelectedCallback;
 
-			SearchResultsWidget();
+			SearchResultsControl();
 
 			/**
 			 * @brief Set search results to be displayed
@@ -88,4 +88,4 @@ namespace Phone
 	}
 }
 
-#endif /* PHONE_DIALER_SEARCH_RESULTS_WIDGET_H */
+#endif /* PHONE_DIALER_SEARCH_RESULTS_CONTROL_H */

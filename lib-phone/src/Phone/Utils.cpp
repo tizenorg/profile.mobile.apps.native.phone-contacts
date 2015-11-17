@@ -20,6 +20,41 @@
 
 #include <contacts.h>
 
+std::string Phone::getSpeedDialNumber(int speedNumber)
+{
+	std::string number;
+	contacts_filter_h filter = NULL;
+	contacts_query_h query = NULL;
+	contacts_list_h list = NULL;
+
+	contacts_filter_create(_contacts_speeddial._uri, &filter);
+	contacts_filter_add_int(filter, _contacts_speeddial.speeddial_number, CONTACTS_MATCH_EQUAL, speedNumber);
+
+	contacts_query_create(_contacts_speeddial._uri, &query);
+	contacts_query_set_filter(query, filter);
+
+	int err = contacts_db_get_records_with_query(query, 0, 1, &list);
+	WARN_IF(err != CONTACTS_ERROR_NONE, "contacts_db_get_records_with_query() failed(0x%x)", err);
+	if (list) {
+		contacts_record_h record = NULL;
+		contacts_list_get_current_record_p(list, &record);
+		if (record) {
+			char *str = NULL;
+			contacts_record_get_str_p(record, _contacts_speeddial.number, &str);
+			if (str) {
+				number = str;
+			}
+		}
+
+		contacts_list_destroy(list, true);
+	}
+
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+
+	return number;
+}
+
 bool Phone::addSpeedDialNumber(int speedNumber, int numberId)
 {
 	contacts_filter_h filter = nullptr;
@@ -52,4 +87,44 @@ bool Phone::addSpeedDialNumber(int speedNumber, int numberId)
 	RETVM_IF(err != CONTACTS_ERROR_NONE, false, "contacts_db_insert_record() failed(%d)", err);
 
 	return true;
+}
+
+std::string Phone::getLastCallNumber()
+{
+	std::string number;
+	contacts_list_h list = NULL;
+	contacts_query_h query = NULL;
+	contacts_filter_h filter = NULL;
+
+	contacts_filter_create(_contacts_person_phone_log._uri, &filter);
+	contacts_filter_add_int(filter, _contacts_person_phone_log.log_type,
+			CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING);
+	contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+	contacts_filter_add_int(filter, _contacts_person_phone_log.log_type,
+			CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_BLOCKED);
+
+	contacts_query_create(_contacts_person_phone_log._uri, &query);
+	contacts_query_set_filter(query, filter);
+	contacts_query_set_sort(query, _contacts_person_phone_log.log_time, false);
+
+	int err = contacts_db_get_records_with_query(query, 0, 1, &list);
+	WARN_IF(err != CONTACTS_ERROR_NONE, "contacts_db_get_records_with_query() failed(0x%x)", err);
+	if (list) {
+		contacts_record_h record = NULL;
+		contacts_list_get_current_record_p(list, &record);
+		if (record) {
+			char *str = NULL;
+			contacts_record_get_str_p(record, _contacts_person_phone_log.address, &str);
+			if (str) {
+				number = str;
+			}
+		}
+
+		contacts_list_destroy(list, true);
+	}
+
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+
+	return number;
 }

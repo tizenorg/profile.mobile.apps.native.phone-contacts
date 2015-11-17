@@ -33,7 +33,7 @@ namespace Phone
 	namespace Dialer
 	{
 		class KeypadEntry;
-		class SearchResultsWidget;
+		class SearchResultsControl;
 
 		/**
 		 * @brief Dialer main view.
@@ -77,14 +77,12 @@ namespace Phone
 
 			static void launchCall(const std::string &number);
 			void launchSpeedDial(int digit);
-			static std::string getSpeedDialNumber(int digit);
-			static std::string getLastNumber();
 
 			App::AppControl m_AppControl;
 			SearchEngine m_SearchEngine;
 
 			KeypadEntry *m_Entry;
-			SearchResultsWidget *m_SearchWidget;
+			SearchResultsControl *m_SearchWidget;
 		};
 	}
 }
