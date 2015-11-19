@@ -22,6 +22,8 @@
 #define NOCONTENT_BUTTON_SPACE 11
 #define NOCONTENT_BUTTON_SIDE_SPACE 4
 #define NOCONTENT_ACTION (2*NOCONTENT_BUTTON_HEIGHT+3*NOCONTENT_BUTTON_SPACE)
+#define FLOATINGBUTTON_WIDTH 150
+#define FLOATINGBUTTON_HEIGHT 150
 
 #define PADDING_LEFT( param_padding_size ) \
 	part { \
@@ -109,6 +111,20 @@ collections
 					rel2 { relative: 1.0 1.0; }
 				}
 			}
+			part {
+				name: "section.floatingbutton";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					fixed: 1 1;
+					min: FLOATINGBUTTON_WIDTH FLOATINGBUTTON_HEIGHT;
+					max: FLOATINGBUTTON_WIDTH FLOATINGBUTTON_HEIGHT;
+					align: 0.0 0.0;
+					rel1 { relative: 0.70 0.9;}
+				}
+			}
+
 		}// end parts
 		programs{
 			program{

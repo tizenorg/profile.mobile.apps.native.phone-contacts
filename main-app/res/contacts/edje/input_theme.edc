@@ -38,6 +38,10 @@ collections
 
 	group {
 		name: "elm/genlist/item/baseinfo.contract/default";
+		alias: "elm/genlist/item_compress/baseinfo.contract/default";
+		alias: "elm/genlist/tree/baseinfo.contract/default";
+		alias: "elm/genlist/tree_compress/baseinfo.contract/default";
+
 		data.item: "contents" "elm.icon.1 elm.icon.2 elm.name.label";
 
 		parts {
@@ -94,7 +98,11 @@ collections
 
 	group {
 		name: "elm/genlist/item/baseinfo.expand/default";
+		alias: "elm/genlist/item_compress/baseinfo.expand/default";
+		alias: "elm/genlist/tree/baseinfo.expand/default";
+		alias: "elm/genlist/tree_compress/baseinfo.expand/default";
 		inherit: "elm/genlist/item/baseinfo.contract/default";
+
 		parts {
 			PART(SPACER, "elm.padding.bottom",
 				DSC_FROM_B("default" 0.0,
@@ -145,6 +153,9 @@ collections
 	}
 	group {
 		name: "elm/genlist/item/input.3icon/default";
+		alias: "elm/genlist/item_compress/input.3icon/default";
+		alias: "elm/genlist/tree/input.3icon/default";
+		alias: "elm/genlist/tree_compress/input.3icon/default";
 
 		data.item: "contents" "elm.icon.1 elm.icon.entry elm.icon.2";
 		data.item: "banded_bg_area" "elm.swallow.bg";
@@ -197,6 +208,9 @@ collections
 	}
 	group {
 		name: "elm/genlist/item/input.2icon/default";
+		alias: "elm/genlist/item_compress/input.2icon/default";
+		alias: "elm/genlist/tree/input.2icon/default";
+		alias: "elm/genlist/tree_compress/input.2icon/default";
 		data.item: "contents" "elm.icon.entry elm.icon.2";
 		data.item: "banded_bg_area" "elm.swallow.bg";
 
@@ -236,6 +250,9 @@ collections
 	}
 	group {
 		name: "elm/genlist/item/input.relationship/default";
+		alias: "elm/genlist/item_compress/input.relationship/default";
+		alias: "elm/genlist/tree/input.relationship/default";
+		alias: "elm/genlist/tree_compress/input.relationship/default";
 		inherit: "elm/genlist/item/input.3icon/default";
 		data.item: "contents" "elm.icon.1 elm.icon.entry elm.icon.2 elm.icon.3";
 		parts {
@@ -263,7 +280,9 @@ collections
 	}
 	group {
 		name: "elm/genlist/item/input.4icon/default";
-
+		alias: "elm/genlist/item_compress/input.4icon/default";
+		alias: "elm/genlist/tree/input.4icon/default";
+		alias: "elm/genlist/tree_compress/input.4icon/default";
 		data.item: "contents" "elm.icon.1 elm.icon.2 elm.icon.3 elm.icon.4";
 		data.item: "banded_bg_area" "elm.swallow.bg";
 
