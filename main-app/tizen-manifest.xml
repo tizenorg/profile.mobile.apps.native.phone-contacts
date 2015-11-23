@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="2.4" package="org.tizen.contacts-2" version="1.0.0">
+    <profile name="mobile"/>
+    <ui-application appid="org.tizen.contacts-2" exec="contacts" hw-acceleration="on" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+        <label>Contacts</label>
+        <label xml:lang="ar-ae">الأسماء</label>
+        <label xml:lang="az-az">Adlar</label>
+        <label xml:lang="bg-bg">Телефонен указател</label>
+        <label xml:lang="ca-es">Contactes</label>
+        <label xml:lang="cs-cz">Kontakty</label>
+        <label xml:lang="da-dk">Kontakter</label>
+        <label xml:lang="de-de">Kontakte</label>
+        <label xml:lang="el-gr">Επαφές</label>
+        <label xml:lang="en-gb">Contacts</label>
+        <label xml:lang="en-ph">Contacts</label>
+        <label xml:lang="en-us">Contacts 2</label>
+        <label xml:lang="es-es">Contactos</label>
+        <label xml:lang="es-mx">Contactos</label>
+        <label xml:lang="et-ee">Kontaktid</label>
+        <label xml:lang="eu-es">Kontaktuak</label>
+        <label xml:lang="fi-fi">Yhteystiedot</label>
+        <label xml:lang="fr-ca">Contacts</label>
+        <label xml:lang="fr-fr">Contacts</label>
+        <label xml:lang="ga-ie">Teagmhálaithe</label>
+        <label xml:lang="gl-es">Contactos</label>
+        <label xml:lang="hi-in">संपर्क</label>
+        <label xml:lang="hr-hr">Imenik</label>
+        <label xml:lang="hu-hu">Névjegyek</label>
+        <label xml:lang="hy-am">Կոնտակտներ</label>
+        <label xml:lang="is-is">Tengiliðir</label>
+        <label xml:lang="it-it">Rubrica</label>
+        <label xml:lang="ja-jp">電話帳</label>
+        <label xml:lang="ka-ge">კონტაქტები</label>
+        <label xml:lang="kk-kz">Контактілер</label>
+        <label xml:lang="ko-kr">연락처</label>
+        <label xml:lang="lt-lt">Adresatai</label>
+        <label xml:lang="lv-lv">Kontakti</label>
+        <label xml:lang="mk-mk">Именик</label>
+        <label xml:lang="nb-no">Kontakter</label>
+        <label xml:lang="nl-nl">Contacten</label>
+        <label xml:lang="pl-pl">Kontakty</label>
+        <label xml:lang="pt-br">Contatos</label>
+        <label xml:lang="pt-pt">Contactos</label>
+        <label xml:lang="ro-ro">Contacte</label>
+        <label xml:lang="ru-ru">Контакты</label>
+        <label xml:lang="sk-sk">Kontakty</label>
+        <label xml:lang="sl-si">Imenik</label>
+        <label xml:lang="sr-rs">Kontakti</label>
+        <label xml:lang="sv-se">Kontakter</label>
+        <label xml:lang="tr-tr">Rehber</label>
+        <label xml:lang="uk-ua">Контакти</label>
+        <label xml:lang="uz-uz">Kontaktlar</label>
+        <label xml:lang="zh-cn">联系人</label>
+        <label xml:lang="zh-hk">聯絡人</label>
+        <label xml:lang="zh-tw">聯絡人</label>
+        <icon>contacts.png</icon>
+    </ui-application>
+    <ui-application appid="org.tizen.phone-2" exec="contacts" hw-acceleration="on" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+        <label>Phone</label>
+        <label xml:lang="ar-ae">الهاتف</label>
+        <label xml:lang="az-az">Telefon</label>
+        <label xml:lang="bg-bg">Телефон</label>
+        <label xml:lang="ca-es">Telèfon</label>
+        <label xml:lang="cs-cz">Telefon</label>
+        <label xml:lang="da-dk">Telefon</label>
+        <label xml:lang="de-de">Telefon</label>
+        <label xml:lang="el-gr">Τηλέφωνο</label>
+        <label xml:lang="en-gb">Phone</label>
+        <label xml:lang="en-ph">Phone</label>
+        <label xml:lang="en-us">Phone 2</label>
+        <label xml:lang="es-es">Teléfono</label>
+        <label xml:lang="es-mx">Teléfono</label>
+        <label xml:lang="et-ee">Telefon</label>
+        <label xml:lang="eu-es">Telefon</label>
+        <label xml:lang="fi-fi">Puhelin</label>
+        <label xml:lang="fr-ca">Téléphone</label>
+        <label xml:lang="fr-fr">Téléphone</label>
+        <label xml:lang="ga-ie">Teileafón</label>
+        <label xml:lang="gl-es">Teléfono</label>
+        <label xml:lang="hi-in">टेलीफोन</label>
+        <label xml:lang="hr-hr">Telefon</label>
+        <label xml:lang="hu-hu">Telefon</label>
+        <label xml:lang="hy-am">Հեռախոս</label>
+        <label xml:lang="is-is">Sími</label>
+        <label xml:lang="it-it">Telefono</label>
+        <label xml:lang="ja-jp">電話</label>
+        <label xml:lang="ka-ge">ტელეფონი</label>
+        <label xml:lang="kk-kz">Телефон</label>
+        <label xml:lang="ko-kr">일반 전화</label>
+        <label xml:lang="lt-lt">Telefonas</label>
+        <label xml:lang="lv-lv">Tālrunis</label>
+        <label xml:lang="mk-mk">Телефон</label>
+        <label xml:lang="nb-no">Telefon</label>
+        <label xml:lang="nl-nl">Telefoon</label>
+        <label xml:lang="pl-pl">Telefon</label>
+        <label xml:lang="pt-br">Telefone</label>
+        <label xml:lang="pt-pt">Telefone</label>
+        <label xml:lang="ro-ro">Telefon</label>
+        <label xml:lang="ru-ru">Телефон</label>
+        <label xml:lang="sk-sk">Telefón</label>
+        <label xml:lang="sl-si">Telefon</label>
+        <label xml:lang="sr-rs">Telefon</label>
+        <label xml:lang="sv-se">Telefon</label>
+        <label xml:lang="tr-tr">Telefon</label>
+        <label xml:lang="uk-ua">Телефон</label>
+        <label xml:lang="uz-uz">Telefon</label>
+        <label xml:lang="zh-cn">电话</label>
+        <label xml:lang="zh-hk">電話</label>
+        <label xml:lang="zh-tw">電話</label>
+        <icon>phone.png</icon>
+        <app-control>
+            <operation name="http://tizen.org/appcontrol/operation/dial"/>
+            <uri name="tel"/>
+        </app-control>
+    </ui-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        <privilege>http://tizen.org/privilege/call</privilege>
+        <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        <privilege>http://tizen.org/privilege/contact.read</privilege>
+        <privilege>http://tizen.org/privilege/contact.write</privilege>
+        <privilege>http://tizen.org/privilege/notification</privilege>
+    </privileges>
+</manifest>
