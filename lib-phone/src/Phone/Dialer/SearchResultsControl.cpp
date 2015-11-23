@@ -32,6 +32,9 @@ namespace
 	const std::string layoutFilePath = App::getResourcePath(DIALER_PREDICTIVE_EDJ);
 }
 
+/* FIXME: Added for 2.4 SDK build */
+extern "C" Eina_List *elm_layout_content_swallow_list_get(Evas_Object *obj);
+
 SearchResultsControl::SearchResultsControl()
 	: m_Results(nullptr), m_State(ResultsNone),
 	  m_ResultsCount(nullptr)
