@@ -4,6 +4,7 @@ project(contacts CXX)
 file(GLOB_RECURSE SOURCES src/*.cpp)
 include_directories(
 	${CMAKE_SOURCE_DIR}/lib-common/inc
+	${CMAKE_SOURCE_DIR}/lib-contact/inc
 	${CMAKE_SOURCE_DIR}/lib-phone/inc
 	${CMAKE_CURRENT_SOURCE_DIR}/inc
 )
@@ -11,6 +12,7 @@ include_directories(
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES} -pie
 	common
+	contact
 	phone
 )
 
