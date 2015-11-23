@@ -36,18 +36,17 @@ GenlistItem::GenlistItem(Elm_Genlist_Item_Class *itemClass, Elm_Genlist_Item_Typ
 Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
 		const char *decorateStyle, const char *editStyle)
 {
-	return {
-		ELM_GEN_ITEM_CLASS_HEADER, EINA_FALSE,
-		style, decorateStyle, editStyle,
-		{
-			makeCallback(&GenlistItem::getText),
-			makeCallback(&GenlistItem::getContent),
-			nullptr,
-			[] (void *data, Evas_Object *obj) {
-				delete (GenlistItem *) data;
-			}
-		}
+	Elm_Genlist_Item_Class itc = { ELM_GEN_ITEM_CLASS_HEADER, 0 };
+	itc.item_style = style;
+	itc.decorate_item_style = decorateStyle;
+	itc.decorate_all_item_style = editStyle;
+	itc.func.text_get = makeCallback(&GenlistItem::getText);
+	itc.func.content_get = makeCallback(&GenlistItem::getContent);
+	itc.func.del = [] (void *data, Evas_Object *obj) {
+		delete (GenlistItem *) data;
 	};
+
+	return itc;
 }
 
 Elm_Object_Item *GenlistItem::getObjectItem() const
