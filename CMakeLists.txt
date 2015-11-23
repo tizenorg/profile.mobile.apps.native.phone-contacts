@@ -33,5 +33,6 @@ add_definitions("-DRESDIR=\"${RESDIR}/\"")
 add_definitions("-DLOCALEDIR=\"${LOCALEDIR}\"")
 
 add_subdirectory(lib-common)
+add_subdirectory(lib-contact)
 add_subdirectory(lib-phone)
 add_subdirectory(main-app)

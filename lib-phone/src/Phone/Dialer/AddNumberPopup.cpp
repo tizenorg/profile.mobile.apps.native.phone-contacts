@@ -17,7 +17,6 @@
 
 #include "Phone/Dialer/AddNumberPopup.h"
 #include "App/AppControlRequest.h"
-#include "Ui/Editfield.h"
 #include "Utils/Logger.h"
 
 #include <app_i18n.h>
