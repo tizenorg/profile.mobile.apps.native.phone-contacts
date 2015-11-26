@@ -15,26 +15,26 @@
  *
  */
 
-#include "Contacts/Settings/SortByPopup.h"
+#include "Contacts/Settings/NameFormatPopup.h"
 #include "Utils/Logger.h"
 #include <app_i18n.h>
 #include <contacts_setting.h>
 
 using namespace Contacts::Settings;
 
-SortByPopup::SortByPopup()
+NameFormatPopup::NameFormatPopup()
 	: m_RadioGroup(nullptr)
 {
 }
 
-void SortByPopup::onCreated()
+void NameFormatPopup::onCreated()
 {
 	elm_popup_orient_set(getEvasObject(), ELM_POPUP_ORIENT_CENTER);
-	setTitle("IDS_PB_MBODY_SORT_BY");
+	setTitle("IDS_PB_TMBODY_NAME_FORMAT");
 	setContent(createGenlist(getEvasObject()));
 }
 
-Evas_Object *SortByPopup::createGenlist(Evas_Object *parent)
+Evas_Object *NameFormatPopup::createGenlist(Evas_Object *parent)
 {
 	Evas_Object *genlist = elm_genlist_add(parent);
 	elm_genlist_homogeneous_set(genlist, EINA_TRUE);
@@ -44,48 +44,35 @@ Evas_Object *SortByPopup::createGenlist(Evas_Object *parent)
 	Elm_Genlist_Item_Class *itc = createItemClass();
 
 	m_RadioGroup = elm_radio_add(genlist);
-	contacts_name_sorting_order_e type = CONTACTS_NAME_SORTING_ORDER_FIRSTLAST;
-	contacts_setting_get_name_sorting_order(&type);
+	contacts_name_display_order_e type = CONTACTS_NAME_DISPLAY_ORDER_FIRSTLAST;
+	contacts_setting_get_name_display_order(&type);
 	elm_radio_state_value_set(m_RadioGroup, -1);
 	elm_radio_value_set(m_RadioGroup, type);
 	evas_object_smart_data_set(genlist, this);
 
-	elm_genlist_item_append(genlist, itc, (void *) CONTACTS_NAME_SORTING_ORDER_FIRSTLAST, NULL,
+	elm_genlist_item_append(genlist, itc, (void *) CONTACTS_NAME_DISPLAY_ORDER_FIRSTLAST, NULL,
 			ELM_GENLIST_ITEM_NONE, onSelect, this);
-	elm_genlist_item_append(genlist, itc, (void *) CONTACTS_NAME_SORTING_ORDER_LASTFIRST, NULL,
+	elm_genlist_item_append(genlist, itc, (void *) CONTACTS_NAME_DISPLAY_ORDER_LASTFIRST, NULL,
 			ELM_GENLIST_ITEM_NONE, onSelect, this);
 
 	elm_genlist_item_class_free(itc);
 	return genlist;
 }
 
-void SortByPopup::onSelect(void *data, Evas_Object *obj, void *event_info)
+void NameFormatPopup::onSelect(void *data, Evas_Object *obj, void *event_info)
 {
 	Elm_Object_Item *item = (Elm_Object_Item *) event_info;
 	int type = (int) elm_object_item_data_get(item);
-	SortByPopup *popup = static_cast<SortByPopup *>(data);
+	NameFormatPopup *popup = static_cast<NameFormatPopup *>(data);
 	elm_radio_value_set(popup->m_RadioGroup, type);
 
-	contacts_setting_set_name_sorting_order((contacts_name_sorting_order_e) type);
+	contacts_setting_set_name_display_order((contacts_name_display_order_e) type);
 
 	elm_genlist_item_selected_set(item, EINA_FALSE);
 	elm_genlist_item_update(item);
 }
 
-char *SortByPopup::getItemText(void *data, Evas_Object *obj, const char *part)
-{
-	int type = (int) data;
-	if (strcmp(part, "elm.text") == 0) {
-		if (CONTACTS_NAME_SORTING_ORDER_FIRSTLAST == type) {
-			return strdup(_("IDS_PB_OPT_FIRST_NAME"));
-		} else if (CONTACTS_NAME_SORTING_ORDER_LASTFIRST == type) {
-			return strdup(_("IDS_PB_OPT_LAST_NAME"));
-		}
-	}
-	return nullptr;
-}
-
-Elm_Genlist_Item_Class *SortByPopup::createItemClass()
+Elm_Genlist_Item_Class *NameFormatPopup::createItemClass()
 {
 	Elm_Genlist_Item_Class *itc = elm_genlist_item_class_new();
 	RETVM_IF(!itc, NULL, "elm_genlist_item_class_new() failed");
@@ -95,9 +82,22 @@ Elm_Genlist_Item_Class *SortByPopup::createItemClass()
 	return itc;
 }
 
-Evas_Object *SortByPopup::getItemContent(void *data, Evas_Object *obj, const char *part)
+char *NameFormatPopup::getItemText(void *data, Evas_Object *obj, const char *part)
 {
-	SortByPopup *popup = static_cast<SortByPopup *>(evas_object_smart_data_get(obj));
+	int type = (int) data;
+	if (strcmp(part, "elm.text") == 0) {
+		if (CONTACTS_NAME_DISPLAY_ORDER_FIRSTLAST == type) {
+			return strdup(_("IDS_PB_OPT_FIRST_NAME_FIRST_ABB"));
+		} else if (CONTACTS_NAME_DISPLAY_ORDER_LASTFIRST == type) {
+			return strdup(_("IDS_PB_OPT_LAST_NAME_FIRST_ABB"));
+		}
+	}
+	return nullptr;
+}
+
+Evas_Object *NameFormatPopup::getItemContent(void *data, Evas_Object *obj, const char *part)
+{
+	NameFormatPopup *popup = static_cast<NameFormatPopup *>(evas_object_smart_data_get(obj));
 
 	if (strcmp(part, "elm.swallow.end") == 0) {
 		int type = (int) data;
@@ -108,5 +108,6 @@ Evas_Object *SortByPopup::getItemContent(void *data, Evas_Object *obj, const cha
 
 		return radio;
 	}
+
 	return nullptr;
 }

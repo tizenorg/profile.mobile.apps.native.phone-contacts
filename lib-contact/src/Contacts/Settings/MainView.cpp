@@ -17,6 +17,7 @@
 
 #include "Contacts/Settings/MainView.h"
 #include "Contacts/Settings/SortByItem.h"
+#include "Contacts/Settings/NameFormatItem.h"
 #include "Ui/Genlist.h"
 
 using namespace Contacts::Settings;
@@ -31,6 +32,7 @@ Evas_Object *MainView::onCreate(Evas_Object *parent)
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
 	m_Genlist->insert(new SortByItem());
+	m_Genlist->insert(new NameFormatItem());
 
 	return m_Genlist->getEvasObject();
 }
