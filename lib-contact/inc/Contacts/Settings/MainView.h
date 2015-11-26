@@ -15,50 +15,35 @@
  *
  */
 
-#ifndef CONTACTS_LIST_MAIN_VIEW_H
-#define CONTACTS_LIST_MAIN_VIEW_H
+#ifndef CONTACTS_SETTINGS_MAIN_VIEW_H
+#define CONTACTS_SETTINGS_MAIN_VIEW_H
 
 #include "Ui/View.h"
 
 namespace Ui
 {
 	class Genlist;
-	class GenlistItem;
 }
 
 namespace Contacts
 {
-	namespace List
+	namespace Settings
 	{
 		/**
-		 * @brief Contacts list view
+		 * @brief Settings main view
 		 */
-		class EXPORT_API MainView : public Ui::View
+		class MainView : public Ui::View
 		{
 		public:
 			MainView();
-			virtual ~MainView() override;
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
-			Evas_Object *createIndex(Evas_Object *parent);
-
 			virtual void onPageAttached() override;
-			virtual void onCreated() override;
-
-			void fillList();
-			Ui::GenlistItem *appendGroupItem(const char *indexLetter);
-
-			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
-			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
-			void onCreatePressed();
-			void onDatabaseChanged(const char *uri);
-			virtual Evas_Object *onMenuPressed() override;
 
 			Ui::Genlist *m_Genlist;
-			Evas_Object *m_Index;
 		};
 	}
 }
 
-#endif /* CONTACTS_LIST_MAIN_VIEW_H */
+#endif /* CONTACTS_SETTINGS_MAIN_VIEW_H */
