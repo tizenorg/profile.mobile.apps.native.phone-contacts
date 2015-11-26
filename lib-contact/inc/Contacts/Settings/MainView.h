@@ -15,39 +15,35 @@
  *
  */
 
-#ifndef CONTACTS_LIST_CONTACT_ITEM_H
-#define CONTACTS_LIST_CONTACT_ITEM_H
+#ifndef CONTACTS_SETTINGS_MAIN_VIEW_H
+#define CONTACTS_SETTINGS_MAIN_VIEW_H
 
-#include "Ui/GenlistItem.h"
-#include <contacts.h>
+#include "Ui/View.h"
 
-#define PART_CONTACT_NAME "elm.text"
-#define PART_CONTACT_THUMBNAIL "elm.swallow.icon"
+namespace Ui
+{
+	class Genlist;
+}
 
 namespace Contacts
 {
-	namespace List
+	namespace Settings
 	{
 		/**
-		 * @brief Contacts list item
+		 * @brief Settings main view
 		 */
-		class ContactItem : public Ui::GenlistItem
+		class MainView : public Ui::View
 		{
 		public:
-			/**
-			 * @brief Create contact item
-			 * @param[in]   record  Person record
-			 */
-			ContactItem(contacts_record_h record);
-			virtual ~ContactItem() ;
+			MainView();
 
 		private:
-			virtual char *getText(Evas_Object *parent, const char *part) override;
-			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
+			virtual Evas_Object *onCreate(Evas_Object *parent) override;
+			virtual void onPageAttached() override;
 
-			contacts_record_h m_Record;
+			Ui::Genlist *m_Genlist;
 		};
 	}
 }
 
-#endif /* CONTACTS_LIST_CONTACT_ITEM_H */
+#endif /* CONTACTS_SETTINGS_MAIN_VIEW_H */

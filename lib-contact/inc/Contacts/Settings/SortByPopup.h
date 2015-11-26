@@ -15,39 +15,36 @@
  *
  */
 
-#ifndef CONTACTS_LIST_CONTACT_ITEM_H
-#define CONTACTS_LIST_CONTACT_ITEM_H
+#ifndef CONTACTS_SETTINGS_SORT_BY_POPUP_H
+#define CONTACTS_SETTINGS_SORT_BY_POPUP_H
 
-#include "Ui/GenlistItem.h"
-#include <contacts.h>
-
-#define PART_CONTACT_NAME "elm.text"
-#define PART_CONTACT_THUMBNAIL "elm.swallow.icon"
+#include "Ui/Popup.h"
 
 namespace Contacts
 {
-	namespace List
+	namespace Settings
 	{
 		/**
-		 * @brief Contacts list item
+		 * @brief SortBy popup
 		 */
-		class ContactItem : public Ui::GenlistItem
+		class SortByPopup : public Ui::Popup
 		{
 		public:
 			/**
-			 * @brief Create contact item
-			 * @param[in]   record  Person record
+			 * @brief Create sortby popup.
 			 */
-			ContactItem(contacts_record_h record);
-			virtual ~ContactItem() ;
+			SortByPopup();
 
 		private:
-			virtual char *getText(Evas_Object *parent, const char *part) override;
-			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
+			virtual void onCreated() override;
+			Evas_Object *createGenlist(Evas_Object *parent);
+			static void onSelect(void *data, Evas_Object *obj, void *event_info);
+			static char *getItemText(void *data, Evas_Object *obj, const char *part);
+			Elm_Genlist_Item_Class *createItemClass();
+			static Evas_Object *getItemContent(void *data, Evas_Object *obj, const char *part);
 
-			contacts_record_h m_Record;
+			Evas_Object *m_RadioGroup;
 		};
 	}
 }
-
-#endif /* CONTACTS_LIST_CONTACT_ITEM_H */
+#endif /* CONTACTS_SETTINGS_SORT_BY_POPUP_H */

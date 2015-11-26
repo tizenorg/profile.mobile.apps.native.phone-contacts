@@ -15,39 +15,31 @@
  *
  */
 
-#ifndef CONTACTS_LIST_CONTACT_ITEM_H
-#define CONTACTS_LIST_CONTACT_ITEM_H
+#ifndef CONTACTS_SETTINGS_SORT_BY_ITEM_H
+#define CONTACTS_SETTINGS_SORT_BY_ITEM_H
 
 #include "Ui/GenlistItem.h"
-#include <contacts.h>
-
-#define PART_CONTACT_NAME "elm.text"
-#define PART_CONTACT_THUMBNAIL "elm.swallow.icon"
+#include <contacts_setting.h>
 
 namespace Contacts
 {
-	namespace List
+	namespace Settings
 	{
 		/**
-		 * @brief Contacts list item
+		 * @brief SortBy item
 		 */
-		class ContactItem : public Ui::GenlistItem
+		class SortByItem : public Ui::GenlistItem
 		{
 		public:
-			/**
-			 * @brief Create contact item
-			 * @param[in]   record  Person record
-			 */
-			ContactItem(contacts_record_h record);
-			virtual ~ContactItem() ;
+			SortByItem();
+			virtual ~SortByItem() override;
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
-			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
-
-			contacts_record_h m_Record;
+			virtual void onSelected() override;
+			static void onSortingOrderChanged(contacts_name_sorting_order_e name_sorting_order, void *user_data);
 		};
 	}
 }
 
-#endif /* CONTACTS_LIST_CONTACT_ITEM_H */
+#endif /* CONTACTS_SETTINGS_SORT_BY_ITEM_H */

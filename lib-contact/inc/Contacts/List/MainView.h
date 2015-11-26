@@ -53,6 +53,7 @@ namespace Contacts
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onCreatePressed();
 			void onDatabaseChanged(const char *uri);
+			virtual Evas_Object *onMenuPressed() override;
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;

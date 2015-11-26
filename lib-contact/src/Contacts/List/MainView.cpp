@@ -23,9 +23,12 @@
 #include "Ui/GenlistItem.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
-
+#include "Ui/Menu.h"
+#include "Ui/Navigator.h"
+#include "Contacts/Settings/MainView.h"
 #include <contacts.h>
 
+using namespace Contacts;
 using namespace Contacts::List;
 
 MainView::MainView()
@@ -137,4 +140,15 @@ void MainView::onDatabaseChanged(const char *uri)
 	elm_index_item_clear(m_Index);
 	elm_genlist_clear(m_Genlist->getEvasObject());
 	fillList();
+}
+
+Evas_Object *MainView::onMenuPressed()
+{
+	Ui::Menu *menu = new Ui::Menu();
+	menu->create(getEvasObject());
+
+	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
+		getNavigator()->navigateTo(new Settings::MainView());
+	});
+	return menu->getEvasObject();
 }
