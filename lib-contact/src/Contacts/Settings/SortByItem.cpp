@@ -16,7 +16,7 @@
  */
 
 #include "Contacts/Settings/SortByItem.h"
-#include "Contacts/Settings/SortByPopup.h"
+#include "Contacts/Settings/RadioPopup.h"
 #include "Utils/Logger.h"
 #include <app_i18n.h>
 
@@ -52,8 +52,20 @@ char *SortByItem::getText(Evas_Object *parent, const char *part)
 
 void SortByItem::onSelected()
 {
-	Ui::Popup *popup = new SortByPopup();
+	contacts_name_sorting_order_e type = CONTACTS_NAME_SORTING_ORDER_FIRSTLAST;
+	contacts_setting_get_name_sorting_order(&type);
+
+	RadioPopup *popup = new RadioPopup(onItemStateChanged);
 	popup->create(elm_object_item_widget_get(getObjectItem()));
+	popup->setTitle("IDS_PB_MBODY_SORT_BY");
+	popup->setSelectedItem(type);
+	popup->addItem(_("IDS_PB_OPT_FIRST_NAME"), CONTACTS_NAME_SORTING_ORDER_FIRSTLAST);
+	popup->addItem(_("IDS_PB_OPT_LAST_NAME"), CONTACTS_NAME_SORTING_ORDER_LASTFIRST);
+}
+
+void SortByItem::onItemStateChanged(int type)
+{
+	contacts_setting_set_name_sorting_order((contacts_name_sorting_order_e) type);
 }
 
 void SortByItem::onSortingOrderChanged(contacts_name_sorting_order_e name_sorting_order, void *user_data)
