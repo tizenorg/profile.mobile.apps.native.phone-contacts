@@ -23,6 +23,7 @@
 
 namespace Ui
 {
+	class Genlist;
 	class EXPORT_API GenlistItem
 	{
 	public:
@@ -39,12 +40,22 @@ namespace Ui
 		Elm_Object_Item *getObjectItem() const;
 
 		/**
-		 * @return Next item in genlist or NULL if none.
+		 * @return Parent genlist.
+		 */
+		Genlist *getParent() const;
+
+		/**
+		 * @return Parent genlist item or nullptr if none.
+		 */
+		GenlistItem *getParentItem() const;
+
+		/**
+		 * @return Next item in genlist or nullptr if none.
 		 */
 		GenlistItem *getNextItem() const;
 
 		/**
-		 * @return Previous item in genlist or NULL if none.
+		 * @return Previous item in genlist or nullptr if none.
 		 */
 		GenlistItem *getPrevItem() const;
 
@@ -76,6 +87,11 @@ namespace Ui
 		virtual Evas_Object *getContent(Evas_Object *parent, const char *part) { return nullptr; }
 
 		/**
+		 * @brief Called after item was inserted into genlist.
+		 */
+		virtual void onInserted() { }
+
+		/**
 		 * @brief Called when item is selected.
 		 */
 		virtual void onSelected() { }
@@ -103,10 +119,12 @@ namespace Ui
 
 	private:
 		friend class Genlist;
+		static void onDestroy(GenlistItem *item, Evas_Object *genlist);
 
 		Elm_Genlist_Item_Type m_ItemType;
 		Elm_Genlist_Item_Class *m_ItemClass;
 		Elm_Object_Item *m_Item;
+		bool m_Preserve;
 	};
 }
 

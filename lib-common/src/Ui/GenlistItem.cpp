@@ -16,6 +16,7 @@
  */
 
 #include "Ui/GenlistItem.h"
+#include "Ui/Genlist.h"
 #include "Utils/Callback.h"
 
 using namespace Ui;
@@ -26,7 +27,7 @@ namespace
 }
 
 GenlistItem::GenlistItem(Elm_Genlist_Item_Class *itemClass, Elm_Genlist_Item_Type itemType)
-	: m_ItemType(itemType), m_ItemClass(itemClass), m_Item(nullptr)
+	: m_ItemType(itemType), m_ItemClass(itemClass), m_Item(nullptr), m_Preserve(false)
 {
 	if (!m_ItemClass) {
 		m_ItemClass = &defaultItemClass;
@@ -42,9 +43,7 @@ Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
 	itc.decorate_all_item_style = editStyle;
 	itc.func.text_get = makeCallback(&GenlistItem::getText);
 	itc.func.content_get = makeCallback(&GenlistItem::getContent);
-	itc.func.del = [] (void *data, Evas_Object *obj) {
-		delete (GenlistItem *) data;
-	};
+	itc.func.del = (Elm_Gen_Item_Del_Cb) &GenlistItem::onDestroy;
 
 	return itc;
 }
@@ -52,6 +51,18 @@ Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
 Elm_Object_Item *GenlistItem::getObjectItem() const
 {
 	return m_Item;
+}
+
+Genlist *GenlistItem::getParent() const
+{
+	Evas_Object *genlist = elm_object_item_widget_get(getObjectItem());
+	return static_cast<Genlist *>(Control::getControl(genlist));
+}
+
+GenlistItem *GenlistItem::getParentItem() const
+{
+	Elm_Object_Item *item = elm_genlist_item_parent_get(getObjectItem());
+	return (GenlistItem *) elm_object_item_data_get(item);
 }
 
 GenlistItem *GenlistItem::getNextItem() const
@@ -69,4 +80,11 @@ GenlistItem *GenlistItem::getPrevItem() const
 void GenlistItem::onContracted()
 {
 	elm_genlist_item_subitems_clear(getObjectItem());
+}
+
+void GenlistItem::onDestroy(GenlistItem *item, Evas_Object *genlist)
+{
+	if (!item->m_Preserve) {
+		delete item;
+	}
 }
