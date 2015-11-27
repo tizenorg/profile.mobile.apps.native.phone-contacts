@@ -15,36 +15,35 @@
  *
  */
 
-#ifndef CONTACTS_SETTINGS_SORT_BY_POPUP_H
-#define CONTACTS_SETTINGS_SORT_BY_POPUP_H
+#ifndef CONTACTS_SETTINGS_NAME_FORMAT_ITEM_H
+#define CONTACTS_SETTINGS_NAME_FORMAT_ITEM_H
 
-#include "Ui/Popup.h"
+#include "Ui/GenlistItem.h"
+#include <contacts_setting.h>
 
 namespace Contacts
 {
 	namespace Settings
 	{
 		/**
-		 * @brief SortBy popup
+		 * @brief Name format item
 		 */
-		class SortByPopup : public Ui::Popup
+		class NameFormatItem : public Ui::GenlistItem
 		{
 		public:
 			/**
-			 * @brief Create sortby popup.
-			 */
-			SortByPopup();
+			* @brief Create name format item.
+			*/
+			NameFormatItem();
+			virtual ~NameFormatItem() override;
 
 		private:
-			virtual void onCreated() override;
-			Evas_Object *createGenlist(Evas_Object *parent);
-			static void onSelect(void *data, Evas_Object *obj, void *event_info);
-			static char *getItemText(void *data, Evas_Object *obj, const char *part);
-			Elm_Genlist_Item_Class *createItemClass();
-			static Evas_Object *getItemContent(void *data, Evas_Object *obj, const char *part);
-
-			Evas_Object *m_RadioGroup;
+			virtual void onSelected() override;
+			virtual char *getText(Evas_Object *parent, const char *part) override;
+			static void onItemStateChanged(int type);
+			static void onNameOrderChanged(contacts_name_display_order_e name_sorting_order, void *user_data);
 		};
 	}
 }
-#endif /* CONTACTS_SETTINGS_SORT_BY_POPUP_H */
+
+#endif /* CONTACTS_SETTINGS_NAME_FORMAT_ITEM_H */
