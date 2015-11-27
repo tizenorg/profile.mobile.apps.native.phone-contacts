@@ -53,6 +53,18 @@ GenlistItem *Genlist::getLastItem() const
 
 Elm_Object_Item *Genlist::insert(GenlistItem *item, GenlistItem *parent, GenlistItem *prev)
 {
+	if (!item) {
+		return nullptr;
+	}
+
+	if (item->m_Item) {
+		item->m_Preserve = true;
+		elm_object_item_del(item->m_Item);
+
+		item->m_Item = nullptr;
+		item->m_Preserve = false;
+	}
+
 	Elm_Object_Item *parentItem = parent ? parent->getObjectItem() : nullptr;
 	if (prev) {
 		item->m_Item = elm_genlist_item_insert_after(getEvasObject(), item->m_ItemClass, item,
@@ -62,6 +74,7 @@ Elm_Object_Item *Genlist::insert(GenlistItem *item, GenlistItem *parent, Genlist
 				parentItem, item->m_ItemType, nullptr, nullptr);
 	}
 
+	item->onInserted();
 	return item->m_Item;
 }
 
