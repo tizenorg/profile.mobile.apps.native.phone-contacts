@@ -1,0 +1,9 @@
+Debug/
+SA_Report/
+.sign/
+.settings/
+
+.checkers
+.package-stamp
+res.xml
+project_def.prop
