@@ -18,11 +18,11 @@
 #include "Contacts/Model/ContactFieldMetadata.h"
 #include "Contacts/Model/ContactFields.h"
 #include "Contacts/Model/ContactTypes.h"
+#include "Utils/Range.h"
 
 #include <contacts.h>
 
-#define COUNT(array) sizeof(array) / sizeof(*array)
-#define ARRAY(array) array, COUNT(array)
+#define ARRAY(array) array, Utils::count(array)
 #define UPCAST(metadata) (const ContactTypeMetadata *) metadata
 
 using namespace Contacts;
