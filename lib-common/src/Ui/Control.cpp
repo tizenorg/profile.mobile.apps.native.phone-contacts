@@ -61,7 +61,10 @@ Control *Control::getControl(Evas_Object *obj)
 void Control::setEvasObject(Evas_Object *object)
 {
 	m_Object = object;
-	evas_object_data_set(m_Object, CONTROL_DATA_KEY, this);
+	if (!evas_object_data_get(m_Object, CONTROL_DATA_KEY)) {
+		evas_object_data_set(m_Object, CONTROL_DATA_KEY, this);
+	}
+
 	evas_object_event_callback_add(m_Object, EVAS_CALLBACK_FREE,
 			makeCallback(&Control::onDestroy), this);
 }
@@ -69,9 +72,8 @@ void Control::setEvasObject(Evas_Object *object)
 Evas_Object *Control::resetEvasObject()
 {
 	Evas_Object *object = m_Object;
-	evas_object_event_callback_del(m_Object, EVAS_CALLBACK_FREE,
-			makeCallback(&Control::onDestroy));
-	evas_object_data_del(m_Object, CONTROL_DATA_KEY);
+	evas_object_event_callback_del_full(m_Object, EVAS_CALLBACK_FREE,
+			makeCallback(&Control::onDestroy), this);
 	m_Object = nullptr;
 	return object;
 }
