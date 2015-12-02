@@ -17,6 +17,7 @@
 
 #include <fstream>
 #include <notification.h>
+#include <tzplatform_config.h>
 
 #include "ContactsDebug.h"
 #include "CtCommon.h"
@@ -24,8 +25,9 @@
 #include "CtString.h"
 #include "CtType.h"
 
-#define CT_SETTING_DEVICE_EXPORT_PATH "/opt/usr/media/Device/Contacts/Exported"
-#define CT_SETTING_SDCARD_EXPORT_PATH "/opt/storage/sdcard/Device/Contacts/Exported"
+#define CT_SETTING_DEVICE_EXPORT_PATH tzplatform_mkpath(TZ_USER_CONTENT, "Device/Contacts/Exported")
+#define CT_SETTING_SDCARD_EXPORT_PATH tzplatform_mkpath(TZ_SYS_STORAGE, "sdcard/Device/Contacts/Exported")
+
 
 CtContactsToVcard::CtContactsToVcard(const char *title, TargetStorage vcardStorage, std::vector<int> personIdList)
 : CtProgressController(title, personIdList.size())
@@ -56,11 +58,15 @@ void CtContactsToVcard::createDirectory()
 {
 	if (m_VcardStorage == TargetStorage::DEVICE || m_VcardStorage == TargetStorage::SD_CARD) {
 		int ret = 0;
+
+		std::string command("mkdir -p ");
 		if (m_VcardStorage == TargetStorage::DEVICE) {
-			ret = system("mkdir -p " CT_SETTING_DEVICE_EXPORT_PATH);
+			command.append(CT_SETTING_DEVICE_EXPORT_PATH);
 		} else {
-			ret = system("mkdir -p " CT_SETTING_SDCARD_EXPORT_PATH);
+			command.append(CT_SETTING_SDCARD_EXPORT_PATH);
 		}
+
+		ret = system(command.c_str());
 		WPRET_M(ret == -1, "failed to create folder");
 	}
 }
