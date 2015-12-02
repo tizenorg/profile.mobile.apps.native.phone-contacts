@@ -50,12 +50,18 @@ Evas_Object *Control::getEvasObject() const
 
 Window *Control::getWindow() const
 {
-	return static_cast<Window *>(getControl(elm_object_top_widget_get(getEvasObject())));
+	return getWindow(getEvasObject());
 }
 
-Control *Control::getControl(Evas_Object *obj)
+Control *Control::getControl(Evas_Object *object)
 {
-	return (Control *) evas_object_data_get(obj, CONTROL_DATA_KEY);
+	return (Control *) evas_object_data_get(object, CONTROL_DATA_KEY);
+}
+
+Window *Control::getWindow(Evas_Object *object)
+{
+	Evas_Object *window = elm_object_top_widget_get(object);
+	return static_cast<Window *>(getControl(window));
 }
 
 void Control::setEvasObject(Evas_Object *object)

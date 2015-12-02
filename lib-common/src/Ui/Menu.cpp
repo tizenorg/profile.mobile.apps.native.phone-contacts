@@ -34,7 +34,7 @@ Elm_Object_Item *Menu::addItem(const char *text, ItemCallback callback)
 
 Evas_Object *Menu::onCreate(Evas_Object *parent)
 {
-	Window *window = static_cast<Window *>(getControl(elm_object_top_widget_get(parent)));
+	Window *window = getWindow(parent);
 	if (window) {
 		parent = window->getBaseLayout();
 	}

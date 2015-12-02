@@ -60,10 +60,15 @@ namespace Ui
 
 		/**
 		 * @brief Get Control object from Evas_Object
-		 * @param[in]   obj     Evas_Object that belongs to some Control
+		 * @param[in]   object  Evas_Object that belongs to some Control
 		 * @return Control tied to Evas_Object
 		 */
-		static Control *getControl(Evas_Object *obj);
+		static Control *getControl(Evas_Object *object);
+
+		/**
+		 * @brief Get main application window from any child object.
+		 */
+		static Window *getWindow(Evas_Object *object);
 
 	protected:
 		/**

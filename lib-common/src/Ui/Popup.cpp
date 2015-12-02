@@ -83,7 +83,7 @@ Evas_Object *Popup::addButton(const char *text, ButtonCallback callback)
 
 Evas_Object *Popup::onCreate(Evas_Object *parent)
 {
-	Window *window = static_cast<Window *>(getControl(elm_object_top_widget_get(parent)));
+	Window *window = getWindow(parent);
 	if (window) {
 		parent = window->getBaseLayout();
 	}
