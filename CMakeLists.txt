@@ -17,11 +17,6 @@ IF("${ARCH}" STREQUAL "armv7l")
 	ADD_DEFINITIONS("-DTARGET")
 	SET(CMAKE_C_FLAGS_RELEASE "-mabi=aapcs-linux -O2")
 ENDIF("${ARCH}" STREQUAL "armv7l")
-IF(_ENABLE_HD)
-	ADD_DEFINITIONS("-D_HD_")
-ELSE(_ENABLE_HD)
-	ADD_DEFINITIONS("-D_WVGA_")
-ENDIF(_ENABLE_HD)
 
 INCLUDE(FindPkgConfig)
 pkg_check_modules(TIZEN_PKGS REQUIRED
@@ -44,6 +39,7 @@ pkg_check_modules(TIZEN_PKGS REQUIRED
 	msg-service
 	notification
 	storage
+	libtzplatform-config
 )
 
 INCLUDE_DIRECTORIES(${TIZEN_PKGS_INCLUDE_DIRS})

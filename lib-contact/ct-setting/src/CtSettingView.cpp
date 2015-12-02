@@ -22,6 +22,7 @@
 #include <app.h>
 #include <contacts.h>
 #include <notification.h>
+#include <tzplatform_config.h>
 
 #include "WNaviframe.h"
 #include "WWindow.h"
@@ -272,10 +273,14 @@ void CtSettingView::__importFromStorage(bool phone)
 	app_control_h service;
 
 	app_control_create(&service);
-	if (phone)
-		app_control_add_extra_data(service, "path", "/opt/usr/media");
-	else
-		app_control_add_extra_data(service, "path", "/opt/storage/sdcard");
+
+	const char *path = nullptr;
+	if (phone) {
+		path = tzplatform_getenv(TZ_USER_CONTENT);
+	} else {
+		path = tzplatform_mkpath(TZ_SYS_STORAGE, "sdcard");
+	}
+	app_control_add_extra_data(service, "path", path);
 
 	app_control_add_extra_data(service, "select_type", "IMPORT_PATH_SELECT");
 	app_control_add_extra_data(service, "file_type", "vcf");

@@ -21,7 +21,6 @@
 #include "PhLogDbMgr.h"
 #include "PhLogListView.h"
 #include "PhLogDetailContactInfoControl.h"
-#include "PhLogDetailButtonInfoControl.h"
 
 class PhLogDetailView : public PhLogListView
 {
