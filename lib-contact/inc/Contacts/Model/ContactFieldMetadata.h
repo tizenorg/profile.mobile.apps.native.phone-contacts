@@ -19,6 +19,7 @@
 #define CONTACTS_MODEL_CONTACT_METADATA_H
 
 #include "Contacts/Model/ContactTypes.h"
+#include "Utils/Range.h"
 
 namespace Contacts
 {
@@ -57,8 +58,7 @@ namespace Contacts
 		{
 			ContactTypeMetadata base;           /**< C-style base to allow list initialization without constructor */
 			const char *uri;                    /**< Contacts API view URI which represent the object */
-			const ContactFieldMetadata *fields; /**< Fields that belong to the object */
-			unsigned fieldCount;                /**< Object fields count */
+			Utils::Range<const ContactFieldMetadata *> fields; /**< Fields that belong to the object */
 		};
 
 		/**
@@ -78,8 +78,7 @@ namespace Contacts
 		struct ContactEnumMetadata
 		{
 			ContactTypeMetadata base;
-			const int *values;   /**< Possible values */
-			unsigned valueCount; /**< Possible value count */
+			Utils::Range<const int *> values; /**< Possible values */
 			int defaultValue;    /**< Default value */
 			int customValue;     /**< Value that signifies the custom value being set */
 		};

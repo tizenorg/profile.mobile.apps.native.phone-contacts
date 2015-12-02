@@ -54,7 +54,7 @@ Evas_Object *Editfield::onCreate(Evas_Object *parent)
 
 void Editfield::setGuideText(const char *guideText)
 {
-	elm_object_part_text_set(getEntry(), "elm.guide", guideText);
+	elm_object_translatable_part_text_set(getEntry(), "elm.guide", guideText);
 }
 
 Evas_Object *Editfield::getEntry()
