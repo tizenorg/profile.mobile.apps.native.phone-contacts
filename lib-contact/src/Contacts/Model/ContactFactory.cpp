@@ -20,7 +20,7 @@
 #include "Contacts/Model/ContactArray.h"
 #include "Contacts/Model/ContactDateField.h"
 #include "Contacts/Model/ContactEnumField.h"
-#include "Contacts/Model/ContactObject.h"
+#include "Contacts/Model/ContactTypedObject.h"
 #include "Contacts/Model/ContactTextField.h"
 
 using namespace Contacts::Model;
@@ -48,8 +48,17 @@ ContactFieldPtr ContactFactory::createField(contacts_record_h record,
 		case TypeArray:
 			field = new ContactArray(record, metadata); break;
 		case TypeObject:
+		{
 			record = getObjectRecord(record, metadata);
-			field = new ContactObject(record, metadata); break;
+
+			unsigned subType = metadata->typeMetadata->type;
+			if (subType & ObjectTyped) {
+				field = new ContactTypedObject(record, metadata);
+			} else {
+				field = new ContactObject(record, metadata);
+			}
+		}
+			break;
 	}
 
 	return ContactFieldPtr(field);

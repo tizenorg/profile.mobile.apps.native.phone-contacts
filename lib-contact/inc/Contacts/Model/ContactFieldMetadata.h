@@ -52,7 +52,7 @@ namespace Contacts
 		};
 
 		/**
-		 * @brief Object metadata
+		 * @brief Object metadata.
 		 */
 		struct ContactObjectMetadata
 		{
@@ -62,7 +62,17 @@ namespace Contacts
 		};
 
 		/**
-		 * @brief Array of objects metadata (object type specified by ContactObjectType in subType)
+		 * @brief Typed object metadata.
+		 */
+		struct ContactTypedObjectMetadata
+		{
+			ContactObjectMetadata base;
+			ContactFieldMetadata typeField;  /**< Field that stores object's "type" */
+			ContactFieldMetadata labelField; /**< Field that stores object's custom type label */
+		};
+
+		/**
+		 * @brief Array of objects metadata (object type specified by ContactObjectType in subType).
 		 */
 		struct ContactArrayMetadata
 		{
@@ -71,7 +81,7 @@ namespace Contacts
 		};
 
 		/**
-		 * @brief Enum type metadata
+		 * @brief Enum type metadata.
 		 *
 		 * @see ContactFieldMetadata
 		 */

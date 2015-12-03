@@ -19,6 +19,7 @@
 #define CONTACTS_MODEL_CONTACT_TYPED_FIELD_H
 
 #include "Contacts/Model/ContactField.h"
+#include "Utils/Range.h"
 
 namespace Contacts
 {
@@ -35,11 +36,7 @@ namespace Contacts
 		class ContactEnumField : public ContactField
 		{
 		public:
-			/**
-			 * @brief ContactField::ContactField()
-			 */
-			ContactEnumField(contacts_record_h record,
-					const ContactFieldMetadata *metadata);
+			using ContactField::ContactField;
 
 			/**
 			 * @see ContactField::reset()
@@ -52,21 +49,15 @@ namespace Contacts
 			int getValue() const;
 
 			/**
+			 * @return Array of possible values.
+			 */
+			Utils::Range<const int *> getValues() const;
+
+			/**
 			 * @brief Set field value.
 			 * @param[in]   value   Field value
 			 */
 			void setValue(int value);
-
-			/**
-			 * @return Field custom value.
-			 */
-			const char *getCustomValue() const;
-
-			/**
-			 * @brief Set field custom value.
-			 * @param[in]   label   Field custom value
-			 */
-			void setCustomValue(const char *value);
 
 			/**
 			 * @return Whether field has a custom value.
@@ -75,8 +66,6 @@ namespace Contacts
 
 		private:
 			const ContactEnumMetadata *getEnumMetadata() const;
-
-			unsigned m_CustomValuePropId;
 		};
 	}
 }

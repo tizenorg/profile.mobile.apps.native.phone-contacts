@@ -65,7 +65,7 @@ namespace Contacts
 			 */
 			ContactFieldPtr getFieldByIndex(unsigned index) const;
 
-		private:
+		protected:
 			const ContactObjectMetadata *getObjectMetadata() const;
 		};
 	}

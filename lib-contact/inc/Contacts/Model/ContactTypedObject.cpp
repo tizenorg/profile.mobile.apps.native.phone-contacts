@@ -15,39 +15,23 @@
  *
  */
 
-#include "Contacts/Model/ContactEnumField.h"
+#include "Contacts/Model/ContactTypedObject.h"
+#include "Contacts/Model/ContactFactory.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
 
 using namespace Contacts::Model;
 
-void ContactEnumField::reset()
+ContactFieldPtr ContactTypedObject::getTypeField() const
 {
-	setValue(getEnumMetadata()->defaultValue);
+	return ContactFactory::createField(getRecord(), &getTypedObjectMetadata()->typeField);
 }
 
-int ContactEnumField::getValue() const
+ContactFieldPtr ContactTypedObject::getLabelField() const
 {
-	int value = 0;
-	contacts_record_get_int(getRecord(), getPropertyId(), &value);
-	return value;
+	return ContactFactory::createField(getRecord(), &getTypedObjectMetadata()->labelField);
 }
 
-Utils::Range<const int *> ContactEnumField::getValues() const
+const ContactTypedObjectMetadata *ContactTypedObject::getTypedObjectMetadata() const
 {
-	return getEnumMetadata()->values;
-}
-
-void ContactEnumField::setValue(int value)
-{
-	contacts_record_set_int(getRecord(), getPropertyId(), value);
-}
-
-bool ContactEnumField::hasCustomValue() const
-{
-	return getValue() == getEnumMetadata()->customValue;
-}
-
-const ContactEnumMetadata *ContactEnumField::getEnumMetadata() const
-{
-	return (const ContactEnumMetadata *) ContactField::getMetadata()->typeMetadata;
+	return (const ContactTypedObjectMetadata *) getObjectMetadata();
 }
