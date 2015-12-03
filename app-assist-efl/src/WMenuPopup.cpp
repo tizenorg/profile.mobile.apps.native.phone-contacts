@@ -133,7 +133,9 @@ void WMenuPopup::prepare(Evas_Object* win, Evas_Object* naviframe)
 
 	Evas_Object* popup = NULL;
 	popup = elm_ctxpopup_add(__pv->__win);
-	elm_object_style_set(popup, "more/default");
+
+	//TODO: Should be uncommented when "more/default" style will be supported.
+	//elm_object_style_set(popup, "more/default");
 	elm_ctxpopup_auto_hide_disabled_set(popup, EINA_TRUE);
 
 	eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, eext_ctxpopup_back_cb, NULL);
