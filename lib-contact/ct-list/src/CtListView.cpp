@@ -1488,9 +1488,7 @@ void CtListView::__hideCreateButton(void)
 		return;
 	}
 
-	//TODO Return back when floatting button will be supported
-	//elm_object_part_content_unset(window->getBaseLayoutEvasObj(), "elm.swallow.floatingbutton");
-	elm_object_part_content_unset(__baseLayout, "section.floatingbutton");
+	elm_object_part_content_unset(window->getBaseLayoutEvasObj(), "elm.swallow.floatingbutton");
 	evas_object_hide(__compose_btn);
 }
 
@@ -1502,48 +1500,30 @@ void CtListView::__showCreateButton(void)
 		return;
 	}
 
-	//TODO Return back when floatting button will be supported
-	//Evas_Object *parent = window->getBaseLayoutEvasObj();
+	Evas_Object *parent = window->getBaseLayoutEvasObj();
 
 	if (NULL == __compose_btn) {
-		//TODO Return back when floatting button will be supported
-		//__compose_btn = __createFloatBtn(parent);
-
-		__compose_btn = __createFloatBtn(__baseLayout);
+		__compose_btn = __createFloatBtn(parent);
 	}
 
 	if (!__background) {
-		//TODO Return back when floatting button will be supported
-		//elm_object_part_content_set(parent, "elm.swallow.floatingbutton", __compose_btn);
-		elm_object_part_content_set(__baseLayout, "section.floatingbutton", __compose_btn);
+		elm_object_part_content_set(parent, "elm.swallow.floatingbutton", __compose_btn);
 	}
 }
 
 Evas_Object *CtListView::__createFloatBtn(Evas_Object* parent)
 {
 	WHIT();
-
-	Evas_Object *button= elm_button_add(parent);
+	Evas_Object *floatBtn = eext_floatingbutton_add(parent);
+	Evas_Object *button= elm_button_add(floatBtn);
 	if(button) {
+		elm_object_part_content_set(floatBtn, "button1", button);
 		Evas_Object *image = elm_image_add(button);
 		elm_image_file_set(image, ContactsCommon::getResourcePath(CT_IMG_ICON_LIST_ADD_BUTTON).c_str(), NULL);
 		elm_object_part_content_set(button, "icon", image);
 		evas_object_smart_callback_add(button, "clicked", __onSelectFloatBtn, this);
 	}
-
-	return button;
-
-//	TODO uncomment when eext_floatingbutton_add will be implemented
-//	Evas_Object *floatBtn = eext_floatingbutton_add(parent);
-//	Evas_Object *button= elm_button_add(floatBtn);
-//	if(button) {
-//		elm_object_part_content_set(floatBtn, "button1", button);
-//		Evas_Object *image = elm_image_add(button);
-//		elm_image_file_set(image, ContactsCommon::getResourcePath(CT_IMG_ICON_LIST_ADD_BUTTON).c_str(), NULL);
-//		elm_object_part_content_set(button, "icon", image);
-//		evas_object_smart_callback_add(button, "clicked", __onSelectFloatBtn, this);
-//	}
-//	return floatBtn;
+	return floatBtn;
 }
 
 void CtListView::__onSelectFloatBtn(void *data, Evas_Object *obj, void *event_info)
