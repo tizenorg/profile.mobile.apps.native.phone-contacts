@@ -20,33 +20,19 @@
 
 using namespace Contacts::Model;
 
-namespace
-{
-	/* FIXME: move type-label interaction to the object level and into separate class. */
-	unsigned labelPropId[] = {
-		_contacts_image.label,
-		0,
-		_contacts_number.label,
-		_contacts_email.label,
-		0,
-		_contacts_address.label,
-		_contacts_event.label,
-		_contacts_relationship.label,
-		_contacts_url.label,
-		_contacts_messenger.label
-	};
-}
-
-ContactEnumField::ContactEnumField(contacts_record_h record,
-		const ContactFieldMetadata *metadata)
-	: ContactField(record, metadata),
-	  m_CustomValuePropId(labelPropId[getId()])
-{
-}
-
 void ContactEnumField::reset()
 {
 	setValue(getEnumMetadata()->defaultValue);
+}
+
+Utils::Range<const int *> ContactEnumField::getValues() const
+{
+	return getEnumMetadata()->values;
+}
+
+int ContactEnumField::getCustomValue() const
+{
+	return getEnumMetadata()->customValue;
 }
 
 int ContactEnumField::getValue() const
@@ -59,19 +45,6 @@ int ContactEnumField::getValue() const
 void ContactEnumField::setValue(int value)
 {
 	contacts_record_set_int(getRecord(), getPropertyId(), value);
-}
-
-const char *ContactEnumField::getCustomValue() const
-{
-	char *value = nullptr;
-	contacts_record_get_str_p(getRecord(), m_CustomValuePropId, &value);
-	return value;
-}
-
-void ContactEnumField::setCustomValue(const char *value)
-{
-	setValue(getEnumMetadata()->customValue);
-	contacts_record_set_str(getRecord(), m_CustomValuePropId, value);
 }
 
 bool ContactEnumField::hasCustomValue() const
