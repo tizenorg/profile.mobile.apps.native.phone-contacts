@@ -19,23 +19,23 @@
 #include "Ui/Thumbnail.h"
 
 using namespace Contacts::List;
+using namespace Contacts::List::Model;
 
-ContactItem::ContactItem(contacts_record_h record)
-	: m_Record(record)
-{
-}
+ContactItem::ContactItem(ContactPtr contact)
+	: m_Contact(std::move(contact))
+{ }
 
-ContactItem::~ContactItem()
+ContactItem::~ContactItem() { }
+
+const ContactPtr &ContactItem::getContact() const
 {
-	contacts_record_destroy(m_Record, true);
+	return m_Contact;
 }
 
 char *ContactItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_CONTACT_NAME) == 0) {
-		char *name = nullptr;
-		contacts_record_get_str(m_Record, _contacts_person.display_name, &name);
-		return name;
+		return strdup(m_Contact->getName());
 	}
 
 	return nullptr;
@@ -46,10 +46,8 @@ Evas_Object *ContactItem::getContent(Evas_Object *parent, const char *part)
 	using Ui::Thumbnail;
 
 	if (strcmp(part, PART_CONTACT_THUMBNAIL) == 0) {
-		char *path = nullptr;
-		contacts_record_get_str_p(m_Record, _contacts_person.image_thumbnail_path, &path);
-
-		Thumbnail *thumbnail = Thumbnail::create(parent, Thumbnail::SizeSmall, path);
+		Thumbnail *thumbnail = Thumbnail::create(parent, Thumbnail::SizeSmall,
+				m_Contact->getPicturePath());
 		thumbnail->setSizeHint(true);
 		return thumbnail->getEvasObject();
 	}
