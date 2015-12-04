@@ -51,7 +51,8 @@ GenlistItem *Genlist::getLastItem() const
 	return (GenlistItem *) elm_object_item_data_get(item);
 }
 
-Elm_Object_Item *Genlist::insert(GenlistItem *item, GenlistItem *parent, GenlistItem *prev)
+Elm_Object_Item *Genlist::insert(GenlistItem *item, GenlistItem *parent,
+		GenlistItem *sibling, Where where)
 {
 	if (!item) {
 		return nullptr;
@@ -66,11 +67,13 @@ Elm_Object_Item *Genlist::insert(GenlistItem *item, GenlistItem *parent, Genlist
 	}
 
 	Elm_Object_Item *parentItem = parent ? parent->getObjectItem() : nullptr;
-	if (prev) {
-		item->m_Item = elm_genlist_item_insert_after(getEvasObject(), item->m_ItemClass, item,
-				parentItem, prev->getObjectItem(), item->m_ItemType, nullptr, nullptr);
+	if (sibling) {
+		auto insert = (where == Before) ? elm_genlist_item_insert_before : elm_genlist_item_insert_after;
+		item->m_Item = insert(getEvasObject(), item->m_ItemClass, item,
+				parentItem, sibling->getObjectItem(), item->m_ItemType, nullptr, nullptr);
 	} else {
-		item->m_Item = elm_genlist_item_append(getEvasObject(), item->m_ItemClass, item,
+		auto insert = (where == Before) ? elm_genlist_item_prepend : elm_genlist_item_append;
+		item->m_Item = insert(getEvasObject(), item->m_ItemClass, item,
 				parentItem, item->m_ItemType, nullptr, nullptr);
 	}
 

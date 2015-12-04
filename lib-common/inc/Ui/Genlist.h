@@ -27,6 +27,12 @@ namespace Ui
 	class EXPORT_API Genlist : public Control
 	{
 	public:
+		enum Where
+		{
+			Before,
+			After
+		};
+
 		/**
 		 * @return Genlist first Item.
 		 */
@@ -38,15 +44,17 @@ namespace Ui
 		GenlistItem *getLastItem() const;
 
 		/**
-		 * @brief Insert or append genlist Item.
-		 * @param[in]   item    Item to insert
-		 * @param[in]   parent  Parent item
-		 * @param[in]   prev    Previous item or nullptr to append
+		 * @brief Insert, append or prepend genlist Item.
+		 * @param[in]   item        Item to insert
+		 * @param[in]   parent      Parent item
+		 * @param[in]   sibling     Sibling item or append/prepend if nullptr
+		 * @param[in]   where       Insert before/after @a sibling or prepend/append if nullptr
 		 * @return New genlist object item
 		 */
 		Elm_Object_Item *insert(GenlistItem *item,
-					GenlistItem *parent = nullptr,
-					GenlistItem *prev = nullptr);
+				GenlistItem *parent = nullptr,
+				GenlistItem *sibling = nullptr,
+				Where where = After);
 
 		/**
 		 * @brief Update specific parts of realized items
