@@ -54,8 +54,8 @@ namespace
 
 	const char *numberValueNames[] = {
 		"IDS_PB_OPT_MOBILE",
-		"IDS_PB_OPT_WORK",
 		"IDS_PB_OPT_HOME_ABB",
+		"IDS_PB_OPT_WORK",
 		"IDS_PB_OPT_MAIN",
 		"IDS_PB_OPT_FAX_HWORK_ABB",
 		"IDS_PB_OPT_FAX_HHOME_ABB",
