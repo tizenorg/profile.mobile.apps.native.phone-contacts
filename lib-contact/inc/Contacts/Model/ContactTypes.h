@@ -35,25 +35,33 @@ namespace Contacts
 		};
 
 		/**
+		 * @brief Specifies additional interface supported by object
+		 */
+		enum ContactObjectInterface
+		{
+			ObjectTyped = 0x100, /**< Object supports ContactTypedObject interface */
+		};
+
+		/**
 		 * @brief Subtype for field of TypeObject type
 		 */
 		enum ContactObjectType
 		{
-			ObjectTypeContact,
-			ObjectTypeMyProfile,
-			ObjectTypeImage,
-			ObjectTypeName,
-			ObjectTypeNumber,
-			ObjectTypeEmail,
-			ObjectTypeNote,
-			ObjectTypeAddress,
-			ObjectTypeEvent,
-			ObjectTypeRelationship,
-			ObjectTypeUrl,
-			ObjectTypeMessenger,
-			ObjectTypeNickname,
-			ObjectTypeCompany,
-			ObjectTypePhoneticName
+			ObjectTypeContact      = 1,
+			ObjectTypeMyProfile    = 2,
+			ObjectTypeImage        = 3,
+			ObjectTypeName         = 4,
+			ObjectTypeNumber       = 5 + ObjectTyped,
+			ObjectTypeEmail        = 6 + ObjectTyped,
+			ObjectTypeNote         = 7,
+			ObjectTypeAddress      = 8 + ObjectTyped,
+			ObjectTypeEvent        = 9 + ObjectTyped,
+			ObjectTypeRelationship = 10 + ObjectTyped,
+			ObjectTypeUrl          = 11 + ObjectTyped,
+			ObjectTypeMessenger    = 12 + ObjectTyped,
+			ObjectTypeNickname     = 13,
+			ObjectTypeCompany      = 14,
+			ObjectTypePhoneticName = 15
 		};
 
 		/**
