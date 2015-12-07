@@ -24,12 +24,22 @@ namespace
 	Elm_Genlist_Item_Class groupItemClass = Ui::GenlistItem::createItemClass("group_index");
 }
 
-ContactGroupItem::ContactGroupItem(const char *title)
-	: GenlistItem(&groupItemClass, ELM_GENLIST_ITEM_GROUP)
+ContactGroupItem::ContactGroupItem(const char *title, Elm_Object_Item *indexItem)
+	: GenlistItem(&groupItemClass, ELM_GENLIST_ITEM_GROUP), m_IndexItem(indexItem)
 {
 	if (title) {
 		m_Title = title;
 	}
+}
+
+const char* Contacts::List::ContactGroupItem::getTitle() const
+{
+	return m_Title.c_str();
+}
+
+Elm_Object_Item* ContactGroupItem::getIndexItem() const
+{
+	return m_IndexItem;
 }
 
 char *ContactGroupItem::getText(Evas_Object *parent, const char *part)

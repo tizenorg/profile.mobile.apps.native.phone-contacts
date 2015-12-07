@@ -19,6 +19,7 @@
 #define CONTACTS_LIST_CONTACT_ITEM_H
 
 #include "Ui/GenlistItem.h"
+#include "Contacts/List/Model/Contact.h"
 #include <contacts.h>
 
 #define PART_CONTACT_NAME "elm.text"
@@ -36,16 +37,21 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Create contact item
-			 * @param[in]   record  Person record
+			 * @param[in]   contact     Contact object
 			 */
-			ContactItem(contacts_record_h record);
+			ContactItem(Model::ContactPtr contact);
 			virtual ~ContactItem() override;
+
+			/**
+			 * @return Contact object
+			 */
+			const Model::ContactPtr &getContact() const;
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
-			contacts_record_h m_Record;
+			Model::ContactPtr m_Contact;
 		};
 	}
 }

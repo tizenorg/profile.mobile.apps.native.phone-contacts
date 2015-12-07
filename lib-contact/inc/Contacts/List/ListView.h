@@ -15,10 +15,13 @@
  *
  */
 
-#ifndef CONTACTS_LIST_MAIN_VIEW_H
-#define CONTACTS_LIST_MAIN_VIEW_H
+#ifndef CONTACTS_LIST_LIST_VIEW_H
+#define CONTACTS_LIST_LIST_VIEW_H
 
 #include "Ui/View.h"
+#include "Contacts/List/Model/ContactProvider.h"
+#include "Contacts/List/Model/Contact.h"
+#include <map>
 
 namespace Ui
 {
@@ -30,14 +33,16 @@ namespace Contacts
 {
 	namespace List
 	{
+		class ContactItem;
+		class ContactGroupItem;
+
 		/**
 		 * @brief Contacts list view
 		 */
-		class EXPORT_API MainView : public Ui::View
+		class EXPORT_API ListView : public Ui::View
 		{
 		public:
-			MainView();
-			virtual ~MainView() override;
+			ListView();
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -47,18 +52,30 @@ namespace Contacts
 			virtual void onCreated() override;
 
 			void fillList();
-			Ui::GenlistItem *appendGroupItem(const char *indexLetter);
+
+			ContactGroupItem *insertGroupItem(const char *indexLetter,
+					ContactGroupItem *nextGroup = nullptr);
+			ContactGroupItem *getNextGroupItem(const char *indexLetter);
+
+			ContactItem *insertItem(Model::ContactPtr contact, ContactGroupItem *group,
+					ContactItem *nextItem = nullptr);
+			ContactItem *getNextItem(ContactGroupItem *group, Model::Contact *contact);
 
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
+
 			void onCreatePressed();
-			void onDatabaseChanged(const char *uri);
 			virtual Evas_Object *onMenuPressed() override;
+
+			void onContactCreated(Model::ContactPtr contact);
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
+			std::map<std::string, ContactGroupItem *> m_Groups;
+
+			Model::ContactProvider m_Provider;
 		};
 	}
 }
 
-#endif /* CONTACTS_LIST_MAIN_VIEW_H */
+#endif /* CONTACTS_LIST_LIST_VIEW_H */
