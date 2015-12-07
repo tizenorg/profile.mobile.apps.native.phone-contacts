@@ -194,6 +194,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-common/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-contact/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-phone/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/attach-panel&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-logs/inc}&quot;"/>
 								</option>
 								<option id="sbi.gnu.cpp.compiler.option.frameworks.core.597971735" name="Tizen-Frameworks" superClass="sbi.gnu.cpp.compiler.option.frameworks.core" valueType="userObjs">
 									<listOptionValue builtIn="false" value="Native_API"/>
@@ -327,11 +329,13 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-common/${ConfigName}}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-phone/${ConfigName}}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-contact/${ConfigName}}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-logs/${ConfigName}}&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.1633189673" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="common"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="contact"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="phone"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="logs"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1081617544" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -368,6 +372,7 @@
 				<externalSettings containerId="lib-common;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
 				<externalSettings containerId="lib-contact;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
 				<externalSettings containerId="lib-phone;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
+				<externalSettings containerId="lib-logs;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
 			</storageModule>
 		</cconfiguration>
 		<cconfiguration id="org.tizen.nativecore.config.sbi.gcc45.app.release.1993690474">
