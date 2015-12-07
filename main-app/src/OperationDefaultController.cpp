@@ -48,9 +48,7 @@ void OperationDefaultController::onCreate()
 	mainNavigator->navigateTo(m_Navigator);
 
 	m_Tabs[TabDialer] = new Phone::Dialer::MainView();
-	/* TODO:
-	m_Tabs[TabLogs] = new Phone::Logs::ListView();
-	 */
+	//m_Tabs[TabLogs] = new Logs::List::LogView();
 	m_Tabs[TabContacts] = new Contacts::List::MainView();
 
 	for (auto &&tab : m_Tabs) {
