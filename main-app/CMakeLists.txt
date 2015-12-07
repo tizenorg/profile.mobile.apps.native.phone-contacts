@@ -6,6 +6,7 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/lib-common/inc
 	${CMAKE_SOURCE_DIR}/lib-contact/inc
 	${CMAKE_SOURCE_DIR}/lib-phone/inc
+	${CMAKE_SOURCE_DIR}/lib-logs/inc
 	${CMAKE_CURRENT_SOURCE_DIR}/inc
 )
 
@@ -14,6 +15,7 @@ target_link_libraries(${PROJECT_NAME} ${LIBRARIES} -pie
 	common
 	contact
 	phone
+	logs
 )
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${BINDIR})

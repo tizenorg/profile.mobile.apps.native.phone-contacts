@@ -6,6 +6,7 @@
 		<project>lib-common</project>
 		<project>lib-contact</project>
 		<project>lib-phone</project>
+		<project>lib-logs</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
