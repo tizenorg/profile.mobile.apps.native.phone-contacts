@@ -18,6 +18,7 @@
 #ifndef CONTACTS_LIST_MODEL_CONTACT_PROVIDER_H
 #define CONTACTS_LIST_MODEL_CONTACT_PROVIDER_H
 
+#include "Contacts/List/Model/Contact.h"
 #include <contacts.h>
 #include <functional>
 #include <unordered_map>
@@ -54,9 +55,9 @@ namespace Contacts
 
 				/**
 				 * @brief Person insert callback
-				 * @param[in]    record        Person record
+				 * @param[in]    contact       Contact object
 				 */
-				typedef std::function<void(contacts_record_h record)> InsertCallback;
+				typedef std::function<void(ContactPtr contact)> InsertCallback;
 
 				/**
 				 * @brief Constructor
@@ -68,9 +69,9 @@ namespace Contacts
 
 				/**
 				 * @brief Get contact list
-				 * @return List of person records
+				 * @return List of contact objects
 				 */
-				virtual contacts_list_h getContactsList() const;
+				virtual ContactList getContactList() const;
 
 				/**
 				 * @brief Set person change callback
@@ -99,7 +100,7 @@ namespace Contacts
 
 			private:
 				void onChanged(const char *viewUri);
-				void notify(contacts_changed_e changeType, contacts_record_h record);
+				void notify(contacts_changed_e changeType, ContactPtr contact);
 
 				FilterType m_ListFilterType;
 				int m_DbVersion;

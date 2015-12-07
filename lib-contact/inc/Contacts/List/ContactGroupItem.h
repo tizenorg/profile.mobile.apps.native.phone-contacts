@@ -32,14 +32,26 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Create contact group item
-			 * @param[in]   title   Group title (UTF-8 letter)
+			 * @param[in]   title       Group title (UTF-8 letter)
+			 * @param[in]   indexItem   Index item
 			 */
-			ContactGroupItem(const char *title);
+			ContactGroupItem(const char *title, Elm_Object_Item *indexItem);
+
+			/**
+			 * @return Group item title
+			 */
+			const char *getTitle() const;
+
+			/**
+			 * @return Linked index item
+			 */
+			Elm_Object_Item *getIndexItem() const;
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part);
 
 			std::string m_Title;
+			Elm_Object_Item *m_IndexItem;
 		};
 	}
 }
