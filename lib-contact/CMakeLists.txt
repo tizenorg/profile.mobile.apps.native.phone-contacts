@@ -11,3 +11,5 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES} common)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${LIBDIR})
+
+add_subdirectory(res/input)
