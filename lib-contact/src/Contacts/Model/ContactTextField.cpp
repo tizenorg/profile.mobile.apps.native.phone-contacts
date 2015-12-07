@@ -26,6 +26,11 @@ bool ContactTextField::isEmpty() const
 	return !(value && *value);
 }
 
+void ContactTextField::reset()
+{
+	setValue("");
+}
+
 const char *ContactTextField::getValue() const
 {
 	char *value = nullptr;

@@ -31,6 +31,11 @@ Elm_Object_Item *Hoversel::addItem(const char *text, int value)
 	return item;
 }
 
+void Hoversel::setText(const char *text)
+{
+	elm_object_translatable_text_set(getEvasObject(), text);
+}
+
 void Hoversel::setSelectedCallback(SelectedCallback callback)
 {
 	m_OnSelected = std::move(callback);
@@ -59,12 +64,11 @@ Evas_Object *Hoversel::onCreate(Evas_Object *parent)
 
 void Hoversel::onSelected(Evas_Object *hoversel, Elm_Object_Item *item)
 {
-	const char *text = elm_object_item_translatable_text_get(item);
-	elm_object_translatable_text_set(hoversel, text);
-
 	if (m_OnSelected) {
 		int value = (long) elm_object_item_data_get(item);
-		m_OnSelected(value);
+		if (m_OnSelected(value)) {
+			setText(elm_object_item_translatable_text_get(item));
+		}
 	}
 }
 

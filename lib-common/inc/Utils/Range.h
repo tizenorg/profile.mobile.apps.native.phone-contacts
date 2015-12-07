@@ -23,18 +23,32 @@
 namespace Utils
 {
 	/**
+	 * @brief Convenience wrapper around std::advance.
+	 * @param[in]   iterator    Input iterator
+	 * @param[in]   distance    Distance to advance iterator
+	 * @return New iterator at @a distance from @a iterator.
+	 */
+	template <typename Iter, typename Distance>
+	inline Iter advance(Iter iterator, Distance distance)
+	{
+		std::advance(iterator, distance);
+		return iterator;
+	}
+
+	/**
 	 * @brief Convenience wrapper for iterator pair.
 	 */
 	template <typename Iter>
 	class Range
 	{
 	public:
-		typedef typename std::iterator_traits<Iter>::difference_type difference_type;
+		typedef typename std::iterator_traits<Iter>::reference reference;
 
 		Range() = default;
 
 		/**
 		 * @brief Create iterator range from static array.
+		 * @param[in]   array   Static array
 		 */
 		template <typename T, size_t N>
 		Range(T(&array)[N])
@@ -46,7 +60,7 @@ namespace Utils
 		 * @param[in]   count   Count of elements until range's end
 		 */
 		Range(Iter begin, size_t count)
-			: m_Begin(std::move(begin)), m_End(m_Begin) { std::advance(m_End, count); }
+			: m_Begin(std::move(begin)), m_End(advance(m_Begin, count)) { }
 
 		/**
 		 * @brief Create iterator range from pair of iterators
@@ -64,7 +78,7 @@ namespace Utils
 		/**
 		 * @return Range element count.
 		 */
-		difference_type count() const { return std::distance(m_Begin, m_End); }
+		size_t count() const { return std::distance(m_Begin, m_End); }
 
 		/**
 		 * @return Range begin iterator.
@@ -90,6 +104,13 @@ namespace Utils
 		 * @see empty()
 		 */
 		explicit operator bool() const { return !empty(); }
+
+		/**
+		 * @brief Get range element by index.
+		 * @param[in]   index   Element index
+		 * @return Range element reference.
+		 */
+		reference operator[](size_t index) const { return *advance(m_Begin, index); }
 
 	private:
 		Iter m_Begin;

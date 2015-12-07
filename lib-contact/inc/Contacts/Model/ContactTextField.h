@@ -40,6 +40,11 @@ namespace Contacts
 			virtual bool isEmpty() const override;
 
 			/**
+			 * @see ContactField::reset()
+			 */
+			virtual void reset() override;
+
+			/**
 			 * @return Text field value.
 			 */
 			const char *getValue() const;

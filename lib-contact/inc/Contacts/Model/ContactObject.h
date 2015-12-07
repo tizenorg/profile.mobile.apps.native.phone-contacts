@@ -42,6 +42,11 @@ namespace Contacts
 			virtual bool isEmpty() const override;
 
 			/**
+			 * @see ContactField::reset()
+			 */
+			virtual void reset() override;
+
+			/**
 			 * @return Begin iterator.
 			 */
 			ContactObjectIterator begin() const;

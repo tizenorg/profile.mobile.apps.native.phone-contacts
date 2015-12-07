@@ -29,8 +29,9 @@ namespace Ui
 		/**
 		 * @brief Item selection callback.
 		 * @param[in]   Item value
+		 * @return Whether to display selected item in hoversel button automatically
 		 */
-		typedef std::function<void(int)> SelectedCallback;
+		typedef std::function<bool(int)> SelectedCallback;
 
 		/**
 		 * @brief Add item.
@@ -38,6 +39,12 @@ namespace Ui
 		 * @param[in]   value       Item value which will be passed to SelectedCallback
 		 */
 		Elm_Object_Item *addItem(const char *text, int value);
+
+		/**
+		 * @brief Set text of currently selected item.
+		 * @param[in]   text        Text to be displayed in hoversel button
+		 */
+		void setText(const char *text);
 
 		/**
 		 * @brief Set item selection callback.

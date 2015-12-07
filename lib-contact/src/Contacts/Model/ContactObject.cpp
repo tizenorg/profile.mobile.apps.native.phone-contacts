@@ -34,6 +34,13 @@ bool ContactObject::isEmpty() const
 	return isEmpty;
 }
 
+void ContactObject::reset()
+{
+	for (auto &&field : *this) {
+		field->reset();
+	}
+}
+
 ContactObjectIterator ContactObject::begin() const
 {
 	return ContactObjectIterator(*this, 0);
