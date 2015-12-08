@@ -55,15 +55,13 @@ Phone-Contacts application.
 %define _app_home_dir             %{TZ_SYS_RO_APP}/%{name}
 %define _app_icon_dir             %{TZ_SYS_RO_ICONS}/default/small
 %define _app_share_packages_dir   %{TZ_SYS_RO_PACKAGES}
-%define _app_smack_dir            %{TZ_SYS_SMACK}/accesses.d
 %define _app_license_dir          %{TZ_SYS_SHARE}/license
 
 LDFLAGS+="-Wl,--rpath=%{_app_home_dir}/lib"; export LDFLAGS
 cmake . -DPKGNAME=%{name} \
         -DCMAKE_APP_HOME_DIR=%{_app_home_dir} \
         -DCMAKE_APP_ICON_DIR=%{_app_icon_dir} \
-        -DCMAKE_APP_SHARE_PACKAGES_DIR=%{_app_share_packages_dir} \
-        -DCMAKE_APP_SMACK_DIR=%{_app_smack_dir}
+        -DCMAKE_APP_SHARE_PACKAGES_DIR=%{_app_share_packages_dir}
 
 
 make %{?jobs:-j%jobs} \
@@ -97,5 +95,4 @@ fi
 %{_app_icon_dir}/org.tizen.phone.png
 %{_app_share_packages_dir}/%{name}.xml
 %{_app_license_dir}/%{name}
-%{_app_smack_dir}/%{name}.efl
 

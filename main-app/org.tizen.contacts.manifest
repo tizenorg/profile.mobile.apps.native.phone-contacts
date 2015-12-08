@@ -1,22 +1,5 @@
 <manifest>
-	<define>
-		<domain name="org.tizen.contacts"/>
-	</define>
-	<assign>
-		<filesystem path="/usr/share/packages/org.tizen.contacts.xml" label="_" />
-		<filesystem path="/usr/share/applications/org.tizen.contacts.desktop" label="_" />
-		<filesystem path="/usr/share/icons/default/small/org.tizen.contacts.png" label="_" />
-		<filesystem path="/usr/share/icons/default/small/Contacts_1x1.png" label="_" />
-		<filesystem path="/usr/share/icons/default/small/Contacts_2x2.png" label="_" />
-		<filesystem path="/opt/usr/ug/data/ug-phone" label="org.tizen.contacts" type="transmutable" />
-		<filesystem path="/usr/share/icons/default/small/org.tizen.phone.png" label="_" />
-		<filesystem path="/usr/share/icons/default/small/Phone_1x1.png" label="_" />
-		<filesystem path="/usr/share/icons/default/small/Phone_2x1.png" label="_" />
-		<filesystem path="/usr/share/icons/default/small/Phone_2x2.png" label="_" />
-		<filesystem path="/usr/apps/org.tizen.contacts/res/locale/*" label="_" />
-		<filesystem path="/usr/share/locale/*" label="_" />
-	</assign>
 	<request>
-		<domain name="org.tizen.contacts"/>
+		<domain name="_"/>
 	</request>
 </manifest>
