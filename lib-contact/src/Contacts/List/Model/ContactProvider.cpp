@@ -46,6 +46,34 @@ namespace
 		return filter;
 	}
 
+	contacts_list_h getContactList(ContactProvider::FilterType filterType)
+	{
+		contacts_list_h list = nullptr;
+		contacts_query_h query = nullptr;
+		unsigned projection[] = {
+			_contacts_person.id,
+			_contacts_person.display_name,
+			_contacts_person.display_name_index,
+			_contacts_person.display_contact_id,
+			_contacts_person.image_thumbnail_path,
+			_contacts_person.is_favorite,
+			_contacts_person.favorite_priority
+		};
+
+		contacts_query_create(_contacts_person._uri, &query);
+
+		contacts_filter_h filter = getProviderFilter(filterType);
+		contacts_query_set_filter(query, filter);
+
+		contacts_query_set_projection(query, projection, sizeof(projection) / sizeof(*projection));
+		contacts_db_get_records_with_query(query, 0, 0, &list);
+
+		contacts_filter_destroy(filter);
+		contacts_query_destroy(query);
+
+		return list;
+	}
+
 	contacts_record_h getPersonRecord(int contactId, ContactProvider::FilterType filterType)
 	{
 		contacts_filter_h filter = getProviderFilter(filterType);
@@ -77,29 +105,19 @@ ContactProvider::ContactProvider(ContactProvider::FilterType filterType)
 	contacts_db_add_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&ContactProvider::onChanged), this);
 }
 
-contacts_list_h ContactProvider::getContactsList() const
+ContactList ContactProvider::getContactList() const
 {
-	contacts_list_h list = nullptr;
-	contacts_query_h query = nullptr;
-	unsigned projection[] = {
-		_contacts_person.display_name,
-		_contacts_person.image_thumbnail_path,
-		_contacts_person.display_name_index
-	};
+	ContactList contactList;
+	contacts_list_h list = ::getContactList(m_ListFilterType);
 
-	contacts_query_create(_contacts_person._uri, &query);
+	contacts_record_h record = nullptr;
+	CONTACTS_LIST_FOREACH(list, record) {
+		contactList.push_back(ContactPtr(new Contact(record)));
+	}
 
-	contacts_filter_h contactsFilter = getProviderFilter(m_ListFilterType);
-	contacts_query_set_filter(query, contactsFilter);
+	contacts_list_destroy(list, false);
 
-	contacts_query_set_projection(query, projection, sizeof(projection) / sizeof(*projection));
-	contacts_query_set_sort(query, _contacts_person.display_name, true);//Todo: Get sort option from settings
-	contacts_db_get_records_with_query(query, 0, 0, &list);
-
-	contacts_filter_destroy(contactsFilter);
-	contacts_query_destroy(query);
-
-	return list;
+	return contactList;
 }
 
 void ContactProvider::setChangeCallback(int id, ChangeCallback callback)
@@ -135,28 +153,24 @@ void ContactProvider::onChanged(const char *viewUri)
 		contacts_record_get_int(record, _contacts_contact_updated_info.contact_id, &contactId);
 		contacts_record_get_int(record, _contacts_contact_updated_info.type, &changeType);
 
-		contacts_record_h personRecord = getPersonRecord(contactId, m_ListFilterType);
-		notify(static_cast<contacts_changed_e>(changeType), personRecord);
-		contacts_record_destroy(personRecord, true);
+		ContactPtr contact(new Contact(getPersonRecord(contactId, m_ListFilterType)));
+		notify(static_cast<contacts_changed_e>(changeType), std::move(contact));
 	}
 
 	contacts_list_destroy(changes, true);
 }
 
-void ContactProvider::notify(contacts_changed_e changeType, contacts_record_h record)
+void ContactProvider::notify(contacts_changed_e changeType, ContactPtr contact)
 {
-	int id = 0;
-	contacts_record_get_int(record, _contacts_person.id, &id);
-
 	switch (changeType) {
 		case CONTACTS_CHANGE_INSERTED:
 			if (m_InsertCallback) {
-				m_InsertCallback(record);
+				m_InsertCallback(std::move(contact));
 			}
 			break;
 		case CONTACTS_CHANGE_UPDATED:
 		case CONTACTS_CHANGE_DELETED:
-			auto it = m_ChangeCallbacks.find(id);
+			auto it = m_ChangeCallbacks.find(contact->getPersonId());
 			if (it != m_ChangeCallbacks.end()) {
 				it->second(it->first, changeType);
 			}
