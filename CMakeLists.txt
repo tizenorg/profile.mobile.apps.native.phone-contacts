@@ -6,6 +6,7 @@ pkg_check_modules(TIZEN_PACKAGES REQUIRED
 	badge
 	capi-appfw-application
 	capi-appfw-preference
+	capi-base-utils-i18n
 	contacts-service2
 	dlog
 	efl-extension

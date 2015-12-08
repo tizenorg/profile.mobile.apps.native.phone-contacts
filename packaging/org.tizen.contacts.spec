@@ -13,6 +13,7 @@ BuildRequires: gettext
 BuildRequires: pkgconfig(badge)
 BuildRequires: pkgconfig(capi-appfw-application)
 BuildRequires: pkgconfig(capi-appfw-preference)
+BuildRequires: pkgconfig(capi-base-utils-i18n)
 BuildRequires: pkgconfig(contacts-service2)
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(efl-extension)
