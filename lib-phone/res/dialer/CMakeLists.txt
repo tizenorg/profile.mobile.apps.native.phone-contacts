@@ -1,5 +1,5 @@
 set(EDCFILES dialer-keypad.edc dialer-layout.edc dialer-predictive.edc)
-set(EDJDIR "${RESDIR}/dialer/edje")
+set(EDJDIR "${RES_DIR}/dialer/edje")
 
 foreach(EDCFILE ${EDCFILES})
 	get_filename_component(EDJFILE ${EDCFILE} NAME_WE)
