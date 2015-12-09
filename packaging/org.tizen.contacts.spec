@@ -20,39 +20,43 @@ BuildRequires: pkgconfig(efl-extension)
 BuildRequires: pkgconfig(elementary)
 BuildRequires: pkgconfig(feedback)
 BuildRequires: pkgconfig(notification)
+BuildRequires: pkgconfig(libtzplatform-config)
 
 %description
 Contacts and Phone Reference Applications.
 
-%define _pkgdir /usr/apps/%{name}
-%define _bindir %{_pkgdir}/bin
-%define _libdir %{_pkgdir}/lib
-%define _resdir %{_pkgdir}/res
-%define _localedir %{_resdir}/locale
-%define _manifestdir %{_datadir}/packages
-%define _icondir %{_datadir}/icons/default/small
-%define _smackdir /etc/smack/accesses2.d
+%define _pkg_dir                %{TZ_SYS_RO_APP}/%{name}
+%define _bin_dir                %{_pkg_dir}/bin
+%define _lib_dir                %{_pkg_dir}/lib
+%define _res_dir                %{_pkg_dir}/res
+%define _locale_dir             %{_res_dir}/locale
+%define _manifest_dir           %{TZ_SYS_RO_PACKAGES}
+%define _icon_dir               %{TZ_SYS_RO_ICONS}/default/small
+%define _license_dir            %{TZ_SYS_SHARE}/license
 
 %prep
 %setup -q
 
 %build
 cmake \
-	%{!?RELEASE: -DCMAKE_BUILD_TYPE=Debug }\
-	'-DPACKAGE=%{name}'\
-	'-DCMAKE_INSTALL_PREFIX=%{_pkgdir}'\
-	'-DBINDIR=%{_bindir}'\
-	'-DLIBDIR=%{_libdir}'\
-	'-DRESDIR=%{_resdir}'\
-	'-DLOCALEDIR=%{_localedir}'\
-	'-DMANIFESTDIR=%{_manifestdir}'\
-	'-DICONDIR=%{_icondir}'\
-	'-DSMACKDIR=%{_smackdir}'
+    %{!?RELEASE: -DCMAKE_BUILD_TYPE=Debug } \
+    -DPACKAGE=%{name} \
+    -DCMAKE_INSTALL_PREFIX=%{_pkg_dir} \
+    -DBIN_DIR=%{_bin_dir} \
+    -DLIB_DIR=%{_lib_dir} \
+    -DRES_DIR=%{_res_dir} \
+    -DLOCALE_DIR=%{_locale_dir} \
+    -DMANIFEST_DIR=%{_manifest_dir} \
+    -DICON_DIR=%{_icon_dir}
 
 make %{?jobs:-j%jobs}
 
 %install
 %make_install
+
+#install license file
+mkdir -p %{buildroot}%{_license_dir}
+cp LICENSE %{buildroot}%{_license_dir}/%{name}
 
 %clean
 rm -rf %{buildroot}
@@ -60,7 +64,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %manifest %{name}.manifest
-%{_pkgdir}/*
-%{_manifestdir}/%{name}.xml
-%{_icondir}/*.png
-%{_smackdir}/%{name}.efl
+%{_pkg_dir}/*
+%{_manifest_dir}/%{name}.xml
+%{_icon_dir}/*.png
+%{_license_dir}/%{name}

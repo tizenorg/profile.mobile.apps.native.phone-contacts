@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <manifest xmlns="http://tizen.org/ns/packages" api-version="2.4" package="@PACKAGE@" version="1.0.0">
-	<ui-application appid="@PACKAGE@" exec="@BINDIR@/contacts" hw-acceleration="use-GL" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+	<ui-application appid="@PACKAGE@" exec="@BIN_DIR@/contacts" hw-acceleration="use-GL" multiple="false" nodisplay="false" taskmanage="true" type="capp">
 		<icon>contacts.png</icon>
 		<label>Contacts</label>
 		<label xml:lang="ar-ae">الأسماء</label>
@@ -54,7 +54,7 @@
 		<label xml:lang="zh-hk">聯絡人</label>
 		<label xml:lang="zh-tw">聯絡人</label>
 	</ui-application>
-	<ui-application appid="org.tizen.phone" exec="@BINDIR@/contacts" hw-acceleration="use-GL" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+	<ui-application appid="org.tizen.phone" exec="@BIN_DIR@/contacts" hw-acceleration="use-GL" multiple="false" nodisplay="false" taskmanage="true" type="capp">
 		<icon>phone.png</icon>
 		<label>Phone</label>
 		<label xml:lang="ar-ae">الهاتف</label>
