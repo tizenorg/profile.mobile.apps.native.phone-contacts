@@ -12,6 +12,7 @@ pkg_check_modules(TIZEN_PACKAGES REQUIRED
 	efl-extension
 	elementary
 	feedback
+	libtzplatform-config
 	notification
 )
 
@@ -22,16 +23,15 @@ set(LIBRARIES     "${TIZEN_PACKAGES_LIBRARIES};dl;rt;")
 include_directories(${INCLUDES})
 link_directories(${LIBRARY_DIRS})
 
-set(CMAKE_INSTALL_RPATH ${LIBDIR})
+set(CMAKE_INSTALL_RPATH ${LIB_DIR})
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 
 set(COMPILER_FLAGS "-fpie -fPIC -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMPILER_FLAGS} -std=c++11")
 
-add_definitions("-DPACKAGE=\"${PACKAGE}\"")
 add_definitions("-DTEXT_DOMAIN=\"${PACKAGE}\"")
-add_definitions("-DRESDIR=\"${RESDIR}/\"")
-add_definitions("-DLOCALEDIR=\"${LOCALEDIR}\"")
+add_definitions("-DRES_DIR=\"${RES_DIR}/\"")
+add_definitions("-DLOCALE_DIR=\"${LOCALE_DIR}\"")
 
 add_subdirectory(lib-common)
 add_subdirectory(lib-contact)
