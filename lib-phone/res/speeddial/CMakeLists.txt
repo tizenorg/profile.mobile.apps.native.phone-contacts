@@ -1,5 +1,5 @@
 set(EDCFILES speeddial-layout.edc)
-set(EDJDIR "${RESDIR}/speeddial/edje")
+set(EDJDIR "${RES_DIR}/speeddial/edje")
 
 foreach(EDCFILE ${EDCFILES})
 	get_filename_component(EDJFILE ${EDCFILE} NAME_WE)

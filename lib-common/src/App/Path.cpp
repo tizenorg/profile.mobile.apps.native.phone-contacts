@@ -23,8 +23,8 @@ const std::string &App::getLocaleDir()
 {
 	static std::string localeDir;
 	if (localeDir.empty()) {
-		#ifdef LOCALEDIR
-			localeDir = LOCALEDIR;
+		#ifdef LOCALE_DIR
+			localeDir = LOCALE_DIR;
 		#else
 			localeDir = getResourcePath("locale/");
 		#endif
@@ -37,8 +37,8 @@ const std::string &App::getResourceDir()
 {
 	static std::string resDir;
 	if (resDir.empty()) {
-		#ifdef RESDIR
-			resDir = RESDIR;
+		#ifdef RES_DIR
+			resDir = RES_DIR;
 		#else
 			char *path = app_get_resource_path();
 			resDir = path;

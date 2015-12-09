@@ -11,6 +11,6 @@ include_directories(
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES} common)
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${LIBDIR})
+install(TARGETS ${PROJECT_NAME} DESTINATION ${LIB_DIR})
 
 add_subdirectory(res/input)
