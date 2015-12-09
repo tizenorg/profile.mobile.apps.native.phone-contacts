@@ -1,5 +1,5 @@
 set(EDCFILES common-thumbnail.edc common-buttons.edc)
-set(EDJDIR "${RESDIR}/common/edje")
+set(EDJDIR "${RES_DIR}/common/edje")
 
 foreach(EDCFILE ${EDCFILES})
 	get_filename_component(EDJFILE ${EDCFILE} NAME_WE)

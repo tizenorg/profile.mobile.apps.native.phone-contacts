@@ -18,14 +18,12 @@ target_link_libraries(${PROJECT_NAME} ${LIBRARIES} -pie
 	logs
 )
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${BINDIR})
+install(TARGETS ${PROJECT_NAME} DESTINATION ${BIN_DIR})
 
 configure_file(tizen-manifest.xml.in ${PACKAGE}.xml)
 configure_file(smack.manifest.in ${CMAKE_SOURCE_DIR}/${PACKAGE}.manifest)
-configure_file(smack.efl.in ${PACKAGE}.efl)
 
-install(DIRECTORY shared/res/ DESTINATION ${ICONDIR})
-install(FILES ${PACKAGE}.xml DESTINATION ${MANIFESTDIR})
-install(FILES ${PACKAGE}.efl DESTINATION ${SMACKDIR})
+install(DIRECTORY shared/res/ DESTINATION ${ICON_DIR})
+install(FILES ${PACKAGE}.xml DESTINATION ${MANIFEST_DIR})
 
 add_subdirectory(res)
