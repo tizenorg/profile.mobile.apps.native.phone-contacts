@@ -17,7 +17,7 @@
 #ifndef CONTACTS_LIST_CONTACT_GROUP_ITEM_H
 #define CONTACTS_LIST_CONTACT_GROUP_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenlistGroupItem.h"
 #include <string>
 
 namespace Contacts
@@ -27,7 +27,7 @@ namespace Contacts
 		/**
 		 * @brief Contact alphabet group item
 		 */
-		class ContactGroupItem : public Ui::GenlistItem
+		class ContactGroupItem : public Ui::GenlistGroupItem
 		{
 		public:
 			/**

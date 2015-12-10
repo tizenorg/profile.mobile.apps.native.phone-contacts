@@ -16,7 +16,7 @@
  */
 
 #include "Ui/Genlist.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenlistGroupItem.h"
 
 using namespace Ui;
 
@@ -39,46 +39,39 @@ Evas_Object *Genlist::onCreate(Evas_Object *parent)
 	return genlist;
 }
 
-GenlistItem *Genlist::getFirstItem() const
+GenlistIterator Genlist::begin() const
 {
 	Elm_Object_Item *item = elm_genlist_first_item_get(getEvasObject());
 	return (GenlistItem *) elm_object_item_data_get(item);
 }
 
-GenlistItem *Genlist::getLastItem() const
+GenlistIterator Genlist::end() const
 {
 	Elm_Object_Item *item = elm_genlist_last_item_get(getEvasObject());
 	return (GenlistItem *) elm_object_item_data_get(item);
 }
 
-Elm_Object_Item *Genlist::insert(GenlistItem *item, GenlistItem *parent,
+void Genlist::insert(GenlistItem *item, GenlistGroupItem *parent,
 		GenlistItem *sibling, Position position)
 {
 	if (!item) {
-		return nullptr;
+		return;
 	}
 
 	if (item->m_Item) {
-		item->m_Preserve = true;
-		elm_object_item_del(item->m_Item);
-
-		item->m_Item = nullptr;
-		item->m_Preserve = false;
+		item->pop();
 	}
 
 	Elm_Object_Item *parentItem = parent ? parent->getObjectItem() : nullptr;
 	if (sibling) {
 		auto insert = (position == Before) ? elm_genlist_item_insert_before : elm_genlist_item_insert_after;
-		item->m_Item = insert(getEvasObject(), item->m_ItemClass, item,
-				parentItem, sibling->getObjectItem(), item->m_ItemType, nullptr, nullptr);
+		item->onInserted(insert(getEvasObject(), item->m_ItemClass, item,
+				parentItem, sibling->getObjectItem(), item->m_ItemType, nullptr, nullptr));
 	} else {
-		auto insert = (position == Before) ? elm_genlist_item_prepend : elm_genlist_item_append;
-		item->m_Item = insert(getEvasObject(), item->m_ItemClass, item,
-				parentItem, item->m_ItemType, nullptr, nullptr);
+		auto insert = (position == Before) ? elm_genlist_item_append : elm_genlist_item_prepend;
+		item->onInserted(insert(getEvasObject(), item->m_ItemClass, item,
+				parentItem, item->m_ItemType, nullptr, nullptr));
 	}
-
-	item->onInserted();
-	return item->m_Item;
 }
 
 void Genlist::update(const char *parts, Elm_Genlist_Item_Field_Type type)
