@@ -19,13 +19,8 @@
 
 using namespace Contacts::List;
 
-namespace
-{
-	Elm_Genlist_Item_Class groupItemClass = Ui::GenlistItem::createItemClass("group_index");
-}
-
 ContactGroupItem::ContactGroupItem(const char *title, Elm_Object_Item *indexItem)
-	: GenlistItem(&groupItemClass, ELM_GENLIST_ITEM_GROUP), m_IndexItem(indexItem)
+	: m_IndexItem(indexItem)
 {
 	if (title) {
 		m_Title = title;

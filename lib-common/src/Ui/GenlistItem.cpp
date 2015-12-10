@@ -16,6 +16,7 @@
  */
 
 #include "Ui/GenlistItem.h"
+#include "Ui/GenlistGroupItem.h"
 #include "Ui/Genlist.h"
 #include "Utils/Callback.h"
 
@@ -34,6 +35,13 @@ GenlistItem::GenlistItem(Elm_Genlist_Item_Class *itemClass, Elm_Genlist_Item_Typ
 	}
 }
 
+GenlistItem::~GenlistItem()
+{
+	if (m_Item) {
+		pop();
+	}
+}
+
 Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
 		const char *decorateStyle, const char *editStyle)
 {
@@ -43,7 +51,7 @@ Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
 	itc.decorate_all_item_style = editStyle;
 	itc.func.text_get = makeCallback(&GenlistItem::getText);
 	itc.func.content_get = makeCallback(&GenlistItem::getContent);
-	itc.func.del = (Elm_Gen_Item_Del_Cb) &GenlistItem::onDestroy;
+	itc.func.del = makeCallback(&GenlistItem::onDestroy);
 
 	return itc;
 }
@@ -59,10 +67,10 @@ Genlist *GenlistItem::getParent() const
 	return static_cast<Genlist *>(Control::getControl(genlist));
 }
 
-GenlistItem *GenlistItem::getParentItem() const
+GenlistGroupItem *GenlistItem::getParentItem() const
 {
 	Elm_Object_Item *item = elm_genlist_item_parent_get(getObjectItem());
-	return (GenlistItem *) elm_object_item_data_get(item);
+	return (GenlistGroupItem *) elm_object_item_data_get(item);
 }
 
 GenlistItem *GenlistItem::getNextItem() const
@@ -77,14 +85,32 @@ GenlistItem *GenlistItem::getPrevItem() const
 	return (GenlistItem *) elm_object_item_data_get(item);
 }
 
-void GenlistItem::onContracted()
+void GenlistItem::pop()
 {
-	elm_genlist_item_subitems_clear(getObjectItem());
+	m_Preserve = true;
+	elm_object_item_del(m_Item);
+	m_Preserve = false;
 }
 
-void GenlistItem::onDestroy(GenlistItem *item, Evas_Object *genlist)
+void GenlistItem::onInserted(Elm_Object_Item *item)
 {
-	if (!item->m_Preserve) {
-		delete item;
+	m_Item = item;
+	GenlistGroupItem *parent = getParentItem();
+	if (parent) {
+		parent->onSubItemInserted(this);
+	}
+	onInserted();
+}
+
+void GenlistItem::onDestroy(Evas_Object *genlist)
+{
+	GenlistGroupItem *parent = getParentItem();
+	if (parent) {
+		parent->onSubItemDestroy(this);
+	}
+
+	m_Item = nullptr;
+	if (!m_Preserve) {
+		delete this;
 	}
 }
