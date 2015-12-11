@@ -15,7 +15,7 @@
  *
  */
 
-#include "Phone/Dialer/MainView.h"
+#include "Phone/Dialer/DialerView.h"
 #include "Phone/Dialer/AddNumberPopup.h"
 #include "Phone/Dialer/KeypadButton.h"
 #include "Phone/Dialer/KeypadEntry.h"
@@ -50,26 +50,26 @@ namespace
 using namespace Phone::Dialer;
 using namespace std::placeholders;
 
-MainView::MainView()
-	: m_Entry(nullptr), m_SearchWidget(nullptr)
+DialerView::DialerView()
+	: m_Entry(nullptr), m_SearchControl(nullptr)
 {
 }
 
-MainView::~MainView()
+DialerView::~DialerView()
 {
 	feedback_deinitialize();
 	contacts_db_remove_changed_cb(_contacts_contact._uri,
-			makeCallbackWithLastParam(&MainView::onDbChanged), this);
+			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
 }
 
-void MainView::onCreated()
+void DialerView::onCreated()
 {
 	feedback_initialize();
 	contacts_db_add_changed_cb(_contacts_contact._uri,
-			makeCallbackWithLastParam(&MainView::onDbChanged), this);
+			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
 }
 
-Evas_Object *MainView::onCreate(Evas_Object *parent)
+Evas_Object *DialerView::onCreate(Evas_Object *parent)
 {
 	elm_theme_extension_add(nullptr, App::getResourcePath(COMMON_BUTTONS_EDJ).c_str());
 
@@ -78,7 +78,7 @@ Evas_Object *MainView::onCreate(Evas_Object *parent)
 	WARN_IF(res != EINA_TRUE, "elm_layout_file_set() failed");
 
 	elm_object_part_content_set(layout, PART_SWALLOW_ENTRY, createEntry(layout));
-	elm_object_part_content_set(layout, PART_SWALLOW_PREDICTIVE, createSearchWidget(layout));
+	elm_object_part_content_set(layout, PART_SWALLOW_PREDICTIVE, createSearchControl(layout));
 	elm_object_part_content_set(layout, PART_SWALLOW_KEYPAD, createKeypad(layout));
 	elm_object_part_content_set(layout, PART_SWALLOW_CALL, createCallButton(layout));
 	elm_object_part_content_set(layout, PART_SWALLOW_BACKSPACE, createBackspaceButton(layout));
@@ -86,19 +86,19 @@ Evas_Object *MainView::onCreate(Evas_Object *parent)
 	return layout;
 }
 
-void MainView::setNumber(const std::string &number)
+void DialerView::setNumber(const std::string &number)
 {
 	if (m_Entry) {
 		m_Entry->setNumber(number);
 	}
 }
 
-void MainView::onPageAttached()
+void DialerView::onPageAttached()
 {
 	getPage()->setTitle("IDS_KPD_ITAB3_KEYPAD");
 }
 
-void MainView::onNavigation(bool isCurrentView)
+void DialerView::onNavigation(bool isCurrentView)
 {
 	Evas_Object *conf = getWindow()->getConformant();
 	if (isCurrentView) {
@@ -110,7 +110,7 @@ void MainView::onNavigation(bool isCurrentView)
 	}
 }
 
-Evas_Object *MainView::onMenuPressed()
+Evas_Object *DialerView::onMenuPressed()
 {
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
@@ -139,21 +139,21 @@ Evas_Object *MainView::onMenuPressed()
 	return menu->getEvasObject();
 }
 
-Evas_Object *MainView::createEntry(Evas_Object *parent)
+Evas_Object *DialerView::createEntry(Evas_Object *parent)
 {
 	m_Entry = new KeypadEntry();
-	m_Entry->setChangedCallback(std::bind(&MainView::onEntryChanged, this));
+	m_Entry->setChangedCallback(std::bind(&DialerView::onEntryChanged, this));
 	return m_Entry->create(parent);
 }
 
-Evas_Object *MainView::createSearchWidget(Evas_Object *parent)
+Evas_Object *DialerView::createSearchControl(Evas_Object *parent)
 {
-	m_SearchWidget = new SearchResultsControl();
-	m_SearchWidget->setSelectedCallback(std::bind(&MainView::onResultSelected, this, _1));
-	return m_SearchWidget->create(parent);
+	m_SearchControl = new SearchResultsControl();
+	m_SearchControl->setSelectedCallback(std::bind(&DialerView::onResultSelected, this, _1));
+	return m_SearchControl->create(parent);
 }
 
-Evas_Object *MainView::createKeypad(Evas_Object *parent)
+Evas_Object *DialerView::createKeypad(Evas_Object *parent)
 {
 	Evas_Object *table = elm_table_add(parent);
 	elm_table_padding_set(table, 2, 2);
@@ -162,8 +162,8 @@ Evas_Object *MainView::createKeypad(Evas_Object *parent)
 	for (int i = 0; i < KEYPAD_ROWS; ++i) {
 		for (int j = 0; j < KEYPAD_COLS; ++j, ++id) {
 			KeypadButton *key = new KeypadButton((KeypadButton::Id) id);
-			key->setPressedCallback(std::bind(&MainView::onKeyPressed, this, _1));
-			key->setLongpressedCallback(std::bind(&MainView::onKeyLongpressed, this, _1));
+			key->setPressedCallback(std::bind(&DialerView::onKeyPressed, this, _1));
+			key->setLongpressedCallback(std::bind(&DialerView::onKeyLongpressed, this, _1));
 
 			Evas_Object *button = key->create(table);
 			evas_object_size_hint_weight_set(button, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
@@ -176,12 +176,12 @@ Evas_Object *MainView::createKeypad(Evas_Object *parent)
 	return table;
 }
 
-Evas_Object *MainView::createCallButton(Evas_Object *parent)
+Evas_Object *DialerView::createCallButton(Evas_Object *parent)
 {
 	Evas_Object *button = elm_button_add(parent);
 	elm_object_style_set(button, BUTTON_STYLE_CUSTOM_CIRCLE);
 	evas_object_smart_callback_add(button, "clicked",
-			makeCallback(&MainView::onCallPressed), this);
+			makeCallback(&DialerView::onCallPressed), this);
 
 	Evas_Object *edje = elm_layout_edje_get(button);
 	edje_object_color_class_set(edje, BUTTON_COLOR_CLASS_NORMAL, BUTTON_CALL_NORMAL,
@@ -197,11 +197,11 @@ Evas_Object *MainView::createCallButton(Evas_Object *parent)
 	return button;
 }
 
-Evas_Object *MainView::createBackspaceButton(Evas_Object *parent)
+Evas_Object *DialerView::createBackspaceButton(Evas_Object *parent)
 {
 	Ui::Button *key = new Ui::Button();
-	key->setPressedCallback(std::bind(&MainView::onBackspacePressed, this, _1));
-	key->setLongpressedCallback(std::bind(&MainView::onBackspaceLongpressed, this, _1));
+	key->setPressedCallback(std::bind(&DialerView::onBackspacePressed, this, _1));
+	key->setLongpressedCallback(std::bind(&DialerView::onBackspaceLongpressed, this, _1));
 
 	Evas_Object *button = key->create(parent);
 	elm_object_style_set(button, "transparent");
@@ -214,18 +214,18 @@ Evas_Object *MainView::createBackspaceButton(Evas_Object *parent)
 	return button;
 }
 
-void MainView::onEntryChanged()
+void DialerView::onEntryChanged()
 {
 	std::string number = m_Entry->getNumber();
 	if (!number.empty()) {
 		m_SearchEngine.search(number);
-		m_SearchWidget->setResults(m_SearchEngine.getSearchResult());
+		m_SearchControl->setResults(m_SearchEngine.getSearchResult());
 	} else {
-		m_SearchWidget->clearResults();
+		m_SearchControl->clearResults();
 	}
 }
 
-void MainView::onResultSelected(SearchResultPtr result)
+void DialerView::onResultSelected(SearchResultPtr result)
 {
 	if (result) {
 		m_Entry->setNumber(result->getNumber(false));
@@ -235,13 +235,13 @@ void MainView::onResultSelected(SearchResultPtr result)
 	}
 }
 
-void MainView::onKeyPressed(Ui::Button &button)
+void DialerView::onKeyPressed(Ui::Button &button)
 {
 	KeypadButton &key = static_cast<KeypadButton &>(button);
 	m_Entry->insert(key.getValue());
 }
 
-bool MainView::onKeyLongpressed(Ui::Button &button)
+bool DialerView::onKeyLongpressed(Ui::Button &button)
 {
 	KeypadButton &key = static_cast<KeypadButton &>(button);
 	int id = key.getId();
@@ -261,19 +261,19 @@ bool MainView::onKeyLongpressed(Ui::Button &button)
 	return false;
 }
 
-void MainView::onBackspacePressed(Ui::Button &button)
+void DialerView::onBackspacePressed(Ui::Button &button)
 {
 	feedback_play(FEEDBACK_PATTERN_KEY_BACK);
 	m_Entry->popBack();
 }
 
-bool MainView::onBackspaceLongpressed(Ui::Button &button)
+bool DialerView::onBackspaceLongpressed(Ui::Button &button)
 {
 	m_Entry->clear();
 	return true;
 }
 
-void MainView::onCallPressed(Evas_Object *obj, void *event_info)
+void DialerView::onCallPressed(Evas_Object *obj, void *event_info)
 {
 	std::string number = m_Entry->getNumber();
 	if (!number.empty()) {
@@ -284,21 +284,21 @@ void MainView::onCallPressed(Evas_Object *obj, void *event_info)
 	}
 }
 
-void MainView::onDbChanged(const char *uri)
+void DialerView::onDbChanged(const char *uri)
 {
 	std::string number = m_Entry->getNumber();
 	m_SearchEngine.searchFromScratch(number);
-	m_SearchWidget->setResults(m_SearchEngine.getSearchResult());
+	m_SearchControl->setResults(m_SearchEngine.getSearchResult());
 }
 
-void MainView::launchCall(const std::string &number)
+void DialerView::launchCall(const std::string &number)
 {
 	App::AppControl request = App::requestTelephonyCall(number.c_str());
 	request.launch(nullptr, nullptr, false);
 	request.detach();
 }
 
-void MainView::launchSpeedDial(int digit)
+void DialerView::launchSpeedDial(int digit)
 {
 	std::string number = Phone::getSpeedDialNumber(digit);
 	if (!number.empty()) {
