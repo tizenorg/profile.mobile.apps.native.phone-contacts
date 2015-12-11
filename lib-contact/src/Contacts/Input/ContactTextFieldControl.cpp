@@ -40,7 +40,7 @@ ContactTextFieldControl::ContactTextFieldControl(Model::ContactTextField *field)
 
 void ContactTextFieldControl::onCreated()
 {
-	setGuideText(Common::getContactFieldName(m_Field->getId()));
+	setGuideText(Common::getContactChildFieldName(m_Field->getId()));
 
 	Evas_Object *entry = getEntry();
 	elm_entry_input_panel_layout_set(entry, Utils::at(inputLayout, m_Field->getSubType()));

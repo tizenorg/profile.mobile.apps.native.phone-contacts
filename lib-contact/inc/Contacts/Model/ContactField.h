@@ -57,6 +57,12 @@ namespace Contacts
 			virtual void reset() { }
 
 			/**
+			 * @brief Cast field to derived type.
+			 */
+			template <typename FieldType>
+			FieldType &cast();
+
+			/**
 			 * @return Field ID.
 			 *
 			 * @see ContactFieldId
@@ -93,6 +99,21 @@ namespace Contacts
 			unsigned getPropertyId() const;
 
 		protected:
+			/**
+			 * @brief Create contact field.
+			 * @param[in]   metadata    Field metadata
+			 */
+			ContactField(const ContactFieldMetadata *metadata);
+
+			/**
+			 * @brief Set database record containing the field.
+			 * @param[in]   record      Record containing the field
+			 */
+			void setRecord(contacts_record_h record);
+
+			/**
+			 * @return Field metadata (exact struct type depends on field type).
+			 */
 			const ContactFieldMetadata *getMetadata() const;
 
 		private:
