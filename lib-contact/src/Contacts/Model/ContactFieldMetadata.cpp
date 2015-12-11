@@ -38,7 +38,7 @@ const ContactTypeMetadata contactEmailText = { TypeText, TextTypeEmail };
 const ContactTypeMetadata contactUrlText = { TypeText, TextTypeUrl };
 
 /******************************** Date type ***********************************/
-const ContactTypeMetadata contactDate = { TypeText, 0 };
+const ContactTypeMetadata contactDate = { TypeDate, 0 };
 
 /****************************** Company Object ********************************/
 const ContactFieldMetadata contactCompanyFields[] = {
@@ -299,17 +299,17 @@ const ContactArrayMetadata contactMsgs = {
 const ContactFieldMetadata contactFields[] = {
 	{ FieldImage,        _contacts_contact.image,        UPCAST(&contactImage) },
 	{ FieldName,         _contacts_contact.name,         UPCAST(&contactName) },
+	{ FieldPhoneticName, _contacts_contact.name,         UPCAST(&contactPhName) },
+	{ FieldCompany,      _contacts_contact.company,      UPCAST(&contactCompany) },
 	{ FieldNumber,       _contacts_contact.number,       UPCAST(&contactNumbers) },
 	{ FieldEmail,        _contacts_contact.email,        UPCAST(&contactEmails) },
-	{ FieldNote,         _contacts_contact.note,         UPCAST(&contactNote) },
 	{ FieldAddress,      _contacts_contact.address,      UPCAST(&contactAddrs) },
-	{ FieldEvent,        _contacts_contact.event,        UPCAST(&contactEvents) },
-	{ FieldRelationship, _contacts_contact.relationship, UPCAST(&contactRels) },
 	{ FieldUrl,          _contacts_contact.url,          UPCAST(&contactUrls) },
 	{ FieldMessenger,    _contacts_contact.messenger,    UPCAST(&contactMsgs) },
+	{ FieldEvent,        _contacts_contact.event,        UPCAST(&contactEvents) },
+	{ FieldNote,         _contacts_contact.note,         UPCAST(&contactNote) },
 	{ FieldNickname,     _contacts_contact.nickname,     UPCAST(&contactNick) },
-	{ FieldCompany,      _contacts_contact.company,      UPCAST(&contactCompany) },
-	{ FieldPhoneticName, _contacts_contact.name,         UPCAST(&contactPhName) }
+	{ FieldRelationship, _contacts_contact.relationship, UPCAST(&contactRels) }
 };
 const ContactObjectMetadata contactObject = {
 	TypeObject, ObjectTypeContact, _contacts_contact._uri, makeRange(contactFields)
@@ -320,17 +320,17 @@ const ContactFieldMetadata contact = { FieldRoot, 0, UPCAST(&contactObject) };
 const ContactFieldMetadata myProfileFields[] = {
 	{ FieldImage,        _contacts_my_profile.image,        UPCAST(&contactImage) },
 	{ FieldName,         _contacts_my_profile.name,         UPCAST(&contactName) },
+	{ FieldPhoneticName, _contacts_my_profile.name,         UPCAST(&contactPhName) },
+	{ FieldCompany,      _contacts_my_profile.company,      UPCAST(&contactCompany) },
 	{ FieldNumber,       _contacts_my_profile.number,       UPCAST(&contactNumbers) },
 	{ FieldEmail,        _contacts_my_profile.email,        UPCAST(&contactEmails) },
-	{ FieldNote,         _contacts_my_profile.note,         UPCAST(&contactNote) },
 	{ FieldAddress,      _contacts_my_profile.address,      UPCAST(&contactAddrs) },
-	{ FieldEvent,        _contacts_my_profile.event,        UPCAST(&contactEvents) },
-	{ FieldRelationship, _contacts_my_profile.relationship, UPCAST(&contactRels) },
 	{ FieldUrl,          _contacts_my_profile.url,          UPCAST(&contactUrls) },
 	{ FieldMessenger,    _contacts_my_profile.messenger,    UPCAST(&contactMsgs) },
+	{ FieldEvent,        _contacts_my_profile.event,        UPCAST(&contactEvents) },
+	{ FieldNote,         _contacts_my_profile.note,         UPCAST(&contactNote) },
 	{ FieldNickname,     _contacts_my_profile.nickname,     UPCAST(&contactNick) },
-	{ FieldCompany,      _contacts_my_profile.company,      UPCAST(&contactCompany) },
-	{ FieldPhoneticName, _contacts_my_profile.name,         UPCAST(&contactPhName) }
+	{ FieldRelationship, _contacts_my_profile.relationship, UPCAST(&contactRels) }
 };
 const ContactObjectMetadata myProfileObject = {
 	TypeObject, ObjectTypeMyProfile, _contacts_my_profile._uri, makeRange(myProfileFields)
@@ -340,12 +340,13 @@ const ContactFieldMetadata myProfile = { FieldRoot, 0, UPCAST(&myProfileObject) 
 } /* Anonymous namespace */
 
 
-const ContactFieldMetadata *Model::getContactMetadata()
+const ContactFieldMetadata *Model::getContactMetadata(ContactObjectType type)
 {
-	return &contact;
-}
+	if (type == ObjectTypeContact) {
+		return &contact;
+	} else if (type == ObjectTypeMyProfile) {
+		return &myProfile;
+	}
 
-const ContactFieldMetadata *Model::getMyProfileMetadata()
-{
-	return &myProfile;
+	return nullptr;
 }

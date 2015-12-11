@@ -16,6 +16,10 @@
  */
 
 #include "Contacts/Model/ContactField.h"
+#include "Contacts/Model/ContactArray.h"
+#include "Contacts/Model/ContactDateField.h"
+#include "Contacts/Model/ContactEnumField.h"
+#include "Contacts/Model/ContactTypedObject.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
 
 using namespace Contacts::Model;
@@ -25,6 +29,24 @@ ContactField::ContactField(contacts_record_h record,
 	: m_Record(record), m_Metadata(metadata)
 {
 }
+
+ContactField::ContactField(const ContactFieldMetadata *metadata)
+	: m_Record(nullptr), m_Metadata(metadata)
+{
+}
+
+template <typename FieldType>
+FieldType &ContactField::cast()
+{
+	return static_cast<FieldType &>(*this);
+}
+
+template ContactArray &ContactField::cast();
+template ContactDateField &ContactField::cast();
+template ContactEnumField &ContactField::cast();
+template ContactTextField &ContactField::cast();
+template ContactObject &ContactField::cast();
+template ContactTypedObject &ContactField::cast();
 
 unsigned ContactField::getId() const
 {
@@ -49,6 +71,11 @@ contacts_record_h ContactField::getRecord() const
 unsigned ContactField::getPropertyId() const
 {
 	return m_Metadata->propId;
+}
+
+void ContactField::setRecord(contacts_record_h record)
+{
+	m_Record = record;
 }
 
 const ContactFieldMetadata *ContactField::getMetadata() const

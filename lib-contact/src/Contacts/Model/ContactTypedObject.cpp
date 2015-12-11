@@ -21,6 +21,13 @@
 
 using namespace Contacts::Model;
 
+void ContactTypedObject::reset()
+{
+	getTypeField()->reset();
+	getLabelField()->reset();
+	ContactObject::reset();
+}
+
 ContactFieldPtr ContactTypedObject::getTypeField() const
 {
 	return ContactFactory::createField(getRecord(), &getTypedObjectMetadata()->typeField);

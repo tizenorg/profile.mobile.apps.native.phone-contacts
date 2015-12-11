@@ -14,67 +14,53 @@
  * limitations under the License.
  *
  */
+
 #ifndef CONTACTS_MODEL_CONTACT_ITERATOR_H
 #define CONTACTS_MODEL_CONTACT_ITERATOR_H
 
 #include "Contacts/Model/ContactField.h"
+#include <iterator>
 
 namespace Contacts
 {
 	namespace Model
 	{
+		class ContactArray;
+		class ContactObject;
+
 		/**
 		 * @brief Index-based iterator.
 		 */
-		class ContactIterator
+		template <typename FieldContainer>
+		class ContactIterator :
+			public std::iterator<std::input_iterator_tag, ContactFieldPtr>
 		{
 		public:
+			ContactIterator(const FieldContainer &container, int index)
+				: m_Container(container), m_Index(index) { }
+
 			/**
 			 * @brief Increment iterator.
 			 */
-			ContactIterator &operator++();
+			ContactIterator &operator++() { ++m_Index; return *this; }
+
+			/**
+			 * @brief Get field pointed by iterator.
+			 */
+			ContactFieldPtr operator*() const { return m_Container.getField(m_Index); }
 
 			/**
 			 * @brief Compare iterators for inequality.
 			 */
-			bool operator!=(const ContactIterator &that) const;
+			bool operator!=(const ContactIterator &that) const { return m_Index != that.m_Index;}
 
 		protected:
-			ContactIterator(const ContactField &field, int index);
-
-			int m_Index;
-			const ContactField &m_Field;
+			const FieldContainer &m_Container;
+			size_t m_Index;
 		};
 
-		/**
-		 * @brief Iterator for ContactArray.
-		 */
-		class ContactArrayIterator : public ContactIterator
-		{
-		public:
-			friend class ContactArray;
-			using ContactIterator::ContactIterator;
-
-			/**
-			 * @brief Get field pointed by iterator.
-			 */
-			ContactFieldPtr operator*() const;
-		};
-
-		/**
-		 * @brief Iterator for ContactObject.
-		 */
-		class ContactObjectIterator : public ContactIterator
-		{
-		public:
-			friend class ContactObject;
-			using ContactIterator::ContactIterator;
-
-			/**
-			 * @brief Get field pointed by iterator.
-			 */
-			ContactFieldPtr operator*() const;
-		};
+		typedef ContactIterator<ContactArray> ContactArrayIterator;
+		typedef ContactIterator<ContactObject> ContactObjectIterator;
 	}
 }
 

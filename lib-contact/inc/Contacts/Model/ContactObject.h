@@ -57,18 +57,18 @@ namespace Contacts
 			ContactObjectIterator end() const;
 
 			/**
-			 * @brief Get child field by id.
-			 * @param[in]   id      Child field id
-			 * @return Child field.
-			 */
-			ContactFieldPtr getField(unsigned id) const;
-
-			/**
 			 * @brief Get child field by index.
 			 * @param[in]   index   Child field index
 			 * @return Child field.
 			 */
-			ContactFieldPtr getFieldByIndex(unsigned index) const;
+			ContactFieldPtr getField(unsigned index) const;
+
+			/**
+			 * @brief Get child field by id.
+			 * @param[in]   id      Child field id
+			 * @return Child field.
+			 */
+			ContactFieldPtr getFieldById(unsigned id) const;
 
 		protected:
 			const ContactObjectMetadata *getObjectMetadata() const;
