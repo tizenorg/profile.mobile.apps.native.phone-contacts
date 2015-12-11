@@ -127,6 +127,16 @@ namespace Utils
 	}
 
 	/**
+	 * @brief Create iterator range from two iterators.
+	 */
+	template <typename Iter1, typename Iter2,
+		typename Iter = typename std::common_type<Iter1, Iter2>::type>
+	inline Range<Iter> makeRange(Iter1 &&begin, Iter2 &&end)
+	{
+		return { std::forward<Iter1>(begin), std::forward<Iter2>(end) };
+	}
+
+	/**
 	 * @brief Get static array element count.
 	 * @param[in]   array   Static array
 	 * @return Array element count.

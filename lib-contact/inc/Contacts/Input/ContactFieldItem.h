@@ -19,7 +19,7 @@
 #define CONTACTS_INPUT_CONTACT_FIELD_ITEM_H
 
 #include "Contacts/Model/ContactField.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenlistGroupItem.h"
 
 namespace Contacts
 {
@@ -28,24 +28,21 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing contact field of TypeText or TypeDate type.
 		 */
-		class ContactFieldItem : public Ui::GenlistItem
+		class ContactFieldItem : public Ui::GenlistGroupItem
 		{
 		public:
 			/**
 			 * @brief Create field genlist item.
 			 * @param[in]   field   Contact field of TypeText or TypeDate type
-			 * @param[in]   type    Genlist item type
 			 */
-			ContactFieldItem(Model::ContactFieldPtr field,
-					Elm_Genlist_Item_Type type = ELM_GENLIST_ITEM_NONE);
+			ContactFieldItem(Model::ContactFieldPtr field);
 
-		protected:
 			/**
 			 * @return ContactField associated with the item.
 			 */
-			template <typename FieldType>
-			FieldType *getField() const;
+			Model::ContactField *getField() const;
 
+		protected:
 			/**
 			 * @see GenlistItem::getContent()
 			 */
