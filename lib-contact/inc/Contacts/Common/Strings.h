@@ -14,9 +14,11 @@
  * limitations under the License.
  *
  */
+
 #ifndef CONTACTS_COMMON_STRINGS_H
 #define CONTACTS_COMMON_STRINGS_H
 
+#include "Contacts/Model/ContactFields.h"
 #include "Contacts/Model/ContactTypes.h"
 #include "Utils/Range.h"
 
@@ -28,16 +30,23 @@ namespace Contacts
 		 * @brief Get contact field name.
 		 * @param[in]   fieldId     Contact field ID
 		 * @return Contact field translatable name.
+		 */
+		const char *getContactFieldName(Model::ContactFieldId fieldId);
+
+		/**
+		 * @brief Get name of a field which is not an object or array.
+		 * @param[in]   fieldId     Contact child field ID
+		 * @return Contact child field translatable name.
 		 *
 		 * @see ContactFieldId
 		 * @see ContactCompanyFieldId
 		 * @see ContactNameFieldId
 		 * @see ContactPhoneticNameFieldId
 		 */
-		const char *getContactFieldName(unsigned fieldId);
+		const char *getContactChildFieldName(unsigned fieldId);
 
 		/**
-		 * @brief Get contact enum value name.
+		 * @brief Get contact enum value names.
 		 * @param[in]   type    Enum type
 		 * @return Enum value translatable names range.
 		 */

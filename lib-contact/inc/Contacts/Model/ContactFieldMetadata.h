@@ -94,14 +94,10 @@ namespace Contacts
 		};
 
 		/**
+		 * @param[in]   type    Contact object type (ObjectTypeContact or ObjectTypeMyProfile)
 		 * @return Contact root object metadata.
 		 */
-		const ContactFieldMetadata *getContactMetadata();
-
-		/**
-		 * @return My Profile root object metadata.
-		 */
-		const ContactFieldMetadata *getMyProfileMetadata();
+		const ContactFieldMetadata *getContactMetadata(ContactObjectType type);
 	}
 }
 
