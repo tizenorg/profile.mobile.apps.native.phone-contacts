@@ -15,30 +15,41 @@
  *
  */
 
-#include "Contacts/Model/ContactTypedObject.h"
-#include "Contacts/Model/ContactFactory.h"
+#include "Contacts/Model/Contact.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
 
 using namespace Contacts::Model;
 
-void ContactTypedObject::reset()
+Contact::Contact(ContactObjectType type, int id)
+	: ContactObject(getContactMetadata(type)), m_IsNew(id <= 0)
 {
-	getTypeField()->reset();
-	getLabelField()->reset();
-	ContactObject::reset();
+	const char *uri = getObjectMetadata()->uri;
+	contacts_record_h record = nullptr;
+
+	if (m_IsNew) {
+		contacts_record_create(uri, &record);
+	} else {
+		contacts_db_get_record(uri, id, &record);
+	}
+
+	setRecord(record);
 }
 
-ContactFieldPtr ContactTypedObject::getTypeField() const
+Contact::~Contact()
 {
-	return ContactFactory::createField(getRecord(), &getTypedObjectMetadata()->typeField);
+	contacts_record_destroy(getRecord(), true);
 }
 
-ContactFieldPtr ContactTypedObject::getLabelField() const
+bool Contact::isNew() const
 {
-	return ContactFactory::createField(getRecord(), &getTypedObjectMetadata()->labelField);
+	return m_IsNew;
 }
 
-const ContactTypedObjectMetadata *ContactTypedObject::getTypedObjectMetadata() const
+void Contact::save()
 {
-	return (const ContactTypedObjectMetadata *) getObjectMetadata();
+	if (m_IsNew) {
+		contacts_db_insert_record(getRecord(), nullptr);
+	} else {
+		contacts_db_update_record(getRecord());
+	}
 }

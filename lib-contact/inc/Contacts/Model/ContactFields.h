@@ -31,17 +31,17 @@ namespace Contacts
 			FieldBegin,
 			FieldImage = FieldBegin,
 			FieldName,
+			FieldPhoneticName,
+			FieldCompany,
 			FieldNumber,
 			FieldEmail,
-			FieldNote,
 			FieldAddress,
-			FieldEvent,
-			FieldRelationship,
 			FieldUrl,
 			FieldMessenger,
+			FieldEvent,
+			FieldNote,
 			FieldNickname,
-			FieldCompany,
-			FieldPhoneticName,
+			FieldRelationship,
 			FieldEnd
 		};
 

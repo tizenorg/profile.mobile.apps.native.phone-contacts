@@ -15,47 +15,43 @@
  *
  */
 
-#ifndef CONTACTS_MODEL_CONTACT_TYPED_OBJECT_H
-#define CONTACTS_MODEL_CONTACT_TYPED_OBJECT_H
+#ifndef CONTACTS_MODEL_CONTACT_H
+#define CONTACTS_MODEL_CONTACT_H
 
 #include "Contacts/Model/ContactObject.h"
-#include "Contacts/Model/ContactEnumField.h"
-#include "Contacts/Model/ContactTextField.h"
 
 namespace Contacts
 {
 	namespace Model
 	{
-		class ContactTypedObjectMetadata;
-
 		/**
-		 * @brief Adapter for an object that has a "type" represented by
-		 *        TypeEnum and TypeText fields.
+		 * @brief Contact record wrapper for uniform handling of new or existing contact.
 		 */
-		class ContactTypedObject : public ContactObject
+		class Contact : public ContactObject
 		{
 		public:
-			using ContactObject::ContactObject;
+			/**
+			 * @brief Create contact object.
+			 * @param[in]   type    Contact object type (ObjectTypeContact or ObjectTypeMyProfile)
+			 * @param[in]   id      Database record ID or 0 to create new contact
+			 */
+			Contact(ContactObjectType type, int id);
+			virtual ~Contact() override;
 
 			/**
-			 * @see ContactField::reset()
+			 * @return Whether the contact is new and is not stored in database yet.
 			 */
-			virtual void reset() override;
+			bool isNew() const;
 
 			/**
-			 * @return Field that represents object's type.
+			 * @brief Save contact to the database.
 			 */
-			ContactFieldPtr getTypeField() const;
-
-			/**
-			 * @return Field that stores object's custom type label.
-			 */
-			ContactFieldPtr getLabelField() const;
+			void save();
 
 		private:
-			const ContactTypedObjectMetadata *getTypedObjectMetadata() const;
+			bool m_IsNew;
 		};
 	}
 }
 
-#endif /* CONTACTS_MODEL_CONTACT_TYPED_OBJECT_H */
+#endif /* CONTACTS_MODEL_CONTACT_H */
