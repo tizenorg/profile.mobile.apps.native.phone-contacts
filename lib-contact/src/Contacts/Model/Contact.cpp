@@ -15,34 +15,41 @@
  *
  */
 
-#include "Contacts/Model/ContactIterator.h"
-#include "Contacts/Model/ContactArray.h"
-#include "Contacts/Model/ContactObject.h"
+#include "Contacts/Model/Contact.h"
+#include "Contacts/Model/ContactFieldMetadata.h"
 
 using namespace Contacts::Model;
 
-ContactIterator::ContactIterator(const ContactField &field, int index)
-	: m_Index(index), m_Field(field)
+Contact::Contact(ContactObjectType type, int id)
+	: ContactObject(getContactMetadata(type)), m_IsNew(id <= 0)
 {
+	const char *uri = getObjectMetadata()->uri;
+	contacts_record_h record = nullptr;
+
+	if (m_IsNew) {
+		contacts_record_create(uri, &record);
+	} else {
+		contacts_db_get_record(uri, id, &record);
+	}
+
+	setRecord(record);
 }
 
-ContactIterator &ContactIterator::operator++()
+Contact::~Contact()
 {
-	++m_Index;
-	return *this;
+	contacts_record_destroy(getRecord(), true);
 }
 
-bool ContactIterator::operator!=(const ContactIterator &that) const
+bool Contact::isNew() const
 {
-	return m_Index != that.m_Index;
+	return m_IsNew;
 }
 
-ContactFieldPtr ContactArrayIterator::operator*() const
+void Contact::save()
 {
-	return static_cast<const ContactArray &>(m_Field).getField(m_Index);
-}
-
-ContactFieldPtr ContactObjectIterator::operator*() const
-{
-	return static_cast<const ContactObject &>(m_Field).getFieldByIndex(m_Index);
+	if (m_IsNew) {
+		contacts_db_insert_record(getRecord(), nullptr);
+	} else {
+		contacts_db_update_record(getRecord());
+	}
 }

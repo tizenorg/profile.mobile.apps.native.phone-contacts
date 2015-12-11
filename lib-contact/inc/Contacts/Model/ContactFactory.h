@@ -30,20 +30,6 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @brief Create contact object adaptor for a record.
-			 * @param[in]   record      _contacts_contact record
-			 * @return Contact adaptor object.
-			 */
-			static ContactObject createContact(contacts_record_h record);
-
-			/**
-			 * @brief Create "My Profile" object adaptor for a record.
-			 * @param[in]   record      _contacts_my_profile record
-			 * @return Contact adaptor object.
-			 */
-			static ContactObject createMyProfile(contacts_record_h record);
-
-			/**
 			 * @brief Create record property adaptor.
 			 * @param[in]   record      Record to which property belongs
 			 * @param[in]   metadata    Adaptor field metadata

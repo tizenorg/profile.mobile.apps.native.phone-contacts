@@ -60,7 +60,7 @@ ContactFieldPtr ContactArray::getField(unsigned index) const
 ContactFieldPtr ContactArray::addField()
 {
 	const ContactFieldMetadata *elementMetadata = &getArrayMetadata()->element;
-	const char *uri = ((const ContactObjectMetadata *) elementMetadata)->uri;
+	const char *uri = ((const ContactObjectMetadata *) elementMetadata->typeMetadata)->uri;
 
 	contacts_record_h record = nullptr;
 	contacts_record_create(uri, &record);
