@@ -113,8 +113,7 @@ ContactGroupItem *ListView::insertGroupItem(const char *indexLetter, ContactGrou
 	elm_index_level_go(indexItem, 0);
 
 	ContactGroupItem *item = new ContactGroupItem(indexLetter, indexItem);
-	auto position = nextGroup ? Ui::Genlist::Before : Ui::Genlist::After;
-	m_Genlist->insert(item, nullptr, nextGroup, position);
+	m_Genlist->insert(item, nullptr, nextGroup);
 
 	elm_object_item_data_set(indexItem, item->getObjectItem());
 	m_Groups.insert({ indexLetter, item });
@@ -134,25 +133,22 @@ ContactGroupItem *ListView::getNextGroupItem(const char *indexLetter)
 
 ContactItem *ListView::insertItem(Model::ContactPtr contact, ContactGroupItem *group, ContactItem *nextItem)
 {
-	auto position = nextItem ? Ui::Genlist::Before : Ui::Genlist::After;
 	ContactItem *item = new ContactItem(std::move(contact));
-	m_Genlist->insert(item, group, nextItem, position);
+	m_Genlist->insert(item, group, nextItem);
 
 	return item;
 }
 
 ContactItem *ListView::getNextItem(ContactGroupItem *group, const Contact &contact)
 {
-	ContactItem *item = (ContactItem *)group->getNextItem();
-	while (item && item->getParentItem() == group) {
-		if (item->getContact() < contact) {
-			item = (ContactItem *)item->getNextItem();
-		} else {
-			break;
+	for (auto &&item : *group) {
+		ContactItem *contactItem = static_cast<ContactItem *>(item);
+		if (!(contactItem->getContact() < contact)) {
+			return contactItem;
 		}
 	}
 
-	return item;
+	return nullptr;
 }
 
 void ListView::onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem)
