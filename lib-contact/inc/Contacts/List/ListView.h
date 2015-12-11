@@ -60,6 +60,7 @@ namespace Contacts
 					ContactItem *nextItem = nullptr);
 			ContactItem *getNextItem(ContactGroupItem *group, const Model::Contact &contact);
 
+			void onItemSelected(Evas_Object *genlist, Elm_Object_Item *genlistItem);
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
