@@ -19,11 +19,11 @@
 #define UI_GENLIST_H
 
 #include "Ui/Control.h"
+#include "Ui/GenlistIterator.h"
 
 namespace Ui
 {
-	class GenlistItem;
-
+	class GenlistGroupItem;
 	class EXPORT_API Genlist : public Control
 	{
 	public:
@@ -34,27 +34,31 @@ namespace Ui
 		};
 
 		/**
-		 * @return Genlist first Item.
+		 * @return Genlist begin iterator.
 		 */
-		GenlistItem *getFirstItem() const;
+		GenlistIterator begin() const;
 
 		/**
-		 * @return Genlist last Item.
+		 * @return Genlist end iterator.
 		 */
-		GenlistItem *getLastItem() const;
+		GenlistIterator end() const;
 
 		/**
-		 * @brief Insert, append or prepend genlist Item.
+		 * @brief Insert genlist Item at specified position.
 		 * @param[in]   item        Item to insert
-		 * @param[in]   parent      Parent item
-		 * @param[in]   sibling     Sibling item or append/prepend if nullptr
-		 * @param[in]   position    Insert before/after @a sibling or prepend/append if nullptr
-		 * @return New genlist object item
+		 * @param[in]   parent      Parent group item
+		 * @param[in]   sibling     Sibling item
+		 * @param[in]   position    Insert before/after @a sibling
+		 * @remarks Inserting item BEFORE nullptr (@a sibling)
+		 *          actually means that there is no items after it (i.e. item is appended).
+		 *          Same goes for inserting AFTER nullptr (i.e. item is prepended).
+		 *          This might seem like a counter-intuitive behavior but it supports
+		 *          commonly used pattern.
 		 */
-		Elm_Object_Item *insert(GenlistItem *item,
-				GenlistItem *parent = nullptr,
+		void insert(GenlistItem *item,
+				GenlistGroupItem *parent = nullptr,
 				GenlistItem *sibling = nullptr,
-				Position position = After);
+				Position position = Before);
 
 		/**
 		 * @brief Update specific parts of realized items
