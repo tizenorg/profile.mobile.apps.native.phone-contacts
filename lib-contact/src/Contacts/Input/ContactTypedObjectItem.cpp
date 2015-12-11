@@ -34,15 +34,15 @@ ContactTypedObjectItem::ContactTypedObjectItem(Model::ContactFieldPtr object)
 
 ContactTypedObject *ContactTypedObjectItem::getTypedObject() const
 {
-	return static_cast<ContactTypedObject *>(getObject());
+	return &getObject()->cast<ContactTypedObject>();
 }
 
 Evas_Object *ContactTypedObjectItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_LEFT) == 0) {
 		Ui::Control *control = new ContactObjectTypeControl(
-				static_cast<ContactEnumField *>(m_TypeField.get()),
-				static_cast<ContactTextField *>(m_LabelField.get()));
+				&m_TypeField->cast<ContactEnumField>(),
+				&m_LabelField->cast<ContactTextField>());
 		return control->create(parent);
 	} else {
 		return ContactObjectItem::getContent(parent, part);

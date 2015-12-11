@@ -18,6 +18,7 @@
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/ContactItem.h"
 #include "Contacts/List/ContactGroupItem.h"
+#include "Contacts/Input/InputView.h"
 #include "Contacts/Settings/MainView.h"
 #include "Contacts/Utils.h"
 
@@ -45,6 +46,9 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	m_Genlist = new Ui::Genlist();
 	elm_object_part_content_set(layout, "elm.swallow.content", m_Genlist->create(layout));
 	elm_object_part_content_set(layout, "elm.swallow.fastscroll", createIndex(layout));
+
+	evas_object_smart_callback_add(m_Genlist->getEvasObject(), "selected",
+			(Evas_Smart_Cb) makeCallback(&ListView::onItemSelected), this);
 
 	return layout;
 }
@@ -151,6 +155,16 @@ ContactItem *ListView::getNextItem(ContactGroupItem *group, const Contact &conta
 	return nullptr;
 }
 
+void ListView::onItemSelected(Evas_Object *genlist, Elm_Object_Item *genlistItem)
+{
+	ContactItem *item = (ContactItem *) elm_object_item_data_get(genlistItem);
+
+	int id = 0;
+	contacts_record_get_int(item->getContact().getRecord(), _contacts_person.display_contact_id, &id);
+
+	getNavigator()->navigateTo(new Input::InputView(id));
+}
+
 void ListView::onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem)
 {
 	Elm_Object_Item *genlistItem = (Elm_Object_Item *) elm_object_item_data_get(indexItem);
@@ -165,7 +179,7 @@ void ListView::onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem)
 
 void ListView::onCreatePressed()
 {
-	//TODO: getNavigator()->navigateTo(new Contacts::Input::MainView());
+	getNavigator()->navigateTo(new Input::InputView());
 }
 
 Evas_Object *ListView::onMenuPressed()
