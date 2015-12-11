@@ -19,24 +19,42 @@
 #include "Utils/Range.h"
 
 using namespace Contacts;
+using namespace Contacts::Model;
 
 namespace
 {
 	const char *fieldNames[] = {
 		/* [FieldRoot]         = */ nullptr,
-		/* [FieldImage]        = */ "IDS_PB_BODY_IMAGE",
+		/* [FieldImage]        = */ "IDS_PB_BODY_PHOTO",
 		/* [FieldName]         = */ "IDS_PB_BODY_NAME",
-		/* [FieldNumber]       = */ "IDS_PB_BODY_PHONE_NUMBER_ABB",
-		/* [FieldEmail]        = */ "IDS_PB_BODY_EMAIL",
-		/* [FieldNote]         = */ "IDS_PB_BODY_NOTES",
+		/* [FieldPhoneticName] = */ "IDS_PB_BODY_PHONETIC_NAME_ABB",
+		/* [FieldCompany]      = */ "IDS_PB_OPT_ORGANISATION_ABB",
+		/* [FieldNumber]       = */ "IDS_PB_BUTTON_PHONE",
+		/* [FieldEmail]        = */ "IDS_PB_BUTTON_EMAIL_ABB3",
 		/* [FieldAddress]      = */ "IDS_PB_BODY_ADDRESS_ABB2",
-		/* [FieldEvent]        = */ "IDS_PB_MBODY_EVENT",
-		/* [FieldRelationship] = */ "IDS_PB_BODY_NAME",
 		/* [FieldUrl]          = */ "IDS_PB_BODY_WEBSITE_ABB",
 		/* [FieldMessenger]    = */ "IDS_PB_BODY_IM",
+		/* [FieldEvent]        = */ "IDS_PB_MBODY_EVENT",
+		/* [FieldNote]         = */ "IDS_PB_BUTTON_NOTES",
 		/* [FieldNickname]     = */ "IDS_PB_BODY_NICKNAME_ABB",
-		/* [FieldCompany]      = */ "IDS_PB_BODY_COMPANY_ABB",
+		/* [FieldRelationship] = */ "IDS_PB_OPT_RELATIONSHIP_ABB2"
+	};
+
+	const char *childFieldNames[] = {
+		/* [FieldRoot]         = */ nullptr,
+		/* [FieldImage]        = */ "IDS_PB_BODY_IMAGE",
+		/* [FieldName]         = */ "IDS_PB_BODY_NAME",
 		/* [FieldPhoneticName] = */ "IDS_PB_BODY_PHONETIC_NAME_ABB",
+		/* [FieldCompany]      = */ "IDS_PB_BODY_COMPANY_ABB",
+		/* [FieldNumber]       = */ "IDS_PB_BODY_PHONE_NUMBER_ABB",
+		/* [FieldEmail]        = */ "IDS_PB_BODY_EMAIL",
+		/* [FieldAddress]      = */ "IDS_PB_BODY_ADDRESS_ABB2",
+		/* [FieldUrl]          = */ "IDS_PB_BODY_WEBSITE_ABB",
+		/* [FieldMessenger]    = */ "IDS_PB_BODY_IM",
+		/* [FieldEvent]        = */ "IDS_PB_MBODY_EVENT",
+		/* [FieldNote]         = */ "IDS_PB_BODY_NOTES",
+		/* [FieldNickname]     = */ "IDS_PB_BODY_NICKNAME_ABB",
+		/* [FieldRelationship] = */ "IDS_PB_BODY_NAME",
 
 		/* [CompanyFieldName]     = */ "IDS_PB_BODY_COMPANY_ABB",
 		/* [CompanyFieldJobTitle] = */ "IDS_PB_BODY_JOB_TITLE_ABB",
@@ -133,9 +151,14 @@ namespace
 	};
 }
 
-const char *Common::getContactFieldName(unsigned fieldId)
+const char *Common::getContactFieldName(Model::ContactFieldId fieldId)
 {
 	return Utils::at(fieldNames, fieldId);
+}
+
+const char *Common::getContactChildFieldName(unsigned fieldId)
+{
+	return Utils::at(childFieldNames, fieldId);
 }
 
 Utils::Range<const char **> Common::getContactEnumValueNames(Model::ContactEnumType type)

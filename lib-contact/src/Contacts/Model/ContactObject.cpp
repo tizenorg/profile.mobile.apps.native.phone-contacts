@@ -51,23 +51,23 @@ ContactObjectIterator ContactObject::end() const
 	return ContactObjectIterator(*this, getObjectMetadata()->fields.count());
 }
 
-ContactFieldPtr ContactObject::getField(unsigned id) const
-{
-	for (auto &&field : getObjectMetadata()->fields) {
-		if (field.id == id) {
-			return ContactFactory::createField(getRecord(), &field);
-		}
-	}
-
-	return nullptr;
-}
-
-ContactFieldPtr ContactObject::getFieldByIndex(unsigned index) const
+ContactFieldPtr ContactObject::getField(unsigned index) const
 {
 	const ContactObjectMetadata *object = getObjectMetadata();
 	const ContactFieldMetadata *field = object->fields.begin() + index;
 	if (field < object->fields.end()) {
 		return ContactFactory::createField(getRecord(), field);
+	}
+
+	return nullptr;
+}
+
+ContactFieldPtr ContactObject::getFieldById(unsigned id) const
+{
+	for (auto &&field : getObjectMetadata()->fields) {
+		if (field.id == id) {
+			return ContactFactory::createField(getRecord(), &field);
+		}
 	}
 
 	return nullptr;

@@ -25,15 +25,6 @@
 
 using namespace Contacts::Model;
 
-ContactObject ContactFactory::createContact(contacts_record_h record)
-{
-	return ContactObject(record, getContactMetadata());
-}
-ContactObject ContactFactory::createMyProfile(contacts_record_h record)
-{
-	return ContactObject(record, getMyProfileMetadata());
-}
-
 ContactFieldPtr ContactFactory::createField(contacts_record_h record,
 		const ContactFieldMetadata *metadata)
 {
@@ -51,7 +42,7 @@ ContactFieldPtr ContactFactory::createField(contacts_record_h record,
 		{
 			record = getObjectRecord(record, metadata);
 
-			unsigned subType = metadata->typeMetadata->type;
+			unsigned subType = metadata->typeMetadata->subType;
 			if (subType & ObjectTyped) {
 				field = new ContactTypedObject(record, metadata);
 			} else {
