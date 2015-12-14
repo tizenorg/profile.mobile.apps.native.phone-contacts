@@ -18,6 +18,7 @@
 #include "Contacts/Input/ContactFieldItem.h"
 #include "Contacts/Model/ContactDateField.h"
 #include "Contacts/Model/ContactTextField.h"
+#include "Contacts/Input/ContactDateFieldControl.h"
 #include "Contacts/Input/ContactTextFieldControl.h"
 #include "Ui/Editfield.h"
 
@@ -50,7 +51,7 @@ Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 				control = new ContactTextFieldControl(&m_Field->cast<ContactTextField>());
 				break;
 			case TypeDate:
-				/* TODO: control = new ContactDateFieldControl(&m_Field->cast<ContactDateField>()); */
+				control = new ContactDateFieldControl(&m_Field->cast<ContactDateField>());
 				break;
 			default:
 				break;

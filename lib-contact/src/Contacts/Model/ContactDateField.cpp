@@ -47,14 +47,14 @@ tm ContactDateField::convertDate(int value)
 	struct tm date = { 0 };
 	date.tm_year = value / YEAR_FACTOR - YEAR_BASE;
 	date.tm_mon = (value % YEAR_FACTOR) / MONTH_FACTOR - MONTH_BASE;
-	date.tm_mday = value % MONTH_FACTOR;
+	date.tm_mday = value % YEAR_FACTOR % MONTH_FACTOR;
 
 	return date;
 }
 
 int ContactDateField::convertDate(const tm &date)
 {
-	return (date.tm_year + YEAR_FACTOR) * YEAR_BASE
+	return (date.tm_year + YEAR_BASE) * YEAR_FACTOR
 		 + (date.tm_mon + MONTH_BASE) * MONTH_FACTOR
 		 +  date.tm_mday;
 }
