@@ -31,19 +31,15 @@ namespace
 	Elm_Genlist_Item_Class fieldItemClass = Ui::GenlistItem::createItemClass(INPUT_ITEM_STYLE);
 }
 
-ContactFieldItem::ContactFieldItem(ContactFieldPtr field, Elm_Genlist_Item_Type type)
-	: GenlistItem(&fieldItemClass, type), m_Field(std::move(field))
+ContactFieldItem::ContactFieldItem(ContactFieldPtr field)
+	: GenlistGroupItem(&fieldItemClass), m_Field(std::move(field))
 {
 }
 
-template <typename FieldType>
-FieldType *ContactFieldItem::getField() const
+ContactField *ContactFieldItem::getField() const
 {
-	return static_cast<FieldType *>(m_Field.get());
+	return m_Field.get();
 }
-
-template ContactDateField *ContactFieldItem::getField() const;
-template ContactTextField *ContactFieldItem::getField() const;
 
 Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 {
@@ -51,10 +47,10 @@ Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 	if (m_Field && strcmp(part, PART_MIDDLE) == 0) {
 		switch(m_Field->getType()) {
 			case TypeText:
-				control = new ContactTextFieldControl(getField<ContactTextField>());
+				control = new ContactTextFieldControl(&m_Field->cast<ContactTextField>());
 				break;
 			case TypeDate:
-				/* TODO: control = new ContactDateFieldControl(getField<ContactDateField>()); */
+				/* TODO: control = new ContactDateFieldControl(&m_Field->cast<ContactDateField>()); */
 				break;
 			default:
 				break;

@@ -34,9 +34,10 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Remove field callback.
+			 * @param[in]   Genlist item to be removed
 			 * @param[in]   Field to be removed
 			 */
-			typedef std::function<void(Model::ContactFieldPtr)> RemoveCallback;
+			typedef std::function<void(ContactObjectItem *, Model::ContactFieldPtr)> RemoveCallback;
 
 			/**
 			 * @brief Create genlist item representing ContactObject.
@@ -50,16 +51,26 @@ namespace Contacts
 			 */
 			void setRemoveCallback(RemoveCallback callback);
 
-		protected:
 			/**
 			 * @return ContactObject associated with the item.
 			 */
 			Model::ContactObject *getObject() const;
 
+		protected:
 			/**
 			 * @see GenlistItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
+
+			/**
+			 * @see GenlistItem::onInserted()
+			 */
+			virtual void onInserted();
+
+			/**
+			 * @brief Insert
+			 */
+			void insertChildItems();
 
 		private:
 			void onRemovePressed(Evas_Object *button, void *eventInfo);
