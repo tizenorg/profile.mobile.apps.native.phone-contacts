@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef PHONE_DIALER_MAIN_VIEW_H
-#define PHONE_DIALER_MAIN_VIEW_H
+#ifndef PHONE_DIALER_DIALER_VIEW_H
+#define PHONE_DIALER_DIALER_VIEW_H
 
 #include "App/AppControl.h"
 #include "Phone/Dialer/SearchEngine.h"
@@ -38,11 +38,11 @@ namespace Phone
 		/**
 		 * @brief Dialer main view.
 		 */
-		class EXPORT_API MainView : public Ui::View
+		class EXPORT_API DialerView : public Ui::View
 		{
 		public:
-			MainView();
-			virtual ~MainView() override;
+			DialerView();
+			virtual ~DialerView() override;
 
 			/**
 			 * @brief Set number to be displayed
@@ -58,7 +58,7 @@ namespace Phone
 			virtual Evas_Object *onMenuPressed() override;
 
 			Evas_Object *createEntry(Evas_Object *parent);
-			Evas_Object *createSearchWidget(Evas_Object *parent);
+			Evas_Object *createSearchControl(Evas_Object *parent);
 			Evas_Object *createKeypad(Evas_Object *parent);
 			Evas_Object *createCallButton(Evas_Object *parent);
 			Evas_Object *createBackspaceButton(Evas_Object *parent);
@@ -82,9 +82,9 @@ namespace Phone
 			SearchEngine m_SearchEngine;
 
 			KeypadEntry *m_Entry;
-			SearchResultsControl *m_SearchWidget;
+			SearchResultsControl *m_SearchControl;
 		};
 	}
 }
 
-#endif /* PHONE_DIALER_MAIN_VIEW_H */
+#endif /* PHONE_DIALER_DIALER_VIEW_H */

@@ -67,7 +67,7 @@ void SearchResultsControl::setSelectedCallback(SelectedCallback callback)
 Evas_Object *SearchResultsControl::onCreate(Evas_Object *parent)
 {
 	Evas_Object *layout = elm_layout_add(parent);
-	evas_object_event_callback_add(layout, EVAS_CALLBACK_MOUSE_DOWN,
+	evas_object_event_callback_add(layout, EVAS_CALLBACK_MOUSE_UP,
 			(Evas_Object_Event_Cb) makeCallback(&SearchResultsControl::onResultPressed), this);
 	return layout;
 }
