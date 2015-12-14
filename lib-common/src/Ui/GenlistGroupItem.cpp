@@ -39,6 +39,35 @@ GenlistGroupItem::~GenlistGroupItem()
 	}
 }
 
+bool GenlistGroupItem::isGroupItem() const
+{
+	return true;
+}
+
+GenlistGroupItem *GenlistGroupItem::getNextGroupItem() const
+{
+	GenlistItem *item = m_LastItem ? m_LastItem->getNextItem() : getNextItem();
+	if (item && item->isGroupItem()) {
+		return static_cast<GenlistGroupItem *>(item);
+	}
+
+	return nullptr;
+}
+
+GenlistGroupItem *GenlistGroupItem::getPrevGroupItem() const
+{
+	GenlistItem *item = getPrevItem();
+	if (item) {
+		if (item->isGroupItem()) {
+			return static_cast<GenlistGroupItem *>(item);
+		} else {
+			return item->getParentItem();
+		}
+	}
+
+	return nullptr;
+}
+
 GenlistIterator GenlistGroupItem::begin()
 {
 	return m_FirstItem;
@@ -46,7 +75,7 @@ GenlistIterator GenlistGroupItem::begin()
 
 GenlistIterator GenlistGroupItem::end()
 {
-	return m_LastItem ? m_LastItem->getNextItem() : getNextItem();
+	return m_LastItem ? m_LastItem->getNextItem() : nullptr;
 }
 
 bool GenlistGroupItem::empty()

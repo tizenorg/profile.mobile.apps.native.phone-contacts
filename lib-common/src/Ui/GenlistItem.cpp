@@ -56,6 +56,11 @@ Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
 	return itc;
 }
 
+bool GenlistItem::isGroupItem() const
+{
+	return false;
+}
+
 Elm_Object_Item *GenlistItem::getObjectItem() const
 {
 	return m_Item;

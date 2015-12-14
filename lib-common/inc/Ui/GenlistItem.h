@@ -46,6 +46,11 @@ namespace Ui
 				const char *editStyle = nullptr);
 
 		/**
+		 * @return Whether the item is a group item.
+		 */
+		virtual bool isGroupItem() const;
+
+		/**
 		 * @return Genlist object item.
 		 */
 		Elm_Object_Item *getObjectItem() const;

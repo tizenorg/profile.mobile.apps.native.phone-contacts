@@ -35,6 +35,21 @@ namespace Ui
 		virtual ~GenlistGroupItem() override;
 
 		/**
+		 * @see GenlistItem::isGroupItem()
+		 */
+		virtual bool isGroupItem() const;
+
+		/**
+		 * @return Group item of the next group or nullptr if none.
+		 */
+		GenlistGroupItem *getNextGroupItem() const;
+
+		/**
+		 * @return Group item of the previous group or nullptr if none.
+		 */
+		GenlistGroupItem *getPrevGroupItem() const;
+
+		/**
 		 * @return Group begin iterator.
 		 */
 		GenlistIterator begin();

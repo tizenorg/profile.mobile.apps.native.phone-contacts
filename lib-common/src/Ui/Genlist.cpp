@@ -39,16 +39,26 @@ Evas_Object *Genlist::onCreate(Evas_Object *parent)
 	return genlist;
 }
 
-GenlistIterator Genlist::begin() const
+GenlistItem *Genlist::getFirstItem() const
 {
 	Elm_Object_Item *item = elm_genlist_first_item_get(getEvasObject());
 	return (GenlistItem *) elm_object_item_data_get(item);
 }
 
-GenlistIterator Genlist::end() const
+GenlistItem *Genlist::getLastItem() const
 {
 	Elm_Object_Item *item = elm_genlist_last_item_get(getEvasObject());
 	return (GenlistItem *) elm_object_item_data_get(item);
+}
+
+GenlistIterator Genlist::begin() const
+{
+	return getFirstItem();
+}
+
+GenlistIterator Genlist::end() const
+{
+	return nullptr;
 }
 
 void Genlist::insert(GenlistItem *item, GenlistGroupItem *parent,

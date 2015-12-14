@@ -34,6 +34,16 @@ namespace Ui
 		};
 
 		/**
+		 * @return Genlist first Item.
+		 */
+		GenlistItem *getFirstItem() const;
+
+		/**
+		 * @return Genlist last Item.
+		 */
+		GenlistItem *getLastItem() const;
+
+		/**
 		 * @return Genlist begin iterator.
 		 */
 		GenlistIterator begin() const;
