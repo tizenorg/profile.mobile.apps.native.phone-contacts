@@ -24,9 +24,20 @@
 namespace Ui
 {
 	class Genlist;
+	class GenlistGroupItem;
+
 	class EXPORT_API GenlistItem
 	{
 	public:
+		/**
+		 * @brief Create genlist item.
+		 * @param[in]   itemClass   Genlist item class
+		 * @param[in]   itemType    Genlist item type
+		 */
+		GenlistItem(Elm_Genlist_Item_Class *itemClass = nullptr,
+					Elm_Genlist_Item_Type itemType = ELM_GENLIST_ITEM_NONE);
+		virtual ~GenlistItem();
+
 		/**
 		 * @brief Create statically allocated item class
 		 */
@@ -45,9 +56,9 @@ namespace Ui
 		Genlist *getParent() const;
 
 		/**
-		 * @return Parent genlist item or nullptr if none.
+		 * @return Parent genlist group item or nullptr if none.
 		 */
-		GenlistItem *getParentItem() const;
+		GenlistGroupItem *getParentItem() const;
 
 		/**
 		 * @return Next item in genlist or nullptr if none.
@@ -59,16 +70,12 @@ namespace Ui
 		 */
 		GenlistItem *getPrevItem() const;
 
-	protected:
 		/**
-		 * @brief Create genlist item.
-		 * @param[in]   itemClass   Genlist item class
-		 * @param[in]   itemType    Genlist item type
+		 * @brief Remove item from genlist without destroying it.
 		 */
-		GenlistItem(Elm_Genlist_Item_Class *itemClass = nullptr,
-					Elm_Genlist_Item_Type itemType = ELM_GENLIST_ITEM_NONE);
-		virtual ~GenlistItem() { }
+		void pop();
 
+	protected:
 		/**
 		 * @brief Called whenever any item's text part needs to be updated.
 		 * @param[in]   parent  Parent genlist
@@ -104,7 +111,7 @@ namespace Ui
 		/**
 		 * @brief Called when tree item is contracted.
 		 */
-		virtual void onContracted();
+		virtual void onContracted() { }
 
 		/**
 		 * @brief Called when item is realized (became visible).
@@ -119,7 +126,8 @@ namespace Ui
 
 	private:
 		friend class Genlist;
-		static void onDestroy(GenlistItem *item, Evas_Object *genlist);
+		void onInserted(Elm_Object_Item *item);
+		void onDestroy(Evas_Object *genlist);
 
 		Elm_Genlist_Item_Type m_ItemType;
 		Elm_Genlist_Item_Class *m_ItemClass;
