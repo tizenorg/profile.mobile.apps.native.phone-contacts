@@ -39,6 +39,11 @@ namespace Ui
 		 */
 		Elm_Object_Item *addItem(const char *text, ItemCallback callback);
 
+		/**
+		 * @brief Show menu at the bottom of application window.
+		 */
+		void show();
+
 	protected:
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 

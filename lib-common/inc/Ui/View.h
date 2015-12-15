@@ -77,9 +77,8 @@ namespace Ui
 
 		/**
 		 * @brief Called when "menu" button is pressed
-		 * @return Menu to display or nullptr if none
 		 */
-		virtual Evas_Object *onMenuPressed() { return nullptr; }
+		virtual void onMenuPressed() { }
 
 	private:
 		friend class Window;
