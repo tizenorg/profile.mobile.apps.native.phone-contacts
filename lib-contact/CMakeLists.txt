@@ -4,6 +4,7 @@ project(contact CXX)
 file(GLOB_RECURSE SOURCES src/*.cpp)
 include_directories(
 	${CMAKE_SOURCE_DIR}/lib-common/inc
+	${CMAKE_SOURCE_DIR}/lib-common/res/common/edje
 	${CMAKE_CURRENT_SOURCE_DIR}/inc
 	${CMAKE_CURRENT_SOURCE_DIR}/res/input/edje
 )

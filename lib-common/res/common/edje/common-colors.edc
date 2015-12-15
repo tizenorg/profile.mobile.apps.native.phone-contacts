@@ -28,10 +28,10 @@ color_classes {
 	}
 	color_class {
 		name: BUTTON_COLOR_CLASS_NORMAL;
-		color: 0 0 0 45;
+		color: 82 198 216 255;
 	}
 	color_class {
 		name: BUTTON_COLOR_CLASS_PRESSED;
-		color: 0 0 0 75;
+		color: 48 139 153 255;
 	}
 }
