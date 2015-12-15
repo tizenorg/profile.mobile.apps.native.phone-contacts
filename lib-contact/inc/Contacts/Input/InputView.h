@@ -24,6 +24,7 @@
 namespace Ui
 {
 	class Genlist;
+	class GenlistItem;
 }
 
 namespace Contacts
@@ -31,6 +32,7 @@ namespace Contacts
 	namespace Input
 	{
 		class ContactObjectItem;
+		class AddFieldsItem;
 
 		/**
 		 * @brief Contact/My profile create/edit view.
@@ -58,16 +60,18 @@ namespace Contacts
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
 			virtual void onPageAttached() override;
-			virtual Evas_Object *onMenuPressed() override;
 
 			ContactObjectItem *createFieldItem(Model::ContactFieldPtr field);
-			ContactObjectItem *getNextFieldItem(unsigned fieldId);
+			Ui::GenlistItem *getNextFieldItem(Model::ContactFieldId fieldId);
 
-			Model::ContactFieldPtr addField(unsigned fieldId);
+			Model::ContactFieldPtr addField(Model::ContactFieldId fieldId);
 			void removeField(Model::ContactFieldPtr field);
 
 			ContactObjectItem *addFieldItem(Model::ContactFieldPtr field);
-			void removeFieldItem(ContactObjectItem *item, unsigned fieldId);
+			void removeFieldItem(ContactObjectItem *item, Model::ContactFieldId fieldId);
+
+			void onAddField(Model::ContactFieldId fieldId);
+			void onRemoveField(ContactObjectItem *item, Model::ContactFieldPtr field);
 
 			void onDonePressed(Evas_Object *button, void *eventInfo);
 			void onCancelPressed(Evas_Object *button, void *eventInfo);
@@ -75,7 +79,9 @@ namespace Contacts
 			Model::Contact m_Contact;
 			Evas_Object *m_DoneButton;
 			Ui::Genlist *m_Genlist;
+
 			ContactObjectItem *m_Items[Model::FieldEnd];
+			AddFieldsItem *m_AddFieldsItem;
 		};
 	}
 }

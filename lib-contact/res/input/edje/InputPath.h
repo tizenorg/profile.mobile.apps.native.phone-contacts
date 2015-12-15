@@ -23,4 +23,9 @@
 
 #define INPUT_ITEM_LAYOUT_EDJ   INPUT_EDJ_DIR"input-item-layout.edj"
 
+#define INPUT_ICON_ADD_NUMBER   INPUT_IMG_DIR"contacts_circle_btn_ic_call.png"
+#define INPUT_ICON_ADD_EMAIL    INPUT_IMG_DIR"contacts_circle_btn_ic_email.png"
+#define INPUT_ICON_ADD_NOTE     INPUT_IMG_DIR"contacts_circle_btn_ic_note.png"
+#define INPUT_ICON_ADD_MORE     INPUT_IMG_DIR"contacts_circle_btn_ic_more.png"
+
 #endif /* INPUT_PATH_H */
