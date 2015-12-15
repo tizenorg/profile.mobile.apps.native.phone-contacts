@@ -20,10 +20,16 @@
 
 #include "InputPath.h"
 
-#define INPUT_ITEM_STYLE        "input_item"
+#define INPUT_ITEM_STYLE         "input_item"
+#define INPUT_ITEM_STYLE_BUTTONS "input_buttons"
 
-#define PART_LEFT               "swallow.left"
-#define PART_MIDDLE             "swallow.middle"
-#define PART_RIGHT              "swallow.right"
+#define PART_LEFT                "swallow.left"
+#define PART_MIDDLE              "swallow.middle"
+#define PART_RIGHT               "swallow.right"
+
+#define PART_BUTTON_1            "swallow.button.1"
+#define PART_BUTTON_2            "swallow.button.2"
+#define PART_BUTTON_3            "swallow.button.3"
+#define PART_BUTTON_4            "swallow.button.4"
 
 #endif /* INPUT_ITEM_LAYOUT_H */
