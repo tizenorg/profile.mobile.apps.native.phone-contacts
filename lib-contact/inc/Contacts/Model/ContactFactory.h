@@ -36,11 +36,11 @@ namespace Contacts
 			 * @return Adaptor field.
 			 */
 			static ContactFieldPtr createField(contacts_record_h record,
-					const ContactFieldMetadata *metadata);
+					const ContactFieldMetadata &metadata);
 
 		private:
 			static contacts_record_h getObjectRecord(contacts_record_h record,
-					const ContactFieldMetadata *metadata);
+					const ContactFieldMetadata &metadata);
 		};
 	}
 }

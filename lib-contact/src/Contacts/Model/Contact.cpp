@@ -21,9 +21,9 @@
 using namespace Contacts::Model;
 
 Contact::Contact(ContactObjectType type, int id)
-	: ContactObject(getContactMetadata(type)), m_IsNew(id <= 0)
+	: ContactObject(*getContactMetadata(type)), m_IsNew(id <= 0)
 {
-	const char *uri = getObjectMetadata()->uri;
+	const char *uri = getObjectMetadata().uri;
 	contacts_record_h record = nullptr;
 
 	if (m_IsNew) {

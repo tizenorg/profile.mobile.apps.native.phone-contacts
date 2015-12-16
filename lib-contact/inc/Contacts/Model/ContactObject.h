@@ -71,7 +71,7 @@ namespace Contacts
 			ContactFieldPtr getFieldById(unsigned id) const;
 
 		protected:
-			const ContactObjectMetadata *getObjectMetadata() const;
+			const ContactObjectMetadata &getObjectMetadata() const;
 		};
 	}
 }

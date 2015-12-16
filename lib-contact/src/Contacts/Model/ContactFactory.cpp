@@ -26,10 +26,10 @@
 using namespace Contacts::Model;
 
 ContactFieldPtr ContactFactory::createField(contacts_record_h record,
-		const ContactFieldMetadata *metadata)
+		const ContactFieldMetadata &metadata)
 {
 	ContactField *field = nullptr;
-	switch(metadata->typeMetadata->type) {
+	switch(metadata.typeMetadata->type) {
 		case TypeEnum:
 			field = new ContactEnumField(record, metadata); break;
 		case TypeText:
@@ -42,7 +42,7 @@ ContactFieldPtr ContactFactory::createField(contacts_record_h record,
 		{
 			record = getObjectRecord(record, metadata);
 
-			unsigned subType = metadata->typeMetadata->subType;
+			unsigned subType = metadata.typeMetadata->subType;
 			if (subType & ObjectTyped) {
 				field = new ContactTypedObject(record, metadata);
 			} else {
@@ -56,15 +56,15 @@ ContactFieldPtr ContactFactory::createField(contacts_record_h record,
 }
 
 contacts_record_h ContactFactory::getObjectRecord(contacts_record_h record,
-		const ContactFieldMetadata *metadata)
+		const ContactFieldMetadata &metadata)
 {
 	contacts_record_h childRecord = nullptr;
-	int err = contacts_record_get_child_record_at_p(record, metadata->propId, 0, &childRecord);
+	int err = contacts_record_get_child_record_at_p(record, metadata.propId, 0, &childRecord);
 
 	if (err == CONTACTS_ERROR_NO_DATA) {
-		const char *uri = ((ContactObjectMetadata *) metadata->typeMetadata)->uri;
+		const char *uri = ((const ContactObjectMetadata *) metadata.typeMetadata)->uri;
 		contacts_record_create(uri, &childRecord);
-		contacts_record_add_child_record(record, metadata->propId, childRecord);
+		contacts_record_add_child_record(record, metadata.propId, childRecord);
 	}
 
 	return childRecord ? childRecord : record;

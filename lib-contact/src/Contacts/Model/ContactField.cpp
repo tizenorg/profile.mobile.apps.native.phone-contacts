@@ -25,12 +25,12 @@
 using namespace Contacts::Model;
 
 ContactField::ContactField(contacts_record_h record,
-		const ContactFieldMetadata *metadata)
+		const ContactFieldMetadata &metadata)
 	: m_Record(record), m_Metadata(metadata)
 {
 }
 
-ContactField::ContactField(const ContactFieldMetadata *metadata)
+ContactField::ContactField(const ContactFieldMetadata &metadata)
 	: m_Record(nullptr), m_Metadata(metadata)
 {
 }
@@ -41,6 +41,12 @@ FieldType &ContactField::cast()
 	return static_cast<FieldType &>(*this);
 }
 
+template <typename FieldType>
+const FieldType &ContactField::cast() const
+{
+	return static_cast<const FieldType &>(*this);
+}
+
 template ContactArray &ContactField::cast();
 template ContactDateField &ContactField::cast();
 template ContactEnumField &ContactField::cast();
@@ -48,19 +54,26 @@ template ContactTextField &ContactField::cast();
 template ContactObject &ContactField::cast();
 template ContactTypedObject &ContactField::cast();
 
+template const ContactArray &ContactField::cast() const;
+template const ContactDateField &ContactField::cast() const;
+template const ContactEnumField &ContactField::cast() const;
+template const ContactTextField &ContactField::cast() const;
+template const ContactObject &ContactField::cast() const;
+template const ContactTypedObject &ContactField::cast() const;
+
 unsigned ContactField::getId() const
 {
-	return m_Metadata->id;
+	return m_Metadata.id;
 }
 
 ContactFieldType ContactField::getType() const
 {
-	return m_Metadata->typeMetadata->type;
+	return m_Metadata.typeMetadata->type;
 }
 
 unsigned ContactField::getSubType() const
 {
-	return m_Metadata->typeMetadata->subType;
+	return m_Metadata.typeMetadata->subType;
 }
 
 contacts_record_h ContactField::getRecord() const
@@ -70,7 +83,7 @@ contacts_record_h ContactField::getRecord() const
 
 unsigned ContactField::getPropertyId() const
 {
-	return m_Metadata->propId;
+	return m_Metadata.propId;
 }
 
 void ContactField::setRecord(contacts_record_h record)
@@ -78,7 +91,7 @@ void ContactField::setRecord(contacts_record_h record)
 	m_Record = record;
 }
 
-const ContactFieldMetadata *ContactField::getMetadata() const
+const ContactFieldMetadata &ContactField::getMetadata() const
 {
 	return m_Metadata;
 }
