@@ -22,17 +22,17 @@ using namespace Contacts::Model;
 
 void ContactEnumField::reset()
 {
-	setValue(getEnumMetadata()->defaultValue);
+	setValue(getEnumMetadata().defaultValue);
 }
 
 Utils::Range<const int *> ContactEnumField::getValues() const
 {
-	return getEnumMetadata()->values;
+	return getEnumMetadata().values;
 }
 
 int ContactEnumField::getCustomValue() const
 {
-	return getEnumMetadata()->customValue;
+	return getEnumMetadata().customValue;
 }
 
 int ContactEnumField::getValue() const
@@ -49,10 +49,10 @@ void ContactEnumField::setValue(int value)
 
 bool ContactEnumField::hasCustomValue() const
 {
-	return getValue() == getEnumMetadata()->customValue;
+	return getValue() == getEnumMetadata().customValue;
 }
 
-const ContactEnumMetadata *ContactEnumField::getEnumMetadata() const
+const ContactEnumMetadata &ContactEnumField::getEnumMetadata() const
 {
-	return (const ContactEnumMetadata *) ContactField::getMetadata()->typeMetadata;
+	return *(const ContactEnumMetadata *) ContactField::getMetadata().typeMetadata;
 }

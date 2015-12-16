@@ -53,7 +53,7 @@ namespace Contacts
 			ContactFieldPtr getLabelField() const;
 
 		private:
-			const ContactTypedObjectMetadata *getTypedObjectMetadata() const;
+			const ContactTypedObjectMetadata &getTypedObjectMetadata() const;
 		};
 	}
 }

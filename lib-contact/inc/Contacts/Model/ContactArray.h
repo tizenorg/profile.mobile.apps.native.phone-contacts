@@ -69,7 +69,7 @@ namespace Contacts
 			void removeField(ContactFieldPtr field);
 
 		private:
-			const ContactArrayMetadata *getArrayMetadata() const;
+			const ContactArrayMetadata &getArrayMetadata() const;
 		};
 	}
 }

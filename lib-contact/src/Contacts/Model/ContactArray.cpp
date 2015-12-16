@@ -51,7 +51,7 @@ ContactFieldPtr ContactArray::getField(unsigned index) const
 	contacts_record_h record = nullptr;
 	contacts_record_get_child_record_at_p(getRecord(), getPropertyId(), index, &record);
 	if (record) {
-		return ContactFactory::createField(record, &getArrayMetadata()->element);
+		return ContactFactory::createField(record, getArrayMetadata().element);
 	}
 
 	return nullptr;
@@ -59,14 +59,14 @@ ContactFieldPtr ContactArray::getField(unsigned index) const
 
 ContactFieldPtr ContactArray::addField()
 {
-	const ContactFieldMetadata *elementMetadata = &getArrayMetadata()->element;
+	const ContactFieldMetadata *elementMetadata = &getArrayMetadata().element;
 	const char *uri = ((const ContactObjectMetadata *) elementMetadata->typeMetadata)->uri;
 
 	contacts_record_h record = nullptr;
 	contacts_record_create(uri, &record);
 	contacts_record_add_child_record(getRecord(), getPropertyId(), record);
 
-	ContactFieldPtr field = ContactFactory::createField(record, &getArrayMetadata()->element);
+	ContactFieldPtr field = ContactFactory::createField(record, getArrayMetadata().element);
 	field->reset();
 	return field;
 }
@@ -77,7 +77,7 @@ void ContactArray::removeField(ContactFieldPtr field)
 	contacts_record_destroy(field->getRecord(), true);
 }
 
-const ContactArrayMetadata *ContactArray::getArrayMetadata() const
+const ContactArrayMetadata &ContactArray::getArrayMetadata() const
 {
-	return (const ContactArrayMetadata *) ContactField::getMetadata()->typeMetadata;
+	return *(const ContactArrayMetadata *) ContactField::getMetadata().typeMetadata;
 }

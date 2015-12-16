@@ -43,7 +43,7 @@ namespace Contacts
 			 * @param[in]   metadata    Field metadata
 			 */
 			ContactField(contacts_record_h record,
-					const ContactFieldMetadata *metadata);
+					const ContactFieldMetadata &metadata);
 			virtual ~ContactField() { }
 
 			/**
@@ -61,6 +61,9 @@ namespace Contacts
 			 */
 			template <typename FieldType>
 			FieldType &cast();
+
+			template <typename FieldType>
+			const FieldType &cast() const;
 
 			/**
 			 * @return Field ID.
@@ -103,7 +106,7 @@ namespace Contacts
 			 * @brief Create contact field.
 			 * @param[in]   metadata    Field metadata
 			 */
-			ContactField(const ContactFieldMetadata *metadata);
+			ContactField(const ContactFieldMetadata &metadata);
 
 			/**
 			 * @brief Set database record containing the field.
@@ -112,13 +115,13 @@ namespace Contacts
 			void setRecord(contacts_record_h record);
 
 			/**
-			 * @return Field metadata (exact struct type depends on field type).
+			 * @return Field metadata.
 			 */
-			const ContactFieldMetadata *getMetadata() const;
+			const ContactFieldMetadata &getMetadata() const;
 
 		private:
 			contacts_record_h m_Record;
-			const ContactFieldMetadata *m_Metadata;
+			const ContactFieldMetadata &m_Metadata;
 		};
 
 		typedef std::unique_ptr<ContactField> ContactFieldPtr;

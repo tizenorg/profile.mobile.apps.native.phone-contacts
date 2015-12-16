@@ -48,15 +48,15 @@ ContactObjectIterator ContactObject::begin() const
 
 ContactObjectIterator ContactObject::end() const
 {
-	return ContactObjectIterator(*this, getObjectMetadata()->fields.count());
+	return ContactObjectIterator(*this, getObjectMetadata().fields.count());
 }
 
 ContactFieldPtr ContactObject::getField(unsigned index) const
 {
-	const ContactObjectMetadata *object = getObjectMetadata();
-	const ContactFieldMetadata *field = object->fields.begin() + index;
-	if (field < object->fields.end()) {
-		return ContactFactory::createField(getRecord(), field);
+	const ContactObjectMetadata &metadata = getObjectMetadata();
+	const ContactFieldMetadata *field = metadata.fields.begin() + index;
+	if (field < metadata.fields.end()) {
+		return ContactFactory::createField(getRecord(), *field);
 	}
 
 	return nullptr;
@@ -64,16 +64,16 @@ ContactFieldPtr ContactObject::getField(unsigned index) const
 
 ContactFieldPtr ContactObject::getFieldById(unsigned id) const
 {
-	for (auto &&field : getObjectMetadata()->fields) {
+	for (auto &&field : getObjectMetadata().fields) {
 		if (field.id == id) {
-			return ContactFactory::createField(getRecord(), &field);
+			return ContactFactory::createField(getRecord(), field);
 		}
 	}
 
 	return nullptr;
 }
 
-const ContactObjectMetadata *ContactObject::getObjectMetadata() const
+const ContactObjectMetadata &ContactObject::getObjectMetadata() const
 {
-	return (const ContactObjectMetadata *) ContactField::getMetadata()->typeMetadata;
+	return *(const ContactObjectMetadata *) ContactField::getMetadata().typeMetadata;
 }

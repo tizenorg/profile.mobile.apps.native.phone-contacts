@@ -30,15 +30,15 @@ void ContactTypedObject::reset()
 
 ContactFieldPtr ContactTypedObject::getTypeField() const
 {
-	return ContactFactory::createField(getRecord(), &getTypedObjectMetadata()->typeField);
+	return ContactFactory::createField(getRecord(), getTypedObjectMetadata().typeField);
 }
 
 ContactFieldPtr ContactTypedObject::getLabelField() const
 {
-	return ContactFactory::createField(getRecord(), &getTypedObjectMetadata()->labelField);
+	return ContactFactory::createField(getRecord(), getTypedObjectMetadata().labelField);
 }
 
-const ContactTypedObjectMetadata *ContactTypedObject::getTypedObjectMetadata() const
+const ContactTypedObjectMetadata &ContactTypedObject::getTypedObjectMetadata() const
 {
-	return (const ContactTypedObjectMetadata *) getObjectMetadata();
+	return (const ContactTypedObjectMetadata &) getObjectMetadata();
 }

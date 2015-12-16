@@ -70,7 +70,7 @@ namespace Contacts
 			bool hasCustomValue() const;
 
 		private:
-			const ContactEnumMetadata *getEnumMetadata() const;
+			const ContactEnumMetadata &getEnumMetadata() const;
 		};
 	}
 }
