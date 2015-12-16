@@ -85,13 +85,6 @@ void Window::onBackPressed(Evas_Object *obj, void *eventInfo)
 void Window::onMenuPressed(Evas_Object *obj, void *eventInfo)
 {
 	if (m_MainView) {
-		Evas_Object *menu = m_MainView->onMenuPressed();
-		if (menu) {
-			Evas_Coord y = 0;
-			Evas_Coord h = 0;
-			evas_object_geometry_get(m_Layout, NULL, &y, NULL, &h);
-			evas_object_move(menu, 0, y + h);
-			evas_object_show(menu);
-		}
+		m_MainView->onMenuPressed();
 	}
 }

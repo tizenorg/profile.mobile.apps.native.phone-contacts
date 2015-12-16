@@ -73,7 +73,7 @@ namespace Ui
 		/**
 		 * @see View::onMenuPressed()
 		 */
-		virtual Evas_Object *onMenuPressed() override;
+		virtual void onMenuPressed() override;
 
 	private:
 		NavigatorType m_Type;

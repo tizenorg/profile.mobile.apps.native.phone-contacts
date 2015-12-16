@@ -65,7 +65,7 @@ namespace Contacts
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
 			void onCreatePressed();
-			virtual Evas_Object *onMenuPressed() override;
+			virtual void onMenuPressed() override;
 
 			void onContactInserted(Model::ContactPtr contact);
 

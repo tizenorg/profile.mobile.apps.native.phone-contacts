@@ -68,8 +68,10 @@ bool Navigator::onBackPressed()
 	return view ? view->onBackPressed() : true;
 }
 
-Evas_Object *Navigator::onMenuPressed()
+void Navigator::onMenuPressed()
 {
 	View *view = getCurrentView();
-	return view ? view->onMenuPressed() : nullptr;
+	if (view) {
+		view->onMenuPressed();
+	}
 }

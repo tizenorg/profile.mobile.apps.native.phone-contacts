@@ -55,7 +55,7 @@ namespace Phone
 			virtual void onCreated() override;
 			virtual void onPageAttached() override;
 			virtual void onNavigation(bool isCurrentView) override;
-			virtual Evas_Object *onMenuPressed() override;
+			virtual void onMenuPressed() override;
 
 			Evas_Object *createEntry(Evas_Object *parent);
 			Evas_Object *createSearchControl(Evas_Object *parent);

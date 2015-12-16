@@ -97,7 +97,7 @@ void InputView::onPageAttached()
 	page->setContent("title_left_btn", cancelButton);
 }
 
-Evas_Object *InputView::onMenuPressed()
+void InputView::onMenuPressed()
 {
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
@@ -115,7 +115,7 @@ Evas_Object *InputView::onMenuPressed()
 		});
 	}
 
-	return menu->getEvasObject();
+	menu->show();
 }
 
 ContactObjectItem *InputView::createFieldItem(Model::ContactFieldPtr field)

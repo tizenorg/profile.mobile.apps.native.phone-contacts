@@ -182,7 +182,7 @@ void ListView::onCreatePressed()
 	getNavigator()->navigateTo(new Input::InputView());
 }
 
-Evas_Object *ListView::onMenuPressed()
+void ListView::onMenuPressed()
 {
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
@@ -190,7 +190,7 @@ Evas_Object *ListView::onMenuPressed()
 	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
 		getNavigator()->navigateTo(new Settings::MainView());
 	});
-	return menu->getEvasObject();
+	menu->show();
 }
 
 void ListView::onContactInserted(ContactPtr contact)

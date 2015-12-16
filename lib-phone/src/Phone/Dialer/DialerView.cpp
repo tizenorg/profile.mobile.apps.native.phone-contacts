@@ -110,7 +110,7 @@ void DialerView::onNavigation(bool isCurrentView)
 	}
 }
 
-Evas_Object *DialerView::onMenuPressed()
+void DialerView::onMenuPressed()
 {
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
@@ -136,7 +136,7 @@ Evas_Object *DialerView::onMenuPressed()
 		m_AppControl.launch();
 	});
 
-	return menu->getEvasObject();
+	menu->show();
 }
 
 Evas_Object *DialerView::createEntry(Evas_Object *parent)
