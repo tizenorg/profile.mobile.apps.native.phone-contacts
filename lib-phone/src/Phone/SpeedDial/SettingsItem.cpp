@@ -117,7 +117,7 @@ void SettingsItem::onPickResult(app_control_h request, app_control_h reply,
 	char **numberIds = nullptr;
 	int count = 0;
 	int err = app_control_get_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, &numberIds, &count);
-	RETM_IF(err != APP_CONTROL_ERROR_NONE, "app_control_get_extra_data() failed(%d)", err);
+	RETM_IF_ERR(err, "app_control_get_extra_data() failed.");
 
 	if (numberIds && numberIds[0]) {
 		int numberId = atoi(numberIds[0]);
@@ -142,7 +142,7 @@ void SettingsItem::onAddPressed(Evas_Object *obj, void *event_info)
 void SettingsItem::onDeletePressed(Evas_Object *obj, void *event_info)
 {
 	int err = contacts_db_delete_record(_contacts_speeddial._uri, m_Number);
-	RETM_IF(err != CONTACTS_ERROR_NONE, "contacts_db_delete_record() failed(%d)", err);
+	RETM_IF_ERR(err, "contacts_db_delete_record() failed.");
 
 	char buffer[TEXT_BUFFER_SIZE];
 	snprintf(buffer, sizeof(buffer), _("IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"), m_Number);
