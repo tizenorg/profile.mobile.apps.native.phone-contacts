@@ -24,6 +24,10 @@ collections
 
 	group {
 		name: "elm/genlist/item/"INPUT_ITEM_STYLE"/default";
+		alias: "elm/genlist/item_compress/"INPUT_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree/"INPUT_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree_compress/"INPUT_ITEM_STYLE"/default";
+
 		data.item: "banded_bg_area" "swallow.bg";
 		data.item: "contents" PART_LEFT" "PART_MIDDLE" "PART_RIGHT;
 
@@ -66,6 +70,60 @@ collections
 					state: "default" 0.0;
 					rel1.relative: (1.0-(ITEM_RIGHT_W+ITEM_RIGHT_X2)/ITEM_W) (ITEM_PADDING_Y/ITEM_H);
 					rel2.relative: (1.0-ITEM_RIGHT_X2/ITEM_W) (1.0-ITEM_PADDING_Y/ITEM_H);
+				}
+			}
+		}
+	}
+
+	group {
+		name: "elm/genlist/item/"INPUT_ITEM_STYLE_BUTTONS"/default";
+		alias: "elm/genlist/item_compress/"INPUT_ITEM_STYLE_BUTTONS"/default";
+
+		data.item: "banded_bg_area" "swallow.bg";
+		data.item: "contents" PART_BUTTON_1" "PART_BUTTON_2" "PART_BUTTON_3" "PART_BUTTON_4;
+
+		parts {
+			part {
+				name: "swallow.bg";
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+				}
+			}
+			part {
+				name: PART_BUTTON_1;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1.relative: 0 0;
+					rel2.relative: 0.25 1;
+				}
+			}
+			part {
+				name: PART_BUTTON_2;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1.relative: 0.25 0;
+					rel2.relative: 0.5 1;
+				}
+			}
+			part {
+				name: PART_BUTTON_3;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1.relative: 0.5 0;
+					rel2.relative: 0.75 1;
+				}
+			}
+			part {
+				name: PART_BUTTON_4;
+				type: SWALLOW;
+				description {
+					state: "default" 0.0;
+					rel1.relative: 0.75 0;
+					rel2.relative: 1 1;
 				}
 			}
 		}
