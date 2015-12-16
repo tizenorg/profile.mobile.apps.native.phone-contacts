@@ -83,7 +83,27 @@ bool GenlistGroupItem::empty()
 	return m_FirstItem == nullptr;
 }
 
+void GenlistGroupItem::onInserted()
+{
+	insertSubItems();
+}
+
+void GenlistGroupItem::onPop()
+{
+	popSubItems();
+}
+
 void GenlistGroupItem::onExpanded()
+{
+	insertSubItems();
+}
+
+void GenlistGroupItem::onContracted()
+{
+	popSubItems();
+}
+
+void GenlistGroupItem::insertSubItems()
 {
 	Genlist *genlist = getParent();
 	if (genlist) {
@@ -94,7 +114,7 @@ void GenlistGroupItem::onExpanded()
 	}
 }
 
-void GenlistGroupItem::onContracted()
+void GenlistGroupItem::popSubItems()
 {
 	for (auto it = begin(), endIt = end(); it != endIt; ) {
 		GenlistItem *item = *it++;
