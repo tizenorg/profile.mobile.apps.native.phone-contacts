@@ -92,6 +92,7 @@ GenlistItem *GenlistItem::getPrevItem() const
 
 void GenlistItem::pop()
 {
+	onPop();
 	m_Preserve = true;
 	elm_object_item_del(m_Item);
 	m_Preserve = false;

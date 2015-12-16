@@ -107,16 +107,16 @@ void Genlist::onItemSelected(void *data, Evas_Object *obj, Elm_Object_Item *obje
 
 void Genlist::onItemExpanded(void *data, Evas_Object *obj, Elm_Object_Item *objectItem)
 {
-	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
-	if (item) {
+	GenlistGroupItem *item = (GenlistGroupItem *) elm_object_item_data_get(objectItem);
+	if (item && item->isGroupItem()) {
 		item->onExpanded();
 	}
 }
 
 void Genlist::onItemContracted(void *data, Evas_Object *obj, Elm_Object_Item *objectItem)
 {
-	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
-	if (item) {
+	GenlistGroupItem *item = (GenlistGroupItem *) elm_object_item_data_get(objectItem);
+	if (item && item->isGroupItem()) {
 		item->onContracted();
 	}
 }

@@ -104,19 +104,14 @@ namespace Ui
 		virtual void onInserted() { }
 
 		/**
+		 * @brief Called before item is popped.
+		 */
+		virtual void onPop() { }
+
+		/**
 		 * @brief Called when item is selected.
 		 */
 		virtual void onSelected() { }
-
-		/**
-		 * @brief Called when tree item is expanded.
-		 */
-		virtual void onExpanded() { }
-
-		/**
-		 * @brief Called when tree item is contracted.
-		 */
-		virtual void onContracted() { }
 
 		/**
 		 * @brief Called when item is realized (became visible).

@@ -65,11 +65,33 @@ namespace Ui
 		bool empty();
 
 	protected:
-		virtual void onExpanded() override;
-		virtual void onContracted() override;
+
+		/**
+		 * @see GenlistItem::onInserted()
+		 */
+		virtual void onInserted() override;
+
+		/**
+		 * @see GenlistItem::onPop()
+		 */
+		virtual void onPop() override;
+
+		/**
+		 * @brief Called when tree item is expanded.
+		 */
+		virtual void onExpanded();
+
+		/**
+		 * @brief Called when tree item is contracted.
+		 */
+		virtual void onContracted();
 
 	private:
+		friend class Genlist;
 		friend class GenlistItem;
+
+		void insertSubItems();
+		void popSubItems();
 
 		void onSubItemInserted(GenlistItem *item);
 		void onSubItemDestroy(GenlistItem *item);
