@@ -18,8 +18,6 @@
 #include "App/AppControl.h"
 #include "Utils/Logger.h"
 
-#include <utility>
-
 using namespace App;
 
 AppControl::AppControl()
@@ -70,7 +68,7 @@ int AppControl::launch(app_control_reply_cb replyCallback, void *userData,
 	}
 
 	int result = app_control_send_launch_request(m_AppControl, replyCallback, userData);
-	WARN_IF(result != APP_CONTROL_ERROR_NONE, "app_control_send_launch_request() failed(%d)", result);
+	WARN_IF_ERR(result, "app_control_send_launch_request() failed.");
 
 	return result;
 }

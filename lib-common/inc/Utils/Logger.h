@@ -30,21 +30,31 @@
 #define DBG(fmt, arg...) DLOG(DLOG_DEBUG, fmt, ##arg)
 #define ERR(fmt, arg...) DLOG(DLOG_ERROR, fmt, ##arg)
 
-#define WARN_IF(expr, fmt, arg...) \
+#define LOG_IF(expr, action, fmt, arg...) \
 if (expr) { \
 	ERR(fmt, ##arg); \
-} \
+	action; \
+}
+
+#define LOG_IF_ERR(code, action, fmt, arg...) \
+LOG_IF(code != TIZEN_ERROR_NONE, action, fmt "%s.", ##arg, get_error_message(code))
+
+#define WARN_IF(expr, fmt, arg...) \
+LOG_IF(expr, , fmt, ##arg)
+
+#define WARN_IF_ERR(code, fmt, arg...) \
+LOG_IF_ERR(code, , fmt, ##arg)
 
 #define RETM_IF(expr, fmt, arg...) \
-if (expr) { \
-	ERR(fmt, ##arg); \
-	return; \
-} \
+LOG_IF(expr, return, fmt, ##arg)
+
+#define RETM_IF_ERR(code, fmt, arg...) \
+LOG_IF_ERR(code, return, fmt, ##arg)
 
 #define RETVM_IF(expr, val, fmt, arg...) \
-if (expr) { \
-	ERR(fmt, ##arg); \
-	return (val); \
-} \
+LOG_IF(expr, return val, fmt, ##arg)
+
+#define RETVM_IF_ERR(code, val, fmt, arg...) \
+LOG_IF_ERR(code, return val, fmt, ##arg)
 
 #endif /* UTILS_LOGGER_H */
