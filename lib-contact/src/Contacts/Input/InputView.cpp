@@ -36,7 +36,7 @@ using namespace Contacts::Model;
 using namespace std::placeholders;
 
 InputView::InputView(int recordId, Type type)
-	: m_Contact(ContactObjectType(type), recordId),
+	: m_RecordId(recordId), m_Contact(ContactObjectType(type)),
 	  m_DoneButton(nullptr), m_Genlist(nullptr),
 	  m_Items{nullptr}, m_AddFieldsItem(nullptr)
 {
@@ -59,6 +59,9 @@ Evas_Object *InputView::onCreate(Evas_Object *parent)
 
 void InputView::onCreated()
 {
+	int err = m_Contact.initialize(m_RecordId);
+	RETM_IF_ERR(err, "Contact::initialize() failed.");
+
 	if (m_Contact.isNew()) {
 		addFieldItem(addField(FieldImage));
 		addFieldItem(addField(FieldName));
@@ -170,7 +173,7 @@ void InputView::removeFieldItem(ContactObjectItem *item, ContactFieldId fieldId)
 {
 	if (item == m_Items[fieldId]) {
 		ContactObjectItem *nextItem = static_cast<ContactObjectItem *>(item->getNextGroupItem());
-		if (nextItem && nextItem->getObject()->getId() == fieldId) {
+		if (nextItem && nextItem->getObject().getId() == fieldId) {
 			m_Items[fieldId] = nextItem;
 		} else {
 			m_Items[fieldId] = nullptr;
@@ -192,7 +195,9 @@ void InputView::onRemoveField(ContactObjectItem *item, ContactFieldPtr field)
 
 void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 {
-	m_Contact.save();
+	int err = m_Contact.save();
+	RETM_IF_ERR(err, "Contact::save() failed.");
+
 	delete this;
 }
 

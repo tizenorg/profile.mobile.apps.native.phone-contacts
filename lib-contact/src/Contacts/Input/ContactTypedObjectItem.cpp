@@ -28,13 +28,13 @@ using namespace Contacts::Model;
 ContactTypedObjectItem::ContactTypedObjectItem(Model::ContactFieldPtr object)
 	: ContactObjectItem(std::move(object))
 {
-	m_TypeField = getTypedObject()->getTypeField();
-	m_LabelField = getTypedObject()->getLabelField();
+	m_TypeField = getTypedObject().getTypeField();
+	m_LabelField = getTypedObject().getLabelField();
 }
 
-ContactTypedObject *ContactTypedObjectItem::getTypedObject() const
+const ContactTypedObject &ContactTypedObjectItem::getTypedObject() const
 {
-	return &getObject()->cast<ContactTypedObject>();
+	return getObject().cast<ContactTypedObject>();
 }
 
 Evas_Object *ContactTypedObjectItem::getContent(Evas_Object *parent, const char *part)

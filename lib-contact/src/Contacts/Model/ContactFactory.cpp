@@ -67,5 +67,5 @@ contacts_record_h ContactFactory::getObjectRecord(contacts_record_h record,
 		contacts_record_add_child_record(record, metadata.propId, childRecord);
 	}
 
-	return childRecord ? childRecord : record;
+	return childRecord;
 }

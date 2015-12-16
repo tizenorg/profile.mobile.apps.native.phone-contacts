@@ -41,7 +41,7 @@ namespace Contacts
 			/**
 			 * @return ContactTypedObject associated with the item.
 			 */
-			Model::ContactTypedObject *getTypedObject() const;
+			const Model::ContactTypedObject &getTypedObject() const;
 
 			/**
 			 * @see GenlistItem::getContent()
