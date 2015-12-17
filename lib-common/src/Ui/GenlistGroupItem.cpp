@@ -17,6 +17,7 @@
 
 #include "Ui/GenlistGroupItem.h"
 #include "Ui/Genlist.h"
+#include <algorithm>
 
 using namespace Ui;
 
@@ -37,6 +38,21 @@ GenlistGroupItem::~GenlistGroupItem()
 	for (auto &&item : m_ItemsCache) {
 		delete item;
 	}
+}
+
+GenlistIterator GenlistGroupItem::begin()
+{
+	return m_FirstItem;
+}
+
+GenlistIterator GenlistGroupItem::end()
+{
+	return m_LastItem ? m_LastItem->getNextItem() : nullptr;
+}
+
+bool GenlistGroupItem::empty()
+{
+	return m_FirstItem == nullptr;
 }
 
 bool GenlistGroupItem::isGroupItem() const
@@ -68,19 +84,34 @@ GenlistGroupItem *GenlistGroupItem::getPrevGroupItem() const
 	return nullptr;
 }
 
-GenlistIterator GenlistGroupItem::begin()
+void GenlistGroupItem::insertSubItem(GenlistItem *item, GenlistItem *sibling,
+		Genlist::Position position)
 {
-	return m_FirstItem;
-}
+	if (!item) {
+		return;
+	}
 
-GenlistIterator GenlistGroupItem::end()
-{
-	return m_LastItem ? m_LastItem->getNextItem() : nullptr;
-}
+	Genlist *genlist = getParent();
+	if (genlist) {
+		genlist->insert(item, this, sibling, position);
+	} else {
+		auto pos = m_ItemsCache.end();
+		if (sibling) {
+			pos = std::find(m_ItemsCache.begin(), m_ItemsCache.end(), sibling);
+		}
 
-bool GenlistGroupItem::empty()
-{
-	return m_FirstItem == nullptr;
+		if (pos != m_ItemsCache.end()) {
+			if (position == Genlist::After) {
+				++pos;
+			}
+		} else {
+			if (position == Genlist::After) {
+				pos = m_ItemsCache.begin();
+			}
+		}
+
+		m_ItemsCache.insert(pos, item);
+	}
 }
 
 void GenlistGroupItem::onInserted()
