@@ -31,7 +31,7 @@ namespace Contacts
 {
 	namespace Input
 	{
-		class ContactObjectItem;
+		class ContactFieldItem;
 		class AddFieldsItem;
 
 		/**
@@ -61,17 +61,17 @@ namespace Contacts
 			virtual void onCreated() override;
 			virtual void onPageAttached() override;
 
-			ContactObjectItem *createFieldItem(Model::ContactFieldPtr field);
+			ContactFieldItem *createFieldItem(Model::ContactFieldPtr field);
 			Ui::GenlistItem *getNextFieldItem(Model::ContactFieldId fieldId);
 
 			Model::ContactFieldPtr addField(Model::ContactFieldId fieldId);
 			void removeField(Model::ContactFieldPtr field);
 
-			ContactObjectItem *addFieldItem(Model::ContactFieldPtr field);
-			void removeFieldItem(ContactObjectItem *item, Model::ContactFieldId fieldId);
+			ContactFieldItem *addFieldItem(Model::ContactFieldPtr field);
+			void removeFieldItem(ContactFieldItem *item, Model::ContactFieldId fieldId);
 
 			void onAddField(Model::ContactFieldId fieldId);
-			void onRemoveField(ContactObjectItem *item, Model::ContactFieldPtr field);
+			void onRemoveField(ContactFieldItem *item, Model::ContactFieldPtr field);
 
 			void onDonePressed(Evas_Object *button, void *eventInfo);
 			void onCancelPressed(Evas_Object *button, void *eventInfo);
@@ -82,7 +82,7 @@ namespace Contacts
 			Evas_Object *m_DoneButton;
 			Ui::Genlist *m_Genlist;
 
-			ContactObjectItem *m_Items[Model::FieldEnd];
+			ContactFieldItem *m_Items[Model::FieldEnd];
 			AddFieldsItem *m_AddFieldsItem;
 		};
 	}
