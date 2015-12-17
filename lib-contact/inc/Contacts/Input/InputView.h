@@ -58,7 +58,7 @@ namespace Contacts
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
 			virtual void onPageAttached() override;
-			virtual Evas_Object *onMenuPressed() override;
+			virtual void onMenuPressed() override;
 
 			ContactObjectItem *createFieldItem(Model::ContactFieldPtr field);
 			ContactObjectItem *getNextFieldItem(unsigned fieldId);

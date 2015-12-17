@@ -32,11 +32,21 @@ Elm_Object_Item *Menu::addItem(const char *text, ItemCallback callback)
 	return item;
 }
 
+void Menu::show()
+{
+	Evas_Coord y = 0, h = 0;
+	evas_object_geometry_get(getWindow()->getEvasObject(), nullptr, &y, nullptr, &h);
+
+	Evas_Object *menu = getEvasObject();
+	evas_object_move(menu, 0, y + h);
+	evas_object_show(menu);
+}
+
 Evas_Object *Menu::onCreate(Evas_Object *parent)
 {
 	Window *window = getWindow(parent);
 	if (window) {
-		parent = window->getBaseLayout();
+		parent = window->getEvasObject();
 	}
 
 	Evas_Object *menu = elm_ctxpopup_add(parent);
