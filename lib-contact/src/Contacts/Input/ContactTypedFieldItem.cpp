@@ -15,29 +15,28 @@
  *
  */
 
-#include "Contacts/Input/ContactTypedObjectItem.h"
+#include "Contacts/Input/ContactTypedFieldItem.h"
 #include "Contacts/Input/ContactObjectTypeControl.h"
-#include "Contacts/Model/ContactEnumField.h"
-#include "Contacts/Model/ContactTextField.h"
+#include "Contacts/Model/ContactTypedObject.h"
 
 #include "InputItemLayout.h"
 
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactTypedObjectItem::ContactTypedObjectItem(Model::ContactFieldPtr object)
-	: ContactObjectItem(std::move(object))
+ContactTypedFieldItem::ContactTypedFieldItem(Model::ContactFieldPtr object)
+	: ContactFieldItem(std::move(object))
 {
 	m_TypeField = getTypedObject().getTypeField();
 	m_LabelField = getTypedObject().getLabelField();
 }
 
-const ContactTypedObject &ContactTypedObjectItem::getTypedObject() const
+const ContactTypedObject &ContactTypedFieldItem::getTypedObject() const
 {
 	return getObject().cast<ContactTypedObject>();
 }
 
-Evas_Object *ContactTypedObjectItem::getContent(Evas_Object *parent, const char *part)
+Evas_Object *ContactTypedFieldItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_LEFT) == 0) {
 		Ui::Control *control = new ContactObjectTypeControl(
@@ -45,6 +44,6 @@ Evas_Object *ContactTypedObjectItem::getContent(Evas_Object *parent, const char 
 				&m_LabelField->cast<ContactTextField>());
 		return control->create(parent);
 	} else {
-		return ContactObjectItem::getContent(parent, part);
+		return ContactFieldItem::getContent(parent, part);
 	}
 }

@@ -15,43 +15,42 @@
  *
  */
 
-#ifndef CONTACTS_INPUT_CONTACT_TYPED_OBJECT_ITEM_H
-#define CONTACTS_INPUT_CONTACT_TYPED_OBJECT_ITEM_H
+#ifndef CONTACTS_INPUT_CONTACT_FIELD_ITEM_H
+#define CONTACTS_INPUT_CONTACT_FIELD_ITEM_H
 
-#include "Contacts/Input/ContactObjectItem.h"
-#include "Contacts/Model/ContactTypedObject.h"
+#include "Contacts/Model/ContactField.h"
+#include "Ui/GenlistItem.h"
 
 namespace Contacts
 {
 	namespace Input
 	{
 		/**
-		 * @brief Genlist item representing ContactTypedObject and its first field,
-		 *        type field and label field.
+		 * @brief Genlist item representing contact field of TypeText or TypeDate type.
 		 */
-		class ContactTypedObjectItem : public ContactObjectItem
+		class ContactFieldSubItem : public Ui::GenlistItem
 		{
 		public:
 			/**
-			 * @see ContactObjectItem::ContactObjectItem()
+			 * @brief Create field genlist item.
+			 * @param[in]   field   Contact field of TypeText or TypeDate type
 			 */
-			ContactTypedObjectItem(Model::ContactFieldPtr object);
+			ContactFieldSubItem(Model::ContactFieldPtr field);
 
-		protected:
 			/**
-			 * @return ContactTypedObject associated with the item.
+			 * @return ContactField associated with the item.
 			 */
-			const Model::ContactTypedObject &getTypedObject() const;
+			const Model::ContactField &getField() const;
 
 			/**
 			 * @see GenlistItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
-			Model::ContactFieldPtr m_TypeField;
-			Model::ContactFieldPtr m_LabelField;
+		private:
+			Model::ContactFieldPtr m_Field;
 		};
 	}
 }
 
-#endif /* CONTACTS_INPUT_CONTACT_TYPED_OBJECT_ITEM_H */
+#endif /* CONTACTS_INPUT_CONTACT_FIELD_ITEM_H */
