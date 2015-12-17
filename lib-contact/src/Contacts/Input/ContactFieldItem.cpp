@@ -16,11 +16,9 @@
  */
 
 #include "Contacts/Input/ContactFieldItem.h"
-#include "Contacts/Model/ContactDateField.h"
-#include "Contacts/Model/ContactTextField.h"
-#include "Contacts/Input/ContactDateFieldControl.h"
-#include "Contacts/Input/ContactTextFieldControl.h"
-#include "Ui/Editfield.h"
+#include "Contacts/Input/ContactFieldSubItem.h"
+#include "Contacts/Model/ContactObject.h"
+#include "Utils/Callback.h"
 
 #include "InputItemLayout.h"
 
@@ -32,31 +30,53 @@ namespace
 	Elm_Genlist_Item_Class itc = Ui::GenlistItem::createItemClass(INPUT_ITEM_STYLE);
 }
 
-ContactFieldItem::ContactFieldItem(ContactFieldPtr field)
-	: GenlistItem(&itc), m_Field(std::move(field))
+ContactFieldItem::ContactFieldItem(ContactFieldPtr object)
+	: GenlistGroupItem(&itc, ELM_GENLIST_ITEM_TREE),
+	  m_Object(std::move(object)), m_FirstFieldItem(nullptr)
 {
+	for (auto &&field : getObject()) {
+		ContactFieldSubItem *item = new ContactFieldSubItem(std::move(field));
+		if (!m_FirstFieldItem) {
+			m_FirstFieldItem = item;
+		} else {
+			insertSubItem(item);
+		}
+	}
 }
 
-const ContactField &ContactFieldItem::getField() const
+ContactFieldItem::~ContactFieldItem()
 {
-	return *m_Field;
+	delete m_FirstFieldItem;
+}
+
+void ContactFieldItem::setRemoveCallback(RemoveCallback callback)
+{
+	m_OnRemove = std::move(callback);
+}
+
+const ContactObject &ContactFieldItem::getObject() const
+{
+	return m_Object->cast<ContactObject>();
 }
 
 Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 {
-	Ui::Control *control = nullptr;
-	if (m_Field && strcmp(part, PART_MIDDLE) == 0) {
-		switch (m_Field->getType()) {
-			case TypeText:
-				control = new ContactTextFieldControl(&m_Field->cast<ContactTextField>());
-				break;
-			case TypeDate:
-				control = new ContactDateFieldControl(&m_Field->cast<ContactDateField>());
-				break;
-			default:
-				break;
-		}
-	}
+	if (strcmp(part, PART_RIGHT) == 0) {
+		Evas_Object *button = elm_button_add(parent);
+		elm_object_style_set(button, "icon_expand_delete");
+		evas_object_smart_callback_add(button, "clicked",
+				makeCallback(&ContactFieldItem::onRemovePressed), this);
 
-	return control ? control->create(parent) : nullptr;
+		return button;
+	} else {
+		return m_FirstFieldItem->getContent(parent, part);
+	}
+}
+
+void ContactFieldItem::onRemovePressed(Evas_Object *button, void *eventInfo)
+{
+	if (m_OnRemove) {
+		m_OnRemove(this, std::move(m_Object));
+	}
+	delete this;
 }

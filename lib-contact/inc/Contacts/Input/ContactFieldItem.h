@@ -15,42 +15,74 @@
  *
  */
 
-#ifndef CONTACTS_INPUT_CONTACT_FIELD_ITEM_H
-#define CONTACTS_INPUT_CONTACT_FIELD_ITEM_H
+#ifndef CONTACTS_INPUT_CONTACT_OBJECT_ITEM_H
+#define CONTACTS_INPUT_CONTACT_OBJECT_ITEM_H
 
 #include "Contacts/Model/ContactField.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenlistGroupItem.h"
+#include <functional>
 
 namespace Contacts
 {
+	namespace Model
+	{
+		class ContactObject;
+	}
+
 	namespace Input
 	{
+		class ContactFieldSubItem;
+
 		/**
-		 * @brief Genlist item representing contact field of TypeText or TypeDate type.
+		 * @brief Genlist item representing ContactObject and its first field.
 		 */
-		class ContactFieldItem : public Ui::GenlistItem
+		class ContactFieldItem : public Ui::GenlistGroupItem
 		{
 		public:
 			/**
-			 * @brief Create field genlist item.
-			 * @param[in]   field   Contact field of TypeText or TypeDate type
+			 * @brief Remove field callback.
+			 * @param[in]   Genlist item to be removed
+			 * @param[in]   Field to be removed
 			 */
-			ContactFieldItem(Model::ContactFieldPtr field);
+			typedef std::function<void(ContactFieldItem *, Model::ContactFieldPtr)> RemoveCallback;
 
 			/**
-			 * @return ContactField associated with the item.
+			 * @brief Create genlist item representing ContactObject.
+			 * @param[in]   object      Contact field of TypeObject type
 			 */
-			const Model::ContactField &getField() const;
+			ContactFieldItem(Model::ContactFieldPtr object);
+			~ContactFieldItem();
 
+			/**
+			 * @brief Set remove field callback.
+			 * @param[in]   callback    Callback to be called when remove button is pressed
+			 */
+			void setRemoveCallback(RemoveCallback callback);
+
+			/**
+			 * @return ContactObject associated with the item.
+			 */
+			const Model::ContactObject &getObject() const;
+
+			/**
+			 * @brief Remove ContactObject from item.
+			 */
+			Model::ContactFieldPtr resetObject();
+
+		protected:
 			/**
 			 * @see GenlistItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 		private:
-			Model::ContactFieldPtr m_Field;
+			void onRemovePressed(Evas_Object *button, void *eventInfo);
+
+			Model::ContactFieldPtr m_Object;
+			RemoveCallback m_OnRemove;
+			ContactFieldSubItem *m_FirstFieldItem;
 		};
 	}
 }
 
-#endif /* CONTACTS_INPUT_CONTACT_FIELD_ITEM_H */
+#endif /* CONTACTS_INPUT_CONTACT_OBJECT_ITEM_H */
