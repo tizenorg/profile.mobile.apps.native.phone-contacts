@@ -33,11 +33,18 @@ namespace Contacts
 			/**
 			 * @brief Create contact object.
 			 * @param[in]   type    Contact object type (ObjectTypeContact or ObjectTypeMyProfile)
-			 * @param[in]   id      Database record ID or 0 to create new contact
 			 */
-			Contact(ContactObjectType type, int id);
+			Contact(ContactObjectType type);
 			Contact(const Contact &that) = delete;
 			virtual ~Contact() override;
+
+
+			/**
+			 * @brief Initialize contact object.
+			 * @param[in]   id      Database record ID or 0 to create new contact
+			 * @return Contacts API error code.
+			 */
+			int initialize(int recordId);
 
 			/**
 			 * @return Whether the contact is new and is not stored in database yet.
@@ -46,8 +53,9 @@ namespace Contacts
 
 			/**
 			 * @brief Save contact to the database.
+			 * @return Contacts API error code.
 			 */
-			void save();
+			int save();
 
 			Contact &operator=(const Contact &that) = delete;
 

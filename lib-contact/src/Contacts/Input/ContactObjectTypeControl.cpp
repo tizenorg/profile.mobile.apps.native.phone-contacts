@@ -20,6 +20,7 @@
 #include "Contacts/Model/ContactEnumField.h"
 #include "Contacts/Model/ContactTextField.h"
 #include "Contacts/Common/Strings.h"
+#include "Utils/Logger.h"
 
 using namespace Contacts::Input;
 using namespace Contacts::Model;
@@ -32,10 +33,11 @@ ContactObjectTypeControl::ContactObjectTypeControl(ContactEnumField *typeField,
 
 void ContactObjectTypeControl::onCreated()
 {
-	ContactEnumType enumType = (ContactEnumType) m_TypeField->getSubType();
-	auto names = Common::getContactEnumValueNames(enumType);
-	auto values = m_TypeField->getValues();
 	int currentValue = m_TypeField->getValue();
+
+	auto names = Common::getContactEnumValueNames(ContactEnumType(m_TypeField->getSubType()));
+	auto values = m_TypeField->getValues();
+	RETM_IF(names.count() != values.count(), "names.count() != values.count()");
 
 	for (size_t i = 0; i < values.count(); ++i) {
 		addItem(names[i], values[i]);
@@ -49,9 +51,8 @@ void ContactObjectTypeControl::onCreated()
 		setText(m_LabelField->getValue());
 	}
 
-	setSelectedCallback([this](int value) {
-		return onSelected(value);
-	});
+	setSelectedCallback(std::bind(&ContactObjectTypeControl::onSelected, this,
+			std::placeholders::_1));
 }
 
 bool ContactObjectTypeControl::onSelected(int value)

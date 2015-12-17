@@ -20,19 +20,9 @@
 
 using namespace Contacts::Model;
 
-Contact::Contact(ContactObjectType type, int id)
-	: ContactObject(*getContactMetadata(type)), m_IsNew(id <= 0)
+Contact::Contact(ContactObjectType type)
+	: ContactObject(*getContactMetadata(type)), m_IsNew(true)
 {
-	const char *uri = getObjectMetadata().uri;
-	contacts_record_h record = nullptr;
-
-	if (m_IsNew) {
-		contacts_record_create(uri, &record);
-	} else {
-		contacts_db_get_record(uri, id, &record);
-	}
-
-	setRecord(record);
 }
 
 Contact::~Contact()
@@ -40,16 +30,36 @@ Contact::~Contact()
 	contacts_record_destroy(getRecord(), true);
 }
 
+int Contact::initialize(int recordId)
+{
+	const char *uri = getObjectMetadata().uri;
+	contacts_record_h record = nullptr;
+	int err = CONTACTS_ERROR_NONE;
+
+	m_IsNew = (recordId <= 0);
+	if (m_IsNew) {
+		err = contacts_record_create(uri, &record);
+	} else {
+		err = contacts_db_get_record(uri, recordId, &record);
+	}
+
+	setRecord(record);
+	return err;
+}
+
 bool Contact::isNew() const
 {
 	return m_IsNew;
 }
 
-void Contact::save()
+int Contact::save()
 {
+	int err = CONTACTS_ERROR_NONE;
 	if (m_IsNew) {
-		contacts_db_insert_record(getRecord(), nullptr);
+		err = contacts_db_insert_record(getRecord(), nullptr);
 	} else {
-		contacts_db_update_record(getRecord());
+		err = contacts_db_update_record(getRecord());
 	}
+
+	return err;
 }

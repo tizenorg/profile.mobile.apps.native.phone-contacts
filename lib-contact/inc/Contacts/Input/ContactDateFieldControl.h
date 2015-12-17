@@ -29,9 +29,16 @@ namespace Contacts
 
 	namespace Input
 	{
+		/**
+		 * @brief UI Control for editing ContactDateField
+		 */
 		class ContactDateFieldControl : public Ui::Control
 		{
 		public:
+			/**
+			 * @brief Create control
+			 * @param[in]   field   Contact date field to edit
+			 */
 			ContactDateFieldControl(Model::ContactDateField *field);
 
 		private:

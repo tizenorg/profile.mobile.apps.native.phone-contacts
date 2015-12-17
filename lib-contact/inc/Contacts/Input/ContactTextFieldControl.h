@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 #ifndef CONTACTS_INPUT_CONTACT_TEXT_FIELD_CONTROL_H
 #define CONTACTS_INPUT_CONTACT_TEXT_FIELD_CONTROL_H
 
@@ -28,9 +29,16 @@ namespace Contacts
 
 	namespace Input
 	{
+		/**
+		 * @brief UI Control for editing ContactTextField
+		 */
 		class ContactTextFieldControl : public Ui::Editfield
 		{
 		public:
+			/**
+			 * @brief Create control
+			 * @param[in]   field   Contact text field to edit
+			 */
 			ContactTextFieldControl(Model::ContactTextField *field);
 
 		private:

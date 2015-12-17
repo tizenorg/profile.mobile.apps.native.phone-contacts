@@ -54,7 +54,7 @@ namespace Contacts
 			/**
 			 * @return ContactObject associated with the item.
 			 */
-			Model::ContactObject *getObject() const;
+			const Model::ContactObject &getObject() const;
 
 		protected:
 			/**
