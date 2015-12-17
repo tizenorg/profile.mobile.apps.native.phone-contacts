@@ -35,9 +35,9 @@ void ContactObjectItem::setRemoveCallback(RemoveCallback callback)
 	m_OnRemove = std::move(callback);
 }
 
-ContactObject *ContactObjectItem::getObject() const
+const ContactObject &ContactObjectItem::getObject() const
 {
-	return &m_Object->cast<ContactObject>();
+	return m_Object->cast<ContactObject>();
 }
 
 Evas_Object *ContactObjectItem::getContent(Evas_Object *parent, const char *part)
@@ -56,7 +56,7 @@ Evas_Object *ContactObjectItem::getContent(Evas_Object *parent, const char *part
 
 void ContactObjectItem::insertChildItems()
 {
-	auto fields = Utils::makeRange(++getObject()->begin(), getObject()->end());
+	auto fields = Utils::makeRange(++getObject().begin(), getObject().end());
 	for (auto &&field : fields) {
 		switch (field->getType()) {
 			case TypeText:

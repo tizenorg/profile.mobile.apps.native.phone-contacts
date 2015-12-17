@@ -76,7 +76,9 @@ namespace Contacts
 			void onDonePressed(Evas_Object *button, void *eventInfo);
 			void onCancelPressed(Evas_Object *button, void *eventInfo);
 
+			int m_RecordId;
 			Model::Contact m_Contact;
+
 			Evas_Object *m_DoneButton;
 			Ui::Genlist *m_Genlist;
 

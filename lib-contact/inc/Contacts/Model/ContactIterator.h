@@ -29,13 +29,18 @@ namespace Contacts
 		class ContactObject;
 
 		/**
-		 * @brief Index-based iterator.
+		 * @brief Index-based iterator template for ContactArray and ContactObject.
 		 */
 		template <typename FieldContainer>
 		class ContactIterator :
 			public std::iterator<std::input_iterator_tag, ContactFieldPtr>
 		{
 		public:
+			/**
+			 * @brief Create iterator.
+			 * @param[in]   container   Container with getField() method
+			 * @param[in]   index       Index of the field pointed by iterator
+			 */
 			ContactIterator(const FieldContainer &container, int index)
 				: m_Container(container), m_Index(index) { }
 

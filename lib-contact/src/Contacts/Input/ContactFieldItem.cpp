@@ -37,9 +37,9 @@ ContactFieldItem::ContactFieldItem(ContactFieldPtr field)
 {
 }
 
-ContactField *ContactFieldItem::getField() const
+const ContactField &ContactFieldItem::getField() const
 {
-	return m_Field.get();
+	return *m_Field;
 }
 
 Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
