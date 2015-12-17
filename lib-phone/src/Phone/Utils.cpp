@@ -34,7 +34,7 @@ std::string Phone::getSpeedDialNumber(int speedNumber)
 	contacts_query_set_filter(query, filter);
 
 	int err = contacts_db_get_records_with_query(query, 0, 1, &list);
-	WARN_IF(err != CONTACTS_ERROR_NONE, "contacts_db_get_records_with_query() failed(0x%x)", err);
+	WARN_IF_ERR(err, "contacts_db_get_records_with_query() failed.");
 	if (list) {
 		contacts_record_h record = NULL;
 		contacts_list_get_current_record_p(list, &record);
@@ -69,7 +69,7 @@ bool Phone::addSpeedDialNumber(int speedNumber, int numberId)
 	int err = contacts_db_get_records_with_query(query, 0, 1, &list);
 	contacts_query_destroy(query);
 	contacts_filter_destroy(filter);
-	RETVM_IF(err != CONTACTS_ERROR_NONE, false, "contacts_db_get_records_with_query() failed(%d)", err);
+	RETVM_IF_ERR(err, false, "contacts_db_get_records_with_query() failed.");
 
 	int count = 0;
 	contacts_list_get_count(list, &count);
@@ -84,7 +84,7 @@ bool Phone::addSpeedDialNumber(int speedNumber, int numberId)
 	contacts_record_set_int(record, _contacts_speeddial.number_id, numberId);
 	err = contacts_db_insert_record(record, nullptr);
 	contacts_record_destroy(record, true);
-	RETVM_IF(err != CONTACTS_ERROR_NONE, false, "contacts_db_insert_record() failed(%d)", err);
+	RETVM_IF_ERR(err, false, "contacts_db_insert_record() failed.");
 
 	return true;
 }
@@ -108,7 +108,7 @@ std::string Phone::getLastCallNumber()
 	contacts_query_set_sort(query, _contacts_person_phone_log.log_time, false);
 
 	int err = contacts_db_get_records_with_query(query, 0, 1, &list);
-	WARN_IF(err != CONTACTS_ERROR_NONE, "contacts_db_get_records_with_query() failed(0x%x)", err);
+	WARN_IF_ERR(err, "contacts_db_get_records_with_query() failed.");
 	if (list) {
 		contacts_record_h record = NULL;
 		contacts_list_get_current_record_p(list, &record);

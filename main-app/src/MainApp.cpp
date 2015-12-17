@@ -49,7 +49,7 @@ Ui::Navigator *MainApp::getNavigator() const
 bool MainApp::onCreate()
 {
 	int err = contacts_connect();
-	RETVM_IF(err != CONTACTS_ERROR_NONE, false, "contacts_connect() failed(%d)", err);
+	RETVM_IF_ERR(err, false, "contacts_connect() failed.");
 
 	bindtextdomain(TEXT_DOMAIN, App::getLocaleDir().c_str());
 	textdomain(TEXT_DOMAIN);

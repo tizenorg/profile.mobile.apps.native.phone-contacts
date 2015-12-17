@@ -46,7 +46,7 @@ bool SpeedDialPopup::onOkPressed()
 			APP_CONTROL_RESULT_PHONE);
 
 	int err = request.launch(&SpeedDialPopup::onPickResult, this);
-	RETVM_IF(err != APP_CONTROL_ERROR_NONE, true, "launchContactPick() failed(0x%x)", err);
+	RETVM_IF_ERR(err, true, "launchContactPick() failed.");
 
 	request.detach();
 	return false;
@@ -61,7 +61,7 @@ void SpeedDialPopup::onPickResult(app_control_h request, app_control_h reply,
 	int count = 0;
 
 	int err = app_control_get_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, &numberIds, &count);
-	RETM_IF(err != APP_CONTROL_ERROR_NONE, "app_control_get_extra_data() failed(0x%x)", err);
+	RETM_IF_ERR(err, "app_control_get_extra_data() failed.");
 
 	if (numberIds && numberIds[0]) {
 		int numberId = atoi(numberIds[0]);
