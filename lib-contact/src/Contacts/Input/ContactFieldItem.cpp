@@ -29,11 +29,11 @@ using namespace Contacts::Model;
 
 namespace
 {
-	Elm_Genlist_Item_Class fieldItemClass = Ui::GenlistItem::createItemClass(INPUT_ITEM_STYLE);
+	Elm_Genlist_Item_Class itc = Ui::GenlistItem::createItemClass(INPUT_ITEM_STYLE);
 }
 
 ContactFieldItem::ContactFieldItem(ContactFieldPtr field)
-	: GenlistGroupItem(&fieldItemClass), m_Field(std::move(field))
+	: GenlistItem(&itc), m_Field(std::move(field))
 {
 }
 
@@ -46,7 +46,7 @@ Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 {
 	Ui::Control *control = nullptr;
 	if (m_Field && strcmp(part, PART_MIDDLE) == 0) {
-		switch(m_Field->getType()) {
+		switch (m_Field->getType()) {
 			case TypeText:
 				control = new ContactTextFieldControl(&m_Field->cast<ContactTextField>());
 				break;
