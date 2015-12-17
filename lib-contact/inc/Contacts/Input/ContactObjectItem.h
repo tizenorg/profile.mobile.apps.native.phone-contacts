@@ -18,18 +18,20 @@
 #ifndef CONTACTS_INPUT_CONTACT_OBJECT_ITEM_H
 #define CONTACTS_INPUT_CONTACT_OBJECT_ITEM_H
 
-#include "Contacts/Input/ContactFieldItem.h"
 #include "Contacts/Model/ContactObject.h"
+#include "Ui/GenlistGroupItem.h"
 #include <functional>
 
 namespace Contacts
 {
 	namespace Input
 	{
+		class ContactFieldItem;
+
 		/**
 		 * @brief Genlist item representing ContactObject and its first field.
 		 */
-		class ContactObjectItem : public ContactFieldItem
+		class ContactObjectItem : public Ui::GenlistGroupItem
 		{
 		public:
 			/**
@@ -44,6 +46,7 @@ namespace Contacts
 			 * @param[in]   object      Contact field of TypeObject type
 			 */
 			ContactObjectItem(Model::ContactFieldPtr object);
+			~ContactObjectItem();
 
 			/**
 			 * @brief Set remove field callback.
@@ -62,21 +65,12 @@ namespace Contacts
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
-			/**
-			 * @see GenlistItem::onInserted()
-			 */
-			virtual void onInserted();
-
-			/**
-			 * @brief Insert
-			 */
-			void insertChildItems();
-
 		private:
 			void onRemovePressed(Evas_Object *button, void *eventInfo);
 
 			Model::ContactFieldPtr m_Object;
 			RemoveCallback m_OnRemove;
+			ContactFieldItem *m_FirstFieldItem;
 		};
 	}
 }
