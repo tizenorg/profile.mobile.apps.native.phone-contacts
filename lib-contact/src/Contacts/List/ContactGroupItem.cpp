@@ -16,20 +16,26 @@
  */
 
 #include "Contacts/List/ContactGroupItem.h"
+#include "Utils/UniString.h"
 
 using namespace Contacts::List;
+using namespace Utils;
 
 ContactGroupItem::ContactGroupItem(const char *title, Elm_Object_Item *indexItem)
-	: m_IndexItem(indexItem)
+	: m_UniTitle(nullptr), m_IndexItem(indexItem)
 {
 	if (title) {
 		m_Title = title;
 	}
 }
 
-const char *Contacts::List::ContactGroupItem::getTitle() const
+const UniString &ContactGroupItem::getTitle() const
 {
-	return m_Title.c_str();
+	if (!m_UniTitle) {
+		m_UniTitle = new UniString(m_Title.c_str());
+	}
+
+	return *m_UniTitle;
 }
 
 Elm_Object_Item *ContactGroupItem::getIndexItem() const

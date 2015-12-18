@@ -47,6 +47,12 @@ namespace Contacts
 			 */
 			const Model::Contact &getContact() const;
 
+			/**
+			 * @brief Set contact object
+			 * @param[in]   contact     Contact object
+			 */
+			void setContact(Model::ContactPtr contact);
+
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;

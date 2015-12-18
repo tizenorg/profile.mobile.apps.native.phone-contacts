@@ -32,6 +32,11 @@ const Contact &ContactItem::getContact() const
 	return *m_Contact;
 }
 
+void ContactItem::setContact(Model::ContactPtr contact)
+{
+	m_Contact = std::move(contact);
+}
+
 char *ContactItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_CONTACT_NAME) == 0) {

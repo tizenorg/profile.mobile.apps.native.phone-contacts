@@ -18,11 +18,22 @@
 #include "Contacts/List/Model/ContactProvider.h"
 #include "Contacts/Utils.h"
 #include "Utils/Callback.h"
+#include "Utils/Range.h"
 
 using namespace Contacts::List::Model;
 
 namespace
 {
+	unsigned projection[] = {
+		_contacts_person.id,
+		_contacts_person.display_name,
+		_contacts_person.display_name_index,
+		_contacts_person.display_contact_id,
+		_contacts_person.image_thumbnail_path,
+		_contacts_person.is_favorite,
+		_contacts_person.favorite_priority
+	};
+
 	contacts_filter_h getProviderFilter(ContactProvider::FilterType filterType)
 	{
 		bool emptyFilter = true;
@@ -48,28 +59,18 @@ namespace
 
 	contacts_list_h getContactList(ContactProvider::FilterType filterType)
 	{
-		contacts_list_h list = nullptr;
-		contacts_query_h query = nullptr;
-		unsigned projection[] = {
-			_contacts_person.id,
-			_contacts_person.display_name,
-			_contacts_person.display_name_index,
-			_contacts_person.display_contact_id,
-			_contacts_person.image_thumbnail_path,
-			_contacts_person.is_favorite,
-			_contacts_person.favorite_priority
-		};
-
-		contacts_query_create(_contacts_person._uri, &query);
-
 		contacts_filter_h filter = getProviderFilter(filterType);
-		contacts_query_set_filter(query, filter);
 
-		contacts_query_set_projection(query, projection, sizeof(projection) / sizeof(*projection));
+		contacts_query_h query = nullptr;
+		contacts_query_create(_contacts_person._uri, &query);
+		contacts_query_set_filter(query, filter);
+		contacts_query_set_projection(query, projection, Utils::count(projection));
+
+		contacts_list_h list = nullptr;
 		contacts_db_get_records_with_query(query, 0, 0, &list);
 
-		contacts_filter_destroy(filter);
 		contacts_query_destroy(query);
+		contacts_filter_destroy(filter);
 
 		return list;
 	}
@@ -83,6 +84,7 @@ namespace
 		contacts_query_h query = nullptr;
 		contacts_query_create(_contacts_person._uri, &query);
 		contacts_query_set_filter(query, filter);
+		contacts_query_set_projection(query, projection, Utils::count(projection));
 
 		contacts_list_h list = nullptr;
 		contacts_db_get_records_with_query(query, 0, 1, &list);
@@ -172,7 +174,7 @@ void ContactProvider::notify(contacts_changed_e changeType, ContactPtr contact)
 		case CONTACTS_CHANGE_DELETED:
 			auto it = m_ChangeCallbacks.find(contact->getPersonId());
 			if (it != m_ChangeCallbacks.end()) {
-				it->second(it->first, changeType);
+				it->second(std::move(contact), changeType);
 			}
 			break;
 	}
