@@ -18,6 +18,8 @@
 #ifndef LOGS_MODEL_LOG_PROVIDER_H
 #define LOGS_MODEL_LOG_PROVIDER_H
 
+#include <map>
+#include <contacts.h>
 #include "Logs/Model/LogType.h"
 
 namespace Logs
@@ -36,21 +38,61 @@ namespace Logs
 			LogProvider();
 
 			/**
-			 * @brief Get logs list
+			 * @brief Destructor
+			 */
+			~LogProvider();
+
+			/**
+			 * @brief Get log list
 			 * @return list of logs.
 			 */
-			const LogList &getLogsList() const;
+			const LogList &getLogList() const;
+
+			/**
+			 * @brief Set contact change callback
+			 * @remark It can be update or delete ot insert of contact
+			 * @param[in]    id          Contact ID
+			 * @param[in]    callback    Change contact callback
+			 */
+			void setChangeContactCallback(int id, ChangeContactCallback callback);
+
+			/**
+			 * @brief Unset contact change callback
+			 * @param[in]    id    Contact ID
+			 */
+			void unsetChangeContactCallback(int id);
+
+			/**
+			 * @brief Set log change callback
+			 * @remark It can be update or delete or insert of contact
+			 * @param[in]    callback    Change Log callback
+			 */
+			void setChangeLogCallback(ChangeLogCallback callback);
+
+			/**
+			 * @brief Unset log change callback
+			 */
+			void unsetChangeLogCallback();
 
 		private:
 			void fillList();
-			bool isLogToGroup(LogPtr log, LogPtr lastLog);
-			LogGroupPtr groupLogs(LogPtr log, LogPtr lastLog);
+			bool shouldGroupLog(LogPtr log, LogPtr prevLog);
+			LogGroupPtr groupLogs(LogPtr log, LogPtr prevLog);
+			void addCurrentLog(contacts_list_h *list);
+			contacts_list_h fetchList();
 
 			void onLogChanged(const char *viewUri);
 			void onContactChanged(const char *viewUri);
 
+			void notifyLogWithChange(int contactId, int changeType);
+
 			LogList m_AllLogs;
 			int m_DbVersion;
+
+			ChangeContactCallback m_ContactCallback;
+			std::multimap<int, ChangeContactCallback> m_ChangeContactCallbacks;
+
+			ChangeLogCallback m_LogCallback;
 		};
 	}
 }

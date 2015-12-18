@@ -31,13 +31,51 @@ namespace Logs
 		class LogGroup : public Log
 		{
 		public:
+
+			/**
+			 * @see Log::isGroup()
+			 */
 			virtual bool isGroup() const override;
+
+			/**
+			 * @see Log::getLogRecord()
+			 */
+			virtual const contacts_record_h getLogRecord() const override;
+
+			/**
+			 * @see Log::getName()
+			 */
 			virtual const char *getName() const override;
+
+			/**
+			 * @see Log::getNumber()
+			 */
 			virtual const char *getNumber() const override;
+
+			/**
+			 * @see Log::getImagePath()
+			 */
 			virtual const char *getImagePath() const override;
+
+			/**
+			 * @see Log::getType()
+			 */
 			virtual int getType() const override;
-			virtual int getTime() const override;
+
+			/**
+			 * @see Log::getTime()
+			 */
+			virtual struct tm getTime() const override;
+
+			/**
+			 * @see Log::getId()
+			 */
 			virtual int getId() const override;
+
+			/**
+			 * @see Log::getPersonId()
+			 */
+			virtual int getPersonId() const override;
 
 			/**
 			 * @brief Remove log from LogGroup by id

@@ -25,6 +25,11 @@ bool LogGroup::isGroup() const
 	return true;
 }
 
+const contacts_record_h LogGroup::getLogRecord() const
+{
+	return m_LogList.back()->getLogRecord();
+}
+
 const char *LogGroup::getName() const
 {
 	return m_LogList.back()->getName();
@@ -45,14 +50,19 @@ int LogGroup::getType() const
 	return m_LogList.back()->getType();
 }
 
-int LogGroup::getTime() const
+struct tm LogGroup::getTime() const
 {
 	return m_LogList.back()->getTime();
 }
 
 int LogGroup::getId() const
 {
-	return 0;
+	return m_LogList.back()->getId();
+}
+
+int LogGroup::getPersonId() const
+{
+	return m_LogList.back()->getPersonId();
 }
 
 void LogGroup::removeLog(int id)
