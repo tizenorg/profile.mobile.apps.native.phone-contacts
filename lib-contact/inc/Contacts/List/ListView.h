@@ -18,8 +18,9 @@
 #ifndef CONTACTS_LIST_LIST_VIEW_H
 #define CONTACTS_LIST_LIST_VIEW_H
 
-#include "Ui/View.h"
 #include "Contacts/List/Model/ContactProvider.h"
+#include "Ui/View.h"
+#include "Utils/UniString.h"
 #include <map>
 
 namespace Ui
@@ -52,13 +53,18 @@ namespace Contacts
 
 			void fillList();
 
+			Elm_Index_Item *insertIndexItem(const char *indexLetter,
+					Elm_Index_Item *nextItem = nullptr);
+
 			ContactGroupItem *insertGroupItem(const char *indexLetter,
 					ContactGroupItem *nextGroup = nullptr);
-			ContactGroupItem *getNextGroupItem(const char *indexLetter);
+			void deleteGroupItem(ContactGroupItem *group);
+			ContactGroupItem *getNextGroupItem(const Utils::UniString &indexLetter);
 
-			ContactItem *insertItem(Model::ContactPtr contact, ContactGroupItem *group,
-					ContactItem *nextItem = nullptr);
-			ContactItem *getNextItem(ContactGroupItem *group, const Model::Contact &contact);
+			ContactItem *createContactItem(Model::ContactPtr contact);
+			void insertContactItem(ContactItem *item);
+			void updateContactItem(ContactItem *item, Model::ContactPtr contact);
+			ContactItem *getNextContactItem(ContactGroupItem *group, const Model::Contact &contact);
 
 			void onItemSelected(Evas_Object *genlist, Elm_Object_Item *genlistItem);
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
@@ -68,10 +74,11 @@ namespace Contacts
 			virtual void onMenuPressed() override;
 
 			void onContactInserted(Model::ContactPtr contact);
+			void onContactChanged(Model::ContactPtr contact, contacts_changed_e changeType, ContactItem *item);
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
-			std::map<std::string, ContactGroupItem *> m_Groups;
+			std::map<Utils::UniString, ContactGroupItem *> m_Groups;
 
 			Model::ContactProvider m_Provider;
 		};

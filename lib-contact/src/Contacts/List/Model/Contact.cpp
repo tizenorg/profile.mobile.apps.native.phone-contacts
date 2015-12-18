@@ -16,8 +16,10 @@
  */
 
 #include "Contacts/List/Model/Contact.h"
+#include "Utils/UniString.h"
 
 using namespace Contacts::List::Model;
+using namespace Utils;
 
 namespace
 {
@@ -43,12 +45,22 @@ Contact::~Contact()
 	contacts_record_destroy(m_PersonRecord, true);
 	contacts_record_destroy(m_ContactRecord, true);
 
-	delete[] m_SortValue;
+	delete m_SortValue;
 }
 
 bool Contact::operator<(const Contact &that) const
 {
-	return i18n_ustring_compare_code_point_order(getSortValue(), that.getSortValue()) < 0;
+	return getSortValue() < that.getSortValue();
+}
+
+bool Contact::operator==(const Contact &that) const
+{
+	return getSortValue() == that.getSortValue();
+}
+
+bool Contact::operator!=(const Contact &that) const
+{
+	return getSortValue() != that.getSortValue();
 }
 
 int Contact::getPersonId() const
@@ -84,25 +96,13 @@ const contacts_record_h Contact::getRecord() const
 	return m_PersonRecord;
 }
 
-const i18n_uchar *Contact::getSortValue() const
+const UniString &Contact::getSortValue() const
 {
 	if (!m_SortValue) {
-		initSortValue(getDbSortValue());
+		m_SortValue = new UniString(getDbSortValue());
 	}
 
-	return m_SortValue;
-}
-
-void Contact::initSortValue(const char *sortValue) const
-{
-	i18n_uchar fakeValue;
-	int length = 0;
-	i18n_error_code_e err = I18N_ERROR_NONE;
-	i18n_ustring_from_UTF8(&fakeValue, 1, &length, sortValue, -1, &err);
-
-	m_SortValue = new i18n_uchar[length + 1];
-
-	i18n_ustring_from_UTF8(m_SortValue, length + 1, &length, sortValue, -1, &err);
+	return *m_SortValue;
 }
 
 const char *Contact::getDbSortValue() const
