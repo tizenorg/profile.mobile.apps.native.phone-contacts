@@ -48,10 +48,10 @@ namespace Contacts
 
 				/**
 				 * @brief Person change callback
-				 * @param[in]    id            Person ID
+				 * @param[in]    contact       Contact object
 				 * @param[in]    changeType    Change type
 				 */
-				typedef std::function<void(int id, contacts_changed_e changeType)> ChangeCallback;
+				typedef std::function<void(ContactPtr contact, contacts_changed_e changeType)> ChangeCallback;
 
 				/**
 				 * @brief Person insert callback

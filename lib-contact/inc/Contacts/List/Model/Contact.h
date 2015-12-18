@@ -21,7 +21,11 @@
 #include <contacts.h>
 #include <memory>
 #include <vector>
-#include <utils_i18n.h>
+
+namespace Utils
+{
+	class UniString;
+}
 
 namespace Contacts
 {
@@ -57,6 +61,18 @@ namespace Contacts
 				bool operator<(const Contact &that) const;
 
 				/**
+				 * @brief Compares contact's "Sort by" (first name/last name) values on equality
+				 * @return True if sort values are equivalent, otherwise false
+				 */
+				bool operator==(const Contact &that) const;
+
+				/**
+				 * @brief Compares contact's "Sort by" (first name/last name) values on inequality
+				 * @return True if sort values are not equivalent, otherwise false
+				 */
+				bool operator!=(const Contact &that) const;
+
+				/**
 				 * @return Person ID
 				 */
 				int getPersonId() const;
@@ -82,14 +98,14 @@ namespace Contacts
 				const contacts_record_h getRecord() const;
 
 			private:
-				const i18n_uchar *getSortValue() const;
+				const Utils::UniString &getSortValue() const;
 				void initSortValue(const char *sortValue) const;
 				const char *getDbSortValue() const;
 
 				contacts_record_h m_PersonRecord;
 				contacts_record_h m_ContactRecord;
 
-				mutable i18n_uchar *m_SortValue;
+				mutable Utils::UniString *m_SortValue;
 			};
 		}
 	}

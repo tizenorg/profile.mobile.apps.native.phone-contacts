@@ -14,11 +14,17 @@
  * limitations under the License.
  *
  */
+
 #ifndef CONTACTS_LIST_CONTACT_GROUP_ITEM_H
 #define CONTACTS_LIST_CONTACT_GROUP_ITEM_H
 
 #include "Ui/GenlistGroupItem.h"
 #include <string>
+
+namespace Utils
+{
+	class UniString;
+}
 
 namespace Contacts
 {
@@ -40,7 +46,7 @@ namespace Contacts
 			/**
 			 * @return Group item title
 			 */
-			const char *getTitle() const;
+			const Utils::UniString &getTitle() const;
 
 			/**
 			 * @return Linked index item
@@ -51,6 +57,8 @@ namespace Contacts
 			virtual char *getText(Evas_Object *parent, const char *part);
 
 			std::string m_Title;
+			mutable Utils::UniString *m_UniTitle;
+
 			Elm_Object_Item *m_IndexItem;
 		};
 	}
