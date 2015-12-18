@@ -16,18 +16,36 @@
  */
 
 #include "Contacts/Input/ContactObjectItem.h"
-#include "Ui/Genlist.h"
+#include "Contacts/Input/ContactFieldItem.h"
 #include "Utils/Callback.h"
-#include "Utils/Range.h"
+
 #include "InputItemLayout.h"
 
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactObjectItem::ContactObjectItem(ContactFieldPtr object)
-	: ContactFieldItem(object->cast<ContactObject>().getField(0)),
-	  m_Object(std::move(object))
+namespace
 {
+	Elm_Genlist_Item_Class itc = Ui::GenlistItem::createItemClass(INPUT_ITEM_STYLE);
+}
+
+ContactObjectItem::ContactObjectItem(ContactFieldPtr object)
+	: GenlistGroupItem(&itc, ELM_GENLIST_ITEM_TREE),
+	  m_Object(std::move(object)), m_FirstFieldItem(nullptr)
+{
+	for (auto &&field : getObject()) {
+		ContactFieldItem *item = new ContactFieldItem(std::move(field));
+		if (!m_FirstFieldItem) {
+			m_FirstFieldItem = item;
+		} else {
+			insertSubItem(item);
+		}
+	}
+}
+
+ContactObjectItem::~ContactObjectItem()
+{
+	delete m_FirstFieldItem;
 }
 
 void ContactObjectItem::setRemoveCallback(RemoveCallback callback)
@@ -50,28 +68,8 @@ Evas_Object *ContactObjectItem::getContent(Evas_Object *parent, const char *part
 
 		return button;
 	} else {
-		return ContactFieldItem::getContent(parent, part);
+		return m_FirstFieldItem->getContent(parent, part);
 	}
-}
-
-void ContactObjectItem::insertChildItems()
-{
-	auto fields = Utils::makeRange(++getObject().begin(), getObject().end());
-	for (auto &&field : fields) {
-		switch (field->getType()) {
-			case TypeText:
-			case TypeDate:
-				getParent()->insert(new ContactFieldItem(std::move(field)), this);
-				break;
-			default:
-				break;
-		}
-	}
-}
-
-void ContactObjectItem::onInserted()
-{
-	insertChildItems();
 }
 
 void ContactObjectItem::onRemovePressed(Evas_Object *button, void *eventInfo)
