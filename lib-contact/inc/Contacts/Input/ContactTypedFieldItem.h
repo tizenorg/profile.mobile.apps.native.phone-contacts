@@ -52,6 +52,11 @@ namespace Contacts
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
+			/**
+			 * @see GenlistItem::getState()
+			 */
+			virtual Eina_Bool getState(Evas_Object *parent, const char *part) override;
+
 			Model::ContactFieldPtr m_TypeField;
 			Model::ContactFieldPtr m_LabelField;
 		};

@@ -51,6 +51,7 @@ Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
 	itc.decorate_all_item_style = editStyle;
 	itc.func.text_get = makeCallback(&GenlistItem::getText);
 	itc.func.content_get = makeCallback(&GenlistItem::getContent);
+	itc.func.state_get = makeCallback(&GenlistItem::getState);
 	itc.func.del = makeCallback(&GenlistItem::onDestroy);
 
 	return itc;

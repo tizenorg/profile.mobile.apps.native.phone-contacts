@@ -19,11 +19,9 @@
 #include "Contacts/Input/AddFieldsItem.h"
 #include "Contacts/Input/ContactTypedFieldItem.h"
 #include "Contacts/Model/ContactArray.h"
-#include "Contacts/Common/Strings.h"
 
 #include "App/Path.h"
 #include "Ui/Genlist.h"
-#include "Ui/Menu.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 #include "Utils/Range.h"
@@ -78,6 +76,7 @@ void InputView::onCreated()
 				break;
 			case TypeObject:
 				if (!field->isEmpty()) {
+					m_AddFieldsItem->setAddFieldState(ContactFieldId(field->getId()), false);
 					addFieldItem(std::move(field));
 				}
 				break;

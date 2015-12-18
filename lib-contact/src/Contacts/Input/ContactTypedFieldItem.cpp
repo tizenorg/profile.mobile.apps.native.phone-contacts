@@ -47,3 +47,12 @@ Evas_Object *ContactTypedFieldItem::getContent(Evas_Object *parent, const char *
 		return ContactFieldItem::getContent(parent, part);
 	}
 }
+
+Eina_Bool ContactTypedFieldItem::getState(Evas_Object *parent, const char *part)
+{
+	if (strcmp(part, PART_LEFT) == 0) {
+		return EINA_TRUE;
+	}
+
+	return EINA_FALSE;
+}
