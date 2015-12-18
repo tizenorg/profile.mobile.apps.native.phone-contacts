@@ -60,6 +60,20 @@ bool GenlistGroupItem::isGroupItem() const
 	return true;
 }
 
+bool GenlistGroupItem::isExpanded() const
+{
+	Elm_Object_Item *item = getObjectItem();
+	if (!item) {
+		return false;
+	}
+
+	if (getType() == ELM_GENLIST_ITEM_TREE) {
+		return elm_genlist_item_expanded_get(item);
+	}
+
+	return true;
+}
+
 GenlistGroupItem *GenlistGroupItem::getNextGroupItem() const
 {
 	GenlistItem *item = m_LastItem ? m_LastItem->getNextItem() : getNextItem();
@@ -92,7 +106,7 @@ void GenlistGroupItem::insertSubItem(GenlistItem *item, GenlistItem *sibling,
 	}
 
 	Genlist *genlist = getParent();
-	if (genlist) {
+	if (genlist && isExpanded()) {
 		genlist->insert(item, this, sibling, position);
 	} else {
 		auto pos = m_ItemsCache.end();
@@ -116,7 +130,9 @@ void GenlistGroupItem::insertSubItem(GenlistItem *item, GenlistItem *sibling,
 
 void GenlistGroupItem::onInserted()
 {
-	insertSubItems();
+	if (isExpanded()) {
+		insertSubItems();
+	}
 }
 
 void GenlistGroupItem::onPop()

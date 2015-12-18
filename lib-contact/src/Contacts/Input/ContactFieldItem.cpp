@@ -73,6 +73,11 @@ Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 	}
 }
 
+void ContactFieldItem::onInserted()
+{
+	elm_genlist_item_expanded_set(getObjectItem(), EINA_TRUE);
+}
+
 void ContactFieldItem::onRemovePressed(Evas_Object *button, void *eventInfo)
 {
 	if (m_OnRemove) {

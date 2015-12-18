@@ -51,6 +51,11 @@ namespace Ui
 		virtual bool isGroupItem() const;
 
 		/**
+		 * @return Item type.
+		 */
+		Elm_Genlist_Item_Type getType() const;
+
+		/**
 		 * @return Genlist object item.
 		 */
 		Elm_Object_Item *getObjectItem() const;

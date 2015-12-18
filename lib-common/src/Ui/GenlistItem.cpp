@@ -61,6 +61,11 @@ bool GenlistItem::isGroupItem() const
 	return false;
 }
 
+Elm_Genlist_Item_Type GenlistItem::getType() const
+{
+	return m_ItemType;
+}
+
 Elm_Object_Item *GenlistItem::getObjectItem() const
 {
 	return m_Item;
