@@ -19,7 +19,7 @@
 #define CONTACTS_INPUT_CONTACT_FIELD_ITEM_H
 
 #include "Contacts/Model/ContactField.h"
-#include "Ui/GenlistGroupItem.h"
+#include "Ui/GenlistItem.h"
 
 namespace Contacts
 {
@@ -28,7 +28,7 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing contact field of TypeText or TypeDate type.
 		 */
-		class ContactFieldItem : public Ui::GenlistGroupItem
+		class ContactFieldItem : public Ui::GenlistItem
 		{
 		public:
 			/**
@@ -42,7 +42,6 @@ namespace Contacts
 			 */
 			const Model::ContactField &getField() const;
 
-		protected:
 			/**
 			 * @see GenlistItem::getContent()
 			 */
