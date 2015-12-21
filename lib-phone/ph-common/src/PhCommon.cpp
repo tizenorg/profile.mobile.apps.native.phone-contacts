@@ -22,7 +22,7 @@
 #include "PhCommon.h"
 #include "ContactsCommon.h"
 
-#define UG_CALL_SETTING "setting-call-efl"
+#define APP_CONTROL_OPERATION_SETTING_CALL "http://tizen.org/appcontrol/operation/setting/call"
 
 PhCommon::PhCommon()
 {
@@ -93,7 +93,7 @@ void PhCommon::launchCallSetting()
 	WHIT();
 	app_control_h service;
 	app_control_create(&service);
-	app_control_set_app_id(service, UG_CALL_SETTING);
+	app_control_set_operation(service, APP_CONTROL_OPERATION_SETTING_CALL);
 	app_control_set_launch_mode(service, APP_CONTROL_LAUNCH_MODE_GROUP);
 	int err = app_control_send_launch_request(service, NULL, NULL);
 	WPWARN(err != APP_CONTROL_ERROR_NONE, "app_control_send_launch_request() failed(%d)", err);
