@@ -18,6 +18,7 @@
 #ifndef UI_GENLIST_GROUP_ITEM_H
 #define UI_GENLIST_GROUP_ITEM_H
 
+#include "Ui/Genlist.h"
 #include "Ui/GenlistItem.h"
 #include "Ui/GenlistIterator.h"
 #include <vector>
@@ -35,6 +36,21 @@ namespace Ui
 		virtual ~GenlistGroupItem() override;
 
 		/**
+		 * @return Group begin iterator.
+		 */
+		GenlistIterator begin();
+
+		/**
+		 * @return Group end iterator.
+		 */
+		GenlistIterator end();
+
+		/**
+		 * @return Whether the group has no items (i.e. GroupItem has no subitems).
+		 */
+		bool empty() const;
+
+		/**
 		 * @see GenlistItem::isGroupItem()
 		 */
 		virtual bool isGroupItem() const;
@@ -50,19 +66,14 @@ namespace Ui
 		GenlistGroupItem *getPrevGroupItem() const;
 
 		/**
-		 * @return Group begin iterator.
+		 * @brief Insert sub item to the group.
+		 * @details If group item is not yet inserted itself, sub item is cached
+		 *          and inserted into genlist when it's parent is inserted.
+		 * @see Genlist::insert()
 		 */
-		GenlistIterator begin();
-
-		/**
-		 * @return Group end iterator.
-		 */
-		GenlistIterator end();
-
-		/**
-		 * @return Whether the group has no items (i.e. GroupItem has no subitems).
-		 */
-		bool empty();
+		void insertSubItem(GenlistItem *item,
+				GenlistItem *sibling = nullptr,
+				Genlist::Position position = Genlist::Before);
 
 	protected:
 
