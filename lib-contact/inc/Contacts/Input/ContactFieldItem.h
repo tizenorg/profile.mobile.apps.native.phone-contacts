@@ -70,6 +70,11 @@ namespace Contacts
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
+			/**
+			 * @see GenlistItem::onInserted()
+			 */
+			virtual void onInserted() override;
+
 		private:
 			void onRemovePressed(Evas_Object *button, void *eventInfo);
 

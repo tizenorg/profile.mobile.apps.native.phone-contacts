@@ -53,7 +53,12 @@ namespace Ui
 		/**
 		 * @see GenlistItem::isGroupItem()
 		 */
-		virtual bool isGroupItem() const;
+		virtual bool isGroupItem() const override;
+
+		/**
+		 * @return Whether subitems are shown.
+		 */
+		bool isExpanded() const;
 
 		/**
 		 * @return Group item of the next group or nullptr if none.
