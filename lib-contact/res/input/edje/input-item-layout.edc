@@ -30,29 +30,24 @@ collections
 
 		data.item: "banded_bg_area" "swallow.bg";
 		data.item: "contents" PART_LEFT" "PART_MIDDLE" "PART_RIGHT;
+		data.item: "states" PART_LEFT;
 
 		parts {
-			part {
-				name: "swallow.bg";
-				type: SWALLOW;
-				description {
-					state: "default" 0.0;
-				}
+			swallow { "swallow.bg";
+				desc { "default"; }
 			}
-			part {
-				name: PART_LEFT;
-				type: SWALLOW;
-				description {
-					state: "default" 0.0;
+			swallow { PART_LEFT;
+				desc { "default";
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 0.0 0.0;
+				}
+				desc { "visible";
 					rel1.relative: (ITEM_LEFT_X1/ITEM_W) (ITEM_PADDING_Y/ITEM_H);
 					rel2.relative: ((ITEM_LEFT_X1+ITEM_LEFT_W+ITEM_LEFT_X2)/ITEM_W) (1.0-ITEM_PADDING_Y/ITEM_H);
 				}
 			}
-			part {
-				name: PART_MIDDLE;
-				type: SWALLOW;
-				description {
-					state: "default" 0.0;
+			swallow { PART_MIDDLE;
+				desc { "default";
 					rel1 {
 						relative: 1.0 0.0;
 						to_x: PART_LEFT;
@@ -63,14 +58,25 @@ collections
 					}
 				}
 			}
-			part {
-				name: PART_RIGHT;
-				type: SWALLOW;
-				description {
-					state: "default" 0.0;
+			swallow { PART_RIGHT;
+				desc { "default";
 					rel1.relative: (1.0-(ITEM_RIGHT_W+ITEM_RIGHT_X2)/ITEM_W) (ITEM_PADDING_Y/ITEM_H);
 					rel2.relative: (1.0-ITEM_RIGHT_X2/ITEM_W) (1.0-ITEM_PADDING_Y/ITEM_H);
 				}
+			}
+		}
+		programs {
+			program {
+				signal: "elm,state,"PART_LEFT",active";
+				source: "elm";
+				action: STATE_SET "visible" 0.0;
+				target: PART_LEFT;
+			}
+			program {
+				signal: "elm,state,"PART_LEFT",passive";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: PART_LEFT;
 			}
 		}
 	}

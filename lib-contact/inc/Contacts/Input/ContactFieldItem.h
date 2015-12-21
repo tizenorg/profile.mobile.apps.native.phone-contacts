@@ -65,6 +65,8 @@ namespace Contacts
 			const Model::ContactObject &getObject() const;
 
 		protected:
+			friend class ContactFieldSubItem;
+
 			/**
 			 * @see GenlistItem::getContent()
 			 */
@@ -76,6 +78,7 @@ namespace Contacts
 			virtual void onInserted() override;
 
 		private:
+
 			void onRemovePressed(Evas_Object *button, void *eventInfo);
 
 			Model::ContactFieldPtr m_Object;

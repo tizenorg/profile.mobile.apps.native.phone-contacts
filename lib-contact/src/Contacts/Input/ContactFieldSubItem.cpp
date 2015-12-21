@@ -16,6 +16,7 @@
  */
 
 #include "Contacts/Input/ContactFieldSubItem.h"
+#include "Contacts/Input/ContactFieldItem.h"
 #include "Contacts/Input/ContactDateFieldControl.h"
 #include "Contacts/Input/ContactTextFieldControl.h"
 
@@ -56,4 +57,10 @@ Evas_Object *ContactFieldSubItem::getContent(Evas_Object *parent, const char *pa
 	}
 
 	return control ? control->create(parent) : nullptr;
+}
+
+Eina_Bool ContactFieldSubItem::getState(Evas_Object *parent, const char *part)
+{
+	ContactFieldItem *parentItem = static_cast<ContactFieldItem *>(getParentItem());
+	return parentItem ? parentItem->getState(parent, part) : EINA_FALSE;
 }

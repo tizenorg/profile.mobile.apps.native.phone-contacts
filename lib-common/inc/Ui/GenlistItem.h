@@ -104,6 +104,16 @@ namespace Ui
 		virtual Evas_Object *getContent(Evas_Object *parent, const char *part) { return nullptr; }
 
 		/**
+		 * @brief Called whenever any item's state part needs to be updated
+		 * @details Genlist will emit signal "elm,state,x,active" or
+		 *          "elm,state,x,passive" with part's name instead of 'x'.
+		 * @param[in]   parent  Parent genlist
+		 * @param[in]   part    Name of the part
+		 * @return EINA_TRUE for active, EINA_FALSE for passive
+		 */
+		virtual Eina_Bool getState(Evas_Object *parent, const char *part) { return EINA_FALSE; }
+
+		/**
 		 * @brief Called after item was inserted into genlist.
 		 */
 		virtual void onInserted() { }

@@ -42,12 +42,19 @@ namespace Contacts
 			 */
 			const Model::ContactField &getField() const;
 
+		private:
+			friend class ContactFieldItem;
+
 			/**
 			 * @see GenlistItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
-		private:
+			/**
+			 * @see GenlistItem::getState()
+			 */
+			virtual Eina_Bool getState(Evas_Object *parent, const char *part) override;
+
 			Model::ContactFieldPtr m_Field;
 		};
 	}
