@@ -18,6 +18,8 @@
 #ifndef LOGS_MODEL_LOG_PROVIDER_H
 #define LOGS_MODEL_LOG_PROVIDER_H
 
+#include <map>
+#include <contacts.h>
 #include "Logs/Model/LogType.h"
 
 namespace Logs
@@ -36,21 +38,62 @@ namespace Logs
 			LogProvider();
 
 			/**
-			 * @brief Get logs list
+			 * @brief Destructor
+			 */
+			~LogProvider();
+
+			/**
+			 * @brief Get log list
 			 * @return list of logs.
 			 */
-			const LogList &getLogsList() const;
+			const LogList &getLogList() const;
+
+			/**
+			 * @brief Add contact change callback
+			 * @remark Callback called when contact update or delete or insert
+			 * @param[in]    id          Contact ID or null to insert contact
+			 * @param[in]    callback    Change contact callback
+			 */
+			void addContactChangeCallback(int id, ContactChangeCallback callback);
+
+			/**
+			 * @brief Remove contact change callback
+			 * @param[in]    id    Contact ID
+			 */
+			void removeContactChangeCallback(int id);
+
+			/**
+			 * @brief Set log change callback
+			 * @remark It can be update or delete or insert of contact
+			 * @param[in]    callback    Change Log callback
+			 */
+			void setLogChangeCallback(LogChangeCallback callback);
+
+			/**
+			 * @brief Unset log change callback
+			 */
+			void unsetLogChangeCallback();
 
 		private:
 			void fillList();
-			bool isLogToGroup(LogPtr log, LogPtr lastLog);
-			LogGroupPtr groupLogs(LogPtr log, LogPtr lastLog);
+			bool shouldGroupLogs(LogPtr log, LogPtr prevLog);
+			bool isTimeEqual(struct tm logTime, struct tm prevLogTime);
+			LogGroupPtr groupLogs(LogPtr log, LogPtr prevLog);
+			void addLog(contacts_record_h record);
+			void addFirstLog(contacts_record_h record);
+			contacts_list_h fetchLogList();
 
 			void onLogChanged(const char *viewUri);
 			void onContactChanged(const char *viewUri);
 
+			void notifyLogWithChange(int contactId, contacts_changed_e changeType);
+
 			LogList m_AllLogs;
 			int m_DbVersion;
+
+			std::multimap<int, ContactChangeCallback> m_ChangeContactCallbacks;
+
+			LogChangeCallback m_LogCallback;
 		};
 	}
 }
