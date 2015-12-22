@@ -18,6 +18,9 @@
 #ifndef LOGS_MODEL_LOG_H
 #define LOGS_MODEL_LOG_H
 
+#include <contacts.h>
+#include <time.h>
+
 namespace Logs
 {
 	namespace Model
@@ -33,6 +36,11 @@ namespace Logs
 			 * @return is log group
 			 */
 			virtual bool isGroup() const = 0;
+
+			/**
+			 * @return log record
+			 */
+			virtual const contacts_record_h getLogRecord() const = 0;
 
 			/**
 			 * @return log name
@@ -57,12 +65,17 @@ namespace Logs
 			/**
 			 * @return log time
 			 */
-			virtual int getTime() const = 0;
+			virtual struct tm getTime() const = 0;
 
 			/**
 			 * @return log id
 			 */
 			virtual int getId() const = 0;
+
+			/**
+			 * @return log person id
+			 */
+			virtual int getPersonId() const = 0;
 		};
 	}
 }

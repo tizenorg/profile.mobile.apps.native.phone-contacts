@@ -20,6 +20,7 @@
 
 #include <list>
 #include <memory>
+#include <functional>
 
 namespace Logs
 {
@@ -42,6 +43,16 @@ namespace Logs
 		 * @brief Smart pointer of LogGroup.
 		 */
 		typedef std::shared_ptr<LogGroup> LogGroupPtr;
+
+		/**
+		 * @brief Changed contact callback
+		 */
+		typedef std::function<void()> ContactChangeCallback;
+
+		/**
+		 * @brief Changed log callback
+		 */
+		typedef std::function<void()> LogChangeCallback;
 	}
 }
 

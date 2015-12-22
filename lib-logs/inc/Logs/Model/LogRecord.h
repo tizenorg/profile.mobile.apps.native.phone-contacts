@@ -19,7 +19,6 @@
 #define LOGS_MODEL_LOG_RECORD_H
 
 #include "Logs/Model/Log.h"
-#include <contacts.h>
 
 namespace Logs
 {
@@ -36,19 +35,62 @@ namespace Logs
 			 * @param[in]   record  Contact record (_contact_person_phone_log)
 			 */
 			LogRecord(contacts_record_h record);
+
 			virtual ~LogRecord();
+
 			LogRecord(const LogRecord &log) = delete;
+
 			LogRecord &operator=(const LogRecord &log) = delete;
+
+			/**
+			 * @see Log::isGroup()
+			 */
 			virtual bool isGroup() const override;
+
+			/**
+			 * @see Log::getLogRecord()
+			 */
+			virtual const contacts_record_h getLogRecord() const override;
+
+			/**
+			 * @see Log::getName()
+			 */
 			virtual const char *getName() const override;
+
+			/**
+			 * @see Log::getNumber()
+			 */
 			virtual const char *getNumber() const override;
+
+			/**
+			 * @see Log::getImagePath()
+			 */
 			virtual const char *getImagePath() const override;
+
+			/**
+			 * @see Log::getType()
+			 */
 			virtual int getType() const override;
-			virtual int getTime() const override;
+
+			/**
+			 * @see Log::getTime()
+			 */
+			virtual struct tm getTime() const override;
+
+			/**
+			 * @see Log::getId()
+			 */
 			virtual int getId() const override;
 
+			/**
+			 * @see Log::getPersonId()
+			 */
+			virtual int getPersonId() const override;
+
 		private:
-			contacts_record_h m_Record;
+			contacts_record_h getContactRecord();
+			contacts_record_h m_LogRecord;
+			contacts_record_h m_ContactRecord;
 		};
 	}
 }
