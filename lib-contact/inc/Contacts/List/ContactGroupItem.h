@@ -19,12 +19,8 @@
 #define CONTACTS_LIST_CONTACT_GROUP_ITEM_H
 
 #include "Ui/GenlistGroupItem.h"
+#include "Utils/UniString.h"
 #include <string>
-
-namespace Utils
-{
-	class UniString;
-}
 
 namespace Contacts
 {
@@ -38,10 +34,10 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Create contact group item
-			 * @param[in]   title       Group title (UTF-8 letter)
+			 * @param[in]   title       Group title
 			 * @param[in]   indexItem   Index item
 			 */
-			ContactGroupItem(const char *title, Elm_Object_Item *indexItem);
+			ContactGroupItem(Utils::UniString title, Elm_Object_Item *indexItem);
 
 			/**
 			 * @return Group item title
@@ -56,9 +52,7 @@ namespace Contacts
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part);
 
-			std::string m_Title;
-			mutable Utils::UniString *m_UniTitle;
-
+			Utils::UniString m_Title;
 			Elm_Object_Item *m_IndexItem;
 		};
 	}

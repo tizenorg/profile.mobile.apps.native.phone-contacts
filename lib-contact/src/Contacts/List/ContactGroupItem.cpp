@@ -21,21 +21,14 @@
 using namespace Contacts::List;
 using namespace Utils;
 
-ContactGroupItem::ContactGroupItem(const char *title, Elm_Object_Item *indexItem)
-	: m_UniTitle(nullptr), m_IndexItem(indexItem)
+ContactGroupItem::ContactGroupItem(UniString title, Elm_Object_Item *indexItem)
+	: m_Title(std::move(title)), m_IndexItem(indexItem)
 {
-	if (title) {
-		m_Title = title;
-	}
 }
 
 const UniString &ContactGroupItem::getTitle() const
 {
-	if (!m_UniTitle) {
-		m_UniTitle = new UniString(m_Title.c_str());
-	}
-
-	return *m_UniTitle;
+	return m_Title;
 }
 
 Elm_Object_Item *ContactGroupItem::getIndexItem() const
@@ -46,7 +39,7 @@ Elm_Object_Item *ContactGroupItem::getIndexItem() const
 char *ContactGroupItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text") == 0) {
-		return strdup(m_Title.c_str());
+		return strdup(m_Title.getUtf8Str().c_str());
 	}
 
 	return nullptr;

@@ -31,21 +31,23 @@ namespace
 }
 
 Contact::Contact(contacts_record_h record)
-	: m_PersonRecord(record), m_ContactRecord(nullptr), m_SortValue(nullptr)
+	: m_PersonRecord(record), m_ContactRecord(nullptr)
 {
 	int contactId = 0;
 	contacts_record_get_int(m_PersonRecord, _contacts_person.display_contact_id, &contactId);
 
 	//Todo: Store only handle for contact name while Contact list view will be implemented
 	contacts_db_get_record(_contacts_contact._uri, contactId, &m_ContactRecord);
+
+	char *indexLetter = nullptr;
+	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name_index, &indexLetter);
+	m_IndexLetter = indexLetter;
 }
 
 Contact::~Contact()
 {
 	contacts_record_destroy(m_PersonRecord, true);
 	contacts_record_destroy(m_ContactRecord, true);
-
-	delete m_SortValue;
 }
 
 bool Contact::operator<(const Contact &that) const
@@ -70,11 +72,9 @@ int Contact::getPersonId() const
 	return id;
 }
 
-const char *Contact::getIndexLetter() const
+const UniString &Contact::getIndexLetter() const
 {
-	char *index = nullptr;
-	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name_index, &index);
-	return index;
+	return m_IndexLetter;
 }
 
 const char *Contact::getName() const
@@ -98,11 +98,11 @@ const contacts_record_h Contact::getRecord() const
 
 const UniString &Contact::getSortValue() const
 {
-	if (!m_SortValue) {
-		m_SortValue = new UniString(getDbSortValue());
+	if (m_SortValue.getI18nStr().empty()) {
+		m_SortValue = getDbSortValue();
 	}
 
-	return *m_SortValue;
+	return m_SortValue;
 }
 
 const char *Contact::getDbSortValue() const

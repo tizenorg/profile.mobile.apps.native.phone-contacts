@@ -56,7 +56,7 @@ namespace Contacts
 			Elm_Index_Item *insertIndexItem(const char *indexLetter,
 					Elm_Index_Item *nextItem = nullptr);
 
-			ContactGroupItem *insertGroupItem(const char *indexLetter,
+			ContactGroupItem *insertGroupItem(Utils::UniString indexLetter,
 					ContactGroupItem *nextGroup = nullptr);
 			void deleteGroupItem(ContactGroupItem *group);
 			ContactGroupItem *getNextGroupItem(const Utils::UniString &indexLetter);

@@ -18,6 +18,7 @@
 #ifndef CONTACTS_LIST_MODEL_CONTACT_H
 #define CONTACTS_LIST_MODEL_CONTACT_H
 
+#include "Utils/UniString.h"
 #include <contacts.h>
 #include <memory>
 #include <vector>
@@ -80,7 +81,7 @@ namespace Contacts
 				/**
 				 * @return First letter from formatted contact name
 				 */
-				const char *getIndexLetter() const;
+				const Utils::UniString &getIndexLetter() const;
 
 				/**
 				 * @return Contact name
@@ -105,7 +106,8 @@ namespace Contacts
 				contacts_record_h m_PersonRecord;
 				contacts_record_h m_ContactRecord;
 
-				mutable Utils::UniString *m_SortValue;
+				Utils::UniString m_IndexLetter;
+				mutable Utils::UniString m_SortValue;
 			};
 		}
 	}

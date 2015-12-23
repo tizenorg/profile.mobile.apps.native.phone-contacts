@@ -30,16 +30,17 @@ namespace Utils
 	{
 	public:
 		/**
+		 * @brief Instantiation of the basic_string class template,
+		 * that uses i18n_uchar as its character type
+		 */
+		typedef std::basic_string<i18n_uchar> I18nString;
+
+		UniString() = default;
+		/**
 		 * @brief Create new object, based on @a utf8Str string
 		 * @param[in]   utf8Str     UTF8 multibyte unicode string
 		 */
 		UniString(const char *utf8Str);
-		UniString(const UniString &that);
-		UniString(UniString &&that);
-		~UniString();
-
-		UniString &operator=(const UniString &that);
-		UniString &operator=(UniString &&that);
 
 		bool operator<(const UniString &that) const;
 		bool operator>(const UniString &that) const;
@@ -49,34 +50,21 @@ namespace Utils
 		bool operator>=(const UniString &that) const;
 
 		/**
-		 * @see utils_i18n.h header
-		 * @return Pointer to null-terminated sequence of i18n_uchar characters
+		 * @return I18n string
 		 */
-		const i18n_uchar *data() const;
+		const I18nString &getI18nStr() const;
 
 		/**
-		 * @return Utf8 multibyte unicode string
+		 * @return UTF8 multibyte string
 		 */
-		std::string toUtf8() const;
-
-		/**
-		 * @return String size in bytes, including null-terminate character
-		 */
-		size_t size() const;
-
-		/**
-		 * @return Character count, not including null-terminate character
-		 */
-		size_t length() const;
+		const std::string &getUtf8Str() const;
 
 	private:
-		void copy(const UniString &that);
-		void move(UniString &that);
-		void clear();
-		void nullify();
+		std::string toUtf8(const I18nString &ustring) const;
+		I18nString fromUtf8(const std::string &utf8Str) const;
 
-		i18n_uchar *m_String;
-		size_t m_Length;
+		mutable std::string m_Utf8Str;
+		I18nString m_UniStr;
 	};
 }
 

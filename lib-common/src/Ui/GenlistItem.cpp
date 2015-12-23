@@ -99,6 +99,12 @@ GenlistItem *GenlistItem::getPrevItem() const
 void GenlistItem::pop()
 {
 	onPop();
+
+	GenlistGroupItem *parent = getParentItem();
+	if (parent) {
+		parent->onSubItemDestroy(this);
+	}
+
 	m_Preserve = true;
 	elm_object_item_del(m_Item);
 	m_Preserve = false;
@@ -116,11 +122,6 @@ void GenlistItem::onInserted(Elm_Object_Item *item)
 
 void GenlistItem::onDestroy(Evas_Object *genlist)
 {
-	GenlistGroupItem *parent = getParentItem();
-	if (parent) {
-		parent->onSubItemDestroy(this);
-	}
-
 	m_Item = nullptr;
 	if (!m_Preserve) {
 		delete this;
