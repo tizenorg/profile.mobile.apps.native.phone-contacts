@@ -17,11 +17,15 @@
 
 #include "Contacts/Model/ContactFactory.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
+
 #include "Contacts/Model/ContactArray.h"
 #include "Contacts/Model/ContactDateField.h"
 #include "Contacts/Model/ContactEnumField.h"
-#include "Contacts/Model/ContactTypedObject.h"
 #include "Contacts/Model/ContactTextField.h"
+#include "Contacts/Model/ContactTypedObject.h"
+
+#include "Contacts/Model/ContactName.h"
+#include "Contacts/Model/ContactPhoneticName.h"
 
 using namespace Contacts::Model;
 
@@ -45,6 +49,15 @@ ContactFieldPtr ContactFactory::createField(contacts_record_h record,
 			unsigned subType = metadata.typeMetadata->subType;
 			if (subType & ObjectTyped) {
 				field = new ContactTypedObject(record, metadata);
+			} else if (subType & ObjectCompound) {
+				switch (metadata.id) {
+					case FieldName:
+						field = new ContactName(record, metadata);
+						break;
+					case FieldPhoneticName:
+						field = new ContactPhoneticName(record, metadata);
+						break;
+				}
 			} else {
 				field = new ContactObject(record, metadata);
 			}
