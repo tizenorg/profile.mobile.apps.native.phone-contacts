@@ -21,6 +21,7 @@
 #include <list>
 #include <memory>
 #include <functional>
+#include <contacts.h>
 
 namespace Logs
 {
@@ -46,13 +47,16 @@ namespace Logs
 
 		/**
 		 * @brief Changed contact callback
+		 * @param[in]    LogPtr        Log object
+		 * @param[in]    changeType    Change type
 		 */
-		typedef std::function<void()> ContactChangeCallback;
+		typedef std::function<void(LogPtr log, contacts_changed_e type)> ContactChangeCallback;
 
 		/**
 		 * @brief Changed log callback
+		 * @param[in]    list    Log list
 		 */
-		typedef std::function<void()> LogChangeCallback;
+		typedef std::function<void(LogList list)> LogChangeCallback;
 	}
 }
 

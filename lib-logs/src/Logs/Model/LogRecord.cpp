@@ -102,3 +102,18 @@ contacts_record_h LogRecord::getContactRecord()
 	contacts_db_get_record(_contacts_person._uri, getPersonId(), &record);
 	return record;
 }
+
+void LogRecord::setContactChangeCallback(ContactChangeCallback callback)
+{
+	m_ContactChangeCallback = callback;
+}
+
+void LogRecord::unsetContactChangeCallback()
+{
+	m_ContactChangeCallback = nullptr;
+}
+
+void LogRecord::callContactChangeCallback(LogPtr log, contacts_changed_e type)
+{
+	m_ContactChangeCallback(log, type);
+}

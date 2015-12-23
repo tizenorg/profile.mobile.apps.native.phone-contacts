@@ -26,12 +26,12 @@
 
 using namespace Logs::Model;
 
-LogProvider::LogProvider()
+LogProvider::LogProvider(LogProvider::FilterType filterType):
+		m_ListFilterType(filterType)
 {
 	contacts_db_get_current_version(&m_DbVersion);
 	contacts_db_add_changed_cb(_contacts_phone_log._uri, makeCallbackWithLastParam(&LogProvider::onLogChanged), this);
 	contacts_db_add_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&LogProvider::onContactChanged), this);
-	fillList();
 }
 
 LogProvider::~LogProvider()
@@ -40,21 +40,17 @@ LogProvider::~LogProvider()
 	contacts_db_remove_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&LogProvider::onContactChanged), this);
 }
 
-const LogList &LogProvider::getLogList() const
+LogList LogProvider::getLogList()
 {
-	return m_AllLogs;
-}
+	LogList logList;
 
-void LogProvider::addContactChangeCallback(int id, ContactChangeCallback callback)
-{
-	if (callback) {
-		m_ChangeContactCallbacks.insert({id, std::move(callback)});
-	}
-}
+	fillList(logList);
 
-void LogProvider::removeContactChangeCallback(int id)
-{
-	m_ChangeContactCallbacks.erase(id);
+	std::for_each(logList.begin(), logList.end(), [this](LogPtr log) {
+		m_Logs.insert({log->getPersonId(), log});
+	});
+
+	return logList;
 }
 
 void LogProvider::setLogChangeCallback(LogChangeCallback callback)
@@ -67,21 +63,17 @@ void LogProvider::unsetLogChangeCallback()
 	m_LogCallback = nullptr;
 }
 
-void LogProvider::fillList()
+void LogProvider::fillList(LogList &logList)
 {
 	contacts_list_h list = fetchLogList();
-
 	contacts_record_h record = nullptr;
-	if (contacts_list_get_current_record_p(list, &record) != CONTACTS_ERROR_NONE) {
-		return;
-	}
 
-	addFirstLog(record);
+	addFirstLog(logList, record, list);
 
 	contacts_list_next(list);
 
 	CONTACTS_LIST_FOREACH(list, record) {
-		addLog(record);
+		addLog(logList, record);
 	}
 
 	contacts_list_destroy(list, false);
@@ -90,15 +82,7 @@ void LogProvider::fillList()
 bool LogProvider::shouldGroupLogs(LogPtr log, LogPtr prevLog)
 {
 	return (log->getType() == prevLog->getType()
-			&& strcmp(log->getNumber(), prevLog->getNumber()) == 0
-			&& isTimeEqual(log->getTime(), prevLog->getTime()));
-}
-
-bool LogProvider::isTimeEqual(struct tm logTime, struct tm prevLogTime)
-{
-	return (logTime.tm_year == prevLogTime.tm_year &&
-				logTime.tm_mon == prevLogTime.tm_mon &&
-				logTime.tm_mday == prevLogTime.tm_mday);
+			&& strcmp(log->getNumber(), prevLog->getNumber()) == 0);
 }
 
 LogGroupPtr LogProvider::groupLogs(LogPtr log, LogPtr prevLog)
@@ -115,42 +99,52 @@ LogGroupPtr LogProvider::groupLogs(LogPtr log, LogPtr prevLog)
 	return logGroup;
 }
 
-void LogProvider::onLogChanged(const char *viewUri)
-{
-	/*
-	 TODO
-	 */
-}
-
-void LogProvider::addLog(contacts_record_h record)
+void LogProvider::addLog(LogList &logList, contacts_record_h record)
 {
 	LogPtr log = LogPtr(new LogRecord(record));
-	LogPtr lastLog = m_AllLogs.back();
+	LogPtr lastLog = logList.back();
 
 	if (shouldGroupLogs(log, lastLog)) {
-		m_AllLogs.pop_back();
+		logList.pop_back();
 		log = groupLogs(std::move(log), std::move(lastLog));
 	}
-	m_AllLogs.push_back(log);
+	logList.push_back(log);
 }
 
-void LogProvider::addFirstLog(contacts_record_h record)
+void LogProvider::addFirstLog(LogList &logList, contacts_record_h record, contacts_list_h list)
 {
-	if (m_AllLogs.empty()) {
-		LogPtr log = LogPtr(new LogRecord(record));
-		m_AllLogs.push_back(log);
-	} else {
-		addLog(record);
+	if (contacts_list_get_current_record_p(list, &record) != CONTACTS_ERROR_NONE) {
+		return;
 	}
+
+	LogPtr log = LogPtr(new LogRecord(record));
+	logList.push_back(log);
+}
+
+contacts_filter_h LogProvider::getProviderFilter(LogProvider::FilterType filterType)
+{
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_phone_log._uri, &filter);
+
+	if (filterType != LogProvider::FilterMissed) {
+		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING_UNSEEN);
+		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING_SEEN);
+	} else {
+		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING);
+		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_BLOCKED);
+	}
+
+	return filter;
 }
 
 contacts_list_h LogProvider::fetchLogList()
 {
 	contacts_list_h list = nullptr;
 	contacts_query_h query = nullptr;
-	contacts_filter_h filter = nullptr;
+	contacts_filter_h filter = getProviderFilter(m_ListFilterType);
 
 	contacts_filter_create(_contacts_phone_log._uri, &filter);
+
 	contacts_query_create(_contacts_phone_log._uri, &query);
 	contacts_query_set_filter(query, filter);
 	contacts_query_set_sort(query, _contacts_phone_log.log_time, true);
@@ -158,7 +152,13 @@ contacts_list_h LogProvider::fetchLogList()
 
 	contacts_filter_destroy(filter);
 	contacts_query_destroy(query);
+
 	return list;
+}
+
+void LogProvider::onLogChanged(const char *viewUri)
+{
+	m_LogCallback(getLogList());
 }
 
 void LogProvider::onContactChanged(const char *viewUri)
@@ -181,8 +181,27 @@ void LogProvider::onContactChanged(const char *viewUri)
 
 void LogProvider::notifyLogWithChange(int contactId, contacts_changed_e changeType)
 {
-	auto range = m_ChangeContactCallbacks.equal_range(contactId);
-	for (auto i = range.first; i != range.second; ++i) {
-		i->second();
+	switch (changeType) {
+		case CONTACTS_CHANGE_INSERTED:
+		{
+			auto range = m_Logs.equal_range(contactId);
+			for (auto it = range.first; it != range.second; ++it) {
+				LogPtr log = it->second;
+				if (log->getPersonId() != 0) {
+					log->callContactChangeCallback(std::move(log), changeType);
+				}
+			}
+		}
+			break;
+		case CONTACTS_CHANGE_UPDATED:
+		case CONTACTS_CHANGE_DELETED:
+		{
+			auto range = m_Logs.equal_range(contactId);
+			for (auto it = range.first; it != range.second; ++it) {
+				LogPtr log = it->second;
+				log->callContactChangeCallback(std::move(log), changeType);
+			}
+		}
+			break;
 	}
 }

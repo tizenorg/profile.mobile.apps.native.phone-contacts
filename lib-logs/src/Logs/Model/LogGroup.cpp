@@ -65,6 +65,25 @@ int LogGroup::getPersonId() const
 	return m_LogList.back()->getPersonId();
 }
 
+void LogGroup::setContactChangeCallback(ContactChangeCallback callback)
+{
+	std::for_each(m_LogList.begin(), m_LogList.end(), [callback](LogPtr log) {
+		log->setContactChangeCallback(callback);
+	});
+}
+
+void LogGroup::unsetContactChangeCallback()
+{
+	std::for_each(m_LogList.begin(), m_LogList.end(), [](LogPtr log) {
+		log->unsetContactChangeCallback();
+	});
+}
+
+void LogGroup::callContactChangeCallback(LogPtr log, contacts_changed_e type)
+{
+	m_LogList.back()->callContactChangeCallback(log, type);
+}
+
 void LogGroup::removeLog(int id)
 {
 	auto position = std::find_if(m_LogList.begin(), m_LogList.end(), [id](LogPtr log) {

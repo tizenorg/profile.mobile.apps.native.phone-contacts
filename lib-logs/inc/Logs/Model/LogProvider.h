@@ -32,10 +32,21 @@ namespace Logs
 		class LogProvider
 		{
 		public:
+
+			/**
+			 * @brief Determines how to filter log list
+			 */
+			enum FilterType
+			{
+				FilterNone ,
+				FilterAll,
+				FilterMissed
+			};
+
 			/**
 			 * @brief Constructor
 			 */
-			LogProvider();
+			LogProvider(LogProvider::FilterType filterType);
 
 			/**
 			 * @brief Destructor
@@ -46,21 +57,7 @@ namespace Logs
 			 * @brief Get log list
 			 * @return list of logs.
 			 */
-			const LogList &getLogList() const;
-
-			/**
-			 * @brief Add contact change callback
-			 * @remark Callback called when contact update or delete or insert
-			 * @param[in]    id          Contact ID or null to insert contact
-			 * @param[in]    callback    Change contact callback
-			 */
-			void addContactChangeCallback(int id, ContactChangeCallback callback);
-
-			/**
-			 * @brief Remove contact change callback
-			 * @param[in]    id    Contact ID
-			 */
-			void removeContactChangeCallback(int id);
+			LogList getLogList();
 
 			/**
 			 * @brief Set log change callback
@@ -75,12 +72,14 @@ namespace Logs
 			void unsetLogChangeCallback();
 
 		private:
-			void fillList();
+			void fillList(LogList &logList);
 			bool shouldGroupLogs(LogPtr log, LogPtr prevLog);
-			bool isTimeEqual(struct tm logTime, struct tm prevLogTime);
 			LogGroupPtr groupLogs(LogPtr log, LogPtr prevLog);
-			void addLog(contacts_record_h record);
-			void addFirstLog(contacts_record_h record);
+
+			void addLog(LogList &logList, contacts_record_h record);
+			void addFirstLog(LogList &logList, contacts_record_h record, contacts_list_h list);
+
+			contacts_filter_h getProviderFilter(LogProvider::FilterType filterType);
 			contacts_list_h fetchLogList();
 
 			void onLogChanged(const char *viewUri);
@@ -88,10 +87,10 @@ namespace Logs
 
 			void notifyLogWithChange(int contactId, contacts_changed_e changeType);
 
-			LogList m_AllLogs;
+			FilterType m_ListFilterType;
 			int m_DbVersion;
 
-			std::multimap<int, ContactChangeCallback> m_ChangeContactCallbacks;
+			std::multimap<int, LogPtr> m_Logs;
 
 			LogChangeCallback m_LogCallback;
 		};

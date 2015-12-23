@@ -20,6 +20,7 @@
 
 #include <contacts.h>
 #include <time.h>
+#include "Logs/Model/LogType.h"
 
 namespace Logs
 {
@@ -76,6 +77,25 @@ namespace Logs
 			 * @return log person id
 			 */
 			virtual int getPersonId() const = 0;
+
+			/**
+			 * @brief Set contact change callback
+			 * @remark Callback called when contact is updated, deleted or inserted.
+			 * @param[in]    callback    Change contact callback
+			 */
+			virtual void setContactChangeCallback(ContactChangeCallback callback) = 0;
+
+			/**
+			 * @brief Unset contact change callback
+			 */
+			virtual void unsetContactChangeCallback() = 0;
+
+			/**
+			 * @brief Get contact change callback
+			 * @param[in]    LogPtr        Log object
+			 * @param[in]    changeType    Change type
+			 */
+			virtual void callContactChangeCallback(LogPtr log, contacts_changed_e type) = 0;
 		};
 	}
 }

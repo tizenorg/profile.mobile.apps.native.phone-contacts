@@ -19,7 +19,6 @@
 #define LOGS_MODEL_LOG_GROUP_H
 
 #include "Logs/Model/Log.h"
-#include "Logs/Model/LogType.h"
 
 namespace Logs
 {
@@ -76,6 +75,21 @@ namespace Logs
 			 * @see Log::getPersonId()
 			 */
 			virtual int getPersonId() const override;
+
+			/**
+			 * @see Log::setContactChangeCallback()
+			 */
+			virtual void setContactChangeCallback(ContactChangeCallback callback) override;
+
+			/**
+			 * @see Log::unsetContactChangeCallback()
+			 */
+			virtual void unsetContactChangeCallback() override;
+
+			/**
+			 * @see Log::callContactChangeCallback()
+			 */
+			virtual void callContactChangeCallback(LogPtr log, contacts_changed_e type) override;
 
 			/**
 			 * @brief Remove log from LogGroup by id
