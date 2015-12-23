@@ -18,9 +18,15 @@
 #include "InputItemLayout.h"
 #include "InputItemLayoutMetrics.h"
 
+#include "../../../../lib-common/res/common/edje/common-colors.edc"
+#include "../../../../lib-common/res/common/edje/common-utils.edc"
+
 collections
 {
 	base_scale: 2.6;
+
+	IMAGE_WITH_COLOR(GROUP_ICON_EXPAND, INPUT_ICON_EXPAND, "input_color_1")
+	IMAGE_WITH_COLOR(GROUP_ICON_CONTRACT, INPUT_ICON_CONTRACT, "input_color_1")
 
 	group {
 		name: "elm/genlist/item/"INPUT_ITEM_STYLE"/default";

@@ -40,7 +40,7 @@ namespace Contacts
 			/**
 			 * @return ContactField associated with the item.
 			 */
-			const Model::ContactField &getField() const;
+			Model::ContactField &getField() const;
 
 		private:
 			friend class ContactFieldItem;

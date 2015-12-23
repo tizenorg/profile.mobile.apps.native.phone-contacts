@@ -18,6 +18,10 @@
 #include "CommonButtons.h"
 
 color_classes {
+	color_class {
+		name: "input_color_1";
+		color: 61 185 204 255;
+	}
 	color_class { //A03O003
 		name: "thumbnail_bg";
 		color:  255 255 255 255;
