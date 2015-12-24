@@ -18,6 +18,7 @@
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Input/AddFieldsItem.h"
 #include "Contacts/Input/ContactTypedFieldItem.h"
+#include "Contacts/Input/ContactCompoundFieldItem.h"
 #include "Contacts/Model/ContactArray.h"
 
 #include "App/Path.h"
@@ -111,6 +112,8 @@ ContactFieldItem *InputView::createFieldItem(Model::ContactFieldPtr field)
 	ContactFieldItem *item = nullptr;
 	if (field->getSubType() & ObjectTyped) {
 		item = new ContactTypedFieldItem(std::move(field));
+	} else if (field->getSubType() & ObjectCompound) {
+		item = new ContactCompoundFieldItem(std::move(field));
 	} else {
 		item = new ContactFieldItem(std::move(field));
 	}

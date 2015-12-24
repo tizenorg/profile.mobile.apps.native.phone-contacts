@@ -35,7 +35,7 @@ ContactFieldSubItem::ContactFieldSubItem(ContactFieldPtr field)
 {
 }
 
-const ContactField &ContactFieldSubItem::getField() const
+ContactField &ContactFieldSubItem::getField() const
 {
 	return *m_Field;
 }
