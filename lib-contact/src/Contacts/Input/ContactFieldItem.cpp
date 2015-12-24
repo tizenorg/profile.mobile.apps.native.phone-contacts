@@ -19,6 +19,7 @@
 #include "Contacts/Input/ContactFieldSubItem.h"
 #include "Contacts/Model/ContactObject.h"
 #include "Utils/Callback.h"
+#include "Utils/Logger.h"
 
 #include "InputItemLayout.h"
 
@@ -54,7 +55,7 @@ void ContactFieldItem::setRemoveCallback(RemoveCallback callback)
 	m_OnRemove = std::move(callback);
 }
 
-const ContactObject &ContactFieldItem::getObject() const
+ContactObject &ContactFieldItem::getObject() const
 {
 	return m_Object->cast<ContactObject>();
 }

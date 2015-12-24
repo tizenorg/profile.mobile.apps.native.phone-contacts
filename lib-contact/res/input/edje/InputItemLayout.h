@@ -32,4 +32,7 @@
 #define PART_BUTTON_3            "swallow.button.3"
 #define PART_BUTTON_4            "swallow.button.4"
 
+#define GROUP_ICON_EXPAND        "icon_expand"
+#define GROUP_ICON_CONTRACT      "icon_contract"
+
 #endif /* INPUT_ITEM_LAYOUT_H */
