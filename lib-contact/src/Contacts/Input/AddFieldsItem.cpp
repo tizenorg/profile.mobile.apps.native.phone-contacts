@@ -51,18 +51,16 @@ void AddFieldsItem::setAddFieldState(ContactFieldId fieldId, bool isEnabled)
 
 Evas_Object *AddFieldsItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, PART_BUTTON_1) == 0) {
-		return createAddFieldButton(parent, FieldNumber, INPUT_ICON_ADD_NUMBER);
-	} else if (strcmp(part, PART_BUTTON_2) == 0) {
-		return createAddFieldButton(parent, FieldEmail, INPUT_ICON_ADD_EMAIL);
-	} else if (strcmp(part, PART_BUTTON_3) == 0) {
-		return createAddFieldButton(parent, FieldNote, INPUT_ICON_ADD_NOTE);
-	} else if (strcmp(part, PART_BUTTON_4) == 0) {
-		return createButton(parent, "IDS_PB_BUTTON_MORE", INPUT_ICON_ADD_MORE,
-				makeCallback(&AddFieldsItem::onMoreButtonPressed), this);
-	}
+	Evas_Object *box = elm_box_add(parent);
+	elm_box_horizontal_set(box, EINA_TRUE);
 
-	return nullptr;
+	elm_box_pack_end(box, createAddFieldButton(box, FieldNumber, INPUT_ICON_ADD_NUMBER));
+	elm_box_pack_end(box, createAddFieldButton(box, FieldEmail, INPUT_ICON_ADD_EMAIL));
+	elm_box_pack_end(box, createAddFieldButton(box, FieldNote, INPUT_ICON_ADD_NOTE));
+	elm_box_pack_end(box, createButton(box, "IDS_PB_BUTTON_MORE", INPUT_ICON_ADD_MORE,
+			makeCallback(&AddFieldsItem::onMoreButtonPressed), this));
+
+	return box;
 }
 
 void AddFieldsItem::onUnrealized()
@@ -81,6 +79,10 @@ Evas_Object *AddFieldsItem::createButton(Evas_Object *parent, const char *text,
 	elm_object_translatable_text_set(button, text);
 	elm_object_part_content_set(button, "elm.swallow.content", image);
 	evas_object_smart_callback_add(button, "clicked", callback, data);
+
+	evas_object_size_hint_weight_set(button, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	evas_object_size_hint_align_set(button, EVAS_HINT_FILL, EVAS_HINT_FILL);
+	evas_object_show(button);
 
 	return button;
 }
