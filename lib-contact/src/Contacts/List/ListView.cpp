@@ -90,15 +90,13 @@ void ListView::onCreated()
 void ListView::fillList()
 {
 	ContactList list = m_Provider.getContactList();
-	const char *currentLetter = nullptr;
 	ContactGroupItem *group = nullptr;
 
 	for (auto &&contact : list) {
-		const char *nextLetter = contact->getIndexLetter();
+		const UniString &nextLetter = contact->getIndexLetter();
 
-		if (!currentLetter || strcmp(currentLetter, nextLetter) != 0) {
+		if (!group || group->getTitle() != nextLetter) {
 			group = insertGroupItem(nextLetter);
-			currentLetter = nextLetter;
 		}
 
 		m_Genlist->insert(createContactItem(std::move(contact)), group);
@@ -119,15 +117,16 @@ Elm_Object_Item *ListView::insertIndexItem(const char *indexLetter, Elm_Object_I
 	return indexItem;
 }
 
-ContactGroupItem *ListView::insertGroupItem(const char *indexLetter, ContactGroupItem *nextGroup)
+ContactGroupItem *ListView::insertGroupItem(UniString indexLetter, ContactGroupItem *nextGroup)
 {
-	Elm_Object_Item *indexItem = insertIndexItem(indexLetter, nextGroup ? nextGroup->getIndexItem() : nullptr);
+	Elm_Object_Item *indexItem = insertIndexItem(indexLetter.getUtf8Str().c_str(),
+			nextGroup ? nextGroup->getIndexItem() : nullptr);
 
-	ContactGroupItem *item = new ContactGroupItem(indexLetter, indexItem);
+	ContactGroupItem *item = new ContactGroupItem(std::move(indexLetter), indexItem);
 	m_Genlist->insert(item, nullptr, nextGroup);
 
 	elm_object_item_data_set(indexItem, item->getObjectItem());
-	m_Groups.insert({ indexLetter, item });
+	m_Groups.insert({ item->getTitle(), item });
 
 	return item;
 }
@@ -163,14 +162,15 @@ void ListView::insertContactItem(ContactItem *item)
 {
 	ContactGroupItem *group = nullptr;
 	ContactItem *nextItem = nullptr;
-	const char *indexLetter = item->getContact().getIndexLetter();
+	const UniString &indexLetter = item->getContact().getIndexLetter();
 
 	auto it = m_Groups.find(indexLetter);
 	if (it != m_Groups.end()) {
 		group = it->second;
 		nextItem = getNextContactItem(it->second, item->getContact());
 	} else {
-		group = insertGroupItem(indexLetter, getNextGroupItem(indexLetter));
+		ContactGroupItem *nextGroup = getNextGroupItem(indexLetter);
+		group = insertGroupItem(indexLetter, nextGroup);
 	}
 
 	m_Genlist->insert(item, group, nextItem);
