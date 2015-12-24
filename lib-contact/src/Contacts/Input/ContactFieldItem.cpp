@@ -25,14 +25,8 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-namespace
-{
-	Elm_Genlist_Item_Class itc = Ui::GenlistItem::createItemClass(INPUT_ITEM_STYLE);
-}
-
 ContactFieldItem::ContactFieldItem(ContactFieldPtr object)
-	: GenlistGroupItem(&itc, ELM_GENLIST_ITEM_TREE),
-	  m_Object(std::move(object)), m_FirstFieldItem(nullptr)
+	: m_Object(std::move(object)), m_FirstFieldItem(nullptr)
 {
 	for (auto &&field : getObject()) {
 		ContactFieldSubItem *item = new ContactFieldSubItem(std::move(field));
@@ -57,6 +51,12 @@ void ContactFieldItem::setRemoveCallback(RemoveCallback callback)
 const ContactObject &ContactFieldItem::getObject() const
 {
 	return m_Object->cast<ContactObject>();
+}
+
+Elm_Genlist_Item_Class *ContactFieldItem::getItemClass() const
+{
+	static Elm_Genlist_Item_Class itc = createItemClass(INPUT_ITEM_STYLE);
+	return &itc;
 }
 
 Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)

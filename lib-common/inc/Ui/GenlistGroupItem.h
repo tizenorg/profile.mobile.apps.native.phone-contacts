@@ -25,14 +25,10 @@
 
 namespace Ui
 {
-	class EXPORT_API GenlistGroupItem : public GenlistItem
+	class EXPORT_API GenlistGroupItem : virtual public GenlistItem
 	{
 	public:
-		/**
-		 * @see GenlistItem::GenlistItem()
-		 */
-		GenlistGroupItem(Elm_Genlist_Item_Class *itemClass = nullptr,
-				Elm_Genlist_Item_Type itemType = ELM_GENLIST_ITEM_GROUP);
+		GenlistGroupItem();
 		virtual ~GenlistGroupItem() override;
 
 		/**
@@ -49,11 +45,6 @@ namespace Ui
 		 * @return Whether the group has no items (i.e. GroupItem has no subitems).
 		 */
 		bool empty() const;
-
-		/**
-		 * @see GenlistItem::isGroupItem()
-		 */
-		virtual bool isGroupItem() const override;
 
 		/**
 		 * @return Whether subitems are shown.
@@ -81,6 +72,20 @@ namespace Ui
 				Genlist::Position position = Genlist::Before);
 
 	protected:
+		/**
+		 * @see GenlistItem::isGroupItem()
+		 */
+		virtual bool isGroupItem() const override { return true; }
+
+		/**
+		 * @see GenlistItem::getType()
+		 */
+		virtual Elm_Genlist_Item_Type getType() const override { return ELM_GENLIST_ITEM_GROUP; }
+
+		/**
+		 * @see GenlistItem::getItemClass()
+		 */
+		virtual Elm_Genlist_Item_Class *getItemClass() const override;
 
 		/**
 		 * @see GenlistItem::onInserted()

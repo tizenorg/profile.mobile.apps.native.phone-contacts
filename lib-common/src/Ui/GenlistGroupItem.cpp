@@ -21,15 +21,8 @@
 
 using namespace Ui;
 
-namespace
-{
-	Elm_Genlist_Item_Class groupItemClass = GenlistItem::createItemClass("group_index");
-}
-
-GenlistGroupItem::GenlistGroupItem(Elm_Genlist_Item_Class *itemClass,
-		Elm_Genlist_Item_Type itemType)
-	: GenlistItem(itemClass ? itemClass : &groupItemClass, itemType),
-	  m_FirstItem(nullptr), m_LastItem(nullptr)
+GenlistGroupItem::GenlistGroupItem()
+	: m_FirstItem(nullptr), m_LastItem(nullptr)
 {
 }
 
@@ -55,11 +48,6 @@ bool GenlistGroupItem::empty() const
 	return m_FirstItem == nullptr;
 }
 
-bool GenlistGroupItem::isGroupItem() const
-{
-	return true;
-}
-
 bool GenlistGroupItem::isExpanded() const
 {
 	Elm_Object_Item *item = getObjectItem();
@@ -78,7 +66,7 @@ GenlistGroupItem *GenlistGroupItem::getNextGroupItem() const
 {
 	GenlistItem *item = m_LastItem ? m_LastItem->getNextItem() : getNextItem();
 	if (item && item->isGroupItem()) {
-		return static_cast<GenlistGroupItem *>(item);
+		return dynamic_cast<GenlistGroupItem *>(item);
 	}
 
 	return nullptr;
@@ -89,7 +77,7 @@ GenlistGroupItem *GenlistGroupItem::getPrevGroupItem() const
 	GenlistItem *item = getPrevItem();
 	if (item) {
 		if (item->isGroupItem()) {
-			return static_cast<GenlistGroupItem *>(item);
+			return dynamic_cast<GenlistGroupItem *>(item);
 		} else {
 			return item->getParentItem();
 		}
@@ -126,6 +114,12 @@ void GenlistGroupItem::insertSubItem(GenlistItem *item, GenlistItem *sibling,
 
 		m_ItemsCache.insert(pos, item);
 	}
+}
+
+Elm_Genlist_Item_Class *GenlistGroupItem::getItemClass() const
+{
+	static Elm_Genlist_Item_Class itc = createItemClass("group_index");
+	return &itc;
 }
 
 void GenlistGroupItem::onInserted()
