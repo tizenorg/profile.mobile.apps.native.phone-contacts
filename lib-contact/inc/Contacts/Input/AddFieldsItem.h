@@ -54,6 +54,7 @@ namespace Contacts
 			void setAddFieldState(Model::ContactFieldId fieldId, bool isEnabled);
 
 		private:
+			virtual Elm_Genlist_Item_Class *getItemClass() const override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual void onUnrealized() override;
 
