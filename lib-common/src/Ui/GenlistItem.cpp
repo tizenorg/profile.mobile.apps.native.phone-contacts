@@ -23,7 +23,8 @@
 using namespace Ui;
 
 GenlistItem::GenlistItem()
-	: m_Item(nullptr), m_Preserve(false)
+	: m_Item(nullptr), m_Preserve(false),
+	  m_IsRealized(false), m_IsFocusPending(false)
 {
 }
 
@@ -32,6 +33,11 @@ GenlistItem::~GenlistItem()
 	if (m_Item) {
 		pop();
 	}
+}
+
+bool GenlistItem::isRealized() const
+{
+	return m_IsRealized;
 }
 
 Elm_Object_Item *GenlistItem::getObjectItem() const
@@ -64,8 +70,30 @@ GenlistItem *GenlistItem::getPrevItem() const
 	return (GenlistItem *) elm_object_item_data_get(item);
 }
 
+
+void GenlistItem::scrollTo(Elm_Genlist_Item_Scrollto_Type position, bool isAnimated)
+{
+	auto scroll = isAnimated ? elm_genlist_item_bring_in : elm_genlist_item_show;
+	scroll(getObjectItem(), position);
+}
+
+void GenlistItem::focus(Elm_Genlist_Item_Scrollto_Type position, bool isAnimated)
+{
+	scrollTo(position, isAnimated);
+	if (m_IsRealized) {
+		onFocused();
+	} else {
+		m_IsFocusPending = true;
+	}
+}
+
 void GenlistItem::pop()
 {
+	GenlistGroupItem *parent = getParentItem();
+	if (parent) {
+		parent->onSubItemDestroy(this);
+	}
+
 	onPop();
 
 	GenlistGroupItem *parent = getParentItem();
@@ -115,4 +143,25 @@ void GenlistItem::onDestroy(Evas_Object *genlist)
 	if (!m_Preserve) {
 		delete this;
 	}
+}
+
+void GenlistItem::onRealized(Elm_Object_Item *item)
+{
+	if (!m_Item) {
+		m_Item = item;
+	}
+
+	m_IsRealized = true;
+	onRealized();
+
+	if (m_IsFocusPending) {
+		onFocused();
+		m_IsFocusPending = false;
+	}
+}
+
+void GenlistItem::onUnrealized(Elm_Object_Item *item)
+{
+	m_IsRealized = false;
+	onUnrealized();
 }

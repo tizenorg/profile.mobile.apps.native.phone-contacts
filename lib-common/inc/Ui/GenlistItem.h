@@ -33,9 +33,19 @@ namespace Ui
 		virtual ~GenlistItem();
 
 		/**
+		 * @return Whether the item is realized.
+		 */
+		bool isRealized() const;
+
+		/**
 		 * @return Whether the item is a group item.
 		 */
 		virtual bool isGroupItem() const { return false; }
+
+		/**
+		 * @return Whether the item can receive focus.
+		 */
+		virtual bool isFocusable() const { return false; }
 
 		/**
 		 * @return Item type.
@@ -66,6 +76,21 @@ namespace Ui
 		 * @return Previous item in genlist or nullptr if none.
 		 */
 		GenlistItem *getPrevItem() const;
+
+		/**
+		 * @brief Scroll genlist to item.
+		 * @param[in]   position    Item position on screen
+		 * @param[in]   isAnimated  Whether scrolling is animated or immediate
+		 */
+		void scrollTo(Elm_Genlist_Item_Scrollto_Type position = ELM_GENLIST_ITEM_SCROLLTO_IN,
+				bool isAnimated = false);
+
+		/**
+		 * @brief Scroll to the item and give it focus.
+		 * @see GenlistItem::scrollTo()
+		 */
+		void focus(Elm_Genlist_Item_Scrollto_Type position = ELM_GENLIST_ITEM_SCROLLTO_IN,
+				bool isAnimated = false);
 
 		/**
 		 * @brief Remove item from genlist without destroying it.
@@ -128,6 +153,11 @@ namespace Ui
 		virtual void onSelected() { }
 
 		/**
+		 * @brief Called when item is focused by calling focus().
+		 */
+		virtual void onFocused() { }
+
+		/**
 		 * @brief Called when item is realized (became visible).
 		 */
 		virtual void onRealized() { }
@@ -143,8 +173,14 @@ namespace Ui
 		void onInserted(Elm_Object_Item *item);
 		void onDestroy(Evas_Object *genlist);
 
+		void onRealized(Elm_Object_Item *item);
+		void onUnrealized(Elm_Object_Item *item);
+
 		Elm_Object_Item *m_Item;
 		bool m_Preserve;
+
+		bool m_IsRealized;
+		bool m_IsFocusPending;
 	};
 }
 

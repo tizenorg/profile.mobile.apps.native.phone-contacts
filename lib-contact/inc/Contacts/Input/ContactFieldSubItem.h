@@ -28,7 +28,7 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing contact field of TypeText or TypeDate type.
 		 */
-		class ContactFieldSubItem : public Ui::GenlistItem
+		class ContactFieldSubItem : virtual public Ui::GenlistItem
 		{
 		public:
 			/**
@@ -42,9 +42,12 @@ namespace Contacts
 			 */
 			const Model::ContactField &getField() const;
 
-		private:
-			friend class ContactFieldItem;
+			/**
+			 * @see GenlistItem::isFocusable()
+			 */
+			virtual bool isFocusable() const override;
 
+		protected:
 			/**
 			 * @see GenlistItem::getItemClass()
 			 */
@@ -60,6 +63,12 @@ namespace Contacts
 			 */
 			virtual Eina_Bool getState(Evas_Object *parent, const char *part) override;
 
+			/**
+			 * @see GenlistItem::onFocused()
+			 */
+			virtual void onFocused() override;
+
+		private:
 			Model::ContactFieldPtr m_Field;
 		};
 	}
