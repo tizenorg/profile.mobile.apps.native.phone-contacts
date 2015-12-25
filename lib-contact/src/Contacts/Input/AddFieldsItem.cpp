@@ -81,6 +81,7 @@ Evas_Object *AddFieldsItem::createButton(Evas_Object *parent, const char *text,
 	elm_object_style_set(button, "circle");
 	elm_object_translatable_text_set(button, text);
 	elm_object_part_content_set(button, "elm.swallow.content", image);
+	elm_object_focus_allow_set(button, EINA_FALSE);
 	evas_object_smart_callback_add(button, "clicked", callback, data);
 
 	return button;
