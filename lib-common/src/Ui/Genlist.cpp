@@ -125,11 +125,7 @@ void Genlist::onItemRealized(void *data, Evas_Object *obj, Elm_Object_Item *obje
 {
 	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
 	if (item) {
-		if (!item->m_Item) {
-			item->m_Item = objectItem;
-		}
-
-		item->onRealized();
+		item->onRealized(objectItem);
 	}
 }
 
@@ -137,6 +133,6 @@ void Genlist::onItemUnrealized(void *data, Evas_Object *obj, Elm_Object_Item *ob
 {
 	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
 	if (item) {
-		item->onUnrealized();
+		item->onUnrealized(objectItem);
 	}
 }

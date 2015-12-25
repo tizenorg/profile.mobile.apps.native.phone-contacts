@@ -19,6 +19,7 @@
 #define CONTACTS_INPUT_CONTACT_OBJECT_ITEM_H
 
 #include "Contacts/Model/ContactField.h"
+#include "Contacts/Input/ContactFieldSubItem.h"
 #include "Ui/GenlistGroupItem.h"
 #include <functional>
 
@@ -36,7 +37,9 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing ContactObject and its first field.
 		 */
-		class ContactFieldItem : public Ui::GenlistGroupItem
+		class ContactFieldItem :
+			public Ui::GenlistGroupItem,
+			public ContactFieldSubItem
 		{
 		public:
 			/**
@@ -51,7 +54,6 @@ namespace Contacts
 			 * @param[in]   object      Contact field of TypeObject type
 			 */
 			ContactFieldItem(Model::ContactFieldPtr object);
-			virtual ~ContactFieldItem() override;
 
 			/**
 			 * @brief Set remove field callback.
@@ -88,12 +90,10 @@ namespace Contacts
 			virtual void onInserted() override;
 
 		private:
-
 			void onRemovePressed(Evas_Object *button, void *eventInfo);
 
 			Model::ContactFieldPtr m_Object;
 			RemoveCallback m_OnRemove;
-			ContactFieldSubItem *m_FirstFieldItem;
 		};
 	}
 }

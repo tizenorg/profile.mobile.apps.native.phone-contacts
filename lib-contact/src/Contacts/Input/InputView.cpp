@@ -183,7 +183,7 @@ void InputView::removeFieldItem(ContactFieldItem *item, ContactFieldId fieldId)
 void InputView::onAddField(ContactFieldId fieldId)
 {
 	ContactFieldItem *item = addFieldItem(addField(fieldId));
-	elm_genlist_item_bring_in(item->getObjectItem(), ELM_GENLIST_ITEM_SCROLLTO_MIDDLE);
+	item->focus(ELM_GENLIST_ITEM_SCROLLTO_TOP);
 }
 
 void InputView::onRemoveField(ContactFieldItem *item, ContactFieldPtr field)
