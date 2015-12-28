@@ -190,8 +190,11 @@ void ListView::updatePersonItem(PersonItem *item, Model::PersonPtr person)
 			deleteGroupItem(oldGroup);
 		}
 	} else {
+		std::string oldImagePath = item->getPerson().getImagePath() ? item->getPerson().getImagePath() : "";
+		const char *newImagePath = person->getImagePath();
+
 		item->setPerson(std::move(person));
-		if (strcmp(item->getPerson().getImagePath(), person->getImagePath()) != 0) {
+		if (newImagePath && strcmp(newImagePath, oldImagePath.c_str()) != 0) {
 			elm_genlist_item_fields_update(item->getObjectItem(),
 					PART_PERSON_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
 		}
