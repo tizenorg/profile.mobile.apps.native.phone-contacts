@@ -15,44 +15,44 @@
  *
  */
 
-#include "Contacts/List/ContactItem.h"
+#include "Contacts/List/PersonItem.h"
 #include "Ui/Thumbnail.h"
 
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
-ContactItem::ContactItem(ContactPtr contact)
-	: m_Contact(std::move(contact))
+PersonItem::PersonItem(PersonPtr person)
+	: m_Person(std::move(person))
 { }
 
-ContactItem::~ContactItem() { }
+PersonItem::~PersonItem() { }
 
-const Contact &ContactItem::getContact() const
+const Person &PersonItem::getPerson() const
 {
-	return *m_Contact;
+	return *m_Person;
 }
 
-void ContactItem::setContact(Model::ContactPtr contact)
+void PersonItem::setPerson(Model::PersonPtr person)
 {
-	m_Contact = std::move(contact);
+	m_Person = std::move(person);
 }
 
-char *ContactItem::getText(Evas_Object *parent, const char *part)
+char *PersonItem::getText(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, PART_CONTACT_NAME) == 0) {
-		return strdup(m_Contact->getName());
+	if (strcmp(part, PART_PERSON_NAME) == 0) {
+		return strdup(m_Person->getName());
 	}
 
 	return nullptr;
 }
 
-Evas_Object *ContactItem::getContent(Evas_Object *parent, const char *part)
+Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 {
 	using Ui::Thumbnail;
 
-	if (strcmp(part, PART_CONTACT_THUMBNAIL) == 0) {
+	if (strcmp(part, PART_PERSON_THUMBNAIL) == 0) {
 		Thumbnail *thumbnail = Thumbnail::create(parent, Thumbnail::SizeSmall,
-				m_Contact->getImagePath());
+				m_Person->getImagePath());
 		thumbnail->setSizeHint(true);
 		return thumbnail->getEvasObject();
 	}

@@ -16,8 +16,8 @@
  */
 
 #include "Contacts/List/ListView.h"
-#include "Contacts/List/ContactItem.h"
-#include "Contacts/List/ContactGroupItem.h"
+#include "Contacts/List/PersonItem.h"
+#include "Contacts/List/PersonGroupItem.h"
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Settings/MainView.h"
 #include "Contacts/Utils.h"
@@ -35,7 +35,7 @@ using namespace Utils;
 
 ListView::ListView()
 	: m_Genlist(nullptr), m_Index(nullptr),
-	  m_Provider(ContactProvider(ContactProvider::FilterNone))
+	  m_Provider(PersonProvider(PersonProvider::FilterNone))
 {
 }
 
@@ -89,17 +89,17 @@ void ListView::onCreated()
 
 void ListView::fillList()
 {
-	ContactList list = m_Provider.getContactList();
-	ContactGroupItem *group = nullptr;
+	PersonList list = m_Provider.getPersonList();
+	PersonGroupItem *group = nullptr;
 
-	for (auto &&contact : list) {
-		const UniString &nextLetter = contact->getIndexLetter();
+	for (auto &&person : list) {
+		const UniString &nextLetter = person->getIndexLetter();
 
 		if (!group || group->getTitle() != nextLetter) {
 			group = insertGroupItem(nextLetter);
 		}
 
-		m_Genlist->insert(createContactItem(std::move(contact)), group);
+		m_Genlist->insert(createPersonItem(std::move(person)), group);
 	}
 }
 
@@ -117,12 +117,12 @@ Elm_Object_Item *ListView::insertIndexItem(const char *indexLetter, Elm_Object_I
 	return indexItem;
 }
 
-ContactGroupItem *ListView::insertGroupItem(UniString indexLetter, ContactGroupItem *nextGroup)
+PersonGroupItem *ListView::insertGroupItem(UniString indexLetter, PersonGroupItem *nextGroup)
 {
 	Elm_Object_Item *indexItem = insertIndexItem(indexLetter.getUtf8Str().c_str(),
 			nextGroup ? nextGroup->getIndexItem() : nullptr);
 
-	ContactGroupItem *item = new ContactGroupItem(std::move(indexLetter), indexItem);
+	PersonGroupItem *item = new PersonGroupItem(std::move(indexLetter), indexItem);
 	m_Genlist->insert(item, nullptr, nextGroup);
 
 	elm_object_item_data_set(indexItem, item->getObjectItem());
@@ -131,13 +131,13 @@ ContactGroupItem *ListView::insertGroupItem(UniString indexLetter, ContactGroupI
 	return item;
 }
 
-void ListView::deleteGroupItem(ContactGroupItem *group)
+void ListView::deleteGroupItem(PersonGroupItem *group)
 {
 	m_Groups.erase(group->getTitle());
 	delete group;
 }
 
-ContactGroupItem *ListView::getNextGroupItem(const Utils::UniString &indexLetter)
+PersonGroupItem *ListView::getNextGroupItem(const Utils::UniString &indexLetter)
 {
 	auto it = m_Groups.lower_bound(indexLetter);
 	if (it != m_Groups.end()) {
@@ -147,63 +147,74 @@ ContactGroupItem *ListView::getNextGroupItem(const Utils::UniString &indexLetter
 	return nullptr;
 }
 
-ContactItem *ListView::createContactItem(ContactPtr contact)
+PersonItem *ListView::createPersonItem(PersonPtr person)
 {
 	using namespace std::placeholders;
 
-	ContactItem *item = new ContactItem(std::move(contact));
-	m_Provider.setChangeCallback(item->getContact().getPersonId(),
+	PersonItem *item = new PersonItem(std::move(person));
+	m_Provider.setChangeCallback(item->getPerson(),
 			std::bind(&ListView::onContactChanged, this, _1, _2, item));
 
 	return item;
 }
 
-void ListView::insertContactItem(ContactItem *item)
+void ListView::insertPersonItem(PersonItem *item)
 {
-	ContactGroupItem *group = nullptr;
-	ContactItem *nextItem = nullptr;
-	const UniString &indexLetter = item->getContact().getIndexLetter();
+	PersonGroupItem *group = nullptr;
+	PersonItem *nextItem = nullptr;
+	const UniString &indexLetter = item->getPerson().getIndexLetter();
 
 	auto it = m_Groups.find(indexLetter);
 	if (it != m_Groups.end()) {
 		group = it->second;
-		nextItem = getNextContactItem(it->second, item->getContact());
+		nextItem = getNextPersonItem(it->second, item->getPerson());
 	} else {
-		ContactGroupItem *nextGroup = getNextGroupItem(indexLetter);
+		PersonGroupItem *nextGroup = getNextGroupItem(indexLetter);
 		group = insertGroupItem(indexLetter, nextGroup);
 	}
 
 	m_Genlist->insert(item, group, nextItem);
 }
 
-void ListView::updateContactItem(ContactItem *item, Model::ContactPtr contact)
+void ListView::updatePersonItem(PersonItem *item, Model::PersonPtr person)
 {
-	if (item->getContact() != *contact) {
-		ContactGroupItem *oldGroup = static_cast<ContactGroupItem *>(item->getParentItem());
+	if (item->getPerson() != *person) {
+		PersonGroupItem *oldGroup = static_cast<PersonGroupItem *>(item->getParentItem());
 
 		item->pop();
 
-		item->setContact(std::move(contact));
-		insertContactItem(item);
+		item->setPerson(std::move(person));
+		insertPersonItem(item);
 
 		if (oldGroup->empty()) {
 			deleteGroupItem(oldGroup);
 		}
 	} else {
-		item->setContact(std::move(contact));
-		if (strcmp(item->getContact().getImagePath(), contact->getImagePath()) != 0) {
+		item->setPerson(std::move(person));
+		if (strcmp(item->getPerson().getImagePath(), person->getImagePath()) != 0) {
 			elm_genlist_item_fields_update(item->getObjectItem(),
-					PART_CONTACT_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+					PART_PERSON_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
 		}
 	}
 }
 
-ContactItem *ListView::getNextContactItem(ContactGroupItem *group, const Contact &contact)
+void ListView::deletePersonItem(PersonItem *item)
+{
+	PersonGroupItem *oldGroup = static_cast<PersonGroupItem *>(item->getParentItem());
+
+	m_Provider.unsetChangeCallback(item->getPerson());
+	delete item;
+	if (oldGroup->empty()) {
+		deleteGroupItem(oldGroup);
+	}
+}
+
+PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &person)
 {
 	for (auto &&item : *group) {
-		ContactItem *contactItem = static_cast<ContactItem *>(item);
-		if (contact < contactItem->getContact()) {
-			return contactItem;
+		PersonItem *personItem = static_cast<PersonItem *>(item);
+		if (person < personItem->getPerson()) {
+			return personItem;
 		}
 	}
 
@@ -212,10 +223,10 @@ ContactItem *ListView::getNextContactItem(ContactGroupItem *group, const Contact
 
 void ListView::onItemSelected(Evas_Object *genlist, Elm_Object_Item *genlistItem)
 {
-	ContactItem *item = (ContactItem *) elm_object_item_data_get(genlistItem);
+	PersonItem *item = (PersonItem *) elm_object_item_data_get(genlistItem);
 
 	int id = 0;
-	contacts_record_get_int(item->getContact().getRecord(), _contacts_person.display_contact_id, &id);
+	contacts_record_get_int(item->getPerson().getRecord(), _contacts_person.display_contact_id, &id);
 
 	getNavigator()->navigateTo(new Input::InputView(id));
 }
@@ -248,16 +259,16 @@ void ListView::onMenuPressed()
 	menu->show();
 }
 
-void ListView::onContactInserted(ContactPtr contact)
+void ListView::onContactInserted(PersonPtr person)
 {
-	insertContactItem(createContactItem(std::move(contact)));
+	insertPersonItem(createPersonItem(std::move(person)));
 }
 
-void ListView::onContactChanged(ContactPtr contact, contacts_changed_e changeType, ContactItem *item)
+void ListView::onContactChanged(PersonPtr person, contacts_changed_e changeType, PersonItem *item)
 {
 	if (changeType == CONTACTS_CHANGE_DELETED) {
-//		Todo: Implement delete contact functionality
+		deletePersonItem(item);
 	} else if (changeType == CONTACTS_CHANGE_UPDATED) {
-		updateContactItem(item, std::move(contact));
+		updatePersonItem(item, std::move(person));
 	}
 }
