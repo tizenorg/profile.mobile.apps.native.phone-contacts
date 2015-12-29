@@ -15,28 +15,28 @@
  *
  */
 
-#include "Contacts/List/ContactGroupItem.h"
+#include "Contacts/List/PersonGroupItem.h"
 #include "Utils/UniString.h"
 
 using namespace Contacts::List;
 using namespace Utils;
 
-ContactGroupItem::ContactGroupItem(UniString title, Elm_Object_Item *indexItem)
+PersonGroupItem::PersonGroupItem(UniString title, Elm_Object_Item *indexItem)
 	: m_Title(std::move(title)), m_IndexItem(indexItem)
 {
 }
 
-const UniString &ContactGroupItem::getTitle() const
+const UniString &PersonGroupItem::getTitle() const
 {
 	return m_Title;
 }
 
-Elm_Object_Item *ContactGroupItem::getIndexItem() const
+Elm_Object_Item *PersonGroupItem::getIndexItem() const
 {
 	return m_IndexItem;
 }
 
-char *ContactGroupItem::getText(Evas_Object *parent, const char *part)
+char *PersonGroupItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text") == 0) {
 		return strdup(m_Title.getUtf8Str().c_str());

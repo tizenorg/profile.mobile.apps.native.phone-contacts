@@ -15,10 +15,10 @@
  *
  */
 
-#ifndef CONTACTS_LIST_MODEL_CONTACT_PROVIDER_H
-#define CONTACTS_LIST_MODEL_CONTACT_PROVIDER_H
+#ifndef CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
+#define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
-#include "Contacts/List/Model/Contact.h"
+#include "Contacts/List/Model/Person.h"
 #include <contacts.h>
 #include <functional>
 #include <unordered_map>
@@ -30,14 +30,14 @@ namespace Contacts
 		namespace Model
 		{
 			/**
-			 * @brief Provides list of contacts
+			 * @brief Provides list of person
 			 */
-			class ContactProvider
+			class PersonProvider
 			{
 			public:
 
 				/**
-				 * @brief Determines how to filter contact list
+				 * @brief Determines how to filter person list
 				 */
 				enum FilterType
 				{
@@ -48,44 +48,44 @@ namespace Contacts
 
 				/**
 				 * @brief Person change callback
-				 * @param[in]    contact       Contact object
+				 * @param[in]    person        Person object
 				 * @param[in]    changeType    Change type
 				 */
-				typedef std::function<void(ContactPtr contact, contacts_changed_e changeType)> ChangeCallback;
+				typedef std::function<void(PersonPtr person, contacts_changed_e changeType)> ChangeCallback;
 
 				/**
 				 * @brief Person insert callback
-				 * @param[in]    contact       Contact object
+				 * @param[in]    person        Person object
 				 */
-				typedef std::function<void(ContactPtr contact)> InsertCallback;
+				typedef std::function<void(PersonPtr person)> InsertCallback;
 
 				/**
 				 * @brief Constructor
 				 * @param[in]    filterType    Contact filter
 				 */
-				explicit ContactProvider(FilterType filterType);
+				explicit PersonProvider(FilterType filterType);
 
-				virtual ~ContactProvider() { };
+				virtual ~PersonProvider() { };
 
 				/**
-				 * @brief Get contact list
+				 * @brief Get person list
 				 * @return List of contact objects
 				 */
-				virtual ContactList getContactList() const;
+				virtual PersonList getPersonList() const;
 
 				/**
 				 * @brief Set person change callback
 				 * @remark It can be update or delete of person
-				 * @param[in]    id          Person ID
+				 * @param[in]    person      Person
 				 * @param[in]    callback    Change callback
 				 */
-				void setChangeCallback(int id, ChangeCallback callback);
+				void setChangeCallback(const Person &person, ChangeCallback callback);
 
 				/**
 				 * @brief Unset person change callback
-				 * @param[in]    id    Person ID
+				 * @param[in]    person      Person
 				 */
-				void unsetChangeCallback(int id);
+				void unsetChangeCallback(const Person &person);
 
 				/**
 				 * @brief Set person insert callback
@@ -100,7 +100,7 @@ namespace Contacts
 
 			private:
 				void onChanged(const char *viewUri);
-				void notify(contacts_changed_e changeType, ContactPtr contact);
+				void notify(contacts_changed_e changeType, int contactId);
 
 				FilterType m_ListFilterType;
 				int m_DbVersion;
@@ -112,4 +112,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_LIST_MODEL_CONTACT_PROVIDER_H */
+#endif /* CONTACTS_LIST_MODEL_PERSON_PROVIDER_H */

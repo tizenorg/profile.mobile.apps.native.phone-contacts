@@ -15,7 +15,7 @@
  *
  */
 
-#include "Contacts/List/Model/ContactProvider.h"
+#include "Contacts/List/Model/PersonProvider.h"
 #include "Contacts/Utils.h"
 #include "Utils/Callback.h"
 #include "Utils/Range.h"
@@ -34,19 +34,19 @@ namespace
 		_contacts_person.favorite_priority
 	};
 
-	contacts_filter_h getProviderFilter(ContactProvider::FilterType filterType)
+	contacts_filter_h getProviderFilter(PersonProvider::FilterType filterType)
 	{
 		bool emptyFilter = true;
 		contacts_filter_h filter = nullptr;
 		contacts_filter_create(_contacts_person._uri, &filter);
 
-		if (filterType != ContactProvider::FilterNone) {
-			if (filterType & ContactProvider::FilterNumber) {
+		if (filterType != PersonProvider::FilterNone) {
+			if (filterType & PersonProvider::FilterNumber) {
 				contacts_filter_add_bool(filter, _contacts_person.has_phonenumber, true);
 				emptyFilter = false;
 			}
 
-			if (filterType & ContactProvider::FilterEmail) {
+			if (filterType & PersonProvider::FilterEmail) {
 				if (!emptyFilter) {
 					contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
 				}
@@ -57,7 +57,7 @@ namespace
 		return filter;
 	}
 
-	contacts_list_h getContactList(ContactProvider::FilterType filterType)
+	contacts_list_h getPersonList(PersonProvider::FilterType filterType)
 	{
 		contacts_filter_h filter = getProviderFilter(filterType);
 
@@ -75,7 +75,7 @@ namespace
 		return list;
 	}
 
-	contacts_record_h getPersonRecord(int contactId, ContactProvider::FilterType filterType)
+	contacts_record_h getPersonRecord(int contactId, PersonProvider::FilterType filterType)
 	{
 		contacts_filter_h filter = getProviderFilter(filterType);
 		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
@@ -100,49 +100,57 @@ namespace
 	}
 }
 
-ContactProvider::ContactProvider(ContactProvider::FilterType filterType)
+PersonProvider::PersonProvider(PersonProvider::FilterType filterType)
 	: m_ListFilterType(filterType)
 {
 	contacts_db_get_current_version(&m_DbVersion);
-	contacts_db_add_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&ContactProvider::onChanged), this);
+	contacts_db_add_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&PersonProvider::onChanged), this);
 }
 
-ContactList ContactProvider::getContactList() const
+PersonList PersonProvider::getPersonList() const
 {
-	ContactList contactList;
-	contacts_list_h list = ::getContactList(m_ListFilterType);
+	PersonList personList;
+	contacts_list_h list = ::getPersonList(m_ListFilterType);
 
 	contacts_record_h record = nullptr;
 	CONTACTS_LIST_FOREACH(list, record) {
-		contactList.push_back(ContactPtr(new Contact(record)));
+		personList.push_back(PersonPtr(new Person(record)));
 	}
 
 	contacts_list_destroy(list, false);
 
-	return contactList;
+	return personList;
 }
 
-void ContactProvider::setChangeCallback(int id, ChangeCallback callback)
+void PersonProvider::setChangeCallback(const Person &person, ChangeCallback callback)
 {
-	m_ChangeCallbacks.insert({ id, std::move(callback) });
+	auto ids = person.getContactIds();
+
+	auto it = ids.begin();
+	for (; it != ids.end(); ++it) {
+		m_ChangeCallbacks.insert({ *it, callback });
+	}
+	m_ChangeCallbacks.insert({ *it, std::move(callback) });
 }
 
-void ContactProvider::unsetChangeCallback(int id)
+void PersonProvider::unsetChangeCallback(const Person &person)
 {
-	m_ChangeCallbacks.erase(id);
+	for (auto &&id: person.getContactIds()) {
+		m_ChangeCallbacks.erase(id);
+	}
 }
 
-void ContactProvider::setInsertCallback(InsertCallback callback)
+void PersonProvider::setInsertCallback(InsertCallback callback)
 {
 	m_InsertCallback = std::move(callback);
 }
 
-void ContactProvider::unsetInsertCallback()
+void PersonProvider::unsetInsertCallback()
 {
 	m_InsertCallback = nullptr;
 }
 
-void ContactProvider::onChanged(const char *viewUri)
+void PersonProvider::onChanged(const char *viewUri)
 {
 	contacts_list_h changes = nullptr;
 	contacts_db_get_changes_by_version(_contacts_contact_updated_info._uri, 0, m_DbVersion, &changes, &m_DbVersion);
@@ -155,27 +163,34 @@ void ContactProvider::onChanged(const char *viewUri)
 		contacts_record_get_int(record, _contacts_contact_updated_info.contact_id, &contactId);
 		contacts_record_get_int(record, _contacts_contact_updated_info.type, &changeType);
 
-		ContactPtr contact(new Contact(getPersonRecord(contactId, m_ListFilterType)));
-		notify(static_cast<contacts_changed_e>(changeType), std::move(contact));
+		notify(static_cast<contacts_changed_e>(changeType), contactId);
 	}
 
 	contacts_list_destroy(changes, true);
 }
 
-void ContactProvider::notify(contacts_changed_e changeType, ContactPtr contact)
+void PersonProvider::notify(contacts_changed_e changeType, int contactId)
 {
+	PersonPtr person;
+
 	switch (changeType) {
 		case CONTACTS_CHANGE_INSERTED:
+			person.reset(new Person(getPersonRecord(contactId, m_ListFilterType)));
 			if (m_InsertCallback) {
-				m_InsertCallback(std::move(contact));
+				m_InsertCallback(std::move(person));
 			}
 			break;
 		case CONTACTS_CHANGE_UPDATED:
+			//Todo: If will be link contact functionality, update only when display contact changed
+			person.reset(new Person(getPersonRecord(contactId, m_ListFilterType)));
 		case CONTACTS_CHANGE_DELETED:
-			auto it = m_ChangeCallbacks.find(contact->getPersonId());
+		{
+			auto it = m_ChangeCallbacks.find(contactId);
 			if (it != m_ChangeCallbacks.end()) {
-				it->second(std::move(contact), changeType);
+				//Todo: If will be link contact functionality, delete only when it was last contact in person
+				it->second(std::move(person), changeType);
 			}
+		}
 			break;
 	}
 }

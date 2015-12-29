@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_LIST_MODEL_CONTACT_H
-#define CONTACTS_LIST_MODEL_CONTACT_H
+#ifndef CONTACTS_LIST_MODEL_PERSON_H
+#define CONTACTS_LIST_MODEL_PERSON_H
 
 #include "Utils/UniString.h"
 #include <contacts.h>
@@ -35,61 +35,71 @@ namespace Contacts
 		namespace Model
 		{
 			/**
-			 * @brief Contact object
+			 * @brief Person object
 			 */
-			class Contact;
+			class Person;
 
-			typedef std::unique_ptr<Contact> ContactPtr;
-			typedef std::vector<ContactPtr> ContactList;
+			typedef std::unique_ptr<Person> PersonPtr;
+			typedef std::vector<PersonPtr> PersonList;
 
-			class Contact
+			class Person
 			{
 			public:
-				Contact(const Contact &contact) = delete;
-				Contact &operator=(const Contact &contact) = delete;
+				/**
+				 * @brief Array of contact IDs
+				 */
+				typedef std::vector<int> ContactIds;
+
+				Person(const Person &person) = delete;
+				Person &operator=(const Person &person) = delete;
 
 				/**
-				 * @brief Create contact object
+				 * @brief Create person object
 				 * @param[in]   record      _contacts_person record
 				 */
-				Contact(contacts_record_h record);
-				~Contact();
+				Person(contacts_record_h record);
+				~Person();
 
 				/**
-				 * @brief Compares contact's "Sort by" (first name/last name) values
+				 * @brief Compares person's "Sort by" (first name/last name) values
 				 * @return True if sort value less than in @a that, otherwise false
 				 */
-				bool operator<(const Contact &that) const;
+				bool operator<(const Person &that) const;
 
 				/**
-				 * @brief Compares contact's "Sort by" (first name/last name) values on equality
+				 * @brief Compares person's "Sort by" (first name/last name) values on equality
 				 * @return True if sort values are equivalent, otherwise false
 				 */
-				bool operator==(const Contact &that) const;
+				bool operator==(const Person &that) const;
 
 				/**
-				 * @brief Compares contact's "Sort by" (first name/last name) values on inequality
+				 * @brief Compares person's "Sort by" (first name/last name) values on inequality
 				 * @return True if sort values are not equivalent, otherwise false
 				 */
-				bool operator!=(const Contact &that) const;
+				bool operator!=(const Person &that) const;
 
 				/**
 				 * @return Person ID
 				 */
-				int getPersonId() const;
+				int getId() const;
 
 				/**
-				 * @return First letter from formatted contact name
+				 * @return Array of contact IDs
+				 */
+				const ContactIds &getContactIds() const;
+
+				/**
+				 * @return First letter from formatted person name
 				 */
 				const Utils::UniString &getIndexLetter() const;
 
 				/**
-				 * @return Contact name
+				 * @return Person name
 				 */
 				const char *getName() const;
 
 				/**
-				 * @return Contact image path
+				 * @return Person image path
 				 */
 				const char *getImagePath() const;
 
@@ -108,9 +118,11 @@ namespace Contacts
 
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;
+
+				mutable ContactIds m_ContactIds;
 			};
 		}
 	}
 }
 
-#endif /* CONTACTS_LIST_MODEL_CONTACT_H */
+#endif /* CONTACTS_LIST_MODEL_PERSON_H */

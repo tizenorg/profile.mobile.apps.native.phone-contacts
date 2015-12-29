@@ -15,7 +15,8 @@
  *
  */
 
-#include "Contacts/List/Model/Contact.h"
+#include "Contacts/List/Model/Person.h"
+#include "Contacts/Utils.h"
 #include "Utils/UniString.h"
 
 using namespace Contacts::List::Model;
@@ -28,9 +29,40 @@ namespace
 		return (order == CONTACTS_NAME_SORTING_ORDER_FIRSTLAST
 				? _contacts_name.first : _contacts_name.last);
 	}
+
+	Person::ContactIds getContactIds(int personId)
+	{
+		unsigned projection = _contacts_contact.id;
+		Person::ContactIds ids;
+
+		contacts_filter_h filter = nullptr;
+		contacts_filter_create(_contacts_contact._uri, &filter);
+		contacts_filter_add_int(filter, _contacts_contact.person_id, CONTACTS_MATCH_EQUAL, personId);
+
+		contacts_query_h query = nullptr;
+		contacts_query_create(_contacts_contact._uri, &query);
+		contacts_query_set_filter(query, filter);
+		contacts_query_set_projection(query, &projection, 1);
+
+		contacts_list_h list = nullptr;
+		contacts_db_get_records_with_query(query, 0, 0, &list);
+
+		contacts_record_h tempRecord = nullptr;
+		CONTACTS_LIST_FOREACH(list, tempRecord) {
+			int id = 0;
+			contacts_record_get_int(tempRecord, projection, &id);
+			ids.push_back(id);
+		}
+
+		contacts_list_destroy(list, true);
+		contacts_query_destroy(query);
+		contacts_filter_destroy(filter);
+
+		return ids;
+	}
 }
 
-Contact::Contact(contacts_record_h record)
+Person::Person(contacts_record_h record)
 	: m_PersonRecord(record), m_ContactRecord(nullptr)
 {
 	int contactId = 0;
@@ -44,59 +76,69 @@ Contact::Contact(contacts_record_h record)
 	m_IndexLetter = indexLetter;
 }
 
-Contact::~Contact()
+Person::~Person()
 {
 	contacts_record_destroy(m_PersonRecord, true);
 	contacts_record_destroy(m_ContactRecord, true);
 }
 
-bool Contact::operator<(const Contact &that) const
+bool Person::operator<(const Person &that) const
 {
 	return getSortValue() < that.getSortValue();
 }
 
-bool Contact::operator==(const Contact &that) const
+bool Person::operator==(const Person &that) const
 {
 	return getSortValue() == that.getSortValue();
 }
 
-bool Contact::operator!=(const Contact &that) const
+bool Person::operator!=(const Person &that) const
 {
 	return getSortValue() != that.getSortValue();
 }
 
-int Contact::getPersonId() const
+int Person::getId() const
 {
 	int id = 0;
 	contacts_record_get_int(m_PersonRecord, _contacts_person.id, &id);
 	return id;
 }
 
-const UniString &Contact::getIndexLetter() const
+const Person::ContactIds &Person::getContactIds() const
+{
+	if (m_ContactIds.empty()) {
+		//Todo: If will be link contact functionality, retrieve it again on link/unlink
+		m_ContactIds = ::getContactIds(getId());
+	}
+
+	return m_ContactIds;
+}
+
+const UniString &Person::getIndexLetter() const
 {
 	return m_IndexLetter;
 }
 
-const char *Contact::getName() const
+const char *Person::getName() const
 {
 	char *name = nullptr;
 	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name, &name);
 	return name;
 }
 
-const char *Contact::getImagePath() const
+const char *Person::getImagePath() const
 {
 	char *path = nullptr;
 	contacts_record_get_str_p(m_PersonRecord, _contacts_person.image_thumbnail_path, &path);
 	return path;
 }
 
-const contacts_record_h Contact::getRecord() const
+const contacts_record_h Person::getRecord() const
 {
 	return m_PersonRecord;
 }
 
-const UniString &Contact::getSortValue() const
+const UniString &Person::getSortValue() const
 {
 	if (m_SortValue.getI18nStr().empty()) {
 		m_SortValue = getDbSortValue();
@@ -105,7 +147,7 @@ const UniString &Contact::getSortValue() const
 	return m_SortValue;
 }
 
-const char *Contact::getDbSortValue() const
+const char *Person::getDbSortValue() const
 {
 	contacts_name_sorting_order_e order;
 	contacts_setting_get_name_sorting_order(&order);

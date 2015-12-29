@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_LIST_VIEW_H
 #define CONTACTS_LIST_LIST_VIEW_H
 
-#include "Contacts/List/Model/ContactProvider.h"
+#include "Contacts/List/Model/PersonProvider.h"
 #include "Ui/View.h"
 #include "Utils/UniString.h"
 #include <map>
@@ -33,8 +33,8 @@ namespace Contacts
 {
 	namespace List
 	{
-		class ContactItem;
-		class ContactGroupItem;
+		class PersonItem;
+		class PersonGroupItem;
 
 		/**
 		 * @brief Contacts list view
@@ -56,15 +56,16 @@ namespace Contacts
 			Elm_Index_Item *insertIndexItem(const char *indexLetter,
 					Elm_Index_Item *nextItem = nullptr);
 
-			ContactGroupItem *insertGroupItem(Utils::UniString indexLetter,
-					ContactGroupItem *nextGroup = nullptr);
-			void deleteGroupItem(ContactGroupItem *group);
-			ContactGroupItem *getNextGroupItem(const Utils::UniString &indexLetter);
+			PersonGroupItem *insertGroupItem(Utils::UniString indexLetter,
+					PersonGroupItem *nextGroup = nullptr);
+			void deleteGroupItem(PersonGroupItem *group);
+			PersonGroupItem *getNextGroupItem(const Utils::UniString &indexLetter);
 
-			ContactItem *createContactItem(Model::ContactPtr contact);
-			void insertContactItem(ContactItem *item);
-			void updateContactItem(ContactItem *item, Model::ContactPtr contact);
-			ContactItem *getNextContactItem(ContactGroupItem *group, const Model::Contact &contact);
+			PersonItem *createPersonItem(Model::PersonPtr person);
+			void insertPersonItem(PersonItem *item);
+			void updatePersonItem(PersonItem *item, Model::PersonPtr person);
+			void deletePersonItem(PersonItem *item);
+			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
 
 			void onItemSelected(Evas_Object *genlist, Elm_Object_Item *genlistItem);
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
@@ -73,14 +74,14 @@ namespace Contacts
 			void onCreatePressed();
 			virtual void onMenuPressed() override;
 
-			void onContactInserted(Model::ContactPtr contact);
-			void onContactChanged(Model::ContactPtr contact, contacts_changed_e changeType, ContactItem *item);
+			void onPersonInserted(Model::PersonPtr person);
+			void onPersonChanged(Model::PersonPtr person, contacts_changed_e changeType, PersonItem *item);
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
-			std::map<Utils::UniString, ContactGroupItem *> m_Groups;
+			std::map<Utils::UniString, PersonGroupItem *> m_Groups;
 
-			Model::ContactProvider m_Provider;
+			Model::PersonProvider m_Provider;
 		};
 	}
 }
