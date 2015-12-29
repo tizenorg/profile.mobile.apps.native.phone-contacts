@@ -62,7 +62,7 @@ namespace Contacts
 			/**
 			 * @return ContactObject associated with the item.
 			 */
-			const Model::ContactObject &getObject() const;
+			Model::ContactObject &getObject() const;
 
 		protected:
 			friend class ContactFieldSubItem;

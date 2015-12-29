@@ -34,4 +34,8 @@ color_classes {
 		name: BUTTON_COLOR_CLASS_PRESSED;
 		color: 48 139 153 255;
 	}
+	color_class { //W023 (Input Color 1)
+		name: "icon_expand";
+		color: 61 185 204 255;
+	}
 }
