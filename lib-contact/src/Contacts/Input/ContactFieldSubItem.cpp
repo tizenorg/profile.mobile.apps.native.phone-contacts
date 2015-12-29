@@ -25,19 +25,20 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-namespace
-{
-	Elm_Genlist_Item_Class itc = Ui::GenlistItem::createItemClass(INPUT_ITEM_STYLE);
-}
-
 ContactFieldSubItem::ContactFieldSubItem(ContactFieldPtr field)
-	: GenlistItem(&itc), m_Field(std::move(field))
+	: m_Field(std::move(field))
 {
 }
 
 ContactField &ContactFieldSubItem::getField() const
 {
 	return *m_Field;
+}
+
+Elm_Genlist_Item_Class *ContactFieldSubItem::getItemClass() const
+{
+	static Elm_Genlist_Item_Class itc = createItemClass(INPUT_ITEM_STYLE);
+	return &itc;
 }
 
 Evas_Object *ContactFieldSubItem::getContent(Evas_Object *parent, const char *part)

@@ -27,13 +27,8 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-namespace
-{
-	Elm_Genlist_Item_Class itc = Ui::GenlistItem::createItemClass(INPUT_ITEM_STYLE_BUTTONS);
-}
-
 AddFieldsItem::AddFieldsItem()
-	: GenlistItem(&itc), m_Buttons{nullptr}
+	: m_Buttons{nullptr}
 {
 	memset(m_AddFieldStates, true, sizeof(m_AddFieldStates));
 }
@@ -47,6 +42,12 @@ void AddFieldsItem::setAddFieldState(ContactFieldId fieldId, bool isEnabled)
 {
 	m_AddFieldStates[fieldId] = isEnabled;
 	elm_object_disabled_set(m_Buttons[fieldId], !isEnabled);
+}
+
+Elm_Genlist_Item_Class *AddFieldsItem::getItemClass() const
+{
+	static Elm_Genlist_Item_Class itc = createItemClass(INPUT_ITEM_STYLE_BUTTONS);
+	return &itc;
 }
 
 Evas_Object *AddFieldsItem::getContent(Evas_Object *parent, const char *part)

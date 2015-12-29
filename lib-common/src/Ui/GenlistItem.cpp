@@ -22,17 +22,9 @@
 
 using namespace Ui;
 
-namespace
+GenlistItem::GenlistItem()
+	: m_Item(nullptr), m_Preserve(false)
 {
-	Elm_Genlist_Item_Class defaultItemClass = GenlistItem::createItemClass("type1");
-}
-
-GenlistItem::GenlistItem(Elm_Genlist_Item_Class *itemClass, Elm_Genlist_Item_Type itemType)
-	: m_ItemType(itemType), m_ItemClass(itemClass), m_Item(nullptr), m_Preserve(false)
-{
-	if (!m_ItemClass) {
-		m_ItemClass = &defaultItemClass;
-	}
 }
 
 GenlistItem::~GenlistItem()
@@ -40,31 +32,6 @@ GenlistItem::~GenlistItem()
 	if (m_Item) {
 		pop();
 	}
-}
-
-Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
-		const char *decorateStyle, const char *editStyle)
-{
-	Elm_Genlist_Item_Class itc = { ELM_GEN_ITEM_CLASS_HEADER, 0 };
-	itc.item_style = style;
-	itc.decorate_item_style = decorateStyle;
-	itc.decorate_all_item_style = editStyle;
-	itc.func.text_get = makeCallback(&GenlistItem::getText);
-	itc.func.content_get = makeCallback(&GenlistItem::getContent);
-	itc.func.state_get = makeCallback(&GenlistItem::getState);
-	itc.func.del = makeCallback(&GenlistItem::onDestroy);
-
-	return itc;
-}
-
-bool GenlistItem::isGroupItem() const
-{
-	return false;
-}
-
-Elm_Genlist_Item_Type GenlistItem::getType() const
-{
-	return m_ItemType;
 }
 
 Elm_Object_Item *GenlistItem::getObjectItem() const
@@ -80,8 +47,9 @@ Genlist *GenlistItem::getParent() const
 
 GenlistGroupItem *GenlistItem::getParentItem() const
 {
-	Elm_Object_Item *item = elm_genlist_item_parent_get(getObjectItem());
-	return (GenlistGroupItem *) elm_object_item_data_get(item);
+	Elm_Object_Item *objectItem = elm_genlist_item_parent_get(getObjectItem());
+	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
+	return dynamic_cast<GenlistGroupItem *>(item);
 }
 
 GenlistItem *GenlistItem::getNextItem() const
@@ -108,6 +76,27 @@ void GenlistItem::pop()
 	m_Preserve = true;
 	elm_object_item_del(m_Item);
 	m_Preserve = false;
+}
+
+Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
+		const char *decorateStyle, const char *editStyle)
+{
+	Elm_Genlist_Item_Class itc = { ELM_GEN_ITEM_CLASS_HEADER, 0 };
+	itc.item_style = style;
+	itc.decorate_item_style = decorateStyle;
+	itc.decorate_all_item_style = editStyle;
+	itc.func.text_get = makeCallback(&GenlistItem::getText);
+	itc.func.content_get = makeCallback(&GenlistItem::getContent);
+	itc.func.state_get = makeCallback(&GenlistItem::getState);
+	itc.func.del = makeCallback(&GenlistItem::onDestroy);
+
+	return itc;
+}
+
+Elm_Genlist_Item_Class *GenlistItem::getItemClass() const
+{
+	static Elm_Genlist_Item_Class itc = createItemClass("type1");
+	return &itc;
 }
 
 void GenlistItem::onInserted(Elm_Object_Item *item)

@@ -68,6 +68,16 @@ namespace Contacts
 			friend class ContactFieldSubItem;
 
 			/**
+			 * @see GenlistItem::getType()
+			 */
+			virtual Elm_Genlist_Item_Type getType() const override { return ELM_GENLIST_ITEM_TREE; }
+
+			/**
+			 * @see GenlistItem::getItemClass()
+			 */
+			virtual Elm_Genlist_Item_Class *getItemClass() const override;
+
+			/**
 			 * @see GenlistItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;

@@ -29,31 +29,18 @@ namespace Ui
 	class EXPORT_API GenlistItem
 	{
 	public:
-		/**
-		 * @brief Create genlist item.
-		 * @param[in]   itemClass   Genlist item class
-		 * @param[in]   itemType    Genlist item type
-		 */
-		GenlistItem(Elm_Genlist_Item_Class *itemClass = nullptr,
-					Elm_Genlist_Item_Type itemType = ELM_GENLIST_ITEM_NONE);
+		GenlistItem();
 		virtual ~GenlistItem();
-
-		/**
-		 * @brief Create statically allocated item class
-		 */
-		static Elm_Genlist_Item_Class createItemClass(const char *style,
-				const char *decorateStyle = nullptr,
-				const char *editStyle = nullptr);
 
 		/**
 		 * @return Whether the item is a group item.
 		 */
-		virtual bool isGroupItem() const;
+		virtual bool isGroupItem() const { return false; }
 
 		/**
 		 * @return Item type.
 		 */
-		Elm_Genlist_Item_Type getType() const;
+		virtual Elm_Genlist_Item_Type getType() const { return ELM_GENLIST_ITEM_NONE; }
 
 		/**
 		 * @return Genlist object item.
@@ -86,6 +73,18 @@ namespace Ui
 		void pop();
 
 	protected:
+		/**
+		 * @brief Create statically allocated item class
+		 */
+		static Elm_Genlist_Item_Class createItemClass(const char *style,
+				const char *decorateStyle = nullptr,
+				const char *editStyle = nullptr);
+
+		/**
+		 * @return Genlist item class of this item.
+		 */
+		virtual Elm_Genlist_Item_Class *getItemClass() const;
+
 		/**
 		 * @brief Called whenever any item's text part needs to be updated.
 		 * @param[in]   parent  Parent genlist
@@ -144,8 +143,6 @@ namespace Ui
 		void onInserted(Elm_Object_Item *item);
 		void onDestroy(Evas_Object *genlist);
 
-		Elm_Genlist_Item_Type m_ItemType;
-		Elm_Genlist_Item_Class *m_ItemClass;
 		Elm_Object_Item *m_Item;
 		bool m_Preserve;
 	};

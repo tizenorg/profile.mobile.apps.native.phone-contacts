@@ -75,12 +75,12 @@ void Genlist::insert(GenlistItem *item, GenlistGroupItem *parent,
 	Elm_Object_Item *parentItem = parent ? parent->getObjectItem() : nullptr;
 	if (sibling) {
 		auto insert = (position == Before) ? elm_genlist_item_insert_before : elm_genlist_item_insert_after;
-		item->onInserted(insert(getEvasObject(), item->m_ItemClass, item,
-				parentItem, sibling->getObjectItem(), item->m_ItemType, nullptr, nullptr));
+		item->onInserted(insert(getEvasObject(), item->getItemClass(), item,
+				parentItem, sibling->getObjectItem(), item->getType(), nullptr, nullptr));
 	} else {
 		auto insert = (position == Before) ? elm_genlist_item_append : elm_genlist_item_prepend;
-		item->onInserted(insert(getEvasObject(), item->m_ItemClass, item,
-				parentItem, item->m_ItemType, nullptr, nullptr));
+		item->onInserted(insert(getEvasObject(), item->getItemClass(), item,
+				parentItem, item->getType(), nullptr, nullptr));
 	}
 }
 
@@ -107,17 +107,17 @@ void Genlist::onItemSelected(void *data, Evas_Object *obj, Elm_Object_Item *obje
 
 void Genlist::onItemExpanded(void *data, Evas_Object *obj, Elm_Object_Item *objectItem)
 {
-	GenlistGroupItem *item = (GenlistGroupItem *) elm_object_item_data_get(objectItem);
+	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
 	if (item && item->isGroupItem()) {
-		item->onExpanded();
+		dynamic_cast<GenlistGroupItem *>(item)->onExpanded();
 	}
 }
 
 void Genlist::onItemContracted(void *data, Evas_Object *obj, Elm_Object_Item *objectItem)
 {
-	GenlistGroupItem *item = (GenlistGroupItem *) elm_object_item_data_get(objectItem);
+	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
 	if (item && item->isGroupItem()) {
-		item->onContracted();
+		dynamic_cast<GenlistGroupItem *>(item)->onContracted();
 	}
 }
 
