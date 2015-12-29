@@ -20,6 +20,7 @@
 
 #include <contacts.h>
 #include <time.h>
+#include "Logs/Model/LogType.h"
 
 namespace Logs
 {
@@ -35,47 +36,118 @@ namespace Logs
 			/**
 			 * @return is log group
 			 */
-			virtual bool isGroup() const = 0;
+			virtual bool isGroup() const { return false; }
 
 			/**
 			 * @return log record
 			 */
-			virtual const contacts_record_h getLogRecord() const = 0;
+			virtual const contacts_record_h getLogRecord() const { return nullptr; }
 
 			/**
 			 * @return log name
 			 */
-			virtual const char *getName() const = 0;
+			virtual const char *getName() const { return nullptr; }
 
 			/**
 			 * @return log number
 			 */
-			virtual const char *getNumber() const = 0;
+			virtual const char *getNumber() const { return nullptr; }
 
 			/**
 			 * @return log name image path
 			 */
-			virtual const char *getImagePath() const = 0 ;
+			virtual const char *getImagePath() const { return nullptr; }
 
 			/**
 			 * @return log type
 			 */
-			virtual int getType() const = 0;
+			virtual int getType() const { return CONTACTS_PLOG_TYPE_NONE; }
 
 			/**
 			 * @return log time
 			 */
-			virtual struct tm getTime() const = 0;
+			virtual struct tm getTime() const { return {0}; }
 
 			/**
 			 * @return log id
 			 */
-			virtual int getId() const = 0;
+			virtual int getId() const { return 0; }
 
 			/**
 			 * @return log person id
 			 */
-			virtual int getPersonId() const = 0;
+			virtual int getPersonId() const { return 0; }
+
+			/**
+			 * @return is person id changed
+			 * @param[in]    personId    Person Id
+			 */
+			virtual bool isPersonIdChanged(int personId) { return false; }
+
+			/**
+			 * @return is log name changed
+			 */
+			virtual bool isLogNameChanged() { return false; }
+
+			/**
+			 * @brief Set log changed callback
+			 * @remark Callback called when log is changed.
+			 * @param[in]    callback    Changed log callback
+			 */
+			virtual void setLogChangeCallback(LogChangeCallback callback)
+			{
+				m_LogChangeCallback = std::move(callback);
+			}
+
+			/**
+			 * @brief Unset log change callback
+			 */
+			virtual void unsetLogChangeCallback()
+			{
+				m_LogChangeCallback = nullptr;
+			}
+
+			/**
+			 * @brief Get log change callback
+			 */
+			virtual void callLogChangeCallback()
+			{
+				if (m_LogChangeCallback) {
+					m_LogChangeCallback();
+				}
+			}
+
+			/**
+			 * @brief Set log remove callback
+			 * @remark Callback called when log removed.
+			 * @param[in]    callback    Removed log callback
+			 */
+			virtual void setLogRemoveCallback(LogRemoveCallback callback)
+			{
+				m_LogRemoveCallback = std::move(callback);
+			}
+
+			/**
+			 * @brief Unset log remove  callback
+			 */
+			virtual void unsetLogRemoveCallback()
+			{
+				m_LogRemoveCallback = nullptr;
+			}
+
+			/**
+			 * @brief Get log remove callback
+			 */
+			virtual void callLogRemoveCallback()
+			{
+				if (m_LogRemoveCallback) {
+					m_LogRemoveCallback();
+				}
+			}
+
+		private:
+			LogChangeCallback m_LogChangeCallback;
+			LogRemoveCallback m_LogRemoveCallback;
 		};
 	}
 }

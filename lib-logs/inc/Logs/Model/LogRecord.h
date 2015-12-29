@@ -32,7 +32,7 @@ namespace Logs
 		public:
 			/**
 			 * @brief Create log record
-			 * @param[in]   record  Contact record (_contact_person_phone_log)
+			 * @param[in]   record  Contact record (_contact_pers n_phone_log)
 			 */
 			LogRecord(contacts_record_h record);
 
@@ -87,10 +87,23 @@ namespace Logs
 			 */
 			virtual int getPersonId() const override;
 
+			/**
+			 * @see Log::isPersonIdChanged()
+			 */
+			virtual bool isPersonIdChanged(int personId) override;
+
+			/**
+			 * @see Log::isLogNameChanged()
+			 */
+			virtual bool isLogNameChanged() override;
+
 		private:
 			contacts_record_h getContactRecord();
+
 			contacts_record_h m_LogRecord;
 			contacts_record_h m_ContactRecord;
+			int m_PersonId;
+			char *m_LogName;
 		};
 	}
 }

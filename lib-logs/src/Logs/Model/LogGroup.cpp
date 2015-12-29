@@ -82,3 +82,8 @@ const LogList &LogGroup::getLogList() const
 {
 	return m_LogList;
 }
+
+const int LogGroup::getListCount() const
+{
+	return m_LogList.size();
+}

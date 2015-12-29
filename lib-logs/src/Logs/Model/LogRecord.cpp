@@ -23,6 +23,8 @@ using namespace Logs::Model;
 LogRecord::LogRecord(contacts_record_h record)
 	: m_LogRecord(record), m_ContactRecord(getContactRecord())
 {
+	m_PersonId = getPersonId();
+	m_LogName = const_cast<char*>(getNumber());
 }
 
 LogRecord::~LogRecord()
@@ -62,6 +64,14 @@ const char *LogRecord::getImagePath() const
 	return path;
 }
 
+int LogRecord::getType() const
+{
+	int type = CONTACTS_PLOG_TYPE_NONE;
+	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_type, &type);
+
+	return type;
+}
+
 struct tm LogRecord::getTime() const
 {
 	int time = 0;
@@ -72,14 +82,6 @@ struct tm LogRecord::getTime() const
 
 	localtime_r(&logTime, &logDate);
 	return logDate;
-}
-
-int LogRecord::getType() const
-{
-	int type = CONTACTS_PLOG_TYPE_NONE;
-	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_type, &type);
-
-	return type;
 }
 
 int LogRecord::getId() const
@@ -94,6 +96,31 @@ int LogRecord::getPersonId() const
 	int id = 0;
 	contacts_record_get_int(m_LogRecord, _contacts_phone_log.person_id, &id);
 	return id;
+}
+
+bool LogRecord::isPersonIdChanged(int personId)
+{
+	if (m_PersonId == personId) {
+		if (m_PersonId != getPersonId()) {
+			m_PersonId = getPersonId();
+			return true;
+		}
+	} else {
+		if (m_PersonId == getPersonId()) {
+			m_PersonId = getPersonId();
+			return true;
+		}
+	}
+	return false;
+}
+
+bool LogRecord::isLogNameChanged()
+{
+	if (strcmp(m_LogName, getName()) != 0) {
+		m_LogName = const_cast<char*>(getName());
+		return true;
+	}
+	return false;
 }
 
 contacts_record_h LogRecord::getContactRecord()

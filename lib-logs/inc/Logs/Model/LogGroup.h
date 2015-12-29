@@ -19,7 +19,6 @@
 #define LOGS_MODEL_LOG_GROUP_H
 
 #include "Logs/Model/Log.h"
-#include "Logs/Model/LogType.h"
 
 namespace Logs
 {
@@ -94,6 +93,12 @@ namespace Logs
 			 * @return list of log group. The reference will be valid till this LogGroup object exist.
 			 */
 			const LogList &getLogList() const;
+
+			/**
+			 * @brief Get log group count
+			 * @return list group count.
+			 */
+			const int getListCount() const;
 
 		private:
 			LogList m_LogList;
