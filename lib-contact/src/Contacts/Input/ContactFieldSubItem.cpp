@@ -35,6 +35,11 @@ ContactField &ContactFieldSubItem::getField() const
 	return *m_Field;
 }
 
+bool ContactFieldSubItem::isFocusable() const
+{
+	return m_Field->getType() == TypeText;
+}
+
 Elm_Genlist_Item_Class *ContactFieldSubItem::getItemClass() const
 {
 	static Elm_Genlist_Item_Class itc = createItemClass(INPUT_ITEM_STYLE);
@@ -64,4 +69,17 @@ Eina_Bool ContactFieldSubItem::getState(Evas_Object *parent, const char *part)
 {
 	ContactFieldItem *parentItem = static_cast<ContactFieldItem *>(getParentItem());
 	return parentItem ? parentItem->getState(parent, part) : EINA_FALSE;
+}
+
+void ContactFieldSubItem::onFocused()
+{
+	Evas_Object *content = elm_object_item_part_content_get(getObjectItem(), PART_MIDDLE);
+	Ui::Control *control = Ui::Control::getControl(content);
+
+	if (control) {
+		if (m_Field->getType() == TypeText) {
+			Evas_Object *entry = static_cast<Ui::Editfield *>(control)->getEntry();
+			elm_object_focus_set(entry, EINA_TRUE);
+		}
+	}
 }

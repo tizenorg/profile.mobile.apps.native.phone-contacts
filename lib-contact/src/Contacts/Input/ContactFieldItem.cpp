@@ -27,21 +27,15 @@ using namespace Contacts::Input;
 using namespace Contacts::Model;
 
 ContactFieldItem::ContactFieldItem(ContactFieldPtr object)
-	: m_Object(std::move(object)), m_FirstFieldItem(nullptr)
+	: ContactFieldSubItem(object->cast<ContactObject>().getField(0)),
+	  m_Object(std::move(object))
 {
+	unsigned firstFieldId = getField().getId();
 	for (auto &&field : getObject()) {
-		ContactFieldSubItem *item = new ContactFieldSubItem(std::move(field));
-		if (!m_FirstFieldItem) {
-			m_FirstFieldItem = item;
-		} else {
-			insertSubItem(item);
+		if (field->getId() != firstFieldId) {
+			insertSubItem(new ContactFieldSubItem(std::move(field)));
 		}
 	}
-}
-
-ContactFieldItem::~ContactFieldItem()
-{
-	delete m_FirstFieldItem;
 }
 
 void ContactFieldItem::setRemoveCallback(RemoveCallback callback)
@@ -70,7 +64,7 @@ Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 
 		return button;
 	} else {
-		return m_FirstFieldItem->getContent(parent, part);
+		return ContactFieldSubItem::getContent(parent, part);
 	}
 }
 
