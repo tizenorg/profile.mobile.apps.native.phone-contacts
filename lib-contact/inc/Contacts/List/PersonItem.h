@@ -22,8 +22,9 @@
 #include "Ui/GenlistItem.h"
 #include <contacts.h>
 
-#define PART_PERSON_NAME "elm.text"
-#define PART_PERSON_THUMBNAIL "elm.swallow.icon"
+#define PART_PERSON_NAME        "elm.text"
+#define PART_PERSON_THUMBNAIL   "elm.swallow.icon"
+#define PART_CHECK              "elm.swallow.end"
 
 namespace Contacts
 {
@@ -34,13 +35,31 @@ namespace Contacts
 		 */
 		class PersonItem : public Ui::GenlistItem
 		{
+			/**
+			 * @brief Represents item mode
+			 */
+			enum ItemMode {
+				DefaultMode,    /*< Usual mode */
+				PickMode        /*< Mode with ability to select item */
+			};
 		public:
 			/**
 			 * @brief Create person item
 			 * @param[in]   person      Person object
 			 */
 			PersonItem(Model::PersonPtr person);
-			virtual ~PersonItem() override;
+
+			/**
+			 * @brief Enable item usual mode
+			 */
+			void setDefaultMode();
+
+			/**
+			 * @brief Enable item pick mode
+			 * @remark @state is a pointer, that we have to bind to item state
+			 * @param[in]   state       State
+			 */
+			void setPickMode(Eina_Bool *state);
 
 			/**
 			 * @return Person object
@@ -58,6 +77,8 @@ namespace Contacts
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			Model::PersonPtr m_Person;
+			ItemMode m_ItemMode;
+			Eina_Bool *m_StatePointer;
 		};
 	}
 }
