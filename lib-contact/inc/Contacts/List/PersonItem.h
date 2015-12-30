@@ -22,8 +22,9 @@
 #include "Ui/GenlistItem.h"
 #include <contacts.h>
 
-#define PART_PERSON_NAME "elm.text"
-#define PART_PERSON_THUMBNAIL "elm.swallow.icon"
+#define PART_PERSON_NAME        "elm.text"
+#define PART_PERSON_THUMBNAIL   "elm.swallow.icon"
+#define PART_CHECK              "elm.swallow.end"
 
 namespace Contacts
 {
@@ -36,11 +37,31 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Represents item mode
+			 */
+			enum ItemMode {
+				DefaultMode,    /*< Usual mode */
+				PickMode        /*< Mode with ability to select item */
+			};
+
+			/**
 			 * @brief Create person item
 			 * @param[in]   person      Person object
+			 * @param[in]   mode        Item mode
 			 */
-			PersonItem(Model::PersonPtr person);
-			virtual ~PersonItem() override;
+			PersonItem(Model::PersonPtr person, ItemMode mode = DefaultMode);
+
+			/**
+			 * @brief Set item mode
+			 * @param[in]   mode    Item mode
+			 */
+			void setMode(ItemMode mode);
+
+			/**
+			 * @remark Used in item pick mode
+			 * @return true if item is checked, otherwise false
+			 */
+			bool checked() const;
 
 			/**
 			 * @return Person object
@@ -53,11 +74,18 @@ namespace Contacts
 			 */
 			void setPerson(Model::PersonPtr person);
 
+		protected:
+			virtual void onSelected() override;
+
 		private:
+			Elm_Check *getCheck() const;
+
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			Model::PersonPtr m_Person;
+			ItemMode m_ItemMode;
+			bool m_Checked;
 		};
 	}
 }
