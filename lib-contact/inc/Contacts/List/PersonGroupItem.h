@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_LIST_CONTACT_GROUP_ITEM_H
-#define CONTACTS_LIST_CONTACT_GROUP_ITEM_H
+#ifndef CONTACTS_LIST_PERSON_GROUP_ITEM_H
+#define CONTACTS_LIST_PERSON_GROUP_ITEM_H
 
 #include "Ui/GenlistGroupItem.h"
 #include "Utils/UniString.h"
@@ -27,17 +27,17 @@ namespace Contacts
 	namespace List
 	{
 		/**
-		 * @brief Contact alphabet group item
+		 * @brief Person alphabet group item
 		 */
-		class ContactGroupItem : public Ui::GenlistGroupItem
+		class PersonGroupItem : public Ui::GenlistGroupItem
 		{
 		public:
 			/**
-			 * @brief Create contact group item
+			 * @brief Create person group item
 			 * @param[in]   title       Group title
 			 * @param[in]   indexItem   Index item
 			 */
-			ContactGroupItem(Utils::UniString title, Elm_Object_Item *indexItem);
+			PersonGroupItem(Utils::UniString title, Elm_Object_Item *indexItem);
 
 			/**
 			 * @return Group item title
@@ -58,4 +58,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_LIST_CONTACT_GROUP_ITEM_H */
+#endif /* CONTACTS_LIST_PERSON_GROUP_ITEM_H */

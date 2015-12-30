@@ -15,51 +15,51 @@
  *
  */
 
-#ifndef CONTACTS_LIST_CONTACT_ITEM_H
-#define CONTACTS_LIST_CONTACT_ITEM_H
+#ifndef CONTACTS_LIST_PERSON_ITEM_H
+#define CONTACTS_LIST_PERSON_ITEM_H
 
+#include "Contacts/List/Model/Person.h"
 #include "Ui/GenlistItem.h"
-#include "Contacts/List/Model/Contact.h"
 #include <contacts.h>
 
-#define PART_CONTACT_NAME "elm.text"
-#define PART_CONTACT_THUMBNAIL "elm.swallow.icon"
+#define PART_PERSON_NAME "elm.text"
+#define PART_PERSON_THUMBNAIL "elm.swallow.icon"
 
 namespace Contacts
 {
 	namespace List
 	{
 		/**
-		 * @brief Contacts list item
+		 * @brief Person list item
 		 */
-		class ContactItem : public Ui::GenlistItem
+		class PersonItem : public Ui::GenlistItem
 		{
 		public:
 			/**
-			 * @brief Create contact item
-			 * @param[in]   contact     Contact object
+			 * @brief Create person item
+			 * @param[in]   person      Person object
 			 */
-			ContactItem(Model::ContactPtr contact);
-			virtual ~ContactItem() override;
+			PersonItem(Model::PersonPtr person);
+			virtual ~PersonItem() override;
 
 			/**
-			 * @return Contact object
+			 * @return Person object
 			 */
-			const Model::Contact &getContact() const;
+			const Model::Person &getPerson() const;
 
 			/**
-			 * @brief Set contact object
-			 * @param[in]   contact     Contact object
+			 * @brief Set person object
+			 * @param[in]   person      Person object
 			 */
-			void setContact(Model::ContactPtr contact);
+			void setPerson(Model::PersonPtr person);
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
-			Model::ContactPtr m_Contact;
+			Model::PersonPtr m_Person;
 		};
 	}
 }
 
-#endif /* CONTACTS_LIST_CONTACT_ITEM_H */
+#endif /* CONTACTS_LIST_PERSON_ITEM_H */
