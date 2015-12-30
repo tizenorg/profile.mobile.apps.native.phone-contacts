@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-PROJECT(contacts C CXX)
+PROJECT(${PKG_NAME} C CXX)
 
 SET(CMAKE_INSTALL_RPATH ${CMAKE_APP_LIB_DIR})
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
@@ -35,11 +35,11 @@ pkg_check_modules(TIZEN_PKGS REQUIRED
 	efl-extension
 	elementary
 	feedback
+	libtzplatform-config
 	libxml-2.0
 	msg-service
 	notification
 	storage
-	libtzplatform-config
 )
 
 INCLUDE_DIRECTORIES(${TIZEN_PKGS_INCLUDE_DIRS})
