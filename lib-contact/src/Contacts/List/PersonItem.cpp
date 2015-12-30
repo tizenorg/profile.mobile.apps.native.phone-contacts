@@ -21,20 +21,42 @@
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
-PersonItem::PersonItem(PersonPtr person)
-	: m_Person(std::move(person))
+PersonItem::PersonItem(PersonPtr person, ItemMode mode)
+	: m_Person(std::move(person)), m_ItemMode(mode), m_Checked(false)
 { }
 
-PersonItem::~PersonItem() { }
+void PersonItem::setMode(ItemMode mode)
+{
+	m_ItemMode = mode;
+	elm_genlist_item_fields_update(getObjectItem(), PART_CHECK, ELM_GENLIST_ITEM_FIELD_CONTENT);
+}
 
 const Person &PersonItem::getPerson() const
 {
 	return *m_Person;
 }
 
+bool PersonItem::checked() const
+{
+	return m_Checked;
+}
+
 void PersonItem::setPerson(Model::PersonPtr person)
 {
 	m_Person = std::move(person);
+}
+
+void PersonItem::onSelected()
+{
+	if (m_ItemMode == PickMode) {
+		m_Checked = !m_Checked;
+		elm_check_state_set(getCheck(), m_Checked);
+	}
+}
+
+Elm_Check *PersonItem::getCheck() const
+{
+	return elm_object_item_part_content_get(getObjectItem(), PART_CHECK);
 }
 
 char *PersonItem::getText(Evas_Object *parent, const char *part)
@@ -55,6 +77,9 @@ Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 				m_Person->getImagePath());
 		thumbnail->setSizeHint(true);
 		return thumbnail->getEvasObject();
+	} else if (m_ItemMode == PickMode && strcmp(part, PART_CHECK) == 0) {
+		Elm_Check *check = elm_check_add(parent);
+		return check;
 	}
 
 	return nullptr;
