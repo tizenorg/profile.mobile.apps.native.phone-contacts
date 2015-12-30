@@ -21,6 +21,7 @@
 #include <list>
 #include <memory>
 #include <functional>
+#include <contacts.h>
 
 namespace Logs
 {
@@ -35,24 +36,35 @@ namespace Logs
 		typedef std::shared_ptr<Log> LogPtr;
 
 		/**
-		 * @brief List of logs.
-		 */
-		typedef std::list<LogPtr> LogList;
-
-		/**
 		 * @brief Smart pointer of LogGroup.
 		 */
 		typedef std::shared_ptr<LogGroup> LogGroupPtr;
 
 		/**
-		 * @brief Changed contact callback
+		 * @brief List of logs.
 		 */
-		typedef std::function<void()> ContactChangeCallback;
+		typedef std::list<LogPtr> LogList;
+
+		/**
+		 * @brief List of log groups.
+		 */
+		typedef std::list<LogGroupPtr> LogGroupList;
 
 		/**
 		 * @brief Changed log callback
 		 */
 		typedef std::function<void()> LogChangeCallback;
+
+		/**
+		 * @brief Log remove callback
+		 */
+		typedef std::function<void()> LogRemoveCallback;
+
+		/**
+		 * @brief New log group callback
+		 * @param[in]    logGroup    Log group
+		 */
+		typedef std::function<void(LogGroupPtr logGroup)> NewLogGroupCallback;
 	}
 }
 

@@ -17,60 +17,19 @@
 
 #include "Logs/Model/LogGroup.h"
 #include <algorithm>
+#include <cstring>
 
 using namespace Logs::Model;
 
-bool LogGroup::isGroup() const
+LogGroup::LogGroup(LogPtr log)
 {
-	return true;
+	m_PersonId = log->getPersonId();
+	m_LogName = log->getNumber();
+	m_LogList.push_back(std::move(log));
 }
 
-const contacts_record_h LogGroup::getLogRecord() const
+LogGroup::~LogGroup()
 {
-	return m_LogList.back()->getLogRecord();
-}
-
-const char *LogGroup::getName() const
-{
-	return m_LogList.back()->getName();
-}
-
-const char *LogGroup::getNumber() const
-{
-	return m_LogList.back()->getNumber();
-}
-
-const char *LogGroup::getImagePath() const
-{
-	return m_LogList.back()->getImagePath();
-}
-
-int LogGroup::getType() const
-{
-	return m_LogList.back()->getType();
-}
-
-struct tm LogGroup::getTime() const
-{
-	return m_LogList.back()->getTime();
-}
-
-int LogGroup::getId() const
-{
-	return m_LogList.back()->getId();
-}
-
-int LogGroup::getPersonId() const
-{
-	return m_LogList.back()->getPersonId();
-}
-
-void LogGroup::removeLog(int id)
-{
-	auto position = std::find_if(m_LogList.begin(), m_LogList.end(), [id](LogPtr log) {
-		return (log->getId() == id);
-	});
-	m_LogList.erase(position);
 }
 
 void LogGroup::addLog(LogPtr log)
@@ -81,4 +40,112 @@ void LogGroup::addLog(LogPtr log)
 const LogList &LogGroup::getLogList() const
 {
 	return m_LogList;
+}
+
+int LogGroup::removeDeletedLogs(const LogGroupPtr &logGroup)
+{
+	auto changedIt = logGroup->getLogList().rbegin();
+	auto oldIt = m_LogList.rbegin();
+
+	int count = 0;
+
+	while (logGroup->getLogList().rend() != oldIt) {
+		if ((*changedIt)->getId() != (*oldIt)->getId()) {
+			m_LogList.erase(oldIt.base());
+			++count;
+		} else {
+			++changedIt;
+		}
+		++oldIt;
+	}
+	return count;
+}
+
+int LogGroup::addNewLogs(const LogGroupPtr &logGroup)
+{
+	auto changedIt = logGroup->getLogList().begin();
+	auto oldIt = m_LogList.begin();
+
+	int count = 0;
+
+	while ((*changedIt)->getId() != (*oldIt)->getId()) {
+		addLog(*changedIt);
+		++changedIt;
+		++count;
+	}
+
+	return count;
+}
+
+void LogGroup::setLogChangeCallback(LogChangeCallback callback)
+{
+	m_LogChangeCallback = std::move(callback);
+}
+
+void LogGroup::unsetLogChangeCallback()
+{
+	m_LogChangeCallback = nullptr;
+}
+
+void LogGroup::callLogChangeCallback()
+{
+	if (m_LogChangeCallback) {
+		m_LogChangeCallback();
+	}
+}
+
+void LogGroup::setLogRemoveCallback(LogRemoveCallback callback)
+{
+	m_LogRemoveCallback = std::move(callback);
+}
+
+void LogGroup::unsetLogRemoveCallback()
+{
+	m_LogRemoveCallback = nullptr;
+}
+
+void LogGroup::callLogRemoveCallback()
+{
+	if (m_LogRemoveCallback) {
+		m_LogRemoveCallback();
+	}
+}
+
+bool LogGroup::changedPersonId(int personId)
+{
+	LogPtr log = m_LogList.back();
+	if (m_PersonId == personId) {
+		if (m_PersonId != log->getPersonId()) {
+			m_PersonId = log->getPersonId();
+			return true;
+		}
+	} else {
+		if (m_PersonId == log->getPersonId()) {
+			m_PersonId = log->getPersonId();
+			return true;
+		}
+	}
+	return false;
+}
+
+bool LogGroup::changedName()
+{
+	LogPtr log = m_LogList.back();
+	if (strcmp(m_LogName.c_str(), log->getName()) != 0) {
+		m_LogName = log->getName();
+		return true;
+	}
+	return false;
+}
+
+LogPtr LogGroup::getFirstLog()
+{
+	return m_LogList.back();
+}
+
+void LogGroup::updateGroup()
+{
+	for (auto &&it : m_LogList) {
+		it->updateLog();
+	}
 }
