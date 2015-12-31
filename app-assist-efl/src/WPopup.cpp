@@ -34,6 +34,7 @@ public:
 	std::string __text;
 	std::string __textDomain;
 	WControl* __content;
+	Elm_Popup_Orient __orient;
 
 	std::function<Evas_Object* (Evas_Object* parent)> __contentCreateCb;
 	std::function<void(Evas_Object* popup)> __morePropertiesCb;
@@ -49,6 +50,7 @@ public:
 __WPopupImpl::__WPopupImpl()
 {
 	__content = NULL;
+	__orient = ELM_POPUP_ORIENT_LAST;
 	__count = 0;
 	for( int i=0; i< __MAX_BUTTON_NUM; i++)
 	{
@@ -127,6 +129,12 @@ void WPopup::setContent( const std::function<Evas_Object* (Evas_Object* parent)>
 	__pv->__contentCreateCb = contentCreateCb;
 }
 
+void WPopup::setOrient(Elm_Popup_Orient orient)
+{
+	__pv->__orient = orient;
+}
+
+
 void WPopup::setTextTranslatable( const char* textDomain )
 {
 	if( textDomain )
@@ -182,6 +190,10 @@ Evas_Object* WPopup::onCreate(Evas_Object* parent, void* param)
 
 	// It make the width to fit to screen width in portrait mode. 2014.09.30 modified as EFL notice.
 	elm_popup_align_set( popup, ELM_NOTIFY_ALIGN_FILL, 1.0 );
+
+	if (__pv->__orient != ELM_POPUP_ORIENT_LAST) {
+		elm_popup_orient_set(popup, __pv->__orient);
+	}
 
 	if( __pv->__backCb )
 		eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, [](void *data, Evas_Object *obj, void *event_info){
