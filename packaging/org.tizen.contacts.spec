@@ -1,10 +1,10 @@
-Name: org.tizen.contacts
-Version: 0.1
-Release: 1
-License: Apache-2.0
-Summary: Contacts and Phone Applications
-Group: Applications/Social
-Source: %{name}-%{version}.tar.gz
+Name:          org.tizen.contacts
+Version:       0.1
+Release:       0
+License:       Apache-2.0
+Summary:       Contacts and Phone Applications
+Group:         Applications/Social
+Source:        %{name}-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: edje-bin
@@ -48,18 +48,23 @@ cmake \
 	-DMANIFEST_DIR=%{_manifest_dir} \
 	-DICON_DIR=%{_icon_dir}
 
-make %{?jobs:-j%jobs}
+make %{?_smp_mflags}
 
 %install
 %make_install
+%find_lang %{name}
 
-%clean
-rm -rf %{buildroot}
-
-%files
-%defattr(-,root,root,-)
+%files -f %{name}.lang
 %manifest %{name}.manifest
 %license LICENSE
-%{_pkg_dir}/*
+
+%{_bin_dir}
+%{_lib_dir}
+
+%{_res_dir}/common
+%{_res_dir}/dialer
+%{_res_dir}/input
+%{_res_dir}/speeddial
+
 %{_manifest_dir}/%{name}.xml
 %{_icon_dir}/*.png
