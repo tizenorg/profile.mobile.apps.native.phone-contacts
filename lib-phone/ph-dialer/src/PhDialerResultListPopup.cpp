@@ -44,11 +44,8 @@ Evas_Object* PhDialerResultListPopup::onCreate(Evas_Object *parent, void *param)
 
 	setTitle(buffer);
 	setContent(std::bind(&PhDialerResultListPopup::createContactList, this, std::placeholders::_1));
-	setOrient(ELM_POPUP_ORIENT_CENTER);
 
 	Evas_Object *popup = WPopup::onCreate(parent, param);
-	elm_popup_align_set(popup, ELM_NOTIFY_ALIGN_FILL, 1.0);
-	elm_object_style_set(popup, "theme_bg");
 
 	return popup;
 }
@@ -58,6 +55,7 @@ Evas_Object* PhDialerResultListPopup::createContactList(Evas_Object *parent)
 	Evas_Object *genlist = elm_genlist_add(parent);
 	elm_genlist_homogeneous_set(genlist, EINA_TRUE);
 	elm_genlist_mode_set( genlist, ELM_LIST_COMPRESS );
+	elm_scroller_content_min_limit(genlist, EINA_FALSE, EINA_TRUE);
 
 	Elm_Genlist_Item_Class *itc = createItemClass();
 
