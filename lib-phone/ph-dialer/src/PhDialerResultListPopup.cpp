@@ -44,11 +44,11 @@ Evas_Object* PhDialerResultListPopup::onCreate(Evas_Object *parent, void *param)
 
 	setTitle(buffer);
 	setContent(std::bind(&PhDialerResultListPopup::createContactList, this, std::placeholders::_1));
+	setOrient(ELM_POPUP_ORIENT_CENTER);
 
 	Evas_Object *popup = WPopup::onCreate(parent, param);
 	elm_popup_align_set(popup, ELM_NOTIFY_ALIGN_FILL, 1.0);
 	elm_object_style_set(popup, "theme_bg");
-	elm_popup_orient_set(popup, ELM_POPUP_ORIENT_CENTER);
 
 	return popup;
 }

@@ -20,6 +20,7 @@
 
 #include "WControl.h"
 #include <functional>
+#include <Elementary.h>
 
 /**
 * @class	WPopup
@@ -75,6 +76,14 @@ public:
 	 * @see other setContent()
 	 */
 	void setContent( const std::function<Evas_Object* (Evas_Object* parent)> contentCreateCb );
+	/**
+	 * Sets the orientation of the pop-up.
+	 *
+	 * @param[in]	orient	the orientation of the popup
+	 *
+	 * @see Elm_Popup_Orient
+	 */
+	void setOrient(Elm_Popup_Orient orient);
 	/**
 	 * Sets the string ID's domain name to be automatically translated on language change. The text content and title text should be set with string ID.
 	 *

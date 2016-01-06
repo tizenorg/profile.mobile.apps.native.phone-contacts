@@ -31,9 +31,9 @@ Evas_Object* PhDialerAddToContactsPopup::onCreate(Evas_Object *parent, void *par
 {
 	setTitle(T_("IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"));
 	setContent(std::bind(&PhDialerAddToContactsPopup::createGenlist, this, std::placeholders::_1));
+	setOrient(ELM_POPUP_ORIENT_CENTER);
 
 	Evas_Object *popup = WPopup::onCreate(parent, param);
-	elm_popup_orient_set(popup, ELM_POPUP_ORIENT_CENTER);
 
 	return popup;
 }
