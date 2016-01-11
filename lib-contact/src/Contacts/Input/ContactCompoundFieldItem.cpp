@@ -35,20 +35,9 @@ namespace
 Evas_Object *ContactCompoundFieldItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_RIGHT) == 0) {
-		Evas_Object *button = elm_button_add(parent);
-		/* FIXME: Request standard style for expand open/close buttons */
-		elm_object_style_set(button, "floatingbutton/default");
-		evas_object_smart_callback_add(button, "clicked",
-				makeCallback(&ContactCompoundFieldItem::onButtonPressed), this);
-
-		Evas_Object *image = elm_image_add(button);
-		elm_image_file_set(image, layoutPath.c_str(), isExpanded() ? GROUP_ICON_CONTRACT : GROUP_ICON_EXPAND);
-		elm_object_part_content_set(button, "elm.swallow.content", image);
-
-		return button;
+		return createExpandButton(parent);
 	} else if (!isExpanded() && strcmp(part, PART_MIDDLE) == 0) {
-		Ui::Control *control = new ContactCompoundObjectControl(&getObject().cast<ContactCompoundObject>());
-		return control->create(parent);
+		return createCompoundControl(parent);
 	} else {
 		return ContactFieldItem::getContent(parent, part);
 	}
@@ -66,7 +55,31 @@ void ContactCompoundFieldItem::onContracted()
 	elm_genlist_item_update(getObjectItem());
 }
 
-void ContactCompoundFieldItem::onButtonPressed(Evas_Object *button, void *eventInfo)
+Evas_Object *ContactCompoundFieldItem::createCompoundControl(Evas_Object *parent)
+{
+	auto control = new ContactCompoundObjectControl(&getObject().cast<ContactCompoundObject>());
+	control->create(parent);
+
+	enableEntryReturnButton(control->getEntry());
+	return control->getEvasObject();
+}
+
+Evas_Object *ContactCompoundFieldItem::createExpandButton(Evas_Object *parent)
+{
+	Evas_Object *button = elm_button_add(parent);
+	/* FIXME: Request standard style for expand open/close buttons */
+	elm_object_style_set(button, "floatingbutton/default");
+	evas_object_smart_callback_add(button, "clicked",
+			makeCallback(&ContactCompoundFieldItem::onExpandPressed), this);
+
+	Evas_Object *image = elm_image_add(button);
+	elm_image_file_set(image, layoutPath.c_str(), isExpanded() ? GROUP_ICON_CONTRACT : GROUP_ICON_EXPAND);
+	elm_object_part_content_set(button, "elm.swallow.content", image);
+
+	return button;
+}
+
+void ContactCompoundFieldItem::onExpandPressed(Evas_Object *button, void *eventInfo)
 {
 	elm_genlist_item_expanded_set(getObjectItem(), !isExpanded());
 }

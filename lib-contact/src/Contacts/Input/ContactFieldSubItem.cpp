@@ -19,6 +19,7 @@
 #include "Contacts/Input/ContactFieldItem.h"
 #include "Contacts/Input/ContactDateFieldControl.h"
 #include "Contacts/Input/ContactTextFieldControl.h"
+#include "Utils/Callback.h"
 
 #include "InputItemLayout.h"
 
@@ -26,7 +27,7 @@ using namespace Contacts::Input;
 using namespace Contacts::Model;
 
 ContactFieldSubItem::ContactFieldSubItem(ContactFieldPtr field)
-	: m_Field(std::move(field))
+	: m_Field(std::move(field)), m_NextFocusItem(nullptr)
 {
 }
 
@@ -48,21 +49,27 @@ Elm_Genlist_Item_Class *ContactFieldSubItem::getItemClass() const
 
 Evas_Object *ContactFieldSubItem::getContent(Evas_Object *parent, const char *part)
 {
-	Ui::Control *control = nullptr;
 	if (m_Field && strcmp(part, PART_MIDDLE) == 0) {
 		switch (m_Field->getType()) {
 			case TypeText:
-				control = new ContactTextFieldControl(&m_Field->cast<ContactTextField>());
-				break;
+			{
+				auto control = new ContactTextFieldControl(&m_Field->cast<ContactTextField>());
+				control->create(parent);
+
+				enableEntryReturnButton(control->getEntry());
+				return control->getEvasObject();
+			}
 			case TypeDate:
-				control = new ContactDateFieldControl(&m_Field->cast<ContactDateField>());
-				break;
+			{
+				auto control = new ContactDateFieldControl(&m_Field->cast<ContactDateField>());
+				return control->create(parent);
+			}
 			default:
 				break;
 		}
 	}
 
-	return control ? control->create(parent) : nullptr;
+	return nullptr;
 }
 
 Eina_Bool ContactFieldSubItem::getState(Evas_Object *parent, const char *part)
@@ -81,5 +88,37 @@ void ContactFieldSubItem::onFocused()
 			Evas_Object *entry = static_cast<Ui::Editfield *>(control)->getEntry();
 			elm_object_focus_set(entry, EINA_TRUE);
 		}
+	}
+}
+
+void ContactFieldSubItem::enableEntryReturnButton(Evas_Object *entry)
+{
+	evas_object_smart_callback_add(entry, "focused",
+			makeCallback(&ContactFieldSubItem::onEntryFocused), this);
+	evas_object_smart_callback_add(entry, "activated",
+			makeCallback(&ContactFieldSubItem::onEntryActivated), this);
+}
+
+void ContactFieldSubItem::onEntryFocused(Evas_Object *entry, void *eventInfo)
+{
+	m_NextFocusItem = nullptr;
+	for (auto item = getNextItem(); item; item = item->getNextItem()) {
+		if (item->isFocusable()) {
+			m_NextFocusItem = item;
+			break;
+		}
+	}
+
+	elm_entry_input_panel_return_key_type_set(entry, m_NextFocusItem
+			? ELM_INPUT_PANEL_RETURN_KEY_TYPE_NEXT
+			: ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE);
+}
+
+void ContactFieldSubItem::onEntryActivated(Evas_Object *entry, void *eventInfo)
+{
+	if (m_NextFocusItem) {
+		m_NextFocusItem->focus(ELM_GENLIST_ITEM_SCROLLTO_IN, true);
+	} else {
+		elm_object_focus_set(entry, EINA_FALSE);
 	}
 }

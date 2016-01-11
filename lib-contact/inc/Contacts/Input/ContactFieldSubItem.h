@@ -68,8 +68,18 @@ namespace Contacts
 			 */
 			virtual void onFocused() override;
 
+			/**
+			 * @brief Enable entry "return" button to allow navigation to the next entry.
+			 * @param[in]   entry   Entry to set up
+			 */
+			void enableEntryReturnButton(Evas_Object *entry);
+
 		private:
+			void onEntryFocused(Evas_Object *entry, void *eventInfo);
+			void onEntryActivated(Evas_Object *entry, void *eventInfo);
+
 			Model::ContactFieldPtr m_Field;
+			Ui::GenlistItem *m_NextFocusItem;
 		};
 	}
 }

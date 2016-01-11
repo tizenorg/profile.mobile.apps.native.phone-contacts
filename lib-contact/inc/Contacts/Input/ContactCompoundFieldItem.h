@@ -54,7 +54,9 @@ namespace Contacts
 			 */
 			virtual void onContracted() override;
 
-			void onButtonPressed(Evas_Object *button, void *eventInfo);
+			Evas_Object *createCompoundControl(Evas_Object *parent);
+			Evas_Object *createExpandButton(Evas_Object *parent);
+			void onExpandPressed(Evas_Object *button, void *eventInfo);
 		};
 	}
 }
