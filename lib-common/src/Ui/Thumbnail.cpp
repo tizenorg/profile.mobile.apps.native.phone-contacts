@@ -51,6 +51,11 @@ Thumbnail *Thumbnail::create(Evas_Object *parent, Size size, const char *path)
 	return thumbnail;
 }
 
+Evas_Object *Thumbnail::getImage() const
+{
+	return m_Image;
+}
+
 void Thumbnail::setImagePath(const char *path)
 {
 	if (path && *path) {

@@ -15,27 +15,21 @@
  *
  */
 
-#ifndef INPUT_ITEM_LAYOUT_METRICS_H
-#define INPUT_ITEM_LAYOUT_METRICS_H
+#include "Contacts/Input/ContactImageFieldItem.h"
+#include "Contacts/Input/ContactImageFieldControl.h"
+#include "InputItemLayout.h"
 
-#define ITEM_W 720
-#define ITEM_H 120
+using namespace Contacts::Input;
+using namespace Contacts::Model;
 
-#define ITEM_PADDING_Y 20
+Elm_Genlist_Item_Class *ContactImageFieldItem::getItemClass() const
+{
+	static Elm_Genlist_Item_Class itc = createItemClass(INPUT_IMAGE_ITEM_STYLE);
+	return &itc;
+}
 
-#define ITEM_LEFT_W 154
-#define ITEM_LEFT_X1 32
-#define ITEM_LEFT_X2 32
-
-#define ITEM_RIGHT_W 75
-#define ITEM_RIGHT_X1 2
-#define ITEM_RIGHT_X2 10
-
-#define IMAGE_H 166
-#define IMAGE_ITEM_H 182
-#define IMAGE_ITEM_PADDING_Y (IMAGE_ITEM_H-IMAGE_H)/2
-
-#define BUTTONS_ITEM_H 247
-#define BUTTONS_ITEM_PADDING_Y 22
-
-#endif /* INPUT_ITEM_LAYOUT_METRICS_H */
+Evas_Object *ContactImageFieldItem::getContent(Evas_Object *parent, const char *part)
+{
+	auto control = new ContactImageFieldControl(&getField().cast<ContactTextField>());
+	return control->create(parent);
+}

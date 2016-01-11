@@ -86,8 +86,33 @@ collections
 	}
 
 	group {
-		name: "elm/genlist/item/"INPUT_ITEM_STYLE_BUTTONS"/default";
-		alias: "elm/genlist/item_compress/"INPUT_ITEM_STYLE_BUTTONS"/default";
+		name: "elm/genlist/item/"INPUT_IMAGE_ITEM_STYLE"/default";
+		alias: "elm/genlist/item_compress/"INPUT_IMAGE_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree/"INPUT_IMAGE_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree_compress/"INPUT_IMAGE_ITEM_STYLE"/default";
+
+		data.item: "banded_bg_area" "swallow.bg";
+		data.item: "contents" "swallow.content";
+
+		parts {
+			swallow { "swallow.bg"; }
+			spacer { "spacer.base"; scale;
+				desc { "default";
+					min: 0 IMAGE_ITEM_H;
+				}
+			}
+			swallow { "swallow.content";
+				desc { "default";
+					rel1.relative: 0.0 IMAGE_ITEM_PADDING_Y/IMAGE_ITEM_H;
+					rel2.relative: 1.0 1.0-IMAGE_ITEM_PADDING_Y/IMAGE_ITEM_H;
+				}
+			}
+		}
+	}
+
+	group {
+		name: "elm/genlist/item/"INPUT_BUTTONS_ITEM_STYLE"/default";
+		alias: "elm/genlist/item_compress/"INPUT_BUTTONS_ITEM_STYLE"/default";
 
 		data.item: "banded_bg_area" "swallow.bg";
 		data.item: "contents" "swallow.content";

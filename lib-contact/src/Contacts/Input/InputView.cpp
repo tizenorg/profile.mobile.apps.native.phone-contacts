@@ -17,8 +17,9 @@
 
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Input/AddFieldsItem.h"
-#include "Contacts/Input/ContactTypedFieldItem.h"
 #include "Contacts/Input/ContactCompoundFieldItem.h"
+#include "Contacts/Input/ContactImageFieldItem.h"
+#include "Contacts/Input/ContactTypedFieldItem.h"
 #include "Contacts/Model/ContactArray.h"
 
 #include "App/Path.h"
@@ -107,10 +108,12 @@ void InputView::onPageAttached()
 	page->setContent("title_left_btn", cancelButton);
 }
 
-ContactFieldItem *InputView::createFieldItem(Model::ContactFieldPtr field)
+ContactFieldItem *InputView::createFieldItem(ContactFieldPtr field)
 {
 	ContactFieldItem *item = nullptr;
-	if (field->getSubType() & ObjectTyped) {
+	if (field->getId() == FieldImage) {
+		item = new ContactImageFieldItem(std::move(field));
+	} else if (field->getSubType() & ObjectTyped) {
 		item = new ContactTypedFieldItem(std::move(field));
 	} else if (field->getSubType() & ObjectCompound) {
 		item = new ContactCompoundFieldItem(std::move(field));

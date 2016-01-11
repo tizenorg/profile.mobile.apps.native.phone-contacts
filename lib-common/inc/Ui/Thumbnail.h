@@ -53,6 +53,11 @@ namespace Ui
 		static Thumbnail *create(Evas_Object *parent, Size size, const char *path = nullptr);
 
 		/**
+		 * @return Thumbnail image object.
+		 */
+		Evas_Object *getImage() const;
+
+		/**
 		 * @brief Set thumbnail image path
 		 * @param[in]   path    Image path or nullptr for default image
 		 */

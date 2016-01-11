@@ -21,7 +21,8 @@
 #include "InputPath.h"
 
 #define INPUT_ITEM_STYLE         "input_item"
-#define INPUT_ITEM_STYLE_BUTTONS "input_buttons"
+#define INPUT_IMAGE_ITEM_STYLE   "input_image_item"
+#define INPUT_BUTTONS_ITEM_STYLE "input_buttons_item"
 
 #define PART_LEFT                "swallow.left"
 #define PART_MIDDLE              "swallow.middle"

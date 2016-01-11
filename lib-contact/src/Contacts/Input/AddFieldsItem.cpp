@@ -46,7 +46,7 @@ void AddFieldsItem::setAddFieldState(ContactFieldId fieldId, bool isEnabled)
 
 Elm_Genlist_Item_Class *AddFieldsItem::getItemClass() const
 {
-	static Elm_Genlist_Item_Class itc = createItemClass(INPUT_ITEM_STYLE_BUTTONS);
+	static Elm_Genlist_Item_Class itc = createItemClass(INPUT_BUTTONS_ITEM_STYLE);
 	return &itc;
 }
 
