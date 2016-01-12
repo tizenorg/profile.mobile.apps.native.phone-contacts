@@ -55,20 +55,20 @@ void NameFormatItem::onNameOrderChanged(contacts_name_display_order_e name_sorti
 	elm_genlist_item_update(item->getObjectItem());
 }
 
-void NameFormatItem::onItemStateChanged(int type)
-{
-	contacts_setting_set_name_display_order((contacts_name_display_order_e) type);
-}
-
 void NameFormatItem::onSelected()
 {
 	contacts_name_display_order_e type = CONTACTS_NAME_DISPLAY_ORDER_FIRSTLAST;
 	contacts_setting_get_name_display_order(&type);
 
-	RadioPopup *popup = new RadioPopup(onItemStateChanged);
+	RadioPopup *popup = new RadioPopup();
 	popup->create(elm_object_item_widget_get(getObjectItem()));
 	popup->setTitle("IDS_PB_TMBODY_NAME_FORMAT");
 	popup->setSelectedItem(type);
-	popup->addItem(("IDS_PB_OPT_FIRST_NAME_FIRST_ABB"), CONTACTS_NAME_DISPLAY_ORDER_FIRSTLAST);
-	popup->addItem(("IDS_PB_OPT_LAST_NAME_FIRST_ABB"), CONTACTS_NAME_DISPLAY_ORDER_LASTFIRST);
+	popup->addItem("IDS_PB_OPT_FIRST_NAME_FIRST_ABB", (void *) CONTACTS_NAME_DISPLAY_ORDER_FIRSTLAST);
+	popup->addItem("IDS_PB_OPT_LAST_NAME_FIRST_ABB", (void *) CONTACTS_NAME_DISPLAY_ORDER_LASTFIRST);
+	popup->setSelectedCallback([](void *data) {
+		contacts_setting_set_name_display_order((contacts_name_display_order_e) (long) data);
+	});
+
+	elm_popup_orient_set(popup->getEvasObject(), ELM_POPUP_ORIENT_CENTER);
 }

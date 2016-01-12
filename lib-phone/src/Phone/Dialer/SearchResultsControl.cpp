@@ -178,6 +178,8 @@ void SearchResultsControl::onResultPressed()
 void SearchResultsControl::onShowResultsPressed()
 {
 	SearchResultsPopup *popup = new SearchResultsPopup(m_Results);
-	popup->setSelectedCallback(m_OnSelected);
 	popup->create(getEvasObject());
+	popup->setSelectedCallback([this](void *data) {
+		m_OnSelected(*(SearchResultPtr *) data);
+	});
 }
