@@ -61,7 +61,7 @@ namespace Contacts
 			 * @remark Used in item pick mode
 			 * @return true if item is checked, otherwise false
 			 */
-			bool checked() const;
+			bool isChecked() const;
 
 			/**
 			 * @return Person object
