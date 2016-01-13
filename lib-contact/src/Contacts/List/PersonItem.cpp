@@ -36,7 +36,7 @@ const Person &PersonItem::getPerson() const
 	return *m_Person;
 }
 
-bool PersonItem::checked() const
+bool PersonItem::isChecked() const
 {
 	return m_Checked;
 }
@@ -79,6 +79,7 @@ Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 		return thumbnail->getEvasObject();
 	} else if (m_ItemMode == PickMode && strcmp(part, PART_CHECK) == 0) {
 		Elm_Check *check = elm_check_add(parent);
+		elm_check_state_set(check, m_Checked);
 		return check;
 	}
 
