@@ -100,6 +100,7 @@
         <privilege>http://tizen.org/privilege/contact.write</privilege>
         <privilege>http://tizen.org/privilege/account.read</privilege>
         <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        <privilege>http://tizen.org/privilege/callhistory.write</privilege>
         <privilege>http://tizen.org/privilege/notification</privilege>
         <privilege>http://tizen.org/privilege/externalstorage</privilege>
     </privileges>
