@@ -62,9 +62,10 @@ void InputView::onCreated()
 	int err = m_Contact.initialize(m_RecordId);
 	RETM_IF_ERR(err, "Contact::initialize() failed.");
 
+	addFieldItem(addField(FieldImage));
+	addFieldItem(addField(FieldName));
+
 	if (m_Contact.isNew()) {
-		addFieldItem(addField(FieldImage));
-		addFieldItem(addField(FieldName));
 		addFieldItem(addField(FieldNumber));
 		return;
 	}
@@ -77,7 +78,7 @@ void InputView::onCreated()
 				}
 				break;
 			case TypeObject:
-				if (!field->isEmpty()) {
+				if (!m_Items[field->getId()] && !field->isEmpty()) {
 					m_AddFieldsItem->setAddFieldState(ContactFieldId(field->getId()), false);
 					addFieldItem(std::move(field));
 				}

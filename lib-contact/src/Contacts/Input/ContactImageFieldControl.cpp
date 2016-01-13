@@ -17,7 +17,11 @@
 
 #include "Contacts/Input/ContactImageFieldControl.h"
 #include "Contacts/Model/ContactTextField.h"
+
+#include "App/AppControlRequest.h"
+#include "Ui/ListPopup.h"
 #include "Utils/Callback.h"
+#include "Utils/Logger.h"
 
 using namespace Contacts::Input;
 using namespace Contacts::Model;
@@ -29,12 +33,55 @@ ContactImageFieldControl::ContactImageFieldControl(ContactTextField *field)
 
 void ContactImageFieldControl::onCreated()
 {
-	setImagePath(m_Field->getValue());
+	setSizeHint(true);
+	updateImage();
 	evas_object_smart_callback_add(getImage(), "clicked",
 			makeCallback(&ContactImageFieldControl::onImagePressed), this);
 }
 
+void ContactImageFieldControl::updateImage()
+{
+	setImagePath(m_Field->getValue());
+}
+
+void ContactImageFieldControl::onImageResult(app_control_h request, app_control_h reply,
+		app_control_result_e result)
+{
+	char **imagePath = nullptr;
+	int count = 0;
+
+	int err = app_control_get_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, &imagePath, &count);
+	RETM_IF_ERR(err, "app_control_get_extra_data_array() failed.")
+
+	if (count > 0) {
+		m_Field->setValue(imagePath[0]);
+		updateImage();
+	}
+
+	for (int i = 0; i < count; ++i) {
+		free(imagePath[i]);
+	}
+	free(imagePath);
+}
+
 void ContactImageFieldControl::onImagePressed(Evas_Object *image, void *eventInfo)
 {
-	//TODO: Show popup
+	Ui::ListPopup *popup = new Ui::ListPopup();
+	popup->create(getEvasObject());
+	popup->setTitle("IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB");
+	popup->addItem("IDS_PB_OPT_FROM_GALLERY_ABB2", [this] {
+		m_AppControl = App::requestGalleryImage();
+		m_AppControl.launch(makeCallbackWithLastParam(&ContactImageFieldControl::onImageResult), this);
+	});
+	popup->addItem("IDS_PB_OPT_TAKE_PICTURE_ABB", [this] {
+		m_AppControl = App::requestCameraImage();
+		m_AppControl.launch(makeCallbackWithLastParam(&ContactImageFieldControl::onImageResult), this);
+	});
+
+	if (!m_Field->isEmpty()) {
+		popup->addItem("IDS_PB_OPT_REMOVE", [this] {
+			m_Field->reset();
+			updateImage();
+		});
+	}
 }
