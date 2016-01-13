@@ -87,6 +87,18 @@ namespace App
 	 */
 	AppControl EXPORT_API requestMessageComposer(const char *scheme, const char *to,
 			const char *subject = nullptr, const char *text = nullptr);
+
+	/**
+	 * @brief Request camera image capture
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestCameraImage();
+
+	/**
+	 * @brief Request pick image from gallery
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestGalleryImage();
 }
 
 #endif /* APP_APP_CONTROL_REQUEST_H */
