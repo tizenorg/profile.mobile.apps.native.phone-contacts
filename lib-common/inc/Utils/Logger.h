@@ -37,7 +37,7 @@ if (expr) { \
 }
 
 #define LOG_IF_ERR(code, action, fmt, arg...) \
-LOG_IF(code != TIZEN_ERROR_NONE, action, fmt "%s.", ##arg, get_error_message(code))
+LOG_IF(code != TIZEN_ERROR_NONE, action, fmt " %s.", ##arg, get_error_message(code))
 
 #define WARN_IF(expr, fmt, arg...) \
 LOG_IF(expr, , fmt, ##arg)

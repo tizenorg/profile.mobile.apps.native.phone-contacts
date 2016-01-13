@@ -64,11 +64,9 @@ Evas_Object *Hoversel::onCreate(Evas_Object *parent)
 
 void Hoversel::onSelected(Evas_Object *hoversel, Elm_Object_Item *item)
 {
-	if (m_OnSelected) {
-		int value = (long) elm_object_item_data_get(item);
-		if (m_OnSelected(value)) {
-			setText(elm_object_item_translatable_text_get(item));
-		}
+	int value = (long) elm_object_item_data_get(item);
+	if (!m_OnSelected || m_OnSelected(value)) {
+		setText(elm_object_item_translatable_text_get(item));
 	}
 }
 

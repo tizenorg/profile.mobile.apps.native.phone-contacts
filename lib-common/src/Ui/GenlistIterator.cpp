@@ -20,7 +20,7 @@
 
 using namespace Ui;
 
-GenlistIterator::GenlistIterator(GenlistItem* item)
+GenlistIterator::GenlistIterator(GenlistItem *item)
 	: m_Item(item)
 {
 }

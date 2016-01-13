@@ -39,6 +39,7 @@ Evas_Object *TabPage::onCreate(Evas_Object *parent)
 	elm_layout_theme_set(layout, "layout", "application", "default");
 
 	m_Sizer = evas_object_rectangle_add(evas_object_evas_get(layout));
+	evas_object_color_set(m_Sizer, 0, 0, 0, 0);
 	elm_object_part_content_set(layout, "elm.swallow.bg", m_Sizer);
 
 	m_Page = elm_layout_add(parent);

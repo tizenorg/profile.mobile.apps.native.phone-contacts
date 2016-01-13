@@ -37,6 +37,7 @@ namespace Ui
 		 * @brief Add item.
 		 * @param[in]   text        Item text
 		 * @param[in]   value       Item value which will be passed to SelectedCallback
+		 * @return Added item on success, otherwise nullptr.
 		 */
 		Elm_Object_Item *addItem(const char *text, int value);
 
