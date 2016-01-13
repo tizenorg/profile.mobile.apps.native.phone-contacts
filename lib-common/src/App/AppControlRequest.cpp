@@ -73,3 +73,13 @@ AppControl App::requestMessageComposer(const char *scheme, const char *to,
 	request.addExtra(APP_CONTROL_DATA_TEXT, text);
 	return request;
 }
+
+AppControl App::requestCameraImage()
+{
+	return AppControl(APP_CONTROL_OPERATION_CREATE_CONTENT, "image/*");
+}
+
+AppControl App::requestGalleryImage()
+{
+	return AppControl(APP_CONTROL_OPERATION_PICK, "image/*");
+}

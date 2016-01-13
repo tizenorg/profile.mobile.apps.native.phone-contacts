@@ -18,6 +18,7 @@
 #ifndef CONTACTS_INPUT_CONTACT_IMAGE_FIELD_CONTROL_H
 #define CONTACTS_INPUT_CONTACT_IMAGE_FIELD_CONTROL_H
 
+#include "App/AppControl.h"
 #include "Ui/Thumbnail.h"
 
 namespace Contacts
@@ -43,9 +44,14 @@ namespace Contacts
 
 		private:
 			virtual void onCreated() override;
+
+			void updateImage();
+			void onImageResult(app_control_h request, app_control_h reply,
+					app_control_result_e result);
 			void onImagePressed(Evas_Object *image, void *eventInfo);
 
 			Model::ContactTextField *m_Field;
+			App::AppControl m_AppControl;
 		};
 	}
 }
