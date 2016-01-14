@@ -86,3 +86,41 @@
 			} \
 		} \
 	}
+
+#define IMAGE_WITH_PRESSED_COLOR(GROUP_NAME, IMAGE_PATH, COLOR_CLASS, PRESSED_COLOR_CLASS) \
+	group { \
+		name: GROUP_NAME; \
+		images.image: IMAGE_PATH COMP; \
+		parts { \
+			part { name: "image"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: IMAGE_PATH; \
+					color_class: COLOR_CLASS; \
+					aspect: 1 1; \
+					aspect_preference: SOURCE; \
+				} \
+				description { \
+					state: "pressed" 0.0; \
+					inherit:  "default" 0.0; \
+					color_class: PRESSED_COLOR_CLASS; \
+				} \
+			} \
+		} \
+		programs { \
+			program { \
+				name: "pressed"; \
+				signal: "mouse,down,*"; \
+				source: "*"; \
+				action: STATE_SET "pressed" 0.0; \
+				target: "image"; \
+			} \
+			program { \
+				name: "unpressed"; \
+				signal: "mouse,up,*"; \
+				source: "*"; \
+				action: STATE_SET "default" 0.0; \
+				target: "image"; \
+			} \
+		} \
+	}

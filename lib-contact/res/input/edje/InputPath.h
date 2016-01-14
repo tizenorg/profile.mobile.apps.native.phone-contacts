@@ -28,6 +28,8 @@
 #define INPUT_ICON_ADD_NOTE     INPUT_IMG_DIR"contacts_circle_btn_ic_note.png"
 #define INPUT_ICON_ADD_MORE     INPUT_IMG_DIR"contacts_circle_btn_ic_more.png"
 
+#define INPUT_ICON_RELATIONSHIP INPUT_IMG_DIR"contacts_btn_ic_multiple.png"
+
 #define INPUT_ICON_EXPAND       INPUT_IMG_DIR"core_icon_expand_close.png"
 #define INPUT_ICON_CONTRACT     INPUT_IMG_DIR"core_icon_expand_open.png"
 

@@ -22,13 +22,16 @@
 
 #define INPUT_ITEM_STYLE         "input_item"
 #define INPUT_IMAGE_ITEM_STYLE   "input_image_item"
+#define INPUT_REL_ITEM_STYLE     "input_rel_item"
 #define INPUT_BUTTONS_ITEM_STYLE "input_buttons_item"
 
 #define PART_LEFT                "swallow.left"
 #define PART_MIDDLE              "swallow.middle"
 #define PART_RIGHT               "swallow.right"
+#define PART_REL_ICON            "swallow.rel_icon"
 
 #define GROUP_ICON_EXPAND        "icon_expand"
 #define GROUP_ICON_CONTRACT      "icon_contract"
+#define GROUP_ICON_RELATIONSHIP  "icon_relationship"
 
 #endif /* INPUT_ITEM_LAYOUT_H */
