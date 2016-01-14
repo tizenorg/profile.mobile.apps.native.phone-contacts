@@ -47,21 +47,8 @@ void ContactImageFieldControl::updateImage()
 void ContactImageFieldControl::onImageResult(app_control_h request, app_control_h reply,
 		app_control_result_e result)
 {
-	char **imagePath = nullptr;
-	int count = 0;
-
-	int err = app_control_get_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, &imagePath, &count);
-	RETM_IF_ERR(err, "app_control_get_extra_data_array() failed.")
-
-	if (count > 0) {
-		m_Field->setValue(imagePath[0]);
-		updateImage();
-	}
-
-	for (int i = 0; i < count; ++i) {
-		free(imagePath[i]);
-	}
-	free(imagePath);
+	m_Field->setValue(App::getSingleExtraData(reply, APP_CONTROL_DATA_SELECTED).c_str());
+	updateImage();
 }
 
 void ContactImageFieldControl::onImagePressed(Evas_Object *image, void *eventInfo)

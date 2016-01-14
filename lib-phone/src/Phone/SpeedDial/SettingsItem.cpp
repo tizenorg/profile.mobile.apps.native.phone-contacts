@@ -114,23 +114,10 @@ void SettingsItem::setLayoutData(contacts_record_h record)
 void SettingsItem::onPickResult(app_control_h request, app_control_h reply,
 		app_control_result_e result)
 {
-	char **numberIds = nullptr;
-	int count = 0;
-	int err = app_control_get_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, &numberIds, &count);
-	RETM_IF_ERR(err, "app_control_get_extra_data() failed.");
-
-	if (numberIds && numberIds[0]) {
-		int numberId = atoi(numberIds[0]);
-
-		if (!addSpeedDialNumber(m_Number, numberId)) {
-			notification_status_message_post(_("IDS_PB_POP_ALREADY_EXISTS_LC"));
-		}
+	int numberId = atoi(App::getSingleExtraData(reply, APP_CONTROL_DATA_SELECTED).c_str());
+	if (!addSpeedDialNumber(m_Number, numberId)) {
+		notification_status_message_post(_("IDS_PB_POP_ALREADY_EXISTS_LC"));
 	}
-
-	for (int i = 0; i < count; ++i) {
-		free(numberIds[i]);
-	}
-	free(numberIds);
 }
 
 void SettingsItem::onAddPressed(Evas_Object *obj, void *event_info)

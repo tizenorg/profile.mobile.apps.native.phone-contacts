@@ -16,7 +16,7 @@
  */
 
 #include "App/AppControlRequest.h"
-#include <string>
+#include "Utils/Logger.h"
 
 using namespace App;
 
@@ -82,4 +82,25 @@ AppControl App::requestCameraImage()
 AppControl App::requestGalleryImage()
 {
 	return AppControl(APP_CONTROL_OPERATION_PICK, "image/*");
+}
+
+std::string App::getSingleExtraData(app_control_h appControl, const char *key)
+{
+	std::string result;
+	char **array = nullptr;
+	int count = 0;
+
+	int err = app_control_get_extra_data_array(appControl, key, &array, &count);
+	RETVM_IF_ERR(err, result, "app_control_get_extra_data_array() failed.");
+
+	if (array && array[0]) {
+		result = array[0];
+	}
+
+	for (int i = 0; i < count; ++i) {
+		free(array[i]);
+	}
+	free(array);
+
+	return result;
 }

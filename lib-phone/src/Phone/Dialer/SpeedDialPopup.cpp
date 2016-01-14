@@ -16,11 +16,11 @@
  */
 
 #include "Phone/Dialer/SpeedDialPopup.h"
-#include "App/AppControlRequest.h"
 #include "Phone/Utils.h"
+
+#include "App/AppControlRequest.h"
 #include "Utils/Logger.h"
 
-#include <contacts.h>
 #include <notification.h>
 
 using namespace Phone::Dialer;
@@ -35,7 +35,6 @@ void SpeedDialPopup::onCreated()
 	setTitle("IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB");
 	setText("IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW");
 
-	using namespace std::placeholders;
 	addButton("IDS_LOGS_BUTTON_CANCEL_ABB3");
 	addButton("IDS_PB_BUTTON_OK_ABB2", std::bind(&SpeedDialPopup::onOkPressed, this));
 }
@@ -46,38 +45,23 @@ bool SpeedDialPopup::onOkPressed()
 			APP_CONTROL_RESULT_PHONE);
 
 	int err = request.launch(&SpeedDialPopup::onPickResult, this);
-	RETVM_IF_ERR(err, true, "launchContactPick() failed.");
-
 	request.detach();
-	return false;
+
+	return err != APP_CONTROL_ERROR_NONE;
 }
 
 void SpeedDialPopup::onPickResult(app_control_h request, app_control_h reply,
 		app_control_result_e result, void *data)
 {
-	SpeedDialPopup *popup = (SpeedDialPopup*) data;
+	SpeedDialPopup *popup = (SpeedDialPopup *) data;
 
-	char **numberIds = nullptr;
-	int count = 0;
-
-	int err = app_control_get_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, &numberIds, &count);
-	RETM_IF_ERR(err, "app_control_get_extra_data() failed.");
-
-	if (numberIds && numberIds[0]) {
-		int numberId = atoi(numberIds[0]);
-		if (numberId > 0) {
-			if (Phone::addSpeedDialNumber(popup->m_SpeedNumber, numberId)) {
-				notification_status_message_post(_("IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"));
-			} else {
-				notification_status_message_post(_("IDS_PB_POP_ALREADY_EXISTS_LC"));
-			}
-		}
+	int numberId = atoi(App::getSingleExtraData(reply, APP_CONTROL_DATA_SELECTED).c_str());
+	if (numberId > 0) {
+		bool isAssigned = Phone::addSpeedDialNumber(popup->m_SpeedNumber, numberId);
+		notification_status_message_post(_(isAssigned
+				? "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
+				: "IDS_PB_POP_ALREADY_EXISTS_LC"));
 	}
-
-	for (int i = 0; i < count; ++i) {
-		free(numberIds[i]);
-	}
-	free(numberIds);
 
 	delete popup;
 }
