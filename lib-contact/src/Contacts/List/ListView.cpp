@@ -124,6 +124,7 @@ PersonGroupItem *ListView::insertGroupItem(UniString indexLetter, PersonGroupIte
 
 	PersonGroupItem *item = new PersonGroupItem(std::move(indexLetter), indexItem);
 	m_Genlist->insert(item, nullptr, nextGroup);
+	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 
 	elm_object_item_data_set(indexItem, item->getObjectItem());
 	m_Groups.insert({ item->getTitle(), item });
@@ -133,6 +134,8 @@ PersonGroupItem *ListView::insertGroupItem(UniString indexLetter, PersonGroupIte
 
 void ListView::deleteGroupItem(PersonGroupItem *group)
 {
+	elm_object_item_del(group->getIndexItem());
+
 	m_Groups.erase(group->getTitle());
 	delete group;
 }
