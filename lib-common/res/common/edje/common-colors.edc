@@ -38,4 +38,12 @@ color_classes {
 		name: "icon_expand";
 		color: 61 185 204 255;
 	}
+	color_class { //W0113 (Input Color 1)
+		name: "touch_icon_normal";
+		color: 61 185 204 255;
+	}
+	color_class { //W0113P
+		name: "touch_icon_pressed";
+		color: 34 104 115 255;
+	}
 }

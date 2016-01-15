@@ -19,6 +19,7 @@
 #include "Contacts/Input/AddFieldsItem.h"
 #include "Contacts/Input/ContactCompoundFieldItem.h"
 #include "Contacts/Input/ContactImageFieldItem.h"
+#include "Contacts/Input/ContactRelationshipFieldItem.h"
 #include "Contacts/Input/ContactTypedFieldItem.h"
 #include "Contacts/Model/ContactArray.h"
 
@@ -114,6 +115,8 @@ ContactFieldItem *InputView::createFieldItem(ContactFieldPtr field)
 	ContactFieldItem *item = nullptr;
 	if (field->getId() == FieldImage) {
 		item = new ContactImageFieldItem(std::move(field));
+	} else if (field->getId() == FieldRelationship) {
+		item = new ContactRelationshipFieldItem(std::move(field));
 	} else if (field->getSubType() & ObjectTyped) {
 		item = new ContactTypedFieldItem(std::move(field));
 	} else if (field->getSubType() & ObjectCompound) {
