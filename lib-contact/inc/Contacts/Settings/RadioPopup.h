@@ -18,7 +18,7 @@
 #ifndef CONTACTS_SETTINGS_RADIO_POPUP_H
 #define CONTACTS_SETTINGS_RADIO_POPUP_H
 
-#include "Ui/Popup.h"
+#include "Ui/ListPopup.h"
 #include <string>
 
 namespace Contacts
@@ -28,30 +28,10 @@ namespace Contacts
 		/**
 		 * @brief Radio popup
 		 */
-		class RadioPopup : public Ui::Popup
+		class RadioPopup : public Ui::ListPopup
 		{
 		public:
-
-			/**
-			 * @brief Selected item callback
-			 * @param[in]   Selected item value
-			 */
-			typedef std::function<void(int)> SelectedCallback;
-
-			/**
-			 * @brief Create Popup
-			 * @param[in]   callback      Selected callback
-			 */
-			RadioPopup(SelectedCallback callback = nullptr);
-
-			virtual ~RadioPopup();
-
-			/**
-			 * @brief Add new item
-			 * @param[in]   text      Item name
-			 * @param[in]   value     Item value
-			 */
-			void addItem(std::string text, int value);
+			RadioPopup();
 
 			/**
 			 * @brief Set selected item
@@ -60,19 +40,10 @@ namespace Contacts
 			void setSelectedItem(int value);
 
 		private:
+			virtual Evas_Object *onCreate(Evas_Object *parent) override;
+			virtual Evas_Object *getItemContent(void *data, const char *part) override;
+			virtual void onItemSelected(void *data) override;
 
-			virtual void onCreated() override;
-			Evas_Object *createGenlist(Evas_Object *parent);
-			Elm_Genlist_Item_Class *createItemClass();
-
-			static void onSelect(void *data, Evas_Object *obj, void *event_info);
-			static char *getItemText(void *data, Evas_Object *obj, const char *part);
-			static Evas_Object *getItemContent(void *data, Evas_Object *obj, const char *part);
-			static void delItem(void *data, Evas_Object *obj);
-
-			SelectedCallback m_Callback;
-			Evas_Object *m_Genlist;
-			Elm_Genlist_Item_Class *m_ItemClass;
 			Evas_Object *m_RadioGroup;
 		};
 	}

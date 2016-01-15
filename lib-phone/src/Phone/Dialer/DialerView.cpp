@@ -16,7 +16,6 @@
  */
 
 #include "Phone/Dialer/DialerView.h"
-#include "Phone/Dialer/AddNumberPopup.h"
 #include "Phone/Dialer/KeypadButton.h"
 #include "Phone/Dialer/KeypadEntry.h"
 #include "Phone/Dialer/SearchResultsControl.h"
@@ -26,6 +25,7 @@
 
 #include "App/AppControlRequest.h"
 #include "App/Path.h"
+#include "Ui/ListPopup.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
 #include "Ui/Window.h"
@@ -230,8 +230,19 @@ void DialerView::onResultSelected(SearchResultPtr result)
 	if (result) {
 		m_Entry->setNumber(result->getNumber(false));
 	} else {
-		Ui::Popup *popup = new AddNumberPopup(m_Entry->getNumber());
+		Ui::ListPopup *popup = new Ui::ListPopup();
 		popup->create(getEvasObject());
+		popup->setTitle("IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2");
+		popup->addItem("IDS_LOGS_BUTTON_CREATE_CONTACT_ABB", [this] {
+			m_AppControl = App::requestContactCreate(m_Entry->getNumber().c_str());
+			m_AppControl.launch();
+		});
+		popup->addItem("IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2", [this] {
+			m_AppControl = App::requestContactEdit(0, m_Entry->getNumber().c_str());
+			m_AppControl.launch();
+		});
+
+		elm_popup_orient_set(popup->getEvasObject(), ELM_POPUP_ORIENT_CENTER);
 	}
 }
 

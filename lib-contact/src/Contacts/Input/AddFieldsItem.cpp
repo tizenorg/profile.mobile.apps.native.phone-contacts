@@ -19,7 +19,7 @@
 #include "Contacts/Common/Strings.h"
 
 #include "App/Path.h"
-#include "Ui/Menu.h"
+#include "Ui/ListPopup.h"
 #include "Utils/Callback.h"
 
 #include "InputItemLayout.h"
@@ -115,16 +115,17 @@ void AddFieldsItem::onAddButtonPressed(Evas_Object *button, void *eventInfo)
 
 void AddFieldsItem::onMoreButtonPressed(Evas_Object *button, void *eventInfo)
 {
-	Ui::Menu *menu = new Ui::Menu();
-	menu->create(button);
+	Ui::ListPopup *popup = new Ui::ListPopup();
+	popup->create(button);
+	popup->setTitle("IDS_PB_SK_ADD_FIELDS");
+	popup->setSelectedCallback([this](void *data) {
+		onAddField((ContactFieldId) (long) data);
+	});
 
 	for (unsigned id = FieldBegin; id < FieldEnd; ++id) {
 		ContactFieldId fieldId = ContactFieldId(id);
 		if (!m_Buttons[fieldId] && m_AddFieldStates[fieldId]) {
-			menu->addItem(Common::getContactFieldName(fieldId),
-				std::bind(&AddFieldsItem::onAddField, this, fieldId));
+			popup->addItem(Common::getContactFieldName(fieldId), (void *) fieldId);
 		}
 	}
-
-	menu->show();
 }

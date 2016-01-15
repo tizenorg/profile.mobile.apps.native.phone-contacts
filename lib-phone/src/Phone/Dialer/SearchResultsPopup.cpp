@@ -17,13 +17,14 @@
 
 #include "Phone/Dialer/SearchResultsPopup.h"
 #include "Phone/Dialer/SearchUtils.h"
-#include "Phone/Dialer/KeypadEntry.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 
 #include "DialerLayout.h"
 
 #include <app_i18n.h>
+
+#define TITLE_BUFFER_SIZE 32
 
 using namespace Phone::Dialer;
 
@@ -32,60 +33,24 @@ SearchResultsPopup::SearchResultsPopup(const SearchResults *results)
 {
 }
 
-void SearchResultsPopup::setSelectedCallback(SelectedCallback callback)
-{
-	m_OnSelected = std::move(callback);
-}
-
 void SearchResultsPopup::onCreated()
 {
-	Evas_Object *popup = getEvasObject();
-	elm_object_style_set(popup, "theme_bg");
-	elm_popup_orient_set(popup, ELM_POPUP_ORIENT_CENTER);
+	elm_popup_orient_set(getEvasObject(), ELM_POPUP_ORIENT_CENTER);
 
-	const size_t bufferSize = 32;
-	char buffer[bufferSize];
-	snprintf(buffer, bufferSize, _("IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"), m_Results->size());
-
+	char buffer[TITLE_BUFFER_SIZE];
+	snprintf(buffer, sizeof(buffer), _("IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"), m_Results->size());
 	setTitle(buffer);
-	setContent(createContactList(popup));
-}
 
-Evas_Object *SearchResultsPopup::createContactList(Evas_Object *parent)
-{
-	Evas_Object *genlist = elm_genlist_add(parent);
-	elm_genlist_homogeneous_set(genlist, EINA_TRUE);
-	elm_genlist_mode_set(genlist, ELM_LIST_COMPRESS);
-	elm_scroller_content_min_limit(genlist, EINA_FALSE, EINA_TRUE);
-	evas_object_smart_callback_add(genlist, "selected",
-			makeCallback(&SearchResultsPopup::onItemSelected), this);
-
-	Elm_Genlist_Item_Class *itc = createItemClass();
-
-	for (auto &&info : *m_Results) {
-		elm_genlist_item_append(genlist, itc, &info, nullptr,
-				ELM_GENLIST_ITEM_NONE, nullptr, nullptr);
+	for (auto &&result : *m_Results) {
+		addItem((void *) &result);
 	}
-
-	elm_genlist_item_class_free(itc);
-	return genlist;
 }
 
-Elm_Genlist_Item_Class *SearchResultsPopup::createItemClass()
+char *SearchResultsPopup::getItemText(void *data, const char *part)
 {
-	Elm_Genlist_Item_Class *itc = elm_genlist_item_class_new();
-	RETVM_IF(!itc, NULL, "elm_genlist_item_class_new() failed");
-	itc->item_style = "type1";
-	itc->func.text_get = getItemText;
-	itc->func.content_get = getItemContent;
-	return itc;
-}
-
-char *SearchResultsPopup::getItemText(void *data, Evas_Object *obj, const char *part)
-{
-	SearchResultPtr info = *(SearchResultPtr *)data;
-	const std::string &name = info->getName(true);
-	const std::string &number = info->getNumber(true);
+	SearchResultPtr result = *(SearchResultPtr *) data;
+	const std::string &name = result->getName(true);
+	const std::string &number = result->getNumber(true);
 
 	if (!strcmp(part, "elm.text")) {
 		return strdup(name.empty() ? number.c_str() : name.c_str());
@@ -98,24 +63,12 @@ char *SearchResultsPopup::getItemText(void *data, Evas_Object *obj, const char *
 	return nullptr;
 }
 
-Evas_Object *SearchResultsPopup::getItemContent(void *data, Evas_Object *obj, const char *part)
+Evas_Object *SearchResultsPopup::getItemContent(void *data, const char *part)
 {
-	SearchResultPtr info = *(SearchResultPtr *)data;
+	SearchResultPtr result = *(SearchResultPtr *) data;
 	if (!strcmp(part, "elm.swallow.icon")) {
-		return Utils::createThumbnail(obj, info->getId());
+		return Utils::createThumbnail(getEvasObject(), result->getId());
 	}
 
 	return nullptr;
-}
-
-void SearchResultsPopup::onItemSelected(Evas_Object *obj, void *event_info)
-{
-	elm_genlist_item_selected_set((Elm_Object_Item *)event_info, EINA_FALSE);
-
-	SearchResultPtr info = *(SearchResultPtr *)elm_object_item_data_get((Elm_Object_Item *)event_info);
-	if (m_OnSelected) {
-		m_OnSelected(info);
-	}
-
-	delete this;
 }

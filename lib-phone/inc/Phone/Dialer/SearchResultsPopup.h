@@ -19,7 +19,7 @@
 #define PHONE_DIALER_SEARCH_RESULTS_POPUP_H
 
 #include "Phone/Dialer/SearchTypes.h"
-#include "Ui/Popup.h"
+#include "Ui/ListPopup.h"
 
 namespace Phone
 {
@@ -30,37 +30,22 @@ namespace Phone
 		/**
 		 * @brief Predictive search result list popup.
 		 */
-		class SearchResultsPopup : public Ui::Popup
+		class SearchResultsPopup : public Ui::ListPopup
 		{
 		public:
-			/**
-			 * @brief Result selection callback
-			 * @param[in]   Selected result
-			 */
-			typedef std::function<void(SearchResultPtr)> SelectedCallback;
-
 			/**
 			 * @brief Constructor
 			 * @param[in]   result  Search results
 			 */
 			SearchResultsPopup(const SearchResults *results);
 
-			/**
-			 * @brief Set result selected callback
-			 */
-			void setSelectedCallback(SelectedCallback callback);
-
 		private:
 			virtual void onCreated() override;
-			Evas_Object *createContactList(Evas_Object *parent);
-			Elm_Genlist_Item_Class *createItemClass();
 
-			static char *getItemText(void *data, Evas_Object *obj, const char *part);
-			static Evas_Object *getItemContent(void *data, Evas_Object *obj, const char *part);
-			void onItemSelected(Evas_Object *obj, void *event_info);
+			virtual char *getItemText(void *data, const char *part) override;
+			virtual Evas_Object *getItemContent(void *data, const char *part) override;
 
 			const SearchResults *m_Results;
-			SelectedCallback m_OnSelected;
 		};
 	}
 }
