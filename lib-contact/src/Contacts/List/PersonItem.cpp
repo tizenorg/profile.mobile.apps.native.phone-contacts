@@ -46,11 +46,20 @@ void PersonItem::setPerson(Model::PersonPtr person)
 	m_Person = std::move(person);
 }
 
+void PersonItem::setSelectedCallback(SelectedCallback callback)
+{
+	m_SelectedCb = std::move(callback);
+}
+
 void PersonItem::onSelected()
 {
 	if (m_ItemMode == PickMode) {
 		m_Checked = !m_Checked;
 		elm_check_state_set(getCheck(), m_Checked);
+	}
+
+	if (m_SelectedCb) {
+		m_SelectedCb();
 	}
 }
 
