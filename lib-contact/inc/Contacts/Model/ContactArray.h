@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 #ifndef CONTACTS_MODEL_CONTACT_ARRAY_H
 #define CONTACTS_MODEL_CONTACT_ARRAY_H
 
@@ -35,6 +36,11 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
+			 * @see ContactField::initialize()
+			 */
+			virtual void initialize() override;
+
+			/**
 			 * @see ContactField::isEmpty()
 			 */
 			virtual bool isEmpty() const override;
@@ -54,22 +60,24 @@ namespace Contacts
 			 * @param[in]   index   Child field index
 			 * @return Child field.
 			 */
-			ContactFieldPtr getField(unsigned index) const;
+			ContactField *getField(unsigned index) const;
 
 			/**
 			 * @brief Add new child field.
 			 * @return New child field.
 			 */
-			ContactFieldPtr addField();
+			ContactField &addField();
 
 			/**
 			 * @brief Remove child field and destroy the object.
 			 * @param[in]   childField  Child field.
 			 */
-			void removeField(ContactFieldPtr field);
+			void removeField(ContactField &field);
 
 		private:
 			const ContactArrayMetadata &getArrayMetadata() const;
+
+			ContactFields m_Fields;
 		};
 	}
 }

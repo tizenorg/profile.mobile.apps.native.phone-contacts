@@ -19,6 +19,7 @@
 #include "Contacts/Input/ContactFieldItem.h"
 #include "Contacts/Input/ContactDateFieldControl.h"
 #include "Contacts/Input/ContactTextFieldControl.h"
+#include "Contacts/Model/ContactField.h"
 #include "Utils/Callback.h"
 
 #include "InputItemLayout.h"
@@ -26,19 +27,19 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactFieldSubItem::ContactFieldSubItem(ContactFieldPtr field)
-	: m_Field(std::move(field)), m_NextFocusItem(nullptr)
+ContactFieldSubItem::ContactFieldSubItem(ContactField &field)
+	: m_Field(field), m_NextFocusItem(nullptr)
 {
 }
 
 ContactField &ContactFieldSubItem::getField() const
 {
-	return *m_Field;
+	return m_Field;
 }
 
 bool ContactFieldSubItem::isFocusable() const
 {
-	return m_Field->getType() == TypeText;
+	return m_Field.getType() == TypeText;
 }
 
 Elm_Genlist_Item_Class *ContactFieldSubItem::getItemClass() const
@@ -49,11 +50,11 @@ Elm_Genlist_Item_Class *ContactFieldSubItem::getItemClass() const
 
 Evas_Object *ContactFieldSubItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (m_Field && strcmp(part, PART_MIDDLE) == 0) {
-		switch (m_Field->getType()) {
+	if (strcmp(part, PART_MIDDLE) == 0) {
+		switch (m_Field.getType()) {
 			case TypeText:
 			{
-				auto control = new ContactTextFieldControl(&m_Field->cast<ContactTextField>());
+				auto control = new ContactTextFieldControl(m_Field.cast<ContactTextField>());
 				control->create(parent);
 
 				enableEntryReturnButton(control->getEntry());
@@ -61,7 +62,7 @@ Evas_Object *ContactFieldSubItem::getContent(Evas_Object *parent, const char *pa
 			}
 			case TypeDate:
 			{
-				auto control = new ContactDateFieldControl(&m_Field->cast<ContactDateField>());
+				auto control = new ContactDateFieldControl(m_Field.cast<ContactDateField>());
 				return control->create(parent);
 			}
 			default:
@@ -84,7 +85,7 @@ void ContactFieldSubItem::onFocused()
 	Ui::Control *control = Ui::Control::getControl(content);
 
 	if (control) {
-		if (m_Field->getType() == TypeText) {
+		if (m_Field.getType() == TypeText) {
 			Evas_Object *entry = static_cast<Ui::Editfield *>(control)->getEntry();
 			elm_object_focus_set(entry, EINA_TRUE);
 		}

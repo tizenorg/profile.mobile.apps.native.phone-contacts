@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 #ifndef CONTACTS_MODEL_CONTACT_FIELD_FACTORY_H
 #define CONTACTS_MODEL_CONTACT_FIELD_FACTORY_H
 

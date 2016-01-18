@@ -39,13 +39,13 @@ namespace Contacts
 			 * @brief Create control
 			 * @param[in]   object  Contact compound object
 			 */
-			ContactCompoundObjectControl(Model::ContactCompoundObject *object);
+			ContactCompoundObjectControl(Model::ContactCompoundObject &object);
 
 		private:
 			virtual void onCreated() override;
 			void onUnfocused(Evas_Object *entry, void *eventInfo);
 
-			Model::ContactCompoundObject *m_Object;
+			Model::ContactCompoundObject &m_Object;
 		};
 	}
 }

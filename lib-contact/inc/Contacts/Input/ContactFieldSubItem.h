@@ -15,14 +15,18 @@
  *
  */
 
-#ifndef CONTACTS_INPUT_CONTACT_FIELD_ITEM_H
-#define CONTACTS_INPUT_CONTACT_FIELD_ITEM_H
+#ifndef CONTACTS_INPUT_CONTACT_FIELD_SUB_ITEM_H
+#define CONTACTS_INPUT_CONTACT_FIELD_SUB_ITEM_H
 
-#include "Contacts/Model/ContactField.h"
 #include "Ui/GenlistItem.h"
 
 namespace Contacts
 {
+	namespace Model
+	{
+		class ContactField;
+	}
+
 	namespace Input
 	{
 		/**
@@ -35,7 +39,7 @@ namespace Contacts
 			 * @brief Create field genlist item.
 			 * @param[in]   field   Contact field of TypeText or TypeDate type
 			 */
-			ContactFieldSubItem(Model::ContactFieldPtr field);
+			ContactFieldSubItem(Model::ContactField &field);
 
 			/**
 			 * @return ContactField associated with the item.
@@ -78,10 +82,10 @@ namespace Contacts
 			void onEntryFocused(Evas_Object *entry, void *eventInfo);
 			void onEntryActivated(Evas_Object *entry, void *eventInfo);
 
-			Model::ContactFieldPtr m_Field;
+			Model::ContactField &m_Field;
 			Ui::GenlistItem *m_NextFocusItem;
 		};
 	}
 }
 
-#endif /* CONTACTS_INPUT_CONTACT_FIELD_ITEM_H */
+#endif /* CONTACTS_INPUT_CONTACT_FIELD_SUB_ITEM_H */

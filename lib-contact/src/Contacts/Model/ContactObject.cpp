@@ -21,11 +21,18 @@
 
 using namespace Contacts::Model;
 
+void ContactObject::initialize()
+{
+	for (auto &&field : getObjectMetadata().fields) {
+		m_Fields.push_back(ContactFactory::createField(getRecord(), field));
+	}
+}
+
 bool ContactObject::isEmpty() const
 {
 	bool isEmpty = true;
 	for (auto &&field : *this) {
-		if (!field->isEmpty()) {
+		if (!field.isEmpty()) {
 			isEmpty = false;
 			break;
 		}
@@ -37,7 +44,7 @@ bool ContactObject::isEmpty() const
 void ContactObject::reset()
 {
 	for (auto &&field : *this) {
-		field->reset();
+		field.reset();
 	}
 }
 
@@ -48,25 +55,23 @@ ContactObjectIterator ContactObject::begin() const
 
 ContactObjectIterator ContactObject::end() const
 {
-	return ContactObjectIterator(*this, getObjectMetadata().fields.count());
+	return ContactObjectIterator(*this, m_Fields.size());
 }
 
-ContactFieldPtr ContactObject::getField(unsigned index) const
+ContactField *ContactObject::getField(unsigned index) const
 {
-	const ContactObjectMetadata &metadata = getObjectMetadata();
-	const ContactFieldMetadata *field = metadata.fields.begin() + index;
-	if (field < metadata.fields.end()) {
-		return ContactFactory::createField(getRecord(), *field);
+	if (index < m_Fields.size()) {
+		return m_Fields[index].get();
 	}
 
 	return nullptr;
 }
 
-ContactFieldPtr ContactObject::getFieldById(unsigned id) const
+ContactField *ContactObject::getFieldById(unsigned id) const
 {
-	for (auto &&field : getObjectMetadata().fields) {
-		if (field.id == id) {
-			return ContactFactory::createField(getRecord(), field);
+	for (auto &&field : m_Fields) {
+		if (field->getId() == id) {
+			return field.get();
 		}
 	}
 

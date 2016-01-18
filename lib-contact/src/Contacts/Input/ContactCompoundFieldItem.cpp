@@ -57,7 +57,7 @@ void ContactCompoundFieldItem::onContracted()
 
 Evas_Object *ContactCompoundFieldItem::createCompoundControl(Evas_Object *parent)
 {
-	auto control = new ContactCompoundObjectControl(&getObject().cast<ContactCompoundObject>());
+	auto control = new ContactCompoundObjectControl(getObject().cast<ContactCompoundObject>());
 	control->create(parent);
 
 	enableEntryReturnButton(control->getEntry());
