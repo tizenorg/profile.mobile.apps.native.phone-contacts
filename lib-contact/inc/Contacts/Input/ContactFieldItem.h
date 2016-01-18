@@ -89,6 +89,7 @@ namespace Contacts
 			virtual void onInserted() override;
 
 		private:
+			Evas_Object *createRemoveButton(Evas_Object *parent);
 			void onRemovePressed(Evas_Object *button, void *eventInfo);
 
 			Model::ContactObject &m_Object;
