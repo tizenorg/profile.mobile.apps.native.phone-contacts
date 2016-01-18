@@ -14,11 +14,13 @@
  * limitations under the License.
  *
  */
+
 #ifndef CONTACTS_MODEL_CONTACT_FIELD_H
 #define CONTACTS_MODEL_CONTACT_FIELD_H
 
 #include <contacts.h>
 #include <memory>
+#include <vector>
 
 #include "Contacts/Model/ContactFields.h"
 #include "Contacts/Model/ContactTypes.h"
@@ -47,14 +49,20 @@ namespace Contacts
 			virtual ~ContactField() { }
 
 			/**
-			 * @return Whether field has no value.
+			 * @brief Initialize the adapter.
+			 * @remark This method should be called before using the object
 			 */
-			virtual bool isEmpty() const { return false; }
+			virtual void initialize() { }
 
 			/**
 			 * @brief Reset field values to default.
 			 */
 			virtual void reset() { }
+
+			/**
+			 * @return Whether field has no value.
+			 */
+			virtual bool isEmpty() const { return false; }
 
 			/**
 			 * @brief Cast field to derived type.
@@ -125,6 +133,7 @@ namespace Contacts
 		};
 
 		typedef std::unique_ptr<ContactField> ContactFieldPtr;
+		typedef std::vector<ContactFieldPtr> ContactFields;
 	}
 }
 

@@ -38,7 +38,6 @@ namespace Contacts
 			Contact(const Contact &that) = delete;
 			virtual ~Contact() override;
 
-
 			/**
 			 * @brief Initialize contact object.
 			 * @param[in]   id      Database record ID or 0 to create new contact

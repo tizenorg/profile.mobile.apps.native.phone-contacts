@@ -18,7 +18,6 @@
 #ifndef CONTACTS_INPUT_CONTACT_OBJECT_ITEM_H
 #define CONTACTS_INPUT_CONTACT_OBJECT_ITEM_H
 
-#include "Contacts/Model/ContactField.h"
 #include "Contacts/Input/ContactFieldSubItem.h"
 #include "Ui/GenlistGroupItem.h"
 #include <functional>
@@ -47,13 +46,13 @@ namespace Contacts
 			 * @param[in]   Genlist item to be removed
 			 * @param[in]   Field to be removed
 			 */
-			typedef std::function<void(ContactFieldItem *, Model::ContactFieldPtr)> RemoveCallback;
+			typedef std::function<void(ContactFieldItem *)> RemoveCallback;
 
 			/**
 			 * @brief Create genlist item representing ContactObject.
 			 * @param[in]   object      Contact field of TypeObject type
 			 */
-			ContactFieldItem(Model::ContactFieldPtr object);
+			ContactFieldItem(Model::ContactObject &object);
 
 			/**
 			 * @brief Set remove field callback.
@@ -64,7 +63,7 @@ namespace Contacts
 			/**
 			 * @return ContactObject associated with the item.
 			 */
-			Model::ContactObject &getObject() const;
+			Model::ContactObject &getField() const;
 
 		protected:
 			friend class ContactFieldSubItem;
@@ -92,7 +91,7 @@ namespace Contacts
 		private:
 			void onRemovePressed(Evas_Object *button, void *eventInfo);
 
-			Model::ContactFieldPtr m_Object;
+			Model::ContactObject &m_Object;
 			RemoveCallback m_OnRemove;
 		};
 	}

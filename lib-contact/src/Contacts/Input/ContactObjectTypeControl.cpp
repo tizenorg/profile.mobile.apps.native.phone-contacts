@@ -25,18 +25,18 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactObjectTypeControl::ContactObjectTypeControl(ContactEnumField *typeField,
-		ContactTextField *labelField)
+ContactObjectTypeControl::ContactObjectTypeControl(ContactEnumField &typeField,
+		ContactTextField &labelField)
 	: m_TypeField(typeField), m_LabelField(labelField)
 {
 }
 
 void ContactObjectTypeControl::onCreated()
 {
-	int currentValue = m_TypeField->getValue();
+	int currentValue = m_TypeField.getValue();
 
-	auto names = Common::getContactEnumValueNames(ContactEnumType(m_TypeField->getSubType()));
-	auto values = m_TypeField->getValues();
+	auto names = Common::getContactEnumValueNames(ContactEnumType(m_TypeField.getSubType()));
+	auto values = m_TypeField.getValues();
 	RETM_IF(names.count() != values.count(), "names.count() != values.count()");
 
 	for (size_t i = 0; i < values.count(); ++i) {
@@ -47,8 +47,8 @@ void ContactObjectTypeControl::onCreated()
 		}
 	}
 
-	if (m_TypeField->hasCustomValue()) {
-		setText(m_LabelField->getValue());
+	if (m_TypeField.hasCustomValue()) {
+		setText(m_LabelField.getValue());
 	}
 
 	setSelectedCallback(std::bind(&ContactObjectTypeControl::onSelected, this,
@@ -57,22 +57,22 @@ void ContactObjectTypeControl::onCreated()
 
 bool ContactObjectTypeControl::onSelected(int value)
 {
-	if (value == m_TypeField->getCustomValue()) {
+	if (value == m_TypeField.getCustomValue()) {
 		auto popup = new ContactObjectCustomTypePopup();
 		popup->setResultCallback([this, value](const char *label) {
-			m_TypeField->setValue(value);
-			m_LabelField->setValue(label);
+			m_TypeField.setValue(value);
+			m_LabelField.setValue(label);
 			setText(label);
 		});
 
 		popup->create(getEvasObject());
 		return false;
 	} else {
-		if (m_TypeField->hasCustomValue()) {
-			m_LabelField->reset();
+		if (m_TypeField.hasCustomValue()) {
+			m_LabelField.reset();
 		}
 
-		m_TypeField->setValue(value);
+		m_TypeField.setValue(value);
 		return true;
 	}
 }

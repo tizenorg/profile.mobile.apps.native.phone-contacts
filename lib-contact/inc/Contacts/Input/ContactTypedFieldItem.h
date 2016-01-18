@@ -25,6 +25,8 @@ namespace Contacts
 	namespace Model
 	{
 		class ContactTypedObject;
+		class ContactEnumField;
+		class ContactTextField;
 	}
 
 	namespace Input
@@ -37,9 +39,9 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @see ContactObjectItem::ContactObjectItem()
+			 * @see ContactFieldItem::ContactFieldItem()
 			 */
-			ContactTypedFieldItem(Model::ContactFieldPtr object);
+			ContactTypedFieldItem(Model::ContactObject &object);
 
 		protected:
 			/**
@@ -57,8 +59,9 @@ namespace Contacts
 			 */
 			virtual Eina_Bool getState(Evas_Object *parent, const char *part) override;
 
-			Model::ContactFieldPtr m_TypeField;
-			Model::ContactFieldPtr m_LabelField;
+		private:
+			Model::ContactEnumField &m_TypeField;
+			Model::ContactTextField &m_LabelField;
 		};
 	}
 }

@@ -61,17 +61,17 @@ namespace Contacts
 			virtual void onCreated() override;
 			virtual void onPageAttached() override;
 
-			ContactFieldItem *createFieldItem(Model::ContactFieldPtr field);
+			ContactFieldItem *createFieldItem(Model::ContactObject &field);
 			Ui::GenlistItem *getNextFieldItem(Model::ContactFieldId fieldId);
 
-			Model::ContactFieldPtr addField(Model::ContactFieldId fieldId);
-			void removeField(Model::ContactFieldPtr field);
+			Model::ContactObject &addField(Model::ContactFieldId fieldId);
+			void removeField(Model::ContactObject &field);
 
-			ContactFieldItem *addFieldItem(Model::ContactFieldPtr field);
-			void removeFieldItem(ContactFieldItem *item, Model::ContactFieldId fieldId);
+			ContactFieldItem *addFieldItem(Model::ContactObject &field);
+			void removeFieldItem(ContactFieldItem *item);
 
 			void onAddField(Model::ContactFieldId fieldId);
-			void onRemoveField(ContactFieldItem *item, Model::ContactFieldPtr field);
+			void onRemoveField(ContactFieldItem *item);
 
 			void onDonePressed(Evas_Object *button, void *eventInfo);
 			void onCancelPressed(Evas_Object *button, void *eventInfo);

@@ -43,15 +43,15 @@ namespace Contacts
 			 * @param[in]   typeField   Object's "type" field
 			 * @param[in]   labelField  Object's custom type label field
 			 */
-			ContactObjectTypeControl(Model::ContactEnumField *typeField,
-					Model::ContactTextField *labelField);
+			ContactObjectTypeControl(Model::ContactEnumField &typeField,
+					Model::ContactTextField &labelField);
 
 		private:
 			virtual void onCreated() override;
 			bool onSelected(int value);
 
-			Model::ContactEnumField *m_TypeField;
-			Model::ContactTextField *m_LabelField;
+			Model::ContactEnumField &m_TypeField;
+			Model::ContactTextField &m_LabelField;
 		};
 	}
 }

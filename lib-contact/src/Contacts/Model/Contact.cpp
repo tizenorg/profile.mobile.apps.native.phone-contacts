@@ -44,6 +44,8 @@ int Contact::initialize(int recordId)
 	}
 
 	setRecord(record);
+	ContactObject::initialize();
+
 	return err;
 }
 

@@ -26,14 +26,14 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactFieldItem::ContactFieldItem(ContactFieldPtr object)
-	: ContactFieldSubItem(object->cast<ContactObject>().getField(0)),
-	  m_Object(std::move(object))
+ContactFieldItem::ContactFieldItem(ContactObject &object)
+	: ContactFieldSubItem(*object.getField(0)),
+	  m_Object(object)
 {
-	unsigned firstFieldId = getField().getId();
-	for (auto &&field : getObject()) {
-		if (field->getId() != firstFieldId) {
-			insertSubItem(new ContactFieldSubItem(std::move(field)));
+	unsigned firstFieldId = getSubField().getId();
+	for (auto &&field : getField()) {
+		if (field.getId() != firstFieldId) {
+			insertSubItem(new ContactFieldSubItem(field));
 		}
 	}
 }
@@ -43,9 +43,9 @@ void ContactFieldItem::setRemoveCallback(RemoveCallback callback)
 	m_OnRemove = std::move(callback);
 }
 
-ContactObject &ContactFieldItem::getObject() const
+ContactObject &ContactFieldItem::getField() const
 {
-	return m_Object->cast<ContactObject>();
+	return m_Object;
 }
 
 Elm_Genlist_Item_Class *ContactFieldItem::getItemClass() const
@@ -76,7 +76,6 @@ void ContactFieldItem::onInserted()
 void ContactFieldItem::onRemovePressed(Evas_Object *button, void *eventInfo)
 {
 	if (m_OnRemove) {
-		m_OnRemove(this, std::move(m_Object));
+		m_OnRemove(this);
 	}
-	delete this;
 }

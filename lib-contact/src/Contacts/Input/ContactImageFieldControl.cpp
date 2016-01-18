@@ -26,7 +26,7 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactImageFieldControl::ContactImageFieldControl(ContactTextField *field)
+ContactImageFieldControl::ContactImageFieldControl(ContactTextField &field)
 	: Thumbnail(Thumbnail::SizeLarge), m_Field(field)
 {
 }
@@ -41,13 +41,13 @@ void ContactImageFieldControl::onCreated()
 
 void ContactImageFieldControl::updateImage()
 {
-	setImagePath(m_Field->getValue());
+	setImagePath(m_Field.getValue());
 }
 
 void ContactImageFieldControl::onImageResult(app_control_h request, app_control_h reply,
 		app_control_result_e result)
 {
-	m_Field->setValue(App::getSingleExtraData(reply, APP_CONTROL_DATA_SELECTED).c_str());
+	m_Field.setValue(App::getSingleExtraData(reply, APP_CONTROL_DATA_SELECTED).c_str());
 	updateImage();
 }
 
@@ -65,9 +65,9 @@ void ContactImageFieldControl::onImagePressed(Evas_Object *image, void *eventInf
 		m_AppControl.launch(makeCallbackWithLastParam(&ContactImageFieldControl::onImageResult), this);
 	});
 
-	if (!m_Field->isEmpty()) {
+	if (!m_Field.isEmpty()) {
 		popup->addItem("IDS_PB_OPT_REMOVE", [this] {
-			m_Field->reset();
+			m_Field.reset();
 			updateImage();
 		});
 	}

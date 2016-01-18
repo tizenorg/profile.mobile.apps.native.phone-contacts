@@ -24,24 +24,22 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactTypedFieldItem::ContactTypedFieldItem(Model::ContactFieldPtr object)
-	: ContactFieldItem(std::move(object))
+ContactTypedFieldItem::ContactTypedFieldItem(Model::ContactObject &object)
+	: ContactFieldItem(object),
+	  m_TypeField(getTypedObject().getTypeField()),
+	  m_LabelField(getTypedObject().getLabelField())
 {
-	m_TypeField = getTypedObject().getTypeField();
-	m_LabelField = getTypedObject().getLabelField();
 }
 
 const ContactTypedObject &ContactTypedFieldItem::getTypedObject() const
 {
-	return getObject().cast<ContactTypedObject>();
+	return getField().cast<ContactTypedObject>();
 }
 
 Evas_Object *ContactTypedFieldItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_LEFT) == 0) {
-		Ui::Control *control = new ContactObjectTypeControl(
-				&m_TypeField->cast<ContactEnumField>(),
-				&m_LabelField->cast<ContactTextField>());
+		Ui::Control *control = new ContactObjectTypeControl(m_TypeField, m_LabelField);
 		return control->create(parent);
 	} else {
 		return ContactFieldItem::getContent(parent, part);

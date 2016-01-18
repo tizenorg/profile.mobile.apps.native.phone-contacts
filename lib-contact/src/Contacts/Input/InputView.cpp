@@ -72,16 +72,16 @@ void InputView::onCreated()
 	}
 
 	for (auto &&field : m_Contact) {
-		switch (field->getType()) {
+		switch (field.getType()) {
 			case TypeArray:
-				for (auto &&element : field->cast<ContactArray>()) {
-					addFieldItem(std::move(element));
+				for (auto &&element : field.cast<ContactArray>()) {
+					addFieldItem(element.cast<ContactObject>());
 				}
 				break;
 			case TypeObject:
-				if (!m_Items[field->getId()] && !field->isEmpty()) {
-					m_AddFieldsItem->setAddFieldState(ContactFieldId(field->getId()), false);
-					addFieldItem(std::move(field));
+				if (!m_Items[field.getId()] && !field.isEmpty()) {
+					m_AddFieldsItem->setAddFieldState(ContactFieldId(field.getId()), false);
+					addFieldItem(field.cast<ContactObject>());
 				}
 				break;
 			default:
@@ -110,22 +110,22 @@ void InputView::onPageAttached()
 	page->setContent("title_left_btn", cancelButton);
 }
 
-ContactFieldItem *InputView::createFieldItem(ContactFieldPtr field)
+ContactFieldItem *InputView::createFieldItem(ContactObject &field)
 {
 	ContactFieldItem *item = nullptr;
-	if (field->getId() == FieldImage) {
-		item = new ContactImageFieldItem(std::move(field));
-	} else if (field->getId() == FieldRelationship) {
-		item = new ContactRelationshipFieldItem(std::move(field));
-	} else if (field->getSubType() & ObjectTyped) {
-		item = new ContactTypedFieldItem(std::move(field));
-	} else if (field->getSubType() & ObjectCompound) {
-		item = new ContactCompoundFieldItem(std::move(field));
+	if (field.getId() == FieldImage) {
+		item = new ContactImageFieldItem(field);
+	} else if (field.getId() == FieldRelationship) {
+		item = new ContactRelationshipFieldItem(field);
+	} else if (field.getSubType() & ObjectTyped) {
+		item = new ContactTypedFieldItem(field);
+	} else if (field.getSubType() & ObjectCompound) {
+		item = new ContactCompoundFieldItem(field);
 	} else {
-		item = new ContactFieldItem(std::move(field));
+		item = new ContactFieldItem(field);
 	}
 
-	item->setRemoveCallback(std::bind(&InputView::onRemoveField, this, _1, _2));
+	item->setRemoveCallback(std::bind(&InputView::onRemoveField, this, _1));
 
 	return item;
 }
@@ -141,34 +141,34 @@ Ui::GenlistItem *InputView::getNextFieldItem(ContactFieldId fieldId)
 	return m_AddFieldsItem;
 }
 
-ContactFieldPtr InputView::addField(ContactFieldId fieldId)
+ContactObject &InputView::addField(ContactFieldId fieldId)
 {
-	ContactFieldPtr parentField = m_Contact.getFieldById(fieldId);
-	if (parentField->getType() == TypeArray) {
-		return parentField->cast<ContactArray>().addField();
+	ContactField &parentField = *m_Contact.getFieldById(fieldId);
+	if (parentField.getType() == TypeArray) {
+		return parentField.cast<ContactArray>().addField().cast<ContactObject>();
 	} else {
 		m_AddFieldsItem->setAddFieldState(fieldId, false);
-		return parentField;
+		return parentField.cast<ContactObject>();
 	}
 }
 
-void InputView::removeField(ContactFieldPtr field)
+void InputView::removeField(ContactObject &field)
 {
-	ContactFieldId fieldId = ContactFieldId(field->getId());
-	ContactFieldPtr parentField = m_Contact.getFieldById(fieldId);
-	if (parentField->getType() == TypeArray) {
-		parentField->cast<ContactArray>().removeField(std::move(field));
+	ContactFieldId fieldId = ContactFieldId(field.getId());
+	ContactField &parentField = *m_Contact.getFieldById(fieldId);
+	if (parentField.getType() == TypeArray) {
+		parentField.cast<ContactArray>().removeField(field);
 	} else {
 		m_AddFieldsItem->setAddFieldState(fieldId, true);
-		field->reset();
+		field.reset();
 	}
 }
 
-ContactFieldItem *InputView::addFieldItem(Model::ContactFieldPtr field)
+ContactFieldItem *InputView::addFieldItem(Model::ContactObject &field)
 {
-	ContactFieldId fieldId = ContactFieldId(field->getId());
+	ContactFieldId fieldId = ContactFieldId(field.getId());
 
-	ContactFieldItem *item = createFieldItem(std::move(field));
+	ContactFieldItem *item = createFieldItem(field);
 	m_Genlist->insert(item, nullptr, getNextFieldItem(fieldId));
 
 	if (!m_Items[fieldId]) {
@@ -178,16 +178,20 @@ ContactFieldItem *InputView::addFieldItem(Model::ContactFieldPtr field)
 	return item;
 }
 
-void InputView::removeFieldItem(ContactFieldItem *item, ContactFieldId fieldId)
+void InputView::removeFieldItem(ContactFieldItem *item)
 {
+	ContactFieldId fieldId = ContactFieldId(item->getField().getId());
+
 	if (item == m_Items[fieldId]) {
 		ContactFieldItem *nextItem = static_cast<ContactFieldItem *>(item->getNextGroupItem());
-		if (nextItem && nextItem->getObject().getId() == fieldId) {
+		if (nextItem && nextItem->getField().getId() == fieldId) {
 			m_Items[fieldId] = nextItem;
 		} else {
 			m_Items[fieldId] = nullptr;
 		}
 	}
+
+	delete item;
 }
 
 void InputView::onAddField(ContactFieldId fieldId)
@@ -196,10 +200,11 @@ void InputView::onAddField(ContactFieldId fieldId)
 	item->focus(ELM_GENLIST_ITEM_SCROLLTO_TOP);
 }
 
-void InputView::onRemoveField(ContactFieldItem *item, ContactFieldPtr field)
+void InputView::onRemoveField(ContactFieldItem *item)
 {
-	removeFieldItem(item, ContactFieldId(field->getId()));
-	removeField(std::move(field));
+	ContactObject &field = item->getField();
+	removeFieldItem(item);
+	removeField(field);
 }
 
 void InputView::onDonePressed(Evas_Object *button, void *eventInfo)

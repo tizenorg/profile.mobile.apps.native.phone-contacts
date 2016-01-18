@@ -39,13 +39,13 @@ namespace Contacts
 			 * @brief Create control
 			 * @param[in]   field   Contact text field to edit
 			 */
-			ContactTextFieldControl(Model::ContactTextField *field);
+			ContactTextFieldControl(Model::ContactTextField &field);
 
 		private:
 			virtual void onCreated() override;
 			void onUnfocused(Evas_Object *entry, void *eventInfo);
 
-			Model::ContactTextField *m_Field;
+			Model::ContactTextField &m_Field;
 		};
 	}
 }

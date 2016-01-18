@@ -17,6 +17,7 @@
 
 #include "Contacts/Input/ContactImageFieldItem.h"
 #include "Contacts/Input/ContactImageFieldControl.h"
+#include "Contacts/Model/ContactField.h"
 #include "InputItemLayout.h"
 
 using namespace Contacts::Input;
@@ -30,6 +31,6 @@ Elm_Genlist_Item_Class *ContactImageFieldItem::getItemClass() const
 
 Evas_Object *ContactImageFieldItem::getContent(Evas_Object *parent, const char *part)
 {
-	auto control = new ContactImageFieldControl(&getField().cast<ContactTextField>());
+	auto control = new ContactImageFieldControl(getSubField().cast<ContactTextField>());
 	return control->create(parent);
 }

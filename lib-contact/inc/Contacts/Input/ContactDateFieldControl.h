@@ -39,7 +39,7 @@ namespace Contacts
 			 * @brief Create control
 			 * @param[in]   field   Contact date field to edit
 			 */
-			ContactDateFieldControl(Model::ContactDateField *field);
+			ContactDateFieldControl(Model::ContactDateField &field);
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -48,7 +48,7 @@ namespace Contacts
 			void setButtonDate(tm date);
 			void onButtonPressed(Evas_Object *button, void *eventInfo);
 
-			Model::ContactDateField *m_Field;
+			Model::ContactDateField &m_Field;
 			Evas_Object *m_Button;
 		};
 	}

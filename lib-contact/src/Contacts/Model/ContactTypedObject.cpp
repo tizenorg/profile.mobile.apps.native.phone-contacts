@@ -21,21 +21,28 @@
 
 using namespace Contacts::Model;
 
+void ContactTypedObject::initialize()
+{
+	ContactObject::initialize();
+	m_TypeField = ContactFactory::createField(getRecord(), getTypedObjectMetadata().typeField);
+	m_LabelField = ContactFactory::createField(getRecord(), getTypedObjectMetadata().labelField);
+}
+
 void ContactTypedObject::reset()
 {
-	getTypeField()->reset();
-	getLabelField()->reset();
 	ContactObject::reset();
+	m_TypeField->reset();
+	m_LabelField->reset();
 }
 
-ContactFieldPtr ContactTypedObject::getTypeField() const
+ContactEnumField &ContactTypedObject::getTypeField() const
 {
-	return ContactFactory::createField(getRecord(), getTypedObjectMetadata().typeField);
+	return m_TypeField->cast<ContactEnumField>();
 }
 
-ContactFieldPtr ContactTypedObject::getLabelField() const
+ContactTextField &ContactTypedObject::getLabelField() const
 {
-	return ContactFactory::createField(getRecord(), getTypedObjectMetadata().labelField);
+	return m_LabelField->cast<ContactTextField>();
 }
 
 const ContactTypedObjectMetadata &ContactTypedObject::getTypedObjectMetadata() const

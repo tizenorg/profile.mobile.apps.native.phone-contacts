@@ -69,7 +69,7 @@ void ContactRelationshipFieldItem::onPickResult(app_control_h request, app_contr
 	contacts_db_get_record(_contacts_person._uri, personId, &record);
 	contacts_record_get_str_p(record, _contacts_person.display_name, &name);
 
-	getField().cast<ContactTextField>().setValue(name);
+	getSubField().cast<ContactTextField>().setValue(name);
 	elm_genlist_item_fields_update(getObjectItem(), PART_MIDDLE, ELM_GENLIST_ITEM_FIELD_CONTENT);
 
 	contacts_record_destroy(record, true);
