@@ -16,17 +16,19 @@
  */
 
 #include "Contacts/List/ListView.h"
+#include "Contacts/List/GroupItem.h"
+#include "Contacts/List/MyProfileItem.h"
 #include "Contacts/List/PersonItem.h"
 #include "Contacts/List/PersonGroupItem.h"
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Settings/MainView.h"
-#include "Contacts/Utils.h"
 
 #include "Ui/Genlist.h"
 #include "Ui/GenlistItem.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
 #include "Utils/Callback.h"
+#include "Utils/Logger.h"
 
 using namespace Contacts;
 using namespace Contacts::List;
@@ -39,6 +41,13 @@ ListView::ListView()
 {
 }
 
+ListView::~ListView()
+{
+	m_Provider.unsetInsertCallback();
+	contacts_db_remove_changed_cb(_contacts_my_profile._uri,
+			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
+}
+
 Evas_Object *ListView::onCreate(Evas_Object *parent)
 {
 	Evas_Object *layout = elm_layout_add(parent);
@@ -47,9 +56,6 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	m_Genlist = new Ui::Genlist();
 	elm_object_part_content_set(layout, "elm.swallow.content", m_Genlist->create(layout));
 	elm_object_part_content_set(layout, "elm.swallow.fastscroll", createIndex(layout));
-
-	evas_object_smart_callback_add(m_Genlist->getEvasObject(), "selected",
-			(Evas_Smart_Cb) makeCallback(&ListView::onItemSelected), this);
 
 	return layout;
 }
@@ -85,10 +91,14 @@ void ListView::onCreated()
 	fillList();
 
 	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, std::placeholders::_1));
+	contacts_db_add_changed_cb(_contacts_my_profile._uri,
+			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
 }
 
 void ListView::fillList()
 {
+	fillMyProfile();
+
 	PersonList list = m_Provider.getPersonList();
 	PersonGroupItem *group = nullptr;
 
@@ -101,6 +111,40 @@ void ListView::fillList()
 
 		m_Genlist->insert(createPersonItem(std::move(person)), group);
 	}
+}
+
+void ListView::fillMyProfile()
+{
+	if (!m_MyProfileGroup) {
+		insertMyProfileGroupItem();
+	}
+	updateMyProfileItem(nullptr);
+}
+
+void ListView::insertMyProfileGroupItem()
+{
+	m_MyProfileGroup = new GroupItem("IDS_PB_HEADER_ME");
+	m_Genlist->insert(m_MyProfileGroup, nullptr, getNextMyProfileGroupItem());
+	elm_genlist_item_select_mode_set(m_MyProfileGroup->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+}
+
+Ui::GenlistGroupItem *ListView::getNextMyProfileGroupItem()
+{
+	//Todo: Here will be search of next group item for My profile group item
+	return nullptr;
+}
+
+void ListView::updateMyProfileItem(const char* view_uri)
+{
+	elm_genlist_item_subitems_clear(m_MyProfileGroup->getObjectItem());
+
+	MyProfileItem *item = new MyProfileItem(MyProfilePtr(new MyProfile()));
+	m_Genlist->insert(item, m_MyProfileGroup);
+
+	item->setSelectedCallback([this, item]() {
+		int id = item->getMyProfile().getId();
+		getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
+	});
 }
 
 Elm_Object_Item *ListView::insertIndexItem(const char *indexLetter, Elm_Object_Item *nextItem)
@@ -155,8 +199,16 @@ PersonItem *ListView::createPersonItem(PersonPtr person)
 	using namespace std::placeholders;
 
 	PersonItem *item = new PersonItem(std::move(person));
+
 	m_Provider.setChangeCallback(item->getPerson(),
 			std::bind(&ListView::onPersonChanged, this, _1, _2, item));
+
+	item->setSelectedCallback([this, item]() {
+		int id = 0;
+		contacts_record_get_int(item->getPerson().getRecord(), _contacts_person.display_contact_id, &id);
+
+		getNavigator()->navigateTo(new Input::InputView(id));
+	});
 
 	return item;
 }
@@ -228,16 +280,6 @@ PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &pe
 	}
 
 	return nullptr;
-}
-
-void ListView::onItemSelected(Evas_Object *genlist, Elm_Object_Item *genlistItem)
-{
-	PersonItem *item = (PersonItem *) elm_object_item_data_get(genlistItem);
-
-	int id = 0;
-	contacts_record_get_int(item->getPerson().getRecord(), _contacts_person.display_contact_id, &id);
-
-	getNavigator()->navigateTo(new Input::InputView(id));
 }
 
 void ListView::onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem)

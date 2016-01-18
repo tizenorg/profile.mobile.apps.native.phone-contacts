@@ -20,7 +20,7 @@
 
 #include "Contacts/List/Model/Person.h"
 #include "Ui/GenlistItem.h"
-#include <contacts.h>
+#include <functional>
 
 #define PART_PERSON_NAME        "elm.text"
 #define PART_PERSON_THUMBNAIL   "elm.swallow.icon"
@@ -36,6 +36,11 @@ namespace Contacts
 		class PersonItem : public Ui::GenlistItem
 		{
 		public:
+			/**
+			 * @brief Item select callback
+			 */
+			typedef std::function<void ()> SelectedCallback;
+
 			/**
 			 * @brief Represents item mode
 			 */
@@ -74,6 +79,12 @@ namespace Contacts
 			 */
 			void setPerson(Model::PersonPtr person);
 
+			/**
+			 * @brief Set item selected callback
+			 * @param[in]   callback    Callback, that will be invoked on item selection
+			 */
+			void setSelectedCallback(SelectedCallback callback);
+
 		protected:
 			virtual void onSelected() override;
 
@@ -84,8 +95,11 @@ namespace Contacts
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			Model::PersonPtr m_Person;
+
 			ItemMode m_ItemMode;
 			bool m_Checked;
+
+			SelectedCallback m_OnSelected;
 		};
 	}
 }
