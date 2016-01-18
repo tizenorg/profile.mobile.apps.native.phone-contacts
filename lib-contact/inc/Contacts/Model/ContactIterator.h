@@ -33,7 +33,7 @@ namespace Contacts
 		 */
 		template <typename FieldContainer>
 		class ContactIterator :
-			public std::iterator<std::input_iterator_tag, ContactFieldPtr>
+			public std::iterator<std::input_iterator_tag, ContactField>
 		{
 		public:
 			/**
@@ -52,7 +52,7 @@ namespace Contacts
 			/**
 			 * @brief Get field pointed by iterator.
 			 */
-			ContactFieldPtr operator*() const { return m_Container.getField(m_Index); }
+			ContactField &operator*() const { return *m_Container.getField(m_Index); }
 
 			/**
 			 * @brief Compare iterators for inequality.

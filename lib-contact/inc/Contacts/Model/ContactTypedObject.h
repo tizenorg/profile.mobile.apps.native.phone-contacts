@@ -38,6 +38,11 @@ namespace Contacts
 			using ContactObject::ContactObject;
 
 			/**
+			 * @see ContactField::initialize()
+			 */
+			virtual void initialize() override;
+
+			/**
 			 * @see ContactField::reset()
 			 */
 			virtual void reset() override;
@@ -45,15 +50,18 @@ namespace Contacts
 			/**
 			 * @return Field that represents object's type.
 			 */
-			ContactFieldPtr getTypeField() const;
+			ContactEnumField &getTypeField() const;
 
 			/**
 			 * @return Field that stores object's custom type label.
 			 */
-			ContactFieldPtr getLabelField() const;
+			ContactTextField &getLabelField() const;
 
 		private:
 			const ContactTypedObjectMetadata &getTypedObjectMetadata() const;
+
+			ContactFieldPtr m_TypeField;
+			ContactFieldPtr m_LabelField;
 		};
 	}
 }

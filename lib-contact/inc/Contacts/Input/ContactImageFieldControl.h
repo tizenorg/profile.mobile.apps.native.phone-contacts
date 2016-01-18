@@ -40,7 +40,7 @@ namespace Contacts
 			 * @brief Create control
 			 * @param[in]   field   Contact image path field
 			 */
-			ContactImageFieldControl(Model::ContactTextField *field);
+			ContactImageFieldControl(Model::ContactTextField &field);
 
 		private:
 			virtual void onCreated() override;
@@ -50,7 +50,7 @@ namespace Contacts
 					app_control_result_e result);
 			void onImagePressed(Evas_Object *image, void *eventInfo);
 
-			Model::ContactTextField *m_Field;
+			Model::ContactTextField &m_Field;
 			App::AppControl m_AppControl;
 		};
 	}

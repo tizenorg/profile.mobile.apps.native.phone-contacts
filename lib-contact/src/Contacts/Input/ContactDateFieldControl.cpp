@@ -28,7 +28,7 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactDateFieldControl::ContactDateFieldControl(Model::ContactDateField *field)
+ContactDateFieldControl::ContactDateFieldControl(Model::ContactDateField &field)
 	: m_Field(field), m_Button(nullptr)
 {
 }
@@ -52,7 +52,7 @@ Evas_Object *ContactDateFieldControl::onCreate(Evas_Object *parent)
 
 void ContactDateFieldControl::onCreated()
 {
-	setButtonDate(m_Field->getValue());
+	setButtonDate(m_Field.getValue());
 }
 
 void ContactDateFieldControl::setButtonDate(tm date)
@@ -64,9 +64,9 @@ void ContactDateFieldControl::setButtonDate(tm date)
 
 void ContactDateFieldControl::onButtonPressed(Evas_Object *button, void *eventInfo)
 {
-	Ui::DatePopup *popup = new Ui::DatePopup(m_Field->getValue());
+	Ui::DatePopup *popup = new Ui::DatePopup(m_Field.getValue());
 	popup->setResultCallback([this](const tm &date) {
-		m_Field->setValue(date);
+		m_Field.setValue(date);
 		setButtonDate(date);
 	});
 	popup->create(getEvasObject());

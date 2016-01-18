@@ -37,6 +37,11 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
+			 * @see ContactField::initialize()
+			 */
+			virtual void initialize() override;
+
+			/**
 			 * @see ContactField::isEmpty()
 			 */
 			virtual bool isEmpty() const override;
@@ -61,17 +66,20 @@ namespace Contacts
 			 * @param[in]   index   Child field index
 			 * @return Child field.
 			 */
-			ContactFieldPtr getField(unsigned index) const;
+			ContactField *getField(unsigned index) const;
 
 			/**
 			 * @brief Get child field by id.
 			 * @param[in]   id      Child field id
 			 * @return Child field.
 			 */
-			ContactFieldPtr getFieldById(unsigned id) const;
+			ContactField *getFieldById(unsigned id) const;
 
 		protected:
 			const ContactObjectMetadata &getObjectMetadata() const;
+
+		private:
+			ContactFields m_Fields;
 		};
 	}
 }

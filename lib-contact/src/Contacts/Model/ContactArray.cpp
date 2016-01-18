@@ -19,13 +19,27 @@
 #include "Contacts/Model/ContactFactory.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
 
+#include <algorithm>
+
 using namespace Contacts::Model;
+
+void ContactArray::initialize()
+{
+	int count = 0;
+	contacts_record_get_child_record_count(getRecord(), getPropertyId(), &count);
+
+	for (int i = 0; i < count; ++i) {
+		contacts_record_h record = nullptr;
+		contacts_record_get_child_record_at_p(getRecord(), getPropertyId(), i, &record);
+		m_Fields.push_back(ContactFactory::createField(record, getArrayMetadata().element));
+	}
+}
 
 bool ContactArray::isEmpty() const
 {
 	bool isEmpty = true;
 	for (auto &&field : *this) {
-		if (!field->isEmpty()) {
+		if (!field.isEmpty()) {
 			isEmpty = false;
 			break;
 		}
@@ -41,23 +55,19 @@ ContactArrayIterator ContactArray::begin() const
 
 ContactArrayIterator ContactArray::end() const
 {
-	int count = 0;
-	contacts_record_get_child_record_count(getRecord(), getPropertyId(), &count);
-	return ContactArrayIterator(*this, count);
+	return ContactArrayIterator(*this, m_Fields.size());
 }
 
-ContactFieldPtr ContactArray::getField(unsigned index) const
+ContactField *ContactArray::getField(unsigned index) const
 {
-	contacts_record_h record = nullptr;
-	contacts_record_get_child_record_at_p(getRecord(), getPropertyId(), index, &record);
-	if (record) {
-		return ContactFactory::createField(record, getArrayMetadata().element);
+	if (index < m_Fields.size()) {
+		return m_Fields[index].get();
 	}
 
 	return nullptr;
 }
 
-ContactFieldPtr ContactArray::addField()
+ContactField &ContactArray::addField()
 {
 	const ContactFieldMetadata *elementMetadata = &getArrayMetadata().element;
 	const char *uri = ((const ContactObjectMetadata *) elementMetadata->typeMetadata)->uri;
@@ -68,13 +78,21 @@ ContactFieldPtr ContactArray::addField()
 
 	ContactFieldPtr field = ContactFactory::createField(record, getArrayMetadata().element);
 	field->reset();
-	return field;
+
+	m_Fields.push_back(std::move(field));
+	return *m_Fields.back().get();
 }
 
-void ContactArray::removeField(ContactFieldPtr field)
+void ContactArray::removeField(ContactField &field)
 {
-	contacts_record_remove_child_record(getRecord(), getPropertyId(), field->getRecord());
-	contacts_record_destroy(field->getRecord(), true);
+	auto comp = [&field](ContactFieldPtr &ptr) {
+		return ptr.get() == &field;
+	};
+
+	m_Fields.erase(std::remove_if(m_Fields.begin(), m_Fields.end(), comp), m_Fields.end());
+
+	contacts_record_remove_child_record(getRecord(), getPropertyId(), field.getRecord());
+	contacts_record_destroy(field.getRecord(), true);
 }
 
 const ContactArrayMetadata &ContactArray::getArrayMetadata() const

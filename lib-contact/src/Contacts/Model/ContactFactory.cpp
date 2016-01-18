@@ -65,6 +65,10 @@ ContactFieldPtr ContactFactory::createField(contacts_record_h record,
 			break;
 	}
 
+	if (field) {
+		field->initialize();
+	}
+
 	return ContactFieldPtr(field);
 }
 
