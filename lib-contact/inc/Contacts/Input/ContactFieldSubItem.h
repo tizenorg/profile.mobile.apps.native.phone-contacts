@@ -20,6 +20,11 @@
 
 #include "Ui/GenlistItem.h"
 
+namespace Ui
+{
+	class Control;
+}
+
 namespace Contacts
 {
 	namespace Model
@@ -71,6 +76,13 @@ namespace Contacts
 			 * @see GenlistItem::onFocused()
 			 */
 			virtual void onFocused() override;
+
+			/**
+			 * @brief Create control that corresponds to represented field type.
+			 * @param[in]   parent  Parent object
+			 * @return Field control.
+			 */
+			Ui::Control *createFieldControl(Evas_Object *parent);
 
 			/**
 			 * @brief Enable entry "return" button to allow navigation to the next entry.
