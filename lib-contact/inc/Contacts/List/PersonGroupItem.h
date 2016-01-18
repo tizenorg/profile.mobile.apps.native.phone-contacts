@@ -37,7 +37,7 @@ namespace Contacts
 			 * @param[in]   title       Group title
 			 * @param[in]   indexItem   Index item
 			 */
-			PersonGroupItem(Utils::UniString title, Elm_Object_Item *indexItem);
+			explicit PersonGroupItem(Utils::UniString title, Elm_Object_Item *indexItem);
 
 			/**
 			 * @return Group item title

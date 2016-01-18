@@ -15,25 +15,21 @@
  *
  */
 
-#ifndef CONTACTS_LIST_PERSON_ITEM_H
-#define CONTACTS_LIST_PERSON_ITEM_H
+#ifndef CONTACTS_LIST_MY_PROFILE_ITEM_H
+#define CONTACTS_LIST_MY_PROFILE_ITEM_H
 
-#include "Contacts/List/Model/Person.h"
+#include "Contacts/List/Model/MyProfile.h"
 #include "Ui/GenlistItem.h"
 #include <functional>
 
-#define PART_PERSON_NAME        "elm.text"
-#define PART_PERSON_THUMBNAIL   "elm.swallow.icon"
-#define PART_CHECK              "elm.swallow.end"
+#define PART_MY_PROFILE_NAME        "elm.text"
+#define PART_MY_PROFILE_THUMBNAIL   "elm.swallow.icon"
 
 namespace Contacts
 {
 	namespace List
 	{
-		/**
-		 * @brief Person list item
-		 */
-		class PersonItem : public Ui::GenlistItem
+		class MyProfileItem : public Ui::GenlistItem
 		{
 		public:
 			/**
@@ -42,42 +38,21 @@ namespace Contacts
 			typedef std::function<void()> SelectedCallback;
 
 			/**
-			 * @brief Represents item mode
+			 * @brief Create My profile genlist item
+			 * @param[in]   myProfile   My profile object
 			 */
-			enum ItemMode {
-				DefaultMode,    /*< Usual mode */
-				PickMode        /*< Mode with ability to select item */
-			};
+			explicit MyProfileItem(Model::MyProfilePtr myProfile);
 
 			/**
-			 * @brief Create person item
-			 * @param[in]   person      Person object
-			 * @param[in]   mode        Item mode
+			 * @return my profile object
 			 */
-			explicit PersonItem(Model::PersonPtr person, ItemMode mode = DefaultMode);
+			const Model::MyProfile &getMyProfile() const;
 
 			/**
-			 * @brief Set item mode
-			 * @param[in]   mode    Item mode
+			 * @brief Set my profile object to item
+			 * @param[in]   myProfile   My profile object
 			 */
-			void setMode(ItemMode mode);
-
-			/**
-			 * @remark Used in item pick mode
-			 * @return true if item is checked, otherwise false
-			 */
-			bool isChecked() const;
-
-			/**
-			 * @return Person object
-			 */
-			const Model::Person &getPerson() const;
-
-			/**
-			 * @brief Set person object
-			 * @param[in]   person      Person object
-			 */
-			void setPerson(Model::PersonPtr person);
+			void setMyProfile(Model::MyProfilePtr myProfile);
 
 			/**
 			 * @brief Set item selected callback
@@ -89,19 +64,13 @@ namespace Contacts
 			virtual void onSelected() override;
 
 		private:
-			Elm_Check *getCheck() const;
-
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
-			Model::PersonPtr m_Person;
-
-			ItemMode m_ItemMode;
-			bool m_Checked;
-
+			Model::MyProfilePtr m_MyProfile;
 			SelectedCallback m_OnSelected;
 		};
 	}
 }
 
-#endif /* CONTACTS_LIST_PERSON_ITEM_H */
+#endif /* CONTACTS_LIST_MY_PROFILE_ITEM_H */
