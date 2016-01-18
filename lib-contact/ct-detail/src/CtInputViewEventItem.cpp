@@ -75,9 +75,7 @@ Evas_Object* CtInputViewEventItem::__getContentEvent(void *data, Evas_Object *ob
 
 	if (0 == strcmp(part, "elm.icon.entry"))
 	{
-
-		Evas_Object *layout = elm_layout_add(obj);
-		elm_layout_theme_set(layout, "layout", "list/A/left.icon", "default");
+		Evas_Object *box = elm_box_add(obj);
 
 		Evas_Object *dateTime = elm_button_add(obj);
 		elm_object_style_set(dateTime, "custom_default");
@@ -86,9 +84,9 @@ Evas_Object* CtInputViewEventItem::__getContentEvent(void *data, Evas_Object *ob
 		edje_object_color_class_set(edje, "button_normal", BUTTON_COLOR_NORMAL, 0, 0, 0, 0, 0, 0, 0, 0);
 		edje_object_color_class_set(edje, "button_pressed", BUTTON_COLOR_PRESSED, 0, 0, 0, 0, 0, 0, 0, 0);
 
-		elm_layout_content_set(layout, "elm.swallow.content", dateTime);
 		evas_object_smart_callback_add(dateTime, "clicked", __eventDateBtnClickedCb, item);
 		int date = item->__inputData->getEventEvent(item->__record);
+
 
 		time1.tm_year = date / 10000 - 1900;
 		time1.tm_mon = (date % 10000) / 100 - 1;
@@ -97,7 +95,11 @@ Evas_Object* CtInputViewEventItem::__getContentEvent(void *data, Evas_Object *ob
 		char text_str[CT_TEXT_SHORT_LEN] = { 0 };
 		strftime(text_str, CT_TEXT_SHORT_LEN, EVENT_DATE_FORMAT, &time1);
 		elm_object_text_set(dateTime, text_str);
-		return layout;
+
+		evas_object_show(dateTime);
+		elm_box_pack_end(box, dateTime);
+
+		return box;
 	}
 	else if (0 == strcmp(part, "elm.icon.2")) {
 		Evas_Object *btn_minus = elm_button_add(obj);
