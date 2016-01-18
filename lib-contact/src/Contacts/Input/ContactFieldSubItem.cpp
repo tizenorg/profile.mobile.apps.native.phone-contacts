@@ -51,23 +51,7 @@ Elm_Genlist_Item_Class *ContactFieldSubItem::getItemClass() const
 Evas_Object *ContactFieldSubItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_MIDDLE) == 0) {
-		switch (m_Field.getType()) {
-			case TypeText:
-			{
-				auto control = new ContactTextFieldControl(m_Field.cast<ContactTextField>());
-				control->create(parent);
-
-				enableEntryReturnButton(control->getEntry());
-				return control->getEvasObject();
-			}
-			case TypeDate:
-			{
-				auto control = new ContactDateFieldControl(m_Field.cast<ContactDateField>());
-				return control->create(parent);
-			}
-			default:
-				break;
-		}
+		return createFieldControl(parent)->getEvasObject();
 	}
 
 	return nullptr;
@@ -89,6 +73,28 @@ void ContactFieldSubItem::onFocused()
 			Evas_Object *entry = static_cast<Ui::Editfield *>(control)->getEntry();
 			elm_object_focus_set(entry, EINA_TRUE);
 		}
+	}
+}
+
+Ui::Control *ContactFieldSubItem::createFieldControl(Evas_Object *parent)
+{
+	switch (m_Field.getType()) {
+		case TypeText:
+		{
+			auto control = new ContactTextFieldControl(m_Field.cast<ContactTextField>());
+			control->create(parent);
+
+			enableEntryReturnButton(control->getEntry());
+			return control;
+		}
+		case TypeDate:
+		{
+			auto control = new ContactDateFieldControl(m_Field.cast<ContactDateField>());
+			control->create(parent);
+			return control;
+		}
+		default:
+			return nullptr;
 	}
 }
 
