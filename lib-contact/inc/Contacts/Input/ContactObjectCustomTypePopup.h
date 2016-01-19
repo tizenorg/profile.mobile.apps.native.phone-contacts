@@ -54,6 +54,7 @@ namespace Contacts
 		private:
 			virtual void onCreated() override;
 			void onCreatePressed();
+			void onDonePressed(Evas_Object *entry, void *eventInfo);
 			static void onEntryChanged(Evas_Object *button, Evas_Object *entry, void *eventInfo);
 
 			ResultCallback m_OnResult;

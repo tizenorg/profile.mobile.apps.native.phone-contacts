@@ -33,6 +33,16 @@ ContactDateFieldControl::ContactDateFieldControl(Model::ContactDateField &field)
 {
 }
 
+void ContactDateFieldControl::showPicker()
+{
+	Ui::DatePopup *popup = new Ui::DatePopup(m_Field.getValue());
+	popup->setResultCallback([this](const tm &date) {
+		m_Field.setValue(date);
+		update();
+	});
+	popup->create(getEvasObject());
+}
+
 void ContactDateFieldControl::update()
 {
 	tm date = m_Field.getValue();
@@ -65,10 +75,5 @@ void ContactDateFieldControl::onCreated()
 
 void ContactDateFieldControl::onButtonPressed(Evas_Object *button, void *eventInfo)
 {
-	Ui::DatePopup *popup = new Ui::DatePopup(m_Field.getValue());
-	popup->setResultCallback([this](const tm &date) {
-		m_Field.setValue(date);
-		update();
-	});
-	popup->create(getEvasObject());
+	showPicker();
 }

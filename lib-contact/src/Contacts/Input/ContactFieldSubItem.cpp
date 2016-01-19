@@ -76,6 +76,8 @@ void ContactFieldSubItem::onFocused()
 		if (m_Field.getType() == TypeText) {
 			Evas_Object *entry = static_cast<Ui::Editfield *>(control)->getEntry();
 			elm_object_focus_set(entry, EINA_TRUE);
+		} else if (m_Field.getType() == TypeDate) {
+			static_cast<ContactDateFieldControl *>(control)->showPicker();
 		}
 	}
 }

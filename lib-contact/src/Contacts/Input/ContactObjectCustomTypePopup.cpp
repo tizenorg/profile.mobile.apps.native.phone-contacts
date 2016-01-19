@@ -17,6 +17,7 @@
 
 #include "Contacts/Input/ContactObjectCustomTypePopup.h"
 #include "Ui/Editfield.h"
+#include "Utils/Callback.h"
 
 using namespace Contacts::Input;
 
@@ -48,6 +49,8 @@ void ContactObjectCustomTypePopup::onCreated()
 	elm_entry_input_panel_return_key_type_set(entry, ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE);
 	evas_object_smart_callback_add(entry, "changed",
 			(Evas_Smart_Cb) &ContactObjectCustomTypePopup::onEntryChanged, button);
+	evas_object_smart_callback_add(entry, "activated",
+			makeCallback(&ContactObjectCustomTypePopup::onDonePressed), this);
 	elm_object_focus_set(entry, EINA_TRUE);
 }
 
@@ -58,6 +61,12 @@ void ContactObjectCustomTypePopup::onCreatePressed()
 		m_OnResult(text);
 		free(text);
 	}
+}
+
+void ContactObjectCustomTypePopup::onDonePressed(Evas_Object *entry, void *eventInfo)
+{
+	onCreatePressed();
+	delete this;
 }
 
 void ContactObjectCustomTypePopup::onEntryChanged(Evas_Object *button, Evas_Object *entry, void *eventInfo)
