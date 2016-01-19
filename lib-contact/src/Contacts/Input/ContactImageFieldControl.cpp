@@ -31,24 +31,25 @@ ContactImageFieldControl::ContactImageFieldControl(ContactTextField &field)
 {
 }
 
+void ContactImageFieldControl::update()
+{
+	setImagePath(m_Field.getValue());
+}
+
 void ContactImageFieldControl::onCreated()
 {
 	setSizeHint(true);
-	updateImage();
 	evas_object_smart_callback_add(getImage(), "clicked",
 			makeCallback(&ContactImageFieldControl::onImagePressed), this);
-}
 
-void ContactImageFieldControl::updateImage()
-{
-	setImagePath(m_Field.getValue());
+	update();
 }
 
 void ContactImageFieldControl::onImageResult(app_control_h request, app_control_h reply,
 		app_control_result_e result)
 {
 	m_Field.setValue(App::getSingleExtraData(reply, APP_CONTROL_DATA_SELECTED).c_str());
-	updateImage();
+	update();
 }
 
 void ContactImageFieldControl::onImagePressed(Evas_Object *image, void *eventInfo)
@@ -68,7 +69,7 @@ void ContactImageFieldControl::onImagePressed(Evas_Object *image, void *eventInf
 	if (!m_Field.isEmpty()) {
 		popup->addItem("IDS_PB_OPT_REMOVE", [this] {
 			m_Field.reset();
-			updateImage();
+			update();
 		});
 	}
 }

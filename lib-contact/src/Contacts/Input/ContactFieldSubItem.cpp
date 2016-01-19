@@ -37,6 +37,12 @@ ContactField &ContactFieldSubItem::getField() const
 	return m_Field;
 }
 
+Ui::Control *ContactFieldSubItem::getFieldControl() const
+{
+	Evas_Object *content = elm_object_item_part_content_get(getObjectItem(), PART_MIDDLE);
+	return Ui::Control::getControl(content);
+}
+
 bool ContactFieldSubItem::isFocusable() const
 {
 	return m_Field.getType() == TypeText;
@@ -65,9 +71,7 @@ Eina_Bool ContactFieldSubItem::getState(Evas_Object *parent, const char *part)
 
 void ContactFieldSubItem::onFocused()
 {
-	Evas_Object *content = elm_object_item_part_content_get(getObjectItem(), PART_MIDDLE);
-	Ui::Control *control = Ui::Control::getControl(content);
-
+	Ui::Control *control = getFieldControl();
 	if (control) {
 		if (m_Field.getType() == TypeText) {
 			Evas_Object *entry = static_cast<Ui::Editfield *>(control)->getEntry();

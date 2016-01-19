@@ -16,6 +16,7 @@
  */
 
 #include "Contacts/Input/ContactRelationshipFieldItem.h"
+#include "Contacts/Input/ContactTextFieldControl.h"
 #include "Contacts/Model/ContactTextField.h"
 
 #include "App/Path.h"
@@ -70,7 +71,7 @@ void ContactRelationshipFieldItem::onPickResult(app_control_h request, app_contr
 	contacts_record_get_str_p(record, _contacts_person.display_name, &name);
 
 	getField().cast<ContactTextField>().setValue(name);
-	elm_genlist_item_fields_update(getObjectItem(), PART_MIDDLE, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	static_cast<ContactTextFieldControl *>(getFieldControl())->update();
 
 	contacts_record_destroy(record, true);
 }

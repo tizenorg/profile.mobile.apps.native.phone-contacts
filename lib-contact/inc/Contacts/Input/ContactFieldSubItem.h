@@ -52,6 +52,11 @@ namespace Contacts
 			Model::ContactField &getField() const;
 
 			/**
+			 * @return Control that represents associated field.
+			 */
+			Ui::Control *getFieldControl() const;
+
+			/**
 			 * @see GenlistItem::isFocusable()
 			 */
 			virtual bool isFocusable() const override;

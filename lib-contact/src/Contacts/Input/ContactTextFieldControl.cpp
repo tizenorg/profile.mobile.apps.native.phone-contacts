@@ -38,6 +38,20 @@ ContactTextFieldControl::ContactTextFieldControl(Model::ContactTextField &field)
 {
 }
 
+void ContactTextFieldControl::save()
+{
+	char *text = elm_entry_markup_to_utf8(elm_entry_entry_get(getEntry()));
+	m_Field.setValue(text);
+	free(text);
+}
+
+void ContactTextFieldControl::update()
+{
+	char *text = elm_entry_utf8_to_markup(m_Field.getValue());
+	elm_entry_entry_set(getEntry(), text);
+	free(text);
+}
+
 void ContactTextFieldControl::onCreated()
 {
 	setGuideText(Common::getContactChildFieldName(m_Field.getId()));
@@ -47,14 +61,10 @@ void ContactTextFieldControl::onCreated()
 	evas_object_smart_callback_add(entry, "unfocused",
 			makeCallback(&ContactTextFieldControl::onUnfocused), this);
 
-	char *text = elm_entry_utf8_to_markup(m_Field.getValue());
-	elm_entry_entry_set(entry, text);
-	free(text);
+	update();
 }
 
 void ContactTextFieldControl::onUnfocused(Evas_Object *entry, void *eventInfo)
 {
-	char *text = elm_entry_markup_to_utf8(elm_entry_entry_get(getEntry()));
-	m_Field.setValue(text);
-	free(text);
+	save();
 }

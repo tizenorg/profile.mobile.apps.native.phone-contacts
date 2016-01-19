@@ -42,10 +42,13 @@ namespace Contacts
 			 */
 			ContactImageFieldControl(Model::ContactTextField &field);
 
+			/**
+			 * @brief Update the control using field's value.
+			 */
+			void update();
+
 		private:
 			virtual void onCreated() override;
-
-			void updateImage();
 			void onImageResult(app_control_h request, app_control_h reply,
 					app_control_result_e result);
 			void onImagePressed(Evas_Object *image, void *eventInfo);

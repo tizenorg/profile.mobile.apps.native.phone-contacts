@@ -28,6 +28,20 @@ ContactCompoundObjectControl::ContactCompoundObjectControl(ContactCompoundObject
 {
 }
 
+void ContactCompoundObjectControl::save()
+{
+	char *text = elm_entry_markup_to_utf8(elm_entry_entry_get(getEntry()));
+	m_Object.setValue(text);
+	free(text);
+}
+
+void ContactCompoundObjectControl::update()
+{
+	char *text = elm_entry_utf8_to_markup(m_Object.getValue().c_str());
+	elm_entry_entry_set(getEntry(), text);
+	free(text);
+}
+
 void ContactCompoundObjectControl::onCreated()
 {
 	setGuideText(Common::getContactFieldName(ContactFieldId(m_Object.getId())));
@@ -37,14 +51,10 @@ void ContactCompoundObjectControl::onCreated()
 	evas_object_smart_callback_add(entry, "unfocused",
 			makeCallback(&ContactCompoundObjectControl::onUnfocused), this);
 
-	char *text = elm_entry_utf8_to_markup(m_Object.getValue().c_str());
-	elm_entry_entry_set(entry, text);
-	free(text);
+	update();
 }
 
 void ContactCompoundObjectControl::onUnfocused(Evas_Object *entry, void *eventInfo)
 {
-	char *text = elm_entry_markup_to_utf8(elm_entry_entry_get(getEntry()));
-	m_Object.setValue(text);
-	free(text);
+	save();
 }

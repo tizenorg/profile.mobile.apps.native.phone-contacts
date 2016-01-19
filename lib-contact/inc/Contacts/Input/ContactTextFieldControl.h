@@ -41,6 +41,16 @@ namespace Contacts
 			 */
 			ContactTextFieldControl(Model::ContactTextField &field);
 
+			/**
+			 * @brief Save the control value into the field.
+			 */
+			void save();
+
+			/**
+			 * @brief Update the control using field's value.
+			 */
+			void update();
+
 		private:
 			virtual void onCreated() override;
 			void onUnfocused(Evas_Object *entry, void *eventInfo);

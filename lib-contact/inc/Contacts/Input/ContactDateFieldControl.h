@@ -41,11 +41,14 @@ namespace Contacts
 			 */
 			ContactDateFieldControl(Model::ContactDateField &field);
 
+			/**
+			 * @brief Update the control using field's value.
+			 */
+			void update();
+
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
-
-			void setButtonDate(tm date);
 			void onButtonPressed(Evas_Object *button, void *eventInfo);
 
 			Model::ContactDateField &m_Field;

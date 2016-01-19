@@ -33,6 +33,14 @@ ContactDateFieldControl::ContactDateFieldControl(Model::ContactDateField &field)
 {
 }
 
+void ContactDateFieldControl::update()
+{
+	tm date = m_Field.getValue();
+	char buffer[DATE_BUFFER_SIZE];
+	strftime(buffer, sizeof(buffer), "%x", &date);
+	elm_object_text_set(m_Button, buffer);
+}
+
 Evas_Object *ContactDateFieldControl::onCreate(Evas_Object *parent)
 {
 	Evas_Object *box = elm_box_add(parent);
@@ -52,14 +60,7 @@ Evas_Object *ContactDateFieldControl::onCreate(Evas_Object *parent)
 
 void ContactDateFieldControl::onCreated()
 {
-	setButtonDate(m_Field.getValue());
-}
-
-void ContactDateFieldControl::setButtonDate(tm date)
-{
-	char buffer[DATE_BUFFER_SIZE];
-	strftime(buffer, sizeof(buffer), "%x", &date);
-	elm_object_text_set(m_Button, buffer);
+	update();
 }
 
 void ContactDateFieldControl::onButtonPressed(Evas_Object *button, void *eventInfo)
@@ -67,7 +68,7 @@ void ContactDateFieldControl::onButtonPressed(Evas_Object *button, void *eventIn
 	Ui::DatePopup *popup = new Ui::DatePopup(m_Field.getValue());
 	popup->setResultCallback([this](const tm &date) {
 		m_Field.setValue(date);
-		setButtonDate(date);
+		update();
 	});
 	popup->create(getEvasObject());
 }
