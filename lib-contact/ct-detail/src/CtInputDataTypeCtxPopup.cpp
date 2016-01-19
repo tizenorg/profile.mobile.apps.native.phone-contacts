@@ -53,7 +53,7 @@ CtInputDataTypeCtxPopup::~CtInputDataTypeCtxPopup()
 void CtInputDataTypeCtxPopup::__movePopup(Evas_Object* popup)
 {
 	Evas_Coord x, y, w, h;
-	Eina_Bool directionDown = EINA_FALSE;
+//	Eina_Bool directionDown = EINA_FALSE;
 
 	evas_object_geometry_get(__typeButton, &x, &y, &w, &h);
 
@@ -63,10 +63,10 @@ void CtInputDataTypeCtxPopup::__movePopup(Evas_Object* popup)
 
 //	TODO uncomment when elm_ctxpopup_direction_available_get will be implemented
 //	directionDown = elm_ctxpopup_direction_available_get(popup, ELM_CTXPOPUP_DIRECTION_DOWN);
-	if(!directionDown) {
-		elm_ctxpopup_direction_priority_set(popup, ELM_CTXPOPUP_DIRECTION_UP, ELM_CTXPOPUP_DIRECTION_UP, ELM_CTXPOPUP_DIRECTION_UP, ELM_CTXPOPUP_DIRECTION_UP);
-		evas_object_move(popup, x , y);
-	}
+//	if(!directionDown) {
+//		elm_ctxpopup_direction_priority_set(popup, ELM_CTXPOPUP_DIRECTION_UP, ELM_CTXPOPUP_DIRECTION_UP, ELM_CTXPOPUP_DIRECTION_UP, ELM_CTXPOPUP_DIRECTION_UP);
+//		evas_object_move(popup, x , y);
+//	}
 
 	evas_object_show(popup);
 }
@@ -79,7 +79,7 @@ void CtInputDataTypeCtxPopup::setOnSelectCb(std::function<void (int type)> selec
 Evas_Object* CtInputDataTypeCtxPopup::onCreate(Evas_Object* parent, void* viewParam)
 {
 	Evas_Object *popup = elm_ctxpopup_add(elm_object_top_widget_get(parent));
-	elm_object_style_set(popup, "dropdown/label");
+//	elm_object_style_set(popup, "dropdown/label");
 	eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, eext_ctxpopup_back_cb, NULL);
 	evas_object_smart_callback_add(popup, "dismissed", [](void* data, Evas_Object* obj, void* event_info){
 		CtInputDataTypeCtxPopup* p = (CtInputDataTypeCtxPopup*)data;
@@ -164,7 +164,6 @@ Evas_Object* CtInputDataTypeCtxPopup::onCreate(Evas_Object* parent, void* viewPa
 		elm_ctxpopup_item_append(popup, V_("IDS_PB_OPT_OTHER"), NULL, __dataTypeEventChangedCb, (void *)CONTACTS_EVENT_TYPE_OTHER);
 		elm_ctxpopup_item_append(popup, V_("IDS_PB_OPT_CUSTOM"), NULL, __dataTypeEventChangedCb, (void *)CONTACTS_EVENT_TYPE_CUSTOM);
 	}
-
 	__movePopup(popup);
 
 	return popup;
