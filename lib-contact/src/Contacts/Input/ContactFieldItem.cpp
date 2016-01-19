@@ -57,12 +57,7 @@ Elm_Genlist_Item_Class *ContactFieldItem::getItemClass() const
 Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_RIGHT) == 0) {
-		Evas_Object *button = elm_button_add(parent);
-		elm_object_style_set(button, "icon_expand_delete");
-		evas_object_smart_callback_add(button, "clicked",
-				makeCallback(&ContactFieldItem::onRemovePressed), this);
-
-		return button;
+		return createRemoveButton(parent);
 	} else {
 		return ContactFieldSubItem::getContent(parent, part);
 	}
@@ -71,6 +66,17 @@ Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 void ContactFieldItem::onInserted()
 {
 	elm_genlist_item_expanded_set(getObjectItem(), EINA_TRUE);
+}
+
+Evas_Object *ContactFieldItem::createRemoveButton(Evas_Object *parent)
+{
+	Evas_Object *button = elm_button_add(parent);
+	elm_object_style_set(button, "icon_expand_delete");
+	elm_object_focus_allow_set(button, EINA_FALSE);
+	evas_object_smart_callback_add(button, "clicked",
+			makeCallback(&ContactFieldItem::onRemovePressed), this);
+
+	return button;
 }
 
 void ContactFieldItem::onRemovePressed(Evas_Object *button, void *eventInfo)

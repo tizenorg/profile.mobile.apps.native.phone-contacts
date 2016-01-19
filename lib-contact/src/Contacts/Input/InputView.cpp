@@ -64,7 +64,7 @@ void InputView::onCreated()
 	RETM_IF_ERR(err, "Contact::initialize() failed.");
 
 	addFieldItem(addField(FieldImage));
-	addFieldItem(addField(FieldName));
+	addFieldItem(addField(FieldName))->focus();
 
 	if (m_Contact.isNew()) {
 		addFieldItem(addField(FieldNumber));

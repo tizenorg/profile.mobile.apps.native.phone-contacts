@@ -30,7 +30,10 @@ namespace Contacts
 		class ContactCompoundFieldItem : public ContactFieldItem
 		{
 		public:
-			using ContactFieldItem::ContactFieldItem;
+			/**
+			 * @see ContactFieldItem::ContactFieldItem()
+			 */
+			ContactCompoundFieldItem(Model::ContactObject &object);
 
 		private:
 			/**
@@ -54,9 +57,11 @@ namespace Contacts
 			 */
 			virtual void onContracted() override;
 
-			Evas_Object *createCompoundControl(Evas_Object *parent);
+			Ui::Control *createFieldControl(Evas_Object *parent);
 			Evas_Object *createExpandButton(Evas_Object *parent);
 			void onExpandPressed(Evas_Object *button, void *eventInfo);
+
+			bool m_IsFocusPending;
 		};
 	}
 }
