@@ -48,9 +48,11 @@ ContactField &ContactArray::addField()
 
 void ContactArray::removeField(ContactField &field)
 {
-	contacts_record_remove_child_record(getRecord(), getPropertyId(), field.getRecord());
-	contacts_record_destroy(field.getRecord(), true);
+	contacts_record_h record = field.getRecord();
 	ContactFieldContainer::removeField(field);
+
+	contacts_record_remove_child_record(getRecord(), getPropertyId(), record);
+	contacts_record_destroy(record, true);
 }
 
 const ContactArrayMetadata &ContactArray::getArrayMetadata() const

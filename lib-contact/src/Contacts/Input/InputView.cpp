@@ -62,6 +62,8 @@ void InputView::onCreated()
 {
 	int err = m_Contact.initialize(m_RecordId);
 	RETM_IF_ERR(err, "Contact::initialize() failed.");
+	m_Contact.setFillChangedCallback(std::bind(&InputView::onFillChanged,
+				this, std::placeholders::_1));
 
 	addFieldItem(addField(FieldImage));
 	addFieldItem(addField(FieldName))->focus();
@@ -93,6 +95,7 @@ void InputView::onCreated()
 void InputView::onPageAttached()
 {
 	m_DoneButton = elm_button_add(getEvasObject());
+	elm_object_disabled_set(m_DoneButton, !m_Contact.isFilled());
 	elm_object_style_set(m_DoneButton, "naviframe/title_right");
 	elm_object_translatable_text_set(m_DoneButton, "IDS_PB_BUTTON_DONE_ABB3");
 	evas_object_smart_callback_add(m_DoneButton, "clicked",
@@ -205,6 +208,11 @@ void InputView::onRemoveField(ContactFieldItem *item)
 	ContactObject &field = item->getObject();
 	removeFieldItem(item);
 	removeField(field);
+}
+
+void InputView::onFillChanged(bool isFilled)
+{
+	elm_object_disabled_set(m_DoneButton, !isFilled);
 }
 
 void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
