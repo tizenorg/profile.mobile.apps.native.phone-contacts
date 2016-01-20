@@ -22,8 +22,10 @@
 using namespace Utils;
 
 UniString::UniString(const char *utf8Str)
-	: m_Utf8Str(utf8Str)
 {
+	if (utf8Str) {
+		m_Utf8Str = utf8Str;
+	}
 	m_UniStr = fromUtf8(m_Utf8Str);
 }
 

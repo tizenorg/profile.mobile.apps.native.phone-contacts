@@ -135,6 +135,7 @@ PersonGroupItem *ListView::insertGroupItem(UniString indexLetter, PersonGroupIte
 void ListView::deleteGroupItem(PersonGroupItem *group)
 {
 	elm_object_item_del(group->getIndexItem());
+	elm_index_level_go(m_Index, 0);
 
 	m_Groups.erase(group->getTitle());
 	delete group;
