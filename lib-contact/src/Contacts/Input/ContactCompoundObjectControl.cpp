@@ -24,7 +24,7 @@ using namespace Contacts::Input;
 using namespace Contacts::Model;
 
 ContactCompoundObjectControl::ContactCompoundObjectControl(ContactCompoundObject &object)
-	: m_Object(object)
+	: m_Object(object), m_IsEmpty(true)
 {
 }
 
@@ -48,10 +48,20 @@ void ContactCompoundObjectControl::onCreated()
 
 	Evas_Object *entry = getEntry();
 	elm_entry_autocapital_type_set(entry, ELM_AUTOCAPITAL_TYPE_WORD);
+	evas_object_smart_callback_add(entry, "changed",
+			makeCallback(&ContactCompoundObjectControl::onChanged), this);
 	evas_object_smart_callback_add(entry, "unfocused",
 			makeCallback(&ContactCompoundObjectControl::onUnfocused), this);
 
 	update();
+}
+
+void ContactCompoundObjectControl::onChanged(Evas_Object *entry, void *eventInfo)
+{
+	if (m_IsEmpty != elm_entry_is_empty(entry)) {
+		m_IsEmpty = !m_IsEmpty;
+		save();
+	}
 }
 
 void ContactCompoundObjectControl::onUnfocused(Evas_Object *entry, void *eventInfo)
