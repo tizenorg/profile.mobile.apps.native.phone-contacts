@@ -18,8 +18,7 @@
 #ifndef CONTACTS_MODEL_CONTACT_OBJECT_H
 #define CONTACTS_MODEL_CONTACT_OBJECT_H
 
-#include "Contacts/Model/ContactField.h"
-#include "Contacts/Model/ContactIterator.h"
+#include "Contacts/Model/ContactFieldContainer.h"
 
 namespace Contacts
 {
@@ -31,42 +30,15 @@ namespace Contacts
 		 * @brief Adapter for contacts_record_h object which may itself be
 		 *        a field of another object.
 		 */
-		class ContactObject : public ContactField
+		class ContactObject : public ContactFieldContainer
 		{
 		public:
-			using ContactField::ContactField;
+			using ContactFieldContainer::ContactFieldContainer;
 
 			/**
 			 * @see ContactField::initialize()
 			 */
 			virtual void initialize() override;
-
-			/**
-			 * @see ContactField::isEmpty()
-			 */
-			virtual bool isEmpty() const override;
-
-			/**
-			 * @see ContactField::reset()
-			 */
-			virtual void reset() override;
-
-			/**
-			 * @return Begin iterator.
-			 */
-			ContactObjectIterator begin() const;
-
-			/**
-			 * @return End iterator.
-			 */
-			ContactObjectIterator end() const;
-
-			/**
-			 * @brief Get child field by index.
-			 * @param[in]   index   Child field index
-			 * @return Child field.
-			 */
-			ContactField *getField(unsigned index) const;
 
 			/**
 			 * @brief Get child field by id.
@@ -77,9 +49,6 @@ namespace Contacts
 
 		protected:
 			const ContactObjectMetadata &getObjectMetadata() const;
-
-		private:
-			ContactFields m_Fields;
 		};
 	}
 }

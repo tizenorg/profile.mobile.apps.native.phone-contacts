@@ -15,24 +15,22 @@
  *
  */
 
-#ifndef CONTACTS_MODEL_CONTACT_ITERATOR_H
-#define CONTACTS_MODEL_CONTACT_ITERATOR_H
+#ifndef CONTACTS_MODEL_CONTACT_FIELD_ITERATOR_H
+#define CONTACTS_MODEL_CONTACT_FIELD_ITERATOR_H
 
-#include "Contacts/Model/ContactField.h"
 #include <iterator>
 
 namespace Contacts
 {
 	namespace Model
 	{
-		class ContactArray;
-		class ContactObject;
+		class ContactField;
+		class ContactFieldContainer;
 
 		/**
-		 * @brief Index-based iterator template for ContactArray and ContactObject.
+		 * @brief Index-based iterator for ContactFieldContainer.
 		 */
-		template <typename FieldContainer>
-		class ContactIterator :
+		class ContactFieldIterator :
 			public std::iterator<std::input_iterator_tag, ContactField>
 		{
 		public:
@@ -41,32 +39,28 @@ namespace Contacts
 			 * @param[in]   container   Container with getField() method
 			 * @param[in]   index       Index of the field pointed by iterator
 			 */
-			ContactIterator(const FieldContainer &container, int index)
-				: m_Container(container), m_Index(index) { }
+			ContactFieldIterator(const ContactFieldContainer &container, int index);
 
 			/**
 			 * @brief Increment iterator.
 			 */
-			ContactIterator &operator++() { ++m_Index; return *this; }
+			ContactFieldIterator &operator++();
 
 			/**
 			 * @brief Get field pointed by iterator.
 			 */
-			ContactField &operator*() const { return *m_Container.getField(m_Index); }
+			ContactField &operator*() const;
 
 			/**
 			 * @brief Compare iterators for inequality.
 			 */
-			bool operator!=(const ContactIterator &that) const { return m_Index != that.m_Index;}
+			bool operator!=(const ContactFieldIterator &that) const;
 
 		protected:
-			const FieldContainer &m_Container;
+			const ContactFieldContainer &m_Container;
 			size_t m_Index;
 		};
-
-		typedef ContactIterator<ContactArray> ContactArrayIterator;
-		typedef ContactIterator<ContactObject> ContactObjectIterator;
 	}
 }
 
-#endif /* CONTACTS_MODEL_CONTACT_ITERATOR_H */
+#endif /* CONTACTS_MODEL_CONTACT_FIELD_ITERATOR_H */

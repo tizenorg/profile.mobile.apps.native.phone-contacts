@@ -18,8 +18,7 @@
 #ifndef CONTACTS_MODEL_CONTACT_ARRAY_H
 #define CONTACTS_MODEL_CONTACT_ARRAY_H
 
-#include "Contacts/Model/ContactField.h"
-#include "Contacts/Model/ContactIterator.h"
+#include "Contacts/Model/ContactFieldContainer.h"
 
 namespace Contacts
 {
@@ -30,37 +29,15 @@ namespace Contacts
 		/**
 		 * @brief Adaptor for property containing multiple records.
 		 */
-		class ContactArray : public ContactField
+		class ContactArray : public ContactFieldContainer
 		{
 		public:
-			using ContactField::ContactField;
+			using ContactFieldContainer::ContactFieldContainer;
 
 			/**
 			 * @see ContactField::initialize()
 			 */
 			virtual void initialize() override;
-
-			/**
-			 * @see ContactField::isEmpty()
-			 */
-			virtual bool isEmpty() const override;
-
-			/**
-			 * @return Begin iterator.
-			 */
-			ContactArrayIterator begin() const;
-
-			/**
-			 * @return End iterator.
-			 */
-			ContactArrayIterator end() const;
-
-			/**
-			 * @brief Get child field by index.
-			 * @param[in]   index   Child field index
-			 * @return Child field.
-			 */
-			ContactField *getField(unsigned index) const;
 
 			/**
 			 * @brief Add new child field.
@@ -76,8 +53,6 @@ namespace Contacts
 
 		private:
 			const ContactArrayMetadata &getArrayMetadata() const;
-
-			ContactFields m_Fields;
 		};
 	}
 }

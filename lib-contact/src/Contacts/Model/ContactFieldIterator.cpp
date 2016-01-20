@@ -15,30 +15,28 @@
  *
  */
 
-#include "Contacts/Model/ContactObject.h"
-#include "Contacts/Model/ContactFieldMetadata.h"
+#include "Contacts/Model/ContactFieldIterator.h"
+#include "Contacts/Model/ContactFieldContainer.h"
 
 using namespace Contacts::Model;
 
-void ContactObject::initialize()
+ContactFieldIterator::ContactFieldIterator(const ContactFieldContainer &container, int index)
+	: m_Container(container), m_Index(index)
 {
-	for (auto &&field : getObjectMetadata().fields) {
-		addField(getRecord(), field);
-	}
 }
 
-ContactField *ContactObject::getFieldById(unsigned id) const
+ContactFieldIterator &ContactFieldIterator::operator++()
 {
-	for (auto &&field : *this) {
-		if (field.getId() == id) {
-			return &field;
-		}
-	}
-
-	return nullptr;
+	++m_Index;
+	return *this;
 }
 
-const ContactObjectMetadata &ContactObject::getObjectMetadata() const
+ContactField &ContactFieldIterator::operator*() const
 {
-	return *(const ContactObjectMetadata *) ContactField::getMetadata().typeMetadata;
+	return *m_Container.getField(m_Index);
+}
+
+bool ContactFieldIterator::operator!=(const ContactFieldIterator &that) const
+{
+	return m_Index != that.m_Index;
 }
