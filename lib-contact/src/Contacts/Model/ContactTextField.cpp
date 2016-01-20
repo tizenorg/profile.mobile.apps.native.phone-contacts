@@ -40,5 +40,11 @@ const char *ContactTextField::getValue() const
 
 void ContactTextField::setValue(const char *value)
 {
+	bool wasFilled = isFilled();
 	contacts_record_set_str(getRecord(), getPropertyId(), value);
+
+	bool isFilled = value && *value;
+	if (wasFilled != isFilled) {
+		onFillChanged(isFilled);
+	}
 }

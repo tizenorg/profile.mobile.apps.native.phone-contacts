@@ -64,6 +64,16 @@ template const ContactObject &ContactField::cast() const;
 template const ContactTypedObject &ContactField::cast() const;
 template const ContactCompoundObject &ContactField::cast() const;
 
+bool ContactField::isRequired() const
+{
+	return m_Metadata.isRequired;
+}
+
+void ContactField::setFillChangedCallback(FillChangedCallback callback)
+{
+	m_OnFillChanged = std::move(callback);
+}
+
 unsigned ContactField::getId() const
 {
 	return m_Metadata.id;
@@ -97,4 +107,11 @@ void ContactField::setRecord(contacts_record_h record)
 const ContactFieldMetadata &ContactField::getMetadata() const
 {
 	return m_Metadata;
+}
+
+void ContactField::onFillChanged(bool isFilled)
+{
+	if (m_OnFillChanged) {
+		m_OnFillChanged(isFilled);
+	}
 }
