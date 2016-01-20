@@ -72,6 +72,7 @@ namespace Contacts
 
 			void onAddField(Model::ContactFieldId fieldId);
 			void onRemoveField(ContactFieldItem *item);
+			void onFillChanged(bool isFilled);
 
 			void onDonePressed(Evas_Object *button, void *eventInfo);
 			void onCancelPressed(Evas_Object *button, void *eventInfo);

@@ -36,7 +36,8 @@ namespace Contacts
 		struct ContactTypeMetadata
 		{
 			ContactFieldType type; /**< Field basic type */
-			unsigned subType;      /**< Field subtype depending on the type (ContactObjectType, ContactEnumType or ContactTextType) */
+			unsigned subType;      /**< Field subtype depending on the type
+			                            (ContactObjectType, ContactEnumType or ContactTextType) */
 		};
 
 		/**
@@ -46,8 +47,9 @@ namespace Contacts
 		 */
 		struct ContactFieldMetadata
 		{
-			unsigned id;                             /**< Field ID */
-			unsigned propId;                         /**< Record property ID */
+			unsigned id;     /**< Field ID */
+			unsigned propId; /**< Record property ID */
+			bool isRequired; /**< Whether the field determines that parent object is filled */
 			const ContactTypeMetadata *typeMetadata; /**< Field type metadata */
 		};
 

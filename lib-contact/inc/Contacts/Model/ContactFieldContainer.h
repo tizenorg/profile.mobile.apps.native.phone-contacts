@@ -39,6 +39,11 @@ namespace Contacts
 			virtual bool isEmpty() const override;
 
 			/**
+			 * @see ContactField::isFilled()
+			 */
+			virtual bool isFilled() const override;
+
+			/**
 			 * @see ContactField::reset()
 			 */
 			virtual void reset() override;
@@ -66,7 +71,10 @@ namespace Contacts
 			void removeField(ContactField &field);
 
 		private:
+			void onChildFilled(bool isChildFilled);
+
 			ContactFields m_Fields;
+			size_t m_FilledCount = 0;
 		};
 	}
 }

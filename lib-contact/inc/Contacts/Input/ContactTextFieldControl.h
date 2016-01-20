@@ -53,9 +53,11 @@ namespace Contacts
 
 		private:
 			virtual void onCreated() override;
+			void onChanged(Evas_Object *entry, void *eventInfo);
 			void onUnfocused(Evas_Object *entry, void *eventInfo);
 
 			Model::ContactTextField &m_Field;
+			bool m_IsEmpty;
 		};
 	}
 }

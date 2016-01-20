@@ -34,7 +34,7 @@ namespace
 }
 
 ContactTextFieldControl::ContactTextFieldControl(Model::ContactTextField &field)
-	: m_Field(field)
+	: m_Field(field), m_IsEmpty(true)
 {
 }
 
@@ -58,10 +58,20 @@ void ContactTextFieldControl::onCreated()
 
 	Evas_Object *entry = getEntry();
 	elm_entry_input_panel_layout_set(entry, Utils::at(inputLayout, m_Field.getSubType()));
+	evas_object_smart_callback_add(entry, "changed",
+			makeCallback(&ContactTextFieldControl::onChanged), this);
 	evas_object_smart_callback_add(entry, "unfocused",
 			makeCallback(&ContactTextFieldControl::onUnfocused), this);
 
 	update();
+}
+
+void ContactTextFieldControl::onChanged(Evas_Object *entry, void *eventInfo)
+{
+	if (m_IsEmpty != elm_entry_is_empty(entry)) {
+		m_IsEmpty = !m_IsEmpty;
+		save();
+	}
 }
 
 void ContactTextFieldControl::onUnfocused(Evas_Object *entry, void *eventInfo)

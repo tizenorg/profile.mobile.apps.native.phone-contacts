@@ -19,6 +19,7 @@
 #define CONTACTS_MODEL_CONTACT_FIELD_H
 
 #include <contacts.h>
+#include <functional>
 #include <memory>
 #include <vector>
 
@@ -39,6 +40,12 @@ namespace Contacts
 		class ContactField
 		{
 		public:
+			/**
+			 * @brief Callback to be called when the field becomes filled or not filled.
+			 * @param[in]   Whether the field is filled.
+			 */
+			typedef std::function<void(bool)> FillChangedCallback;
+
 			/**
 			 * @brief Create contact field.
 			 * @param[in]   record      Record containing the field
@@ -63,6 +70,23 @@ namespace Contacts
 			 * @return Whether field has no value.
 			 */
 			virtual bool isEmpty() const { return false; }
+
+			/**
+			 * @return Whether the field is filled itself or one of it's child
+			 *         required fields is filled.
+			 */
+			virtual bool isFilled() const { return !isEmpty(); }
+
+			/**
+			 * @return Whether the field determines that parent object is filled.
+			 */
+			bool isRequired() const;
+
+			/**
+			 * @brief Set field fill changed callback.
+			 * @param[in]   callback    Called when field fill state is changed.
+			 */
+			void setFillChangedCallback(FillChangedCallback callback);
 
 			/**
 			 * @brief Cast field to derived type.
@@ -127,9 +151,16 @@ namespace Contacts
 			 */
 			const ContactFieldMetadata &getMetadata() const;
 
+			/**
+			 * @brief Should be called to report fill state change.
+			 * @param[in]   isFilled    Whether field is filled
+			 */
+			void onFilled(bool isFilled);
+
 		private:
 			contacts_record_h m_Record;
 			const ContactFieldMetadata &m_Metadata;
+			FillChangedCallback m_OnFilled;
 		};
 
 		typedef std::unique_ptr<ContactField> ContactFieldPtr;
