@@ -35,6 +35,19 @@ bool ContactFieldContainer::isEmpty() const
 	return isEmpty;
 }
 
+bool ContactFieldContainer::isFilled() const
+{
+	bool isFilled = false;
+	for (auto &&field : *this) {
+		if (field.isRequired() && field.isFilled()) {
+			isFilled = true;
+			break;
+		}
+	}
+
+	return isFilled;
+}
+
 void ContactFieldContainer::reset()
 {
 	for (auto &&field : *this) {
@@ -65,6 +78,15 @@ ContactField &ContactFieldContainer::addField(contacts_record_h record,
 		const ContactFieldMetadata &metadata)
 {
 	ContactFieldPtr field = ContactFactory::createField(record, metadata);
+	if (field->isRequired()) {
+		if (field->isFilled()) {
+			onChildFillChanged(true);
+		}
+
+		field->setFillChangedCallback(std::bind(&ContactFieldContainer::onChildFillChanged,
+				this, std::placeholders::_1));
+	}
+
 	m_Fields.push_back(std::move(field));
 	return *m_Fields.back();
 }
@@ -75,5 +97,19 @@ void ContactFieldContainer::removeField(ContactField &field)
 		return ptr.get() == &field;
 	};
 
+	if (field.isRequired() && field.isFilled()) {
+		onChildFillChanged(false);
+	}
+
 	m_Fields.erase(std::remove_if(m_Fields.begin(), m_Fields.end(), comp), m_Fields.end());
+}
+
+void ContactFieldContainer::onChildFillChanged(bool isChildFilled)
+{
+	/* Equals zero if no fields were PREVIOUSLY filled or no fields are NOW filled */
+	size_t checkCount = isChildFilled ? m_FilledCount++ : --m_FilledCount;
+
+	if (checkCount == 0) {
+		onFillChanged(isChildFilled);
+	}
 }
