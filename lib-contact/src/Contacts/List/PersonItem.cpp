@@ -17,6 +17,7 @@
 
 #include "Contacts/List/PersonItem.h"
 #include "Ui/Thumbnail.h"
+#include <app_i18n.h>
 
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
@@ -62,7 +63,8 @@ Elm_Check *PersonItem::getCheck() const
 char *PersonItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_PERSON_NAME) == 0) {
-		return strdup(m_Person->getName());
+		const char *name = m_Person->getName();
+		return strdup(name ? name : _("IDS_LOGS_MBODY_UNKNOWN"));
 	}
 
 	return nullptr;
