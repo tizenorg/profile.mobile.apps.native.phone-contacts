@@ -27,12 +27,14 @@ namespace Ui
 {
 	class Genlist;
 	class GenlistItem;
+	class GenlistGroupItem;
 }
 
 namespace Contacts
 {
 	namespace List
 	{
+		class GroupItem;
 		class PersonItem;
 		class PersonGroupItem;
 
@@ -43,6 +45,7 @@ namespace Contacts
 		{
 		public:
 			ListView();
+			virtual ~ListView() override;
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -52,6 +55,12 @@ namespace Contacts
 			virtual void onCreated() override;
 
 			void fillList();
+			void fillMyProfile();
+
+			void insertMyProfileGroupItem();
+			Ui::GenlistGroupItem *getNextMyProfileGroupItem();
+
+			void updateMyProfileItem(const char *view_uri);
 
 			Elm_Index_Item *insertIndexItem(const char *indexLetter,
 					Elm_Index_Item *nextItem = nullptr);
@@ -67,7 +76,6 @@ namespace Contacts
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
 
-			void onItemSelected(Evas_Object *genlist, Elm_Object_Item *genlistItem);
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
@@ -79,6 +87,8 @@ namespace Contacts
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
+
+			GroupItem *m_MyProfileGroup;
 			std::map<Utils::UniString, PersonGroupItem *> m_Groups;
 
 			Model::PersonProvider m_Provider;

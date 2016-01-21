@@ -57,7 +57,7 @@ namespace Contacts
 				 * @brief Create person object
 				 * @param[in]   record      _contacts_person record
 				 */
-				Person(contacts_record_h record);
+				explicit Person(contacts_record_h record);
 				~Person();
 
 				/**
