@@ -15,10 +15,10 @@
  *
  */
 
-#ifndef CONTACTS_INPUT_CONTACT_COMPOUND_OBJECT_CONTROL_H
-#define CONTACTS_INPUT_CONTACT_COMPOUND_OBJECT_CONTROL_H
+#ifndef CONTACTS_INPUT_CONTACT_COMPOUND_FIELD_CONTROL_H
+#define CONTACTS_INPUT_CONTACT_COMPOUND_FIELD_CONTROL_H
 
-#include "Ui/Editfield.h"
+#include "Contacts/Input/ContactTextFieldControl.h"
 
 namespace Contacts
 {
@@ -32,34 +32,34 @@ namespace Contacts
 		/**
 		 * @brief UI Control for editing ContactCompoundObject
 		 */
-		class ContactCompoundObjectControl : public Ui::Editfield
+		class ContactCompoundFieldControl : public ContactTextFieldControl
 		{
 		public:
 			/**
 			 * @brief Create control
+			 * @param[in]   parent  Parent genlist item
 			 * @param[in]   object  Contact compound object
 			 */
-			ContactCompoundObjectControl(Model::ContactCompoundObject &object);
+			ContactCompoundFieldControl(Ui::GenlistItem *parent,
+					Model::ContactCompoundObject &object);
 
 			/**
-			 * @brief Save the control value into the field.
+			 * @brief Set whether to display compound value or first field value.
+			 * @param[in]   isEnabled   Whether compound mode is enabled
 			 */
-			void save();
+			void setCompoundMode(bool isEnabled);
 
-			/**
-			 * @brief Update the control using field's value.
-			 */
-			void update();
+		protected:
+			virtual void updateEntryLayout() override;
+			virtual std::string getFieldValue() const override;
+			virtual void setFieldValue(std::string value) override;
 
 		private:
-			virtual void onCreated() override;
-			void onChanged(Evas_Object *entry, void *eventInfo);
-			void onUnfocused(Evas_Object *entry, void *eventInfo);
-
 			Model::ContactCompoundObject &m_Object;
-			bool m_IsEmpty;
+
+			bool m_IsCompoundMode;
 		};
 	}
 }
 
-#endif /* CONTACTS_INPUT_CONTACT_COMPOUND_OBJECT_CONTROL_H */
+#endif /* CONTACTS_INPUT_CONTACT_COMPOUND_FIELD_CONTROL_H */
