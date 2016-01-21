@@ -19,6 +19,12 @@
 #define CONTACTS_INPUT_CONTACT_TEXT_FIELD_CONTROL_H
 
 #include "Ui/Editfield.h"
+#include <string>
+
+namespace Ui
+{
+	class GenlistItem;
+}
 
 namespace Contacts
 {
@@ -37,9 +43,11 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Create control
+			 * @param[in]   parent  Parent genlist item
 			 * @param[in]   field   Contact text field to edit
 			 */
-			ContactTextFieldControl(Model::ContactTextField &field);
+			ContactTextFieldControl(Ui::GenlistItem *parent,
+					Model::ContactTextField &field);
 
 			/**
 			 * @brief Save the control value into the field.
@@ -51,13 +59,38 @@ namespace Contacts
 			 */
 			void update();
 
+		protected:
+			/**
+			 * @brief Update entry input layout and guide text.
+			 */
+			virtual void updateEntryLayout();
+
+			/**
+			 * @return Field value to display in entry.
+			 */
+			virtual std::string getFieldValue() const;
+
+			/**
+			 * @brief Set text field value.
+			 * @param[in]   value   Value to store in the field
+			 */
+			virtual void setFieldValue(std::string value);
+
 		private:
 			virtual void onCreated() override;
-			void onChanged(Evas_Object *entry, void *eventInfo);
-			void onUnfocused(Evas_Object *entry, void *eventInfo);
 
+			void onChanged(Evas_Object *entry, void *eventInfo);
+			void onFocused(Evas_Object *entry, void *eventInfo);
+			void onUnfocused(Evas_Object *entry, void *eventInfo);
+			void onActivated(Evas_Object *entry, void *eventInfo);
+
+			Ui::GenlistItem *m_ParentItem;
+			Ui::GenlistItem *m_NextItem;
 			Model::ContactTextField &m_Field;
+
 			bool m_IsEmpty;
+			bool m_IsChanged;
+			bool m_IsUpdating;
 		};
 	}
 }

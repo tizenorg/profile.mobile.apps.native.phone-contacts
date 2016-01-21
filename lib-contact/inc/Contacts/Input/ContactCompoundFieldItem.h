@@ -35,7 +35,7 @@ namespace Contacts
 			 */
 			ContactCompoundFieldItem(Model::ContactObject &object);
 
-		private:
+		protected:
 			/**
 			 * @see GenlistItem::getContent()
 			 */
@@ -57,11 +57,12 @@ namespace Contacts
 			 */
 			virtual void onContracted() override;
 
-			Ui::Control *createFieldControl(Evas_Object *parent);
+		private:
 			Evas_Object *createExpandButton(Evas_Object *parent);
-			void onExpandPressed(Evas_Object *button, void *eventInfo);
+			Evas_Object *getExpandIcon() const;
 
-			bool m_IsFocusPending;
+			void onExpandPressed(Evas_Object *button, void *eventInfo);
+			void onExpandChanged();
 		};
 	}
 }
