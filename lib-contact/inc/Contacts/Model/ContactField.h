@@ -78,6 +78,11 @@ namespace Contacts
 			virtual bool isFilled() const { return !isEmpty(); }
 
 			/**
+			 * @return Whether the field value was changed.
+			 */
+			virtual bool isChanged() const { return true; }
+
+			/**
 			 * @return Whether the field determines that parent object is filled.
 			 */
 			bool isRequired() const;

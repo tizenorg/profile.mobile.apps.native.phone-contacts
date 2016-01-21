@@ -35,6 +35,25 @@ void ContactTypedObject::reset()
 	m_LabelField->reset();
 }
 
+bool ContactTypedObject::isChanged() const
+{
+	if (ContactObject::isChanged()) {
+		return true;
+	}
+
+	if (!isEmpty()) {
+		if (m_TypeField->isChanged()) {
+			return true;
+		}
+
+		if (getTypeField().hasCustomValue()) {
+			return m_LabelField->isChanged();
+		}
+	}
+
+	return false;
+}
+
 ContactEnumField &ContactTypedObject::getTypeField() const
 {
 	return m_TypeField->cast<ContactEnumField>();

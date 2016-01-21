@@ -34,6 +34,11 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
+			 * @see ContactField::reset()
+			 */
+			virtual void reset() override;
+
+			/**
 			 * @see ContactField::isEmpty()
 			 */
 			virtual bool isEmpty() const override;
@@ -44,9 +49,9 @@ namespace Contacts
 			virtual bool isFilled() const override;
 
 			/**
-			 * @see ContactField::reset()
+			 * @see ContactField::isChanged()
 			 */
-			virtual void reset() override;
+			virtual bool isChanged() const override;
 
 			/**
 			 * @return Begin iterator.
@@ -64,6 +69,11 @@ namespace Contacts
 			 * @return Child field.
 			 */
 			ContactField *getField(unsigned index) const;
+
+			/**
+			 * @return Child field count.
+			 */
+			size_t getFieldCount() const;
 
 		protected:
 			ContactField &addField(contacts_record_h record,

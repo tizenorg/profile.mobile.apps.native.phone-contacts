@@ -22,37 +22,30 @@
 
 using namespace Contacts::Model;
 
+void ContactFieldContainer::reset()
+{
+	for (auto &&field : m_Fields) {
+		field->reset();
+	}
+}
+
 bool ContactFieldContainer::isEmpty() const
 {
-	bool isEmpty = true;
-	for (auto &&field : *this) {
-		if (!field.isEmpty()) {
-			isEmpty = false;
-			break;
-		}
-	}
-
-	return isEmpty;
+	return !std::any_of(m_Fields.begin(), m_Fields.end(), [](const ContactFieldPtr &field) {
+		return !field->isEmpty();
+	});
 }
 
 bool ContactFieldContainer::isFilled() const
 {
-	bool isFilled = false;
-	for (auto &&field : *this) {
-		if (field.isRequired() && field.isFilled()) {
-			isFilled = true;
-			break;
-		}
-	}
-
-	return isFilled;
+	return std::any_of(m_Fields.begin(), m_Fields.end(), [](const ContactFieldPtr &field) {
+		return field->isRequired() && field->isFilled();
+	});
 }
 
-void ContactFieldContainer::reset()
+bool ContactFieldContainer::isChanged() const
 {
-	for (auto &&field : *this) {
-		field.reset();
-	}
+	return std::any_of(m_Fields.begin(), m_Fields.end(), std::mem_fn(&ContactField::isChanged));
 }
 
 ContactFieldIterator ContactFieldContainer::begin() const
@@ -72,6 +65,11 @@ ContactField *ContactFieldContainer::getField(unsigned index) const
 	}
 
 	return nullptr;
+}
+
+size_t ContactFieldContainer::getFieldCount() const
+{
+	return m_Fields.size();
 }
 
 ContactField &ContactFieldContainer::addField(contacts_record_h record,

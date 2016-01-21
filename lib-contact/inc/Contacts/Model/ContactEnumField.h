@@ -39,9 +39,19 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
+			 * @see ContactField::initialize()
+			 */
+			virtual void initialize() override;
+
+			/**
 			 * @see ContactField::reset()
 			 */
 			virtual void reset() override;
+
+			/**
+			 * @see ContactField::isChanged()
+			 */
+			virtual bool isChanged() const override;
 
 			/**
 			 * @return Array of possible values.
@@ -71,6 +81,8 @@ namespace Contacts
 
 		private:
 			const ContactEnumMetadata &getEnumMetadata() const;
+
+			int m_InitialValue;
 		};
 	}
 }

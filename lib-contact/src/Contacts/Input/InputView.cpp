@@ -25,6 +25,7 @@
 
 #include "App/Path.h"
 #include "Ui/Genlist.h"
+#include "Ui/Popup.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 #include "Utils/Range.h"
@@ -111,6 +112,11 @@ void InputView::onPageAttached()
 	page->setTitle(m_Contact.isNew() ? "IDS_PB_HEADER_CREATE" : "IDS_PB_HEADER_EDIT");
 	page->setContent("title_right_btn", m_DoneButton);
 	page->setContent("title_left_btn", cancelButton);
+}
+
+bool InputView::onBackPressed()
+{
+	return onCancel();
 }
 
 ContactFieldItem *InputView::createFieldItem(ContactObject &field)
@@ -225,5 +231,27 @@ void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 
 void InputView::onCancelPressed(Evas_Object *button, void *eventInfo)
 {
-	delete this;
+	if (onCancel()) {
+		delete this;
+	}
+}
+
+bool InputView::onCancel()
+{
+	if (!m_Contact.isChanged()) {
+		return true;
+	}
+
+	Ui::Popup *popup = new Ui::Popup();
+	popup->create(getEvasObject());
+	popup->setTitle("IDS_PB_HEADER_DISCARD_CHANGES_ABB");
+	popup->setText("IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED");
+
+	popup->addButton("IDS_PB_BUTTON_CANCEL");
+	popup->addButton("IDS_PB_BUTTON_DISCARD_ABB", [this] {
+		delete this;
+		return true;
+	});
+
+	return false;
 }

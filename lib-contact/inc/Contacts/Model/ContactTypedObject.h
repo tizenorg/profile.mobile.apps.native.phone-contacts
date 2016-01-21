@@ -48,6 +48,11 @@ namespace Contacts
 			virtual void reset() override;
 
 			/**
+			 * @see ContactField::isChanged()
+			 */
+			virtual bool isChanged() const override;
+
+			/**
 			 * @return Field that represents object's type.
 			 */
 			ContactEnumField &getTypeField() const;

@@ -60,6 +60,7 @@ namespace Contacts
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
 			virtual void onPageAttached() override;
+			virtual bool onBackPressed() override;
 
 			ContactFieldItem *createFieldItem(Model::ContactObject &field);
 			Ui::GenlistItem *getNextFieldItem(Model::ContactFieldId fieldId);
@@ -76,6 +77,7 @@ namespace Contacts
 
 			void onDonePressed(Evas_Object *button, void *eventInfo);
 			void onCancelPressed(Evas_Object *button, void *eventInfo);
+			bool onCancel();
 
 			int m_RecordId;
 			Model::Contact m_Contact;

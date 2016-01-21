@@ -24,10 +24,22 @@
 
 using namespace Contacts::Model;
 
+void ContactDateField::initialize()
+{
+	tm value = getValue();
+	m_InitialValue = mktime(&value);
+}
+
 void ContactDateField::reset()
 {
 	time_t now = time(nullptr);
 	setValue(*localtime(&now));
+}
+
+bool ContactDateField::isChanged() const
+{
+	tm value = getValue();
+	return difftime(mktime(&value), m_InitialValue) != 0;
 }
 
 tm ContactDateField::getValue() const

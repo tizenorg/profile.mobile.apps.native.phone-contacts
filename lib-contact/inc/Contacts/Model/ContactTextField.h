@@ -19,6 +19,7 @@
 #define CONTACTS_MODEL_CONTACT_TEXT_FIELD_H
 
 #include "Contacts/Model/ContactField.h"
+#include <string>
 
 namespace Contacts
 {
@@ -35,14 +36,24 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
-			 * @see ContactField::isEmpty()
+			 * @see ContactField::initialize()
 			 */
-			virtual bool isEmpty() const override;
+			virtual void initialize() override;
 
 			/**
 			 * @see ContactField::reset()
 			 */
 			virtual void reset() override;
+
+			/**
+			 * @see ContactField::isEmpty()
+			 */
+			virtual bool isEmpty() const override;
+
+			/**
+			 * @see ContactField::isChanged()
+			 */
+			virtual bool isChanged() const override;
 
 			/**
 			 * @return Text field value.
@@ -53,6 +64,9 @@ namespace Contacts
 			 * @brief Set text field value.
 			 */
 			void setValue(const char *value);
+
+		private:
+			std::string m_InitialValue;
 		};
 	}
 }

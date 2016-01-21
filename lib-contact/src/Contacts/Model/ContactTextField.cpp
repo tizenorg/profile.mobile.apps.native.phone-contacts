@@ -20,15 +20,33 @@
 
 using namespace Contacts::Model;
 
+void ContactTextField::initialize()
+{
+	const char *value = getValue();
+	if (value) {
+		m_InitialValue = value;
+	}
+}
+
+void ContactTextField::reset()
+{
+	setValue("");
+}
+
 bool ContactTextField::isEmpty() const
 {
 	const char *value = getValue();
 	return !(value && *value);
 }
 
-void ContactTextField::reset()
+bool ContactTextField::isChanged() const
 {
-	setValue("");
+	const char *value = getValue();
+	if (!value) {
+		value = "";
+	}
+
+	return m_InitialValue.compare(value) != 0;
 }
 
 const char *ContactTextField::getValue() const

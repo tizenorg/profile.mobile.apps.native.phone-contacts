@@ -40,6 +40,11 @@ namespace Contacts
 			virtual void initialize() override;
 
 			/**
+			 * @see ContactField::isChanged()
+			 */
+			virtual bool isChanged() const override;
+
+			/**
 			 * @brief Add new child field.
 			 * @return New child field.
 			 */
@@ -53,6 +58,8 @@ namespace Contacts
 
 		private:
 			const ContactArrayMetadata &getArrayMetadata() const;
+
+			size_t m_InitialCount;
 		};
 	}
 }

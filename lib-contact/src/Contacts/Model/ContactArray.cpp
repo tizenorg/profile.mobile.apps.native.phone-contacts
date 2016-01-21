@@ -30,6 +30,17 @@ void ContactArray::initialize()
 		contacts_record_get_child_record_at_p(getRecord(), getPropertyId(), i, &record);
 		ContactFieldContainer::addField(record, getArrayMetadata().element);
 	}
+
+	m_InitialCount = getFieldCount();
+}
+
+bool ContactArray::isChanged() const
+{
+	if (getFieldCount() < m_InitialCount) {
+		return true;
+	}
+
+	return ContactFieldContainer::isChanged();
 }
 
 ContactField &ContactArray::addField()

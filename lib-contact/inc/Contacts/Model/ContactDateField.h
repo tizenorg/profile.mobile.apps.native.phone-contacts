@@ -36,9 +36,19 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
+			 * @see ContactField::initialize()
+			 */
+			virtual void initialize() override;
+
+			/**
 			 * @see ContactInputField::reset()
 			 */
 			virtual void reset() override;
+
+			/**
+			 * @see ContactField::isChanged()
+			 */
+			virtual bool isChanged() const override;
 
 			/**
 			 * @return Date field value.
@@ -54,6 +64,8 @@ namespace Contacts
 		private:
 			static tm convertDate(int value);
 			static int convertDate(const tm &date);
+
+			time_t m_InitialValue;
 		};
 	}
 }

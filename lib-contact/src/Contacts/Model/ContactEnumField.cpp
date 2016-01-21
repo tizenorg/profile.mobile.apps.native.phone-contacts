@@ -20,9 +20,19 @@
 
 using namespace Contacts::Model;
 
+void ContactEnumField::initialize()
+{
+	m_InitialValue = getValue();
+}
+
 void ContactEnumField::reset()
 {
 	setValue(getEnumMetadata().defaultValue);
+}
+
+bool ContactEnumField::isChanged() const
+{
+	return m_InitialValue != getValue();
 }
 
 Utils::Range<const int *> ContactEnumField::getValues() const
