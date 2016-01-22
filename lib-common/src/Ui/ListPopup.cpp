@@ -63,7 +63,6 @@ void ListPopup::setSelectedCallback(SelectedCallback callback)
 Evas_Object *ListPopup::onCreate(Evas_Object *parent)
 {
 	Evas_Object *popup = Popup::onCreate(parent);
-	elm_object_style_set(popup, "theme_bg");
 
 	m_Genlist = elm_genlist_add(parent);
 	elm_genlist_homogeneous_set(m_Genlist, EINA_TRUE);
@@ -109,5 +108,9 @@ void ListPopup::onSelected(ListPopup *popup, Evas_Object *genlist, Elm_Object_It
 	}
 
 	elm_genlist_item_selected_set(item, EINA_FALSE);
-	delete popup;
+
+	/* FIXME: Destroying genlist from it's "selected" callback causes crash. */
+	ecore_job_add([](void *data) {
+		delete (ListPopup *) data;
+	}, popup);
 }
