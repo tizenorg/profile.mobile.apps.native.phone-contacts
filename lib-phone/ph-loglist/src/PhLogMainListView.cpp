@@ -145,7 +145,7 @@ Evas_Object* PhLogMainListView::__createListContents(std::string contentsType)
 
 	if(contentsType.find("list/B/log/thumbnail/") != std::string::npos)
 	{
-		for(int j=CONTACTS_PLOG_TYPE_VOICE_INCOMMING ; j<CONTACTS_PLOG_TYPE_VIDEO_BLOCKED ;j++)
+		for(int j=CONTACTS_PLOG_TYPE_VOICE_INCOMING ; j<CONTACTS_PLOG_TYPE_VIDEO_BLOCKED ;j++)
 		{
 			std::stringstream keyString;
 			keyString << "list/B/log/thumbnail/" <<	PhLogUtil::getLogTypeImageName(j);

@@ -90,7 +90,7 @@ unsigned int PhLogDbMgr::__getDetailListDataFromDb(contacts_list_h* ctsList, con
 		if (CONTACTS_ERROR_NONE != (err = contacts_query_create(_contacts_person_phone_log._uri, &query))) break;
 		if (CONTACTS_ERROR_NONE != (err = contacts_filter_create( _contacts_person_phone_log._uri, &filter))) break;
 
-		if (CONTACTS_ERROR_NONE != (err = contacts_filter_add_int(filter, _contacts_person_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING)))break;
+		if (CONTACTS_ERROR_NONE != (err = contacts_filter_add_int(filter, _contacts_person_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING)))break;
 		if (CONTACTS_ERROR_NONE != (err = contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND)))break;
 		if (CONTACTS_ERROR_NONE != (err = contacts_filter_add_int(filter, _contacts_person_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_BLOCKED)))break;
 
@@ -151,15 +151,15 @@ unsigned int PhLogDbMgr::__getLogListDataFromDb(contacts_list_h* ctsList, ListTy
 	switch (type)
 	{
 	case LIST_TYPE_MISSED_CALL:
-		logTypeMin = CONTACTS_PLOG_TYPE_VOICE_INCOMMING_UNSEEN;
-		logTypeMax = CONTACTS_PLOG_TYPE_VIDEO_INCOMMING_SEEN;
+		logTypeMin = CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN;
+		logTypeMax = CONTACTS_PLOG_TYPE_VIDEO_INCOMING_SEEN;
 		break;
 	case LIST_TYPE_ALL_CALL:
-		logTypeMin = CONTACTS_PLOG_TYPE_VOICE_INCOMMING;
+		logTypeMin = CONTACTS_PLOG_TYPE_VOICE_INCOMING;
 		logTypeMax = CONTACTS_PLOG_TYPE_VIDEO_BLOCKED;
 		break;
 	default:
-		logTypeMin = CONTACTS_PLOG_TYPE_VOICE_INCOMMING;
+		logTypeMin = CONTACTS_PLOG_TYPE_VOICE_INCOMING;
 		logTypeMax = CONTACTS_PLOG_TYPE_MMS_BLOCKED;
 		break;
 	}
@@ -383,11 +383,11 @@ void PhLogDbMgr::updateMissedLogDbAsSeen(int index, int type)
 	int err = CONTACTS_ERROR_NONE;
 	contacts_record_h logRecord = NULL;
 
-	WPRET_M(CONTACTS_PLOG_TYPE_VOICE_INCOMMING_UNSEEN != type &&
-			CONTACTS_PLOG_TYPE_VIDEO_INCOMMING_UNSEEN != type &&
+	WPRET_M(CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN != type &&
+			CONTACTS_PLOG_TYPE_VIDEO_INCOMING_UNSEEN != type &&
 			CONTACTS_PLOG_TYPE_NONE != type,
-			"The type is invalid. It must be CONTACTS_PLOG_TYPE_VOICE_INCOMMING_UNSEEN"
-			" or CONTACTS_PLOG_TYPE_VIDEO_INCOMMING_UNSEEN or none");
+			"The type is invalid. It must be CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN"
+			" or CONTACTS_PLOG_TYPE_VIDEO_INCOMING_UNSEEN or none");
 
 	WDEBUG("update phonelogs table records(index: %d, log_type:%d)",index, type);
 	if (0 == index) {
@@ -408,9 +408,9 @@ void PhLogDbMgr::updateMissedLogDbAsSeen(int index, int type)
 		do {
 			if (CONTACTS_PLOG_TYPE_NONE == type)
 			{
-				if (CONTACTS_ERROR_NONE != (err = contacts_filter_add_int(filter, _contacts_person_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING_UNSEEN)))break;
+				if (CONTACTS_ERROR_NONE != (err = contacts_filter_add_int(filter, _contacts_person_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN)))break;
 				if (CONTACTS_ERROR_NONE != (err = contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_OR)))break;
-				if (CONTACTS_ERROR_NONE != (err = contacts_filter_add_int(filter, _contacts_person_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_INCOMMING_UNSEEN)))break;
+				if (CONTACTS_ERROR_NONE != (err = contacts_filter_add_int(filter, _contacts_person_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_INCOMING_UNSEEN)))break;
 				if (CONTACTS_ERROR_NONE != (err = contacts_query_set_filter(query, filter)))break;
 			}
 			else
