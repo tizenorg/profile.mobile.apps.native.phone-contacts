@@ -15,54 +15,52 @@
  *
  */
 
-#include "Logs/Model/LogRecord.h"
+#include "Logs/Model/Log.h"
 #include "Utils/Logger.h"
 
 using namespace Logs::Model;
 
-LogRecord::LogRecord(contacts_record_h record)
-	: m_LogRecord(record), m_ContactRecord(getContactRecord())
+Log::Log(contacts_record_h record)
+	: m_LogRecord(record), m_ContactRecord(getContactRecord()), m_Group(nullptr)
 {
 }
 
-LogRecord::~LogRecord()
+Log::~Log()
 {
 	contacts_record_destroy(m_LogRecord, true);
 	contacts_record_destroy(m_ContactRecord, true);
 }
 
-bool LogRecord::isGroup() const
-{
-	return false;
-}
-
-const contacts_record_h LogRecord::getLogRecord() const
-{
-	return m_LogRecord;
-}
-
-const char *LogRecord::getName() const
+const char *Log::getName() const
 {
 	char *name = nullptr;
 	contacts_record_get_str_p(m_ContactRecord, _contacts_person.display_name, &name);
 	return name;
 }
 
-const char *LogRecord::getNumber() const
+const char *Log::getNumber() const
 {
 	char *number = nullptr;
 	contacts_record_get_str_p(m_LogRecord, _contacts_phone_log.address, &number);
 	return number;
 }
 
-const char *LogRecord::getImagePath() const
+const char *Log::getImagePath() const
 {
 	char *path = nullptr;
 	contacts_record_get_str_p(m_ContactRecord, _contacts_person.image_thumbnail_path, &path);
 	return path;
 }
 
-struct tm LogRecord::getTime() const
+int Log::getType() const
+{
+	int type = CONTACTS_PLOG_TYPE_NONE;
+	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_type, &type);
+
+	return type;
+}
+
+struct tm Log::getTime() const
 {
 	int time = 0;
 	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_time, &time);
@@ -74,31 +72,41 @@ struct tm LogRecord::getTime() const
 	return logDate;
 }
 
-int LogRecord::getType() const
-{
-	int type = CONTACTS_PLOG_TYPE_NONE;
-	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_type, &type);
-
-	return type;
-}
-
-int LogRecord::getId() const
+int Log::getId() const
 {
 	int id = 0;
 	contacts_record_get_int(m_LogRecord, _contacts_phone_log.id, &id);
 	return id;
 }
 
-int LogRecord::getPersonId() const
+int Log::getPersonId() const
 {
 	int id = 0;
 	contacts_record_get_int(m_LogRecord, _contacts_phone_log.person_id, &id);
 	return id;
 }
 
-contacts_record_h LogRecord::getContactRecord()
+contacts_record_h Log::getContactRecord()
 {
 	contacts_record_h record = nullptr;
 	contacts_db_get_record(_contacts_person._uri, getPersonId(), &record);
 	return record;
+}
+
+void Log::updateLog()
+{
+	if (m_ContactRecord != getContactRecord()) {
+		contacts_record_destroy(m_ContactRecord, true);
+		m_ContactRecord = getContactRecord();
+	}
+}
+
+void Log::setLogGroup(LogGroup *group)
+{
+	m_Group = group;
+}
+
+LogGroup *Log::getLogGroup()
+{
+	return m_Group;
 }

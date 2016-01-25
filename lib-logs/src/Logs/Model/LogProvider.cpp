@@ -16,7 +16,6 @@
  */
 
 #include "Logs/Model/LogProvider.h"
-#include "Logs/Model/LogRecord.h"
 #include "Logs/Model/LogGroup.h"
 #include "Contacts/Utils.h"
 #include "Utils/Logger.h"
@@ -26,12 +25,12 @@
 
 using namespace Logs::Model;
 
-LogProvider::LogProvider()
+LogProvider::LogProvider(LogProvider::FilterType filterType):
+		m_ListFilterType(filterType), m_NewLogGroupCallback(nullptr)
 {
 	contacts_db_get_current_version(&m_DbVersion);
 	contacts_db_add_changed_cb(_contacts_phone_log._uri, makeCallbackWithLastParam(&LogProvider::onLogChanged), this);
 	contacts_db_add_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&LogProvider::onContactChanged), this);
-	fillList();
 }
 
 LogProvider::~LogProvider()
@@ -40,117 +39,95 @@ LogProvider::~LogProvider()
 	contacts_db_remove_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&LogProvider::onContactChanged), this);
 }
 
-const LogList &LogProvider::getLogList() const
+LogGroupList LogProvider::getLogGroupList()
 {
-	return m_AllLogs;
-}
-
-void LogProvider::addContactChangeCallback(int id, ContactChangeCallback callback)
-{
-	if (callback) {
-		m_ChangeContactCallbacks.insert({id, std::move(callback)});
+	if (m_GroupLogs.empty()) {
+		if (m_Logs.empty()) {
+			fillList(m_Logs);
+		}
+		fillGroupList(m_Logs, m_GroupLogs);
 	}
+	return m_GroupLogs;
 }
 
-void LogProvider::removeContactChangeCallback(int id)
+void LogProvider::setNewLogCallback(NewLogGroupCallback callback)
 {
-	m_ChangeContactCallbacks.erase(id);
+	m_NewLogGroupCallback = std::move(callback);
 }
 
-void LogProvider::setLogChangeCallback(LogChangeCallback callback)
+void LogProvider::unsetNewLogCallback()
 {
-	m_LogCallback = callback;
+	m_NewLogGroupCallback = nullptr;
 }
 
-void LogProvider::unsetLogChangeCallback()
+void LogProvider::fillList(LogList &logList)
 {
-	m_LogCallback = nullptr;
-}
-
-void LogProvider::fillList()
-{
-	contacts_list_h list = fetchLogList();
-
+	contacts_list_h list = nullptr;
+	contacts_db_get_all_records(_contacts_phone_log._uri, 0, 0, &list);
 	contacts_record_h record = nullptr;
-	if (contacts_list_get_current_record_p(list, &record) != CONTACTS_ERROR_NONE) {
-		return;
-	}
-
-	addFirstLog(record);
-
-	contacts_list_next(list);
 
 	CONTACTS_LIST_FOREACH(list, record) {
-		addLog(record);
+		logList.push_back(new Log(record));
 	}
 
 	contacts_list_destroy(list, false);
 }
 
-bool LogProvider::shouldGroupLogs(LogPtr log, LogPtr prevLog)
+void LogProvider::fillGroupList(LogList &logList, LogGroupList &logGroupList)
 {
+	logGroupList.push_back(new LogGroup((*logList.begin())));
+
+	for (auto &&it : logList) {
+		addLogGroup(logGroupList, it);
+	}
+}
+
+bool LogProvider::shouldGroupLogs(Log *log, LogGroup *prevLogGroup)
+{
+	Log *prevLog = prevLogGroup->getLogList().back();
 	return (log->getType() == prevLog->getType()
-			&& strcmp(log->getNumber(), prevLog->getNumber()) == 0
-			&& isTimeEqual(log->getTime(), prevLog->getTime()));
+			&& strcmp(log->getNumber(), prevLog->getNumber()) == 0);
+
 }
 
-bool LogProvider::isTimeEqual(struct tm logTime, struct tm prevLogTime)
+LogGroup *LogProvider::addLogGroup(LogGroupList &logGroupList, Log *log)
 {
-	return (logTime.tm_year == prevLogTime.tm_year &&
-				logTime.tm_mon == prevLogTime.tm_mon &&
-				logTime.tm_mday == prevLogTime.tm_mday);
-}
+	LogGroup *lastLogGroup = logGroupList.back();
 
-LogGroupPtr LogProvider::groupLogs(LogPtr log, LogPtr prevLog)
-{
-	LogGroupPtr logGroup = nullptr;
-	if (prevLog->isGroup()) {
-		logGroup = std::static_pointer_cast<LogGroup>(prevLog);
-		logGroup->addLog(std::move(log));
+	if (shouldGroupLogs(log, lastLogGroup)) {
+		lastLogGroup->addLog(log);
 	} else {
-		logGroup = LogGroupPtr(new LogGroup());
-		logGroup->addLog(std::move(prevLog));
-		logGroup->addLog(std::move(log));
+		LogGroup *logGroup = new LogGroup(log);
+		logGroupList.push_back(logGroup);
+		return logGroup;
 	}
-	return logGroup;
+	return nullptr;
 }
 
-void LogProvider::onLogChanged(const char *viewUri)
+contacts_filter_h LogProvider::getFilter(LogProvider::FilterType filterType)
 {
-	/*
-	 TODO
-	 */
-}
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_phone_log._uri, &filter);
 
-void LogProvider::addLog(contacts_record_h record)
-{
-	LogPtr log = LogPtr(new LogRecord(record));
-	LogPtr lastLog = m_AllLogs.back();
-
-	if (shouldGroupLogs(log, lastLog)) {
-		m_AllLogs.pop_back();
-		log = groupLogs(std::move(log), std::move(lastLog));
-	}
-	m_AllLogs.push_back(log);
-}
-
-void LogProvider::addFirstLog(contacts_record_h record)
-{
-	if (m_AllLogs.empty()) {
-		LogPtr log = LogPtr(new LogRecord(record));
-		m_AllLogs.push_back(log);
+	if (filterType != LogProvider::FilterMissed) {
+		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING_UNSEEN);
+		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING_SEEN);
 	} else {
-		addLog(record);
+		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING);
+		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_BLOCKED);
 	}
+
+	return filter;
 }
 
 contacts_list_h LogProvider::fetchLogList()
 {
 	contacts_list_h list = nullptr;
 	contacts_query_h query = nullptr;
-	contacts_filter_h filter = nullptr;
+	contacts_filter_h filter = getFilter(m_ListFilterType);
 
-	contacts_filter_create(_contacts_phone_log._uri, &filter);
 	contacts_query_create(_contacts_phone_log._uri, &query);
 	contacts_query_set_filter(query, filter);
 	contacts_query_set_sort(query, _contacts_phone_log.log_time, true);
@@ -158,7 +135,82 @@ contacts_list_h LogProvider::fetchLogList()
 
 	contacts_filter_destroy(filter);
 	contacts_query_destroy(query);
+
 	return list;
+}
+
+void LogProvider::onLogChanged(const char *viewUri)
+{
+	LogList newLogList;
+	LogGroupSet changedGroupLogs;
+
+	fillList(newLogList);
+
+	logIterator newIt = newLogList.begin();
+
+	deleteRemovedLogs(newIt, changedGroupLogs, newLogList);
+	addNewLogs(newIt, changedGroupLogs, newLogList);
+
+	for(auto &&it : changedGroupLogs) {
+		it->callLogChangeCallback();
+	}
+}
+
+void LogProvider::deleteRemovedLogs(logIterator &newIt, LogGroupSet &changedGroupLogs, LogList &newLogList)
+{
+	logIterator oldIt = m_Logs.begin();
+
+	while (newLogList.end() != newIt && m_Logs.end() != oldIt) {
+		if ((*newIt)->getId() != (*oldIt)->getId()) {
+			LogGroup *group = (*oldIt)->getLogGroup();
+			changedGroupLogs.insert(group);
+			group->removeLog(*oldIt);
+			oldIt = m_Logs.erase(oldIt);
+		} else {
+			newIt++;
+			oldIt++;
+		}
+	}
+
+	while (oldIt != m_Logs.end()) {
+		LogGroup *group = (*oldIt)->getLogGroup();
+		changedGroupLogs.insert(group);
+		group->removeLog(*oldIt);
+		oldIt = m_Logs.erase(oldIt);
+	}
+}
+
+void LogProvider::addNewLogs(logIterator &newIt, LogGroupSet &changedGroupLogs, LogList &newLogList)
+{
+	LogGroupList newLogGroups;
+
+	if (newIt != newLogList.end()) {
+		if (m_GroupLogs.empty()) {
+			m_Logs.push_back(*newIt);
+			LogGroup *group = new LogGroup(*newIt);
+			m_GroupLogs.push_back(group);
+			newLogGroups.push_back(group);
+			newIt++;
+		} else {
+			LogGroup *group = m_GroupLogs.back();
+			if (shouldGroupLogs(*newIt, group)) {
+				m_Logs.push_back(*newIt);
+				group->addLog(*newIt);
+				changedGroupLogs.insert(std::move(group));
+				newIt++;
+			}
+		}
+	}
+
+	while (newIt != newLogList.end()) {
+		m_Logs.push_back(*newIt);
+		newLogGroups.push_back(addLogGroup(m_GroupLogs, *newIt));
+		newIt++;
+	}
+
+	if (m_NewLogGroupCallback) {
+		m_NewLogGroupCallback(std::move(newLogGroups));
+	}
 }
 
 void LogProvider::onContactChanged(const char *viewUri)
@@ -168,21 +220,9 @@ void LogProvider::onContactChanged(const char *viewUri)
 
 	contacts_record_h record = nullptr;
 	CONTACTS_LIST_FOREACH(changes, record) {
-		int contactId = 0;
-		int changeType = -1;
-
-		contacts_record_get_int(record, _contacts_contact_updated_info.contact_id, &contactId);
-		contacts_record_get_int(record, _contacts_contact_updated_info.type, &changeType);
-
-		notifyLogWithChange(contactId, static_cast<contacts_changed_e>(changeType));
+		/*
+		 * TODO
+		 */
 	}
 	contacts_list_destroy(changes, true);
-}
-
-void LogProvider::notifyLogWithChange(int contactId, contacts_changed_e changeType)
-{
-	auto range = m_ChangeContactCallbacks.equal_range(contactId);
-	for (auto i = range.first; i != range.second; ++i) {
-		i->second();
-	}
 }

@@ -19,8 +19,10 @@
 #define LOGS_MODEL_LOG_TYPE_H
 
 #include <list>
+#include <set>
 #include <memory>
 #include <functional>
+#include <contacts.h>
 
 namespace Logs
 {
@@ -30,29 +32,40 @@ namespace Logs
 		class LogGroup;
 
 		/**
-		 * @brief Smart pointer to Log.
-		 */
-		typedef std::shared_ptr<Log> LogPtr;
-
-		/**
 		 * @brief List of logs.
 		 */
-		typedef std::list<LogPtr> LogList;
+		typedef std::list<Log *> LogList;
 
 		/**
-		 * @brief Smart pointer of LogGroup.
+		 * @brief Log iterator.
 		 */
-		typedef std::shared_ptr<LogGroup> LogGroupPtr;
+		typedef LogList::iterator logIterator;
 
 		/**
-		 * @brief Changed contact callback
+		 * @brief List of log groups.
 		 */
-		typedef std::function<void()> ContactChangeCallback;
+		typedef std::list<LogGroup *> LogGroupList;
+
+		/**
+		 * @brief sET of log groups.
+		 */
+		typedef std::set<LogGroup *> LogGroupSet;
 
 		/**
 		 * @brief Changed log callback
 		 */
 		typedef std::function<void()> LogChangeCallback;
+
+		/**
+		 * @brief Log remove callback
+		 */
+		typedef std::function<void()> LogRemoveCallback;
+
+		/**
+		 * @brief New log group callback
+		 * @param[in]    logGroup    Log group
+		 */
+		typedef std::function<void(LogGroupList groupList)> NewLogGroupCallback;
 	}
 }
 

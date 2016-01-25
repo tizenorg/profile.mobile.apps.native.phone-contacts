@@ -32,10 +32,20 @@ namespace Logs
 		class LogProvider
 		{
 		public:
+
+			/**
+			 * @brief Determines how to filter log list
+			 */
+			enum FilterType
+			{
+				FilterAll,
+				FilterMissed
+			};
+
 			/**
 			 * @brief Constructor
 			 */
-			LogProvider();
+			LogProvider(LogProvider::FilterType filterType);
 
 			/**
 			 * @brief Destructor
@@ -43,57 +53,43 @@ namespace Logs
 			~LogProvider();
 
 			/**
-			 * @brief Get log list
-			 * @return list of logs.
+			 * @brief Get log group list
+			 * @return list of logs groups.
 			 */
-			const LogList &getLogList() const;
+			LogGroupList getLogGroupList();
 
 			/**
-			 * @brief Add contact change callback
-			 * @remark Callback called when contact update or delete or insert
-			 * @param[in]    id          Contact ID or null to insert contact
-			 * @param[in]    callback    Change contact callback
+			 * @brief Set new log callback
+			 * @param[in]    callback    New Log callback
 			 */
-			void addContactChangeCallback(int id, ContactChangeCallback callback);
+			void setNewLogCallback(NewLogGroupCallback callback);
 
 			/**
-			 * @brief Remove contact change callback
-			 * @param[in]    id    Contact ID
+			 * @brief Unset new log callback
 			 */
-			void removeContactChangeCallback(int id);
-
-			/**
-			 * @brief Set log change callback
-			 * @remark It can be update or delete or insert of contact
-			 * @param[in]    callback    Change Log callback
-			 */
-			void setLogChangeCallback(LogChangeCallback callback);
-
-			/**
-			 * @brief Unset log change callback
-			 */
-			void unsetLogChangeCallback();
+			void unsetNewLogCallback();
 
 		private:
-			void fillList();
-			bool shouldGroupLogs(LogPtr log, LogPtr prevLog);
-			bool isTimeEqual(struct tm logTime, struct tm prevLogTime);
-			LogGroupPtr groupLogs(LogPtr log, LogPtr prevLog);
-			void addLog(contacts_record_h record);
-			void addFirstLog(contacts_record_h record);
+			void fillList(LogList &logList);
+			void fillGroupList(LogList &logList, LogGroupList &logGroupList);
+			bool shouldGroupLogs(Log *log, LogGroup *prevLogGroup);
+			LogGroup *addLogGroup(LogGroupList &logList, Log *record);
+
+			contacts_filter_h getFilter(LogProvider::FilterType filterType);
 			contacts_list_h fetchLogList();
 
 			void onLogChanged(const char *viewUri);
+			void deleteRemovedLogs(logIterator &newIt, LogGroupSet &changedGroupLogs, LogList &newLogList);
+			void addNewLogs(logIterator &newIt, LogGroupSet &changedGroupLogs, LogList &newLogList);
 			void onContactChanged(const char *viewUri);
 
-			void notifyLogWithChange(int contactId, contacts_changed_e changeType);
-
-			LogList m_AllLogs;
+			FilterType m_ListFilterType;
 			int m_DbVersion;
 
-			std::multimap<int, ContactChangeCallback> m_ChangeContactCallbacks;
+			LogGroupList m_GroupLogs;
+			LogList m_Logs;
 
-			LogChangeCallback m_LogCallback;
+			NewLogGroupCallback m_NewLogGroupCallback;
 		};
 	}
 }
