@@ -44,7 +44,8 @@ namespace Contacts
 			/**
 			 * @brief Represents item mode
 			 */
-			enum ItemMode {
+			enum ItemMode
+			{
 				DefaultMode,    /*< Usual mode */
 				PickMode        /*< Mode with ability to select item */
 			};

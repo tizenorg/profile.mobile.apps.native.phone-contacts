@@ -19,6 +19,7 @@
 #define CONTACTS_LIST_LIST_VIEW_H
 
 #include "Contacts/List/Model/PersonProvider.h"
+#include "Contacts/List/PersonItem.h"
 #include "Ui/View.h"
 #include "Utils/UniString.h"
 #include <map>
@@ -44,37 +45,84 @@ namespace Contacts
 		class EXPORT_API ListView : public Ui::View
 		{
 		public:
-			ListView();
+			/**
+			 * @brief Represents view mode
+			 */
+			enum ViewMode
+			{
+				DefaultMode,
+				MultipickMode,
+				ModeMax
+			};
+
+			/**
+			 * @brief Create new person list view
+			 * @param]in]   personFilter    Defines how to filter person list
+			 */
+			ListView(Model::PersonProvider::FilterType personFilter =
+					Model::PersonProvider::FilterNone);
 			virtual ~ListView() override;
 
+			void setMode(ViewMode mode);
+
 		private:
-			virtual Evas_Object *onCreate(Evas_Object *parent) override;
+			enum ListSections
+			{
+				/* SearchSection,
+				SelectAllSection, Todo: Use when it will be implemented */
+				MyProfileSection,
+				FavoritesSection,
+				MfcSection,
+				PersonSection,
+				SectionMax
+			};
+
 			Evas_Object *createIndex(Evas_Object *parent);
 
-			virtual void onPageAttached() override;
-			virtual void onCreated() override;
+			void createFloatingButton();
+			void deleteFloatingButton();
 
 			void fillList();
+			void fillSelectAll();
 			void fillMyProfile();
+			void fillFavorites();
+			void fillMfc();
+			void fillPersonList();
+
+			void deleteSelectAll();
+			void deleteMyProfile();
+			void deleteMfc();
+
+			void setDefaultMode();
+			void setMultiPickMode();
+
+			void setFavouriteItemsMode(PersonItem::ItemMode mode);
+			void setPersonItemsMode(PersonItem::ItemMode mode);
 
 			void insertMyProfileGroupItem();
-			Ui::GenlistGroupItem *getNextMyProfileGroupItem();
+			Ui::GenlistGroupItem *getNextGroupItem(ListSections currentSection);
 
 			void updateMyProfileItem(const char *view_uri);
 
 			Elm_Index_Item *insertIndexItem(const char *indexLetter,
 					Elm_Index_Item *nextItem = nullptr);
 
-			PersonGroupItem *insertGroupItem(Utils::UniString indexLetter,
+			PersonGroupItem *insertPersonGroupItem(Utils::UniString indexLetter,
 					PersonGroupItem *nextGroup = nullptr);
-			void deleteGroupItem(PersonGroupItem *group);
-			PersonGroupItem *getNextGroupItem(const Utils::UniString &indexLetter);
+			void deletePersonGroupItem(PersonGroupItem *group);
+			PersonGroupItem *getNextPersonGroupItem(const Utils::UniString &indexLetter);
 
 			PersonItem *createPersonItem(Model::PersonPtr person);
 			void insertPersonItem(PersonItem *item);
 			void updatePersonItem(PersonItem *item, Model::PersonPtr person);
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
+
+			void launchPersonDetail(PersonItem *item);
+
+			virtual Evas_Object *onCreate(Evas_Object *parent) override;
+			virtual void onPageAttached() override;
+			virtual void onCreated() override;
 
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
@@ -89,9 +137,14 @@ namespace Contacts
 			Evas_Object *m_Index;
 
 			GroupItem *m_MyProfileGroup;
-			std::map<Utils::UniString, PersonGroupItem *> m_Groups;
+			GroupItem *m_FavoritesGroup;
+			GroupItem *m_MfcGroup;
+			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
 
 			Model::PersonProvider m_Provider;
+
+			ViewMode m_ViewMode;
+			std::function<void(ListView&)> m_ModeSetters[ModeMax];
 		};
 	}
 }
