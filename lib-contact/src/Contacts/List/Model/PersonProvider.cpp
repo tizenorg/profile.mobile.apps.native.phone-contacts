@@ -176,7 +176,7 @@ void PersonProvider::notify(contacts_changed_e changeType, int contactId)
 	switch (changeType) {
 		case CONTACTS_CHANGE_INSERTED:
 			person.reset(new Person(getPersonRecord(contactId, m_ListFilterType)));
-			if (m_InsertCallback) {
+			if (m_InsertCallback && person) {
 				m_InsertCallback(std::move(person));
 			}
 			break;

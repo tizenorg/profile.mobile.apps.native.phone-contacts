@@ -44,9 +44,10 @@ namespace Contacts
 			/**
 			 * @brief Represents item mode
 			 */
-			enum ItemMode {
-				DefaultMode,    /*< Usual mode */
-				PickMode        /*< Mode with ability to select item */
+			enum Mode
+			{
+				ModeDefault,    /*< Usual mode */
+				ModePick        /*< Mode with ability to select item */
 			};
 
 			/**
@@ -54,13 +55,13 @@ namespace Contacts
 			 * @param[in]   person      Person object
 			 * @param[in]   mode        Item mode
 			 */
-			explicit PersonItem(Model::PersonPtr person, ItemMode mode = DefaultMode);
+			explicit PersonItem(Model::PersonPtr person, Mode mode = ModeDefault);
 
 			/**
 			 * @brief Set item mode
 			 * @param[in]   mode    Item mode
 			 */
-			void setMode(ItemMode mode);
+			void setMode(Mode mode);
 
 			/**
 			 * @remark Used in item pick mode
@@ -96,7 +97,7 @@ namespace Contacts
 
 			Model::PersonPtr m_Person;
 
-			ItemMode m_ItemMode;
+			Mode m_ItemMode;
 			bool m_Checked;
 
 			SelectedCallback m_OnSelected;

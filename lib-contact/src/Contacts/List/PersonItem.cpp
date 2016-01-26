@@ -22,11 +22,11 @@
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
-PersonItem::PersonItem(PersonPtr person, ItemMode mode)
+PersonItem::PersonItem(PersonPtr person, Mode mode)
 	: m_Person(std::move(person)), m_ItemMode(mode), m_Checked(false)
 { }
 
-void PersonItem::setMode(ItemMode mode)
+void PersonItem::setMode(Mode mode)
 {
 	m_ItemMode = mode;
 	elm_genlist_item_fields_update(getObjectItem(), PART_CHECK, ELM_GENLIST_ITEM_FIELD_CONTENT);
@@ -54,7 +54,7 @@ void PersonItem::setSelectedCallback(SelectedCallback callback)
 
 void PersonItem::onSelected()
 {
-	if (m_ItemMode == PickMode) {
+	if (m_ItemMode == ModePick) {
 		m_Checked = !m_Checked;
 		elm_check_state_set(getCheck(), m_Checked);
 	}
@@ -88,7 +88,7 @@ Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 				m_Person->getImagePath());
 		thumbnail->setSizeHint(true);
 		return thumbnail->getEvasObject();
-	} else if (m_ItemMode == PickMode && strcmp(part, PART_CHECK) == 0) {
+	} else if (m_ItemMode == ModePick && strcmp(part, PART_CHECK) == 0) {
 		Elm_Check *check = elm_check_add(parent);
 		elm_check_state_set(check, m_Checked);
 		return check;
