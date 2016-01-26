@@ -2,20 +2,21 @@
 
 usage()
 {
-    echo "Usage: `basename $0` [-h|--help] [-e|--emulator] | [-d|--device] [-2|--tizen2] | [-3|--tizen3] [-i|--init] [-t|--test]
+    echo "Usage: `basename $0` [-h|--help] [-e|--emulator] | [-d|--device] [--32] | [--64] [-i|--init] [-t|--test]
     -h, --help      Show this message.
-    -e, --emulator  Build for emulator (default).
-    -d, --device    Build for device.
-    -2, --tizen2    Build for Tizen 2.x (32-bit)
-    -3, --tizen3    Build for Tizen 3.0 (64-bit, default)
+    -e, --emulator  Build for emulator.
+    -d, --device    Build for device (default).
     -i, --init      Build online (without --noinit).
-    -t, --test      Build with tests."
+    -t, --test      Build with tests.
+
+        --32        Build 32-bit package (default).
+        --64        Build 64-bit package."
 }
 
-TARGET="e"
-TIZEN="3"
+TARGET="d"
+BIT="32"
 NOINIT="--noinit"
-OPTS=$(getopt -o "edith23" -l "emulator,device,tizen2,tizen3,init,test,help" -- "$@" 2> /dev/null)
+OPTS=$(getopt -o "edith" -l "emulator,device,32,64,init,test,help" -- "$@" 2> /dev/null)
 
 if [ $? -ne 0 ]
 then
@@ -32,11 +33,11 @@ do
         -d|--device)
         TARGET="d"
         ;;
-        -2|--tizen2)
-        TIZEN="2"
+        --32)
+        BIT="32"
         ;;
-        -3|--tizen3)
-        TIZEN="3"
+        --64)
+        BIT="64"
         ;;
         -i|--init)
         NOINIT=""
@@ -51,7 +52,7 @@ do
     esac
 done
 
-if [ $TIZEN = "2" ]
+if [ $BIT = "32" ]
 then
     if [ $TARGET = "e" ]
     then
