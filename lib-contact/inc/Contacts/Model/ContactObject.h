@@ -47,6 +47,11 @@ namespace Contacts
 			 */
 			ContactField *getFieldById(unsigned id) const;
 
+			/**
+			 * @return Object's record ID.
+			 */
+			int getRecordId() const;
+
 		protected:
 			const ContactObjectMetadata &getObjectMetadata() const;
 		};

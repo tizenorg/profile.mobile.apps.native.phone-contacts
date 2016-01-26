@@ -80,7 +80,7 @@ namespace Contacts
 			/**
 			 * @return Whether the field value was changed.
 			 */
-			virtual bool isChanged() const { return true; }
+			virtual bool isChanged() const { return false; }
 
 			/**
 			 * @return Whether the field determines that parent object is filled.

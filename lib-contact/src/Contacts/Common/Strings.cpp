@@ -24,7 +24,7 @@ using namespace Contacts::Model;
 namespace
 {
 	const char *fieldNames[] = {
-		/* [FieldRoot]         = */ nullptr,
+		/* [FieldFavorite]     = */ nullptr,
 		/* [FieldImage]        = */ "IDS_PB_BODY_PHOTO",
 		/* [FieldName]         = */ "IDS_PB_BODY_NAME",
 		/* [FieldPhoneticName] = */ "IDS_PB_BODY_PHONETIC_NAME_ABB",
@@ -41,7 +41,7 @@ namespace
 	};
 
 	const char *childFieldNames[] = {
-		/* [FieldRoot]         = */ nullptr,
+		/* [FieldFavorite]     = */ nullptr,
 		/* [FieldImage]        = */ "IDS_PB_BODY_IMAGE",
 		/* [FieldName]         = */ "IDS_PB_BODY_NAME",
 		/* [FieldPhoneticName] = */ "IDS_PB_BODY_PHONETIC_NAME_ABB",

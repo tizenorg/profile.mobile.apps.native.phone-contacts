@@ -56,6 +56,11 @@ namespace Contacts
 			 */
 			int save();
 
+			/**
+			 * @brief Remove contact from the database.
+			 */
+			int remove();
+
 			Contact &operator=(const Contact &that) = delete;
 
 		private:

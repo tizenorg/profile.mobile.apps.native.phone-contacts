@@ -65,3 +65,13 @@ int Contact::save()
 
 	return err;
 }
+
+int Contact::remove()
+{
+	int err = CONTACTS_ERROR_NONE;
+	if (!m_IsNew) {
+		contacts_db_delete_record(getObjectMetadata().uri, getRecordId());
+	}
+
+	return err;
+}

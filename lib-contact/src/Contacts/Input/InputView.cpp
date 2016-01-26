@@ -37,6 +37,26 @@ using namespace Contacts::Input;
 using namespace Contacts::Model;
 using namespace std::placeholders;
 
+namespace
+{
+	bool isFieldVisible[] = {
+		/* [FieldFavorite]     = */ false,
+		/* [FieldImage]        = */ true,
+		/* [FieldName]         = */ true,
+		/* [FieldPhoneticName] = */ true,
+		/* [FieldCompany]      = */ true,
+		/* [FieldNumber]       = */ true,
+		/* [FieldEmail]        = */ true,
+		/* [FieldAddress]      = */ true,
+		/* [FieldUrl]          = */ true,
+		/* [FieldMessenger]    = */ true,
+		/* [FieldEvent]        = */ true,
+		/* [FieldNote]         = */ true,
+		/* [FieldNickname]     = */ true,
+		/* [FieldRelationship] = */ true
+	};
+}
+
 InputView::InputView(int recordId, Type type)
 	: m_RecordId(recordId), m_Contact(ContactObjectType(type)),
 	  m_DoneButton(nullptr), m_Genlist(nullptr),
@@ -55,6 +75,12 @@ Evas_Object *InputView::onCreate(Evas_Object *parent)
 	m_AddFieldsItem = new AddFieldsItem();
 	m_AddFieldsItem->setAddFieldCallback(std::bind(&InputView::onAddField, this, _1));
 	m_Genlist->insert(m_AddFieldsItem);
+
+	for (unsigned id = FieldBegin; id < FieldEnd; ++id) {
+		if (!isFieldVisible[id]) {
+			m_AddFieldsItem->setAddFieldState(ContactFieldId(id), false);
+		}
+	}
 
 	return m_Genlist->getEvasObject();
 }
@@ -75,6 +101,11 @@ void InputView::onCreated()
 	}
 
 	for (auto &&field : m_Contact) {
+		ContactFieldId fieldId = ContactFieldId(field.getId());
+		if (!isFieldVisible[fieldId]) {
+			continue;
+		}
+
 		switch (field.getType()) {
 			case TypeArray:
 				for (auto &&element : field.cast<ContactArray>()) {
@@ -82,9 +113,9 @@ void InputView::onCreated()
 				}
 				break;
 			case TypeObject:
-				if (!m_Items[field.getId()] && !field.isEmpty()) {
-					m_AddFieldsItem->setAddFieldState(ContactFieldId(field.getId()), false);
+				if (!m_Items[fieldId] && !field.isEmpty()) {
 					addFieldItem(field.cast<ContactObject>());
+					m_AddFieldsItem->setAddFieldState(fieldId, false);
 				}
 				break;
 			default:

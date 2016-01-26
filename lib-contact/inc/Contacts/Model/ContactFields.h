@@ -27,9 +27,9 @@ namespace Contacts
 		 */
 		enum ContactFieldId
 		{
-			FieldRoot, /**< Root object field ID (i.e Contact or My Profile) */
 			FieldBegin,
-			FieldImage = FieldBegin,
+			FieldFavorite = FieldBegin,
+			FieldImage,
 			FieldName,
 			FieldPhoneticName,
 			FieldCompany,

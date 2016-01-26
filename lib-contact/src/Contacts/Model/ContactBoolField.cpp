@@ -15,37 +15,18 @@
  *
  */
 
-#include "Contacts/Model/ContactObject.h"
-#include "Contacts/Model/ContactFieldMetadata.h"
+#include "Contacts/Model/ContactBoolField.h"
 
 using namespace Contacts::Model;
 
-void ContactObject::initialize()
+bool ContactBoolField::getValue() const
 {
-	for (auto &&field : getObjectMetadata().fields) {
-		addField(getRecord(), field);
-	}
+	bool value = false;
+	contacts_record_get_bool(getRecord(), getPropertyId(), &value);
+	return value;
 }
 
-ContactField *ContactObject::getFieldById(unsigned id) const
+void ContactBoolField::setValue(bool value)
 {
-	for (auto &&field : *this) {
-		if (field.getId() == id) {
-			return &field;
-		}
-	}
-
-	return nullptr;
-}
-
-int ContactObject::getRecordId() const
-{
-	int id = 0;
-	contacts_record_get_int(getRecord(), getObjectMetadata().idPropId, &id);
-	return id;
-}
-
-const ContactObjectMetadata &ContactObject::getObjectMetadata() const
-{
-	return *(const ContactObjectMetadata *) ContactField::getMetadata().typeMetadata;
+	contacts_record_set_bool(getRecord(), getPropertyId(), value);
 }
