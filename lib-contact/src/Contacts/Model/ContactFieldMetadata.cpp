@@ -31,6 +31,9 @@ using namespace Utils;
 namespace
 {
 
+/******************************** Bool type ***********************************/
+const ContactTypeMetadata contactBool = { TypeBool, 0 };
+
 /******************************** Text types **********************************/
 const ContactTypeMetadata contactRegularText = { TypeText, TextTypeRegular };
 const ContactTypeMetadata contactNumberText = { TypeText, TextTypeNumber };
@@ -46,7 +49,8 @@ const ContactFieldMetadata contactCompanyFields[] = {
 	{ CompanyFieldJobTitle, _contacts_company.job_title, false, &contactRegularText }
 };
 const ContactObjectMetadata contactCompany = {
-	TypeObject, ObjectTypeCompany, _contacts_company._uri, makeRange(contactCompanyFields)
+	TypeObject, ObjectTypeCompany,
+	_contacts_company._uri, _contacts_company.id, makeRange(contactCompanyFields)
 };
 
 /******************************* Name Object **********************************/
@@ -58,7 +62,8 @@ const ContactFieldMetadata contactNameFields[] = {
 	{ NameFieldSuffix, _contacts_name.suffix,   false, &contactRegularText }
 };
 const ContactObjectMetadata contactName = {
-	TypeObject, ObjectTypeName, _contacts_name._uri, makeRange(contactNameFields)
+	TypeObject, ObjectTypeName,
+	_contacts_name._uri, _contacts_name.id, makeRange(contactNameFields)
 };
 
 /*************************** Phonetic Name Object *****************************/
@@ -68,7 +73,8 @@ const ContactFieldMetadata contactPhNameFields[] = {
 	{ PhoneticNameFieldLast,   _contacts_name.phonetic_last,   false, &contactRegularText }
 };
 const ContactObjectMetadata contactPhName = {
-	TypeObject, ObjectTypePhoneticName, _contacts_name._uri, makeRange(contactPhNameFields)
+	TypeObject, ObjectTypePhoneticName,
+	_contacts_name._uri, _contacts_name.id, makeRange(contactPhNameFields)
 };
 
 /******************************** Note Object *********************************/
@@ -76,7 +82,8 @@ const ContactFieldMetadata contactNoteFields[] = {
 	{ FieldNote, _contacts_note.note, false, &contactRegularText },
 };
 const ContactObjectMetadata contactNote = {
-	TypeObject, ObjectTypeNote, _contacts_note._uri, makeRange(contactNoteFields)
+	TypeObject, ObjectTypeNote,
+	_contacts_note._uri, _contacts_note.id, makeRange(contactNoteFields)
 };
 
 /***************************** Nickname Object ********************************/
@@ -84,7 +91,8 @@ const ContactFieldMetadata contactNickFields[] = {
 	{ FieldNickname, _contacts_nickname.name, true, &contactRegularText },
 };
 const ContactObjectMetadata contactNick = {
-	TypeObject, ObjectTypeNickname, _contacts_nickname._uri, makeRange(contactNickFields)
+	TypeObject, ObjectTypeNickname,
+	_contacts_nickname._uri, _contacts_nickname.id, makeRange(contactNickFields)
 };
 
 /******************************* Image Object *********************************/
@@ -100,7 +108,8 @@ const ContactFieldMetadata contactImageFields[] = {
 	{ FieldImage, _contacts_image.path, false, &contactRegularText }
 };
 const ContactTypedObjectMetadata contactImage = {
-	TypeObject, ObjectTypeImage, _contacts_image._uri, makeRange(contactImageFields),
+	TypeObject, ObjectTypeImage,
+	_contacts_image._uri, _contacts_image.id, makeRange(contactImageFields),
 	{ FieldImage, _contacts_image.type,  false, UPCAST(&contactImageType) },
 	{ FieldImage, _contacts_image.label, false, &contactRegularText }
 };
@@ -125,7 +134,8 @@ const ContactFieldMetadata contactNumberFields[] = {
 	{ FieldNumber, _contacts_number.number, true, &contactNumberText }
 };
 const ContactTypedObjectMetadata contactNumber = {
-	TypeObject, ObjectTypeNumber, _contacts_number._uri, makeRange(contactNumberFields),
+	TypeObject, ObjectTypeNumber,
+	_contacts_number._uri, _contacts_number.id, makeRange(contactNumberFields),
 	{ FieldNumber, _contacts_number.type,  false, UPCAST(&contactNumberType) },
 	{ FieldNumber, _contacts_number.label, false, &contactRegularText }
 };
@@ -145,7 +155,8 @@ const ContactFieldMetadata contactEmailFields[] = {
 	{ FieldEmail, _contacts_email.email, true, &contactEmailText }
 };
 const ContactTypedObjectMetadata contactEmail = {
-	TypeObject, ObjectTypeEmail, _contacts_email._uri, makeRange(contactEmailFields),
+	TypeObject, ObjectTypeEmail,
+	_contacts_email._uri, _contacts_email.id, makeRange(contactEmailFields),
 	{ FieldEmail, _contacts_email.type,  false, UPCAST(&contactEmailType) },
 	{ FieldEmail, _contacts_email.label, false, &contactRegularText }
 };
@@ -165,7 +176,8 @@ const ContactFieldMetadata contactAddrFields[] = {
 	{ FieldAddress, _contacts_address.street, false, &contactRegularText }
 };
 const ContactTypedObjectMetadata contactAddr = {
-	TypeObject, ObjectTypeAddress, _contacts_address._uri, makeRange(contactAddrFields),
+	TypeObject, ObjectTypeAddress,
+	_contacts_address._uri, _contacts_address.id, makeRange(contactAddrFields),
 	{ FieldAddress, _contacts_address.type,  false, UPCAST(&contactAddrType) },
 	{ FieldAddress, _contacts_address.label, false, &contactRegularText },
 };
@@ -185,7 +197,8 @@ const ContactFieldMetadata contactEventFields[] = {
 	{ FieldEvent, _contacts_event.date, false, &contactDate }
 };
 const ContactTypedObjectMetadata contactEvent = {
-	TypeObject, ObjectTypeEvent, _contacts_event._uri, makeRange(contactEventFields),
+	TypeObject, ObjectTypeEvent,
+	_contacts_event._uri, _contacts_event.id, makeRange(contactEventFields),
 	{ FieldEvent, _contacts_event.type,  false, UPCAST(&contactEventType) },
 	{ FieldEvent, _contacts_event.label, false, &contactRegularText }
 };
@@ -216,7 +229,8 @@ const ContactFieldMetadata contactRelFields[] = {
 	{ FieldRelationship, _contacts_relationship.name, false, &contactRegularText }
 };
 const ContactTypedObjectMetadata contactRel = {
-	TypeObject, ObjectTypeRelationship, _contacts_relationship._uri, makeRange(contactRelFields),
+	TypeObject, ObjectTypeRelationship,
+	_contacts_relationship._uri, _contacts_relationship.id, makeRange(contactRelFields),
 	{ FieldRelationship, _contacts_relationship.type,  false, UPCAST(&contactRelType) },
 	{ FieldRelationship, _contacts_relationship.label, false, &contactRegularText }
 };
@@ -236,7 +250,8 @@ const ContactFieldMetadata contactUrlFields[] = {
 	{ FieldUrl, _contacts_url.url, false, &contactUrlText }
 };
 const ContactTypedObjectMetadata contactUrl = {
-	TypeObject, ObjectTypeUrl, _contacts_url._uri, makeRange(contactUrlFields),
+	TypeObject, ObjectTypeUrl,
+	_contacts_url._uri, _contacts_url.id, makeRange(contactUrlFields),
 	{ FieldUrl, _contacts_url.type, false, UPCAST(&contactUrlType) },
 	{ FieldUrl, _contacts_url.type, false, &contactRegularText }
 };
@@ -260,7 +275,8 @@ const ContactFieldMetadata contactMsgFields[] = {
 	{ FieldMessenger, _contacts_messenger.im_id, false, &contactRegularText }
 };
 const ContactTypedObjectMetadata contactMsg = {
-	TypeObject, ObjectTypeMessenger, _contacts_messenger._uri, makeRange(contactMsgFields),
+	TypeObject, ObjectTypeMessenger,
+	_contacts_messenger._uri, _contacts_messenger.id, makeRange(contactMsgFields),
 	{ FieldMessenger, _contacts_messenger.type,  false, UPCAST(&contactMsgType) },
 	{ FieldMessenger, _contacts_messenger.label, false, &contactRegularText }
 };
@@ -297,6 +313,7 @@ const ContactArrayMetadata contactMsgs = {
 
 /****************************** Contact Object ********************************/
 const ContactFieldMetadata contactFields[] = {
+	{ FieldFavorite,     _contacts_contact.is_favorite,  false, UPCAST(&contactBool) },
 	{ FieldImage,        _contacts_contact.image,        false, UPCAST(&contactImage) },
 	{ FieldName,         _contacts_contact.name,         true,  UPCAST(&contactName) },
 	{ FieldPhoneticName, _contacts_contact.name,         false, UPCAST(&contactPhName) },
@@ -312,11 +329,12 @@ const ContactFieldMetadata contactFields[] = {
 	{ FieldRelationship, _contacts_contact.relationship, false, UPCAST(&contactRels) }
 };
 const ContactObjectMetadata contactObject = {
-	TypeObject, ObjectTypeContact, _contacts_contact._uri, makeRange(contactFields)
+	TypeObject, ObjectTypeContact,
+	_contacts_contact._uri, _contacts_contact.id, makeRange(contactFields)
 };
-const ContactFieldMetadata contact = { FieldRoot, 0, true, UPCAST(&contactObject) };
+const ContactFieldMetadata contact = { 0, 0, true, UPCAST(&contactObject) };
 
-/****************************** My Profile Object ********************************/
+/****************************** My Profile Object *****************************/
 const ContactFieldMetadata myProfileFields[] = {
 	{ FieldImage,        _contacts_my_profile.image,        false, UPCAST(&contactImage) },
 	{ FieldName,         _contacts_my_profile.name,         true,  UPCAST(&contactName) },
@@ -333,9 +351,10 @@ const ContactFieldMetadata myProfileFields[] = {
 	{ FieldRelationship, _contacts_my_profile.relationship, false, UPCAST(&contactRels) }
 };
 const ContactObjectMetadata myProfileObject = {
-	TypeObject, ObjectTypeMyProfile, _contacts_my_profile._uri, makeRange(myProfileFields)
+	TypeObject, ObjectTypeMyProfile,
+	_contacts_my_profile._uri, _contacts_my_profile.id, makeRange(myProfileFields)
 };
-const ContactFieldMetadata myProfile = { FieldRoot, 0, true, UPCAST(&myProfileObject) };
+const ContactFieldMetadata myProfile = { 0, 0, true, UPCAST(&myProfileObject) };
 
 } /* Anonymous namespace */
 

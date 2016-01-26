@@ -17,6 +17,7 @@
 
 #include "Contacts/Model/ContactField.h"
 #include "Contacts/Model/ContactArray.h"
+#include "Contacts/Model/ContactBoolField.h"
 #include "Contacts/Model/ContactDateField.h"
 #include "Contacts/Model/ContactEnumField.h"
 #include "Contacts/Model/ContactTypedObject.h"
@@ -49,6 +50,7 @@ const FieldType &ContactField::cast() const
 }
 
 template ContactArray &ContactField::cast();
+template ContactBoolField &ContactField::cast();
 template ContactDateField &ContactField::cast();
 template ContactEnumField &ContactField::cast();
 template ContactTextField &ContactField::cast();
@@ -57,6 +59,7 @@ template ContactTypedObject &ContactField::cast();
 template ContactCompoundObject &ContactField::cast();
 
 template const ContactArray &ContactField::cast() const;
+template const ContactBoolField &ContactField::cast() const;
 template const ContactDateField &ContactField::cast() const;
 template const ContactEnumField &ContactField::cast() const;
 template const ContactTextField &ContactField::cast() const;

@@ -58,8 +58,9 @@ namespace Contacts
 		 */
 		struct ContactObjectMetadata
 		{
-			ContactTypeMetadata base;           /**< C-style base to allow list initialization without constructor */
-			const char *uri;                    /**< Contacts API view URI which represent the object */
+			ContactTypeMetadata base; /**< C-style base to allow list initialization without constructor */
+			const char *uri;          /**< Contacts API view URI which represent the object */
+			unsigned idPropId;        /**< ID of property containing record ID */
 			Utils::Range<const ContactFieldMetadata *> fields; /**< Fields that belong to the object */
 		};
 
