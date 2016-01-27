@@ -18,7 +18,6 @@
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/GroupItem.h"
 #include "Contacts/List/MyProfileItem.h"
-#include "Contacts/List/PersonItem.h"
 #include "Contacts/List/PersonGroupItem.h"
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Settings/MainView.h"
@@ -28,16 +27,23 @@
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
 #include "Utils/Callback.h"
-#include "Utils/Logger.h"
+
+#include <app_i18n.h>
+#include <functional>
+
+#define TITLE_SIZE 32
 
 using namespace Contacts;
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 using namespace Utils;
 
-ListView::ListView()
+ListView::ListView(PersonProvider::FilterType personFilter)
 	: m_Genlist(nullptr), m_Index(nullptr),
-	  m_Provider(PersonProvider(PersonProvider::FilterNone))
+	  m_Sections{ nullptr },
+	  m_Provider(PersonProvider(personFilter)),
+	  m_ViewMode(ModeDefault),
+	  m_PersonCount(0), m_CheckedCount(0)
 {
 }
 
@@ -46,6 +52,29 @@ ListView::~ListView()
 	m_Provider.unsetInsertCallback();
 	contacts_db_remove_changed_cb(_contacts_my_profile._uri,
 			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
+}
+
+void ListView::setMode(Mode mode)
+{
+	if (m_ViewMode != mode) {
+		m_ViewMode = mode;
+
+		updateTitle();
+
+		for (size_t i = SectionFirst; i < SectionMax; ++i) {
+			if (getSectionVisibility(mode, static_cast<SectionId>(i))) {
+				addSection(static_cast<SectionId>(i));
+			} else {
+				removeSection(static_cast<SectionId>(i));
+			}
+		}
+
+		if (mode == ModeDefault) {
+			createNewContactButton();
+		} else {
+			deleteNewContactButton();
+		}
+	}
 }
 
 Evas_Object *ListView::onCreate(Evas_Object *parent)
@@ -58,6 +87,231 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	elm_object_part_content_set(layout, "elm.swallow.fastscroll", createIndex(layout));
 
 	return layout;
+}
+
+void ListView::onPageAttached()
+{
+	updateTitle();
+	createNewContactButton();
+}
+
+void ListView::onCreated()
+{
+	fillList();
+
+	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, std::placeholders::_1));
+	contacts_db_add_changed_cb(_contacts_my_profile._uri,
+			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
+}
+
+void ListView::onMenuPressed()
+{
+	Ui::Menu *menu = new Ui::Menu();
+	menu->create(getEvasObject());
+
+	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
+		ListView *deleteView = new ListView();
+		getNavigator()->navigateTo(deleteView);
+		deleteView->setMode(ModeMultipick);
+	});
+
+	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
+		getNavigator()->navigateTo(new Settings::MainView());
+	});
+	menu->show();
+}
+
+void ListView::fillList()
+{
+	for (size_t i = SectionMyProfile; i < SectionMax; ++i) {
+		addSection(static_cast<SectionId>(i));
+	}
+}
+
+void ListView::fillSearchItem()
+{
+	//Todo
+}
+
+void ListView::fillSelectAllItem()
+{
+	//Todo
+}
+
+void ListView::fillMyProfile()
+{
+	if (!m_Sections[SectionMyProfile]) {
+		insertMyProfileGroupItem();
+	}
+	updateMyProfileItem(nullptr);
+}
+
+void ListView::fillFavorites()
+{
+	if (!m_Sections[SectionFavorites]) {
+		//Todo Create here Favorite group
+	} else {
+		setFavouriteItemsMode(getItemMode(m_ViewMode));
+	}
+}
+
+void ListView::fillMfc()
+{
+	//Todo
+}
+
+void ListView::fillPersonList()
+{
+	if (m_PersonGroups.empty()) {
+		PersonList list = m_Provider.getPersonList();
+		PersonGroupItem *group = nullptr;
+
+		for (auto &&person : list) {
+			const UniString &nextLetter = person->getIndexLetter();
+
+			if (!group || group->getTitle() != nextLetter) {
+				group = insertPersonGroupItem(nextLetter);
+			}
+
+			m_Genlist->insert(createPersonItem(std::move(person)), group);
+
+			++m_PersonCount;
+		}
+	} else {
+		setPersonItemsMode(getItemMode(m_ViewMode));
+	}
+}
+
+void ListView::setFavouriteItemsMode(PersonItem::Mode mode)
+{
+	if (m_Sections[SectionFavorites]) {
+		for (auto &&favoriteItem : *m_Sections[SectionFavorites]) {
+			static_cast<PersonItem*>(favoriteItem)->setMode(mode);
+		}
+	}
+}
+
+void ListView::setPersonItemsMode(PersonItem::Mode mode)
+{
+	for (auto &&group : m_PersonGroups) {
+		for (auto &&personItem : *group.second) {
+			static_cast<PersonItem*>(personItem)->setMode(mode);
+		}
+	}
+}
+
+void ListView::addSection(SectionId sectionId)
+{
+	switch (sectionId) {
+		case SectionSearch:    fillSearchItem();    break;
+		case SectionSelectAll: fillSelectAllItem(); break;
+		case SectionMyProfile: fillMyProfile();     break;
+		case SectionFavorites: fillFavorites();     break;
+		case SectionMfc:       fillMfc();           break;
+		case SectionPerson:    fillPersonList();    break;
+		default: break;
+	}
+}
+
+void ListView::removeSection(SectionId sectionId)
+{
+	delete m_Sections[sectionId];
+	m_Sections[sectionId] = nullptr;
+}
+
+Ui::GenlistGroupItem *ListView::getNextSectionItem(SectionId currentSection)
+{
+	for (size_t nextSection = currentSection + 1; nextSection < SectionMax; ++nextSection) {
+		if (m_Sections[nextSection]) {
+			return m_Sections[nextSection];
+		}
+	}
+
+	return nullptr;
+}
+
+bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
+{
+	static bool sectionVisibility[ListView::ModeMax][ListView::SectionMax] = {
+		/* ModeDefault   = */ {
+			/* SectionSearch    = */ true,
+			/* SectionSelectAll = */ false,
+			/* SectionMyProfile = */ true,
+			/* SectionFavorites = */ true,
+			/* SectionMfc       = */ true,
+			/* SectionPerson    = */ true },
+		/* ModeMultipick = */ {
+			/* SectionSearch    = */ true,
+			/* SectionSelectAll = */ true,
+			/* SectionMyProfile = */ false,
+			/* SectionFavorites = */ true,
+			/* SectionMfc       = */ false,
+			/* SectionPerson    = */ true }
+	};
+
+	return sectionVisibility[mode][sectionId];
+}
+
+PersonItem::Mode ListView::getItemMode(Mode viewMode)
+{
+	if (viewMode == ModeMultipick) {
+		return PersonItem::ModePick;
+	} else {
+		return PersonItem::ModeDefault;
+	}
+}
+
+void ListView::updateTitle()
+{
+	switch (m_ViewMode) {
+		case ModeDefault: getPage()->setTitle("IDS_PB_TAB_CONTACTS"); break;
+		case ModeMultipick: {
+			char title[TITLE_SIZE];
+			snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_CheckedCount);
+
+			getPage()->setTitle(title);
+			break;
+		}
+		default: break;
+	}
+}
+
+void ListView::createNewContactButton()
+{
+	Evas_Object *button = elm_button_add(getEvasObject());
+	elm_object_style_set(button, "bottom");
+	elm_object_translatable_text_set(button, "IDS_PB_OPT_CREATE");
+	evas_object_smart_callback_add(button, "clicked",
+			(Evas_Smart_Cb) makeCallback(&ListView::onCreatePressed), this);
+
+	getPage()->setContent("toolbar", button);
+}
+
+void ListView::deleteNewContactButton()
+{
+	//Todo
+}
+
+void ListView::insertMyProfileGroupItem()
+{
+	auto group = new GroupItem("IDS_PB_HEADER_ME");
+	m_Genlist->insert(group, nullptr, getNextSectionItem(SectionMyProfile));
+	elm_genlist_item_select_mode_set(group->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+
+	m_Sections[SectionMyProfile] = group;
+}
+
+void ListView::updateMyProfileItem(const char *view_uri)
+{
+	elm_genlist_item_subitems_clear(m_Sections[SectionMyProfile]->getObjectItem());
+
+	MyProfileItem *item = new MyProfileItem(MyProfilePtr(new MyProfile()));
+	m_Genlist->insert(item, m_Sections[SectionMyProfile]);
+
+	item->setSelectedCallback([this, item]() {
+		int id = item->getMyProfile().getId();
+		getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
+	});
 }
 
 Evas_Object *ListView::createIndex(Evas_Object *parent)
@@ -74,79 +328,6 @@ Evas_Object *ListView::createIndex(Evas_Object *parent)
 	return m_Index;
 }
 
-void ListView::onPageAttached()
-{
-	Evas_Object *button = elm_button_add(getEvasObject());
-	elm_object_style_set(button, "bottom");
-	elm_object_translatable_text_set(button, "IDS_PB_OPT_CREATE");
-	evas_object_smart_callback_add(button, "clicked",
-			(Evas_Smart_Cb) makeCallback(&ListView::onCreatePressed), this);
-
-	getPage()->setTitle("IDS_PB_TAB_CONTACTS");
-	getPage()->setContent("toolbar", button);
-}
-
-void ListView::onCreated()
-{
-	fillList();
-
-	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, std::placeholders::_1));
-	contacts_db_add_changed_cb(_contacts_my_profile._uri,
-			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
-}
-
-void ListView::fillList()
-{
-	fillMyProfile();
-
-	PersonList list = m_Provider.getPersonList();
-	PersonGroupItem *group = nullptr;
-
-	for (auto &&person : list) {
-		const UniString &nextLetter = person->getIndexLetter();
-
-		if (!group || group->getTitle() != nextLetter) {
-			group = insertGroupItem(nextLetter);
-		}
-
-		m_Genlist->insert(createPersonItem(std::move(person)), group);
-	}
-}
-
-void ListView::fillMyProfile()
-{
-	if (!m_MyProfileGroup) {
-		insertMyProfileGroupItem();
-	}
-	updateMyProfileItem(nullptr);
-}
-
-void ListView::insertMyProfileGroupItem()
-{
-	m_MyProfileGroup = new GroupItem("IDS_PB_HEADER_ME");
-	m_Genlist->insert(m_MyProfileGroup, nullptr, getNextMyProfileGroupItem());
-	elm_genlist_item_select_mode_set(m_MyProfileGroup->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
-}
-
-Ui::GenlistGroupItem *ListView::getNextMyProfileGroupItem()
-{
-	//Todo: Here will be search of next group item for My profile group item
-	return nullptr;
-}
-
-void ListView::updateMyProfileItem(const char *view_uri)
-{
-	elm_genlist_item_subitems_clear(m_MyProfileGroup->getObjectItem());
-
-	MyProfileItem *item = new MyProfileItem(MyProfilePtr(new MyProfile()));
-	m_Genlist->insert(item, m_MyProfileGroup);
-
-	item->setSelectedCallback([this, item]() {
-		int id = item->getMyProfile().getId();
-		getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
-	});
-}
-
 Elm_Object_Item *ListView::insertIndexItem(const char *indexLetter, Elm_Object_Item *nextItem)
 {
 	Elm_Object_Item *indexItem = nullptr;
@@ -161,7 +342,7 @@ Elm_Object_Item *ListView::insertIndexItem(const char *indexLetter, Elm_Object_I
 	return indexItem;
 }
 
-PersonGroupItem *ListView::insertGroupItem(UniString indexLetter, PersonGroupItem *nextGroup)
+PersonGroupItem *ListView::insertPersonGroupItem(UniString indexLetter, PersonGroupItem *nextGroup)
 {
 	Elm_Object_Item *indexItem = insertIndexItem(indexLetter.getUtf8Str().c_str(),
 			nextGroup ? nextGroup->getIndexItem() : nullptr);
@@ -171,24 +352,26 @@ PersonGroupItem *ListView::insertGroupItem(UniString indexLetter, PersonGroupIte
 	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 
 	elm_object_item_data_set(indexItem, item->getObjectItem());
-	m_Groups.insert({ item->getTitle(), item });
+	m_PersonGroups.insert({ item->getTitle(), item });
+	m_Sections[SectionPerson] = m_PersonGroups.begin()->second;
 
 	return item;
 }
 
-void ListView::deleteGroupItem(PersonGroupItem *group)
+void ListView::deletePersonGroupItem(PersonGroupItem *group)
 {
 	elm_object_item_del(group->getIndexItem());
 	elm_index_level_go(m_Index, 0);
 
-	m_Groups.erase(group->getTitle());
+	m_PersonGroups.erase(group->getTitle());
+	m_Sections[SectionPerson] = !m_PersonGroups.empty() ? m_PersonGroups.begin()->second : nullptr;
 	delete group;
 }
 
-PersonGroupItem *ListView::getNextGroupItem(const Utils::UniString &indexLetter)
+PersonGroupItem *ListView::getNextPersonGroupItem(const Utils::UniString &indexLetter)
 {
-	auto it = m_Groups.lower_bound(indexLetter);
-	if (it != m_Groups.end()) {
+	auto it = m_PersonGroups.lower_bound(indexLetter);
+	if (it != m_PersonGroups.end()) {
 		return it->second;
 	}
 
@@ -199,16 +382,17 @@ PersonItem *ListView::createPersonItem(PersonPtr person)
 {
 	using namespace std::placeholders;
 
-	PersonItem *item = new PersonItem(std::move(person));
+	PersonItem *item = new PersonItem(std::move(person), getItemMode(m_ViewMode));
 
 	m_Provider.setChangeCallback(item->getPerson(),
 			std::bind(&ListView::onPersonChanged, this, _1, _2, item));
 
 	item->setSelectedCallback([this, item]() {
-		int id = 0;
-		contacts_record_get_int(item->getPerson().getRecord(), _contacts_person.display_contact_id, &id);
-
-		getNavigator()->navigateTo(new Input::InputView(id));
+		switch (m_ViewMode) {
+			case ModeDefault: launchPersonDetail(item); break;
+			case ModeMultipick: onItemChecked(item); break;
+			default: break;
+		}
 	});
 
 	return item;
@@ -220,16 +404,18 @@ void ListView::insertPersonItem(PersonItem *item)
 	PersonItem *nextItem = nullptr;
 	const UniString &indexLetter = item->getPerson().getIndexLetter();
 
-	auto it = m_Groups.find(indexLetter);
-	if (it != m_Groups.end()) {
+	auto it = m_PersonGroups.find(indexLetter);
+	if (it != m_PersonGroups.end()) {
 		group = it->second;
 		nextItem = getNextPersonItem(it->second, item->getPerson());
 	} else {
-		PersonGroupItem *nextGroup = getNextGroupItem(indexLetter);
-		group = insertGroupItem(indexLetter, nextGroup);
+		PersonGroupItem *nextGroup = getNextPersonGroupItem(indexLetter);
+		group = insertPersonGroupItem(indexLetter, nextGroup);
 	}
 
 	m_Genlist->insert(item, group, nextItem);
+
+	++m_PersonCount;
 }
 
 void ListView::updatePersonItem(PersonItem *item, Model::PersonPtr person)
@@ -243,7 +429,7 @@ void ListView::updatePersonItem(PersonItem *item, Model::PersonPtr person)
 		insertPersonItem(item);
 
 		if (oldGroup->empty()) {
-			deleteGroupItem(oldGroup);
+			deletePersonGroupItem(oldGroup);
 		}
 	} else {
 		const char *oldImagePath = item->getPerson().getImagePath();
@@ -266,8 +452,10 @@ void ListView::deletePersonItem(PersonItem *item)
 
 	m_Provider.unsetChangeCallback(item->getPerson());
 	delete item;
+	--m_PersonCount;
+
 	if (oldGroup->empty()) {
-		deleteGroupItem(oldGroup);
+		deletePersonGroupItem(oldGroup);
 	}
 }
 
@@ -281,6 +469,14 @@ PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &pe
 	}
 
 	return nullptr;
+}
+
+void ListView::launchPersonDetail(PersonItem *item)
+{
+	int id = 0;
+	contacts_record_get_int(item->getPerson().getRecord(), _contacts_person.display_contact_id, &id);
+
+	getNavigator()->navigateTo(new Input::InputView(id));
 }
 
 void ListView::onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem)
@@ -300,17 +496,6 @@ void ListView::onCreatePressed()
 	getNavigator()->navigateTo(new Input::InputView());
 }
 
-void ListView::onMenuPressed()
-{
-	Ui::Menu *menu = new Ui::Menu();
-	menu->create(getEvasObject());
-
-	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
-		getNavigator()->navigateTo(new Settings::MainView());
-	});
-	menu->show();
-}
-
 void ListView::onPersonInserted(PersonPtr person)
 {
 	insertPersonItem(createPersonItem(std::move(person)));
@@ -323,4 +508,12 @@ void ListView::onPersonChanged(PersonPtr person, contacts_changed_e changeType, 
 	} else if (changeType == CONTACTS_CHANGE_UPDATED) {
 		updatePersonItem(item, std::move(person));
 	}
+}
+
+void ListView::onItemChecked(PersonItem *item)
+{
+	item->isChecked() ? ++m_CheckedCount : --m_CheckedCount;
+	updateTitle();
+
+	//Todo: Make "Select all" calculations
 }
