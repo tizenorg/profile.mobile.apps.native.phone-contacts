@@ -19,84 +19,79 @@
 #define LOGS_MODEL_LOG_GROUP_H
 
 #include "Logs/Model/Log.h"
-#include "Logs/Model/LogType.h"
+#include <memory>
+#include <list>
+#include <functional>
 
 namespace Logs
 {
 	namespace Model
 	{
 		/**
+		 * @brief List of logs.
+		 */
+		typedef std::list<Log *> List;
+
+		/**
+		 * @brief Changed log callback
+		 */
+		typedef std::function<void()> LogChangeCallback;
+
+		/**
 		 * @brief Group of logs
 		 */
-		class LogGroup : public Log
+		class LogGroup
 		{
 		public:
 
-			/**
-			 * @see Log::isGroup()
-			 */
-			virtual bool isGroup() const override;
+			LogGroup(Log *log);
 
-			/**
-			 * @see Log::getLogRecord()
-			 */
-			virtual const contacts_record_h getLogRecord() const override;
-
-			/**
-			 * @see Log::getName()
-			 */
-			virtual const char *getName() const override;
-
-			/**
-			 * @see Log::getNumber()
-			 */
-			virtual const char *getNumber() const override;
-
-			/**
-			 * @see Log::getImagePath()
-			 */
-			virtual const char *getImagePath() const override;
-
-			/**
-			 * @see Log::getType()
-			 */
-			virtual int getType() const override;
-
-			/**
-			 * @see Log::getTime()
-			 */
-			virtual struct tm getTime() const override;
-
-			/**
-			 * @see Log::getId()
-			 */
-			virtual int getId() const override;
-
-			/**
-			 * @see Log::getPersonId()
-			 */
-			virtual int getPersonId() const override;
-
-			/**
-			 * @brief Remove log from LogGroup by id
-			 * @param[in]   id  Log id
-			 */
-			void removeLog(int id);
+			~LogGroup();
 
 			/**
 			 * @brief Add log to LogGroup
 			 * @param[in]   log  Log to add
 			 */
-			void addLog(LogPtr log);
+			void addLog(Log *log);
 
 			/**
 			 * @brief Get log group list
-			 * @return list of log group. The reference will be valid till this LogGroup object exist.
+			 * @return list of log. The reference will be valid till this LogGroup object exist.
 			 */
-			const LogList &getLogList() const;
+			const List &getLogList() const;
+
+			/**
+			 * @brief Set log changed callback
+			 * @remark Callback called when log is changed.
+			 * @param[in]    callback    Changed log callback
+			 */
+			void setChangeCallback(LogChangeCallback callback);
+
+			/**
+			 * @brief Unset log change callback
+			 */
+			void unsetChangeCallback();
+
+			/**
+			 * @brief Call log change callback
+			 */
+			void onChange();
+
+			/**
+			 * @brief Remove log from log group
+			 * @param[in]   log  Log to remove
+			 */
+			void removeLog(Log *log);
+
+			/**
+			 * @return first log in list;
+			 */
+			Log *getFirstLog();
 
 		private:
-			LogList m_LogList;
+			List m_LogList;
+
+			LogChangeCallback m_LogChangeCallback;
 		};
 	}
 }
