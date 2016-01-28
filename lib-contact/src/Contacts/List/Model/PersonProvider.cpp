@@ -171,18 +171,27 @@ void PersonProvider::onChanged(const char *viewUri)
 
 void PersonProvider::notify(contacts_changed_e changeType, int contactId)
 {
+	auto getPerson = [this, contactId]() -> PersonPtr {
+		contacts_record_h personRecord = getPersonRecord(contactId, m_ListFilterType);
+		return personRecord ? PersonPtr(new Person(personRecord)) : nullptr;
+	};
+
 	PersonPtr person;
 
 	switch (changeType) {
 		case CONTACTS_CHANGE_INSERTED:
-			person.reset(new Person(getPersonRecord(contactId, m_ListFilterType)));
-			if (m_InsertCallback) {
+			person = getPerson();
+			if (m_InsertCallback && person) {
 				m_InsertCallback(std::move(person));
 			}
 			break;
 		case CONTACTS_CHANGE_UPDATED:
 			//Todo: If will be link contact functionality, update only when display contact changed
-			person.reset(new Person(getPersonRecord(contactId, m_ListFilterType)));
+			person = getPerson();
+			if (!person) {
+				return;
+			}
+			//Fallthrough case statement by intention
 		case CONTACTS_CHANGE_DELETED:
 		{
 			auto it = m_ChangeCallbacks.find(contactId);
