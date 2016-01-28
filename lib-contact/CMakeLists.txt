@@ -6,6 +6,7 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/lib-common/inc
 	${CMAKE_SOURCE_DIR}/lib-common/res/common/edje
 	${CMAKE_CURRENT_SOURCE_DIR}/inc
+	${CMAKE_CURRENT_SOURCE_DIR}/res/details/edje
 	${CMAKE_CURRENT_SOURCE_DIR}/res/input/edje
 )
 
@@ -14,4 +15,4 @@ target_link_libraries(${PROJECT_NAME} ${LIBRARIES} common)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${LIB_DIR})
 
-add_subdirectory(res/input)
+add_subdirectory(res)

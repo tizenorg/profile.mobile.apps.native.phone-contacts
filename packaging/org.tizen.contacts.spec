@@ -62,6 +62,7 @@ make %{?_smp_mflags}
 %{_lib_dir}
 
 %{_res_dir}/common
+%{_res_dir}/details
 %{_res_dir}/dialer
 %{_res_dir}/input
 %{_res_dir}/speeddial

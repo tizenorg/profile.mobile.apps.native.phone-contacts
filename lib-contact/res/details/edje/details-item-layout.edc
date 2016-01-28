@@ -1,0 +1,241 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "DetailsItemLayout.h"
+#include "DetailsItemLayoutMetrics.h"
+
+#include "../../../../lib-common/res/common/edje/common-colors.edc"
+#include "../../../../lib-common/res/common/edje/common-utils.edc"
+
+styles {
+	style {
+		name: "name_style";
+		base: "font=Tizen:style=Light font_size="NAME_TEXT_SIZE" align=center wrap=mixed color=#fafafa ellipsis=1.0";
+	}
+	style {
+		name: "phonetic_name_style";
+		base: "font=Tizen:style=Light font_size="PHONETIC_NAME_TEXT_SIZE" align=center wrap=mixed color=#fafafa ellipsis=1.0";
+	}
+	style {
+		name: "company_style";
+		base: "font=Tizen:style=Light font_size="COMPANY_TEXT_SIZE" align=center wrap=mixed color=#fafafa ellipsis=1.0";
+	}
+}
+
+collections
+{
+	base_scale: 2.6;
+
+	IMAGE_WITH_PRESSED_COLOR(GROUP_ICON_CALL, DETAILS_ICON_CALL,
+			"touch_icon_normal", "touch_icon_pressed");
+	IMAGE_WITH_PRESSED_COLOR(GROUP_ICON_MESSAGE, DETAILS_ICON_MESSAGE,
+			"touch_icon_normal", "touch_icon_pressed");
+	IMAGE_WITH_PRESSED_COLOR(GROUP_ICON_EMAIL, DETAILS_ICON_EMAIL,
+			"touch_icon_normal", "touch_icon_pressed");
+	IMAGE_WITH_PRESSED_COLOR(GROUP_ICON_INTERNET, DETAILS_ICON_INTERNET,
+			"touch_icon_normal", "touch_icon_pressed");
+
+	group {
+		name: "elm/genlist/item/"DETAILS_ITEM_STYLE"/default";
+		alias: "elm/genlist/item_compress/"DETAILS_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree/"DETAILS_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree_compress/"DETAILS_ITEM_STYLE"/default";
+
+		data.item: "texts" PART_NAME" "PART_PHONETIC_NAME" "PART_COMPANY;
+		data.item: "contents" PART_BACK_BTN" "PART_FAV_BTN" "PART_THUMBNAIL;
+		data.item: "states" PART_PHONETIC_NAME" "PART_COMPANY;
+
+		parts {
+			spacer { "spacer.top"; scale;
+				desc { "default";
+					min: 0 PAD_T;
+					align: 0.5 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 1.0 0.0;
+				}
+			}
+			spacer { "spacer.left"; scale;
+				desc { "default";
+					min: PAD_L 0;
+					align: 0.0 0.5;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 0.0 1.0;
+				}
+			}
+			spacer { "spacer.right"; scale;
+				desc { "default";
+					min: PAD_R 0;
+					align: 1.0 0.5;
+					rel1.relative: 1.0 0.0;
+					rel2.relative: 1.0 1.0;
+				}
+			}
+			swallow { PART_BACK_BTN; scale;
+				desc { "default";
+					min: BTN_SIZE;
+					max: BTN_SIZE;
+					align: 0.0 0.0;
+					rel1 { relative: 1.0 1.0; to_x: "spacer.left"; to_y: "spacer.top"; }
+				}
+			}
+			swallow { PART_FAV_BTN; scale;
+				desc { "default";
+					min: BTN_SIZE;
+					max: BTN_SIZE;
+					align: 1.0 0.0;
+					rel1 { relative: 0.0 1.0; to_y: "spacer.top"; }
+					rel2 { relative: 0.0 1.0; to_x: "spacer.right"; }
+				}
+			}
+			spacer { "spacer.thumbnail.top"; scale;
+				desc { "default";
+					min: 0 THUMBNAIL_PAD_T;
+					align: 0.5 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 1.0 0.0;
+				}
+			}
+			swallow { PART_THUMBNAIL; scale;
+				desc { "default";
+					align: 0.5 0.0;
+					min: THUMBNAIL_SIZE;
+					max: THUMBNAIL_SIZE;
+					rel1 { relative: 0.0 1.0; to_y: "spacer.thumbnail.top"; }
+				}
+			}
+			spacer { "spacer.text.left"; scale;
+				desc { "default";
+					min: TEXT_PAD_X 0;
+					align: 0.0 0.5;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 0.0 1.0;
+				}
+			}
+			spacer { "spacer.text.right"; scale;
+				desc { "default";
+					min: TEXT_PAD_X 0;
+					align: 1.0 0.5;
+					rel1.relative: 1.0 0.0;
+					rel2.relative: 1.0 1.0;
+				}
+			}
+			spacer { "spacer.name.top"; scale;
+				desc { "default";
+					min: 0 TEXT_PAD_Y;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: PART_THUMBNAIL; }
+					rel2 { relative: 1.0 1.0; to_y: PART_THUMBNAIL; }
+				}
+			}
+			textblock { PART_NAME; scale;
+				desc { "default";
+					min: 0 NAME_H;
+					max: -1 NAME_H;
+					align: 0.5 0.0;
+					rel1 { relative: 1.0 1.0; to_x: "spacer.text.left"; to_y: "spacer.name.top"; }
+					rel2 { relative: 0.0 1.0; to_x: "spacer.text.right"; }
+					text {
+						align: 0.5 0.0;
+						style: "name_style";
+					}
+				}
+			}
+			spacer { "spacer.phonetic_name.top"; scale;
+				desc { "default";
+					min: 0 TEXT_PAD_Y;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: PART_NAME; }
+					rel2 { relative: 1.0 1.0; to_y: PART_NAME; }
+				}
+			}
+			textblock { PART_PHONETIC_NAME; scale;
+				desc { "default";
+					align: 0.5 0.0;
+					rel1 { relative: 1.0 1.0; to_x: "spacer.text.left"; to_y: "spacer.phonetic_name.top"; }
+					rel2 { relative: 0.0 1.0; to_x: "spacer.text.right"; }
+					text {
+						align: 0.5 0.0;
+						style: "phonetic_name_style";
+					}
+				}
+				desc { "visible";
+					inherit: "default";
+					min: 0 PHONETIC_NAME_H;
+					max: -1 PHONETIC_NAME_H;
+				}
+			}
+			spacer { "spacer.company.top"; scale;
+				desc { "default";
+					min: 0 TEXT_PAD_Y;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: PART_PHONETIC_NAME; }
+					rel2 { relative: 1.0 1.0; to_y: PART_PHONETIC_NAME; }
+				}
+			}
+			textblock { PART_COMPANY; scale;
+				desc { "default";
+					align: 0.5 0.0;
+					rel1 { relative: 1.0 1.0; to_x: "spacer.text.left"; to_y: "spacer.company.top"; }
+					rel2 { relative: 0.0 1.0; to_x: "spacer.text.right"; }
+					text {
+						align: 0.5 0.0;
+						style: "company_style";
+					}
+				}
+				desc { "visible";
+					inherit: "default";
+					min: 0 COMPANY_H;
+					max: -1 COMPANY_H;
+				}
+			}
+			spacer { "spacer.bottom"; scale;
+				desc { "default";
+					min: 0 PAD_B;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: PART_COMPANY; }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+		}
+		programs {
+			program {
+				signal: "elm,state,"PART_PHONETIC_NAME",active";
+				source: "elm";
+				action: STATE_SET "visible" 0.0;
+				target: PART_PHONETIC_NAME;
+			}
+			program {
+				signal: "elm,state,"PART_PHONETIC_NAME",passive";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: PART_PHONETIC_NAME;
+			}
+			program {
+				signal: "elm,state,"PART_COMPANY",active";
+				source: "elm";
+				action: STATE_SET "visible" 0.0;
+				target: PART_COMPANY;
+			}
+			program {
+				signal: "elm,state,"PART_COMPANY",passive";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: PART_COMPANY;
+			}
+		}
+	}
+}
