@@ -102,6 +102,20 @@ namespace App
 	AppControl EXPORT_API requestGalleryImage();
 
 	/**
+	 * @brief Request share contact via other application
+	 * @param[in]   personId    Contact's person ID
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestShareContact(int personId);
+
+	/**
+	 * @brief Request share "My Profile" via other application
+	 * @param[in]   recordId    "My Profile" record ID
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestShareMyProfile(int recordId);
+
+	/**
 	 * @brief Get single first string from App Control array extra data.
 	 * @param[in]   appControl  App Control handle
 	 * @param[in]   key         Extra data array key

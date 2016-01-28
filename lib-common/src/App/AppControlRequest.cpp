@@ -84,6 +84,20 @@ AppControl App::requestGalleryImage()
 	return AppControl(APP_CONTROL_OPERATION_PICK, "image/*");
 }
 
+AppControl App::requestShareContact(int personId)
+{
+	AppControl request(APP_CONTROL_OPERATION_SHARE, APP_CONTROL_MIME_CONTACT);
+	request.addExtra(APP_CONTROL_DATA_ID, std::to_string(personId).c_str());
+	return request;
+}
+
+AppControl App::requestShareMyProfile(int recordId)
+{
+	AppControl request = requestShareContact(recordId);
+	request.addExtra(APP_CONTROL_DATA_TYPE, "my_profile");
+	return request;
+}
+
 std::string App::getSingleExtraData(app_control_h appControl, const char *key)
 {
 	std::string result;

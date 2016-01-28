@@ -20,6 +20,7 @@
 #include "Contacts/List/MyProfileItem.h"
 #include "Contacts/List/PersonGroupItem.h"
 #include "Contacts/Input/InputView.h"
+#include "Contacts/Details/DetailsView.h"
 #include "Contacts/Settings/MainView.h"
 
 #include "Ui/Genlist.h"
@@ -312,7 +313,11 @@ void ListView::updateMyProfileItem(const char *view_uri)
 
 	item->setSelectedCallback([this, item]() {
 		int id = item->getMyProfile().getId();
-		getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
+		if (id > 0) {
+			getNavigator()->navigateTo(new Details::DetailsView(id, Details::DetailsView::TypeMyProfile));
+		} else {
+			getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
+		}
 	});
 }
 
@@ -477,8 +482,7 @@ void ListView::launchPersonDetail(PersonItem *item)
 {
 	int id = 0;
 	contacts_record_get_int(item->getPerson().getRecord(), _contacts_person.display_contact_id, &id);
-
-	getNavigator()->navigateTo(new Input::InputView(id));
+	getNavigator()->navigateTo(new Details::DetailsView(id));
 }
 
 void ListView::onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem)
