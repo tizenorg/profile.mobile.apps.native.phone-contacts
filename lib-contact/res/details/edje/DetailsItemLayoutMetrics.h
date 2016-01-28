@@ -23,7 +23,8 @@
 #define PAD_R 17
 #define PAD_B 28
 
-#define BTN_SIZE 80 80
+#define BTN_WH 80
+#define BTN_SIZE BTN_WH BTN_WH
 #define THUMBNAIL_SIZE 240 240
 #define THUMBNAIL_PAD_T 44
 
