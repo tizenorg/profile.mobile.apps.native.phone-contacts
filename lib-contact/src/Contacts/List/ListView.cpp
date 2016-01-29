@@ -286,23 +286,27 @@ void ListView::updateTitle()
 		case ModeDefault:
 			getPage()->setTitle("IDS_PB_TAB_CONTACTS");
 
-			evas_object_del(m_CancelButton);
-			evas_object_del(m_DoneButton);
-			m_CancelButton = nullptr;
-			m_DoneButton = nullptr;
+			deleteCancelButton();
+			deleteDoneButton();
+			break;
+		case ModeSinglepick:
+			getPage()->setTitle("IDS_PB_HEADER_SELECT_CONTACT_ABB2");
+
+			deleteCancelButton();
+			deleteDoneButton();
 			break;
 		case ModeMultipick:
 		{
 			char title[TITLE_SIZE];
 			snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_CheckedCount);
-
 			getPage()->setTitle(title);
 
 			createCancelButton();
 			createDoneButton();
 			break;
 		}
-		default: break;
+		default:
+			break;
 	}
 }
 
@@ -336,6 +340,12 @@ void ListView::createCancelButton()
 	getPage()->setContent(PART_TITLE_LEFT, m_CancelButton);
 }
 
+void ListView::deleteCancelButton()
+{
+	evas_object_del(m_CancelButton);
+	m_CancelButton = nullptr;
+}
+
 void ListView::createDoneButton()
 {
 	Evas_Object *m_DoneButton = elm_button_add(getEvasObject());
@@ -345,6 +355,12 @@ void ListView::createDoneButton()
 			makeCallback(&ListView::onDonePressed), this);
 
 	getPage()->setContent(PART_TITLE_RIGHT, m_DoneButton);
+}
+
+void ListView::deleteDoneButton()
+{
+	evas_object_del(m_DoneButton);
+	m_DoneButton = nullptr;
 }
 
 void ListView::insertMyProfileGroupItem()
@@ -445,14 +461,7 @@ PersonItem *ListView::createPersonItem(PersonPtr person)
 
 	m_Provider.setChangeCallback(item->getPerson(),
 			std::bind(&ListView::onPersonChanged, this, _1, _2, item));
-
-	item->setSelectedCallback([this, item]() {
-		switch (m_ViewMode) {
-			case ModeDefault: launchPersonDetail(item); break;
-			case ModeMultipick: onItemChecked(item); break;
-			default: break;
-		}
-	});
+	item->setSelectedCallback(std::bind(&ListView::onItemSelected, this, item));
 
 	return item;
 }
@@ -547,8 +556,7 @@ ListView::PersonIds ListView::getCheckedPersonIds()
 
 void ListView::launchPersonDetail(PersonItem *item)
 {
-	int id = 0;
-	contacts_record_get_int(item->getPerson().getRecord(), _contacts_person.display_contact_id, &id);
+	int id = item->getPerson().getDisplayContactId();
 	getNavigator()->navigateTo(new Details::DetailsView(id));
 }
 
@@ -592,10 +600,27 @@ void ListView::onPersonChanged(PersonPtr person, contacts_changed_e changeType, 
 	}
 }
 
+void ListView::onPersonSelected(const Model::Person &person)
+{
+	if (m_OnResult) {
+		m_OnResult({ person.getDisplayContactId() });
+	}
+}
+
 void ListView::onItemChecked(PersonItem *item)
 {
 	item->isChecked() ? ++m_CheckedCount : --m_CheckedCount;
 	updateTitle();
 
 	//Todo: Make "Select all" calculations
+}
+
+void ListView::onItemSelected(PersonItem *item)
+{
+	switch (m_ViewMode) {
+		case ModeDefault:    launchPersonDetail(item); break;
+		case ModeSinglepick: onPersonSelected(item->getPerson()); break;
+		case ModeMultipick:  onItemChecked(item); break;
+		default: break;
+	}
 }

@@ -104,6 +104,13 @@ int Person::getId() const
 	return id;
 }
 
+int Person::getDisplayContactId() const
+{
+	int id = 0;
+	contacts_record_get_int(m_PersonRecord, _contacts_person.display_contact_id, &id);
+	return id;
+}
+
 const Person::ContactIds &Person::getContactIds() const
 {
 	if (m_ContactIds.empty()) {
