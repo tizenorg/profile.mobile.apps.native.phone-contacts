@@ -25,59 +25,76 @@ namespace Logs
 {
 	namespace Model
 	{
+		class LogGroup;
 		/**
-		 * @brief Log information
+		 * @brief Log record information
 		 */
 		class Log
 		{
 		public:
-			virtual ~Log() { }
 			/**
-			 * @return is log group
+			 * @brief Create log record
+			 * @param[in]   record  Log record (_contact_person_phone_log)
 			 */
-			virtual bool isGroup() const = 0;
-
-			/**
-			 * @return log record
-			 */
-			virtual const contacts_record_h getLogRecord() const = 0;
+			Log(contacts_record_h record);
+			~Log();
+			Log(const Log &log) = delete;
+			Log &operator=(const Log &log) = delete;
 
 			/**
 			 * @return log name
 			 */
-			virtual const char *getName() const = 0;
+			const char *getName() const;
 
 			/**
 			 * @return log number
 			 */
-			virtual const char *getNumber() const = 0;
+			const char *getNumber() const;
 
 			/**
 			 * @return log name image path
 			 */
-			virtual const char *getImagePath() const = 0 ;
+			const char *getImagePath() const;
 
 			/**
 			 * @return log type
 			 */
-			virtual int getType() const = 0;
+			int getType() const;
 
 			/**
 			 * @return log time
 			 */
-			virtual struct tm getTime() const = 0;
+			struct tm getTime() const;
 
 			/**
 			 * @return log id
 			 */
-			virtual int getId() const = 0;
+			int getId() const;
 
 			/**
 			 * @return log person id
 			 */
-			virtual int getPersonId() const = 0;
+			int getPersonId() const;
+
+			/**
+			 * @brief  Set log group
+			 * @param[in]   logGroup  Parent log group
+			 */
+			void setLogGroup(LogGroup *group);
+
+			/**
+			 * @return Parent log group
+			 */
+			LogGroup *getLogGroup() const;
+
+		private:
+			contacts_record_h getContactRecord();
+
+			contacts_record_h m_LogRecord;
+			contacts_record_h m_ContactRecord;
+
+			LogGroup *m_Group;
 		};
 	}
 }
-
 #endif /* LOGS_MODEL_LOG_H */
