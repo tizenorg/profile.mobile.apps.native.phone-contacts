@@ -65,13 +65,13 @@ namespace Contacts
 				 */
 				explicit PersonProvider(FilterType filterType);
 
-				virtual ~PersonProvider() { };
+				~PersonProvider();
 
 				/**
 				 * @brief Get person list
 				 * @return List of contact objects
 				 */
-				virtual PersonList getPersonList() const;
+				PersonList getPersonList() const;
 
 				/**
 				 * @brief Set person change callback
