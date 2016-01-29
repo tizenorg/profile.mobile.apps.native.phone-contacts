@@ -32,7 +32,9 @@
 #include <app_i18n.h>
 #include <functional>
 
-#define TITLE_SIZE 32
+#define TITLE_SIZE          32
+#define PART_TITLE_RIGHT    "title_right_btn"
+#define PART_TITLE_LEFT     "title_left_btn"
 
 using namespace Contacts;
 using namespace Contacts::List;
@@ -41,6 +43,7 @@ using namespace Utils;
 
 ListView::ListView(PersonProvider::FilterType personFilter)
 	: m_Genlist(nullptr), m_Index(nullptr),
+	  m_CancelButton(nullptr), m_DoneButton(nullptr),
 	  m_Sections{ nullptr },
 	  m_Provider(PersonProvider(personFilter)),
 	  m_ViewMode(ModeDefault),
@@ -76,6 +79,16 @@ void ListView::setMode(Mode mode)
 			deleteNewContactButton();
 		}
 	}
+}
+
+void ListView::setDonePressedCallback(DonePressedCallback callback)
+{
+	m_OnDone = callback;
+}
+
+void ListView::unsetDoneCallback()
+{
+	m_OnDone = nullptr;
 }
 
 Evas_Object *ListView::onCreate(Evas_Object *parent)
@@ -114,6 +127,9 @@ void ListView::onMenuPressed()
 		ListView *deleteView = new ListView();
 		getNavigator()->navigateTo(deleteView);
 		deleteView->setMode(ModeMultipick);
+		deleteView->setDonePressedCallback([](PersonIds ids) {
+			contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
+		});
 	});
 
 	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
@@ -267,12 +283,22 @@ PersonItem::Mode ListView::getItemMode(Mode viewMode)
 void ListView::updateTitle()
 {
 	switch (m_ViewMode) {
-		case ModeDefault: getPage()->setTitle("IDS_PB_TAB_CONTACTS"); break;
+		case ModeDefault:
+			getPage()->setTitle("IDS_PB_TAB_CONTACTS");
+
+			evas_object_del(m_CancelButton);
+			evas_object_del(m_DoneButton);
+			m_CancelButton = nullptr;
+			m_DoneButton = nullptr;
+			break;
 		case ModeMultipick: {
 			char title[TITLE_SIZE];
 			snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_CheckedCount);
 
 			getPage()->setTitle(title);
+
+			createCancelButton();
+			createDoneButton();
 			break;
 		}
 		default: break;
@@ -293,6 +319,31 @@ void ListView::createNewContactButton()
 void ListView::deleteNewContactButton()
 {
 	//Todo
+}
+
+void ListView::createCancelButton()
+{
+	m_CancelButton = elm_button_add(getEvasObject());
+	elm_object_style_set(m_CancelButton, "naviframe/title_left");
+	elm_object_translatable_text_set(m_CancelButton, "IDS_PB_BUTTON_CANCEL");
+	evas_object_smart_callback_add(m_CancelButton, "clicked",
+			[](void *data, Evas_Object *obj, void *event_info) {
+				delete static_cast<ListView *>(data);
+			},
+			this);
+
+	getPage()->setContent(PART_TITLE_LEFT, m_CancelButton);
+}
+
+void ListView::createDoneButton()
+{
+	Evas_Object *m_DoneButton = elm_button_add(getEvasObject());
+	elm_object_style_set(m_DoneButton, "naviframe/title_right");
+	elm_object_translatable_text_set(m_DoneButton, "IDS_PB_BUTTON_DONE_ABB3");
+	evas_object_smart_callback_add(m_DoneButton, "clicked",
+			makeCallback(&ListView::onDonePressed), this);
+
+	getPage()->setContent(PART_TITLE_RIGHT, m_DoneButton);
 }
 
 void ListView::insertMyProfileGroupItem()
@@ -478,6 +529,20 @@ PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &pe
 	return nullptr;
 }
 
+ListView::PersonIds ListView::getCheckedPersonIds()
+{
+	PersonIds ids;
+	for (auto &&group : m_PersonGroups) {
+		for (auto &&personItem : *group.second) {
+			if (static_cast<PersonItem*>(personItem)->isChecked()) {
+				ids.push_back(static_cast<PersonItem*>(personItem)->getPerson().getId());
+			}
+		}
+	}
+
+	return ids;
+}
+
 void ListView::launchPersonDetail(PersonItem *item)
 {
 	int id = 0;
@@ -500,6 +565,15 @@ void ListView::onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem)
 void ListView::onCreatePressed()
 {
 	getNavigator()->navigateTo(new Input::InputView());
+}
+
+void ListView::onDonePressed(Evas_Object *button, void *eventInfo)
+{
+	if (m_OnDone) {
+		m_OnDone(getCheckedPersonIds());
+	}
+
+	delete this;
 }
 
 void ListView::onPersonInserted(PersonPtr person)

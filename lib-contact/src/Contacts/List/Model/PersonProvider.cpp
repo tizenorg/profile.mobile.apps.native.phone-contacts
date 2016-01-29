@@ -107,6 +107,11 @@ PersonProvider::PersonProvider(PersonProvider::FilterType filterType)
 	contacts_db_add_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&PersonProvider::onChanged), this);
 }
 
+PersonProvider::~PersonProvider()
+{
+	contacts_db_remove_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&PersonProvider::onChanged), this);
+}
+
 PersonList PersonProvider::getPersonList() const
 {
 	PersonList personList;

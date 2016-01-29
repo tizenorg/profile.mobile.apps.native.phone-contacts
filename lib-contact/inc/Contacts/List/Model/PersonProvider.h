@@ -65,7 +65,7 @@ namespace Contacts
 				 */
 				explicit PersonProvider(FilterType filterType);
 
-				virtual ~PersonProvider() { };
+				~PersonProvider();
 
 				/**
 				 * @brief Get person list

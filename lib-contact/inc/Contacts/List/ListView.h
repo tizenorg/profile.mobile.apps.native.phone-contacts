@@ -56,6 +56,16 @@ namespace Contacts
 			};
 
 			/**
+			 * @brief Person ID list
+			 */
+			typedef std::vector<int> PersonIds;
+
+			/**
+			 * @brief Callback, that invokes on Done button pressed
+			 */
+			typedef std::function<void(PersonIds)> DonePressedCallback;
+
+			/**
 			 * @brief Create new person list view
 			 * @param]in]   personFilter    Defines how to filter person list
 			 */
@@ -69,6 +79,17 @@ namespace Contacts
 			 * @param[in]   mode    View mode
 			 */
 			void setMode(Mode mode);
+
+			/**
+			 * @brief Set callback on Done button pressed
+			 * @param[in]   callback    Done pressed callback
+			 */
+			void setDonePressedCallback(DonePressedCallback callback);
+
+			/**
+			 * @brief Unset callback on Done button pressed
+			 */
+			void unsetDoneCallback();
 
 		private:
 			enum SectionId
@@ -110,6 +131,8 @@ namespace Contacts
 
 			void createNewContactButton();
 			void deleteNewContactButton();
+			void createCancelButton();
+			void createDoneButton();
 
 			void insertMyProfileGroupItem();
 			void updateMyProfileItem(const char *view_uri);
@@ -129,12 +152,15 @@ namespace Contacts
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
 
+			PersonIds getCheckedPersonIds();
+
 			void launchPersonDetail(PersonItem *item);
 
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
 			void onCreatePressed();
+			void onDonePressed(Evas_Object *button, void *eventInfo);
 
 			void onPersonInserted(Model::PersonPtr person);
 			void onPersonChanged(Model::PersonPtr person, contacts_changed_e changeType, PersonItem *item);
@@ -143,6 +169,8 @@ namespace Contacts
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
+			Elm_Button *m_CancelButton;
+			Elm_Button *m_DoneButton;
 
 			Ui::GenlistGroupItem *m_Sections[SectionMax];
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
@@ -153,6 +181,8 @@ namespace Contacts
 
 			size_t m_PersonCount;
 			size_t m_CheckedCount;
+
+			DonePressedCallback m_OnDone;
 		};
 	}
 }
