@@ -18,85 +18,76 @@
 #ifndef LOGS_MODEL_LOG_GROUP_H
 #define LOGS_MODEL_LOG_GROUP_H
 
-#include "Logs/Model/Log.h"
-#include "Logs/Model/LogType.h"
+#include <list>
+#include <functional>
 
 namespace Logs
 {
 	namespace Model
 	{
+		class Log;
+
 		/**
 		 * @brief Group of logs
 		 */
-		class LogGroup : public Log
+		class LogGroup
 		{
 		public:
+			/**
+			 * @brief Changed group callback
+			 */
+			typedef std::function<void()> ChangeCallback;
 
 			/**
-			 * @see Log::isGroup()
+			 * @brief List of logs.
 			 */
-			virtual bool isGroup() const override;
+			typedef std::list<Log *> LogList;
 
 			/**
-			 * @see Log::getLogRecord()
+			 * @brief Constructor
+			 * @param[in]   log  Log to add
 			 */
-			virtual const contacts_record_h getLogRecord() const override;
+			LogGroup(Log *log);
 
 			/**
-			 * @see Log::getName()
+			 * @brief Get log group list
+			 * @return list of log. The reference will be valid till this LogGroup object exist.
 			 */
-			virtual const char *getName() const override;
+			const LogList &getLogList() const;
 
 			/**
-			 * @see Log::getNumber()
+			 * @brief Set log changed callback
+			 * @remark Callback called when log is changed.
+			 * @param[in]    callback    Changed log callback
 			 */
-			virtual const char *getNumber() const override;
+			void setChangeCallback(ChangeCallback callback);
 
 			/**
-			 * @see Log::getImagePath()
+			 * @brief Unset log change callback
 			 */
-			virtual const char *getImagePath() const override;
+			void unsetChangeCallback();
 
 			/**
-			 * @see Log::getType()
+			 * @brief Call log change callback
 			 */
-			virtual int getType() const override;
-
-			/**
-			 * @see Log::getTime()
-			 */
-			virtual struct tm getTime() const override;
-
-			/**
-			 * @see Log::getId()
-			 */
-			virtual int getId() const override;
-
-			/**
-			 * @see Log::getPersonId()
-			 */
-			virtual int getPersonId() const override;
-
-			/**
-			 * @brief Remove log from LogGroup by id
-			 * @param[in]   id  Log id
-			 */
-			void removeLog(int id);
+			void onChange();
 
 			/**
 			 * @brief Add log to LogGroup
 			 * @param[in]   log  Log to add
 			 */
-			void addLog(LogPtr log);
+			void addLog(Log *log);
 
 			/**
-			 * @brief Get log group list
-			 * @return list of log group. The reference will be valid till this LogGroup object exist.
+			 * @brief Remove log from log group
+			 * @param[in]   log  Log to remove
 			 */
-			const LogList &getLogList() const;
+			void removeLog(Log *log);
 
 		private:
 			LogList m_LogList;
+
+			ChangeCallback m_ChangeCallback;
 		};
 	}
 }
