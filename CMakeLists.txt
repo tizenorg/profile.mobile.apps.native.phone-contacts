@@ -35,7 +35,6 @@ pkg_check_modules(TIZEN_PKGS REQUIRED
 	efl-extension
 	elementary
 	feedback
-	libtzplatform-config
 	libxml-2.0
 	msg-service
 	notification

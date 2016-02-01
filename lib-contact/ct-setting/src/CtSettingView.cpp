@@ -22,7 +22,6 @@
 #include <app.h>
 #include <contacts.h>
 #include <notification.h>
-#include <tzplatform_config.h>
 
 #include "WNaviframe.h"
 #include "WWindow.h"
@@ -31,6 +30,7 @@
 #include "WGenlistItem.h"
 #include "ContactsDebug.h"
 #include "CtType.h"
+#include "CtCommon.h"
 #include "ContactsAppControl.h"
 
 #include "CtContactsToVcard.h"
@@ -274,13 +274,16 @@ void CtSettingView::__importFromStorage(bool phone)
 
 	app_control_create(&service);
 
-	const char *path = nullptr;
+	std::string path;
 	if (phone) {
-		path = tzplatform_getenv(TZ_USER_CONTENT);
+		// Path to "home/<<user>>/contact"
+		path = getRootDirectoryPath(STORAGE_TYPE_INTERNAL);
 	} else {
-		path = tzplatform_mkpath(TZ_SYS_STORAGE, "sdcard");
+		// Path to "/usr/storage/sdcard"
+		path = getRootDirectoryPath(STORAGE_TYPE_EXTERNAL);
 	}
-	app_control_add_extra_data(service, "path", path);
+
+	app_control_add_extra_data(service, "path", path.c_str());
 
 	app_control_add_extra_data(service, "select_type", "IMPORT_PATH_SELECT");
 	app_control_add_extra_data(service, "file_type", "vcf");

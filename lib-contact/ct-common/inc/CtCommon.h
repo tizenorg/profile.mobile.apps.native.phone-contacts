@@ -22,6 +22,7 @@
 #include <Elementary.h>
 #include <contacts.h>
 #include <string>
+#include <storage.h>
 
 #include "CtString.h"
 
@@ -132,12 +133,21 @@ Eina_List* ctCommonGetChekedDuplicatedNumberList(Eina_List *sourceList);
 Eina_List* ctCommonGetChekedDuplicatedEmailList(Eina_List *sourceList);
 
 /**
- * @brief Gets other storage directory path
- * @remark The returned path should be released.
+ * @brief Gets root storage directory path
+ * @param[in]   storageType The storage Type
  *
  * @return The directory path
  */
-char *getOtherDirectoryPath();
+std::string getRootDirectoryPath(storage_type_e storageType);
+
+/**
+ * @brief Gets certain storage directory path
+ * @param[in]   storageType The storage Type
+ * @param[in]   dirType The directory type
+ *
+ * @return The directory path
+ */
+std::string getDirectoryPath(storage_type_e storageType, storage_directory_e dirType);
 
 /**
  * @brief Creates Vcard file
