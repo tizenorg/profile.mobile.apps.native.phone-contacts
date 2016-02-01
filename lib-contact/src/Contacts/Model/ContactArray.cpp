@@ -20,20 +20,6 @@
 
 using namespace Contacts::Model;
 
-void ContactArray::initialize()
-{
-	int count = 0;
-	contacts_record_get_child_record_count(getRecord(), getPropertyId(), &count);
-
-	for (int i = 0; i < count; ++i) {
-		contacts_record_h record = nullptr;
-		contacts_record_get_child_record_at_p(getRecord(), getPropertyId(), i, &record);
-		ContactFieldContainer::addField(record, getArrayMetadata().element);
-	}
-
-	m_InitialCount = getFieldCount();
-}
-
 bool ContactArray::isChanged() const
 {
 	if (getFieldCount() < m_InitialCount) {
@@ -69,4 +55,18 @@ void ContactArray::removeField(ContactField &field)
 const ContactArrayMetadata &ContactArray::getArrayMetadata() const
 {
 	return *(const ContactArrayMetadata *) ContactField::getMetadata().typeMetadata;
+}
+
+void ContactArray::onInitialize(contacts_record_h record)
+{
+	int count = 0;
+	contacts_record_get_child_record_count(record, getPropertyId(), &count);
+
+	for (int i = 0; i < count; ++i) {
+		contacts_record_h childRecord = nullptr;
+		contacts_record_get_child_record_at_p(record, getPropertyId(), i, &childRecord);
+		ContactFieldContainer::addField(childRecord, getArrayMetadata().element);
+	}
+
+	m_InitialCount = getFieldCount();
 }

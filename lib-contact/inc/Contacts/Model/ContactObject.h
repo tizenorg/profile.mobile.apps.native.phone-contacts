@@ -36,11 +36,6 @@ namespace Contacts
 			using ContactFieldContainer::ContactFieldContainer;
 
 			/**
-			 * @see ContactField::initialize()
-			 */
-			virtual void initialize() override;
-
-			/**
 			 * @brief Get child field by id.
 			 * @param[in]   id      Child field id
 			 * @return Child field.
@@ -53,7 +48,19 @@ namespace Contacts
 			int getRecordId() const;
 
 		protected:
+			/**
+			 * @return Object type metadata.
+			 */
 			const ContactObjectMetadata &getObjectMetadata() const;
+
+			/**
+			 * @see ContactField::onInitialize()
+			 */
+			virtual void onInitialize(contacts_record_h record) override;
+
+		private:
+			static contacts_record_h getChildRecord(contacts_record_h record,
+					const ContactFieldMetadata &metadata);
 		};
 	}
 }

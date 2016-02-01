@@ -36,11 +36,6 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
-			 * @see ContactField::initialize()
-			 */
-			virtual void initialize() override;
-
-			/**
 			 * @see ContactField::reset()
 			 */
 			virtual void reset() override;
@@ -64,6 +59,17 @@ namespace Contacts
 			 * @brief Set text field value.
 			 */
 			void setValue(const char *value);
+
+		protected:
+			/**
+			 * @brief Get field value from the given record.
+			 */
+			const char *getValue(contacts_record_h record) const;
+
+			/**
+			 * @see ContactField::onInitialize()
+			 */
+			virtual void onInitialize(contacts_record_h record) override;
 
 		private:
 			std::string m_InitialValue;
