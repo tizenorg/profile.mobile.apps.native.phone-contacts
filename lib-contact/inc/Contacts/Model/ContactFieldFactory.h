@@ -27,7 +27,7 @@ namespace Contacts
 		/**
 		 * @brief Contact adaptor objects and fields factory
 		 */
-		class ContactFactory
+		class ContactFieldFactory
 		{
 		public:
 			/**
