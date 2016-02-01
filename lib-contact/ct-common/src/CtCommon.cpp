@@ -717,40 +717,77 @@ static bool check_blank_string(const char *display)
 	return true;
 }
 
+struct StorageData
+{
+	storage_type_e m_Type;
+	int m_StorageId;
+};
+
 static bool __storageCb(int storageId, storage_type_e type, storage_state_e state, const char *path, void *userData)
 {
-	if (type == STORAGE_TYPE_INTERNAL) {
-		int *internalStorage = (int *)userData;
-		*internalStorage = storageId;
+	WHIT();
+	WPRET_VM(!userData, false, "Empty user data");
+	StorageData *storageData = static_cast<StorageData *>(userData);
+
+	if (type == storageData->m_Type && STORAGE_STATE_MOUNTED == state) {
+		storageData->m_StorageId = storageId;
 		return false;
 	}
 	return true;
 }
 
-char *getOtherDirectoryPath()
+static int __getStorageId(storage_type_e storageType)
 {
 	WHIT();
-	char *dirPath = NULL;
-	int storageId = 0;
-	int error = storage_foreach_device_supported(__storageCb, &storageId);
-	WPRET_VM(error != STORAGE_ERROR_NONE, NULL, "storage_foreach_device_supported() failed");
+	StorageData storageData {storageType, -1};
+	int error = storage_foreach_device_supported(__storageCb, &storageData);
+	WPRET_VM(error != STORAGE_ERROR_NONE, -1, "storage_foreach_device_supported() failed");
 
-	error = storage_get_directory(storageId, STORAGE_DIRECTORY_OTHERS, &dirPath);
-	WPRET_VM(error != STORAGE_ERROR_NONE, NULL, "storage_get_directory() failed");
+	return storageData.m_StorageId;
+}
 
-	return dirPath;
+std::string getRootDirectoryPath(storage_type_e storageType)
+{
+	WHIT();
+	char *dirPath = nullptr;
+
+	int error = storage_get_root_directory(__getStorageId(storageType), &dirPath);
+	if(STORAGE_ERROR_NONE == error && dirPath) {
+		std::string res = dirPath;
+		free(dirPath);
+		return res;
+	} else {
+		WERROR("storage_foreach_device_supported() failed");
+	}
+
+	return std::string();
+}
+
+std::string getDirectoryPath(storage_type_e storageType, storage_directory_e dirType)
+{
+	WHIT();
+	char *dirPath = nullptr;
+
+	int error = storage_get_directory(__getStorageId(storageType), dirType, &dirPath);
+	if(STORAGE_ERROR_NONE == error && dirPath) {
+		std::string res = dirPath;
+		free(dirPath);
+		return res;
+	} else {
+		WERROR("storage_foreach_device_supported() failed");
+	}
+
+	return std::string();
 }
 
 static std::string __makeVcardName(const char* displayName)
 {
 	WHIT();
-	char *dirPath = getOtherDirectoryPath();
-	WPRET_VM(!dirPath, "", "directory path is empty");
+	std::string filePathStr = getDirectoryPath(STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_OTHERS);
+	WPRET_VM(filePathStr.empty(), std::string(), "directory path is empty");
 
 	struct stat buf;
 	std::string  firstFilePath;
-	std::string filePathStr = dirPath;
-	free(dirPath);
 	filePathStr += '/';
 
 	size_t nameLength = strlen(displayName);

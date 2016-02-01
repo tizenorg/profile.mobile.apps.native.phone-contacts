@@ -17,7 +17,6 @@
 
 #include <fstream>
 #include <notification.h>
-#include <tzplatform_config.h>
 
 #include "ContactsDebug.h"
 #include "CtCommon.h"
@@ -25,8 +24,7 @@
 #include "CtString.h"
 #include "CtType.h"
 
-#define CT_SETTING_DEVICE_EXPORT_PATH tzplatform_mkpath(TZ_USER_CONTENT, "Device/Contacts/Exported")
-#define CT_SETTING_SDCARD_EXPORT_PATH tzplatform_mkpath(TZ_SYS_STORAGE, "sdcard/Device/Contacts/Exported")
+#define CT_SETTING_RELATIVE_EXPORT_PATH "/Device/Contacts/Exported"
 
 
 CtContactsToVcard::CtContactsToVcard(const char *title, TargetStorage vcardStorage, std::vector<int> personIdList)
@@ -56,18 +54,22 @@ int CtContactsToVcard::getTotalCount()
 
 void CtContactsToVcard::createDirectory()
 {
-	if (m_VcardStorage == TargetStorage::DEVICE || m_VcardStorage == TargetStorage::SD_CARD) {
-		int ret = 0;
+	std::string path;
+	if (TargetStorage::DEVICE == m_VcardStorage) {
+		path = getRootDirectoryPath(STORAGE_TYPE_INTERNAL);
+	} else if (TargetStorage::SD_CARD == m_VcardStorage) {
+		path = getRootDirectoryPath(STORAGE_TYPE_EXTERNAL);
+	}
 
+	if (!path.empty()) {
 		std::string command("mkdir -p ");
-		if (m_VcardStorage == TargetStorage::DEVICE) {
-			command.append(CT_SETTING_DEVICE_EXPORT_PATH);
-		} else {
-			command.append(CT_SETTING_SDCARD_EXPORT_PATH);
-		}
+		command.append(path).append(CT_SETTING_RELATIVE_EXPORT_PATH);
+		WINFO("Command: %s", command.c_str());
 
-		ret = system(command.c_str());
+		int ret = system(command.c_str());
 		WPRET_M(ret == -1, "failed to create folder");
+	} else {
+		WERROR("Export directory path is null");
 	}
 }
 
@@ -76,32 +78,35 @@ void CtContactsToVcard::vcardFilePathGet()
 	const int vcardMaxNumber = 999;
 	char path[CT_TEXT_MAX_LEN] = {0, };
 	int fileNumber = 1;
-	char *directoryPath = NULL;
+	std::string directoryPath;
 
 	if (m_VcardStorage == TargetStorage::DEVICE) {
-		directoryPath = strdup(CT_SETTING_DEVICE_EXPORT_PATH);
-
+		directoryPath = getRootDirectoryPath(STORAGE_TYPE_INTERNAL);
+		if(!directoryPath.empty()) {
+			directoryPath.append(CT_SETTING_RELATIVE_EXPORT_PATH);
+		}
 	} else if (m_VcardStorage == TargetStorage::SD_CARD) {
-		directoryPath = strdup(CT_SETTING_SDCARD_EXPORT_PATH);
-
+		directoryPath = getRootDirectoryPath(STORAGE_TYPE_EXTERNAL);
+		if(!directoryPath.empty()) {
+			directoryPath.append(CT_SETTING_RELATIVE_EXPORT_PATH);
+		}
 	} else if (m_VcardStorage == TargetStorage::INTERNAL_OTHER){
-		directoryPath = getOtherDirectoryPath();
-		WPRET_M(!directoryPath, "getOtherDirectoryPath failed");
+		directoryPath = getDirectoryPath(STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_OTHERS);
 	}
+
+	WPRET_M(directoryPath.empty(), "Cannot get directory path to storage");
 
 	while (fileNumber <= vcardMaxNumber) {
 		struct stat buf;
 		if (fileNumber == 1) {
-			snprintf(path, sizeof(path), "%s/Contacts.vcf", directoryPath);
+			snprintf(path, sizeof(path), "%s/Contacts.vcf", directoryPath.c_str());
 		} else {
-			snprintf(path, sizeof(path), "%s/Contacts_%03d.vcf", directoryPath, fileNumber);
+			snprintf(path, sizeof(path), "%s/Contacts_%03d.vcf", directoryPath.c_str(), fileNumber);
 		}
 
 		if (stat(path, &buf) == 0) {
 			++fileNumber;
 		} else {
-			free(directoryPath);
-
 			m_VcardPath = path;
 			WDEBUG("path = %s", path);
 			return;
@@ -112,7 +117,6 @@ void CtContactsToVcard::vcardFilePathGet()
 		WERROR("Too many vcards. Delete some before creating new.");
 		notification_status_message_post(V_("IDS_PB_POP_FAILED"));
 	}
-	free(directoryPath);
 	m_VcardPath.clear();
 }
 
