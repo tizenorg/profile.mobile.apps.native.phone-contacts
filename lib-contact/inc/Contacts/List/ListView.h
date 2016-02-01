@@ -51,6 +51,7 @@ namespace Contacts
 			enum Mode
 			{
 				ModeDefault,
+				ModeSinglepick,
 				ModeMultipick,
 				ModeMax
 			};
@@ -61,8 +62,8 @@ namespace Contacts
 			typedef std::vector<int> PersonIds;
 
 			/**
-			 * @brief Callback, that invokes when all results are prepared
-			 * @details Invokes on view close
+			 * @brief Callback, that invoked when all results are prepared
+			 * @details Invoked on view close
 			 */
 			typedef std::function<void(PersonIds)> ResultCallback;
 
@@ -134,7 +135,9 @@ namespace Contacts
 			void createNewContactButton();
 			void deleteNewContactButton();
 			void createCancelButton();
+			void deleteCancelButton();
 			void createDoneButton();
+			void deleteDoneButton();
 
 			void insertMyProfileGroupItem();
 			void updateMyProfileItem(const char *view_uri);
@@ -166,8 +169,10 @@ namespace Contacts
 
 			void onPersonInserted(Model::PersonPtr person);
 			void onPersonChanged(Model::PersonPtr person, contacts_changed_e changeType, PersonItem *item);
+			void onPersonSelected(const Model::Person &person);
 
 			void onItemChecked(PersonItem *item);
+			void onItemSelected(PersonItem *item);
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;

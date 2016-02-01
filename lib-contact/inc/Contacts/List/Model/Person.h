@@ -84,6 +84,11 @@ namespace Contacts
 				int getId() const;
 
 				/**
+				 * @return Displayed by default contact ID
+				 */
+				int getDisplayContactId() const;
+
+				/**
 				 * @return Array of contact IDs
 				 */
 				const ContactIds &getContactIds() const;
