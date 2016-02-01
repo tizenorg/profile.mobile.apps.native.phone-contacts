@@ -26,15 +26,15 @@
 
 using namespace Contacts::Model;
 
-ContactField::ContactField(contacts_record_h record,
-		const ContactFieldMetadata &metadata)
-	: m_Record(record), m_Metadata(metadata)
-{
-}
-
 ContactField::ContactField(const ContactFieldMetadata &metadata)
 	: m_Record(nullptr), m_Metadata(metadata)
 {
+}
+
+void ContactField::initialize(contacts_record_h record)
+{
+	onInitialize(record);
+	m_Record = record;
 }
 
 template <typename FieldType>
@@ -100,11 +100,6 @@ contacts_record_h ContactField::getRecord() const
 unsigned ContactField::getPropertyId() const
 {
 	return m_Metadata.propId;
-}
-
-void ContactField::setRecord(contacts_record_h record)
-{
-	m_Record = record;
 }
 
 const ContactFieldMetadata &ContactField::getMetadata() const

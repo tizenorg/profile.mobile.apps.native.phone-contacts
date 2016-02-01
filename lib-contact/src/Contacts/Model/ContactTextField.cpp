@@ -20,14 +20,6 @@
 
 using namespace Contacts::Model;
 
-void ContactTextField::initialize()
-{
-	const char *value = getValue();
-	if (value) {
-		m_InitialValue = value;
-	}
-}
-
 void ContactTextField::reset()
 {
 	setValue("");
@@ -51,9 +43,7 @@ bool ContactTextField::isChanged() const
 
 const char *ContactTextField::getValue() const
 {
-	char *value = nullptr;
-	contacts_record_get_str_p(getRecord(), getPropertyId(), &value);
-	return value;
+	return getValue(getRecord());
 }
 
 void ContactTextField::setValue(const char *value)
@@ -64,5 +54,20 @@ void ContactTextField::setValue(const char *value)
 	bool isFilled = value && *value;
 	if (wasFilled != isFilled) {
 		onFilled(isFilled);
+	}
+}
+
+const char *ContactTextField::getValue(contacts_record_h record) const
+{
+	char *value = nullptr;
+	contacts_record_get_str_p(record, getPropertyId(), &value);
+	return value;
+}
+
+void ContactTextField::onInitialize(contacts_record_h record)
+{
+	const char *value = getValue(record);
+	if (value) {
+		m_InitialValue = value;
 	}
 }

@@ -39,11 +39,6 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
-			 * @see ContactField::initialize()
-			 */
-			virtual void initialize() override;
-
-			/**
 			 * @see ContactField::reset()
 			 */
 			virtual void reset() override;
@@ -79,9 +74,23 @@ namespace Contacts
 			 */
 			bool hasCustomValue() const;
 
-		private:
+		protected:
+			/**
+			 * @brief Get field value from the given record.
+			 */
+			int getValue(contacts_record_h record) const;
+
+			/**
+			 * @brief Enum type metadata.
+			 */
 			const ContactEnumMetadata &getEnumMetadata() const;
 
+			/**
+			 * @see ContactField::onInitialize()
+			 */
+			virtual void onInitialize(contacts_record_h record) override;
+
+		private:
 			int m_InitialValue;
 		};
 	}
