@@ -63,6 +63,6 @@ void ContactTextField::setValue(const char *value)
 
 	bool isFilled = value && *value;
 	if (wasFilled != isFilled) {
-		onFillChanged(isFilled);
+		onFilled(isFilled);
 	}
 }
