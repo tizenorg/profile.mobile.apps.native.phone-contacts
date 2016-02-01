@@ -46,7 +46,7 @@ ListView::ListView(PersonProvider::FilterType personFilter)
 	  m_CancelButton(nullptr), m_DoneButton(nullptr),
 	  m_Sections{ nullptr },
 	  m_Provider(PersonProvider(personFilter)),
-	  m_ViewMode(ModeDefault),
+	  m_Mode(ModeDefault),
 	  m_PersonCount(0), m_CheckedCount(0)
 {
 }
@@ -60,24 +60,11 @@ ListView::~ListView()
 
 void ListView::setMode(Mode mode)
 {
-	if (m_ViewMode != mode) {
-		m_ViewMode = mode;
+	if (m_Mode != mode) {
+		m_Mode = mode;
 
-		updateTitle();
-
-		for (size_t i = SectionFirst; i < SectionMax; ++i) {
-			if (getSectionVisibility(mode, static_cast<SectionId>(i))) {
-				addSection(static_cast<SectionId>(i));
-			} else {
-				removeSection(static_cast<SectionId>(i));
-			}
-		}
-
-		if (mode == ModeDefault) {
-			createNewContactButton();
-		} else {
-			deleteNewContactButton();
-		}
+		updatePageMode();
+		updateSectionMode();
 	}
 }
 
@@ -105,7 +92,7 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 
 void ListView::onPageAttached()
 {
-	updateTitle();
+	updatePageMode();
 	createNewContactButton();
 }
 
@@ -168,7 +155,7 @@ void ListView::fillFavorites()
 	if (!m_Sections[SectionFavorites]) {
 		//Todo Create here Favorite group
 	} else {
-		setFavouriteItemsMode(getItemMode(m_ViewMode));
+		setFavouriteItemsMode(getItemMode(m_Mode));
 	}
 }
 
@@ -195,7 +182,7 @@ void ListView::fillPersonList()
 			++m_PersonCount;
 		}
 	} else {
-		setPersonItemsMode(getItemMode(m_ViewMode));
+		setPersonItemsMode(getItemMode(m_Mode));
 	}
 }
 
@@ -250,7 +237,7 @@ Ui::GenlistGroupItem *ListView::getNextSectionItem(SectionId currentSection)
 bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
 {
 	static bool sectionVisibility[ListView::ModeMax][ListView::SectionMax] = {
-		/* ModeDefault   = */ {
+		/* ModeDefault    = */ {
 			/* SectionSearch    = */ true,
 			/* SectionSelectAll = */ false,
 			/* SectionMyProfile = */ true,
@@ -258,7 +245,15 @@ bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
 			/* SectionMfc       = */ true,
 			/* SectionPerson    = */ true
 		},
-		/* ModeMultipick = */ {
+		/* ModeSinglepick = */ {
+			/* SectionSearch    = */ true,
+			/* SectionSelectAll = */ false,
+			/* SectionMyProfile = */ true,
+			/* SectionFavorites = */ true,
+			/* SectionMfc       = */ false,
+			/* SectionPerson    = */ true
+		},
+		/* ModeMultipick  = */ {
 			/* SectionSearch    = */ true,
 			/* SectionSelectAll = */ true,
 			/* SectionMyProfile = */ false,
@@ -280,29 +275,48 @@ PersonItem::Mode ListView::getItemMode(Mode viewMode)
 	}
 }
 
-void ListView::updateTitle()
+void ListView::updatePageMode()
 {
-	switch (m_ViewMode) {
+	switch (m_Mode) {
 		case ModeDefault:
 			getPage()->setTitle("IDS_PB_TAB_CONTACTS");
 
-			evas_object_del(m_CancelButton);
-			evas_object_del(m_DoneButton);
-			m_CancelButton = nullptr;
-			m_DoneButton = nullptr;
+			deleteCancelButton();
+			deleteDoneButton();
+			createNewContactButton();
+			break;
+		case ModeSinglepick:
+			getPage()->setTitle("IDS_PB_HEADER_SELECT_CONTACT_ABB2");
+
+			deleteCancelButton();
+			deleteDoneButton();
+			deleteNewContactButton();
 			break;
 		case ModeMultipick:
 		{
 			char title[TITLE_SIZE];
 			snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_CheckedCount);
-
 			getPage()->setTitle(title);
 
 			createCancelButton();
 			createDoneButton();
+			deleteNewContactButton();
 			break;
 		}
-		default: break;
+		default:
+			break;
+	}
+}
+
+void ListView::updateSectionMode()
+{
+	for (size_t i = SectionFirst; i < SectionMax; ++i) {
+		SectionId sectionId = static_cast<SectionId>(i);
+		if (getSectionVisibility(m_Mode, sectionId)) {
+			addSection(sectionId);
+		} else {
+			removeSection(sectionId);
+		}
 	}
 }
 
@@ -336,6 +350,12 @@ void ListView::createCancelButton()
 	getPage()->setContent(PART_TITLE_LEFT, m_CancelButton);
 }
 
+void ListView::deleteCancelButton()
+{
+	evas_object_del(m_CancelButton);
+	m_CancelButton = nullptr;
+}
+
 void ListView::createDoneButton()
 {
 	Evas_Object *m_DoneButton = elm_button_add(getEvasObject());
@@ -345,6 +365,12 @@ void ListView::createDoneButton()
 			makeCallback(&ListView::onDonePressed), this);
 
 	getPage()->setContent(PART_TITLE_RIGHT, m_DoneButton);
+}
+
+void ListView::deleteDoneButton()
+{
+	evas_object_del(m_DoneButton);
+	m_DoneButton = nullptr;
 }
 
 void ListView::insertMyProfileGroupItem()
@@ -441,18 +467,11 @@ PersonItem *ListView::createPersonItem(PersonPtr person)
 {
 	using namespace std::placeholders;
 
-	PersonItem *item = new PersonItem(std::move(person), getItemMode(m_ViewMode));
+	PersonItem *item = new PersonItem(std::move(person), getItemMode(m_Mode));
 
 	m_Provider.setChangeCallback(item->getPerson(),
 			std::bind(&ListView::onPersonChanged, this, _1, _2, item));
-
-	item->setSelectedCallback([this, item]() {
-		switch (m_ViewMode) {
-			case ModeDefault: launchPersonDetail(item); break;
-			case ModeMultipick: onItemChecked(item); break;
-			default: break;
-		}
-	});
+	item->setSelectedCallback(std::bind(&ListView::onItemSelected, this, item));
 
 	return item;
 }
@@ -547,8 +566,7 @@ ListView::PersonIds ListView::getCheckedPersonIds()
 
 void ListView::launchPersonDetail(PersonItem *item)
 {
-	int id = 0;
-	contacts_record_get_int(item->getPerson().getRecord(), _contacts_person.display_contact_id, &id);
+	int id = item->getPerson().getDisplayContactId();
 	getNavigator()->navigateTo(new Details::DetailsView(id));
 }
 
@@ -592,10 +610,27 @@ void ListView::onPersonChanged(PersonPtr person, contacts_changed_e changeType, 
 	}
 }
 
+void ListView::onPersonSelected(const Model::Person &person)
+{
+	if (m_OnResult) {
+		m_OnResult({ person.getId() });
+	}
+}
+
 void ListView::onItemChecked(PersonItem *item)
 {
 	item->isChecked() ? ++m_CheckedCount : --m_CheckedCount;
-	updateTitle();
+	updatePageMode();
 
 	//Todo: Make "Select all" calculations
+}
+
+void ListView::onItemSelected(PersonItem *item)
+{
+	switch (m_Mode) {
+		case ModeDefault:    launchPersonDetail(item); break;
+		case ModeSinglepick: onPersonSelected(item->getPerson()); break;
+		case ModeMultipick:  onItemChecked(item); break;
+		default: break;
+	}
 }
