@@ -44,7 +44,7 @@ namespace Contacts
 			 * @brief Callback to be called when the field becomes filled or not filled.
 			 * @param[in]   Whether the field is filled.
 			 */
-			typedef std::function<void(bool)> FillChangedCallback;
+			typedef std::function<void(bool)> FillCallback;
 
 			/**
 			 * @brief Create contact field.
@@ -88,10 +88,10 @@ namespace Contacts
 			bool isRequired() const;
 
 			/**
-			 * @brief Set field fill changed callback.
+			 * @brief Set field fill callback.
 			 * @param[in]   callback    Called when field fill state is changed.
 			 */
-			void setFillChangedCallback(FillChangedCallback callback);
+			void setFillCallback(FillCallback callback);
 
 			/**
 			 * @brief Cast field to derived type.
@@ -160,12 +160,12 @@ namespace Contacts
 			 * @brief Should be called to report fill state change.
 			 * @param[in]   isFilled    Whether field is filled
 			 */
-			void onFillChanged(bool isFilled);
+			void onFilled(bool isFilled);
 
 		private:
 			contacts_record_h m_Record;
 			const ContactFieldMetadata &m_Metadata;
-			FillChangedCallback m_OnFillChanged;
+			FillCallback m_OnFilled;
 		};
 
 		typedef std::unique_ptr<ContactField> ContactFieldPtr;
