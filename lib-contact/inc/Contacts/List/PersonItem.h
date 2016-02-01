@@ -19,7 +19,7 @@
 #define CONTACTS_LIST_PERSON_ITEM_H
 
 #include "Contacts/List/Model/Person.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenlistCheckItem.h"
 #include <functional>
 
 #define PART_PERSON_NAME        "elm.text"
@@ -33,7 +33,7 @@ namespace Contacts
 		/**
 		 * @brief Person list item
 		 */
-		class PersonItem : public Ui::GenlistItem
+		class PersonItem : public Ui::GenlistCheckItem
 		{
 		public:
 			/**
@@ -64,12 +64,6 @@ namespace Contacts
 			void setMode(Mode mode);
 
 			/**
-			 * @remark Used in item pick mode
-			 * @return true if item is checked, otherwise false
-			 */
-			bool isChecked() const;
-
-			/**
 			 * @return Person object
 			 */
 			const Model::Person &getPerson() const;
@@ -80,27 +74,12 @@ namespace Contacts
 			 */
 			void setPerson(Model::PersonPtr person);
 
-			/**
-			 * @brief Set item selected callback
-			 * @param[in]   callback    Callback, that will be invoked on item selection
-			 */
-			void setSelectedCallback(SelectedCallback callback);
-
-		protected:
-			virtual void onSelected() override;
-
 		private:
-			Elm_Check *getCheck() const;
-
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			Model::PersonPtr m_Person;
-
-			Mode m_ItemMode;
-			bool m_Checked;
-
-			SelectedCallback m_OnSelected;
+			Mode m_Mode;
 		};
 	}
 }
