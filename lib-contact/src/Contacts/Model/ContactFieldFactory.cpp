@@ -15,7 +15,7 @@
  *
  */
 
-#include "Contacts/Model/ContactFactory.h"
+#include "Contacts/Model/ContactFieldFactory.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
 
 #include "Contacts/Model/ContactArray.h"
@@ -30,7 +30,7 @@
 
 using namespace Contacts::Model;
 
-ContactFieldPtr ContactFactory::createField(contacts_record_h record,
+ContactFieldPtr ContactFieldFactory::createField(contacts_record_h record,
 		const ContactFieldMetadata &metadata)
 {
 	ContactField *field = nullptr;
@@ -75,7 +75,7 @@ ContactFieldPtr ContactFactory::createField(contacts_record_h record,
 	return ContactFieldPtr(field);
 }
 
-contacts_record_h ContactFactory::getObjectRecord(contacts_record_h record,
+contacts_record_h ContactFieldFactory::getObjectRecord(contacts_record_h record,
 		const ContactFieldMetadata &metadata)
 {
 	contacts_record_h childRecord = nullptr;

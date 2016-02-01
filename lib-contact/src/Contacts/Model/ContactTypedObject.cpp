@@ -16,7 +16,7 @@
  */
 
 #include "Contacts/Model/ContactTypedObject.h"
-#include "Contacts/Model/ContactFactory.h"
+#include "Contacts/Model/ContactFieldFactory.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
 
 using namespace Contacts::Model;
@@ -24,8 +24,8 @@ using namespace Contacts::Model;
 void ContactTypedObject::initialize()
 {
 	ContactObject::initialize();
-	m_TypeField = ContactFactory::createField(getRecord(), getTypedObjectMetadata().typeField);
-	m_LabelField = ContactFactory::createField(getRecord(), getTypedObjectMetadata().labelField);
+	m_TypeField = ContactFieldFactory::createField(getRecord(), getTypedObjectMetadata().typeField);
+	m_LabelField = ContactFieldFactory::createField(getRecord(), getTypedObjectMetadata().labelField);
 }
 
 void ContactTypedObject::reset()
