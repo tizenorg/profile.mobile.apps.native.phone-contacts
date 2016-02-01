@@ -35,11 +35,6 @@ namespace Contacts
 			using ContactFieldContainer::ContactFieldContainer;
 
 			/**
-			 * @see ContactField::initialize()
-			 */
-			virtual void initialize() override;
-
-			/**
 			 * @see ContactField::isChanged()
 			 */
 			virtual bool isChanged() const override;
@@ -56,9 +51,18 @@ namespace Contacts
 			 */
 			void removeField(ContactField &field);
 
-		private:
+		protected:
+			/**
+			 * @return Array type metadata.
+			 */
 			const ContactArrayMetadata &getArrayMetadata() const;
 
+			/**
+			 * @see ContactField::onInitialize()
+			 */
+			virtual void onInitialize(contacts_record_h record) override;
+
+		private:
 			size_t m_InitialCount;
 		};
 	}

@@ -43,9 +43,7 @@ int Contact::initialize(int recordId)
 		err = contacts_db_get_record(uri, recordId, &record);
 	}
 
-	setRecord(record);
-	ContactObject::initialize();
-
+	ContactObject::initialize(record);
 	return err;
 }
 
