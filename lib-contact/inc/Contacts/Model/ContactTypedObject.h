@@ -38,11 +38,6 @@ namespace Contacts
 			using ContactObject::ContactObject;
 
 			/**
-			 * @see ContactField::initialize()
-			 */
-			virtual void initialize() override;
-
-			/**
 			 * @see ContactField::reset()
 			 */
 			virtual void reset() override;
@@ -62,9 +57,18 @@ namespace Contacts
 			 */
 			ContactTextField &getLabelField() const;
 
-		private:
+		protected:
+			/**
+			 * @return Typed object metadata.
+			 */
 			const ContactTypedObjectMetadata &getTypedObjectMetadata() const;
 
+			/**
+			 * @see ContactField::onInitialize()
+			 */
+			virtual void onInitialize(contacts_record_h record) override;
+
+		private:
 			ContactFieldPtr m_TypeField;
 			ContactFieldPtr m_LabelField;
 		};

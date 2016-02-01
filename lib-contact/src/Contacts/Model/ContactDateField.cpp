@@ -24,12 +24,6 @@
 
 using namespace Contacts::Model;
 
-void ContactDateField::initialize()
-{
-	tm value = getValue();
-	m_InitialValue = mktime(&value);
-}
-
 void ContactDateField::reset()
 {
 	time_t now = time(nullptr);
@@ -44,14 +38,25 @@ bool ContactDateField::isChanged() const
 
 tm ContactDateField::getValue() const
 {
-	int date = 0;
-	contacts_record_get_int(getRecord(), getPropertyId(), &date);
-	return convertDate(date);
+	return getValue(getRecord());
 }
 
 void ContactDateField::setValue(tm date)
 {
 	contacts_record_set_int(getRecord(), getPropertyId(), convertDate(date));
+}
+
+tm ContactDateField::getValue(contacts_record_h record) const
+{
+	int date = 0;
+	contacts_record_get_int(record, getPropertyId(), &date);
+	return convertDate(date);
+}
+
+void ContactDateField::onInitialize(contacts_record_h record)
+{
+	tm value = getValue(record);
+	m_InitialValue = mktime(&value);
 }
 
 tm ContactDateField::convertDate(int value)

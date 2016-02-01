@@ -36,11 +36,6 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
-			 * @see ContactField::initialize()
-			 */
-			virtual void initialize() override;
-
-			/**
 			 * @see ContactInputField::reset()
 			 */
 			virtual void reset() override;
@@ -60,6 +55,17 @@ namespace Contacts
 			 * @param[in]   date    Date value
 			 */
 			void setValue(tm date);
+
+		protected:
+			/**
+			 * @brief Get field value from the given record.
+			 */
+			tm getValue(contacts_record_h record) const;
+
+			/**
+			 * @see ContactField::onInitialize()
+			 */
+			virtual void onInitialize(contacts_record_h record) override;
 
 		private:
 			static tm convertDate(int value);

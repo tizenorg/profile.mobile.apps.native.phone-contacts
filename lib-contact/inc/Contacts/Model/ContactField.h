@@ -48,18 +48,16 @@ namespace Contacts
 
 			/**
 			 * @brief Create contact field.
-			 * @param[in]   record      Record containing the field
 			 * @param[in]   metadata    Field metadata
 			 */
-			ContactField(contacts_record_h record,
-					const ContactFieldMetadata &metadata);
+			ContactField(const ContactFieldMetadata &metadata);
 			virtual ~ContactField() { }
 
 			/**
-			 * @brief Initialize the adapter.
-			 * @remark This method should be called before using the object
+			 * @brief Initialize the adapter with database record.
+			 * @param[in]   record      Record containing the field
 			 */
-			virtual void initialize() { }
+			void initialize(contacts_record_h record);
 
 			/**
 			 * @brief Reset field values to default.
@@ -140,18 +138,6 @@ namespace Contacts
 
 		protected:
 			/**
-			 * @brief Create contact field.
-			 * @param[in]   metadata    Field metadata
-			 */
-			ContactField(const ContactFieldMetadata &metadata);
-
-			/**
-			 * @brief Set database record containing the field.
-			 * @param[in]   record      Record containing the field
-			 */
-			void setRecord(contacts_record_h record);
-
-			/**
 			 * @return Field metadata.
 			 */
 			const ContactFieldMetadata &getMetadata() const;
@@ -161,6 +147,12 @@ namespace Contacts
 			 * @param[in]   isFilled    Whether field is filled
 			 */
 			void onFilled(bool isFilled);
+
+			/**
+			 * @brief Called when field is being initialized.
+			 * @param[in]   record      Record that initializes the field
+			 */
+			virtual void onInitialize(contacts_record_h record) { }
 
 		private:
 			contacts_record_h m_Record;

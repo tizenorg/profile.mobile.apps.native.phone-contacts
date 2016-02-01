@@ -30,62 +30,40 @@
 
 using namespace Contacts::Model;
 
-ContactFieldPtr ContactFieldFactory::createField(contacts_record_h record,
-		const ContactFieldMetadata &metadata)
+ContactFieldPtr ContactFieldFactory::createField(const ContactFieldMetadata &metadata)
 {
 	ContactField *field = nullptr;
 	switch(metadata.typeMetadata->type) {
 		case TypeBool:
-			field = new ContactBoolField(record, metadata); break;
+			field = new ContactBoolField(metadata); break;
 		case TypeEnum:
-			field = new ContactEnumField(record, metadata); break;
+			field = new ContactEnumField(metadata); break;
 		case TypeText:
-			field = new ContactTextField(record, metadata); break;
+			field = new ContactTextField(metadata); break;
 		case TypeDate:
-			field = new ContactDateField(record, metadata); break;
+			field = new ContactDateField(metadata); break;
 		case TypeArray:
-			field = new ContactArray(record, metadata); break;
+			field = new ContactArray(metadata); break;
 		case TypeObject:
 		{
-			record = getObjectRecord(record, metadata);
-
 			unsigned subType = metadata.typeMetadata->subType;
 			if (subType & ObjectTyped) {
-				field = new ContactTypedObject(record, metadata);
+				field = new ContactTypedObject(metadata);
 			} else if (subType & ObjectCompound) {
 				switch (metadata.id) {
 					case FieldName:
-						field = new ContactName(record, metadata);
+						field = new ContactName(metadata);
 						break;
 					case FieldPhoneticName:
-						field = new ContactPhoneticName(record, metadata);
+						field = new ContactPhoneticName(metadata);
 						break;
 				}
 			} else {
-				field = new ContactObject(record, metadata);
+				field = new ContactObject(metadata);
 			}
 		}
 			break;
 	}
 
-	if (field) {
-		field->initialize();
-	}
-
 	return ContactFieldPtr(field);
-}
-
-contacts_record_h ContactFieldFactory::getObjectRecord(contacts_record_h record,
-		const ContactFieldMetadata &metadata)
-{
-	contacts_record_h childRecord = nullptr;
-	int err = contacts_record_get_child_record_at_p(record, metadata.propId, 0, &childRecord);
-
-	if (err == CONTACTS_ERROR_NO_DATA) {
-		const char *uri = ((const ContactObjectMetadata *) metadata.typeMetadata)->uri;
-		contacts_record_create(uri, &childRecord);
-		contacts_record_add_child_record(record, metadata.propId, childRecord);
-	}
-
-	return childRecord ? childRecord : record;
 }

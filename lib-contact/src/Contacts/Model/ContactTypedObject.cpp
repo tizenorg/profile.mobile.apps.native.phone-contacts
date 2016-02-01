@@ -21,13 +21,6 @@
 
 using namespace Contacts::Model;
 
-void ContactTypedObject::initialize()
-{
-	ContactObject::initialize();
-	m_TypeField = ContactFieldFactory::createField(getRecord(), getTypedObjectMetadata().typeField);
-	m_LabelField = ContactFieldFactory::createField(getRecord(), getTypedObjectMetadata().labelField);
-}
-
 void ContactTypedObject::reset()
 {
 	ContactObject::reset();
@@ -67,4 +60,14 @@ ContactTextField &ContactTypedObject::getLabelField() const
 const ContactTypedObjectMetadata &ContactTypedObject::getTypedObjectMetadata() const
 {
 	return (const ContactTypedObjectMetadata &) getObjectMetadata();
+}
+
+void ContactTypedObject::onInitialize(contacts_record_h record)
+{
+	ContactObject::onInitialize(record);
+	m_TypeField = ContactFieldFactory::createField(getTypedObjectMetadata().typeField);
+	m_LabelField = ContactFieldFactory::createField(getTypedObjectMetadata().labelField);
+
+	m_TypeField->initialize(record);
+	m_LabelField->initialize(record);
 }
