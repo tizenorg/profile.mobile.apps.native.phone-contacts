@@ -81,7 +81,8 @@ namespace Contacts
 			void removeField(ContactField &field);
 
 		private:
-			void onChildFilled(bool isChildFilled);
+			friend ContactField;
+			void onChildFilled(ContactField &field, bool isChildFilled);
 
 			ContactFields m_Fields;
 			size_t m_FilledCount = 0;

@@ -30,36 +30,37 @@
 
 using namespace Contacts::Model;
 
-ContactFieldPtr ContactFieldFactory::createField(const ContactFieldMetadata &metadata)
+ContactFieldPtr ContactFieldFactory::createField(ContactFieldContainer *parent,
+		const ContactFieldMetadata &metadata)
 {
 	ContactField *field = nullptr;
 	switch(metadata.typeMetadata->type) {
 		case TypeBool:
-			field = new ContactBoolField(metadata); break;
+			field = new ContactBoolField(parent, metadata); break;
 		case TypeEnum:
-			field = new ContactEnumField(metadata); break;
+			field = new ContactEnumField(parent, metadata); break;
 		case TypeText:
-			field = new ContactTextField(metadata); break;
+			field = new ContactTextField(parent, metadata); break;
 		case TypeDate:
-			field = new ContactDateField(metadata); break;
+			field = new ContactDateField(parent, metadata); break;
 		case TypeArray:
-			field = new ContactArray(metadata); break;
+			field = new ContactArray(parent, metadata); break;
 		case TypeObject:
 		{
 			unsigned subType = metadata.typeMetadata->subType;
 			if (subType & ObjectTyped) {
-				field = new ContactTypedObject(metadata);
+				field = new ContactTypedObject(parent, metadata);
 			} else if (subType & ObjectCompound) {
 				switch (metadata.id) {
 					case FieldName:
-						field = new ContactName(metadata);
+						field = new ContactName(parent, metadata);
 						break;
 					case FieldPhoneticName:
-						field = new ContactPhoneticName(metadata);
+						field = new ContactPhoneticName(parent, metadata);
 						break;
 				}
 			} else {
-				field = new ContactObject(metadata);
+				field = new ContactObject(parent, metadata);
 			}
 		}
 			break;
