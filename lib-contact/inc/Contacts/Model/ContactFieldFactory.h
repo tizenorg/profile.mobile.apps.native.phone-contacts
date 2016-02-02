@@ -18,7 +18,7 @@
 #ifndef CONTACTS_MODEL_CONTACT_FIELD_FACTORY_H
 #define CONTACTS_MODEL_CONTACT_FIELD_FACTORY_H
 
-#include "Contacts/Model/ContactObject.h"
+#include "Contacts/Model/ContactField.h"
 
 namespace Contacts
 {
@@ -27,7 +27,7 @@ namespace Contacts
 		/**
 		 * @brief Contact adaptor objects and fields factory
 		 */
-		class ContactFactory
+		class ContactFieldFactory
 		{
 		public:
 			/**

@@ -89,7 +89,7 @@ void InputView::onCreated()
 {
 	int err = m_Contact.initialize(m_RecordId);
 	RETM_IF_ERR(err, "Contact::initialize() failed.");
-	m_Contact.setFillChangedCallback(std::bind(&InputView::onFillChanged,
+	m_Contact.setFillCallback(std::bind(&InputView::onContactFilled,
 				this, std::placeholders::_1));
 
 	addFieldItem(addField(FieldImage));
@@ -247,7 +247,7 @@ void InputView::onRemoveField(ContactFieldItem *item)
 	removeField(field);
 }
 
-void InputView::onFillChanged(bool isFilled)
+void InputView::onContactFilled(bool isFilled)
 {
 	elm_object_disabled_set(m_DoneButton, !isFilled);
 }

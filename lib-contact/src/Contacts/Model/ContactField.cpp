@@ -72,9 +72,9 @@ bool ContactField::isRequired() const
 	return m_Metadata.isRequired;
 }
 
-void ContactField::setFillChangedCallback(FillChangedCallback callback)
+void ContactField::setFillCallback(FillCallback callback)
 {
-	m_OnFillChanged = std::move(callback);
+	m_OnFilled = std::move(callback);
 }
 
 unsigned ContactField::getId() const
@@ -112,9 +112,9 @@ const ContactFieldMetadata &ContactField::getMetadata() const
 	return m_Metadata;
 }
 
-void ContactField::onFillChanged(bool isFilled)
+void ContactField::onFilled(bool isFilled)
 {
-	if (m_OnFillChanged) {
-		m_OnFillChanged(isFilled);
+	if (m_OnFilled) {
+		m_OnFilled(isFilled);
 	}
 }
