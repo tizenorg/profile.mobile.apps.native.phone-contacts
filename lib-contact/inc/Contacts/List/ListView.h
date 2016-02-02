@@ -36,7 +36,7 @@ namespace Contacts
 	namespace List
 	{
 		class GroupItem;
-		class PersonItem;
+		class SelectAllItem;
 		class PersonGroupItem;
 
 		/**
@@ -51,8 +51,8 @@ namespace Contacts
 			enum Mode
 			{
 				ModeDefault,
-				ModeSinglepick,
-				ModeMultipick,
+				ModeSinglePick,
+				ModeMultiPick,
 				ModeMax
 			};
 
@@ -125,11 +125,13 @@ namespace Contacts
 
 			void addSection(SectionId sectionId);
 			void removeSection(SectionId sectionId);
-			Ui::GenlistGroupItem *getNextSectionItem(SectionId currentSection);
+			Ui::GenlistItem *getNextSectionItem(SectionId currentSection);
 			bool getSectionVisibility(Mode mode, SectionId sectionId);
 
 			PersonItem::Mode getItemMode(Mode viewMode);
 
+			void updateTitle();
+			void updateSelectAll();
 			void updatePageMode();
 			void updateSectionMode();
 
@@ -169,9 +171,16 @@ namespace Contacts
 			void onDonePressed(Evas_Object *button, void *eventInfo);
 
 			void onPersonInserted(Model::PersonPtr person);
+			void onPersonUpdated(PersonItem *item, Model::PersonPtr person);
+			void onPersonDeleted(PersonItem *item);
+
+			/**
+			 * @brief Invoked when the person either updated or deleted
+			 */
 			void onPersonChanged(Model::PersonPtr person, contacts_changed_e changeType, PersonItem *item);
 			void onPersonSelected(const Model::Person &person);
 
+			void onSelectAllChecked();
 			void onItemChecked(PersonItem *item);
 			void onItemSelected(PersonItem *item);
 
@@ -180,7 +189,7 @@ namespace Contacts
 			Evas_Object *m_CancelButton;
 			Evas_Object *m_DoneButton;
 
-			Ui::GenlistGroupItem *m_Sections[SectionMax];
+			Ui::GenlistItem *m_Sections[SectionMax];
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
 
 			Model::PersonProvider m_Provider;

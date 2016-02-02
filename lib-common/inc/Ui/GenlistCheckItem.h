@@ -72,7 +72,6 @@ namespace Ui
 
 	private:
 		Evas_Object *createCheck(Evas_Object *parent);
-		void toggleCheckState();
 		Evas_Object *getCheck() const;
 
 		bool m_Checked;
