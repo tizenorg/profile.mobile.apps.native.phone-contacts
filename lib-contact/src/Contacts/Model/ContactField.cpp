@@ -26,8 +26,9 @@
 
 using namespace Contacts::Model;
 
-ContactField::ContactField(const ContactFieldMetadata &metadata)
-	: m_Record(nullptr), m_Metadata(metadata)
+ContactField::ContactField(ContactFieldContainer *parent,
+		const ContactFieldMetadata &metadata)
+	: m_Record(nullptr), m_Metadata(metadata), m_Parent(parent)
 {
 }
 
@@ -102,6 +103,11 @@ unsigned ContactField::getPropertyId() const
 	return m_Metadata.propId;
 }
 
+ContactFieldContainer *ContactField::getParent() const
+{
+	return m_Parent;
+}
+
 const ContactFieldMetadata &ContactField::getMetadata() const
 {
 	return m_Metadata;
@@ -111,5 +117,9 @@ void ContactField::onFilled(bool isFilled)
 {
 	if (m_OnFilled) {
 		m_OnFilled(isFilled);
+	}
+
+	if (m_Parent) {
+		m_Parent->onChildFilled(*this, isFilled);
 	}
 }
