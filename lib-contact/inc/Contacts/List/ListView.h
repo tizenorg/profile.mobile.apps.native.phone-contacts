@@ -64,8 +64,9 @@ namespace Contacts
 			/**
 			 * @brief Callback, that invoked when all results are prepared
 			 * @details Invoked on view close
+			 * @return True if view should be closed, otherwise false
 			 */
-			typedef std::function<void(PersonIds)> ResultCallback;
+			typedef std::function<bool(PersonIds)> ResultCallback;
 
 			/**
 			 * @brief Create new person list view
