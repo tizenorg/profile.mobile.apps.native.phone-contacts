@@ -52,7 +52,7 @@ Evas_Object *GenlistCheckItem::getContent(Evas_Object *parent, const char *part)
 
 void GenlistCheckItem::onSelected()
 {
-	toggleCheckState();
+	setChecked(!m_Checked);
 
 	if (m_OnSelected) {
 		m_OnSelected();
@@ -64,12 +64,6 @@ Evas_Object *GenlistCheckItem::createCheck(Evas_Object *parent)
 	Elm_Check *check = elm_check_add(parent);
 	elm_check_state_set(check, m_Checked);
 	return check;
-}
-
-void GenlistCheckItem::toggleCheckState()
-{
-	m_Checked = !m_Checked;
-	elm_check_state_set(getCheck(), m_Checked);
 }
 
 Evas_Object *GenlistCheckItem::getCheck() const
