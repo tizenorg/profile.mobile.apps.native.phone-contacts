@@ -17,7 +17,6 @@
 
 #include "Contacts/Model/ContactFieldContainer.h"
 #include "Contacts/Model/ContactFieldFactory.h"
-
 #include <algorithm>
 
 using namespace Contacts::Model;
@@ -75,17 +74,8 @@ size_t ContactFieldContainer::getFieldCount() const
 ContactField &ContactFieldContainer::addField(contacts_record_h record,
 		const ContactFieldMetadata &metadata)
 {
-	ContactFieldPtr field = ContactFieldFactory::createField(metadata);
+	ContactFieldPtr field = ContactFieldFactory::createField(this, metadata);
 	field->initialize(record);
-
-	if (field->isRequired()) {
-		if (field->isFilled()) {
-			onChildFilled(true);
-		}
-
-		field->setFillCallback(std::bind(&ContactFieldContainer::onChildFilled,
-				this, std::placeholders::_1));
-	}
 
 	m_Fields.push_back(std::move(field));
 	return *m_Fields.back();
@@ -97,15 +87,19 @@ void ContactFieldContainer::removeField(ContactField &field)
 		return ptr.get() == &field;
 	};
 
-	if (field.isRequired() && field.isFilled()) {
-		onChildFilled(false);
+	if (field.isFilled()) {
+		onChildFilled(field, false);
 	}
 
 	m_Fields.erase(std::remove_if(m_Fields.begin(), m_Fields.end(), comp), m_Fields.end());
 }
 
-void ContactFieldContainer::onChildFilled(bool isChildFilled)
+void ContactFieldContainer::onChildFilled(ContactField &field, bool isChildFilled)
 {
+	if (!field.isRequired()) {
+		return;
+	}
+
 	/* Equals zero if no fields were PREVIOUSLY filled or no fields are NOW filled */
 	size_t checkCount = isChildFilled ? m_FilledCount++ : --m_FilledCount;
 

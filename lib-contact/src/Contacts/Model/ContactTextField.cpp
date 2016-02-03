@@ -70,4 +70,7 @@ void ContactTextField::onInitialize(contacts_record_h record)
 	if (value) {
 		m_InitialValue = value;
 	}
+	if (!m_InitialValue.empty()) {
+		onFilled(true);
+	}
 }

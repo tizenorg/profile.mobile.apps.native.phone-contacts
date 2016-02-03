@@ -65,8 +65,8 @@ const ContactTypedObjectMetadata &ContactTypedObject::getTypedObjectMetadata() c
 void ContactTypedObject::onInitialize(contacts_record_h record)
 {
 	ContactObject::onInitialize(record);
-	m_TypeField = ContactFieldFactory::createField(getTypedObjectMetadata().typeField);
-	m_LabelField = ContactFieldFactory::createField(getTypedObjectMetadata().labelField);
+	m_TypeField = ContactFieldFactory::createField(this, getTypedObjectMetadata().typeField);
+	m_LabelField = ContactFieldFactory::createField(this, getTypedObjectMetadata().labelField);
 
 	m_TypeField->initialize(record);
 	m_LabelField->initialize(record);

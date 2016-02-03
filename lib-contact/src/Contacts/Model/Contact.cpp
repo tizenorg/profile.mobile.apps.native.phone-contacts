@@ -21,7 +21,7 @@
 using namespace Contacts::Model;
 
 Contact::Contact(ContactObjectType type)
-	: ContactObject(*getContactMetadata(type)), m_IsNew(true)
+	: ContactObject(nullptr, *getContactMetadata(type)), m_IsNew(true)
 {
 }
 
