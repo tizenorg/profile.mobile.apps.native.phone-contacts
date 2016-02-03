@@ -46,7 +46,7 @@ void ProgressPopup::setProgress(size_t value)
 	snprintf(progress, sizeof(progress), "%d%%", (int)(100.0 * progressValue));
 
 	char total[BUFFER_SIZE] = { 0, };
-	snprintf(total, sizeof(total), "%d/%d", value, m_MaxValue);
+	snprintf(total, sizeof(total), "%lu/%lu", (unsigned long)value, (unsigned long)m_MaxValue);
 
 	elm_progressbar_value_set(m_Progressbar, progressValue);
 	elm_object_part_text_set(m_Progressbar, "elm.text.bottom.left", progress);
@@ -64,7 +64,7 @@ Evas_Object *ProgressPopup::onCreate(Evas_Object *parent)
 	elm_progressbar_pulse(m_Progressbar, EINA_TRUE);
 
 	char total[BUFFER_SIZE] = { 0, };
-	snprintf(total, sizeof(total), "%d/%d", 0, m_MaxValue);
+	snprintf(total, sizeof(total), "%d/%lu", 0, m_MaxValue);
 	elm_object_part_text_set(m_Progressbar, "elm.text.bottom.left", ZERO_PROGRESS);
 	elm_object_part_text_set(m_Progressbar, "elm.text.bottom.right", total);
 

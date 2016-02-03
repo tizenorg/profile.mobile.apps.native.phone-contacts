@@ -81,6 +81,11 @@ Evas_Object *Popup::addButton(const char *text, ButtonCallback callback)
 	return button;
 }
 
+void Popup::setBackCallback(BackCallback callback)
+{
+	m_OnBack = std::move(callback);
+}
+
 Evas_Object *Popup::onCreate(Evas_Object *parent)
 {
 	Window *window = getWindow(parent);
@@ -90,7 +95,7 @@ Evas_Object *Popup::onCreate(Evas_Object *parent)
 
 	Evas_Object *popup = elm_popup_add(parent);
 	elm_popup_align_set(popup, ELM_NOTIFY_ALIGN_FILL, 1.0);
-	eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, eext_popup_back_cb, nullptr);
+	eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, makeCallback(&Popup::onBackPressed), this);
 	evas_object_show(popup);
 
 	return popup;
@@ -100,6 +105,13 @@ void Popup::onButtonPressed(Evas_Object *obj, void *eventInfo)
 {
 	ButtonCallback &callback = *(ButtonCallback *) evas_object_smart_data_get(obj);
 	if (!callback || callback()) {
+		delete this;
+	}
+}
+
+void Popup::onBackPressed(Evas_Object *obj, void *event_info)
+{
+	if(!m_OnBack || m_OnBack()) {
 		delete this;
 	}
 }
