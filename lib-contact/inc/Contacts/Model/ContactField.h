@@ -31,6 +31,7 @@ namespace Contacts
 	namespace Model
 	{
 		class ContactFieldMetadata;
+		class ContactFieldContainer;
 
 		/**
 		 * @brief Polymorphic adapter for contacts_record_h property.
@@ -48,9 +49,11 @@ namespace Contacts
 
 			/**
 			 * @brief Create contact field.
+			 * @param[in]   parent      Parent field container
 			 * @param[in]   metadata    Field metadata
 			 */
-			ContactField(const ContactFieldMetadata &metadata);
+			ContactField(ContactFieldContainer *parent,
+					const ContactFieldMetadata &metadata);
 			virtual ~ContactField() { }
 
 			/**
@@ -136,6 +139,11 @@ namespace Contacts
 			 */
 			unsigned getPropertyId() const;
 
+			/**
+			 * @return Parent container.
+			 */
+			ContactFieldContainer *getParent() const;
+
 		protected:
 			/**
 			 * @return Field metadata.
@@ -157,6 +165,7 @@ namespace Contacts
 		private:
 			contacts_record_h m_Record;
 			const ContactFieldMetadata &m_Metadata;
+			ContactFieldContainer *m_Parent;
 			FillCallback m_OnFilled;
 		};
 

@@ -32,10 +32,12 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Create record property adaptor.
+			 * @param[in]   parent      Parent field container
 			 * @param[in]   metadata    Adaptor field metadata
 			 * @return Adaptor field.
 			 */
-			static ContactFieldPtr createField(const ContactFieldMetadata &metadata);
+			static ContactFieldPtr createField(ContactFieldContainer *parent,
+					const ContactFieldMetadata &metadata);
 		};
 	}
 }
