@@ -16,69 +16,52 @@
  */
 
 #include "Logs/Model/LogGroup.h"
-#include <algorithm>
+#include "Logs/Model/Log.h"
 
 using namespace Logs::Model;
 
-bool LogGroup::isGroup() const
+LogGroup::LogGroup(Log *log)
 {
-	return true;
+	addLog(log);
 }
 
-const contacts_record_h LogGroup::getLogRecord() const
-{
-	return m_LogList.back()->getLogRecord();
-}
-
-const char *LogGroup::getName() const
-{
-	return m_LogList.back()->getName();
-}
-
-const char *LogGroup::getNumber() const
-{
-	return m_LogList.back()->getNumber();
-}
-
-const char *LogGroup::getImagePath() const
-{
-	return m_LogList.back()->getImagePath();
-}
-
-int LogGroup::getType() const
-{
-	return m_LogList.back()->getType();
-}
-
-struct tm LogGroup::getTime() const
-{
-	return m_LogList.back()->getTime();
-}
-
-int LogGroup::getId() const
-{
-	return m_LogList.back()->getId();
-}
-
-int LogGroup::getPersonId() const
-{
-	return m_LogList.back()->getPersonId();
-}
-
-void LogGroup::removeLog(int id)
-{
-	auto position = std::find_if(m_LogList.begin(), m_LogList.end(), [id](LogPtr log) {
-		return (log->getId() == id);
-	});
-	m_LogList.erase(position);
-}
-
-void LogGroup::addLog(LogPtr log)
-{
-	m_LogList.push_back(log);
-}
-
-const LogList &LogGroup::getLogList() const
+const LogGroup::LogList &LogGroup::getLogList() const
 {
 	return m_LogList;
+}
+
+void LogGroup::setChangeCallback(ChangeCallback callback)
+{
+	m_ChangeCallback = std::move(callback);
+}
+
+void LogGroup::unsetChangeCallback()
+{
+	m_ChangeCallback = nullptr;
+}
+
+void LogGroup::onChange(ChangedType type)
+{
+	if (m_ChangeCallback) {
+		m_ChangeCallback(type);
+	}
+}
+
+void LogGroup::addLog(Log *log)
+{
+	m_LogList.push_back(log);
+	log->setLogGroup(this);
+}
+
+void LogGroup::removeLog(Log *log)
+{
+	m_LogList.remove(log);
+	log->setLogGroup(nullptr);
+}
+
+void LogGroup::removeAllLogs()
+{
+	for (auto &&it : m_LogList) {
+		it->remove();
+	}
 }
