@@ -19,14 +19,29 @@
 
 using namespace Contacts::Model;
 
+bool ContactBoolField::isChanged() const
+{
+	return m_InitialValue != getValue();
+}
+
 bool ContactBoolField::getValue() const
 {
-	bool value = false;
-	contacts_record_get_bool(getRecord(), getPropertyId(), &value);
-	return value;
+	return getValue(getRecord());
 }
 
 void ContactBoolField::setValue(bool value)
 {
 	contacts_record_set_bool(getRecord(), getPropertyId(), value);
+}
+
+bool ContactBoolField::getValue(contacts_record_h record) const
+{
+	bool value = false;
+	contacts_record_get_bool(record, getPropertyId(), &value);
+	return value;
+}
+
+void ContactBoolField::onInitialize(contacts_record_h record)
+{
+	m_InitialValue = getValue(record);
 }

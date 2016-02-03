@@ -35,6 +35,11 @@ namespace Contacts
 			using ContactField::ContactField;
 
 			/**
+			 * @see ContactField::isChanged()
+			 */
+			virtual bool isChanged() const override;
+
+			/**
 			 * @return Field value.
 			 */
 			bool getValue() const;
@@ -43,6 +48,20 @@ namespace Contacts
 			 * @brief Set field value.
 			 */
 			void setValue(bool value);
+
+		protected:
+			/**
+			 * @brief Get field value from the given record.
+			 */
+			bool getValue(contacts_record_h record) const;
+
+			/**
+			 * @see ContactField::onInitialize()
+			 */
+			virtual void onInitialize(contacts_record_h record) override;
+
+		private:
+			bool m_InitialValue;
 		};
 	}
 }

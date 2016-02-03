@@ -33,8 +33,18 @@ ContactField *ContactObject::getFieldById(unsigned id) const
 
 int ContactObject::getRecordId() const
 {
+	return getRecordId(getRecord());
+}
+
+bool ContactObject::operator==(contacts_record_h record) const
+{
+	return getRecordId() == getRecordId(record);
+}
+
+int ContactObject::getRecordId(contacts_record_h record) const
+{
 	int id = 0;
-	contacts_record_get_int(getRecord(), getObjectMetadata().idPropId, &id);
+	contacts_record_get_int(record, getObjectMetadata().idPropId, &id);
 	return id;
 }
 
@@ -47,6 +57,13 @@ void ContactObject::onInitialize(contacts_record_h record)
 {
 	for (auto &&field : getObjectMetadata().fields) {
 		addField(getChildRecord(record, field), field);
+	}
+}
+
+void ContactObject::onUpdate(contacts_record_h record)
+{
+	for (auto &&field : *this) {
+		field.update(getChildRecord(record, field.getMetadata()));
 	}
 }
 
