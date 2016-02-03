@@ -34,6 +34,12 @@ namespace Ui
 		 */
 		typedef std::function<bool()> ButtonCallback;
 
+		/**
+		 * @brief Back button pressed callback
+		 * @return true to destroy the Popup, otherwise false
+		 */
+		typedef std::function<bool()> BackCallback;
+
 		Popup();
 
 		/**
@@ -78,14 +84,22 @@ namespace Ui
 		 */
 		Evas_Object *addButton(const char *text, ButtonCallback callback = nullptr);
 
+		/**
+		 * @brief Set callback on back button
+		 * @param[in]   callback    Back callback
+		 */
+		void setBackCallback(BackCallback callback);
+
 	protected:
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 
 	private:
 		void onButtonPressed(Evas_Object *obj, void *eventInfo);
+		void onBackPressed(Evas_Object *obj, void *eventInfo);
 
 		ButtonCallback m_ButtonCbs[POPUP_BUTTON_MAX_COUNT];
 		size_t m_ButtonCount;
+		BackCallback m_OnBack;
 	};
 }
 
