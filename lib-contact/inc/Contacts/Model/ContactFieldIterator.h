@@ -18,7 +18,7 @@
 #ifndef CONTACTS_MODEL_CONTACT_FIELD_ITERATOR_H
 #define CONTACTS_MODEL_CONTACT_FIELD_ITERATOR_H
 
-#include <iterator>
+#include "Utils/Iterator.h"
 
 namespace Contacts
 {
@@ -31,7 +31,7 @@ namespace Contacts
 		 * @brief Index-based iterator for ContactFieldContainer.
 		 */
 		class ContactFieldIterator :
-			public std::iterator<std::input_iterator_tag, ContactField>
+			public Utils::IndexIterator<ContactFieldIterator, ContactField>
 		{
 		public:
 			/**
@@ -42,23 +42,12 @@ namespace Contacts
 			ContactFieldIterator(const ContactFieldContainer &container, int index);
 
 			/**
-			 * @brief Increment iterator.
-			 */
-			ContactFieldIterator &operator++();
-
-			/**
 			 * @brief Get field pointed by iterator.
 			 */
 			ContactField &operator*() const;
 
-			/**
-			 * @brief Compare iterators for inequality.
-			 */
-			bool operator!=(const ContactFieldIterator &that) const;
-
-		protected:
+		private:
 			const ContactFieldContainer &m_Container;
-			size_t m_Index;
 		};
 	}
 }

@@ -83,6 +83,7 @@ namespace Contacts
 		private:
 			friend ContactField;
 			void onChildFilled(ContactField &field, bool isChildFilled);
+			void onChildUpdated(ContactField &field, contacts_changed_e change);
 
 			ContactFields m_Fields;
 			size_t m_FilledCount = 0;

@@ -34,8 +34,33 @@ ContactField::ContactField(ContactFieldContainer *parent,
 
 void ContactField::initialize(contacts_record_h record)
 {
+	if (m_Record) {
+		return;
+	}
+
 	onInitialize(record);
 	m_Record = record;
+}
+
+void ContactField::update(contacts_record_h record)
+{
+	if (!m_Record) {
+		return;
+	}
+
+	if (!record) {
+		onUpdated(*this, CONTACTS_CHANGE_DELETED);
+		return;
+	}
+
+	onUpdate(record);
+
+	bool isUpdated = isChanged();
+	m_Record = record;
+
+	if (isUpdated) {
+		onUpdated(*this, CONTACTS_CHANGE_UPDATED);
+	}
 }
 
 template <typename FieldType>
@@ -76,6 +101,11 @@ bool ContactField::isRequired() const
 void ContactField::setFillCallback(FillCallback callback)
 {
 	m_OnFilled = std::move(callback);
+}
+
+void ContactField::setUpdateCallback(UpdateCallback callback)
+{
+	m_OnUpdated = std::move(callback);
 }
 
 unsigned ContactField::getId() const
@@ -121,5 +151,16 @@ void ContactField::onFilled(bool isFilled)
 
 	if (m_Parent) {
 		m_Parent->onChildFilled(*this, isFilled);
+	}
+}
+
+void ContactField::onUpdated(ContactField &field, contacts_changed_e change)
+{
+	if (m_OnUpdated) {
+		m_OnUpdated(field, change);
+	}
+
+	if (m_Parent) {
+		m_Parent->onChildUpdated(*this, change);
 	}
 }
