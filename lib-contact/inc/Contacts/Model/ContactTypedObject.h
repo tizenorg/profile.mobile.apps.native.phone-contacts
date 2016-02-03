@@ -69,8 +69,8 @@ namespace Contacts
 			virtual void onInitialize(contacts_record_h record) override;
 
 		private:
-			ContactFieldPtr m_TypeField;
-			ContactFieldPtr m_LabelField;
+			ContactFieldPtr m_TypeField = nullptr;
+			ContactFieldPtr m_LabelField = nullptr;
 		};
 	}
 }

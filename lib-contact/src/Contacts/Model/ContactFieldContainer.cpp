@@ -98,6 +98,11 @@ void ContactFieldContainer::removeField(ContactField &field)
 	m_Fields.erase(std::remove_if(m_Fields.begin(), m_Fields.end(), comp), m_Fields.end());
 }
 
+void ContactFieldContainer::onChildUpdated(ContactField &field, contacts_changed_e change)
+{
+	onUpdated(field, change);
+}
+
 void ContactFieldContainer::onChildFilled(ContactField &field, bool isChildFilled)
 {
 	if (!field.isRequired()) {
