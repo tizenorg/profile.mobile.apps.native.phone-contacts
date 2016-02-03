@@ -35,8 +35,7 @@ namespace Contacts
 
 		/**
 		 * @brief Polymorphic adapter for contacts_record_h property.
-		 * @remark Adapter object is not responsible for record's lifetime
-		 *         and can be freely copied and destroyed.
+		 * @remark Adapter object is not responsible for record's lifetime.
 		 */
 		class ContactField
 		{
@@ -46,6 +45,14 @@ namespace Contacts
 			 * @param[in]   Whether the field is filled.
 			 */
 			typedef std::function<void(bool)> FillCallback;
+
+			/**
+			 * @brief Callback to be called when the field is changed as a result
+			 *        of being updated by a new record.
+			 * @param[in]   Updated field (could be this field or any direct child field)
+			 * @param[in]   Type of the change
+			 */
+			typedef std::function<void(ContactField &, contacts_changed_e)> UpdateCallback;
 
 			/**
 			 * @brief Create contact field.
@@ -61,6 +68,12 @@ namespace Contacts
 			 * @param[in]   record      Record containing the field
 			 */
 			void initialize(contacts_record_h record);
+
+			/**
+			 * @brief Update the field with a new database record.
+			 * @param[in]   record      New record or nullptr if deleted
+			 */
+			void update(contacts_record_h record);
 
 			/**
 			 * @brief Reset field values to default.
@@ -90,9 +103,15 @@ namespace Contacts
 
 			/**
 			 * @brief Set field fill callback.
-			 * @param[in]   callback    Called when field fill state is changed.
+			 * @param[in]   callback    Called when field fill state is changed
 			 */
 			void setFillCallback(FillCallback callback);
+
+			/**
+			 * @brief Set field update callback.
+			 * @param[in]   callback    Called when field is updated with a new record
+			 */
+			void setUpdateCallback(UpdateCallback callback);
 
 			/**
 			 * @brief Cast field to derived type.
@@ -157,16 +176,33 @@ namespace Contacts
 			void onFilled(bool isFilled);
 
 			/**
+			 * @brief Should be called to report field update.
+			 * @param[in]   field       Updated field
+			 * @param[in]   change      Type of the change
+			 */
+			void onUpdated(ContactField &field, contacts_changed_e change);
+
+			/**
 			 * @brief Called when field is being initialized.
 			 * @param[in]   record      Record that initializes the field
 			 */
 			virtual void onInitialize(contacts_record_h record) { }
 
+			/**
+			 * @brief Called when field is being updated.
+			 * @param[in]   record      Record that updates the field
+			 */
+			virtual void onUpdate(contacts_record_h record) { onInitialize(record); }
+
 		private:
+			friend class ContactObject;
+
 			contacts_record_h m_Record;
 			const ContactFieldMetadata &m_Metadata;
 			ContactFieldContainer *m_Parent;
+
 			FillCallback m_OnFilled;
+			UpdateCallback m_OnUpdated;
 		};
 
 		typedef std::unique_ptr<ContactField> ContactFieldPtr;
