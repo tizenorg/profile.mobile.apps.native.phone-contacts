@@ -116,6 +116,8 @@ void ListView::onMenuPressed()
 		deleteView->setMode(ModeMultiPick);
 		deleteView->setResultCallback([](PersonIds ids) {
 			contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
+
+			return true;
 		});
 	});
 
@@ -612,11 +614,9 @@ void ListView::onCreatePressed()
 
 void ListView::onDonePressed(Evas_Object *button, void *eventInfo)
 {
-	if (m_OnResult) {
-		m_OnResult(getCheckedPersonIds());
+	if (m_OnResult && m_OnResult(getCheckedPersonIds())) {
+		delete this;
 	}
-
-	delete this;
 }
 
 void ListView::onPersonItemInserted(PersonItem *item)
@@ -657,8 +657,8 @@ void ListView::onPersonChanged(PersonPtr person, contacts_changed_e changeType, 
 
 void ListView::onPersonSelected(const Model::Person &person)
 {
-	if (m_OnResult) {
-		m_OnResult({ person.getId() });
+	if (m_OnResult && m_OnResult({ person.getId() })) {
+		delete this;
 	}
 }
 
