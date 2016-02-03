@@ -71,3 +71,10 @@ void ContactTypedObject::onInitialize(contacts_record_h record)
 	m_TypeField->initialize(record);
 	m_LabelField->initialize(record);
 }
+
+void ContactTypedObject::onUpdate(contacts_record_h record)
+{
+	ContactObject::onUpdate(record);
+	m_TypeField->update(record);
+	m_LabelField->update(record);
+}

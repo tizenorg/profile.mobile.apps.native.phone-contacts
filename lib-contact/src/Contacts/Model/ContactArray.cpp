@@ -16,7 +16,9 @@
  */
 
 #include "Contacts/Model/ContactArray.h"
+#include "Contacts/Model/ContactObject.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
+#include "Contacts/Utils.h"
 
 using namespace Contacts::Model;
 
@@ -38,7 +40,7 @@ ContactField &ContactArray::addField()
 	contacts_record_create(uri, &record);
 	contacts_record_add_child_record(getRecord(), getPropertyId(), record);
 
-	ContactField &field = ContactFieldContainer::addField(record, getArrayMetadata().element);
+	ContactField &field = addField(record);
 	field.reset();
 	return field;
 }
@@ -59,14 +61,44 @@ const ContactArrayMetadata &ContactArray::getArrayMetadata() const
 
 void ContactArray::onInitialize(contacts_record_h record)
 {
-	int count = 0;
-	contacts_record_get_child_record_count(record, getPropertyId(), &count);
-
-	for (int i = 0; i < count; ++i) {
-		contacts_record_h childRecord = nullptr;
-		contacts_record_get_child_record_at_p(record, getPropertyId(), i, &childRecord);
-		ContactFieldContainer::addField(childRecord, getArrayMetadata().element);
+	for (auto &&childRecord : makeRange(record, getPropertyId())) {
+		addField(childRecord);
 	}
 
 	m_InitialCount = getFieldCount();
+}
+
+void ContactArray::onUpdate(contacts_record_h record)
+{
+	auto recordIt = Contacts::begin(record, getPropertyId());
+	auto recordEnd = Contacts::end(record, getPropertyId());
+	auto fieldIt = begin();
+
+	while (fieldIt != end() && recordIt != recordEnd) {
+		if (fieldIt->cast<ContactObject>() == *recordIt) {
+			fieldIt->update(*recordIt);
+			++fieldIt;
+			++recordIt;
+		} else {
+			fieldIt->update(nullptr);
+			ContactFieldContainer::removeField(*fieldIt);
+		}
+	}
+
+	while (fieldIt != end()) {
+		fieldIt->update(nullptr);
+		ContactFieldContainer::removeField(*fieldIt);
+	}
+
+	while (recordIt != recordEnd) {
+		ContactField &field = addField(*recordIt++);
+		onUpdated(field, CONTACTS_CHANGE_INSERTED);
+	}
+
+	m_InitialCount = getFieldCount();
+}
+
+ContactField &ContactArray::addField(contacts_record_h record)
+{
+	return ContactFieldContainer::addField(record, getArrayMetadata().element);
 }

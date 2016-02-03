@@ -17,11 +17,52 @@
 #ifndef CONTACTS_UTILS_H
 #define CONTACTS_UTILS_H
 
+#include <contacts.h>
+#include "Utils/Iterator.h"
+#include "Utils/Range.h"
+
 #define CONTACTS_LIST_FOREACH(list, record) \
 	bool success = (contacts_list_get_current_record_p(list, &record) == CONTACTS_ERROR_NONE); \
 	for ( ; success; \
 			success = ((contacts_list_next(list) == CONTACTS_ERROR_NONE) \
 			&& (contacts_list_get_current_record_p(list, &record) == CONTACTS_ERROR_NONE)) \
 		)
+
+namespace Contacts
+{
+	/**
+	 * @brief Iterator for child record property.
+	 */
+	class ContactRecordChildIterator :
+		public Utils::IndexIterator<ContactRecordChildIterator, contacts_record_h>
+	{
+	public:
+		/**
+		 * @brief Create child record iterator.
+		 * @param[in]   record      Record containing child records
+		 * @param[in]   property    Child record property ID
+		 * @param[in]   index       Child record index
+		 */
+		ContactRecordChildIterator(contacts_record_h record, int property, size_t index);
+
+		/**
+		 * @brief Dereference iterator.
+		 */
+		contacts_record_h operator*() const;
+
+	private:
+		contacts_record_h m_Record;
+		int m_Property;
+	};
+
+	/**
+	 * @see ContactRecordChildIterator::ContactRecordChildIterator()
+	 */
+	ContactRecordChildIterator begin(contacts_record_h record, int property);
+	ContactRecordChildIterator end(contacts_record_h record, int property);
+	Utils::Range<ContactRecordChildIterator> makeRange(contacts_record_h record, int property);
+}
+
+#include "Contacts/UtilsImpl.h"
 
 #endif /* CONTACTS_UTILS_H */

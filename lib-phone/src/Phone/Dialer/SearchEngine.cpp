@@ -22,16 +22,17 @@
 #include <algorithm>
 
 using namespace Phone::Dialer;
+using namespace Phone::Dialer::Utils;
 
 namespace
 {
 	typedef contacts_list_h (*ContactListGetter)(char digit);
 
 	ContactListGetter contactListGetters[] = {
-		Utils::getSpeedDial,
-		Utils::getLogList,
-		Utils::getContactListByName,
-		Utils::getContactListByNumber
+		getSpeedDial,
+		getLogList,
+		getContactListByName,
+		getContactListByNumber
 	};
 }
 
