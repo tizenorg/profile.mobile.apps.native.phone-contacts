@@ -32,16 +32,10 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Create record property adaptor.
-			 * @param[in]   record      Record to which property belongs
 			 * @param[in]   metadata    Adaptor field metadata
 			 * @return Adaptor field.
 			 */
-			static ContactFieldPtr createField(contacts_record_h record,
-					const ContactFieldMetadata &metadata);
-
-		private:
-			static contacts_record_h getObjectRecord(contacts_record_h record,
-					const ContactFieldMetadata &metadata);
+			static ContactFieldPtr createField(const ContactFieldMetadata &metadata);
 		};
 	}
 }

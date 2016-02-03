@@ -20,13 +20,6 @@
 
 using namespace Contacts::Model;
 
-void ContactObject::initialize()
-{
-	for (auto &&field : getObjectMetadata().fields) {
-		addField(getRecord(), field);
-	}
-}
-
 ContactField *ContactObject::getFieldById(unsigned id) const
 {
 	for (auto &&field : *this) {
@@ -48,4 +41,29 @@ int ContactObject::getRecordId() const
 const ContactObjectMetadata &ContactObject::getObjectMetadata() const
 {
 	return *(const ContactObjectMetadata *) ContactField::getMetadata().typeMetadata;
+}
+
+void ContactObject::onInitialize(contacts_record_h record)
+{
+	for (auto &&field : getObjectMetadata().fields) {
+		addField(getChildRecord(record, field), field);
+	}
+}
+
+contacts_record_h ContactObject::getChildRecord(contacts_record_h record,
+		const ContactFieldMetadata &metadata)
+{
+	if (metadata.typeMetadata->type != TypeObject) {
+		return record;
+	}
+
+	contacts_record_h childRecord = nullptr;
+	int err = contacts_record_get_child_record_at_p(record, metadata.propId, 0, &childRecord);
+	if (err == CONTACTS_ERROR_NO_DATA) {
+		const char *uri = ((const ContactObjectMetadata *) metadata.typeMetadata)->uri;
+		contacts_record_create(uri, &childRecord);
+		contacts_record_add_child_record(record, metadata.propId, childRecord);
+	}
+
+	return childRecord;
 }

@@ -75,7 +75,9 @@ size_t ContactFieldContainer::getFieldCount() const
 ContactField &ContactFieldContainer::addField(contacts_record_h record,
 		const ContactFieldMetadata &metadata)
 {
-	ContactFieldPtr field = ContactFieldFactory::createField(record, metadata);
+	ContactFieldPtr field = ContactFieldFactory::createField(metadata);
+	field->initialize(record);
+
 	if (field->isRequired()) {
 		if (field->isFilled()) {
 			onChildFilled(true);

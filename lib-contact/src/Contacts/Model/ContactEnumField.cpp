@@ -20,11 +20,6 @@
 
 using namespace Contacts::Model;
 
-void ContactEnumField::initialize()
-{
-	m_InitialValue = getValue();
-}
-
 void ContactEnumField::reset()
 {
 	setValue(getEnumMetadata().defaultValue);
@@ -47,9 +42,7 @@ int ContactEnumField::getCustomValue() const
 
 int ContactEnumField::getValue() const
 {
-	int value = 0;
-	contacts_record_get_int(getRecord(), getPropertyId(), &value);
-	return value;
+	return getValue(getRecord());
 }
 
 void ContactEnumField::setValue(int value)
@@ -62,7 +55,19 @@ bool ContactEnumField::hasCustomValue() const
 	return getValue() == getEnumMetadata().customValue;
 }
 
+int ContactEnumField::getValue(contacts_record_h record) const
+{
+	int value = 0;
+	contacts_record_get_int(record, getPropertyId(), &value);
+	return value;
+}
+
 const ContactEnumMetadata &ContactEnumField::getEnumMetadata() const
 {
 	return *(const ContactEnumMetadata *) ContactField::getMetadata().typeMetadata;
+}
+
+void ContactEnumField::onInitialize(contacts_record_h record)
+{
+	m_InitialValue = getValue(record);
 }
