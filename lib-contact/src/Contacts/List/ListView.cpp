@@ -48,7 +48,7 @@ ListView::ListView(PersonProvider::FilterType personFilter)
 	  m_Sections{ nullptr },
 	  m_Provider(PersonProvider(personFilter)),
 	  m_Mode(ModeDefault),
-	  m_PersonCount(0), m_CheckedCount(0)
+	  m_PersonCount(0), m_SelectCount(0), m_SelectLimit(0)
 {
 }
 
@@ -67,6 +67,13 @@ void ListView::setMode(Mode mode)
 		updatePageMode();
 		updateSectionsMode();
 	}
+}
+
+void ListView::setSelectLimit(size_t count)
+{
+	m_SelectLimit = count;
+
+	setMode(ModeLimitedMultiPick);
 }
 
 void ListView::setResultCallback(ResultCallback callback)
@@ -113,7 +120,7 @@ void ListView::onMenuPressed()
 	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
 		ListView *deleteView = new ListView();
 		getNavigator()->navigateTo(deleteView);
-		deleteView->setMode(ModeMultiPick);
+		deleteView->setMode(ModeMultiSelect);
 		deleteView->setResultCallback([](PersonIds ids) {
 			contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
 
@@ -163,7 +170,7 @@ void ListView::fillFavorites()
 	if (!m_Sections[SectionFavorites]) {
 		//Todo Create here Favorite group
 	} else {
-		setFavouriteItemsMode(getItemMode(m_Mode));
+		setFavouriteItemsMode(getItemMode());
 	}
 }
 
@@ -190,7 +197,7 @@ void ListView::fillPersonList()
 			++m_PersonCount;
 		}
 	} else {
-		setPersonItemsMode(getItemMode(m_Mode));
+		setPersonItemsMode(getItemMode());
 	}
 }
 
@@ -254,7 +261,7 @@ bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
 			/* SectionMfc       = */ true,
 			/* SectionPerson    = */ true
 		},
-		/* ModeSinglePick = */ {
+		/* ModeSingleSelect = */ {
 			/* SectionSearch    = */ true,
 			/* SectionSelectAll = */ false,
 			/* SectionMyProfile = */ true,
@@ -262,9 +269,17 @@ bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
 			/* SectionMfc       = */ false,
 			/* SectionPerson    = */ true
 		},
-		/* ModeMultiPick  = */ {
+		/* ModeMultiSelect  = */ {
 			/* SectionSearch    = */ true,
 			/* SectionSelectAll = */ true,
+			/* SectionMyProfile = */ false,
+			/* SectionFavorites = */ true,
+			/* SectionMfc       = */ false,
+			/* SectionPerson    = */ true
+		},
+		/* ModeMultiSelectWithLimit  = */ {
+			/* SectionSearch    = */ true,
+			/* SectionSelectAll = */ false,
 			/* SectionMyProfile = */ false,
 			/* SectionFavorites = */ true,
 			/* SectionMfc       = */ false,
@@ -275,12 +290,14 @@ bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
 	return sectionVisibility[mode][sectionId];
 }
 
-PersonItem::Mode ListView::getItemMode(Mode viewMode)
+PersonItem::Mode ListView::getItemMode()
 {
-	if (viewMode == ModeMultiPick) {
-		return PersonItem::ModePick;
-	} else {
-		return PersonItem::ModeDefault;
+	switch (m_Mode) {
+		case ModeMultiSelect:
+		case ModeMultiSelectWithLimit:
+			return PersonItem::ModePick;
+		default:
+			return PersonItem::ModeDefault;
 	}
 }
 
@@ -290,13 +307,20 @@ void ListView::updateTitle()
 		case ModeDefault:
 			getPage()->setTitle("IDS_PB_TAB_CONTACTS");
 			break;
-		case ModeSinglePick:
+		case ModeSingleSelect:
 			getPage()->setTitle("IDS_PB_HEADER_SELECT_CONTACT_ABB2");
 			break;
-		case ModeMultiPick:
+		case ModeMultiSelect:
 		{
 			char title[TITLE_SIZE];
-			snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_CheckedCount);
+			snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_SelectCount);
+			getPage()->setTitle(title);
+			break;
+		}
+		case ModeMultiSelectWithLimit:
+		{
+			char title[TITLE_SIZE];
+			snprintf(title, TITLE_SIZE, "%d/%d", m_SelectCount, m_SelectLimit);
 			getPage()->setTitle(title);
 			break;
 		}
@@ -305,10 +329,12 @@ void ListView::updateTitle()
 	}
 }
 
-void ListView::updateSelectAll()
+void ListView::updateSelectAllState()
 {
 	auto selectAllItem = static_cast<SelectAllItem *>(m_Sections[SectionSelectAll]);
-	selectAllItem->setChecked(m_CheckedCount == m_PersonCount);
+	if (selectAllItem) {
+		selectAllItem->setChecked(m_SelectCount == m_PersonCount);
+	}
 }
 
 void ListView::updatePageMode()
@@ -321,12 +347,13 @@ void ListView::updatePageMode()
 			deleteDoneButton();
 			createNewContactButton();
 			break;
-		case ModeSinglePick:
+		case ModeSingleSelect:
 			deleteCancelButton();
 			deleteDoneButton();
 			deleteNewContactButton();
 			break;
-		case ModeMultiPick:
+		case ModeMultiSelect:
+		case ModeMultiSelectWithLimit:
 			createCancelButton();
 			createDoneButton();
 			deleteNewContactButton();
@@ -495,7 +522,7 @@ PersonItem *ListView::createPersonItem(PersonPtr person)
 {
 	using namespace std::placeholders;
 
-	PersonItem *item = new PersonItem(std::move(person), getItemMode(m_Mode));
+	PersonItem *item = new PersonItem(std::move(person), getItemMode());
 
 	m_Provider.setChangeCallback(item->getPerson(),
 			std::bind(&ListView::onPersonChanged, this, _1, _2, item));
@@ -623,7 +650,7 @@ void ListView::onPersonItemInserted(PersonItem *item)
 {
 	++m_PersonCount;
 
-	updateSelectAll();
+	updateSelectAllState();
 	updateTitle();
 }
 
@@ -631,10 +658,10 @@ void ListView::onPersonItemDelete(PersonItem *item)
 {
 	--m_PersonCount;
 	if (item->isChecked()) {
-		--m_CheckedCount;
+		--m_SelectCount;
 	}
 
-	updateSelectAll();
+	updateSelectAllState();
 	updateTitle();
 }
 
@@ -672,16 +699,21 @@ void ListView::onSelectAllChecked()
 		}
 	}
 
-	m_CheckedCount = checked ? m_PersonCount : 0;
+	m_SelectCount = checked ? m_PersonCount : 0;
 	updateTitle();
 }
 
 void ListView::onItemChecked(PersonItem *item)
 {
-	size_t checkCount = item->isChecked() ? ++m_CheckedCount : m_CheckedCount--;
+	if (m_Mode == ModeMultiSelectWithLimit && m_SelectCount == m_SelectLimit && item->isChecked()) {
+		item->setChecked(false);
+		return;
+	}
+
+	size_t checkCount = item->isChecked() ? ++m_SelectCount : m_SelectCount--;
 
 	if (checkCount == m_PersonCount) {
-		updateSelectAll();
+		updateSelectAllState();
 	}
 
 	updateTitle();
@@ -690,9 +722,10 @@ void ListView::onItemChecked(PersonItem *item)
 void ListView::onItemSelected(PersonItem *item)
 {
 	switch (m_Mode) {
-		case ModeDefault:    launchPersonDetail(item); break;
-		case ModeSinglePick: onPersonSelected(item->getPerson()); break;
-		case ModeMultiPick:  onItemChecked(item); break;
+		case ModeDefault:           launchPersonDetail(item); break;
+		case ModeSingleSelect:        onPersonSelected(item->getPerson()); break;
+		case ModeMultiSelect:
+		case ModeMultiSelectWithLimit:  onItemChecked(item); break;
 		default: break;
 	}
 }

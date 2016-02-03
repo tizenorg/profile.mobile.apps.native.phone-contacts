@@ -51,8 +51,9 @@ namespace Contacts
 			enum Mode
 			{
 				ModeDefault,
-				ModeSinglePick,
-				ModeMultiPick,
+				ModeSingleSelect,
+				ModeMultiSelect,
+				ModeMultiSelectWithLimit,
 				ModeMax
 			};
 
@@ -82,6 +83,14 @@ namespace Contacts
 			 * @param[in]   mode    View mode
 			 */
 			void setMode(Mode mode);
+
+			/**
+			 * @brief Set item selection limit
+			 * @remark Used only in ModeMultiSelectWithLimit view mode
+			 * @remark 0 value for @a count removes select limit
+			 * @param[in]   count   Maximal selectable items count
+			 */
+			void setSelectLimit(size_t count);
 
 			/**
 			 * @brief Set view result callback
@@ -129,10 +138,10 @@ namespace Contacts
 			Ui::GenlistItem *getNextSectionItem(SectionId currentSection);
 			bool getSectionVisibility(Mode mode, SectionId sectionId);
 
-			PersonItem::Mode getItemMode(Mode viewMode);
+			PersonItem::Mode getItemMode();
 
 			void updateTitle();
-			void updateSelectAll();
+			void updateSelectAllState();
 			void updatePageMode();
 			void updateSectionsMode();
 
@@ -195,7 +204,8 @@ namespace Contacts
 			Mode m_Mode;
 
 			size_t m_PersonCount;
-			size_t m_CheckedCount;
+			size_t m_SelectCount;
+			size_t m_SelectLimit;
 
 			ResultCallback m_OnResult;
 		};
