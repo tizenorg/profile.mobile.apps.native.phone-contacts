@@ -134,14 +134,13 @@ void GenlistGroupItem::onPop()
 	popSubItems();
 }
 
-void GenlistGroupItem::onExpanded()
+void GenlistGroupItem::onExpanded(bool isExpanded)
 {
-	insertSubItems();
-}
-
-void GenlistGroupItem::onContracted()
-{
-	popSubItems();
+	if (isExpanded) {
+		insertSubItems();
+	} else {
+		popSubItems();
+	}
 }
 
 void GenlistGroupItem::insertSubItems()

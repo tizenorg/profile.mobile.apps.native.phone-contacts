@@ -59,6 +59,11 @@ namespace Contacts
 			 */
 			void update();
 
+			/**
+			 * @brief Update the state of the return key.
+			 */
+			void updateReturnKey();
+
 		protected:
 			/**
 			 * @brief Update entry input layout and guide text.

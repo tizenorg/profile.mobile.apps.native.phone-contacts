@@ -98,14 +98,9 @@ namespace Ui
 		virtual void onPop() override;
 
 		/**
-		 * @brief Called when tree item is expanded.
+		 * @brief Called when tree item is expanded or contracted.
 		 */
-		virtual void onExpanded();
-
-		/**
-		 * @brief Called when tree item is contracted.
-		 */
-		virtual void onContracted();
+		virtual void onExpanded(bool isExpanded);
 
 	private:
 		friend class Genlist;

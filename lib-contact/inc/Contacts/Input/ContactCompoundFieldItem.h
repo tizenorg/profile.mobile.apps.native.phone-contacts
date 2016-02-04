@@ -50,19 +50,12 @@ namespace Contacts
 			/**
 			 * @see GenlistItem::onExpanded()
 			 */
-			virtual void onExpanded() override;
-
-			/**
-			 * @see GenlistItem::onContracted()
-			 */
-			virtual void onContracted() override;
+			virtual void onExpanded(bool isExpanded) override;
 
 		private:
 			Evas_Object *createExpandButton(Evas_Object *parent);
 			Evas_Object *getExpandIcon() const;
-
 			void onExpandPressed(Evas_Object *button, void *eventInfo);
-			void onExpandChanged();
 		};
 	}
 }

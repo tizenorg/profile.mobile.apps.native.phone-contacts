@@ -164,6 +164,7 @@ collections
 			}
 			textblock { PART_PHONETIC_NAME; scale;
 				desc { "default";
+					max: 0 0;
 					align: 0.5 0.0;
 					rel1 { relative: 1.0 1.0; to_x: "spacer.text.left"; to_y: "spacer.phonetic_name.top"; }
 					rel2 { relative: 0.0 1.0; to_x: "spacer.text.right"; }
@@ -188,6 +189,7 @@ collections
 			}
 			textblock { PART_COMPANY; scale;
 				desc { "default";
+					max: 0 0;
 					align: 0.5 0.0;
 					rel1 { relative: 1.0 1.0; to_x: "spacer.text.left"; to_y: "spacer.company.top"; }
 					rel2 { relative: 0.0 1.0; to_x: "spacer.text.right"; }
