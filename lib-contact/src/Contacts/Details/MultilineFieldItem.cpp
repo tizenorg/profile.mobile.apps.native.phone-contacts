@@ -18,6 +18,7 @@
 #include "Contacts/Details/MultilineFieldItem.h"
 
 using namespace Contacts::Details;
+using namespace Contacts::Model;
 
 Elm_Genlist_Item_Class *MultilineFieldItem::getItemClass() const
 {
@@ -32,4 +33,13 @@ char *MultilineFieldItem::getText(Evas_Object *parent, const char *part)
 	}
 
 	return FieldItem::getText(parent, part);
+}
+
+void MultilineFieldItem::onFieldUpdated(ContactField &field, contacts_changed_e change)
+{
+	if (&field == &getField()) {
+		elm_genlist_item_fields_update(getObjectItem(), "elm.text.multiline", ELM_GENLIST_ITEM_FIELD_TEXT);
+	} else {
+		FieldItem::onFieldUpdated(field, change);
+	}
 }

@@ -59,3 +59,12 @@ char *TypedFieldItem::getText(Evas_Object *parent, const char *part)
 
 	return FieldItem::getText(parent, part);
 }
+
+void TypedFieldItem::onFieldUpdated(ContactField &field, contacts_changed_e change)
+{
+	if (&field == &m_TypeField || &field == &m_LabelField) {
+		elm_genlist_item_fields_update(getObjectItem(), "elm.text.sub", ELM_GENLIST_ITEM_FIELD_TEXT);
+	} else {
+		FieldItem::onFieldUpdated(field, change);
+	}
+}

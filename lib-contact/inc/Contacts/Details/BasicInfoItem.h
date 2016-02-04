@@ -19,6 +19,7 @@
 #define CONTACTS_DETAILS_BASIC_INFO_ITEM_H
 
 #include "Ui/GenlistItem.h"
+#include <contacts.h>
 #include <string>
 
 namespace Contacts
@@ -26,6 +27,7 @@ namespace Contacts
 	namespace Model
 	{
 		class Contact;
+		class ContactField;
 		class ContactBoolField;
 		class ContactTextField;
 		class ContactObject;
@@ -75,17 +77,20 @@ namespace Contacts
 
 			void onBackPressed(Evas_Object *button, void *eventInfo);
 			void onFavChanged(Evas_Object *check, void *eventInfo);
+			void onFieldUpdated(Model::ContactField &field, contacts_changed_e change);
 
 			Model::Contact &m_Contact;
 			Model::ContactBoolField *m_Favorite;
-			Model::ContactTextField *m_ImagePath;
 
-			Model::ContactCompoundObject *m_Name;
-			Model::ContactCompoundObject *m_PhoneticName;
+			Model::ContactObject &m_Image;
+			Model::ContactTextField &m_ImagePath;
 
-			Model::ContactObject *m_Company;
-			Model::ContactTextField *m_CompanyName;
-			Model::ContactTextField *m_JobTitle;
+			Model::ContactCompoundObject &m_Name;
+			Model::ContactCompoundObject &m_PhoneticName;
+
+			Model::ContactObject &m_Company;
+			Model::ContactTextField &m_CompanyName;
+			Model::ContactTextField &m_JobTitle;
 		};
 	}
 }

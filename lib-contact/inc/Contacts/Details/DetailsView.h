@@ -25,13 +25,14 @@
 namespace Ui
 {
 	class Genlist;
-	class GenlistItem;
 }
 
 namespace Contacts
 {
 	namespace Details
 	{
+		class FieldItem;
+
 		/**
 		 * @brief Contact/My profile details view.
 		 */
@@ -60,12 +61,21 @@ namespace Contacts
 			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
 
-			Ui::GenlistItem *createFieldItem(Model::ContactObject &field);
-			Ui::GenlistItem *addFieldItem(Model::ContactObject &field);
+			FieldItem *createFieldItem(Model::ContactObject &field);
+			FieldItem *getNextFieldItem(Model::ContactFieldId fieldId);
+
+			FieldItem *addFieldItem(Model::ContactObject &field);
+			void removeFieldItem(FieldItem *item);
+
+			void onArrayUpdated(Model::ContactField &field, contacts_changed_e change);
+			void onObjectUpdated(Model::ContactField &field, contacts_changed_e change);
 
 			int m_RecordId;
 			Model::Contact m_Contact;
+
 			Ui::Genlist *m_Genlist;
+			FieldItem *m_Items[Model::FieldEnd];
+
 			App::AppControl m_AppControl;
 		};
 	}
