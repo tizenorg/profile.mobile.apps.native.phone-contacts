@@ -345,7 +345,6 @@ private:
 	static Eina_Bool __onInitMyProfileIdlerCb(void *data);
 
 	static void __reorderButtonMouseDownCb(void *data, Evas *evas, Evas_Object *obj, void *event_info);
-	static void	__reorderButtonMouseUpCb(void *data, Evas *evas, Evas_Object *obj, void *event_info);
 
 	static Eina_Bool __createNocontentsPopupCb(void* data);
 

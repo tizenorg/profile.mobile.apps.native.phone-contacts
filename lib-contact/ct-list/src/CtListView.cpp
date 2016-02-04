@@ -1422,6 +1422,7 @@ void CtListView:: __genlistReoderCb(void *data, Evas_Object *obj, void *event_in
 	reorderData.nextPersonId = nextPersonId;
 
 	view->__reorderData.push_back(reorderData);
+	elm_genlist_reorder_mode_set(obj, EINA_FALSE);
 
 }
 
@@ -1444,7 +1445,6 @@ Evas_Object* CtListView::__createGenlist(Evas_Object* parent)
 
 	if(__viewType == LIST_VIEW_REORDER){
 		elm_genlist_longpress_timeout_set(genlist, 0.3);
-		//elm_genlist_reorder_mode_set(genlist, EINA_TRUE);
 		evas_object_smart_callback_add(genlist, "moved", __genlistReoderCb, this);
 	}
 
@@ -2854,11 +2854,6 @@ void CtListView::__reorderButtonMouseDownCb(void *data, Evas *evas, Evas_Object 
 	elm_genlist_reorder_mode_set((Evas_Object *)data, EINA_TRUE);
 }
 
-void CtListView::__reorderButtonMouseUpCb(void *data, Evas *evas, Evas_Object *obj, void *event_info)
-{
-	elm_genlist_reorder_mode_set((Evas_Object *)data, EINA_FALSE);
-}
-
 void CtListView::__setReorderItemClassStyle()
 {
 	WPRET_M(__listItc, "already set");
@@ -2898,7 +2893,6 @@ void CtListView::__setReorderItemClassStyle()
 			evas_object_size_hint_weight_set(button, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
 
 			evas_object_event_callback_add(button, EVAS_CALLBACK_MOUSE_DOWN, __reorderButtonMouseDownCb, itemData->listView->__genlist);
-			evas_object_event_callback_add(button, EVAS_CALLBACK_MOUSE_UP, __reorderButtonMouseUpCb, itemData->listView->__genlist);
 
 			return button;
 		}
