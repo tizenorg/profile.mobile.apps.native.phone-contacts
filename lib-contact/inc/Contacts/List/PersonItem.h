@@ -37,11 +37,6 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @brief Item select callback
-			 */
-			typedef std::function<void()> SelectedCallback;
-
-			/**
 			 * @brief Represents item mode
 			 */
 			enum Mode
