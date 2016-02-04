@@ -54,6 +54,11 @@ namespace Contacts
 			 */
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 
+			/**
+			 * @see FieldItem::onFieldUpdated()
+			 */
+			virtual void onFieldUpdated(Model::ContactField &field, contacts_changed_e change) override;
+
 		private:
 			Model::ContactEnumField &m_TypeField;
 			Model::ContactTextField &m_LabelField;

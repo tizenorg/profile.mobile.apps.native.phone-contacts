@@ -19,6 +19,8 @@
 #define CONTACTS_DETAILS_FIELD_ITEM_H
 
 #include "Ui/GenlistItem.h"
+#include <contacts.h>
+#include <functional>
 
 namespace Contacts
 {
@@ -37,10 +39,22 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Remove field callback.
+			 * @param[in]   Genlist item to be removed
+			 */
+			typedef std::function<void(FieldItem *)> RemoveCallback;
+
+			/**
 			 * @brief Create genlist item representing ContactObject.
 			 * @param[in]   object  Contact field of TypeObject type
 			 */
 			FieldItem(Model::ContactObject &object);
+
+			/**
+			 * @brief Set remove field callback.
+			 * @param[in]   callback    Callback to be called when the item needs to be removed.
+			 */
+			void setRemoveCallback(RemoveCallback callback);
 
 			/**
 			 * @return ContactField associated with the item.
@@ -63,9 +77,15 @@ namespace Contacts
 			 */
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 
+			/**
+			 * @see ContactField::UpdatedCallback
+			 */
+			virtual void onFieldUpdated(Model::ContactField &field, contacts_changed_e change);
+
 		private:
 			Model::ContactObject &m_Object;
 			Model::ContactField &m_Field;
+			RemoveCallback m_OnRemove;
 		};
 	}
 }
