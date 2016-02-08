@@ -109,7 +109,7 @@ void Genlist::onItemExpanded(void *data, Evas_Object *obj, Elm_Object_Item *obje
 {
 	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
 	if (item && item->isGroupItem()) {
-		dynamic_cast<GenlistGroupItem *>(item)->onExpanded();
+		dynamic_cast<GenlistGroupItem *>(item)->onExpanded(true);
 	}
 }
 
@@ -117,7 +117,7 @@ void Genlist::onItemContracted(void *data, Evas_Object *obj, Elm_Object_Item *ob
 {
 	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
 	if (item && item->isGroupItem()) {
-		dynamic_cast<GenlistGroupItem *>(item)->onContracted();
+		dynamic_cast<GenlistGroupItem *>(item)->onExpanded(false);
 	}
 }
 

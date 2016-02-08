@@ -66,6 +66,21 @@ void ContactTextFieldControl::update()
 	free(text);
 }
 
+void ContactTextFieldControl::updateReturnKey()
+{
+	m_NextItem = nullptr;
+	for (auto item = m_ParentItem->getNextItem(); item; item = item->getNextItem()) {
+		if (item->isFocusable()) {
+			m_NextItem = item;
+			break;
+		}
+	}
+
+	elm_entry_input_panel_return_key_type_set(getEntry(), m_NextItem
+			? ELM_INPUT_PANEL_RETURN_KEY_TYPE_NEXT
+			: ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE);
+}
+
 void ContactTextFieldControl::updateEntryLayout()
 {
 	setGuideText(Common::getContactChildFieldName(m_Field.getId()));
@@ -115,17 +130,7 @@ void ContactTextFieldControl::onChanged(Evas_Object *entry, void *eventInfo)
 
 void ContactTextFieldControl::onFocused(Evas_Object *entry, void *eventInfo)
 {
-	m_NextItem = nullptr;
-	for (auto item = m_ParentItem->getNextItem(); item; item = item->getNextItem()) {
-		if (item->isFocusable()) {
-			m_NextItem = item;
-			break;
-		}
-	}
-
-	elm_entry_input_panel_return_key_type_set(entry, m_NextItem
-			? ELM_INPUT_PANEL_RETURN_KEY_TYPE_NEXT
-			: ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE);
+	updateReturnKey();
 }
 
 void ContactTextFieldControl::onUnfocused(Evas_Object *entry, void *eventInfo)
