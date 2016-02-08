@@ -1,0 +1,66 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "LogPath.h"
+
+#include "../../../../lib-common/res/common/edje/common-colors.edc"
+#include "../../../../lib-common/res/common/edje/common-utils.edc"
+#include "../../../../lib-logs/res/Logs/edje/log-colors.edc"
+
+#define SIZE_X 104
+#define SIZE_Y 105
+#define THUMBNAIL 98
+#define LOG_TYPE_X 60
+#define LOG_TYPE_Y 59
+
+collections
+{
+	base_scale: 2.6;
+	IMAGE_WITH_BG_AND_COLOR(ICON_INCOMING, LOG_ICON_INCOMING, "log_list_white_bg",  LOG_ICON_CONTAINER, "call_status_blue_bg")
+	IMAGE_WITH_BG_AND_COLOR(ICON_OUTGOING, LOG_ICON_OUTGOING, "log_list_white_bg",  LOG_ICON_CONTAINER, "call_status_green_bg")
+	IMAGE_WITH_BG_AND_COLOR(ICON_MISSED, LOG_ICON_MISSED, "log_list_white_bg",  LOG_ICON_CONTAINER, "call_status_red_bg")
+	IMAGE_WITH_BG_AND_COLOR(ICON_REJECTED, LOG_ICON_REJECTED, "log_list_white_bg",  LOG_ICON_CONTAINER, "call_status_red_bg")
+	IMAGE_WITH_BG_AND_COLOR(ICON_AUTO_REJECTED, LOG_ICON_AUTO_REJECTED, "log_list_white_bg",  LOG_ICON_CONTAINER, "call_status_red_bg")
+
+	IMAGE_WITH_BG_PRESSED_COLOR(ICON_INFO, LOG_ICON_INFO, "log_list_white_bg", LOG_ICON_CONTAINER, "info_icon_blue_bg", "info_icon_blue_bg_pressed")
+
+	group { 
+		name: LOG_ITEM_STYLE;
+		parts {
+			part {
+				name: THUMBNAIL_PART;
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 0.0 0.0; }
+					rel2 { relative: (THUMBNAIL/SIZE_Y) (THUMBNAIL/SIZE_X); }
+				}
+			}
+			part {
+				name: LOG_TYPE_PART;
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: ((LOG_TYPE_X/SIZE_Y)) ((LOG_TYPE_Y/SIZE_X)); }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+	   }
+	}
+}

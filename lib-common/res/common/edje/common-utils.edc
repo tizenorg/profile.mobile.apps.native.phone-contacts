@@ -124,3 +124,56 @@
 			} \
 		} \
 	}
+
+#define IMAGE_WITH_BG_PRESSED_COLOR(GROUP_NAME, IMAGE_PATH, COLOR_CLASS, BG_IMAGE_PATH, BG_COLOR_CLASS, PRESSED_BG_COLOR_CLASS) \
+	group { \
+		name: GROUP_NAME; \
+		images.image: IMAGE_PATH COMP; \
+		images.image: BG_IMAGE_PATH COMP; \
+		parts { \
+			part { name: "image.bg"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: BG_IMAGE_PATH; \
+					color_class: BG_COLOR_CLASS; \
+					aspect: 1 1; \
+					aspect_preference: SOURCE; \
+				} \
+				description { \
+					state: "pressed" 0.0; \
+					inherit:  "default" 0.0; \
+					color_class: PRESSED_BG_COLOR_CLASS; \
+				} \
+			} \
+			part { name: "image"; \
+				description { \
+					state: "default" 0.0; \
+					image.normal: IMAGE_PATH; \
+					color_class: COLOR_CLASS; \
+					aspect: 1 1; \
+					aspect_preference: SOURCE; \
+				} \
+				description { \
+					state: "pressed" 0.0; \
+					inherit:  "default" 0.0; \
+					color_class: COLOR_CLASS; \
+				} \
+			} \
+		} \
+		programs { \
+			program { \
+				name: "pressed"; \
+				signal: "mouse,down,*"; \
+				source: "*"; \
+				action: STATE_SET "pressed" 0.0; \
+				target: "image.bg"; \
+			} \
+			program { \
+				name: "unpressed"; \
+				signal: "mouse,up,*"; \
+				source: "*"; \
+				action: STATE_SET "default" 0.0; \
+				target: "image.bg"; \
+			} \
+		} \
+	}
