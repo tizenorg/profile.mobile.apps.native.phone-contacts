@@ -62,7 +62,14 @@ namespace Contacts
 			 */
 			virtual void onInitialize(contacts_record_h record) override;
 
+			/**
+			 * @see ContactField::onUpdate()
+			 */
+			virtual void onUpdate(contacts_record_h record) override;
+
 		private:
+			ContactField &addField(contacts_record_h record);
+
 			size_t m_InitialCount;
 		};
 	}

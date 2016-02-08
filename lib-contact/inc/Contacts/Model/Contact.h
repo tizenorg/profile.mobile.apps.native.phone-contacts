@@ -64,7 +64,15 @@ namespace Contacts
 			Contact &operator=(const Contact &that) = delete;
 
 		private:
+			void setChangeCallback();
+			void unsetChangeCallback();
+
+			int getContactChange();
+			int getMyProfileChange();
+			void onDatabaseChanged(const char *uri);
+
 			bool m_IsNew;
+			int m_DbVersion;
 		};
 	}
 }

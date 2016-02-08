@@ -21,22 +21,11 @@
 using namespace Contacts::Model;
 
 ContactFieldIterator::ContactFieldIterator(const ContactFieldContainer &container, int index)
-	: m_Container(container), m_Index(index)
+	: IndexIterator(index), m_Container(container)
 {
-}
-
-ContactFieldIterator &ContactFieldIterator::operator++()
-{
-	++m_Index;
-	return *this;
 }
 
 ContactField &ContactFieldIterator::operator*() const
 {
-	return *m_Container.getField(m_Index);
-}
-
-bool ContactFieldIterator::operator!=(const ContactFieldIterator &that) const
-{
-	return m_Index != that.m_Index;
+	return *m_Container.getField(getIndex());
 }

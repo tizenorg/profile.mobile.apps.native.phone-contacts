@@ -47,7 +47,17 @@ namespace Contacts
 			 */
 			int getRecordId() const;
 
+			/**
+			 * @brief Compare object with record by ID.
+			 */
+			bool operator==(contacts_record_h record) const;
+
 		protected:
+			/**
+			 * @return Record ID.
+			 */
+			int getRecordId(contacts_record_h record) const;
+
 			/**
 			 * @return Object type metadata.
 			 */
@@ -57,6 +67,11 @@ namespace Contacts
 			 * @see ContactField::onInitialize()
 			 */
 			virtual void onInitialize(contacts_record_h record) override;
+
+			/**
+			 * @see ContactField::onUpdate()
+			 */
+			virtual void onUpdate(contacts_record_h record) override;
 
 		private:
 			static contacts_record_h getChildRecord(contacts_record_h record,
