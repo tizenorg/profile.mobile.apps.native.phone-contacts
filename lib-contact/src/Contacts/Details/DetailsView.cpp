@@ -57,8 +57,8 @@ namespace
 	};
 }
 
-DetailsView::DetailsView(int recordId, Type type)
-	: m_RecordId(recordId), m_Contact(ContactObjectType(type)),
+DetailsView::DetailsView(int recordId, Type type, int filter)
+	: m_RecordId(recordId), m_Contact(ContactObjectType(type)), m_Filter(filter),
 	  m_Genlist(nullptr), m_Items{nullptr}
 {
 }
@@ -81,7 +81,7 @@ void DetailsView::onCreated()
 
 	for (auto &&field : m_Contact) {
 		ContactFieldId fieldId = ContactFieldId(field.getId());
-		if (!isFieldVisible[fieldId]) {
+		if (!isFieldVisible[fieldId] || !(m_Filter & (1 << fieldId))) {
 			continue;
 		}
 

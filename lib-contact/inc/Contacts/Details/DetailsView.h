@@ -49,11 +49,22 @@ namespace Contacts
 			};
 
 			/**
+			 * @brief Determines which contact fields should be displayed.
+			 */
+			enum Filter
+			{
+				FilterNone = -1,
+				FilterNumber = 1 << Model::FieldNumber,
+				FilterEmail = 1 << Model::FieldEmail
+			};
+
+			/**
 			 * @brief Create details view.
 			 * @param[in]   recordId    Contact or My Profile record ID
 			 * @param[in]   type        Type of viewed object
+			 * @param[in]   filter      Filter to use to display contact fields
 			 */
-			DetailsView(int recordId, Type type = TypeContact);
+			DetailsView(int recordId, Type type = TypeContact, int filter = FilterNone);
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -72,6 +83,7 @@ namespace Contacts
 
 			int m_RecordId;
 			Model::Contact m_Contact;
+			int m_Filter;
 
 			Ui::Genlist *m_Genlist;
 			FieldItem *m_Items[Model::FieldEnd];
