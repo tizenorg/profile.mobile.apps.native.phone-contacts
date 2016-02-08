@@ -25,12 +25,19 @@
 
 using namespace Contacts::Details;
 using namespace Contacts::Model;
+using namespace std::placeholders;
 
 #define DATE_BUFFER_SIZE 32
 
 FieldItem::FieldItem(ContactObject &object)
 	: m_Object(object), m_Field(*object.getField(0))
 {
+	m_Object.setUpdateCallback(std::bind(&FieldItem::onFieldUpdated, this, _1, _2));
+}
+
+void FieldItem::setRemoveCallback(RemoveCallback callback)
+{
+	m_OnRemove = std::move(callback);
 }
 
 ContactObject &FieldItem::getObject() const
@@ -74,4 +81,17 @@ char *FieldItem::getText(Evas_Object *parent, const char *part)
 	}
 
 	return nullptr;
+}
+
+void FieldItem::onFieldUpdated(ContactField &field, contacts_changed_e change)
+{
+	if (&field == &m_Field) {
+		elm_genlist_item_fields_update(getObjectItem(), "elm.text", ELM_GENLIST_ITEM_FIELD_TEXT);
+	} else if (&field == &m_Object) {
+		if (change == CONTACTS_CHANGE_DELETED || field.isEmpty()) {
+			if (m_OnRemove) {
+				m_OnRemove(this);
+			}
+		}
+	}
 }

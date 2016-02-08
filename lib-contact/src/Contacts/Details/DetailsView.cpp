@@ -29,11 +29,13 @@
 #include "Ui/Navigator.h"
 #include "Ui/Popup.h"
 #include "Utils/Logger.h"
+#include "Utils/Range.h"
 
 #include "DetailsItemLayout.h"
 
 using namespace Contacts::Details;
 using namespace Contacts::Model;
+using namespace std::placeholders;
 
 namespace
 {
@@ -55,9 +57,9 @@ namespace
 	};
 }
 
-DetailsView::DetailsView(int recordId, Type type)
-	: m_RecordId(recordId), m_Contact(ContactObjectType(type)),
-	  m_Genlist(nullptr)
+DetailsView::DetailsView(int recordId, Type type, int filter)
+	: m_RecordId(recordId), m_Contact(ContactObjectType(type)), m_Filter(filter),
+	  m_Genlist(nullptr), m_Items{nullptr}
 {
 }
 
@@ -79,12 +81,15 @@ void DetailsView::onCreated()
 
 	for (auto &&field : m_Contact) {
 		ContactFieldId fieldId = ContactFieldId(field.getId());
-		if (!isFieldVisible[fieldId]) {
+		if (!isFieldVisible[fieldId] || !(m_Filter & (1 << fieldId))) {
 			continue;
 		}
 
 		switch (field.getType()) {
 			case TypeArray:
+				field.setUpdateCallback(std::bind(&DetailsView::onArrayUpdated,
+						this, _1, _2));
+
 				for (auto &&element : field.cast<ContactArray>()) {
 					addFieldItem(element.cast<ContactObject>());
 				}
@@ -92,6 +97,9 @@ void DetailsView::onCreated()
 			case TypeObject:
 				if (!field.isEmpty()) {
 					addFieldItem(field.cast<ContactObject>());
+				} else {
+					field.setUpdateCallback(std::bind(&DetailsView::onObjectUpdated,
+							this, _1, _2));
 				}
 				break;
 			default:
@@ -142,9 +150,9 @@ void DetailsView::onMenuPressed()
 	menu->show();
 }
 
-Ui::GenlistItem *DetailsView::createFieldItem(ContactObject &field)
+FieldItem *DetailsView::createFieldItem(ContactObject &field)
 {
-	Ui::GenlistItem *item = nullptr;
+	FieldItem *item = nullptr;
 	ContactFieldId fieldId = ContactFieldId(field.getId());
 
 	if (fieldId == FieldNumber) {
@@ -161,12 +169,65 @@ Ui::GenlistItem *DetailsView::createFieldItem(ContactObject &field)
 		item = new FieldItem(field);
 	}
 
+	item->setRemoveCallback(std::bind(&DetailsView::removeFieldItem, this, _1));
 	return item;
 }
 
-Ui::GenlistItem *DetailsView::addFieldItem(ContactObject &field)
+FieldItem *DetailsView::getNextFieldItem(ContactFieldId fieldId)
 {
-	Ui::GenlistItem *item = createFieldItem(field);
-	m_Genlist->insert(item);
+	for (unsigned id = fieldId + 1; id < Utils::count(m_Items); ++id) {
+		if (m_Items[id]) {
+			return m_Items[id];
+		}
+	}
+
+	return nullptr;
+}
+
+FieldItem *DetailsView::addFieldItem(ContactObject &field)
+{
+	ContactFieldId fieldId = ContactFieldId(field.getId());
+
+	FieldItem *item = createFieldItem(field);
+	m_Genlist->insert(item, nullptr, getNextFieldItem(fieldId));
+
+	if (!m_Items[fieldId]) {
+		m_Items[fieldId] = item;
+	}
+
 	return item;
+}
+
+void DetailsView::removeFieldItem(FieldItem *item)
+{
+	ContactFieldId fieldId = ContactFieldId(item->getObject().getId());
+	item->getObject().setUpdateCallback(std::bind(&DetailsView::onObjectUpdated,
+			this, _1, _2));
+
+	if (item == m_Items[fieldId]) {
+		FieldItem *nextItem = static_cast<FieldItem *>(item->getNextItem());
+		if (nextItem && nextItem->getObject().getId() == fieldId) {
+			m_Items[fieldId] = nextItem;
+		} else {
+			m_Items[fieldId] = nullptr;
+		}
+	}
+
+	delete item;
+}
+
+void DetailsView::onArrayUpdated(ContactField &field, contacts_changed_e change)
+{
+	if (change == CONTACTS_CHANGE_INSERTED) {
+		addFieldItem(field.cast<ContactObject>());
+	}
+}
+
+void DetailsView::onObjectUpdated(ContactField &field, contacts_changed_e change)
+{
+	if (change == CONTACTS_CHANGE_UPDATED) {
+		if (!field.isEmpty()) {
+			addFieldItem(field.getParent()->cast<ContactObject>());
+		}
+	}
 }

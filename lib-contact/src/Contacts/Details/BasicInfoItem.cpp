@@ -29,32 +29,23 @@
 
 using namespace Contacts::Details;
 using namespace Contacts::Model;
+using namespace std::placeholders;
 
 BasicInfoItem::BasicInfoItem(Contact &contact)
-	: m_Contact(contact),
-	  m_Favorite(nullptr), m_ImagePath(nullptr),
-	  m_Name(nullptr), m_PhoneticName(nullptr),
-	  m_Company(nullptr), m_CompanyName(nullptr), m_JobTitle(nullptr)
+	: m_Contact     (contact),
+	  m_Favorite    (&contact.getFieldById(FieldFavorite)->cast<ContactBoolField>()),
+
+	  m_Image       (contact.getFieldById(FieldImage)->cast<ContactObject>()),
+	  m_ImagePath   (m_Image.getField(0)->cast<ContactTextField>()),
+
+	  m_Name        (contact.getFieldById(FieldName)->cast<ContactCompoundObject>()),
+	  m_PhoneticName(contact.getFieldById(FieldPhoneticName)->cast<ContactCompoundObject>()),
+
+	  m_Company     (contact.getFieldById(FieldCompany)->cast<ContactObject>()),
+	  m_CompanyName (m_Company.getFieldById(CompanyFieldName)->cast<ContactTextField>()),
+	  m_JobTitle    (m_Company.getFieldById(CompanyFieldJobTitle)->cast<ContactTextField>())
 {
-	for (auto &&field : m_Contact) {
-		unsigned fieldId = field.getId();
-		if (fieldId > FieldCompany) {
-			break;
-		}
-
-		switch(fieldId) {
-			case FieldImage:        m_ImagePath    = &field.cast<ContactObject>().getField(0)->cast<ContactTextField>(); break;
-			case FieldFavorite:     m_Favorite     = &field.cast<ContactBoolField>(); break;
-			case FieldName:         m_Name         = &field.cast<ContactCompoundObject>(); break;
-			case FieldPhoneticName: m_PhoneticName = &field.cast<ContactCompoundObject>(); break;
-			case FieldCompany:      m_Company      = &field.cast<ContactObject>(); break;
-		}
-	}
-
-	if (m_Company) {
-		m_CompanyName = &m_Company->getFieldById(CompanyFieldName)->cast<ContactTextField>();
-		m_JobTitle = &m_Company->getFieldById(CompanyFieldJobTitle)->cast<ContactTextField>();
-	}
+	m_Contact.setUpdateCallback(std::bind(&BasicInfoItem::onFieldUpdated, this, _1, _2));
 }
 
 Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
@@ -65,11 +56,11 @@ Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
 
 char *BasicInfoItem::getText(Evas_Object *parent, const char *part)
 {
-	if (m_Name && strcmp(part, PART_NAME) == 0) {
-		return strdup(m_Name->getValue().c_str());
-	} else if (m_PhoneticName && strcmp(part, PART_PHONETIC_NAME) == 0) {
-		return strdup(m_PhoneticName->getValue().c_str());
-	} else if (m_Company && strcmp(part, PART_COMPANY) == 0) {
+	if (strcmp(part, PART_NAME) == 0) {
+		return strdup(m_Name.getValue().c_str());
+	} else if (strcmp(part, PART_PHONETIC_NAME) == 0) {
+		return strdup(m_PhoneticName.getValue().c_str());
+	} else if (strcmp(part, PART_COMPANY) == 0) {
 		return strdup(formatCompanyString().c_str());
 	}
 
@@ -82,9 +73,9 @@ Evas_Object *BasicInfoItem::getContent(Evas_Object *parent, const char *part)
 		return createBackButton(parent);
 	} else if (m_Favorite && strcmp(part, PART_FAV_BTN) == 0) {
 		return createFavButton(parent);
-	} else if (m_ImagePath && strcmp(part, PART_THUMBNAIL) == 0) {
+	} else if (strcmp(part, PART_THUMBNAIL) == 0) {
 		auto control = Ui::Thumbnail::create(parent, Ui::Thumbnail::SizeLarge);
-		control->setImagePath(m_ImagePath->getValue());
+		control->setImagePath(m_ImagePath.getValue());
 		return control->getEvasObject();
 	}
 
@@ -93,10 +84,10 @@ Evas_Object *BasicInfoItem::getContent(Evas_Object *parent, const char *part)
 
 Eina_Bool BasicInfoItem::getState(Evas_Object *parent, const char *part)
 {
-	if (m_PhoneticName && strcmp(part, PART_PHONETIC_NAME) == 0) {
-		return !m_PhoneticName->isEmpty();
-	} else if (m_Company && strcmp(part, PART_COMPANY) == 0) {
-		return !m_Company->isEmpty();
+	if (strcmp(part, PART_PHONETIC_NAME) == 0) {
+		return !m_PhoneticName.isEmpty();
+	} else if (strcmp(part, PART_COMPANY) == 0) {
+		return !m_Company.isEmpty();
 	}
 
 	return EINA_FALSE;
@@ -104,8 +95,8 @@ Eina_Bool BasicInfoItem::getState(Evas_Object *parent, const char *part)
 
 std::string BasicInfoItem::formatCompanyString()
 {
-	const char *companyName = m_CompanyName->getValue();
-	const char *jobTitle = m_JobTitle->getValue();
+	const char *companyName = m_CompanyName.getValue();
+	const char *jobTitle = m_JobTitle.getValue();
 
 	std::string value;
 	if (companyName) {
@@ -151,4 +142,29 @@ void BasicInfoItem::onFavChanged(Evas_Object *check, void *eventInfo)
 {
 	m_Favorite->setValue(elm_check_state_get(check));
 	m_Contact.save();
+}
+
+void BasicInfoItem::onFieldUpdated(ContactField &field, contacts_changed_e change)
+{
+	if (&field == &m_Contact && change == CONTACTS_CHANGE_DELETED) {
+		delete getParent();
+		return;
+	}
+
+	const char *part = nullptr;
+	if (&field == m_Favorite) {
+		part = PART_FAV_BTN;
+	} else if (&field == &m_Image) {
+		part = PART_THUMBNAIL;
+	} else if (&field == &m_Name) {
+		part = PART_NAME;
+	} else if (&field == &m_PhoneticName) {
+		part = PART_PHONETIC_NAME;
+	} else if (&field == &m_Company) {
+		part = PART_COMPANY;
+	}
+
+	if (part) {
+		elm_genlist_item_fields_update(getObjectItem(), part, ELM_GENLIST_ITEM_FIELD_ALL);
+	}
 }
