@@ -1,0 +1,66 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "LogPath.h"
+#include "LogItemLayout.h"
+
+#include "log-colors.edc"
+#include "../../../../lib-common/res/common/edje/common-utils.edc"
+
+#define LAYOUT_H 104
+#define LAYOUT_W 105
+#define THUMBNAIL_SIZE 98
+#define LOG_TYPE_X 60
+#define LOG_TYPE_Y 59
+
+collections
+{
+	base_scale: 2.6;
+	IMAGE_WITH_BG_AND_COLOR(ICON_INCOMING, LOG_ICON_INCOMING, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_incoming")
+	IMAGE_WITH_BG_AND_COLOR(ICON_OUTGOING, LOG_ICON_OUTGOING, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_outgoing")
+	IMAGE_WITH_BG_AND_COLOR(ICON_MISSED, LOG_ICON_MISSED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
+	IMAGE_WITH_BG_AND_COLOR(ICON_REJECTED, LOG_ICON_REJECTED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
+	IMAGE_WITH_BG_AND_COLOR(ICON_AUTO_REJECTED, LOG_ICON_AUTO_REJECTED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
+
+	IMAGE_WITH_BG_PRESSED_COLOR(ICON_INFO, LOG_ICON_INFO, "info_icon", LOG_ICON_CONTAINER, "info_icon_bg", "info_icon_bg_pressed")
+
+	group {
+		name: LOG_ITEM;
+		parts {
+			part {
+				name: THUMBNAIL_PART;
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: (THUMBNAIL_SIZE/LAYOUT_W) (THUMBNAIL_SIZE/LAYOUT_H);
+				}
+			}
+			part {
+				name: LOG_TYPE_PART;
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1.relative: (LOG_TYPE_X/LAYOUT_W) (LOG_TYPE_Y/LAYOUT_H);
+					rel2.relative: 1.0 1.0;
+				}
+			}
+	   }
+	}
+}
