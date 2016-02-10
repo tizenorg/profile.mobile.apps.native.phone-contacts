@@ -66,12 +66,13 @@ namespace Ui
 		virtual bool onCancel();
 
 		void cancel();
-		bool onProgress(int value);
+		bool onProgress(size_t value);
 
 	private:
 		void createProgressPopup(Evas_Object *parent, const char *title, int maxValue);
 
 		static void onStart(void *data, Ecore_Thread *thread);
+		static void onNotify(void *data, Ecore_Thread *thread, void *msgData);
 		static void onFinish(void *data, Ecore_Thread *thread);
 		static void onCanceled(void *data, Ecore_Thread *thread);
 
