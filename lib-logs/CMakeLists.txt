@@ -5,6 +5,7 @@ file(GLOB_RECURSE SOURCES src/*.cpp)
 include_directories(
 	${CMAKE_SOURCE_DIR}/lib-common/inc
 	${CMAKE_CURRENT_SOURCE_DIR}/inc
+	${CMAKE_CURRENT_SOURCE_DIR}/res/logs/edje
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
