@@ -28,12 +28,17 @@ namespace
 	};
 }
 
-DbChangeObserver::DbChangeObserver(Table table)
-	: m_Table(table)
+DbChangeObserver *DbChangeObserver::getInstance(Table table)
 {
-	contacts_db_get_current_version(&m_DbVersion);
-	contacts_db_add_changed_cb(uris[m_Table],
-			makeCallbackWithLastParam(&DbChangeObserver::onChanged), this);
+	if (table == TableMax) {
+		return nullptr;
+	}
+
+	if (!m_Observers[table]) {
+		m_Observers[table] = new DbChangeObserver(table);
+	}
+
+	return m_Observers[table];
 }
 
 DbChangeObserver::~DbChangeObserver()
@@ -67,10 +72,19 @@ void DbChangeObserver::removeCallback(int id, CallbackHandle handle)
 	}
 }
 
+DbChangeObserver::DbChangeObserver(Table table)
+	: m_Table(table)
+{
+	contacts_db_get_current_version(&m_DbVersion);
+	contacts_db_add_changed_cb(uris[m_Table],
+			makeCallbackWithLastParam(&DbChangeObserver::onChanged), this);
+}
+
 void DbChangeObserver::onChanged(const char *viewUri)
 {
 	switch (m_Table) {
-		case Contact: notifyContactChanges(); break;
+		case TableContact: notifyContactChanges(); break;
+		default: break;
 	}
 }
 
@@ -109,3 +123,5 @@ void DbChangeObserver::notify(int id, contacts_changed_e changeType)
 	}
 	notifyAll(m_Callbacks);
 }
+
+DbChangeObserver *DbChangeObserver::m_Observers[DbChangeObserver::TableMax] = { 0 };
