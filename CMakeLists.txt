@@ -14,6 +14,7 @@ pkg_check_modules(TIZEN_PACKAGES REQUIRED
 	feedback
 	libtzplatform-config
 	notification
+	storage
 )
 
 set(INCLUDES      "${TIZEN_PACKAGES_INCLUDE_DIRS};inc")

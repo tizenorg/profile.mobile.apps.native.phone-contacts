@@ -21,6 +21,7 @@ BuildRequires: pkgconfig(elementary)
 BuildRequires: pkgconfig(feedback)
 BuildRequires: pkgconfig(libtzplatform-config)
 BuildRequires: pkgconfig(notification)
+BuildRequires: pkgconfig(storage)
 
 %description
 Contacts and Phone Reference Applications.

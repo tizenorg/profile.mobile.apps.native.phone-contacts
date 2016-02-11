@@ -35,7 +35,7 @@ ProgressController::~ProgressController()
 
 void ProgressController::run()
 {
-	m_Thread = ecore_thread_run(onStart, onFinish, onCanceled, this);
+	m_Thread = ecore_thread_feedback_run(onStart, onNotify, onFinish, onCanceled, this, EINA_FALSE);
 }
 
 void ProgressController::setFinishCallback(FinishCallback callback)
@@ -53,9 +53,10 @@ void ProgressController::cancel()
 	m_IsCanceled = true;
 }
 
-bool ProgressController::onProgress(int value)
+bool ProgressController::onProgress(size_t value)
 {
-	m_ProgressPopup->setProgress(value);
+	ecore_thread_feedback(m_Thread, (void *)value);
+
 	return !m_IsCanceled;
 }
 
@@ -83,7 +84,15 @@ void ProgressController::onStart(void *data, Ecore_Thread *thread)
 {
 	RETM_IF_ERR(!data, "invalid data");
 	ProgressController *controller = (ProgressController *)data;
-	controller->onStart(controller->m_Thread);
+	controller->onStart(thread);
+}
+
+void ProgressController::onNotify(void *data, Ecore_Thread *thread, void *msgData)
+{
+	RETM_IF_ERR(!data || !msgData, "invalid data");
+	ProgressController *controller = (ProgressController *)data;
+
+	controller->m_ProgressPopup->setProgress((size_t)msgData);
 }
 
 void ProgressController::onFinish(void *data, Ecore_Thread *thread)
