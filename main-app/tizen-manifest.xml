@@ -119,6 +119,7 @@
         <privilege>http://tizen.org/privilege/callhistory.read</privilege>
         <privilege>http://tizen.org/privilege/contact.read</privilege>
         <privilege>http://tizen.org/privilege/contact.write</privilege>
+        <privilege>http://tizen.org/privilege/externalstorage</privilege>
         <privilege>http://tizen.org/privilege/mediastorage</privilege>
         <privilege>http://tizen.org/privilege/notification</privilege>
     </privileges>
