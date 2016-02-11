@@ -18,6 +18,7 @@
 #include "Contacts/List/Model/DbChangeObserver.h"
 #include "Contacts/Utils.h"
 #include "Utils/Callback.h"
+#include "Utils/Range.h"
 
 using namespace Contacts::List::Model;
 
@@ -28,35 +29,37 @@ namespace
 	};
 }
 
-DbChangeObserver::DbChangeObserver(Table table)
-	: m_Table(table)
+DbChangeObserver *DbChangeObserver::getInstance(Table table)
 {
-	contacts_db_get_current_version(&m_DbVersion);
-	contacts_db_add_changed_cb(uris[m_Table],
-			makeCallbackWithLastParam(&DbChangeObserver::onChanged), this);
+	if (table < 0 || table >= Utils::count(m_Observers)) {
+		return nullptr;
+	}
+
+	return &m_Observers[table];
 }
 
 DbChangeObserver::~DbChangeObserver()
 {
-	contacts_db_remove_changed_cb(uris[m_Table],
-			makeCallbackWithLastParam(&DbChangeObserver::onChanged), this);
+	unsubscribe();
 }
 
 DbChangeObserver::CallbackHandle DbChangeObserver::addCallback(Callback callback)
 {
-	m_Callbacks.push_back(std::move(callback));
-	return --m_Callbacks.cend();
+	return addCallback(m_Callbacks, std::move(callback));
 }
 
 void DbChangeObserver::removeCallback(CallbackHandle handle)
 {
 	m_Callbacks.erase(handle);
+
+	if (m_Callbacks.empty() && m_ChangeCallbacks.empty()) {
+		unsubscribe();
+	}
 }
 
 DbChangeObserver::CallbackHandle DbChangeObserver::addCallback(int id, Callback callback)
 {
-	m_ChangeCallbacks[id].push_back(std::move(callback));
-	return --m_ChangeCallbacks[id].cend();
+	return addCallback(m_ChangeCallbacks[id], std::move(callback));
 }
 
 void DbChangeObserver::removeCallback(int id, CallbackHandle handle)
@@ -65,12 +68,55 @@ void DbChangeObserver::removeCallback(int id, CallbackHandle handle)
 	if (it != m_ChangeCallbacks.end()) {
 		it->second.erase(handle);
 	}
+
+	if (it->second.empty()) {
+		m_ChangeCallbacks.erase(it);
+	}
+
+	if (m_Callbacks.empty() && m_ChangeCallbacks.empty()) {
+		unsubscribe();
+	}
+}
+
+DbChangeObserver::DbChangeObserver(Table table)
+	: m_Table(table), m_DbVersion(0), m_IsSubscribed(false)
+{
+}
+
+void DbChangeObserver::subscribe()
+{
+	contacts_db_get_current_version(&m_DbVersion);
+	contacts_db_add_changed_cb(uris[m_Table],
+			makeCallbackWithLastParam(&DbChangeObserver::onChanged), this);
+
+	m_IsSubscribed = true;
+}
+
+void DbChangeObserver::unsubscribe()
+{
+	m_DbVersion = 0;
+	contacts_db_remove_changed_cb(uris[m_Table],
+			makeCallbackWithLastParam(&DbChangeObserver::onChanged), this);
+
+	m_IsSubscribed = false;
+}
+
+DbChangeObserver::CallbackHandle DbChangeObserver::addCallback(RecordCbs &recordCbs,
+		Callback callback)
+{
+	if (!m_IsSubscribed) {
+		subscribe();
+	}
+
+	recordCbs.push_back(std::move(callback));
+	return --recordCbs.cend();
 }
 
 void DbChangeObserver::onChanged(const char *viewUri)
 {
 	switch (m_Table) {
-		case Contact: notifyContactChanges(); break;
+		case TableContact: notifyContactChanges(); break;
+		default: break;
 	}
 }
 
@@ -109,3 +155,7 @@ void DbChangeObserver::notify(int id, contacts_changed_e changeType)
 	}
 	notifyAll(m_Callbacks);
 }
+
+DbChangeObserver DbChangeObserver::m_Observers[DbChangeObserver::TableMax] = {
+	/* TableContact = */ { TableContact }
+};

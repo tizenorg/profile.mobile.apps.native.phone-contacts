@@ -40,7 +40,9 @@ namespace Contacts
 				 */
 				enum Table
 				{
-					Contact
+					TableFirst,
+					TableContact = TableFirst,
+					TableMax
 				};
 
 				/**
@@ -61,10 +63,12 @@ namespace Contacts
 				typedef RecordCbs::const_iterator CallbackHandle;
 
 				/**
-				 * @brief Create new observer object
-				 * @param[in]   viewUri     Uri to DB table view
+				 * @brief Get observer instance
+				 * @param[in]   table     DB table view
+				 * @return observer object on success or nullptr if wrong parameter passed
 				 */
-				DbChangeObserver(Table table = Contact);
+				static DbChangeObserver *getInstance(Table table = TableContact);
+
 				~DbChangeObserver();
 
 				DbChangeObserver(const DbChangeObserver &that) = delete;
@@ -102,15 +106,26 @@ namespace Contacts
 				typedef RecordCbs                          Callbacks;
 				typedef std::unordered_map<int, RecordCbs> ChangeCallbacks;
 
+				DbChangeObserver(Table table);
+				DbChangeObserver(DbChangeObserver &&that) = default;
+
+				void subscribe();
+				void unsubscribe();
+
+				CallbackHandle addCallback(RecordCbs &recordCbs, Callback callback);
+
 				void onChanged(const char *viewUri);
 				void notifyContactChanges();
 				void notify(int id, contacts_changed_e changeType);
+
+				static DbChangeObserver m_Observers[TableMax];
 
 				Callbacks m_Callbacks;
 				ChangeCallbacks m_ChangeCallbacks;
 
 				Table m_Table;
 				int m_DbVersion;
+				bool m_IsSubscribed;
 			};
 		}
 	}
