@@ -720,8 +720,8 @@ void ListView::onItemChecked(PersonItem *item)
 void ListView::onItemSelected(PersonItem *item)
 {
 	switch (m_Mode) {
-		case ModeDefault:           launchPersonDetail(item); break;
-		case ModeSingleSelect:        onPersonSelected(item->getPerson()); break;
+		case ModeDefault:               launchPersonDetail(item); break;
+		case ModeSingleSelect:          onPersonSelected(item->getPerson()); break;
 		case ModeMultiSelect:
 		case ModeMultiSelectWithLimit:  onItemChecked(item); break;
 		default: break;
