@@ -2,11 +2,13 @@
 <tproject xmlns="http://www.tizen.org/tproject">
     <platforms>
         <platform>
-            <name>mobile-2.4</name>
+            <name>mobile-3.0</name>
         </platform>
     </platforms>
     <package>
         <blacklist/>
+        <referencedProject project="app-assist-efl" path="lib"/>
+        <referencedProject project="lib-common" path="lib"/>
         <resFallback autoGen="true"/>
     </package>
 </tproject>
