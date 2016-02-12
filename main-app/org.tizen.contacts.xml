@@ -3,7 +3,6 @@
 	<author email="ps.jeong@samsung.com" href="www.samsung.com">Bongsoo Jeong</author>
 	<description>phone-contacts</description>
 	<ui-application appid="org.tizen.contacts" exec="/usr/apps/org.tizen.contacts/bin/contacts" multiple="false" taskmanage="true" type="capp" mainapp="true" process-pool="false" hw-acceleration="use-GL" launch_mode="single">
-		<image section="preview">/usr/share/icons/default/small/org.tizen.contacts_preview.png</image>
 		<icon>org.tizen.contacts.png</icon>
 		<label>Contacts</label>
 		<metadata key="http://developer.samsung.com/tizen/metadata/largememory"/>
