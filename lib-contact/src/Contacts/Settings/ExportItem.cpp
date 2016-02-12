@@ -48,6 +48,7 @@ void ExportItem::onPickResult(app_control_h request, app_control_h reply,
 		app_control_result_e result)
 {
 	std::vector<int> personIdList = App::getIntExtraDataArray(reply, APP_CONTROL_DATA_SELECTED);
+	RETM_IF(personIdList.empty(), "Person id list is empty.");
 
 	ExportController *exporter = new ExportController(
 			getParent()->getEvasObject(), "IDS_PB_HEADER_EXPORT_CONTACTS_ABB",
