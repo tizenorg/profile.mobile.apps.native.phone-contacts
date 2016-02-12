@@ -20,6 +20,7 @@
 
 #include "App/AppControl.h"
 #include <string>
+#include <vector>
 
 #define APP_CONTROL_OPERATION_SETTING_CALL "http://tizen.org/appcontrol/operation/setting/call"
 
@@ -122,6 +123,14 @@ namespace App
 	 * @return First string from array on success, otherwise empty string.
 	 */
 	std::string EXPORT_API getSingleExtraData(app_control_h appControl, const char *key);
+
+	/**
+	 * @brief Get vector of integer values from App Control array extra data.
+	 * @param[in]   appControl  App Control handle
+	 * @param[in]   key         Extra data array key
+	 * @return Vector of integer values on success, otherwise empty vector.
+	 */
+	std::vector<int> EXPORT_API getIntExtraDataArray(app_control_h appControl, const char *key);
 }
 
 #endif /* APP_APP_CONTROL_REQUEST_H */

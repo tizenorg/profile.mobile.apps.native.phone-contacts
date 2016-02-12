@@ -31,11 +31,11 @@ namespace Contacts
 		/**
 		 * @brief Type of storage where vcard will be created.
 		 */
-		enum TargetStorage
+		enum StorageType
 		{
-			TargetStorageDevice,
-			TargetStorageSdCard,
-			TargetStorageInternalOther
+			StorageDevice,
+			StorageSdCard,
+			StorageInternalOther
 		};
 
 		/**
@@ -52,7 +52,22 @@ namespace Contacts
 			 * @param[in]   vcardStorage    Type of storage where vcard will be created.
 			 */
 			ExportController(Evas_Object *parent, const char *title,
-					std::vector<int> personIdList, TargetStorage vcardStorage);
+					std::vector<int> personIdList, StorageType vcardStorage);
+
+			/**
+			 * @return Vcard position in the root directory.
+			 */
+			std::string getVcardRelativeRootPath() const;
+
+			/**
+			 * @return Vcard path.
+			 */
+			const std::string &getVcardPath() const;
+
+			/**
+			 * @return Total count of exported contacts.
+			 */
+			size_t getTotalCount() const;
 
 		private:
 			void createDirectory(const std::string &directoryPath);
@@ -65,7 +80,7 @@ namespace Contacts
 		private:
 			std::vector<int> m_PersonIdList;
 			std::string m_VcardPath;
-			TargetStorage m_VcardStorage;
+			StorageType m_VcardStorage;
 		};
 	}
 }

@@ -35,7 +35,7 @@ namespace Ui
 		/**
 		 * @brief Finish progress callback.
 		 */
-		typedef std::function<void(ProgressController &)> FinishCallback;
+		typedef std::function<void(const ProgressController &)> FinishCallback;
 
 		/**
 		 * @brief Create controller for ProgressPopup.
