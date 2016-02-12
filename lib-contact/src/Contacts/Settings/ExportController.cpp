@@ -35,18 +35,29 @@ namespace
 		storage_type_e type;
 		storage_directory_e directory;
 	} storageParam[] = {
-		/* [TargetStorageDevice]        = */    { STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_MAX },
-		/* [TargetStorageSdCard]        = */    { STORAGE_TYPE_EXTERNAL, STORAGE_DIRECTORY_MAX },
-		/* [TargetStorageInternalOther] = */    { STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_OTHERS }
+		/* [StorageDevice]        = */    { STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_MAX },
+		/* [StorageSdCard]        = */    { STORAGE_TYPE_EXTERNAL, STORAGE_DIRECTORY_MAX },
+		/* [StorageInternalOther] = */    { STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_OTHERS }
 	};
 }
 
 ExportController::ExportController(Evas_Object *parent, const char *title,
-		std::vector<int> personIdList, TargetStorage vcardStorage)
+		std::vector<int> personIdList, StorageType vcardStorage)
 	: ProgressController(parent, title, personIdList.size()),
 	  m_PersonIdList(std::move(personIdList)), m_VcardStorage(vcardStorage)
 {
 	m_VcardPath = getVcardFilePath();
+}
+
+const char *ExportController::getVcardPosition() const
+{
+	const char *deviceDirName = "Device";
+	return strstr(m_VcardPath.c_str(), deviceDirName);
+}
+
+const size_t ExportController::getTotalCount() const
+{
+	return m_PersonIdList.size();
 }
 
 void ExportController::createDirectory(const std::string &directoryPath)
