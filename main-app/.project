@@ -3,13 +3,18 @@
 	<name>contacts</name>
 	<comment></comment>
 	<projects>
-		<project>app-assist-efl</project>
 		<project>lib-common</project>
-		<project>lib-contact</project>
+		<project>app-assist-efl</project>
 		<project>lib-phone</project>
 		<project>contacts-widget</project>
+		<project>lib-contact</project>
 	</projects>
 	<buildSpec>
+		<buildCommand>
+			<name>org.tizen.nativecore.apichecker.apicheckerbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
 			<arguments>
@@ -33,6 +38,7 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 		<nature>org.tizen.nativecore.apichecker.core.tizenCppNature</nature>
+		<nature>org.tizen.nativecore.apichecker.apicheckernature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
