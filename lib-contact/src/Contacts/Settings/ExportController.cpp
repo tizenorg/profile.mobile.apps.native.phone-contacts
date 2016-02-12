@@ -25,7 +25,7 @@
 using namespace Contacts::Common;
 using namespace Contacts::Settings;
 
-#define BUFFER_SIZE        64
+#define BUFFER_SIZE        1024
 
 #define RELATIVE_EXPORT_PATH   "/Device/Contacts/Exported"
 
@@ -35,18 +35,40 @@ namespace
 		storage_type_e type;
 		storage_directory_e directory;
 	} storageParam[] = {
-		/* [TargetStorageDevice]        = */    { STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_MAX },
-		/* [TargetStorageSdCard]        = */    { STORAGE_TYPE_EXTERNAL, STORAGE_DIRECTORY_MAX },
-		/* [TargetStorageInternalOther] = */    { STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_OTHERS }
+		/* [StorageDevice]        = */    { STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_MAX },
+		/* [StorageSdCard]        = */    { STORAGE_TYPE_EXTERNAL, STORAGE_DIRECTORY_MAX },
+		/* [StorageInternalOther] = */    { STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_OTHERS }
 	};
 }
 
 ExportController::ExportController(Evas_Object *parent, const char *title,
-		std::vector<int> personIdList, TargetStorage vcardStorage)
+		std::vector<int> personIdList, StorageType vcardStorage)
 	: ProgressController(parent, title, personIdList.size()),
 	  m_PersonIdList(std::move(personIdList)), m_VcardStorage(vcardStorage)
 {
 	m_VcardPath = getVcardFilePath();
+}
+
+const char *ExportController::getVcardRelativePath() const
+{
+	std::string deviceDir = getDirectoryPath(storageParam[m_VcardStorage].type,
+			STORAGE_DIRECTORY_MAX);
+
+	size_t endPosition = m_VcardPath.find(deviceDir);
+	RETVM_IF(endPosition == std::string::npos, nullptr, "No matches were found.");
+	endPosition += deviceDir.length() + 1;
+
+	return &m_VcardPath[endPosition];
+}
+
+const std::string &ExportController::getVcardPath() const
+{
+	return m_VcardPath;
+}
+
+size_t ExportController::getTotalCount() const
+{
+	return m_PersonIdList.size();
 }
 
 void ExportController::createDirectory(const std::string &directoryPath)
