@@ -19,6 +19,7 @@
 #define CONTACTS_DETAILS_DETAILS_VIEW_H
 
 #include "App/AppControl.h"
+#include "Contacts/Common/SelectMode.h"
 #include "Contacts/Model/Contact.h"
 #include "Ui/View.h"
 
@@ -31,6 +32,7 @@ namespace Contacts
 {
 	namespace Details
 	{
+		class BasicInfoItem;
 		class FieldItem;
 
 		/**
@@ -49,22 +51,25 @@ namespace Contacts
 			};
 
 			/**
-			 * @brief Determines which contact fields should be displayed.
-			 */
-			enum Filter
-			{
-				FilterNone = -1,
-				FilterNumber = 1 << Model::FieldNumber,
-				FilterEmail = 1 << Model::FieldEmail
-			};
-
-			/**
 			 * @brief Create details view.
 			 * @param[in]   recordId    Contact or My Profile record ID
 			 * @param[in]   type        Type of viewed object
-			 * @param[in]   filter      Filter to use to display contact fields
+			 * @param[in]   filterType  Filter to use to display contact fields
 			 */
-			DetailsView(int recordId, Type type = TypeContact, int filter = FilterNone);
+			DetailsView(int recordId, Type type = TypeContact, int filterType = FilterNone);
+
+			/**
+			 * @brief Set selection callback.
+			 * @param[in]   callback    Callback to be called when selection is done
+			 */
+			void setSelectCallback(SelectCallback callback);
+
+			/**
+			 * @brief Set selection mode and result type.
+			 * @param[in]   mode    Selection mode
+			 * @param[in]   type    Selection result type
+			 */
+			void setSelectMode(SelectMode mode, ResultType type = ResultItem);
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -72,20 +77,29 @@ namespace Contacts
 			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
 
+			void updatePageMode();
+
 			FieldItem *createFieldItem(Model::ContactObject &field);
 			FieldItem *getNextFieldItem(Model::ContactFieldId fieldId);
 
 			FieldItem *addFieldItem(Model::ContactObject &field);
 			void removeFieldItem(FieldItem *item);
 
+			void onSingleSelected(SelectResult result);
+
 			void onArrayUpdated(Model::ContactField &field, contacts_changed_e change);
 			void onObjectUpdated(Model::ContactField &field, contacts_changed_e change);
 
 			int m_RecordId;
 			Model::Contact m_Contact;
-			int m_Filter;
+
+			int m_FilterType;
+			SelectMode m_SelectMode;
+			ResultType m_ResultType;
+			SelectCallback m_OnSelected;
 
 			Ui::Genlist *m_Genlist;
+			BasicInfoItem *m_BasicInfoItem;
 			FieldItem *m_Items[Model::FieldEnd];
 
 			App::AppControl m_AppControl;

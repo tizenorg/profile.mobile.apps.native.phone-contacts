@@ -57,10 +57,34 @@ namespace
 	};
 }
 
-DetailsView::DetailsView(int recordId, Type type, int filter)
-	: m_RecordId(recordId), m_Contact(ContactObjectType(type)), m_Filter(filter),
-	  m_Genlist(nullptr), m_Items{nullptr}
+DetailsView::DetailsView(int recordId, Type type, int filterType)
+	: m_RecordId(recordId), m_Contact(ContactObjectType(type)),
+	  m_FilterType(filterType), m_SelectMode(SelectNone), m_ResultType(ResultNone),
+	  m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_Items{nullptr}
 {
+}
+
+void DetailsView::setSelectCallback(SelectCallback callback)
+{
+	m_OnSelected = std::move(callback);
+}
+
+void DetailsView::setSelectMode(SelectMode mode, ResultType type)
+{
+	m_SelectMode = mode;
+	m_ResultType = type;
+
+	if (m_BasicInfoItem) {
+		m_BasicInfoItem->setSelectMode(mode);
+
+		auto item = m_BasicInfoItem->getNextItem();
+		for (; item; item = item->getNextItem()) {
+			FieldItem *fieldItem = static_cast<FieldItem *>(item);
+			fieldItem->setSelectMode(mode, type);
+		}
+	}
+
+	updatePageMode();
 }
 
 Evas_Object *DetailsView::onCreate(Evas_Object *parent)
@@ -76,12 +100,13 @@ void DetailsView::onCreated()
 	int err = m_Contact.initialize(m_RecordId);
 	RETM_IF_ERR(err, "Contact::initialize() failed.");
 
-	BasicInfoItem *item = new BasicInfoItem(m_Contact);
-	m_Genlist->insert(item);
+	m_BasicInfoItem = new BasicInfoItem(m_Contact);
+	m_BasicInfoItem->setSelectMode(m_SelectMode);
+	m_Genlist->insert(m_BasicInfoItem);
 
 	for (auto &&field : m_Contact) {
 		ContactFieldId fieldId = ContactFieldId(field.getId());
-		if (!isFieldVisible[fieldId] || !(m_Filter & (1 << fieldId))) {
+		if (!isFieldVisible[fieldId] || !(m_FilterType & (1 << fieldId))) {
 			continue;
 		}
 
@@ -110,12 +135,15 @@ void DetailsView::onCreated()
 
 void DetailsView::onPageAttached()
 {
-	/* FIXME: Disable naviframe item title by default */
-	getPage()->setTitle(nullptr);
+	updatePageMode();
 }
 
 void DetailsView::onMenuPressed()
 {
+	if (m_SelectMode != SelectNone) {
+		return;
+	}
+
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
 
@@ -150,6 +178,27 @@ void DetailsView::onMenuPressed()
 	menu->show();
 }
 
+void DetailsView::updatePageMode()
+{
+	Ui::NavigatorPage *page = getPage();
+	if (!page) {
+		return;
+	}
+
+	switch (m_SelectMode) {
+		case SelectNone:
+			page->setTitle(nullptr);
+			break;
+
+		case SelectSingle:
+			page->setTitle("IDS_PB_HEADER_SELECT");
+			break;
+
+		default:
+			break;
+	}
+}
+
 FieldItem *DetailsView::createFieldItem(ContactObject &field)
 {
 	FieldItem *item = nullptr;
@@ -158,9 +207,9 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 	if (fieldId == FieldNumber) {
 		item = new ActionFieldItem(field, ActionFieldItem::ActionCall);
 	} else if (fieldId == FieldEmail) {
-		item = new ActionFieldItem(field, ActionFieldItem::ActionComposeEmail);
+		item = new ActionFieldItem(field, ActionFieldItem::ActionEmail);
 	} else if (fieldId == FieldUrl) {
-		item = new ActionFieldItem(field, ActionFieldItem::ActionOpenWebpage);
+		item = new ActionFieldItem(field, ActionFieldItem::ActionUrl);
 	} else if (fieldId == FieldNote) {
 		item = new MultilineFieldItem(field);
 	} else if (field.getSubType() & ObjectTyped) {
@@ -169,7 +218,10 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 		item = new FieldItem(field);
 	}
 
+	item->setSelectMode(m_SelectMode, m_ResultType);
+	item->setSelectCallback(std::bind(&DetailsView::onSingleSelected, this, _1));
 	item->setRemoveCallback(std::bind(&DetailsView::removeFieldItem, this, _1));
+
 	return item;
 }
 
@@ -214,6 +266,13 @@ void DetailsView::removeFieldItem(FieldItem *item)
 	}
 
 	delete item;
+}
+
+void DetailsView::onSingleSelected(SelectResult result)
+{
+	if (!m_OnSelected || m_OnSelected({ &result, 1 })) {
+		delete this;
+	}
 }
 
 void DetailsView::onArrayUpdated(ContactField &field, contacts_changed_e change)

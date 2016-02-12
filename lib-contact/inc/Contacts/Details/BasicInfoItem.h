@@ -18,7 +18,9 @@
 #ifndef CONTACTS_DETAILS_BASIC_INFO_ITEM_H
 #define CONTACTS_DETAILS_BASIC_INFO_ITEM_H
 
+#include "Contacts/Common/SelectMode.h"
 #include "Ui/GenlistItem.h"
+
 #include <contacts.h>
 #include <string>
 
@@ -48,6 +50,12 @@ namespace Contacts
 			 * @param[in]   contact    Contact to display
 			 */
 			BasicInfoItem(Model::Contact &contact);
+
+			/**
+			 * @brief Set item selection mode.
+			 * @param[in]   mode    Selection mode
+			 */
+			void setSelectMode(SelectMode mode);
 
 		protected:
 			/**
@@ -91,6 +99,8 @@ namespace Contacts
 			Model::ContactObject &m_Company;
 			Model::ContactTextField &m_CompanyName;
 			Model::ContactTextField &m_JobTitle;
+
+			SelectMode m_SelectMode;
 		};
 	}
 }
