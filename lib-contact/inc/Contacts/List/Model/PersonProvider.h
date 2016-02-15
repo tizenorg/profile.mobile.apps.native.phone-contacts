@@ -37,6 +37,16 @@ namespace Contacts
 			public:
 
 				/**
+				 * @brief Determines what persons to provide
+				 */
+				enum ModeType
+				{
+					ModeNone,
+					ModeFavorites,
+					ModeMFC
+				};
+
+				/**
 				 * @brief Determines how to filter person list
 				 */
 				enum FilterType
@@ -45,6 +55,8 @@ namespace Contacts
 					FilterNumber    = 1 << 0,
 					FilterEmail     = 1 << 1
 				};
+
+
 
 				/**
 				 * @brief Person change callback
@@ -63,7 +75,8 @@ namespace Contacts
 				 * @brief Constructor
 				 * @param[in]    filterType    Contact filter
 				 */
-				explicit PersonProvider(FilterType filterType);
+				explicit PersonProvider(ModeType modeType = ModeNone,
+						FilterType filterType = FilterNone);
 
 				~PersonProvider();
 
@@ -102,7 +115,10 @@ namespace Contacts
 				void onChanged(const char *viewUri);
 				void notify(contacts_changed_e changeType, int contactId);
 
+
+				ModeType m_ListModeType;
 				FilterType m_ListFilterType;
+
 				int m_DbVersion;
 
 				std::unordered_map<int, ChangeCallback> m_ChangeCallbacks;
