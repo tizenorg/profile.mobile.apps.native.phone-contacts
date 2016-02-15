@@ -70,6 +70,10 @@ GenlistItem *GenlistItem::getPrevItem() const
 	return (GenlistItem *) elm_object_item_data_get(item);
 }
 
+void GenlistItem::setSelectCallback(SelectCallback callback)
+{
+	m_OnSelected = std::move(callback);
+}
 
 void GenlistItem::scrollTo(Elm_Genlist_Item_Scrollto_Type position, bool isAnimated)
 {
@@ -137,6 +141,16 @@ void GenlistItem::onDestroy(Evas_Object *genlist)
 	m_Item = nullptr;
 	if (!m_Preserve) {
 		delete this;
+	}
+}
+
+void GenlistItem::onSelected(Elm_Object_Item *item)
+{
+	elm_genlist_item_selected_set(item, EINA_FALSE);
+	onSelected();
+
+	if (m_OnSelected) {
+		m_OnSelected();
 	}
 }
 

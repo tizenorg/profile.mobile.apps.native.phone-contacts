@@ -16,57 +16,60 @@
  */
 
 #include "Ui/GenlistCheckItem.h"
+#include "Utils/Callback.h"
 
 using namespace Ui;
 
 GenlistCheckItem::GenlistCheckItem()
-	: m_Checked(false)
+	: m_IsChecked(false)
 { }
 
 bool GenlistCheckItem::isChecked() const
 {
-	return m_Checked;
+	return m_IsChecked;
 }
 
-void GenlistCheckItem::setChecked(bool state)
+void GenlistCheckItem::setChecked(bool isChecked)
 {
-	m_Checked = state;
-	elm_check_state_set(getCheck(), m_Checked);
+	Evas_Object *check = elm_object_item_part_content_get(getObjectItem(), m_CheckPart.c_str());
+	elm_check_state_set(check, isChecked);
 }
 
-void GenlistCheckItem::setSelectedCallback(SelectedCallback callback)
+void GenlistCheckItem::setCheckCallback(CheckCallback callback)
 {
-	m_OnSelected = std::move(callback);
-}
-
-void GenlistCheckItem::unsetSelectedCallback()
-{
-	m_OnSelected = nullptr;
+	m_OnChecked = std::move(callback);
 }
 
 Evas_Object *GenlistCheckItem::getContent(Evas_Object *parent, const char *part)
 {
 	m_CheckPart = part;
-	return createCheck(parent);
+
+	Elm_Check *check = elm_check_add(parent);
+	elm_check_state_set(check, m_IsChecked);
+	elm_check_state_pointer_set(check, &m_IsChecked);
+	evas_object_propagate_events_set(check, EINA_FALSE);
+	evas_object_smart_callback_add(check, "changed",
+			makeCallback(&GenlistCheckItem::onCheckChanged), this);
+
+	return check;
 }
 
 void GenlistCheckItem::onSelected()
 {
-	setChecked(!m_Checked);
+	setChecked(!m_IsChecked);
+	onChecked();
+}
 
-	if (m_OnSelected) {
-		m_OnSelected();
+void GenlistCheckItem::onChecked()
+{
+	onChecked(m_IsChecked);
+
+	if (m_OnChecked) {
+		m_OnChecked(m_IsChecked);
 	}
 }
 
-Evas_Object *GenlistCheckItem::createCheck(Evas_Object *parent)
+void GenlistCheckItem::onCheckChanged(Evas_Object *check, void *eventInfo)
 {
-	Elm_Check *check = elm_check_add(parent);
-	elm_check_state_set(check, m_Checked);
-	return check;
-}
-
-Evas_Object *GenlistCheckItem::getCheck() const
-{
-	return elm_object_item_part_content_get(getObjectItem(), m_CheckPart.c_str());
+	onChecked();
 }
