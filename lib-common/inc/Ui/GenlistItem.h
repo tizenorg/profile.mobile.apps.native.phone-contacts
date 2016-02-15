@@ -19,6 +19,7 @@
 #define UI_GENLIST_ITEM_H
 
 #include <Elementary.h>
+#include <functional>
 #include <tizen.h>
 
 namespace Ui
@@ -29,6 +30,11 @@ namespace Ui
 	class EXPORT_API GenlistItem
 	{
 	public:
+		/**
+		 * @brief Called when item is selected.
+		 */
+		typedef std::function<void()> SelectCallback;
+
 		GenlistItem();
 		virtual ~GenlistItem();
 
@@ -76,6 +82,12 @@ namespace Ui
 		 * @return Previous item in genlist or nullptr if none.
 		 */
 		GenlistItem *getPrevItem() const;
+
+		/**
+		 * @brief Set item selection callback.
+		 * @param[in]   callback    Callback to be called when item is selected
+		 */
+		void setSelectCallback(SelectCallback callback);
 
 		/**
 		 * @brief Scroll genlist to item.
@@ -173,6 +185,7 @@ namespace Ui
 		void onInserted(Elm_Object_Item *item);
 		void onDestroy(Evas_Object *genlist);
 
+		void onSelected(Elm_Object_Item *item);
 		void onRealized(Elm_Object_Item *item);
 		void onUnrealized(Elm_Object_Item *item);
 
@@ -181,6 +194,8 @@ namespace Ui
 
 		bool m_IsRealized;
 		bool m_IsFocusPending;
+
+		SelectCallback m_OnSelected;
 	};
 }
 
