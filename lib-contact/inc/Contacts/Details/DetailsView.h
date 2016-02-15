@@ -77,6 +77,10 @@ namespace Contacts
 			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
 
+			void createPageButtons();
+			void destroyPageButtons();
+
+			void updatePageTitle();
 			void updatePageMode();
 
 			FieldItem *createFieldItem(Model::ContactObject &field);
@@ -85,10 +89,15 @@ namespace Contacts
 			FieldItem *addFieldItem(Model::ContactObject &field);
 			void removeFieldItem(FieldItem *item);
 
+			void onItemChecked(bool isChecked);
 			void onSingleSelected(SelectResult result);
+			void onMultiSelected();
 
 			void onArrayUpdated(Model::ContactField &field, contacts_changed_e change);
 			void onObjectUpdated(Model::ContactField &field, contacts_changed_e change);
+
+			void onDonePressed(Evas_Object *button, void *eventInfo);
+			void onCancelPressed(Evas_Object *button, void *eventInfo);
 
 			int m_RecordId;
 			Model::Contact m_Contact;
@@ -98,9 +107,13 @@ namespace Contacts
 			ResultType m_ResultType;
 			SelectCallback m_OnSelected;
 
+			Evas_Object *m_DoneButton;
+			Evas_Object *m_CancelButton;
+
 			Ui::Genlist *m_Genlist;
 			BasicInfoItem *m_BasicInfoItem;
 			FieldItem *m_Items[Model::FieldEnd];
+			size_t m_SelectCount;
 
 			App::AppControl m_AppControl;
 		};

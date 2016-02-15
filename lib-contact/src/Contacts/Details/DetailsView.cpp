@@ -28,10 +28,15 @@
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
 #include "Ui/Popup.h"
+#include "Utils/Callback.h"
 #include "Utils/Logger.h"
 #include "Utils/Range.h"
 
 #include "DetailsItemLayout.h"
+
+#include <app_i18n.h>
+
+#define TITLE_SIZE 32
 
 using namespace Contacts::Details;
 using namespace Contacts::Model;
@@ -60,7 +65,8 @@ namespace
 DetailsView::DetailsView(int recordId, Type type, int filterType)
 	: m_RecordId(recordId), m_Contact(ContactObjectType(type)),
 	  m_FilterType(filterType), m_SelectMode(SelectNone), m_ResultType(ResultNone),
-	  m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_Items{nullptr}
+	  m_DoneButton(nullptr), m_CancelButton(nullptr),
+	  m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_Items{nullptr}, m_SelectCount(0)
 {
 }
 
@@ -178,13 +184,33 @@ void DetailsView::onMenuPressed()
 	menu->show();
 }
 
-void DetailsView::updatePageMode()
+void DetailsView::createPageButtons()
+{
+	m_DoneButton = elm_button_add(getEvasObject());
+	elm_object_style_set(m_DoneButton, "naviframe/title_right");
+	elm_object_translatable_text_set(m_DoneButton, "IDS_PB_BUTTON_DONE_ABB3");
+	evas_object_smart_callback_add(m_DoneButton, "clicked",
+			makeCallback(&DetailsView::onDonePressed), this);
+
+	m_CancelButton = elm_button_add(getEvasObject());
+	elm_object_style_set(m_CancelButton, "naviframe/title_left");
+	elm_object_translatable_text_set(m_CancelButton, "IDS_PB_BUTTON_CANCEL");
+	evas_object_smart_callback_add(m_CancelButton, "clicked",
+			makeCallback(&DetailsView::onCancelPressed), this);
+}
+
+void DetailsView::destroyPageButtons()
+{
+	evas_object_del(m_DoneButton);
+	evas_object_del(m_CancelButton);
+
+	m_DoneButton = nullptr;
+	m_CancelButton = nullptr;
+}
+
+void DetailsView::updatePageTitle()
 {
 	Ui::NavigatorPage *page = getPage();
-	if (!page) {
-		return;
-	}
-
 	switch (m_SelectMode) {
 		case SelectNone:
 			page->setTitle(nullptr);
@@ -194,7 +220,35 @@ void DetailsView::updatePageMode()
 			page->setTitle("IDS_PB_HEADER_SELECT");
 			break;
 
-		default:
+		case SelectMulti:
+		{
+			char title[TITLE_SIZE];
+			snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_SelectCount);
+			page->setTitle(title);
+		}
+			break;
+	}
+}
+
+void DetailsView::updatePageMode()
+{
+	Ui::NavigatorPage *page = getPage();
+	if (!page) {
+		return;
+	}
+
+	updatePageTitle();
+
+	switch (m_SelectMode) {
+		case SelectNone:
+		case SelectSingle:
+			destroyPageButtons();
+			break;
+
+		case SelectMulti:
+			createPageButtons();
+			page->setContent("title_right_btn", m_DoneButton);
+			page->setContent("title_left_btn", m_CancelButton);
 			break;
 	}
 }
@@ -220,6 +274,7 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 
 	item->setSelectMode(m_SelectMode, m_ResultType);
 	item->setSelectCallback(std::bind(&DetailsView::onSingleSelected, this, _1));
+	item->setCheckCallback(std::bind(&DetailsView::onItemChecked, this, _1));
 	item->setRemoveCallback(std::bind(&DetailsView::removeFieldItem, this, _1));
 
 	return item;
@@ -268,9 +323,33 @@ void DetailsView::removeFieldItem(FieldItem *item)
 	delete item;
 }
 
+void DetailsView::onItemChecked(bool isChecked)
+{
+	m_SelectCount += isChecked ? 1 : -1;
+	updatePageTitle();
+}
+
 void DetailsView::onSingleSelected(SelectResult result)
 {
 	if (!m_OnSelected || m_OnSelected({ &result, 1 })) {
+		delete this;
+	}
+}
+
+void DetailsView::onMultiSelected()
+{
+	std::vector<SelectResult> results;
+
+	auto item = m_BasicInfoItem->getNextItem();
+	for (; item; item = item->getNextItem()) {
+		FieldItem *fieldItem = static_cast<FieldItem *>(item);
+		if (fieldItem && fieldItem->isChecked()) {
+			ContactObject &object = fieldItem->getObject();
+			results.push_back({ object.getSubType(), object.getRecordId()});
+		}
+	}
+
+	if (!m_OnSelected || m_OnSelected({ results.data(), results.size() })) {
 		delete this;
 	}
 }
@@ -289,4 +368,14 @@ void DetailsView::onObjectUpdated(ContactField &field, contacts_changed_e change
 			addFieldItem(field.getParent()->cast<ContactObject>());
 		}
 	}
+}
+
+void DetailsView::onDonePressed(Evas_Object *button, void *eventInfo)
+{
+	onMultiSelected();
+}
+
+void DetailsView::onCancelPressed(Evas_Object *button, void *eventInfo)
+{
+	delete this;
 }
