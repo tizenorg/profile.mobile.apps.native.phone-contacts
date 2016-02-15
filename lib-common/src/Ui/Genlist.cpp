@@ -100,8 +100,7 @@ void Genlist::onItemSelected(void *data, Evas_Object *obj, Elm_Object_Item *obje
 {
 	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
 	if (item) {
-		item->onSelected();
-		elm_genlist_item_selected_set(objectItem, EINA_FALSE);
+		item->onSelected(objectItem);
 	}
 }
 
