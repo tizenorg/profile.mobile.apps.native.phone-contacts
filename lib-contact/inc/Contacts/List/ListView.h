@@ -73,7 +73,7 @@ namespace Contacts
 			 * @brief Create new person list view
 			 * @param]in]   personFilter    Defines how to filter person list
 			 */
-			ListView(Model::PersonProvider::FilterType personFilter =
+			ListView(Model::PersonProvider::Filter personFilter =
 					Model::PersonProvider::FilterNone);
 			virtual ~ListView() override;
 
