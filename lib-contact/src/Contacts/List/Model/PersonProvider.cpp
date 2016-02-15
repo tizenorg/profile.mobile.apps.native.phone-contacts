@@ -19,6 +19,7 @@
 #include "Contacts/Utils.h"
 #include "Utils/Callback.h"
 #include "Utils/Range.h"
+#include "Utils/Logger.h"
 
 using namespace Contacts::List::Model;
 
@@ -34,13 +35,32 @@ namespace
 		_contacts_person.favorite_priority
 	};
 
-	contacts_filter_h getProviderFilter(PersonProvider::FilterType filterType)
+
+	contacts_filter_h prepareModeTypeFilter(PersonProvider::Mode modeType)
 	{
-		bool emptyFilter = true;
 		contacts_filter_h filter = nullptr;
-		contacts_filter_create(_contacts_person._uri, &filter);
+
+		if (modeType != PersonProvider::ModeAll) {
+			contacts_filter_create(_contacts_person._uri, &filter);
+
+			if (modeType == PersonProvider::ModeFavorites) {
+				contacts_filter_add_bool(filter, _contacts_person.is_favorite, true);
+			} else if (modeType == PersonProvider::ModeMFC) {
+				//TODO Implement
+			}
+		}
+
+		return filter;
+	}
+
+	contacts_filter_h prepareFilterTypeFilter(PersonProvider::Filter filterType)
+	{
+		contacts_filter_h filter = nullptr;
 
 		if (filterType != PersonProvider::FilterNone) {
+			contacts_filter_create(_contacts_person._uri, &filter);
+			bool emptyFilter = true;
+
 			if (filterType & PersonProvider::FilterNumber) {
 				contacts_filter_add_bool(filter, _contacts_person.has_phonenumber, true);
 				emptyFilter = false;
@@ -57,14 +77,39 @@ namespace
 		return filter;
 	}
 
-	contacts_list_h getPersonList(PersonProvider::FilterType filterType)
+	contacts_filter_h getProviderFilter(PersonProvider::Mode modeType, PersonProvider::Filter filterType)
 	{
-		contacts_filter_h filter = getProviderFilter(filterType);
+		contacts_filter_h result = nullptr;
+		contacts_filter_h modeTypeFilter = prepareModeTypeFilter(modeType);
+		contacts_filter_h filterTypeFilter = prepareFilterTypeFilter(filterType);
 
+		if (modeTypeFilter) {
+			if (filterTypeFilter) {
+				contacts_filter_add_operator(modeTypeFilter, CONTACTS_FILTER_OPERATOR_AND);
+				contacts_filter_add_filter(modeTypeFilter, filterTypeFilter);
+			}
+			result = modeTypeFilter;
+		} else if (filterTypeFilter) {
+			result = filterTypeFilter;
+		}
+
+		return result;
+	}
+
+	contacts_list_h getPersonList(PersonProvider::Mode modeType, PersonProvider::Filter filterType)
+	{
 		contacts_query_h query = nullptr;
 		contacts_query_create(_contacts_person._uri, &query);
-		contacts_query_set_filter(query, filter);
+
+		contacts_filter_h filter = getProviderFilter(modeType, filterType);
+		if (filter) {
+			contacts_query_set_filter(query, filter);
+		}
+
 		contacts_query_set_projection(query, projection, Utils::count(projection));
+		if (PersonProvider::ModeFavorites == modeType) {
+			contacts_query_set_sort(query, _contacts_person.favorite_priority, true);
+		}
 
 		contacts_list_h list = nullptr;
 		contacts_db_get_records_with_query(query, 0, 0, &list);
@@ -75,14 +120,19 @@ namespace
 		return list;
 	}
 
-	contacts_record_h getPersonRecord(int contactId, PersonProvider::FilterType filterType)
+	contacts_record_h getPersonRecord(int contactId, PersonProvider::Mode modeType, PersonProvider::Filter filterType)
 	{
-		contacts_filter_h filter = getProviderFilter(filterType);
-		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-		contacts_filter_add_int(filter, _contacts_person.display_contact_id, CONTACTS_MATCH_EQUAL, contactId);
-
 		contacts_query_h query = nullptr;
 		contacts_query_create(_contacts_person._uri, &query);
+
+		contacts_filter_h filter = getProviderFilter(modeType, filterType);
+		if (filter) {
+			contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+		} else {
+			contacts_filter_create(_contacts_person._uri, &filter);
+		}
+
+		contacts_filter_add_int(filter, _contacts_person.display_contact_id, CONTACTS_MATCH_EQUAL, contactId);
 		contacts_query_set_filter(query, filter);
 		contacts_query_set_projection(query, projection, Utils::count(projection));
 
@@ -100,9 +150,15 @@ namespace
 	}
 }
 
-PersonProvider::PersonProvider(PersonProvider::FilterType filterType)
-	: m_ListFilterType(filterType)
+PersonProvider::PersonProvider(Mode modeType, Filter filterType)
+	: m_ListModeType(modeType), m_ListFilterType(filterType)
 {
+	if (m_ListModeType == ModeMFC) {
+		//TODO Implement support of ModeMFC
+		ERR("ModeTypeMFC is not supported");
+		m_ListModeType = ModeAll;
+	}
+
 	contacts_db_get_current_version(&m_DbVersion);
 	contacts_db_add_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&PersonProvider::onChanged), this);
 }
@@ -115,7 +171,7 @@ PersonProvider::~PersonProvider()
 PersonList PersonProvider::getPersonList() const
 {
 	PersonList personList;
-	contacts_list_h list = ::getPersonList(m_ListFilterType);
+	contacts_list_h list = ::getPersonList(m_ListModeType, m_ListFilterType);
 
 	contacts_record_h record = nullptr;
 	CONTACTS_LIST_FOREACH(list, record) {
@@ -177,7 +233,7 @@ void PersonProvider::onChanged(const char *viewUri)
 void PersonProvider::notify(contacts_changed_e changeType, int contactId)
 {
 	auto getPerson = [this, contactId]() -> PersonPtr {
-		contacts_record_h personRecord = getPersonRecord(contactId, m_ListFilterType);
+		contacts_record_h personRecord = getPersonRecord(contactId, m_ListModeType, m_ListFilterType);
 		return personRecord ? PersonPtr(new Person(personRecord)) : nullptr;
 	};
 
