@@ -46,7 +46,7 @@ ListView::ListView(PersonProvider::FilterType personFilter)
 	: m_Genlist(nullptr), m_Index(nullptr),
 	  m_CancelButton(nullptr), m_DoneButton(nullptr),
 	  m_Sections{ nullptr },
-	  m_Provider(PersonProvider(personFilter)),
+	  m_Provider(PersonProvider(PersonProvider::ModeFavorites, personFilter)),
 	  m_Mode(ModeDefault),
 	  m_PersonCount(0), m_SelectCount(0), m_SelectLimit(0)
 {
