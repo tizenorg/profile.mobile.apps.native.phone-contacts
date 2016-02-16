@@ -112,24 +112,26 @@ void ListView::onCreated()
 
 void ListView::onMenuPressed()
 {
-	Ui::Menu *menu = new Ui::Menu();
-	menu->create(getEvasObject());
+	if (m_Mode == ModeDefault) {
+		Ui::Menu *menu = new Ui::Menu();
+		menu->create(getEvasObject());
 
-	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
-		ListView *deleteView = new ListView();
-		getNavigator()->navigateTo(deleteView);
-		deleteView->setMode(ModeMultiSelect);
-		deleteView->setResultCallback([](PersonIds ids) {
-			contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
+		menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
+			ListView *deleteView = new ListView();
+			getNavigator()->navigateTo(deleteView);
+			deleteView->setMode(ModeMultiSelect);
+			deleteView->setResultCallback([](PersonIds ids) {
+				contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
 
-			return true;
+				return true;
+			});
 		});
-	});
 
-	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
-		getNavigator()->navigateTo(new Settings::MainView());
-	});
-	menu->show();
+		menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
+			getNavigator()->navigateTo(new Settings::MainView());
+		});
+		menu->show();
+	}
 }
 
 void ListView::fillList()
@@ -337,6 +339,10 @@ void ListView::updateSelectAllState()
 
 void ListView::updatePageMode()
 {
+	if (!getPage()) {
+		return;
+	}
+
 	updateTitle();
 
 	switch (m_Mode) {
