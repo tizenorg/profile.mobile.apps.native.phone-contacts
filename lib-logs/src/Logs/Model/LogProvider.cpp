@@ -66,7 +66,8 @@ void LogProvider::fillList(LogList &logList)
 	contacts_record_h record = nullptr;
 
 	CONTACTS_LIST_FOREACH(list, record) {
-		logList.push_back(LogPtr(new Log(record)));
+		Log *log = (new Log(record));
+		logList.push_back(LogPtr(log));
 	}
 
 	contacts_list_destroy(list, false);
@@ -88,8 +89,20 @@ void LogProvider::fillGroupList(LogList &logList, LogGroupList &logGroupList)
 bool LogProvider::shouldGroupLogs(Log *log, LogGroup *prevLogGroup)
 {
 	Log *prevLog = prevLogGroup->getLogList().back();
+
 	return (log->getType() == prevLog->getType()
-			&& strcmp(log->getNumber(), prevLog->getNumber()) == 0);
+			&& strcmp(log->getNumber(), prevLog->getNumber()) == 0
+			&& compareTime(log->getTime(), prevLog->getTime()));
+}
+
+bool LogProvider::compareTime(const tm itemDate, const tm nowDate)
+{
+	if(itemDate.tm_year == nowDate.tm_year &&
+		itemDate.tm_mon == nowDate.tm_mon &&
+		itemDate.tm_mday == nowDate.tm_mday) {
+		return true;
+	}
+	return false;
 }
 
 LogGroup *LogProvider::addLog(LogGroupList &logGroupList, Log *log)
@@ -230,7 +243,10 @@ void LogProvider::addNewLogs(LogIterator &newIt, LogList &newLogList)
 		LogGroup *newGroup = nullptr;
 		for (; newIt != newLogList.end(); ++newIt) {
 			newGroup = addLog(m_Groups, newIt->get());
+			m_Logs.push_back(std::move(*newIt));
+
 			if (newGroup) {
+				++newIt;
 				break;
 			}
 			isChanged = true;

@@ -19,6 +19,7 @@
 #define LOGS_MODEL_LOG_PROVIDER_H
 
 #include <contacts.h>
+#include <time.h>
 #include <memory>
 #include <set>
 
@@ -71,6 +72,7 @@ namespace Logs
 			 */
 			enum FilterType
 			{
+				None,
 				FilterAll,
 				FilterMissed
 			};
@@ -106,6 +108,7 @@ namespace Logs
 			void fillList(LogList &logList);
 			void fillGroupList(LogList &logList, LogGroupList &logGroupList);
 			bool shouldGroupLogs(Log *log, LogGroup *prevLogGroup);
+			bool compareTime(const tm itemDate, const tm nowDate);
 			LogGroup *addLog(LogGroupList &logList, Log *log);
 
 			contacts_filter_h getFilter(FilterType filterType);

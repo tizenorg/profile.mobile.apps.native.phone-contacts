@@ -50,7 +50,7 @@ namespace Logs
 			 * @param[in]   group       Log group
 			 * @param[in]   mode        Item mode
 			 */
-			LogItem(Model::LogGroup *group, Mode mode);
+			LogItem(Model::LogGroup *group, Mode mode = ModeDefault);
 
 			/**
 			 * @brief Set item mode
