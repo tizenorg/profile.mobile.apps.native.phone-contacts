@@ -298,8 +298,10 @@ void DialerView::onCallPressed(Evas_Object *obj, void *event_info)
 void DialerView::onDbChanged(const char *uri)
 {
 	std::string number = m_Entry->getNumber();
-	m_SearchEngine.searchFromScratch(number);
-	m_SearchControl->setResults(m_SearchEngine.getSearchResult());
+	if (!number.empty()) {
+		m_SearchEngine.searchFromScratch(number);
+		m_SearchControl->setResults(m_SearchEngine.getSearchResult());
+	}
 }
 
 void DialerView::launchCall(const std::string &number)
