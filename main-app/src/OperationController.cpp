@@ -38,8 +38,8 @@ void OperationController::create(MainApp *application)
 void OperationController::request(Operation operation, app_control_h request)
 {
 	app_control_destroy(m_Request);
-	m_Request = request;
-	onRequest(operation, request);
+	app_control_clone(&m_Request, request);
+	onRequest(operation, m_Request);
 }
 
 bool OperationController::isOperationSupported(Operation operation) const
