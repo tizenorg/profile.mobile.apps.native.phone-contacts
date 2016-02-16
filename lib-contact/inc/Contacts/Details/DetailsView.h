@@ -94,7 +94,7 @@ namespace Contacts
 			void onMultiSelected();
 
 			void onArrayUpdated(Model::ContactField &field, contacts_changed_e change);
-			void onObjectUpdated(Model::ContactField &field, contacts_changed_e change);
+			void onObjectUpdated(FieldItem *item, Model::ContactField &field, contacts_changed_e change);
 
 			void onDonePressed(Evas_Object *button, void *eventInfo);
 			void onCancelPressed(Evas_Object *button, void *eventInfo);

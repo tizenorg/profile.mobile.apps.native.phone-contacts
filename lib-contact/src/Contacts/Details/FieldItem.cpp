@@ -34,7 +34,6 @@ FieldItem::FieldItem(ContactObject &object)
 	: m_Object(object), m_Field(*object.getField(0)),
 	  m_SelectMode(SelectNone), m_ResultType(ResultNone)
 {
-	m_Object.setUpdateCallback(std::bind(&FieldItem::onFieldUpdated, this, _1, _2));
 }
 
 void FieldItem::setSelectMode(SelectMode mode, ResultType type)
@@ -47,11 +46,6 @@ void FieldItem::setSelectMode(SelectMode mode, ResultType type)
 void FieldItem::setSelectCallback(SelectCallback callback)
 {
 	m_OnSelected = std::move(callback);
-}
-
-void FieldItem::setRemoveCallback(RemoveCallback callback)
-{
-	m_OnRemove = std::move(callback);
 }
 
 ContactObject &FieldItem::getObject() const
@@ -138,11 +132,5 @@ void FieldItem::onFieldUpdated(ContactField &field, contacts_changed_e change)
 {
 	if (&field == &m_Field) {
 		elm_genlist_item_fields_update(getObjectItem(), "elm.text", ELM_GENLIST_ITEM_FIELD_TEXT);
-	} else if (&field == &m_Object) {
-		if (change == CONTACTS_CHANGE_DELETED || field.isEmpty()) {
-			if (m_OnRemove) {
-				m_OnRemove(this);
-			}
-		}
 	}
 }

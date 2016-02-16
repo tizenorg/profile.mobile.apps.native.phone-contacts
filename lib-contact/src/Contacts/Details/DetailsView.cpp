@@ -130,7 +130,7 @@ void DetailsView::onCreated()
 					addFieldItem(field.cast<ContactObject>());
 				} else {
 					field.setUpdateCallback(std::bind(&DetailsView::onObjectUpdated,
-							this, _1, _2));
+							this, nullptr, _1, _2));
 				}
 				break;
 			default:
@@ -275,7 +275,6 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 	item->setSelectMode(m_SelectMode, m_ResultType);
 	item->setSelectCallback(std::bind(&DetailsView::onSingleSelected, this, _1));
 	item->setCheckCallback(std::bind(&DetailsView::onItemChecked, this, _1));
-	item->setRemoveCallback(std::bind(&DetailsView::removeFieldItem, this, _1));
 
 	return item;
 }
@@ -302,14 +301,15 @@ FieldItem *DetailsView::addFieldItem(ContactObject &field)
 		m_Items[fieldId] = item;
 	}
 
+	field.setUpdateCallback(std::bind(&DetailsView::onObjectUpdated,
+			this, item, _1, _2));
+
 	return item;
 }
 
 void DetailsView::removeFieldItem(FieldItem *item)
 {
 	ContactFieldId fieldId = ContactFieldId(item->getObject().getId());
-	item->getObject().setUpdateCallback(std::bind(&DetailsView::onObjectUpdated,
-			this, _1, _2));
 
 	if (item == m_Items[fieldId]) {
 		FieldItem *nextItem = static_cast<FieldItem *>(item->getNextItem());
@@ -319,6 +319,9 @@ void DetailsView::removeFieldItem(FieldItem *item)
 			m_Items[fieldId] = nullptr;
 		}
 	}
+
+	item->getObject().setUpdateCallback(std::bind(&DetailsView::onObjectUpdated,
+			this, nullptr, _1, _2));
 
 	delete item;
 }
@@ -361,11 +364,23 @@ void DetailsView::onArrayUpdated(ContactField &field, contacts_changed_e change)
 	}
 }
 
-void DetailsView::onObjectUpdated(ContactField &field, contacts_changed_e change)
+void DetailsView::onObjectUpdated(FieldItem *item, ContactField &field, contacts_changed_e change)
 {
 	if (change == CONTACTS_CHANGE_UPDATED) {
-		if (!field.isEmpty()) {
-			addFieldItem(field.getParent()->cast<ContactObject>());
+		if (item) {
+			if (field.isEmpty()) {
+				removeFieldItem(item);
+			} else {
+				item->onFieldUpdated(field, change);
+			}
+		} else {
+			if (!field.isEmpty()) {
+				addFieldItem(field.getParent()->cast<ContactObject>());
+			}
+		}
+	} else if (change == CONTACTS_CHANGE_DELETED) {
+		if (item) {
+			removeFieldItem(item);
 		}
 	}
 }
