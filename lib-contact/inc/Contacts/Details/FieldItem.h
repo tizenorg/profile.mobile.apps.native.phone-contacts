@@ -45,12 +45,6 @@ namespace Contacts
 			typedef std::function<void(SelectResult)> SelectCallback;
 
 			/**
-			 * @brief Remove field callback.
-			 * @param[in]   Genlist item to be removed
-			 */
-			typedef std::function<void(FieldItem *)> RemoveCallback;
-
-			/**
 			 * @brief Create genlist item representing ContactObject.
 			 * @param[in]   object  Contact field of TypeObject type
 			 */
@@ -68,12 +62,6 @@ namespace Contacts
 			 * @param[in]   callback    Callback to be called when item is selected.
 			 */
 			void setSelectCallback(SelectCallback callback);
-
-			/**
-			 * @brief Set remove field callback.
-			 * @param[in]   callback    Callback to be called when the item needs to be removed.
-			 */
-			void setRemoveCallback(RemoveCallback callback);
 
 			/**
 			 * @return ContactField associated with the item.
@@ -96,6 +84,8 @@ namespace Contacts
 			ResultType getResultType() const;
 
 		protected:
+			friend class DetailsView;
+
 			/**
 			 * @see GenlistItem::getItemClass()
 			 */
@@ -135,7 +125,6 @@ namespace Contacts
 			ResultType m_ResultType;
 
 			SelectCallback m_OnSelected;
-			RemoveCallback m_OnRemove;
 		};
 	}
 }
