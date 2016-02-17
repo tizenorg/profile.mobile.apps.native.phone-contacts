@@ -107,10 +107,23 @@ char *FieldItem::getText(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
+Evas_Object *FieldItem::getContent(Evas_Object *parent, const char *part)
+{
+	if (m_SelectMode == SelectMulti) {
+		if (strcmp(part, "elm.swallow.end") == 0) {
+			return GenlistCheckItem::getContent(parent, part);
+		}
+	}
+
+	return nullptr;
+}
+
 void FieldItem::onSelected()
 {
 	if (m_SelectMode == SelectSingle) {
 		onSelected(getObject().getSubType());
+	} else {
+		GenlistCheckItem::onSelected();
 	}
 }
 

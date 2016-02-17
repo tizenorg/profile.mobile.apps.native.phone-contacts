@@ -19,10 +19,8 @@
 #define CONTACTS_DETAILS_FIELD_ITEM_H
 
 #include "Contacts/Common/SelectMode.h"
-#include "Ui/GenlistItem.h"
-
+#include "Ui/GenlistCheckItem.h"
 #include <contacts.h>
-#include <functional>
 
 namespace Contacts
 {
@@ -37,7 +35,7 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing ContactObject and its first field.
 		 */
-		class FieldItem : public Ui::GenlistItem
+		class FieldItem : public Ui::GenlistCheckItem
 		{
 		public:
 			/**
@@ -107,6 +105,11 @@ namespace Contacts
 			 * @see GenlistItem::getText()
 			 */
 			virtual char *getText(Evas_Object *parent, const char *part) override;
+
+			/**
+			 * @see GenlistCheckItem::getContent()
+			 */
+			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			/**
 			 * @see GenlistItem::onSelected()
