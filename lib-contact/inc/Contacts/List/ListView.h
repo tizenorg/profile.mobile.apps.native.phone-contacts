@@ -186,8 +186,8 @@ namespace Contacts
 			void onPersonChanged(Model::PersonPtr person, contacts_changed_e changeType, PersonItem *item);
 			void onPersonSelected(const Model::Person &person);
 
-			void onSelectAllChecked();
-			void onItemChecked(PersonItem *item);
+			void onSelectAllChecked(bool isChecked);
+			void onItemChecked(PersonItem *item, bool isChecked);
 			void onItemSelected(PersonItem *item);
 
 			Ui::Genlist *m_Genlist;

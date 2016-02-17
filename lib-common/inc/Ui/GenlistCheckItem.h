@@ -19,7 +19,6 @@
 #define UI_GENLIST_CHECK_ITEM
 
 #include "Ui/GenlistItem.h"
-#include <functional>
 
 namespace Ui
 {
@@ -30,33 +29,29 @@ namespace Ui
 	{
 	public:
 		/**
-		 * @brief Item select callback
+		 * @brief Item check callback.
+		 * @param[in]   Whether item is checked
 		 */
-		typedef std::function<void()> SelectedCallback;
+		typedef std::function<void(bool)> CheckCallback;
 
 		GenlistCheckItem();
 
 		/**
-		 * @return Whether the item is checked
+		 * @return Whether the item is checked.
 		 */
 		bool isChecked() const;
 
 		/**
-		 * @brief Set item check state
-		 * @param[in]   state   New item state
+		 * @brief Set item check state.
+		 * @param[in]   isChecked   Whether item is checked
 		 */
-		void setChecked(bool state);
+		void setChecked(bool isChecked);
 
 		/**
-		 * @brief Set item selected callback
-		 * @param[in]   callback    Callback, that will be invoked on item selection
+		 * @brief Set item check callback.
+		 * @param[in]   callback    Callback to be called when item is checked/unchecked
 		 */
-		void setSelectedCallback(SelectedCallback callback);
-
-		/**
-		 * @brief Unset item selected callback
-		 */
-		void unsetSelectedCallback();
+		void setCheckCallback(CheckCallback callback);
 
 	protected:
 		/**
@@ -68,15 +63,21 @@ namespace Ui
 		/**
 		 * @see GenlistItem::onSelected()
 		 */
-		virtual void onSelected() final;
+		virtual void onSelected() override;
+
+		/**
+		 * @brief Called when item is checked or unchecked.
+		 * @param[in]   isChecked   Whether item is checked
+		 */
+		virtual void onChecked(bool isChecked) { }
 
 	private:
-		Evas_Object *createCheck(Evas_Object *parent);
-		Evas_Object *getCheck() const;
+		void onChecked();
+		void onCheckChanged(Evas_Object *check, void *eventInfo);
 
-		bool m_Checked;
 		std::string m_CheckPart;
-		SelectedCallback m_OnSelected;
+		Eina_Bool m_IsChecked;
+		CheckCallback m_OnChecked;
 	};
 }
 

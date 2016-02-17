@@ -41,6 +41,7 @@ using namespace Contacts;
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 using namespace Utils;
+using namespace std::placeholders;
 
 ListView::ListView(PersonProvider::FilterType personFilter)
 	: m_Genlist(nullptr), m_Index(nullptr),
@@ -105,7 +106,7 @@ void ListView::onCreated()
 {
 	fillList();
 
-	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, std::placeholders::_1));
+	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
 	contacts_db_add_changed_cb(_contacts_my_profile._uri,
 			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
 }
@@ -151,7 +152,7 @@ void ListView::fillSelectAllItem()
 	if (!m_Sections[SectionSelectAll]) {
 		auto item = new SelectAllItem();
 		m_Genlist->insert(item, nullptr, getNextSectionItem(SectionSelectAll));
-		item->setSelectedCallback(std::bind(&ListView::onSelectAllChecked, this));
+		item->setCheckCallback(std::bind(&ListView::onSelectAllChecked, this, _1));
 
 		m_Sections[SectionSelectAll] = item;
 	}
@@ -524,13 +525,12 @@ PersonGroupItem *ListView::getNextPersonGroupItem(const Utils::UniString &indexL
 
 PersonItem *ListView::createPersonItem(PersonPtr person)
 {
-	using namespace std::placeholders;
-
 	PersonItem *item = new PersonItem(std::move(person), getItemMode());
 
 	m_Provider.setChangeCallback(item->getPerson(),
 			std::bind(&ListView::onPersonChanged, this, _1, _2, item));
-	item->setSelectedCallback(std::bind(&ListView::onItemSelected, this, item));
+	item->setSelectCallback(std::bind(&ListView::onItemSelected, this, item));
+	item->setCheckCallback(std::bind(&ListView::onItemChecked, this, item, _1));
 
 	return item;
 }
@@ -693,29 +693,26 @@ void ListView::onPersonSelected(const Model::Person &person)
 	}
 }
 
-void ListView::onSelectAllChecked()
+void ListView::onSelectAllChecked(bool isChecked)
 {
-	bool checked = static_cast<SelectAllItem *>(m_Sections[SectionSelectAll])->isChecked();
-
 	for (auto &&group : m_PersonGroups) {
 		for (auto &&personItem : *group.second) {
-			static_cast<PersonItem*>(personItem)->setChecked(checked);
+			static_cast<PersonItem *>(personItem)->setChecked(isChecked);
 		}
 	}
 
-	m_SelectCount = checked ? m_PersonCount : 0;
+	m_SelectCount = isChecked ? m_PersonCount : 0;
 	updateTitle();
 }
 
-void ListView::onItemChecked(PersonItem *item)
+void ListView::onItemChecked(PersonItem *item, bool isChecked)
 {
-	if (m_Mode == ModeMultiSelectWithLimit && m_SelectCount == m_SelectLimit && item->isChecked()) {
+	if (m_Mode == ModeMultiSelectWithLimit && m_SelectCount == m_SelectLimit && isChecked) {
 		item->setChecked(false);
 		return;
 	}
 
-	size_t checkCount = item->isChecked() ? ++m_SelectCount : m_SelectCount--;
-
+	size_t checkCount = isChecked ? ++m_SelectCount : m_SelectCount--;
 	if (checkCount == m_PersonCount) {
 		updateSelectAllState();
 	}
@@ -726,10 +723,8 @@ void ListView::onItemChecked(PersonItem *item)
 void ListView::onItemSelected(PersonItem *item)
 {
 	switch (m_Mode) {
-		case ModeDefault:               launchPersonDetail(item); break;
-		case ModeSingleSelect:          onPersonSelected(item->getPerson()); break;
-		case ModeMultiSelect:
-		case ModeMultiSelectWithLimit:  onItemChecked(item); break;
+		case ModeDefault:      launchPersonDetail(item); break;
+		case ModeSingleSelect: onPersonSelected(item->getPerson()); break;
 		default: break;
 	}
 }
