@@ -19,6 +19,7 @@
 #define LOGS_MODEL_LOG_PROVIDER_H
 
 #include <contacts.h>
+#include <time.h>
 #include <memory>
 #include <set>
 
@@ -71,6 +72,7 @@ namespace Logs
 			 */
 			enum FilterType
 			{
+				FilterNone,
 				FilterAll,
 				FilterMissed
 			};
@@ -102,10 +104,19 @@ namespace Logs
 			 */
 			void unsetInsertCallback();
 
+			/**
+			 * @brief Compare dates
+			 * @param[in]    firstDate        First date
+			 * @param[in]    secondDate       Second date
+			 * @return true if dates are equal.
+			 */
+			static bool compareDate(const tm &firstDate, const tm &secondDate);
+
 		private:
 			void fillList(LogList &logList);
 			void fillGroupList(LogList &logList, LogGroupList &logGroupList);
 			bool shouldGroupLogs(Log *log, LogGroup *prevLogGroup);
+
 			LogGroup *addLog(LogGroupList &logList, Log *log);
 
 			contacts_filter_h getFilter(FilterType filterType);
