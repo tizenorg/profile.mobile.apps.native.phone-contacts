@@ -19,6 +19,8 @@
 #include "Contacts/Model/ContactTextField.h"
 
 #include "App/Path.h"
+#include "Ui/Genlist.h"
+#include "Ui/ListPopup.h"
 #include "Ui/Scale.h"
 #include "Utils/Callback.h"
 
@@ -35,10 +37,10 @@ namespace
 		const char *operation;
 		const char *scheme;
 	} actions[] = {
-		/* ActionCall           = */ { GROUP_ICON_CALL,     APP_CONTROL_OPERATION_CALL, "tel:" },
-		/* ActionComposeMessage = */ { GROUP_ICON_MESSAGE,  APP_CONTROL_OPERATION_COMPOSE, "sms:" },
-		/* ActionComposeEmail   = */ { GROUP_ICON_EMAIL,    APP_CONTROL_OPERATION_COMPOSE, "mailto:" },
-		/* ActionOpenWebpage    = */ { GROUP_ICON_INTERNET, APP_CONTROL_OPERATION_VIEW, "" }
+		/* ActionCall    = */ { GROUP_ICON_CALL,     APP_CONTROL_OPERATION_CALL, "tel:" },
+		/* ActionMessage = */ { GROUP_ICON_MESSAGE,  APP_CONTROL_OPERATION_COMPOSE, "sms:" },
+		/* ActionEmail   = */ { GROUP_ICON_EMAIL,    APP_CONTROL_OPERATION_COMPOSE, "mailto:" },
+		/* ActionUrl     = */ { GROUP_ICON_INTERNET, APP_CONTROL_OPERATION_VIEW, "" }
 	};
 
 	const std::string layoutPath = App::getResourcePath(DETAILS_ITEM_LAYOUT_EDJ);
@@ -51,10 +53,12 @@ ActionFieldItem::ActionFieldItem(Model::ContactObject &object, ActionId actionId
 
 Evas_Object *ActionFieldItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, "elm.swallow.icon.1") == 0) {
-		return createActionButton(parent, m_ActionId);
-	} else if (m_ActionId == ActionCall && strcmp(part, "elm.swallow.icon.2") == 0) {
-		return createActionButton(parent, ActionComposeMessage);
+	if (getSelectMode() == SelectNone) {
+		if (strcmp(part, "elm.swallow.icon.1") == 0) {
+			return createActionButton(parent, m_ActionId);
+		} else if (m_ActionId == ActionCall && strcmp(part, "elm.swallow.icon.2") == 0) {
+			return createActionButton(parent, ActionMessage);
+		}
 	}
 
 	return TypedFieldItem::getContent(parent, part);
@@ -62,7 +66,29 @@ Evas_Object *ActionFieldItem::getContent(Evas_Object *parent, const char *part)
 
 void ActionFieldItem::onSelected()
 {
-	executeAction(m_ActionId);
+	if (getSelectMode() == SelectNone) {
+		executeAction(m_ActionId);
+	} else if (getSelectMode() == SelectSingle && getResultType() == ResultAction) {
+		if (m_ActionId == ActionCall) {
+			showActionPopup();
+		} else {
+			onSelected(m_ActionId);
+		}
+	} else {
+		TypedFieldItem::onSelected();
+	}
+}
+
+void ActionFieldItem::showActionPopup()
+{
+	Ui::ListPopup *popup = new Ui::ListPopup();
+	popup->create(getParent()->getEvasObject());
+	popup->setTitle(getField().cast<ContactTextField>().getValue());
+	popup->addItem("IDS_PB_OPT_VOICE_CALL", (void *) ActionCall);
+	popup->addItem("IDS_PB_OPT_MESSAGE", (void *) ActionMessage);
+	popup->setSelectedCallback([this](void *data) {
+		onSelected((unsigned long) data);
+	});
 }
 
 Evas_Object *ActionFieldItem::createActionButton(Evas_Object *parent, ActionId actionId)

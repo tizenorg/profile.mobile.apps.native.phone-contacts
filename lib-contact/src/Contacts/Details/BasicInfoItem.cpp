@@ -43,9 +43,18 @@ BasicInfoItem::BasicInfoItem(Contact &contact)
 
 	  m_Company     (contact.getFieldById(FieldCompany)->cast<ContactObject>()),
 	  m_CompanyName (m_Company.getFieldById(CompanyFieldName)->cast<ContactTextField>()),
-	  m_JobTitle    (m_Company.getFieldById(CompanyFieldJobTitle)->cast<ContactTextField>())
+	  m_JobTitle    (m_Company.getFieldById(CompanyFieldJobTitle)->cast<ContactTextField>()),
+
+	  m_SelectMode(SelectNone)
 {
 	m_Contact.setUpdateCallback(std::bind(&BasicInfoItem::onFieldUpdated, this, _1, _2));
+}
+
+void BasicInfoItem::setSelectMode(SelectMode mode)
+{
+	m_SelectMode = mode;
+	elm_genlist_item_fields_update(getObjectItem(), PART_BACK_BTN, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	elm_genlist_item_fields_update(getObjectItem(), PART_FAV_BTN, ELM_GENLIST_ITEM_FIELD_CONTENT);
 }
 
 Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
@@ -69,11 +78,15 @@ char *BasicInfoItem::getText(Evas_Object *parent, const char *part)
 
 Evas_Object *BasicInfoItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, PART_BACK_BTN) == 0) {
-		return createBackButton(parent);
-	} else if (m_Favorite && strcmp(part, PART_FAV_BTN) == 0) {
-		return createFavButton(parent);
-	} else if (strcmp(part, PART_THUMBNAIL) == 0) {
+	if (m_SelectMode == SelectNone) {
+		if (strcmp(part, PART_BACK_BTN) == 0) {
+			return createBackButton(parent);
+		} else if (m_Favorite && strcmp(part, PART_FAV_BTN) == 0) {
+			return createFavButton(parent);
+		}
+	}
+
+	if (strcmp(part, PART_THUMBNAIL) == 0) {
 		auto control = Ui::Thumbnail::create(parent, Ui::Thumbnail::SizeLarge);
 		control->setImagePath(m_ImagePath.getValue());
 		return control->getEvasObject();

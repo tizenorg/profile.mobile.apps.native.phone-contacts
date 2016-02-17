@@ -23,6 +23,7 @@
 
 #include <app_i18n.h>
 
+using namespace Contacts;
 using namespace Contacts::Details;
 using namespace Contacts::Model;
 using namespace std::placeholders;
@@ -30,9 +31,22 @@ using namespace std::placeholders;
 #define DATE_BUFFER_SIZE 32
 
 FieldItem::FieldItem(ContactObject &object)
-	: m_Object(object), m_Field(*object.getField(0))
+	: m_Object(object), m_Field(*object.getField(0)),
+	  m_SelectMode(SelectNone), m_ResultType(ResultNone)
 {
 	m_Object.setUpdateCallback(std::bind(&FieldItem::onFieldUpdated, this, _1, _2));
+}
+
+void FieldItem::setSelectMode(SelectMode mode, ResultType type)
+{
+	m_SelectMode = mode;
+	m_ResultType = type;
+	elm_genlist_item_fields_update(getObjectItem(), "*", ELM_GENLIST_ITEM_FIELD_CONTENT);
+}
+
+void FieldItem::setSelectCallback(SelectCallback callback)
+{
+	m_OnSelected = std::move(callback);
 }
 
 void FieldItem::setRemoveCallback(RemoveCallback callback)
@@ -48,6 +62,16 @@ ContactObject &FieldItem::getObject() const
 ContactField &FieldItem::getField() const
 {
 	return m_Field;
+}
+
+SelectMode FieldItem::getSelectMode() const
+{
+	return m_SelectMode;
+}
+
+ResultType FieldItem::getResultType() const
+{
+	return m_ResultType;
 }
 
 Elm_Genlist_Item_Class *FieldItem::getItemClass() const
@@ -81,6 +105,20 @@ char *FieldItem::getText(Evas_Object *parent, const char *part)
 	}
 
 	return nullptr;
+}
+
+void FieldItem::onSelected()
+{
+	if (m_SelectMode == SelectSingle) {
+		onSelected(getObject().getSubType());
+	}
+}
+
+void FieldItem::onSelected(unsigned resultType)
+{
+	if (m_OnSelected) {
+		m_OnSelected({ resultType, getObject().getRecordId()});
+	}
 }
 
 void FieldItem::onFieldUpdated(ContactField &field, contacts_changed_e change)

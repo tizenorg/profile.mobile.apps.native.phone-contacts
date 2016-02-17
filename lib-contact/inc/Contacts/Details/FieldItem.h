@@ -18,7 +18,9 @@
 #ifndef CONTACTS_DETAILS_FIELD_ITEM_H
 #define CONTACTS_DETAILS_FIELD_ITEM_H
 
+#include "Contacts/Common/SelectMode.h"
 #include "Ui/GenlistItem.h"
+
 #include <contacts.h>
 #include <functional>
 
@@ -39,6 +41,12 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Called when the item (or an action) is selected in #SelectSingle mode.
+			 * @param[in]   Selection result
+			 */
+			typedef std::function<void(SelectResult)> SelectCallback;
+
+			/**
 			 * @brief Remove field callback.
 			 * @param[in]   Genlist item to be removed
 			 */
@@ -49,6 +57,19 @@ namespace Contacts
 			 * @param[in]   object  Contact field of TypeObject type
 			 */
 			FieldItem(Model::ContactObject &object);
+
+			/**
+			 * @brief Set item selection mode and result type.
+			 * @param[in]   mode    Selection mode
+			 * @param[in]   type    Selection result type
+			 */
+			void setSelectMode(SelectMode mode, ResultType type);
+
+			/**
+			 * @brief Set selection callback.
+			 * @param[in]   callback    Callback to be called when item is selected.
+			 */
+			void setSelectCallback(SelectCallback callback);
 
 			/**
 			 * @brief Set remove field callback.
@@ -66,6 +87,16 @@ namespace Contacts
 			 */
 			Model::ContactObject &getObject() const;
 
+			/**
+			 * @return Item selection mode.
+			 */
+			SelectMode getSelectMode() const;
+
+			/**
+			 * @return Item selection result type.
+			 */
+			ResultType getResultType() const;
+
 		protected:
 			/**
 			 * @see GenlistItem::getItemClass()
@@ -78,6 +109,17 @@ namespace Contacts
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 
 			/**
+			 * @see GenlistItem::onSelected()
+			 */
+			virtual void onSelected() override;
+
+			/**
+			 * @brief Should be called to report selection result.
+			 * @param[in]   resultType  Selection result type
+			 */
+			void onSelected(unsigned resultType);
+
+			/**
 			 * @see ContactField::UpdatedCallback
 			 */
 			virtual void onFieldUpdated(Model::ContactField &field, contacts_changed_e change);
@@ -85,6 +127,11 @@ namespace Contacts
 		private:
 			Model::ContactObject &m_Object;
 			Model::ContactField &m_Field;
+
+			SelectMode m_SelectMode;
+			ResultType m_ResultType;
+
+			SelectCallback m_OnSelected;
 			RemoveCallback m_OnRemove;
 		};
 	}
