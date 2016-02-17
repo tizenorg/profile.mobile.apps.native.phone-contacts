@@ -28,6 +28,15 @@ namespace Logs
 	}
 	namespace List
 	{
+		/**
+		 * @brief Represents item mode
+		 */
+		enum class ItemMode
+		{
+			ModeDefault,    /*< Usual mode */
+			ModePick        /*< Mode with ability to select item */
+		};
+
 		class LogItem : public Ui::GenlistCheckItem
 		{
 		public:
@@ -37,26 +46,17 @@ namespace Logs
 			typedef std::function<void(LogItem *item)> DeleteCallback;
 
 			/**
-			 * @brief Represents item mode
-			 */
-			enum Mode
-			{
-				ModeDefault,    /*< Usual mode */
-				ModePick        /*< Mode with ability to select item */
-			};
-
-			/**
 			 * @brief Create log item
 			 * @param[in]   group       Log group
 			 * @param[in]   mode        Item mode
 			 */
-			LogItem(Model::LogGroup *group, Mode mode);
+			LogItem(Model::LogGroup *group, ItemMode mode = ItemMode::ModeDefault);
 
 			/**
 			 * @brief Set item mode
 			 * @param[in]   mode    Item mode
 			 */
-			void setMode(Mode mode);
+			void setMode(ItemMode mode);
 
 			/**
 			 * @brief Set delete item callback
@@ -83,7 +83,7 @@ namespace Logs
 
 			DeleteCallback m_OnDelete;
 			Model::LogGroup *m_Group;
-			Mode m_Mode;
+			ItemMode m_Mode;
 		};
 	}
 }
