@@ -88,8 +88,20 @@ void LogProvider::fillGroupList(LogList &logList, LogGroupList &logGroupList)
 bool LogProvider::shouldGroupLogs(Log *log, LogGroup *prevLogGroup)
 {
 	Log *prevLog = prevLogGroup->getLogList().back();
+
 	return (log->getType() == prevLog->getType()
-			&& strcmp(log->getNumber(), prevLog->getNumber()) == 0);
+			&& strcmp(log->getNumber(), prevLog->getNumber()) == 0
+			&& compareDate(log->getTime(), prevLog->getTime()));
+}
+
+bool LogProvider::compareDate(const tm &firstDate, const tm &secondDate)
+{
+	if (firstDate.tm_year == secondDate.tm_year &&
+		firstDate.tm_mon == secondDate.tm_mon &&
+		firstDate.tm_mday == secondDate.tm_mday) {
+		return true;
+	}
+	return false;
 }
 
 LogGroup *LogProvider::addLog(LogGroupList &logGroupList, Log *log)
@@ -230,7 +242,10 @@ void LogProvider::addNewLogs(LogIterator &newIt, LogList &newLogList)
 		LogGroup *newGroup = nullptr;
 		for (; newIt != newLogList.end(); ++newIt) {
 			newGroup = addLog(m_Groups, newIt->get());
+			m_Logs.push_back(std::move(*newIt));
+
 			if (newGroup) {
+				++newIt;
 				break;
 			}
 			isChanged = true;
