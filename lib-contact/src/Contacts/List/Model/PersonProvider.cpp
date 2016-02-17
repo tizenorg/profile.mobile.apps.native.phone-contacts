@@ -22,6 +22,7 @@
 #include "Utils/Logger.h"
 
 using namespace Contacts::List::Model;
+using namespace std::placeholders;
 
 namespace
 {
@@ -158,14 +159,15 @@ PersonProvider::PersonProvider(Mode modeType, FilterType filterType)
 		ERR("ModeTypeMFC is not supported");
 		m_Mode = ModeAll;
 	}
-
-	contacts_db_get_current_version(&m_DbVersion);
-	contacts_db_add_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&PersonProvider::onChanged), this);
 }
 
 PersonProvider::~PersonProvider()
 {
-	contacts_db_remove_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&PersonProvider::onChanged), this);
+	unsetInsertCallback();
+
+	for (auto &&callback : m_ChangeCallbacks) {
+		DbChangeObserver::getInstance()->removeCallback(callback.first, callback.second.second);
+	}
 }
 
 PersonList PersonProvider::getPersonList() const
@@ -183,84 +185,78 @@ PersonList PersonProvider::getPersonList() const
 	return personList;
 }
 
+void PersonProvider::setInsertCallback(InsertCallback callback)
+{
+	auto handle = DbChangeObserver::getInstance()->addCallback(
+			std::bind(&PersonProvider::onPersonInserted, this, _1, _2));
+	m_InsertCallback = { std::move(callback), std::move(handle) };
+}
+
+void PersonProvider::unsetInsertCallback()
+{
+	if (m_InsertCallback.first) {
+		auto handle = m_InsertCallback.second;
+		DbChangeObserver::getInstance()->removeCallback(handle);
+		m_InsertCallback.first = nullptr;
+	}
+}
+
 void PersonProvider::setChangeCallback(const Person &person, ChangeCallback callback)
 {
-	auto ids = person.getContactIds();
+	auto addCallback = [this](int id, ChangeCallback callback) {
+		auto handle = DbChangeObserver::getInstance()->addCallback(id,
+			std::bind(&PersonProvider::onPersonChanged, this, _1, _2));
 
+		m_ChangeCallbacks.insert({ id, { std::move(callback), std::move(handle) } });
+	};
+
+	auto ids = person.getContactIds();
 	auto it = ids.begin();
+
 	for (; it < ids.end() - 1; ++it) {
-		m_ChangeCallbacks.insert({ *it, callback });
+		addCallback(*it, callback);
 	}
-	m_ChangeCallbacks.insert({ *it, std::move(callback) });
+
+	addCallback(*it, std::move(callback));
 }
 
 void PersonProvider::unsetChangeCallback(const Person &person)
 {
 	for (auto &&id: person.getContactIds()) {
-		m_ChangeCallbacks.erase(id);
+		auto it = m_ChangeCallbacks.find(id);
+		if (it != m_ChangeCallbacks.end()) {
+			auto handle = it->second.second;
+			DbChangeObserver::getInstance()->removeCallback(id, handle);
+
+			m_ChangeCallbacks.erase(it);
+		}
 	}
 }
 
-void PersonProvider::setInsertCallback(InsertCallback callback)
+void PersonProvider::onPersonInserted(int id, contacts_changed_e changeType)
 {
-	m_InsertCallback = std::move(callback);
-}
-
-void PersonProvider::unsetInsertCallback()
-{
-	m_InsertCallback = nullptr;
-}
-
-void PersonProvider::onChanged(const char *viewUri)
-{
-	contacts_list_h changes = nullptr;
-	contacts_db_get_changes_by_version(_contacts_contact_updated_info._uri, 0, m_DbVersion, &changes, &m_DbVersion);
-
-	contacts_record_h record = nullptr;
-	CONTACTS_LIST_FOREACH(changes, record) {
-		int contactId = 0;
-		int changeType = -1;
-
-		contacts_record_get_int(record, _contacts_contact_updated_info.contact_id, &contactId);
-		contacts_record_get_int(record, _contacts_contact_updated_info.type, &changeType);
-
-		notify(static_cast<contacts_changed_e>(changeType), contactId);
+	if (changeType == CONTACTS_CHANGE_INSERTED) {
+		auto callback = m_InsertCallback.first;
+		if (callback) {
+			contacts_record_h record = getPersonRecord(id, m_Mode, m_FilterType);
+			callback(PersonPtr(new Person(record)));
+		}
 	}
-
-	contacts_list_destroy(changes, true);
 }
 
-void PersonProvider::notify(contacts_changed_e changeType, int contactId)
+void PersonProvider::onPersonChanged(int id, contacts_changed_e changeType)
 {
-	auto getPerson = [this, contactId]() -> PersonPtr {
-		contacts_record_h personRecord = getPersonRecord(contactId, m_Mode, m_FilterType);
-		return personRecord ? PersonPtr(new Person(personRecord)) : nullptr;
-	};
+	auto it = m_ChangeCallbacks.find(id);
+	if (it != m_ChangeCallbacks.end()) {
+		auto callback = it->second.first;
 
-	PersonPtr person;
-
-	switch (changeType) {
-		case CONTACTS_CHANGE_INSERTED:
-			person = getPerson();
-			if (m_InsertCallback && person) {
-				m_InsertCallback(std::move(person));
-			}
-			break;
-		case CONTACTS_CHANGE_UPDATED:
-			//Todo: If will be link contact functionality, update only when display contact changed
-			person = getPerson();
-			if (!person) {
-				return;
-			}
-			//Fallthrough case statement by intention
-		case CONTACTS_CHANGE_DELETED:
-		{
-			auto it = m_ChangeCallbacks.find(contactId);
-			if (it != m_ChangeCallbacks.end()) {
-				//Todo: If will be link contact functionality, delete only when it was last contact in person
-				it->second(std::move(person), changeType);
+		if (callback) {
+			if (changeType == CONTACTS_CHANGE_UPDATED) {
+				contacts_record_h record = getPersonRecord(id, m_Mode, m_FilterType);
+				callback(PersonPtr(new Person(record)), changeType);
+			} else if (changeType == CONTACTS_CHANGE_DELETED) {
+				callback(nullptr, changeType);
 			}
 		}
-			break;
 	}
 }

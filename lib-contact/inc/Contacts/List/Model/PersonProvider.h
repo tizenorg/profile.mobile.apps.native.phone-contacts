@@ -18,6 +18,7 @@
 #ifndef CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 #define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
+#include "Contacts/List/Model/DbChangeObserver.h"
 #include "Contacts/List/Model/Person.h"
 #include <contacts.h>
 #include <functional>
@@ -57,17 +58,17 @@ namespace Contacts
 				};
 
 				/**
+				 * @brief Person insert callback
+				 * @param[in]    person        Person object
+				 */
+				typedef std::function<void(PersonPtr person)> InsertCallback;
+
+				/**
 				 * @brief Person change callback
 				 * @param[in]    person        Person object
 				 * @param[in]    changeType    Change type
 				 */
 				typedef std::function<void(PersonPtr person, contacts_changed_e changeType)> ChangeCallback;
-
-				/**
-				 * @brief Person insert callback
-				 * @param[in]    person        Person object
-				 */
-				typedef std::function<void(PersonPtr person)> InsertCallback;
 
 				/**
 				 * @brief Constructor
@@ -85,6 +86,17 @@ namespace Contacts
 				PersonList getPersonList() const;
 
 				/**
+				 * @brief Set person insert callback
+				 * @param[in]    callback    Create callback
+				 */
+				void setInsertCallback(InsertCallback callback);
+
+				/**
+				 * @brief Unset person insert callback
+				 */
+				void unsetInsertCallback();
+
+				/**
 				 * @brief Set person change callback
 				 * @remark It can be update or delete of person
 				 * @param[in]    person      Person
@@ -98,29 +110,15 @@ namespace Contacts
 				 */
 				void unsetChangeCallback(const Person &person);
 
-				/**
-				 * @brief Set person insert callback
-				 * @param[in]    callback    Create callback
-				 */
-				void setInsertCallback(InsertCallback callback);
-
-				/**
-				 * @brief Unset person insert callback
-				 */
-				void unsetInsertCallback();
-
 			private:
-				void onChanged(const char *viewUri);
-				void notify(contacts_changed_e changeType, int contactId);
-
+				void onPersonInserted(int id, contacts_changed_e changeType);
+				void onPersonChanged(int id, contacts_changed_e changeType);
 
 				Mode m_Mode;
 				FilterType m_FilterType;
 
-				int m_DbVersion;
-
-				std::unordered_map<int, ChangeCallback> m_ChangeCallbacks;
-				InsertCallback m_InsertCallback;
+				std::pair<InsertCallback, Model::DbChangeObserver::CallbackHandle> m_InsertCallback;
+				std::unordered_map<int, std::pair<ChangeCallback, Model::DbChangeObserver::CallbackHandle>> m_ChangeCallbacks;
 			};
 		}
 	}

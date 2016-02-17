@@ -29,6 +29,16 @@ namespace
 	};
 }
 
+DbChangeObserver::DbChangeObserver(Table table)
+	: m_Table(table), m_DbVersion(0), m_IsSubscribed(false)
+{
+}
+
+DbChangeObserver::~DbChangeObserver()
+{
+	unsubscribe();
+}
+
 DbChangeObserver *DbChangeObserver::getInstance(Table table)
 {
 	if (table < 0 || table >= Utils::count(m_Observers)) {
@@ -36,11 +46,6 @@ DbChangeObserver *DbChangeObserver::getInstance(Table table)
 	}
 
 	return &m_Observers[table];
-}
-
-DbChangeObserver::~DbChangeObserver()
-{
-	unsubscribe();
 }
 
 DbChangeObserver::CallbackHandle DbChangeObserver::addCallback(Callback callback)
@@ -67,20 +72,15 @@ void DbChangeObserver::removeCallback(int id, CallbackHandle handle)
 	auto it = m_ChangeCallbacks.find(id);
 	if (it != m_ChangeCallbacks.end()) {
 		it->second.erase(handle);
-	}
 
-	if (it->second.empty()) {
-		m_ChangeCallbacks.erase(it);
+		if (it->second.empty()) {
+			m_ChangeCallbacks.erase(it);
+		}
 	}
 
 	if (m_Callbacks.empty() && m_ChangeCallbacks.empty()) {
 		unsubscribe();
 	}
-}
-
-DbChangeObserver::DbChangeObserver(Table table)
-	: m_Table(table), m_DbVersion(0), m_IsSubscribed(false)
-{
 }
 
 void DbChangeObserver::subscribe()
@@ -142,7 +142,8 @@ void DbChangeObserver::notifyContactChanges()
 void DbChangeObserver::notify(int id, contacts_changed_e changeType)
 {
 	auto notifyAll = [id, changeType](const RecordCbs &callbacks) {
-		for (auto &&callback : callbacks) {
+		for (auto it = callbacks.begin(); it != callbacks.end(); ) {
+			auto &callback = *it++;
 			if (callback) {
 				callback(id, changeType);
 			}
