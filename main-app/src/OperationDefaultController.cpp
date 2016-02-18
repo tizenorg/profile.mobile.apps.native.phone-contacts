@@ -19,6 +19,7 @@
 
 #include "MainApp.h"
 #include "Contacts/List/ListView.h"
+#include "Logs/List/LogsView.h"
 #include "Phone/Dialer/DialerView.h"
 #include "Ui/TabView.h"
 
@@ -48,9 +49,7 @@ void OperationDefaultController::onCreate()
 	mainNavigator->navigateTo(m_Navigator);
 
 	m_Tabs[TabDialer] = new Phone::Dialer::DialerView();
-	/* TODO:
-	m_Tabs[TabLogs] = new Logs::List::LogView();
-	 */
+	m_Tabs[TabLogs] = new Logs::List::LogsView();
 	m_Tabs[TabContacts] = new Contacts::List::ListView();
 
 	for (auto &&tab : m_Tabs) {
