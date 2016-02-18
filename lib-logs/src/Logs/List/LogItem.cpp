@@ -50,13 +50,13 @@ namespace
 	const std::string layoutPath = App::getResourcePath(LOG_ITEM_LAYOUT_EDJ);
 }
 
-LogItem::LogItem(LogGroup *group, Mode mode)
+LogItem::LogItem(LogGroup *group, ItemMode mode)
 	:m_Group(group), m_Mode(mode)
 {
 	setUpdateCallback();
 }
 
-void LogItem::setMode(LogItem::Mode mode)
+void LogItem::setMode(ItemMode mode)
 {
 	m_Mode = mode;
 	elm_genlist_item_fields_update(getObjectItem(), PART_END, ELM_GENLIST_ITEM_FIELD_CONTENT);
@@ -77,7 +77,6 @@ char *LogItem::getText(Evas_Object *parent, const char *part)
 	const Log *log = m_Group->getLogList().back();
 	const char *name = log->getName();
 	const char *number = log->getNumber();
-
 	if (name == nullptr) {
 		name = number;
 		number = _("IDS_LOGS_SBODY_UNSAVED_M_STATUS");
@@ -108,7 +107,7 @@ Evas_Object *LogItem::getContent(Evas_Object *parent, const char *part)
 	if (strcmp(part, PART_PERSON_THUMBNAIL) == 0) {
 		return createThumbnail(parent);
 	} else if (strcmp(part, PART_END) == 0) {
-		if (m_Mode == ModePick) {
+		if (m_Mode == ItemMode::Pick) {
 			return GenlistCheckItem::getContent(parent, part);
 		} else {
 			return createIcon(parent, ICON_INFO);
