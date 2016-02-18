@@ -61,7 +61,7 @@ namespace Contacts
 			/**
 			 * @return Person object
 			 */
-			const Model::Person &getPerson() const;
+			Model::Person &getPerson();
 
 			/**
 			 * @brief Set person object
