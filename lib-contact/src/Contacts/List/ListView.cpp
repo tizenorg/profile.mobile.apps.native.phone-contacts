@@ -43,13 +43,13 @@ using namespace Contacts::List::Model;
 using namespace Utils;
 using namespace std::placeholders;
 
-ListView::ListView(PersonProvider::FilterType personFilter)
+ListView::ListView(int filterType)
 	: m_Genlist(nullptr), m_Index(nullptr),
-	  m_CancelButton(nullptr), m_DoneButton(nullptr),
+	  m_AddButton(nullptr), m_DoneButton(nullptr), m_CancelButton(nullptr),
 	  m_Sections{ nullptr },
-	  m_Provider(PersonProvider(PersonProvider::ModeAll, personFilter)),
-	  m_Mode(ModeDefault),
-	  m_PersonCount(0), m_SelectCount(0), m_SelectLimit(0)
+	  m_Provider(PersonProvider::ModeAll, filterType),
+	  m_PersonCount(0), m_SelectCount(0), m_SelectLimit(0),
+	  m_SelectMode(SelectNone)
 {
 }
 
@@ -60,29 +60,29 @@ ListView::~ListView()
 			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
 }
 
-void ListView::setMode(Mode mode)
+void ListView::setSelectMode(SelectMode selectMode)
 {
-	if (m_Mode != mode) {
-		m_Mode = mode;
+	if (m_SelectMode != selectMode) {
+		m_SelectMode = selectMode;
 
-		updatePageMode();
+		updateTitle();
 		updateSectionsMode();
 	}
 }
 
 void ListView::setSelectLimit(size_t count)
 {
-	m_SelectLimit = count;
+	if (m_SelectLimit != count) {
+		m_SelectLimit = count;
+
+		updatePageMode();
+		updateSectionsMode();
+	}
 }
 
-void ListView::setResultCallback(ResultCallback callback)
+void ListView::setSelectCallback(SelectCallback callback)
 {
-	m_OnResult = std::move(callback);
-}
-
-void ListView::unsetResultCallback()
-{
-	m_OnResult = nullptr;
+	m_OnSelected = std::move(callback);
 }
 
 Evas_Object *ListView::onCreate(Evas_Object *parent)
@@ -104,7 +104,7 @@ void ListView::onPageAttached()
 
 void ListView::onCreated()
 {
-	fillList();
+	updateSectionsMode();
 
 	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
 	contacts_db_add_changed_cb(_contacts_my_profile._uri,
@@ -113,33 +113,32 @@ void ListView::onCreated()
 
 void ListView::onMenuPressed()
 {
-	if (m_Mode == ModeDefault) {
-		Ui::Menu *menu = new Ui::Menu();
-		menu->create(getEvasObject());
-
-		menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
-			ListView *deleteView = new ListView();
-			getNavigator()->navigateTo(deleteView);
-			deleteView->setMode(ModeMultiSelect);
-			deleteView->setResultCallback([](PersonIds ids) {
-				contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
-
-				return true;
-			});
-		});
-
-		menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
-			getNavigator()->navigateTo(new Settings::MainView());
-		});
-		menu->show();
+	if (m_SelectMode != SelectNone) {
+		return;
 	}
-}
 
-void ListView::fillList()
-{
-	for (size_t i = SectionMyProfile; i < SectionMax; ++i) {
-		addSection(static_cast<SectionId>(i));
-	}
+	Ui::Menu *menu = new Ui::Menu();
+	menu->create(getEvasObject());
+
+	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
+		ListView *deleteView = new ListView();
+		getNavigator()->navigateTo(deleteView);
+		deleteView->setSelectMode(SelectMulti);
+		deleteView->setSelectCallback([](SelectResults results) {
+			std::vector<int> ids;
+			for (auto &&result : results) {
+				ids.push_back(result.itemId);
+			}
+
+			contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
+			return true;
+		});
+	});
+
+	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
+		getNavigator()->navigateTo(new Settings::MainView());
+	});
+	menu->show();
 }
 
 void ListView::fillSearchItem()
@@ -171,7 +170,7 @@ void ListView::fillFavorites()
 	if (!m_Sections[SectionFavorites]) {
 		//Todo Create here Favorite group
 	} else {
-		setFavouriteItemsMode(getItemMode());
+		setFavouriteItemsMode(m_SelectMode);
 	}
 }
 
@@ -198,25 +197,25 @@ void ListView::fillPersonList()
 			++m_PersonCount;
 		}
 	} else {
-		setPersonItemsMode(getItemMode());
+		setPersonItemsMode(m_SelectMode);
 	}
 }
 
-void ListView::setFavouriteItemsMode(PersonItem::Mode mode)
+void ListView::setFavouriteItemsMode(SelectMode selectMode)
 {
-	auto group = dynamic_cast<Ui::GenlistGroupItem *>(m_Sections[SectionFavorites]);
 	if (m_Sections[SectionFavorites]) {
+		auto group = dynamic_cast<Ui::GenlistGroupItem *>(m_Sections[SectionFavorites]);
 		for (auto &&favoriteItem : *group) {
-			static_cast<PersonItem*>(favoriteItem)->setMode(mode);
+			static_cast<PersonItem *>(favoriteItem)->setSelectMode(selectMode);
 		}
 	}
 }
 
-void ListView::setPersonItemsMode(PersonItem::Mode mode)
+void ListView::setPersonItemsMode(SelectMode selectMode)
 {
 	for (auto &&group : m_PersonGroups) {
 		for (auto &&personItem : *group.second) {
-			static_cast<PersonItem*>(personItem)->setMode(mode);
+			static_cast<PersonItem *>(personItem)->setSelectMode(selectMode);
 		}
 	}
 }
@@ -251,10 +250,10 @@ Ui::GenlistItem *ListView::getNextSectionItem(SectionId currentSection)
 	return nullptr;
 }
 
-bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
+bool ListView::getSectionVisibility(SelectMode selectMode, SectionId sectionId)
 {
-	static bool sectionVisibility[ListView::ModeMax][ListView::SectionMax] = {
-		/* ModeDefault    = */ {
+	static bool sectionVisibility[][ListView::SectionMax] = {
+		/* SelectNone   = */ {
 			/* SectionSearch    = */ true,
 			/* SectionSelectAll = */ false,
 			/* SectionMyProfile = */ true,
@@ -262,7 +261,7 @@ bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
 			/* SectionMfc       = */ true,
 			/* SectionPerson    = */ true
 		},
-		/* ModeSingleSelect = */ {
+		/* SelectSingle = */ {
 			/* SectionSearch    = */ true,
 			/* SectionSelectAll = */ false,
 			/* SectionMyProfile = */ true,
@@ -270,17 +269,9 @@ bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
 			/* SectionMfc       = */ false,
 			/* SectionPerson    = */ true
 		},
-		/* ModeMultiSelect  = */ {
+		/* SelectMulti  = */ {
 			/* SectionSearch    = */ true,
 			/* SectionSelectAll = */ true,
-			/* SectionMyProfile = */ false,
-			/* SectionFavorites = */ true,
-			/* SectionMfc       = */ false,
-			/* SectionPerson    = */ true
-		},
-		/* ModeMultiSelectWithLimit  = */ {
-			/* SectionSearch    = */ true,
-			/* SectionSelectAll = */ false,
 			/* SectionMyProfile = */ false,
 			/* SectionFavorites = */ true,
 			/* SectionMfc       = */ false,
@@ -288,44 +279,39 @@ bool ListView::getSectionVisibility(Mode mode, SectionId sectionId)
 		}
 	};
 
-	return sectionVisibility[mode][sectionId];
-}
-
-PersonItem::Mode ListView::getItemMode()
-{
-	switch (m_Mode) {
-		case ModeMultiSelect:
-		case ModeMultiSelectWithLimit:
-			return PersonItem::ModePick;
-		default:
-			return PersonItem::ModeDefault;
+	if (m_SelectLimit && selectMode == SelectMulti && sectionId == SectionSelectAll) {
+		return false;
 	}
+
+	return sectionVisibility[selectMode][sectionId];
 }
 
 void ListView::updateTitle()
 {
-	switch (m_Mode) {
-		case ModeDefault:
-			getPage()->setTitle("IDS_PB_TAB_CONTACTS");
+	Ui::NavigatorPage *page = getPage();
+	if (!page) {
+		return;
+	}
+
+	switch (m_SelectMode) {
+		case SelectNone:
+			page->setTitle("IDS_PB_TAB_CONTACTS");
 			break;
-		case ModeSingleSelect:
-			getPage()->setTitle("IDS_PB_HEADER_SELECT_CONTACT_ABB2");
+
+		case SelectSingle:
+			page->setTitle("IDS_PB_HEADER_SELECT_CONTACT_ABB2");
 			break;
-		case ModeMultiSelect:
+
+		case SelectMulti:
 		{
 			char title[TITLE_SIZE];
-			snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_SelectCount);
-			getPage()->setTitle(title);
-			break;
+			if (m_SelectLimit) {
+				snprintf(title, TITLE_SIZE, "%zu/%zu", m_SelectCount, m_SelectLimit);
+			} else {
+				snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_SelectCount);
+			}
+			page->setTitle(title);
 		}
-		case ModeMultiSelectWithLimit:
-		{
-			char title[TITLE_SIZE];
-			snprintf(title, TITLE_SIZE, "%zu/%zu", m_SelectCount, m_SelectLimit);
-			getPage()->setTitle(title);
-			break;
-		}
-		default:
 			break;
 	}
 }
@@ -340,39 +326,43 @@ void ListView::updateSelectAllState()
 
 void ListView::updatePageMode()
 {
-	if (!getPage()) {
+	Ui::NavigatorPage *page = getPage();
+	if (!page) {
 		return;
 	}
 
 	updateTitle();
 
-	switch (m_Mode) {
-		case ModeDefault:
-			deleteCancelButton();
-			deleteDoneButton();
-			createNewContactButton();
+	switch (m_SelectMode) {
+		case SelectNone:
+			deletePageButtons();
+			createAddButton();
+			page->setContent("toolbar", m_AddButton);
 			break;
-		case ModeSingleSelect:
-			deleteCancelButton();
-			deleteDoneButton();
-			deleteNewContactButton();
+
+		case SelectSingle:
+			deletePageButtons();
+			deleteAddButton();
 			break;
-		case ModeMultiSelect:
-		case ModeMultiSelectWithLimit:
-			createCancelButton();
-			createDoneButton();
-			deleteNewContactButton();
-			break;
-		default:
+
+		case SelectMulti:
+			createPageButtons();
+			deleteAddButton();
+			page->setContent(PART_TITLE_RIGHT, m_DoneButton);
+			page->setContent(PART_TITLE_LEFT, m_CancelButton);
 			break;
 	}
 }
 
 void ListView::updateSectionsMode()
 {
+	if (!m_Genlist) {
+		return;
+	}
+
 	for (size_t i = SectionFirst; i < SectionMax; ++i) {
 		SectionId sectionId = static_cast<SectionId>(i);
-		if (getSectionVisibility(m_Mode, sectionId)) {
+		if (getSectionVisibility(m_SelectMode, sectionId)) {
 			addSection(sectionId);
 		} else {
 			removeSection(sectionId);
@@ -380,57 +370,43 @@ void ListView::updateSectionsMode()
 	}
 }
 
-void ListView::createNewContactButton()
+void ListView::createAddButton()
 {
-	Evas_Object *button = elm_button_add(getEvasObject());
-	elm_object_style_set(button, "bottom");
-	elm_object_translatable_text_set(button, "IDS_PB_OPT_CREATE");
-	evas_object_smart_callback_add(button, "clicked",
-			(Evas_Smart_Cb) makeCallback(&ListView::onCreatePressed), this);
-
-	getPage()->setContent("toolbar", button);
+	m_AddButton = elm_button_add(getEvasObject());
+	elm_object_style_set(m_AddButton, "bottom");
+	elm_object_translatable_text_set(m_AddButton, "IDS_PB_OPT_CREATE");
+	evas_object_smart_callback_add(m_AddButton, "clicked",
+			makeCallback(&ListView::onAddPressed), this);
 }
 
-void ListView::deleteNewContactButton()
+void ListView::deleteAddButton()
 {
-	//Todo
+	evas_object_del(m_AddButton);
+	m_AddButton = nullptr;
 }
 
-void ListView::createCancelButton()
+void ListView::createPageButtons()
 {
-	m_CancelButton = elm_button_add(getEvasObject());
-	elm_object_style_set(m_CancelButton, "naviframe/title_left");
-	elm_object_translatable_text_set(m_CancelButton, "IDS_PB_BUTTON_CANCEL");
-	evas_object_smart_callback_add(m_CancelButton, "clicked",
-			[](void *self, Evas_Object *obj, void *eventInfo) {
-				delete static_cast<ListView *>(self);
-			},
-			this);
-
-	getPage()->setContent(PART_TITLE_LEFT, m_CancelButton);
-}
-
-void ListView::deleteCancelButton()
-{
-	evas_object_del(m_CancelButton);
-	m_CancelButton = nullptr;
-}
-
-void ListView::createDoneButton()
-{
-	Evas_Object *m_DoneButton = elm_button_add(getEvasObject());
+	m_DoneButton = elm_button_add(getEvasObject());
 	elm_object_style_set(m_DoneButton, "naviframe/title_right");
 	elm_object_translatable_text_set(m_DoneButton, "IDS_PB_BUTTON_DONE_ABB3");
 	evas_object_smart_callback_add(m_DoneButton, "clicked",
 			makeCallback(&ListView::onDonePressed), this);
 
-	getPage()->setContent(PART_TITLE_RIGHT, m_DoneButton);
+	m_CancelButton = elm_button_add(getEvasObject());
+	elm_object_style_set(m_CancelButton, "naviframe/title_left");
+	elm_object_translatable_text_set(m_CancelButton, "IDS_PB_BUTTON_CANCEL");
+	evas_object_smart_callback_add(m_CancelButton, "clicked",
+			makeCallback(&ListView::onCancelPressed), this);
 }
 
-void ListView::deleteDoneButton()
+void ListView::deletePageButtons()
 {
 	evas_object_del(m_DoneButton);
+	evas_object_del(m_CancelButton);
+
 	m_DoneButton = nullptr;
+	m_CancelButton = nullptr;
 }
 
 void ListView::insertMyProfileGroupItem()
@@ -525,7 +501,8 @@ PersonGroupItem *ListView::getNextPersonGroupItem(const Utils::UniString &indexL
 
 PersonItem *ListView::createPersonItem(PersonPtr person)
 {
-	PersonItem *item = new PersonItem(std::move(person), getItemMode());
+	PersonItem *item = new PersonItem(std::move(person));
+	item->setSelectMode(m_SelectMode);
 
 	m_Provider.setChangeCallback(item->getPerson(),
 			std::bind(&ListView::onPersonChanged, this, _1, _2, item));
@@ -605,21 +582,6 @@ PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &pe
 	return nullptr;
 }
 
-ListView::PersonIds ListView::getCheckedPersonIds()
-{
-	PersonIds ids;
-	for (auto &&group : m_PersonGroups) {
-		for (auto &&item : *group.second) {
-			PersonItem *personItem = static_cast<PersonItem *>(item);
-			if (personItem->isChecked()) {
-				ids.push_back(personItem->getPerson().getId());
-			}
-		}
-	}
-
-	return ids;
-}
-
 void ListView::launchPersonDetail(PersonItem *item)
 {
 	int id = item->getPerson().getDisplayContactId();
@@ -638,16 +600,31 @@ void ListView::onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem)
 	elm_index_item_selected_set(indexItem, EINA_FALSE);
 }
 
-void ListView::onCreatePressed()
+void ListView::onAddPressed(Evas_Object *button, void *eventInfo)
 {
 	getNavigator()->navigateTo(new Input::InputView());
 }
 
 void ListView::onDonePressed(Evas_Object *button, void *eventInfo)
 {
-	if (m_OnResult && m_OnResult(getCheckedPersonIds())) {
+	std::vector<SelectResult> results;
+	for (auto &&group : m_PersonGroups) {
+		for (auto &&item : *group.second) {
+			PersonItem *personItem = static_cast<PersonItem *>(item);
+			if (personItem->isChecked()) {
+				results.push_back({ ItemPerson, personItem->getPerson().getId() });
+			}
+		}
+	}
+
+	if (m_OnSelected && m_OnSelected({ results.data(), results.size() })) {
 		delete this;
 	}
+}
+
+void ListView::onCancelPressed(Evas_Object *button, void *eventInfo)
+{
+	delete this;
 }
 
 void ListView::onPersonItemInserted(PersonItem *item)
@@ -688,7 +665,8 @@ void ListView::onPersonChanged(PersonPtr person, contacts_changed_e changeType, 
 
 void ListView::onPersonSelected(const Model::Person &person)
 {
-	if (m_OnResult && m_OnResult({ person.getId() })) {
+	SelectResult result = { ItemPerson, person.getId() };
+	if (m_OnSelected && m_OnSelected({ &result, 1 })) {
 		delete this;
 	}
 }
@@ -707,7 +685,7 @@ void ListView::onSelectAllChecked(bool isChecked)
 
 void ListView::onItemChecked(PersonItem *item, bool isChecked)
 {
-	if (m_Mode == ModeMultiSelectWithLimit && m_SelectCount == m_SelectLimit && isChecked) {
+	if (m_SelectLimit && m_SelectCount == m_SelectLimit && isChecked) {
 		item->setChecked(false);
 		return;
 	}
@@ -722,9 +700,9 @@ void ListView::onItemChecked(PersonItem *item, bool isChecked)
 
 void ListView::onItemSelected(PersonItem *item)
 {
-	switch (m_Mode) {
-		case ModeDefault:      launchPersonDetail(item); break;
-		case ModeSingleSelect: onPersonSelected(item->getPerson()); break;
+	switch (m_SelectMode) {
+		case SelectNone:    launchPersonDetail(item); break;
+		case SelectSingle:  onPersonSelected(item->getPerson()); break;
 		default: break;
 	}
 }

@@ -18,8 +18,10 @@
 #ifndef CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 #define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
+#include "Contacts/Common/SelectMode.h"
 #include "Contacts/List/Model/DbChangeObserver.h"
 #include "Contacts/List/Model/Person.h"
+
 #include <contacts.h>
 #include <functional>
 #include <unordered_map>
@@ -36,7 +38,6 @@ namespace Contacts
 			class PersonProvider
 			{
 			public:
-
 				/**
 				 * @brief Determines what persons to provide
 				 */
@@ -45,16 +46,6 @@ namespace Contacts
 					ModeAll,
 					ModeFavorites,
 					ModeMFC
-				};
-
-				/**
-				 * @brief Determines how to filter person list
-				 */
-				enum FilterType
-				{
-					FilterNone      = 0,
-					FilterNumber    = 1 << 0,
-					FilterEmail     = 1 << 1
 				};
 
 				/**
@@ -75,7 +66,7 @@ namespace Contacts
 				 * @param[in]    filterType    Contact filter
 				 */
 				explicit PersonProvider(Mode modeType = ModeAll,
-						FilterType filterType = FilterNone);
+						int filterType = FilterNone);
 
 				~PersonProvider();
 
@@ -115,7 +106,7 @@ namespace Contacts
 				void onPersonChanged(int id, contacts_changed_e changeType);
 
 				Mode m_Mode;
-				FilterType m_FilterType;
+				int m_FilterType;
 
 				std::pair<InsertCallback, Model::DbChangeObserver::CallbackHandle> m_InsertCallback;
 				std::unordered_map<int, std::pair<ChangeCallback, Model::DbChangeObserver::CallbackHandle>> m_ChangeCallbacks;

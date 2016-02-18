@@ -22,13 +22,13 @@
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
-PersonItem::PersonItem(PersonPtr person, Mode mode)
-	: m_Person(std::move(person)), m_Mode(mode)
+PersonItem::PersonItem(PersonPtr person)
+	: m_Person(std::move(person)), m_SelectMode(SelectNone)
 { }
 
-void PersonItem::setMode(Mode mode)
+void PersonItem::setSelectMode(SelectMode selectMode)
 {
-	m_Mode = mode;
+	m_SelectMode = selectMode;
 	elm_genlist_item_fields_update(getObjectItem(), PART_CHECK, ELM_GENLIST_ITEM_FIELD_CONTENT);
 }
 
@@ -61,7 +61,7 @@ Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 				m_Person->getImagePath());
 		thumbnail->setSizeHint(true);
 		return thumbnail->getEvasObject();
-	} else if (m_Mode == ModePick && strcmp(part, PART_CHECK) == 0) {
+	} else if (m_SelectMode == SelectMulti && strcmp(part, PART_CHECK) == 0) {
 		return GenlistCheckItem::getContent(parent, part);
 	}
 
