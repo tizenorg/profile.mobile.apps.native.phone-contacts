@@ -18,6 +18,7 @@
 #ifndef CONTACTS_LIST_PERSON_ITEM_H
 #define CONTACTS_LIST_PERSON_ITEM_H
 
+#include "Contacts/Common/SelectMode.h"
 #include "Contacts/List/Model/Person.h"
 #include "Ui/GenlistCheckItem.h"
 #include <functional>
@@ -37,26 +38,16 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @brief Represents item mode
-			 */
-			enum Mode
-			{
-				ModeDefault,    /*< Usual mode */
-				ModePick        /*< Mode with ability to select item */
-			};
-
-			/**
 			 * @brief Create person item
 			 * @param[in]   person      Person object
-			 * @param[in]   mode        Item mode
 			 */
-			explicit PersonItem(Model::PersonPtr person, Mode mode = ModeDefault);
+			explicit PersonItem(Model::PersonPtr person);
 
 			/**
-			 * @brief Set item mode
-			 * @param[in]   mode    Item mode
+			 * @brief Set item selection mode
+			 * @param[in]   selectMode  Item selection mode
 			 */
-			void setMode(Mode mode);
+			void setSelectMode(SelectMode selectMode);
 
 			/**
 			 * @return Person object
@@ -74,7 +65,7 @@ namespace Contacts
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			Model::PersonPtr m_Person;
-			Mode m_Mode;
+			SelectMode m_SelectMode;
 		};
 	}
 }
