@@ -21,6 +21,7 @@
 #include "Utils/Range.h"
 #include "Utils/Logger.h"
 
+using namespace Contacts;
 using namespace Contacts::List::Model;
 using namespace std::placeholders;
 
@@ -54,20 +55,20 @@ namespace
 		return filter;
 	}
 
-	contacts_filter_h prepareFilterTypeFilter(PersonProvider::FilterType filterType)
+	contacts_filter_h prepareFilterTypeFilter(int filterType)
 	{
 		contacts_filter_h filter = nullptr;
 
-		if (filterType != PersonProvider::FilterNone) {
+		if (filterType != FilterNone) {
 			contacts_filter_create(_contacts_person._uri, &filter);
 			bool emptyFilter = true;
 
-			if (filterType & PersonProvider::FilterNumber) {
+			if (filterType & FilterNumber) {
 				contacts_filter_add_bool(filter, _contacts_person.has_phonenumber, true);
 				emptyFilter = false;
 			}
 
-			if (filterType & PersonProvider::FilterEmail) {
+			if (filterType & FilterEmail) {
 				if (!emptyFilter) {
 					contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
 				}
@@ -78,7 +79,7 @@ namespace
 		return filter;
 	}
 
-	contacts_filter_h getProviderFilter(PersonProvider::Mode modeType, PersonProvider::FilterType filterType)
+	contacts_filter_h getProviderFilter(PersonProvider::Mode modeType, int filterType)
 	{
 		contacts_filter_h result = nullptr;
 		contacts_filter_h modeTypeFilter = prepareModeTypeFilter(modeType);
@@ -97,7 +98,7 @@ namespace
 		return result;
 	}
 
-	contacts_list_h getPersonList(PersonProvider::Mode modeType, PersonProvider::FilterType filterType)
+	contacts_list_h getPersonList(PersonProvider::Mode modeType, int filterType)
 	{
 		contacts_query_h query = nullptr;
 		contacts_query_create(_contacts_person._uri, &query);
@@ -121,7 +122,7 @@ namespace
 		return list;
 	}
 
-	contacts_record_h getPersonRecord(int contactId, PersonProvider::Mode modeType, PersonProvider::FilterType filterType)
+	contacts_record_h getPersonRecord(int contactId, PersonProvider::Mode modeType, int filterType)
 	{
 		contacts_query_h query = nullptr;
 		contacts_query_create(_contacts_person._uri, &query);
@@ -151,7 +152,7 @@ namespace
 	}
 }
 
-PersonProvider::PersonProvider(Mode modeType, FilterType filterType)
+PersonProvider::PersonProvider(Mode modeType, int filterType)
 	: m_Mode(modeType), m_FilterType(filterType)
 {
 	if (m_Mode == ModeMFC) {

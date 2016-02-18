@@ -20,8 +20,10 @@
 
 #include "Contacts/List/Model/PersonProvider.h"
 #include "Contacts/List/PersonItem.h"
+
 #include "Ui/View.h"
 #include "Utils/UniString.h"
+
 #include <map>
 
 namespace Ui
@@ -46,43 +48,17 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @brief Represents view mode
-			 */
-			enum Mode
-			{
-				ModeDefault,
-				ModeSingleSelect,
-				ModeMultiSelect,
-				ModeMultiSelectWithLimit,
-				ModeMax
-			};
-
-			/**
-			 * @brief Person ID list
-			 */
-			typedef std::vector<int> PersonIds;
-
-			/**
-			 * @brief Callback, that invoked when all results are prepared
-			 * @details Invoked on view close
-			 * @return True if view should be closed, otherwise false
-			 */
-			typedef std::function<bool(PersonIds)> ResultCallback;
-
-			/**
 			 * @brief Create new person list view
-			 * @param]in]   personFilter    Defines how to filter person list
+			 * @param]in]   filterType  Defines how to filter person list
 			 */
-			ListView(Model::PersonProvider::FilterType personFilter =
-					Model::PersonProvider::FilterNone);
+			ListView(int filterType = FilterNone);
 			virtual ~ListView() override;
 
 			/**
-			 * @brief Set view mode
-			 * @details View can be in Default, SinglePick or Multipick mode
-			 * @param[in]   mode    View mode
+			 * @brief Set selection mode.
+			 * @param[in]   selectMode  Item selection mode
 			 */
-			void setMode(Mode mode);
+			void setSelectMode(SelectMode selectMode);
 
 			/**
 			 * @brief Set item selection limit
@@ -96,12 +72,7 @@ namespace Contacts
 			 * @remark Used in Singlepick/Multipick view modes
 			 * @param[in]   callback    Done pressed callback
 			 */
-			void setResultCallback(ResultCallback callback);
-
-			/**
-			 * @brief Unset view result callback
-			 */
-			void unsetResultCallback();
+			void setSelectCallback(SelectCallback callback);
 
 		private:
 			enum SectionId
@@ -129,27 +100,23 @@ namespace Contacts
 			void fillMfc();
 			void fillPersonList();
 
-			void setFavouriteItemsMode(PersonItem::Mode mode);
-			void setPersonItemsMode(PersonItem::Mode mode);
+			void setFavouriteItemsMode(SelectMode selectMode);
+			void setPersonItemsMode(SelectMode selectMode);
 
 			void addSection(SectionId sectionId);
 			void removeSection(SectionId sectionId);
 			Ui::GenlistItem *getNextSectionItem(SectionId currentSection);
-			bool getSectionVisibility(Mode mode, SectionId sectionId);
-
-			PersonItem::Mode getItemMode();
+			bool getSectionVisibility(SelectMode selectMode, SectionId sectionId);
 
 			void updateTitle();
 			void updateSelectAllState();
 			void updatePageMode();
 			void updateSectionsMode();
 
-			void createNewContactButton();
-			void deleteNewContactButton();
-			void createCancelButton();
-			void deleteCancelButton();
-			void createDoneButton();
-			void deleteDoneButton();
+			void createAddButton();
+			void deleteAddButton();
+			void createPageButtons();
+			void deletePageButtons();
 
 			void insertMyProfileGroupItem();
 			void updateMyProfileItem(const char *view_uri);
@@ -169,15 +136,14 @@ namespace Contacts
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
 
-			PersonIds getCheckedPersonIds();
-
 			void launchPersonDetail(PersonItem *item);
 
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
-			void onCreatePressed();
+			void onAddPressed(Evas_Object *button, void *eventInfo);
 			void onDonePressed(Evas_Object *button, void *eventInfo);
+			void onCancelPressed(Evas_Object *button, void *eventInfo);
 
 			void onPersonItemInserted(PersonItem *item);
 			void onPersonItemDelete(PersonItem *item);
@@ -192,21 +158,22 @@ namespace Contacts
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
-			Evas_Object *m_CancelButton;
+
+			Evas_Object *m_AddButton;
 			Evas_Object *m_DoneButton;
+			Evas_Object *m_CancelButton;
 
 			Ui::GenlistItem *m_Sections[SectionMax];
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
 
 			Model::PersonProvider m_Provider;
 
-			Mode m_Mode;
-
 			size_t m_PersonCount;
 			size_t m_SelectCount;
 			size_t m_SelectLimit;
 
-			ResultCallback m_OnResult;
+			SelectMode m_SelectMode;
+			SelectCallback m_OnSelected;
 		};
 	}
 }
