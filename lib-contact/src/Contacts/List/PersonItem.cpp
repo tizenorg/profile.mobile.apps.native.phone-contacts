@@ -32,7 +32,7 @@ void PersonItem::setMode(Mode mode)
 	elm_genlist_item_fields_update(getObjectItem(), PART_CHECK, ELM_GENLIST_ITEM_FIELD_CONTENT);
 }
 
-const Person &PersonItem::getPerson() const
+Person &PersonItem::getPerson()
 {
 	return *m_Person;
 }
