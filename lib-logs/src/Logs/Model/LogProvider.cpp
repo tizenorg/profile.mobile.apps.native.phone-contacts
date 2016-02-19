@@ -62,7 +62,6 @@ void LogProvider::unsetInsertCallback()
 void LogProvider::fillList(LogList &logList)
 {
 	contacts_list_h list = fetchLogList();
-	contacts_db_get_all_records(_contacts_phone_log._uri, 0, 0, &list);
 	contacts_record_h record = nullptr;
 
 	CONTACTS_LIST_FOREACH(list, record) {
@@ -123,15 +122,9 @@ contacts_filter_h LogProvider::getFilter(LogProvider::FilterType filterType)
 	contacts_filter_h filter = nullptr;
 	contacts_filter_create(_contacts_phone_log._uri, &filter);
 
-	if (filterType != LogProvider::FilterMissed) {
-		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN);
-		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN);
-	} else {
-		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING);
-		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-		contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_BLOCKED);
-	}
+	contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING);
+	contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+	contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_BLOCKED);
 
 	return filter;
 }
