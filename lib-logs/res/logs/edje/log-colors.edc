@@ -22,11 +22,11 @@ color_classes {
 	}
 	color_class {
 		name: "log_type_outgoing";
-		color: 224 34 34 255;
+		color: 52 158 91 255;
 	}
 	color_class {
 		name: "log_type_missed_reject";
-		color: 52 158 91 255;
+		color: 224 34 34 255;
 	}
 	color_class {
 		name: "log_type_bg";

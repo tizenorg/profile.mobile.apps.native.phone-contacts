@@ -161,6 +161,7 @@ const char *LogItem::getImagePath(int type)
 		case CONTACTS_PLOG_TYPE_VOICE_INCOMING:
 			path = ICON_INCOMING;
 			break;
+		case CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN:
 		case CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN:
 			path = ICON_MISSED;
 			break;
@@ -171,6 +172,7 @@ const char *LogItem::getImagePath(int type)
 			path = ICON_AUTO_REJECTED;
 			break;
 	}
+
 	return path;
 }
 
