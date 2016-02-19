@@ -32,13 +32,17 @@ Log::~Log()
 		m_Group->removeLog(this);
 	}
 	contacts_record_destroy(m_LogRecord, true);
-	contacts_record_destroy(m_ContactRecord, true);
+	if (m_ContactRecord != nullptr) {
+		contacts_record_destroy(m_ContactRecord, true);
+	}
 }
 
 const char *Log::getName() const
 {
 	char *name = nullptr;
-	contacts_record_get_str_p(m_ContactRecord, _contacts_person.display_name, &name);
+	if (m_ContactRecord != nullptr) {
+		contacts_record_get_str_p(m_ContactRecord, _contacts_person.display_name, &name);
+	}
 	return name;
 }
 
@@ -52,7 +56,9 @@ const char *Log::getNumber() const
 const char *Log::getImagePath() const
 {
 	char *path = nullptr;
-	contacts_record_get_str_p(m_ContactRecord, _contacts_person.image_thumbnail_path, &path);
+	if (m_ContactRecord != nullptr) {
+		contacts_record_get_str_p(m_ContactRecord, _contacts_person.image_thumbnail_path, &path);
+	}
 	return path;
 }
 
@@ -93,7 +99,10 @@ int Log::getPersonId() const
 contacts_record_h Log::getContactRecord()
 {
 	contacts_record_h record = nullptr;
-	contacts_db_get_record(_contacts_person._uri, getPersonId(), &record);
+	int personId = getPersonId();
+	if (personId > 0) {
+		contacts_db_get_record(_contacts_person._uri, personId, &record);
+	}
 	return record;
 }
 
