@@ -41,9 +41,9 @@ namespace Contacts
 	 */
 	enum FilterType
 	{
-		FilterNone = -1,                        /**< All items are displayed */
+		FilterNone   = -1,                      /**< All items are displayed */
 		FilterNumber = 1 << Model::FieldNumber, /**< Only items with number */
-		FilterEmail = 1 << Model::FieldEmail    /**< Only items with email */
+		FilterEmail  = 1 << Model::FieldEmail   /**< Only items with email */
 	};
 
 	/**
@@ -51,29 +51,10 @@ namespace Contacts
 	 */
 	enum ResultType
 	{
-		ResultNone,     /**< Selection is disabled */
-		ResultItem,     /**< Item itself is the result */
-		ResultAction    /**< Action associated with the item is the result */
-	};
-
-	/**
-	 * @brief Type of the selected item for #ResultItem result type.
-	 */
-	enum ItemType
-	{
-		ItemPerson = Model::ObjectTypeContact,  /**< Person ID is the result */
-		ItemNumber = Model::ObjectTypeNumber,   /**< Number ID is the result */
-		ItemEmail = Model::ObjectTypeEmail      /**< Email ID is the result */
-	};
-
-	/**
-	 * @brief Action associated with selected item for #ResultAction result type.
-	 */
-	enum ActionType
-	{
-		ActionCall,     /**< Number ID for telephony call is the result */
-		ActionMessage,  /**< Number ID for message is the result */
-		ActionEmail     /**< Email ID for recipient is the result */
+		ResultMyProfile = Model::ObjectTypeMyProfile, /**< My Profile ID is the result */
+		ResultPerson    = Model::ObjectTypeContact,   /**< Person ID is the result */
+		ResultNumber    = Model::ObjectTypeNumber,    /**< Number ID is the result */
+		ResultEmail     = Model::ObjectTypeEmail      /**< Email ID is the result */
 	};
 
 	/**
@@ -81,7 +62,7 @@ namespace Contacts
 	 */
 	struct SelectResult
 	{
-		unsigned type;  /**< @ref ItemType or @ref ActionType depending on @ref ResultType. */
+		unsigned type;  /**< @ref ResultType. */
 		int itemId;     /**< Item database ID (for _contacts_person, _contacts_number or _contacts_email). */
 	};
 

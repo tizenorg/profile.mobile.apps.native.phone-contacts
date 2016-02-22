@@ -32,14 +32,13 @@ using namespace std::placeholders;
 
 FieldItem::FieldItem(ContactObject &object)
 	: m_Object(object), m_Field(*object.getField(0)),
-	  m_SelectMode(SelectNone), m_ResultType(ResultNone)
+	  m_SelectMode(SelectNone)
 {
 }
 
-void FieldItem::setSelectMode(SelectMode mode, ResultType type)
+void FieldItem::setSelectMode(SelectMode mode)
 {
 	m_SelectMode = mode;
-	m_ResultType = type;
 	elm_genlist_item_fields_update(getObjectItem(), "*", ELM_GENLIST_ITEM_FIELD_CONTENT);
 }
 
@@ -61,11 +60,6 @@ ContactField &FieldItem::getField() const
 SelectMode FieldItem::getSelectMode() const
 {
 	return m_SelectMode;
-}
-
-ResultType FieldItem::getResultType() const
-{
-	return m_ResultType;
 }
 
 Elm_Genlist_Item_Class *FieldItem::getItemClass() const
@@ -115,16 +109,11 @@ Evas_Object *FieldItem::getContent(Evas_Object *parent, const char *part)
 void FieldItem::onSelected()
 {
 	if (m_SelectMode == SelectSingle) {
-		onSelected(getObject().getSubType());
+		if (m_OnSelected) {
+			m_OnSelected({ m_Object.getSubType(), m_Object.getRecordId()});
+		}
 	} else {
 		GenlistCheckItem::onSelected();
-	}
-}
-
-void FieldItem::onSelected(unsigned resultType)
-{
-	if (m_OnSelected) {
-		m_OnSelected({ resultType, getObject().getRecordId()});
 	}
 }
 

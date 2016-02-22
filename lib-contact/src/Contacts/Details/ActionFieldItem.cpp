@@ -68,27 +68,9 @@ void ActionFieldItem::onSelected()
 {
 	if (getSelectMode() == SelectNone) {
 		executeAction(m_ActionId);
-	} else if (getSelectMode() == SelectSingle && getResultType() == ResultAction) {
-		if (m_ActionId == ActionCall) {
-			showActionPopup();
-		} else {
-			onSelected(m_ActionId);
-		}
 	} else {
 		TypedFieldItem::onSelected();
 	}
-}
-
-void ActionFieldItem::showActionPopup()
-{
-	Ui::ListPopup *popup = new Ui::ListPopup();
-	popup->create(getParent()->getEvasObject());
-	popup->setTitle(getField().cast<ContactTextField>().getValue());
-	popup->addItem("IDS_PB_OPT_VOICE_CALL", (void *) ActionCall);
-	popup->addItem("IDS_PB_OPT_MESSAGE", (void *) ActionMessage);
-	popup->setSelectedCallback([this](void *data) {
-		onSelected((unsigned long) data);
-	});
 }
 
 Evas_Object *ActionFieldItem::createActionButton(Evas_Object *parent, ActionId actionId)

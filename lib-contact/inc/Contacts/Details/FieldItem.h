@@ -53,9 +53,8 @@ namespace Contacts
 			/**
 			 * @brief Set item selection mode and result type.
 			 * @param[in]   mode    Selection mode
-			 * @param[in]   type    Selection result type
 			 */
-			void setSelectMode(SelectMode mode, ResultType type);
+			void setSelectMode(SelectMode mode);
 
 			/**
 			 * @brief Set selection callback.
@@ -77,11 +76,6 @@ namespace Contacts
 			 * @return Item selection mode.
 			 */
 			SelectMode getSelectMode() const;
-
-			/**
-			 * @return Item selection result type.
-			 */
-			ResultType getResultType() const;
 
 		protected:
 			friend class DetailsView;
@@ -107,12 +101,6 @@ namespace Contacts
 			virtual void onSelected() override;
 
 			/**
-			 * @brief Should be called to report selection result.
-			 * @param[in]   resultType  Selection result type
-			 */
-			void onSelected(unsigned resultType);
-
-			/**
 			 * @see ContactField::UpdatedCallback
 			 */
 			virtual void onFieldUpdated(Model::ContactField &field, contacts_changed_e change);
@@ -122,8 +110,6 @@ namespace Contacts
 			Model::ContactField &m_Field;
 
 			SelectMode m_SelectMode;
-			ResultType m_ResultType;
-
 			SelectCallback m_OnSelected;
 		};
 	}
