@@ -67,9 +67,8 @@ namespace Contacts
 			/**
 			 * @brief Set selection mode and result type.
 			 * @param[in]   mode    Selection mode
-			 * @param[in]   type    Selection result type
 			 */
-			void setSelectMode(SelectMode mode, ResultType type = ResultItem);
+			void setSelectMode(SelectMode mode);
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -104,7 +103,6 @@ namespace Contacts
 
 			int m_FilterType;
 			SelectMode m_SelectMode;
-			ResultType m_ResultType;
 			SelectCallback m_OnSelected;
 
 			Evas_Object *m_DoneButton;
