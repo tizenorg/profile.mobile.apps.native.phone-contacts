@@ -72,7 +72,6 @@ namespace Logs
 			 */
 			enum FilterType
 			{
-				FilterNone,
 				FilterAll,
 				FilterMissed
 			};
@@ -92,6 +91,18 @@ namespace Logs
 			 * @return list of logs groups.
 			 */
 			const LogGroupList &getLogGroupList();
+
+			/**
+			 * @brief Set filter type
+			 * @param[in]    filter    Filter type
+			 */
+			void setFilterType(FilterType filter);
+
+			/**
+			 * @brief Get filter type
+			 * @return filter type.
+			 */
+			FilterType getFilterType();
 
 			/**
 			 * @brief Set new log callback

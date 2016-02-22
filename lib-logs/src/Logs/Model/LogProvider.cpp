@@ -49,6 +49,16 @@ const LogProvider::LogGroupList &LogProvider::getLogGroupList()
 	return m_Groups;
 }
 
+void LogProvider::setFilterType(FilterType filter)
+{
+	m_FilterType = filter;
+}
+
+LogProvider::FilterType LogProvider::getFilterType()
+{
+	return m_FilterType;
+}
+
 void LogProvider::setInsertCallback(InsertCallback callback)
 {
 	m_InsertCallback = std::move(callback);

@@ -44,13 +44,14 @@ namespace Logs
 			 * @brief Create new log list view
 			 * @param[in]   filterType    Defines how to filter log list
 			 */
-			LogsView(Model::LogProvider::FilterType filterType = Model::LogProvider::FilterNone);
+			LogsView(Model::LogProvider::FilterType filterType = Model::LogProvider::FilterAll);
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
 
+			void onSelectViewBy();
 			void fillGenlist();
 			void onLogInserted(Model::LogGroup *group);
 			LogGroupItem *insertLogItem(Model::LogGroup *group, LogGroupItem *groupItem);
