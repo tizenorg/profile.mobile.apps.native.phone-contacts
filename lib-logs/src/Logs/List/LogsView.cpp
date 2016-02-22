@@ -22,17 +22,17 @@
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
-#include "Utils/Callback.h"
-#include "Utils/Logger.h"
+#include "Ui/RadioPopup.h"
 
 using namespace Logs::Model;
 using namespace Logs::List;
 using namespace std::placeholders;
 
-LogsView::LogsView(LogProvider::FilterType filterType)
-	: m_LogProvider(filterType),
+LogsView::LogsView(FilterType filterType)
+	: m_LogProvider(),
 	  m_Genlist(nullptr),
-	  m_Mode(ItemMode::Default)
+	  m_Mode(ItemMode::Default),
+	  m_FilterType(filterType)
 {
 }
 
@@ -41,6 +41,7 @@ Evas_Object *LogsView::onCreate(Evas_Object *parent)
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
 
+	elm_genlist_homogeneous_set(m_Genlist->getEvasObject(), EINA_TRUE);
 	fillGenlist();
 	m_LogProvider.setInsertCallback(std::bind(&LogsView::onLogInserted, this, _1));
 
@@ -62,36 +63,63 @@ void LogsView::onMenuPressed()
 	menu->create(getEvasObject());
 
 	menu->addItem("IDS_CLOG_OPT_VIEW_BY", [this] {
-		/*
-		 * TODO
-		 */
+		onSelectViewBy();
 	});
 
 	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
-		LogsView *deleteView = new LogsView();
+		FilterType type = m_FilterType;
+		LogsView *deleteView = new LogsView(type);
 		deleteView->setMode(ItemMode::Pick);
 		getNavigator()->navigateTo(deleteView);
 	});
 	menu->show();
+}
 
+void LogsView::onSelectViewBy()
+{
+	Ui::RadioPopup *popup = new Ui::RadioPopup();
+	popup->create(getEvasObject());
+	popup->setTitle("IDS_CLOG_OPT_VIEW_BY");
+	popup->setSelectedItem(m_FilterType);
+	popup->addItem("IDS_LOGS_BODY_ALL_CALLS", (void *) FilterAll);
+	popup->addItem("IDS_LOGS_OPT_MISSED_CALLS", (void *) FilterMissed);
+	popup->setSelectedCallback([this](void *data) {
+		elm_genlist_clear(m_Genlist->getEvasObject());
+		m_FilterType = ((FilterType)((int)data));
+		fillGenlist();
+	});
 }
 
 void LogsView::fillGenlist()
 {
-	if (!m_LogProvider.getLogGroupList().empty()) {
-		LogGroupItem *groupItem = nullptr;
+	if (m_LogProvider.getLogGroupList().empty()) {
+		return;
+	}
 
-		for (auto &&group : m_LogProvider.getLogGroupList()) {
+	LogGroupItem *groupItem = nullptr;
+
+	for (auto &&group : m_LogProvider.getLogGroupList()) {
+
+		if ((m_FilterType == FilterMissed &&
+				(group->getLogList().back()->getType() == CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN ||
+				group->getLogList().back()->getType() == CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN)) ||
+				m_FilterType == FilterAll) {
+
 			groupItem = insertLogItem(group.get(), groupItem);
 		}
 	}
+
+	groupItem = dynamic_cast<LogGroupItem *>(m_Genlist->getFirstItem());
+	groupItem->scrollTo(ELM_GENLIST_ITEM_SCROLLTO_TOP);
 }
 
 void LogsView::onLogInserted(LogGroup *group)
 {
-	LogGroupItem *groupItem = dynamic_cast<LogGroupItem *>(m_Genlist->getFirstItem());
-	groupItem = insertLogItem(group, groupItem);
-	groupItem->scrollTo(ELM_GENLIST_ITEM_SCROLLTO_TOP);
+	if (m_FilterType != FilterMissed) {
+		LogGroupItem *groupItem = dynamic_cast<LogGroupItem *>(m_Genlist->getFirstItem());
+		groupItem = insertLogItem(group, groupItem);
+		groupItem->scrollTo(ELM_GENLIST_ITEM_SCROLLTO_TOP);
+	}
 }
 
 LogGroupItem *LogsView::insertLogItem(LogGroup *group, LogGroupItem *groupItem)
@@ -120,7 +148,6 @@ LogItem *LogsView::createLogItem(LogGroup *group)
 	item->setDeleteCallback([this](LogItem *item) {
 		LogGroupItem *itemGroup = static_cast<LogGroupItem *>(item->getParentItem());
 		delete item;
-
 		if (itemGroup->empty()) {
 			delete itemGroup;
 		}

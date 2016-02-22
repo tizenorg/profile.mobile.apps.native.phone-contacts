@@ -15,37 +15,34 @@
  *
  */
 
-#ifndef CONTACTS_SETTINGS_RADIO_POPUP_H
-#define CONTACTS_SETTINGS_RADIO_POPUP_H
+#ifndef UI_RADIO_POPUP_H
+#define UI_RADIO_POPUP_H
 
 #include "Ui/ListPopup.h"
 #include <string>
 
-namespace Contacts
+namespace Ui
 {
-	namespace Settings
+	/**
+	 * @brief Radio popup
+	 */
+	class EXPORT_API RadioPopup : public ListPopup
 	{
+	public:
+		RadioPopup();
+
 		/**
-		 * @brief Radio popup
+		 * @brief Set selected item
+		 * @param[in]   value     Selected item value
 		 */
-		class RadioPopup : public Ui::ListPopup
-		{
-		public:
-			RadioPopup();
+		void setSelectedItem(int value);
 
-			/**
-			 * @brief Set selected item
-			 * @param[in]   value     Selected item value
-			 */
-			void setSelectedItem(int value);
+	private:
+		virtual Evas_Object *onCreate(Evas_Object *parent) override;
+		virtual Evas_Object *getItemContent(void *data, const char *part) override;
+		virtual void onItemSelected(void *data) override;
 
-		private:
-			virtual Evas_Object *onCreate(Evas_Object *parent) override;
-			virtual Evas_Object *getItemContent(void *data, const char *part) override;
-			virtual void onItemSelected(void *data) override;
-
-			Evas_Object *m_RadioGroup;
-		};
-	}
+		Evas_Object *m_RadioGroup;
+	};
 }
-#endif /* CONTACTS_SETTINGS_RADIO_POPUP_H */
+#endif /* UI_RADIO_POPUP_H */

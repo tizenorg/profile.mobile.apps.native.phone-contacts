@@ -40,17 +40,28 @@ namespace Logs
 		class EXPORT_API LogsView : public Ui::View
 		{
 		public:
+
+			/**
+			 * @brief Determines how to filter log list
+			 */
+			enum FilterType
+			{
+				FilterAll,
+				FilterMissed
+			};
+
 			/**
 			 * @brief Create new log list view
 			 * @param[in]   filterType    Defines how to filter log list
 			 */
-			LogsView(Model::LogProvider::FilterType filterType = Model::LogProvider::FilterNone);
+			LogsView(FilterType filterType = FilterAll);
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
 
+			void onSelectViewBy();
 			void fillGenlist();
 			void onLogInserted(Model::LogGroup *group);
 			LogGroupItem *insertLogItem(Model::LogGroup *group, LogGroupItem *groupItem);
@@ -63,6 +74,7 @@ namespace Logs
 			Model::LogProvider m_LogProvider;
 			Ui::Genlist *m_Genlist;
 			ItemMode m_Mode;
+			FilterType m_FilterType;
 		};
 	}
 }
