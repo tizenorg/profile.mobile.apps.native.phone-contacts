@@ -16,7 +16,7 @@
  */
 
 #include "Contacts/Settings/SortByItem.h"
-#include "Contacts/Settings/RadioPopup.h"
+#include "Ui/RadioPopup.h"
 #include "Utils/Logger.h"
 #include <app_i18n.h>
 
@@ -55,7 +55,7 @@ void SortByItem::onSelected()
 	contacts_name_sorting_order_e type = CONTACTS_NAME_SORTING_ORDER_FIRSTLAST;
 	contacts_setting_get_name_sorting_order(&type);
 
-	RadioPopup *popup = new RadioPopup();
+	Ui::RadioPopup *popup = new Ui::RadioPopup();
 	popup->create(elm_object_item_widget_get(getObjectItem()));
 	popup->setTitle("IDS_PB_MBODY_SORT_BY");
 	popup->setSelectedItem(type);

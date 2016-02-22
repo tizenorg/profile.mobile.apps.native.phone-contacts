@@ -68,19 +68,9 @@ namespace Logs
 			typedef std::function<void(LogGroup *group)> InsertCallback;
 
 			/**
-			 * @brief Determines how to filter log list
-			 */
-			enum FilterType
-			{
-				FilterNone,
-				FilterAll,
-				FilterMissed
-			};
-
-			/**
 			 * @brief Constructor
 			 */
-			LogProvider(FilterType filterType);
+			LogProvider();
 
 			/**
 			 * @brief Destructor
@@ -119,7 +109,7 @@ namespace Logs
 
 			LogGroup *addLog(LogGroupList &logList, Log *log);
 
-			contacts_filter_h getFilter(FilterType filterType);
+			contacts_filter_h getFilter();
 			contacts_list_h fetchLogList();
 
 			void onLogChanged(const char *viewUri);
@@ -130,7 +120,6 @@ namespace Logs
 			void addNewLogs(LogIterator &newIt, LogList &newLogList);
 			void onContactChanged(const char *viewUri);
 
-			FilterType m_FilterType;
 			int m_DbVersion;
 
 			LogGroupList m_Groups;

@@ -15,9 +15,9 @@
  *
  */
 
-#include "Contacts/Settings/RadioPopup.h"
+#include "Ui/RadioPopup.h"
 
-using namespace Contacts::Settings;
+using namespace Ui;
 
 RadioPopup::RadioPopup()
 	: m_RadioGroup(nullptr)

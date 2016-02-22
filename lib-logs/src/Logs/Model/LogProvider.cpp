@@ -24,8 +24,7 @@
 
 using namespace Logs::Model;
 
-LogProvider::LogProvider(FilterType filterType):
-		m_FilterType(filterType), m_InsertCallback(nullptr)
+LogProvider::LogProvider()
 {
 	contacts_db_get_current_version(&m_DbVersion);
 	contacts_db_add_changed_cb(_contacts_phone_log._uri, makeCallbackWithLastParam(&LogProvider::onLogChanged), this);
@@ -117,7 +116,7 @@ LogGroup *LogProvider::addLog(LogGroupList &logGroupList, Log *log)
 	return nullptr;
 }
 
-contacts_filter_h LogProvider::getFilter(LogProvider::FilterType filterType)
+contacts_filter_h LogProvider::getFilter()
 {
 	contacts_filter_h filter = nullptr;
 	contacts_filter_create(_contacts_phone_log._uri, &filter);
@@ -133,7 +132,7 @@ contacts_list_h LogProvider::fetchLogList()
 {
 	contacts_list_h list = nullptr;
 	contacts_query_h query = nullptr;
-	contacts_filter_h filter = getFilter(m_FilterType);
+	contacts_filter_h filter = getFilter();
 
 	contacts_query_create(_contacts_phone_log._uri, &query);
 	contacts_query_set_filter(query, filter);

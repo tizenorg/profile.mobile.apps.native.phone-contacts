@@ -16,7 +16,7 @@
  */
 
 #include "Contacts/Settings/NameFormatItem.h"
-#include "Contacts/Settings/RadioPopup.h"
+#include "Ui/RadioPopup.h"
 #include <app_i18n.h>
 
 using namespace Contacts::Settings;
@@ -60,7 +60,7 @@ void NameFormatItem::onSelected()
 	contacts_name_display_order_e type = CONTACTS_NAME_DISPLAY_ORDER_FIRSTLAST;
 	contacts_setting_get_name_display_order(&type);
 
-	RadioPopup *popup = new RadioPopup();
+	Ui::RadioPopup *popup = new Ui::RadioPopup();
 	popup->create(elm_object_item_widget_get(getObjectItem()));
 	popup->setTitle("IDS_PB_TMBODY_NAME_FORMAT");
 	popup->setSelectedItem(type);
