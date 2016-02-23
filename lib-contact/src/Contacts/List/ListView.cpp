@@ -92,7 +92,6 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(layout);
-	elm_genlist_homogeneous_set(m_Genlist->getEvasObject(), EINA_TRUE);
 
 	elm_object_part_content_set(layout, "elm.swallow.content", m_Genlist->getEvasObject());
 	elm_object_part_content_set(layout, "elm.swallow.fastscroll", createIndex(layout));

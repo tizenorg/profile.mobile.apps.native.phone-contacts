@@ -97,7 +97,10 @@ Evas_Object *DetailsView::onCreate(Evas_Object *parent)
 	elm_theme_extension_add(nullptr, App::getResourcePath(DETAILS_ITEM_LAYOUT_EDJ).c_str());
 
 	m_Genlist = new Ui::Genlist();
-	return m_Genlist->create(parent);
+	m_Genlist->create(parent);
+	elm_genlist_homogeneous_set(m_Genlist->getEvasObject(), EINA_FALSE);
+
+	return m_Genlist->getEvasObject();
 }
 
 void DetailsView::onCreated()
