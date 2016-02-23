@@ -43,8 +43,6 @@ namespace Contacts
 
 			void onPickResult(app_control_h request, app_control_h reply,
 					app_control_result_e result);
-			void onImportFinish(const Ui::ProgressController &controller);
-			void createFinishPopup(const char *text);
 
 		private:
 			App::AppControl m_AppControl;

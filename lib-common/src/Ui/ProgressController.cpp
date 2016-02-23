@@ -20,6 +20,8 @@
 #include "Ui/ProgressPopup.h"
 #include "Utils/Logger.h"
 
+#include <contacts.h>
+
 using namespace Ui;
 
 ProgressController::ProgressController(Evas_Object *parent, const char *title, int maxValue)
@@ -36,11 +38,6 @@ ProgressController::~ProgressController()
 void ProgressController::run()
 {
 	m_Thread = ecore_thread_feedback_run(onStart, onNotify, onFinish, onCanceled, this, EINA_FALSE);
-}
-
-void ProgressController::setFinishCallback(FinishCallback callback)
-{
-	m_OnFinish = std::move(callback);
 }
 
 bool ProgressController::onCancel()
@@ -63,7 +60,7 @@ bool ProgressController::onProgress(size_t value)
 void ProgressController::createProgressPopup(Evas_Object *parent, const char *title, int maxValue)
 {
 	m_ProgressPopup = new Ui::ProgressPopup(maxValue);
-	RETM_IF_ERR(!m_ProgressPopup, "m_ProgressPopup is NULL");
+	RETM_IF(!m_ProgressPopup, "m_ProgressPopup is NULL");
 
 	m_ProgressPopup->create(parent);
 	m_ProgressPopup->setTitle(title);
@@ -82,31 +79,37 @@ void ProgressController::createProgressPopup(Evas_Object *parent, const char *ti
 
 void ProgressController::onStart(void *data, Ecore_Thread *thread)
 {
-	RETM_IF_ERR(!data, "invalid data");
+	RETM_IF(!data, "invalid data");
+	contacts_connect_on_thread();
+
 	ProgressController *controller = (ProgressController *)data;
 	controller->onStart(thread);
+
+	contacts_disconnect_on_thread();
 }
 
 void ProgressController::onNotify(void *data, Ecore_Thread *thread, void *msgData)
 {
-	RETM_IF_ERR(!data || !msgData, "invalid data");
+	RETM_IF(!data || !msgData, "invalid data");
 	ProgressController *controller = (ProgressController *)data;
 
+	RETM_IF(controller->m_IsCanceled, "import is canceled");
 	controller->m_ProgressPopup->setProgress((size_t)msgData);
+	controller->onNotify();
 }
 
 void ProgressController::onFinish(void *data, Ecore_Thread *thread)
 {
-	RETM_IF_ERR(!data, "invalid data");
+	RETM_IF(!data, "invalid data");
 	ProgressController *controller = (ProgressController *)data;
-	controller->m_OnFinish(*controller);
+	controller->onFinish();
 
 	delete controller;
 }
 
 void ProgressController::onCanceled(void *data, Ecore_Thread *thread)
 {
-	RETM_IF_ERR(!data, "invalid data");
+	RETM_IF(!data, "invalid data");
 	ProgressController *controller = (ProgressController *)data;
 	controller->onCanceled();
 

@@ -33,11 +33,6 @@ namespace Ui
 	{
 	public:
 		/**
-		 * @brief Finish progress callback.
-		 */
-		typedef std::function<void(const ProgressController &)> FinishCallback;
-
-		/**
 		 * @brief Create controller for ProgressPopup.
 		 * @param[in]   parent      Parent object
 		 * @param[in]   title       Progress popup title
@@ -54,14 +49,10 @@ namespace Ui
 		 */
 		void run();
 
-		/**
-		 * @brief Set finish function which is called when the progress is over.
-		 * @param[in]   callback    Finish function
-		 */
-		void setFinishCallback(FinishCallback callback);
-
 	protected:
 		virtual void onStart(Ecore_Thread *thread) = 0;
+		virtual void onNotify() {};
+		virtual void onFinish() = 0;
 		virtual void onCanceled() = 0;
 		virtual bool onCancel();
 
@@ -78,7 +69,6 @@ namespace Ui
 
 	private:
 		bool m_IsCanceled;
-		FinishCallback m_OnFinish;
 		ProgressPopup *m_ProgressPopup;
 		Ecore_Thread *m_Thread;
 	};
