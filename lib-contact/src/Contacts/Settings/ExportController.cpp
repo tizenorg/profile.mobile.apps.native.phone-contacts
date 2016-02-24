@@ -17,6 +17,7 @@
 
 #include "Contacts/Common/Utils.h"
 #include "Contacts/Settings/ExportController.h"
+#include "Ui/Popup.h"
 #include "Utils/Logger.h"
 
 #include <contacts.h>
@@ -43,7 +44,7 @@ namespace
 
 ExportController::ExportController(Evas_Object *parent, const char *title,
 		std::vector<int> personIdList, StorageType vcardStorage)
-	: ProgressController(parent, title, personIdList.size()),
+	: ProgressController(parent, title, personIdList.size()), m_Parent(parent),
 	  m_PersonIdList(std::move(personIdList)), m_VcardStorage(vcardStorage)
 {
 	m_VcardPath = getVcardFilePath();
@@ -64,11 +65,6 @@ const char *ExportController::getVcardRelativePath() const
 const std::string &ExportController::getVcardPath() const
 {
 	return m_VcardPath;
-}
-
-size_t ExportController::getTotalCount() const
-{
-	return m_PersonIdList.size();
 }
 
 void ExportController::createDirectory(const std::string &directoryPath)
@@ -121,30 +117,45 @@ std::string ExportController::getVcardFilePath()
 
 void ExportController::onStart(Ecore_Thread *thread)
 {
+	RETM_IF(!thread, "thread is null");
 	FILE *file = fopen(m_VcardPath.c_str(), "a");
 	RETM_IF(!file, "fopen failed: %s", strerror(errno));
+	contacts_connect_on_thread();
 	size_t currentCount = 0;
 
 	for (auto &&personId : m_PersonIdList) {
 		contacts_record_h personRecord = nullptr;
 		int err = contacts_db_get_record(_contacts_person._uri, personId, &personRecord);
-		LOG_IF_ERR(err, continue, "contacts_db_get_record failed: ");
+		LOG_IF_ERR(err, continue, "contacts_db_get_record() failed.");
 
 		char *vcardStream = nullptr;
 		err = contacts_vcard_make_from_person(personRecord, &vcardStream);
 		contacts_record_destroy(personRecord, true);
-		LOG_IF_ERR(err, continue, "contacts_vcard_make_from_person failed: ");
+		LOG_IF_ERR(err, continue, "contacts_vcard_make_from_person() failed.");
 
 		fputs(vcardStream, file);
 		free(vcardStream);
 
-		++currentCount;
-		if (!onProgress(currentCount)) {
+		if (!onProgress(++currentCount)) {
 			ecore_thread_cancel(thread);
 			break;
 		}
 	}
 	fclose(file);
+	contacts_disconnect_on_thread();
+}
+
+void ExportController::onFinish()
+{
+	char text[BUFFER_SIZE] = { 0, };
+	snprintf(text, sizeof(text), _("IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"),
+			m_PersonIdList.size(), getVcardRelativePath());
+
+	Ui::Popup *finishPopup = new Ui::Popup();
+	finishPopup->create(m_Parent);
+	finishPopup->setTitle("IDS_PB_HEADER_CONTACTS_EXPORTED_ABB");
+	finishPopup->setText(text);
+	finishPopup->addButton("IDS_PB_BUTTON_OK_ABB2");
 }
 
 void ExportController::onCanceled()
