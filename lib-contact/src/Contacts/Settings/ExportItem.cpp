@@ -53,26 +53,5 @@ void ExportItem::onPickResult(app_control_h request, app_control_h reply,
 	ExportController *exporter = new ExportController(
 			getParent()->getEvasObject(), "IDS_PB_HEADER_EXPORT_CONTACTS_ABB",
 			std::move(personIdList), StorageDevice);
-	exporter->setFinishCallback(std::bind(&ExportItem::onImportFinish, this, std::placeholders::_1));
 	exporter->run();
-}
-
-void ExportItem::onImportFinish(const ProgressController &controller)
-{
-	const ExportController &exporter = static_cast<const ExportController &>(controller);
-
-	char text[BUFFER_SIZE] = { 0, };
-	snprintf(text, sizeof(text), _("IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"),
-			exporter.getTotalCount(), exporter.getVcardRelativePath());
-
-	createFinishPopup(text);
-}
-
-void ExportItem::createFinishPopup(const char *text)
-{
-	Ui::Popup *finishPopup = new Ui::Popup();
-	finishPopup->create(getParent()->getEvasObject());
-	finishPopup->setTitle("IDS_PB_HEADER_CONTACTS_EXPORTED_ABB");
-	finishPopup->setText(text);
-	finishPopup->addButton("IDS_PB_BUTTON_OK_ABB2");
 }
