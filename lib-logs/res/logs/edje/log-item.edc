@@ -19,7 +19,7 @@
 #include "LogItemLayout.h"
 
 #include "log-colors.edc"
-#include "../../../../lib-common/res/common/edje/common-utils.edc"
+#include "../../../../lib-apps-common/res/apps-common/edje/apps-common-utils.edc"
 
 #define LAYOUT_H 104
 #define LAYOUT_W 105

@@ -15,18 +15,17 @@
  *
  */
 
-#ifndef COMMON_PROGRESSBAR_LAYOUT_H
-#define COMMON_PROGRESSBAR_LAYOUT_H
+#ifndef APPS_COMMON_PROGRESSBAR_LAYOUT_H
+#define APPS_COMMON_PROGRESSBAR_LAYOUT_H
 
-#include "CommonPath.h"
+#include "AppsCommonPath.h"
 
-#define COMMON_PROGRESSBAR_LAYOUT_EDJ      COMMON_EDJ_DIR"common-progressbar-layout.edj"
+#define APPS_COMMON_PROGRESSBAR_LAYOUT_EDJ APPS_COMMON_EDJ_DIR"apps-common-progressbar-layout.edj"
 
-#define GROUP_PROGRESSBAR_LAYOUT       "progressbar_layout"
+#define GROUP_PROGRESSBAR_LAYOUT "progressbar_layout"
+#define PART_PROGRESSBAR         "swallow.progressbar"
 
-#define PART_PROGRESSBAR           "swallow.progressbar"
+#define PROGRESSBAR_PAD_X        32
+#define PROGRESSBAR_PAD_Y        17
 
-#define PROGRESSBAR_PAD_X          32
-#define PROGRESSBAR_PAD_Y          17
-
-#endif /* COMMON_PROGRESSBAR_LAYOUT_H */
+#endif /* APPS_COMMON_PROGRESSBAR_LAYOUT_H */

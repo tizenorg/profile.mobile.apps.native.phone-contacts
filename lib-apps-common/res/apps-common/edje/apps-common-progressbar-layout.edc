@@ -15,7 +15,7 @@
  *
  */
 
-#include "CommonProgressbarLayout.h"
+#include "AppsCommonProgressbarLayout.h"
 
 collections {
 	base_scale: 2.6;

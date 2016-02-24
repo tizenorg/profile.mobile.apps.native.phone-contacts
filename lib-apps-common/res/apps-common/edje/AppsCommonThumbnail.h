@@ -15,20 +15,20 @@
  *
  */
 
-#ifndef COMMON_THUMBNAIL_H
-#define COMMON_THUMBNAIL_H
+#ifndef APPS_COMMON_THUMBNAIL_H
+#define APPS_COMMON_THUMBNAIL_H
 
-#include "CommonPath.h"
+#include "AppsCommonPath.h"
 
-#define COMMON_THUMBNAIL_EDJ            COMMON_EDJ_DIR"common-thumbnail.edj"
+#define APPS_COMMON_THUMBNAIL_EDJ       APPS_COMMON_EDJ_DIR"apps-common-thumbnail.edj"
 
-#define THUMBNAIL_DEFAULT_MEDIUM        COMMON_IMG_DIR"contacts_caller_id_default.png"
-#define THUMBNAIL_DEFAULT_SMALL         COMMON_IMG_DIR"contacts_caller_id_default_02.png"
-#define THUMBNAIL_DEFAULT_LARGE         COMMON_IMG_DIR"contacts_caller_id_default_03.png"
+#define THUMBNAIL_DEFAULT_MEDIUM        APPS_COMMON_IMG_DIR"contacts_caller_id_default.png"
+#define THUMBNAIL_DEFAULT_SMALL         APPS_COMMON_IMG_DIR"contacts_caller_id_default_02.png"
+#define THUMBNAIL_DEFAULT_LARGE         APPS_COMMON_IMG_DIR"contacts_caller_id_default_03.png"
 
-#define THUMBNAIL_BG_MEDIUM             COMMON_IMG_DIR"contacts_caller_id_default_bg.png"
-#define THUMBNAIL_BG_SMALL              COMMON_IMG_DIR"contacts_caller_id_default_bg_02.png"
-#define THUMBNAIL_BG_LARGE              COMMON_IMG_DIR"contacts_caller_id_default_bg_03.png"
+#define THUMBNAIL_BG_MEDIUM             APPS_COMMON_IMG_DIR"contacts_caller_id_default_bg.png"
+#define THUMBNAIL_BG_SMALL              APPS_COMMON_IMG_DIR"contacts_caller_id_default_bg_02.png"
+#define THUMBNAIL_BG_LARGE              APPS_COMMON_IMG_DIR"contacts_caller_id_default_bg_03.png"
 
 #define GROUP_THUMBNAIL_SMALL           "thumbnail_small"
 #define GROUP_THUMBNAIL_MEDIUM          "thumbnail_medium"
@@ -42,4 +42,4 @@
 #define THUMBNAIL_MEDIUM_SIZE 166
 #define THUMBNAIL_LARGE_SIZE 240
 
-#endif /* COMMON_THUMBNAIL_H */
+#endif /* APPS_COMMON_THUMBNAIL_H */

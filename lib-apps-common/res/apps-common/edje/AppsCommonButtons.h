@@ -15,35 +15,18 @@
  *
  */
 
-#include "CommonButtons.h"
+#ifndef APPS_COMMON_BUTTONS_H
+#define APPS_COMMON_BUTTONS_H
 
-color_classes {
-	color_class { //A03O003
-		name: "thumbnail_bg";
-		color:  255 255 255 255;
-	}
-	color_class { //A03O003L1
-		name: "thumbnail_default";
-		color:  61 185 204 128;
-	}
-	color_class {
-		name: BUTTON_COLOR_CLASS_NORMAL;
-		color: 82 198 216 255;
-	}
-	color_class {
-		name: BUTTON_COLOR_CLASS_PRESSED;
-		color: 48 139 153 255;
-	}
-	color_class { //W023 (Input Color 1)
-		name: "icon_expand";
-		color: 61 185 204 255;
-	}
-	color_class { //W0113 (Input Color 1)
-		name: "touch_icon_normal";
-		color: 61 185 204 255;
-	}
-	color_class { //W0113P
-		name: "touch_icon_pressed";
-		color: 34 104 115 255;
-	}
-}
+#include "AppsCommonPath.h"
+
+#define APPS_COMMON_BUTTONS_EDJ          APPS_COMMON_EDJ_DIR"apps-common-buttons.edj"
+
+#define BUTTON_STYLE_CUSTOM_DEFAULT "custom_default"
+#define BUTTON_STYLE_CUSTOM_CIRCLE  "custom_circle"
+
+#define BUTTON_TEXT_CLASS           "button_text"
+#define BUTTON_COLOR_CLASS_NORMAL   "button_normal"
+#define BUTTON_COLOR_CLASS_PRESSED  "button_pressed"
+
+#endif /* APPS_COMMON_BUTTONS_H */

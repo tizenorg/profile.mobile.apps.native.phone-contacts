@@ -8,12 +8,5 @@
     <package>
         <blacklist/>
         <resFallback autoGen="true"/>
-        <subProjects>
-            <tizenProject project="lib-apps-common"/>
-            <tizenProject project="lib-common"/>
-            <tizenProject project="lib-contact"/>
-            <tizenProject project="lib-phone"/>
-            <tizenProject project="lib-logs"/>
-        </subProjects>
     </package>
 </tproject>

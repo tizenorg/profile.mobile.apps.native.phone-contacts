@@ -19,7 +19,7 @@
 #include "Ui/Scale.h"
 
 #include "App/Path.h"
-#include "CommonThumbnail.h"
+#include "AppsCommonThumbnail.h"
 
 using namespace Ui;
 
@@ -35,7 +35,7 @@ namespace
 		{ GROUP_THUMBNAIL_LARGE, GROUP_THUMBNAIL_DEFAULT_LARGE }
 	};
 
-	const std::string layoutPath = App::getResourcePath(COMMON_THUMBNAIL_EDJ);
+	const std::string layoutPath = App::getResourcePath(APPS_COMMON_THUMBNAIL_EDJ);
 }
 
 Thumbnail::Thumbnail(Size size)

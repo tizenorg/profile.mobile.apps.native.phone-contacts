@@ -3,10 +3,11 @@
 	<name>contacts</name>
 	<comment></comment>
 	<projects>
-		<project>lib-common</project>
 		<project>lib-contact</project>
 		<project>lib-phone</project>
 		<project>lib-logs</project>
+		<project>lib-apps-common</project>
+		<project>lib-common</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -19,7 +19,7 @@
 #include "Ui/ProgressPopup.h"
 #include "Utils/Logger.h"
 
-#include "CommonProgressbarLayout.h"
+#include "AppsCommonProgressbarLayout.h"
 
 #define BUFFER_SIZE        64
 
@@ -29,7 +29,7 @@ using namespace Ui;
 
 namespace
 {
-	const std::string layoutFilePath = App::getResourcePath(COMMON_PROGRESSBAR_LAYOUT_EDJ);
+	const std::string layoutFilePath = App::getResourcePath(APPS_COMMON_PROGRESSBAR_LAYOUT_EDJ);
 }
 
 ProgressPopup::ProgressPopup(size_t maxValue)

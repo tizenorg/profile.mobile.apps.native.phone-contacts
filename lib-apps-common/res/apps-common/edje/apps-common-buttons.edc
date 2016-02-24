@@ -15,7 +15,7 @@
  *
  */
 
-#include "common-colors.edc"
+#include "apps-common-colors.edc"
 
 #define BUTTON_CORNER_RADIUS "35"
 #define BUTTON_DEFAULT_H 78

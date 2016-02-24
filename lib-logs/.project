@@ -3,6 +3,7 @@
 	<name>lib-logs</name>
 	<comment></comment>
 	<projects>
+		<project>lib-apps-common</project>
 		<project>lib-common</project>
 	</projects>
 	<buildSpec>

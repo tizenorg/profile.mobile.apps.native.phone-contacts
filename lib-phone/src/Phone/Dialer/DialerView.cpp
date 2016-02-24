@@ -32,7 +32,7 @@
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 
-#include "CommonButtons.h"
+#include "AppsCommonButtons.h"
 #include "DialerLayout.h"
 
 #include <app_control.h>
@@ -71,7 +71,7 @@ void DialerView::onCreated()
 
 Evas_Object *DialerView::onCreate(Evas_Object *parent)
 {
-	elm_theme_extension_add(nullptr, App::getResourcePath(COMMON_BUTTONS_EDJ).c_str());
+	elm_theme_extension_add(nullptr, App::getResourcePath(APPS_COMMON_BUTTONS_EDJ).c_str());
 
 	Evas_Object *layout = elm_layout_add(parent);
 	Eina_Bool res = elm_layout_file_set(layout, layoutFilePath.c_str(), GROUP_DIALER);

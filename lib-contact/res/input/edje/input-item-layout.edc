@@ -18,8 +18,8 @@
 #include "InputItemLayout.h"
 #include "InputItemLayoutMetrics.h"
 
-#include "../../../../lib-common/res/common/edje/common-colors.edc"
-#include "../../../../lib-common/res/common/edje/common-utils.edc"
+#include "../../../../lib-apps-common/res/apps-common/edje/apps-common-colors.edc"
+#include "../../../../lib-apps-common/res/apps-common/edje/apps-common-utils.edc"
 
 collections
 {

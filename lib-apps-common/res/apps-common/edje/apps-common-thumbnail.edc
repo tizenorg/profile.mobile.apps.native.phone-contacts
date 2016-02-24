@@ -15,9 +15,9 @@
  *
  */
 
-#include "CommonThumbnail.h"
-#include "common-colors.edc"
-#include "common-utils.edc"
+#include "AppsCommonThumbnail.h"
+#include "apps-common-colors.edc"
+#include "apps-common-utils.edc"
 
 collections {
 	IMAGE_WITH_MASK(GROUP_THUMBNAIL_SMALL, THUMBNAIL_BG_SMALL)

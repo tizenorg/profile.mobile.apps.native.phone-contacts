@@ -3,6 +3,7 @@
 	<name>lib-phone</name>
 	<comment></comment>
 	<projects>
+		<project>lib-apps-common</project>
 		<project>lib-common</project>
 	</projects>
 	<buildSpec>

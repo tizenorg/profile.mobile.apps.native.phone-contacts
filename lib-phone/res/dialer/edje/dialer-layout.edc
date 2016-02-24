@@ -18,7 +18,7 @@
 #include "DialerLayout.h"
 #include "DialerLayoutMetrics.h"
 #include "DialerLayoutColors.h"
-#include "../../../../lib-common/res/common/edje/common-utils.edc"
+#include "../../../../lib-apps-common/res/apps-common/edje/apps-common-utils.edc"
 
 
 collections {

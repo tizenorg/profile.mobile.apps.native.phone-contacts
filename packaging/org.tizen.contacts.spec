@@ -62,6 +62,7 @@ make %{?_smp_mflags}
 %{_bin_dir}
 %{_lib_dir}
 
+%{_res_dir}/apps-common
 %{_res_dir}/common
 %{_res_dir}/details
 %{_res_dir}/dialer
