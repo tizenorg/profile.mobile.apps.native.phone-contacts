@@ -18,6 +18,7 @@
 #include "Logs/List/LogsView.h"
 #include "Logs/List/LogGroupItem.h"
 #include "Logs/List/LogItem.h"
+#include "Logs/Details/DetailsView.h"
 
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
@@ -26,6 +27,7 @@
 
 using namespace Logs::Model;
 using namespace Logs::List;
+using namespace Logs::Details;
 using namespace std::placeholders;
 
 LogsView::LogsView(FilterType filterType)
@@ -161,6 +163,10 @@ LogItem *LogsView::createLogItem(LogGroup *group)
 		if (itemGroup->empty()) {
 			delete itemGroup;
 		}
+	});
+
+	item->setDetailsCallback([this](LogGroup *group) {
+		getNavigator()->navigateTo(new DetailsView(group));
 	});
 
 	return item;

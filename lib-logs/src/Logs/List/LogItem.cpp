@@ -18,6 +18,8 @@
 #include "Logs/List/LogItem.h"
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
+#include "Logs/Details/DetailsView.h"
+#include "Utils/Callback.h"
 
 #include "App/Path.h"
 #include "Ui/Scale.h"
@@ -44,6 +46,7 @@
 using namespace Ui;
 using namespace Logs::List;
 using namespace Logs::Model;
+using namespace Logs::Details;
 
 namespace
 {
@@ -51,7 +54,7 @@ namespace
 }
 
 LogItem::LogItem(LogGroup *group, ItemMode mode)
-	:m_Group(group), m_Mode(mode)
+	: m_Group(group), m_Mode(mode)
 {
 	setUpdateCallback();
 }
@@ -65,6 +68,18 @@ void LogItem::setMode(ItemMode mode)
 void LogItem::setDeleteCallback(DeleteCallback callback)
 {
 	m_OnDelete = std::move(callback);
+}
+
+void LogItem::setDetailsCallback(DetailsCallback callback)
+{
+	m_OnDetails = std::move(callback);
+}
+
+void LogItem::onInfoIconPressed()
+{
+	if (m_OnDetails) {
+		m_OnDetails(m_Group);
+	}
 }
 
 void LogItem::removeGroup()
@@ -110,7 +125,12 @@ Evas_Object *LogItem::getContent(Evas_Object *parent, const char *part)
 		if (m_Mode == ItemMode::Pick) {
 			return GenlistCheckItem::getContent(parent, part);
 		} else {
-			return createIcon(parent, ICON_INFO);
+			Evas_Object *icon = createIcon(parent, ICON_INFO);
+			evas_object_propagate_events_set(icon, EINA_FALSE);
+			evas_object_smart_data_set(icon, (void *) m_Group);
+			evas_object_smart_callback_add(icon, "clicked",
+					(Evas_Smart_Cb) makeCallback(&LogItem::onInfoIconPressed), this);
+			return icon;
 		}
 	}
 
