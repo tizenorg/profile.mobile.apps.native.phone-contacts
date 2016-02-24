@@ -34,10 +34,10 @@ namespace Contacts
 		public:
 			enum ActionId
 			{
-				ActionCall    = Contacts::ActionCall,    /**< Make a telephony call using value as a number */
-				ActionMessage = Contacts::ActionMessage, /**< Compose an SMS using value as recipient */
-				ActionEmail   = Contacts::ActionEmail,   /**< Compose an E-mail using value as an address */
-				ActionUrl                                /**< Open webpage in browser using value as URL */
+				ActionCall,     /**< Make a telephony call using value as a number */
+				ActionMessage,  /**< Compose an SMS using value as recipient */
+				ActionEmail,    /**< Compose an E-mail using value as an address */
+				ActionUrl       /**< Open webpage in browser using value as URL */
 			};
 
 			/**
@@ -48,8 +48,6 @@ namespace Contacts
 			ActionFieldItem(Model::ContactObject &object, ActionId actionId);
 
 		protected:
-			using FieldItem::onSelected;
-
 			/**
 			 * @see GenlistItem::getContent()
 			 */
@@ -69,7 +67,6 @@ namespace Contacts
 			Evas_Object *createActionButton(Evas_Object *parent, ActionId actionId);
 
 		private:
-			void showActionPopup();
 			void executeAction(ActionId actionId);
 			void onButtonPressed(Evas_Object *button, void *eventInfo);
 

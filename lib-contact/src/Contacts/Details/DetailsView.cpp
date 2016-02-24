@@ -64,7 +64,7 @@ namespace
 
 DetailsView::DetailsView(int recordId, Type type, int filterType)
 	: m_RecordId(recordId), m_Contact(ContactObjectType(type)),
-	  m_FilterType(filterType), m_SelectMode(SelectNone), m_ResultType(ResultNone),
+	  m_FilterType(filterType), m_SelectMode(SelectNone),
 	  m_DoneButton(nullptr), m_CancelButton(nullptr),
 	  m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_Items{nullptr}, m_SelectCount(0)
 {
@@ -75,10 +75,9 @@ void DetailsView::setSelectCallback(SelectCallback callback)
 	m_OnSelected = std::move(callback);
 }
 
-void DetailsView::setSelectMode(SelectMode mode, ResultType type)
+void DetailsView::setSelectMode(SelectMode mode)
 {
 	m_SelectMode = mode;
-	m_ResultType = type;
 
 	if (m_BasicInfoItem) {
 		m_BasicInfoItem->setSelectMode(mode);
@@ -86,7 +85,7 @@ void DetailsView::setSelectMode(SelectMode mode, ResultType type)
 		auto item = m_BasicInfoItem->getNextItem();
 		for (; item; item = item->getNextItem()) {
 			FieldItem *fieldItem = static_cast<FieldItem *>(item);
-			fieldItem->setSelectMode(mode, type);
+			fieldItem->setSelectMode(mode);
 		}
 	}
 
@@ -272,7 +271,7 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 		item = new FieldItem(field);
 	}
 
-	item->setSelectMode(m_SelectMode, m_ResultType);
+	item->setSelectMode(m_SelectMode);
 	item->setSelectCallback(std::bind(&DetailsView::onSingleSelected, this, _1));
 	item->setCheckCallback(std::bind(&DetailsView::onItemChecked, this, _1));
 

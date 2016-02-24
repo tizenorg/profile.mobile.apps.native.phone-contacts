@@ -615,7 +615,7 @@ void ListView::onDonePressed(Evas_Object *button, void *eventInfo)
 		for (auto &&item : *group.second) {
 			PersonItem *personItem = static_cast<PersonItem *>(item);
 			if (personItem->isChecked()) {
-				results.push_back({ ItemPerson, personItem->getPerson().getId() });
+				results.push_back({ ResultPerson, personItem->getPerson().getId() });
 			}
 		}
 	}
@@ -668,7 +668,7 @@ void ListView::onPersonChanged(PersonPtr person, contacts_changed_e changeType, 
 
 void ListView::onPersonSelected(const Model::Person &person)
 {
-	SelectResult result = { ItemPerson, person.getId() };
+	SelectResult result = { ResultPerson, person.getId() };
 	if (m_OnSelected && m_OnSelected({ &result, 1 })) {
 		delete this;
 	}
