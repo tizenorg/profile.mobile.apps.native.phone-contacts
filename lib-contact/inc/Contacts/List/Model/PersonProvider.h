@@ -19,7 +19,7 @@
 #define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
 #include "Contacts/Common/SelectMode.h"
-#include "Contacts/List/Model/DbChangeObserver.h"
+#include "Contacts/DbChangeObserver.h"
 #include "Contacts/List/Model/Person.h"
 
 #include <contacts.h>
@@ -108,8 +108,8 @@ namespace Contacts
 				Mode m_Mode;
 				int m_FilterType;
 
-				std::pair<InsertCallback, Model::DbChangeObserver::CallbackHandle> m_InsertCallback;
-				std::unordered_map<int, std::pair<ChangeCallback, Model::DbChangeObserver::CallbackHandle>> m_ChangeCallbacks;
+				std::pair<InsertCallback, DbChangeObserver::CallbackHandle> m_InsertCallback;
+				std::unordered_map<int, std::pair<ChangeCallback, DbChangeObserver::CallbackHandle>> m_ChangeCallbacks;
 			};
 		}
 	}
