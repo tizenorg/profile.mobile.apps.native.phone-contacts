@@ -117,6 +117,13 @@ namespace App
 	AppControl EXPORT_API requestShareMyProfile(int recordId);
 
 	/**
+	 * @brief Request pick vcard(s)
+	 * @param[in]   path    Path of storage from where files should be picked
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestPickVcard(const char *path);
+
+	/**
 	 * @brief Get single first string from App Control array extra data.
 	 * @param[in]   appControl  App Control handle
 	 * @param[in]   key         Extra data array key
