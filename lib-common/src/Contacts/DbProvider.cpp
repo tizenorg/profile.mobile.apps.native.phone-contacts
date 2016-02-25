@@ -15,50 +15,23 @@
  *
  */
 
-#include "Contacts/ContactData.h"
+#include "Contacts/DbProvider.h"
+#include "functional"
 
 using namespace Contacts;
+using namespace std::placeholders;
 
-ContactData::ContactData(Type type)
-	: m_Type(type)
+DbProvider::DbProvider()
 {
+	m_Handle = DbChangeObserver::getInstance()->addCallback(
+		[this](int id, contacts_changed_e changeType) {
+			if (changeType == CONTACTS_CHANGE_INSERTED) {
+				onInserted(*createContactData(id));
+			}
+		});
 }
 
-ContactData::Type ContactData::getType() const
+DbProvider::~DbProvider()
 {
-	return m_Type;
-}
-
-void ContactData::setUpdateCallback(UpdateCallback callback)
-{
-	m_OnUpdated = std::move(callback);
-}
-
-void ContactData::unsetUpdateCallback()
-{
-	m_OnUpdated = nullptr;
-}
-
-void ContactData::setDeleteCallback(DeleteCallback callback)
-{
-	m_OnDeleted = std::move(callback);
-}
-
-void ContactData::unsetDeleteCallback()
-{
-	m_OnDeleted = nullptr;
-}
-
-void ContactData::onUpdated(int changes)
-{
-	if (m_OnUpdated) {
-		m_OnUpdated(changes);
-	}
-}
-
-void ContactData::onDeleted()
-{
-	if (m_OnDeleted) {
-		m_OnDeleted();
-	}
+	DbChangeObserver::getInstance()->removeCallback(m_Handle);
 }
