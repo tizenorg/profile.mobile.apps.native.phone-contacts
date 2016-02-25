@@ -69,6 +69,11 @@ Evas_Object *Window::getBaseLayout() const
 	return m_Layout;
 }
 
+void Window::setBackCallback(BackCallback callback)
+{
+	m_OnBackPressed = std::move(callback);
+}
+
 void Window::attachView(View *view)
 {
 	m_MainView = view;
@@ -78,7 +83,9 @@ void Window::attachView(View *view)
 void Window::onBackPressed(Evas_Object *obj, void *eventInfo)
 {
 	if (!m_MainView || m_MainView->onBackPressed()) {
-		elm_win_lower(getEvasObject());
+		if (!m_OnBackPressed || m_OnBackPressed()) {
+			elm_win_lower(getEvasObject());
+		}
 	}
 }
 

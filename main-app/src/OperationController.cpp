@@ -50,28 +50,28 @@ bool OperationController::isOperationSupported(Operation operation) const
 Operation OperationController::getOperation(const char *operation)
 {
 	if (!operation) {
-		return OPERATION_DEFAULT;
+		return OperationDefault;
 	}
 	if (strcmp(operation, APP_CONTROL_OPERATION_DEFAULT) == 0) {
-		return OPERATION_DEFAULT;
+		return OperationDefault;
 	}
 	if (strcmp(operation, APP_CONTROL_OPERATION_DIAL) == 0) {
-		return OPERATION_DIAL;
+		return OperationDial;
 	}
 	if (strcmp(operation, APP_CONTROL_OPERATION_ADD) == 0) {
-		return OPERATION_ADD;
+		return OperationAdd;
 	}
 	if (strcmp(operation, APP_CONTROL_OPERATION_EDIT) == 0) {
-		return OPERATION_EDIT;
+		return OperationEdit;
 	}
 	if (strcmp(operation, APP_CONTROL_OPERATION_VIEW) == 0) {
-		return OPERATION_VIEW;
+		return OperationView;
 	}
 	if (strcmp(operation, APP_CONTROL_OPERATION_PICK) == 0) {
-		return OPERATION_PICK;
+		return OperationPick;
 	}
 
-	return OPERATION_DEFAULT;
+	return OperationDefault;
 }
 
 MainApp *OperationController::getApplication() const
