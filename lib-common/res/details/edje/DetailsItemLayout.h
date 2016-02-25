@@ -18,21 +18,11 @@
 #ifndef DETAILS_ITEM_LAYOUT_H
 #define DETAILS_ITEM_LAYOUT_H
 
-#include "DetailsPath.h"
-
 #define DETAILS_ITEM_STYLE      "details_item"
 
 #define PART_BACK_BTN           "swallow.back"
-#define PART_FAV_BTN            "swallow.favorite"
 #define PART_THUMBNAIL          "swallow.thumbnail"
 
 #define PART_NAME               "text.name"
-#define PART_PHONETIC_NAME      "text.phonetic_name"
-#define PART_COMPANY            "text.company"
-
-#define GROUP_ICON_CALL         "icon_call"
-#define GROUP_ICON_MESSAGE      "icon_message"
-#define GROUP_ICON_EMAIL        "icon_email"
-#define GROUP_ICON_INTERNET     "icon_internet"
 
 #endif /* DETAILS_ITEM_LAYOUT_H */

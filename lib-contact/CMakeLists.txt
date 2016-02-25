@@ -6,7 +6,7 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/lib-apps-common/inc
 	${CMAKE_SOURCE_DIR}/lib-apps-common/res/apps-common/edje
 	${CMAKE_SOURCE_DIR}/lib-common/inc
-	${CMAKE_SOURCE_DIR}/lib-common/res/common/edje
+	${CMAKE_SOURCE_DIR}/lib-common/res/details/edje
 	${CMAKE_CURRENT_SOURCE_DIR}/inc
 	${CMAKE_CURRENT_SOURCE_DIR}/res/details/edje
 	${CMAKE_CURRENT_SOURCE_DIR}/res/input/edje
