@@ -23,7 +23,7 @@
 using namespace Ui;
 
 ProgressController::ProgressController(Evas_Object *parent, const char *title, int maxValue)
-	: m_IsCanceled(false), m_ProgressPopup(nullptr), m_Thread(nullptr)
+	: m_MainThread(nullptr), m_ProgressPopup(nullptr), m_Thread(nullptr)
 {
 	createProgressPopup(parent, title, maxValue);
 }
@@ -35,12 +35,7 @@ ProgressController::~ProgressController()
 
 void ProgressController::run()
 {
-	m_Thread = ecore_thread_feedback_run(onStart, onNotify, onFinish, onCanceled, this, EINA_FALSE);
-}
-
-void ProgressController::setFinishCallback(FinishCallback callback)
-{
-	m_OnFinish = std::move(callback);
+	m_MainThread = ecore_thread_feedback_run(onStart, onNotify, onFinish, onCanceled, this, EINA_FALSE);
 }
 
 bool ProgressController::onCancel()
@@ -50,20 +45,27 @@ bool ProgressController::onCancel()
 
 void ProgressController::cancel()
 {
-	m_IsCanceled = true;
+	ecore_thread_cancel(m_MainThread);
 }
 
 bool ProgressController::onProgress(size_t value)
 {
 	ecore_thread_feedback(m_Thread, (void *)value);
+	m_IsPopupUpdating = true;
 
-	return !m_IsCanceled;
+	std::mutex condVariableMutex;
+	std::unique_lock<std::mutex> locker(condVariableMutex);
+	m_ContinueCondition.wait(locker, [this]{
+		return !m_IsPopupUpdating;
+	});
+
+	return !ecore_thread_check(m_Thread);
 }
 
 void ProgressController::createProgressPopup(Evas_Object *parent, const char *title, int maxValue)
 {
 	m_ProgressPopup = new Ui::ProgressPopup(maxValue);
-	RETM_IF_ERR(!m_ProgressPopup, "m_ProgressPopup is NULL");
+	RETM_IF(!m_ProgressPopup, "m_ProgressPopup is NULL");
 
 	m_ProgressPopup->create(parent);
 	m_ProgressPopup->setTitle(title);
@@ -82,31 +84,36 @@ void ProgressController::createProgressPopup(Evas_Object *parent, const char *ti
 
 void ProgressController::onStart(void *data, Ecore_Thread *thread)
 {
-	RETM_IF_ERR(!data, "invalid data");
+	RETM_IF(!data, "invalid data");
+
 	ProgressController *controller = (ProgressController *)data;
-	controller->onStart(thread);
+	controller->m_Thread = thread;
+	controller->onStart();
 }
 
 void ProgressController::onNotify(void *data, Ecore_Thread *thread, void *msgData)
 {
-	RETM_IF_ERR(!data || !msgData, "invalid data");
+	RETM_IF(!data || !msgData, "invalid data");
 	ProgressController *controller = (ProgressController *)data;
 
 	controller->m_ProgressPopup->setProgress((size_t)msgData);
+
+	controller->m_IsPopupUpdating = false;
+	controller->m_ContinueCondition.notify_one();
 }
 
 void ProgressController::onFinish(void *data, Ecore_Thread *thread)
 {
-	RETM_IF_ERR(!data, "invalid data");
+	RETM_IF(!data, "invalid data");
 	ProgressController *controller = (ProgressController *)data;
-	controller->m_OnFinish(*controller);
+	controller->onFinish();
 
 	delete controller;
 }
 
 void ProgressController::onCanceled(void *data, Ecore_Thread *thread)
 {
-	RETM_IF_ERR(!data, "invalid data");
+	RETM_IF(!data, "invalid data");
 	ProgressController *controller = (ProgressController *)data;
 	controller->onCanceled();
 
