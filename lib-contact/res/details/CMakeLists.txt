@@ -1,4 +1,4 @@
-set(EDC_FILES details-item-layout.edc)
+set(EDC_FILES contacts-details-item-layout.edc)
 set(EDJ_DIR "${RES_DIR}/details/edje")
 set(IMG_DIR "${RES_DIR}/details/images")
 
