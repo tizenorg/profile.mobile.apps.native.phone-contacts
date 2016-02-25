@@ -46,6 +46,11 @@ namespace Logs
 			typedef std::function<void(LogItem *item)> DeleteCallback;
 
 			/**
+			 * @brief Item details callback
+			 */
+			typedef std::function<void(LogItem *item)> DetailsCallback;
+
+			/**
 			 * @brief Create log item
 			 * @param[in]   group       Log group
 			 * @param[in]   mode        Item mode
@@ -65,6 +70,17 @@ namespace Logs
 			void setDeleteCallback(DeleteCallback callback);
 
 			/**
+			 * @brief Set log details callback
+			 * @param[in]   callback    Details callback
+			 */
+			void setDetailsCallback(DetailsCallback callback);
+
+			/**
+			 * @brief Get group
+			 */
+			Model::LogGroup *getGroup() const;
+
+			/**
 			 * @brief Remove group
 			 */
 			void removeGroup();
@@ -77,11 +93,13 @@ namespace Logs
 			Evas_Object *createLayout(Evas_Object *parent, const char *layoutName);
 			Evas_Object *createIcon(Evas_Object *parent, const char *path);
 			const char *getImagePath(int type);
+			void onInfoIconPressed();
 
 			void updateItem();
 			void setUpdateCallback();
 
 			DeleteCallback m_OnDelete;
+			DetailsCallback m_OnDetails;
 			Model::LogGroup *m_Group;
 			ItemMode m_Mode;
 		};
