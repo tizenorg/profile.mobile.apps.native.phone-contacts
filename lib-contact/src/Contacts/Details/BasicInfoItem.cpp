@@ -25,7 +25,7 @@
 #include "Ui/Thumbnail.h"
 #include "Utils/Callback.h"
 
-#include "DetailsItemLayout.h"
+#include "ContactsDetailsItemLayout.h"
 
 using namespace Contacts::Details;
 using namespace Contacts::Model;
@@ -59,7 +59,7 @@ void BasicInfoItem::setSelectMode(SelectMode mode)
 
 Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
 {
-	static Elm_Genlist_Item_Class itc = createItemClass(DETAILS_ITEM_STYLE);
+	static Elm_Genlist_Item_Class itc = createItemClass(CONTACTS_DETAILS_ITEM_STYLE);
 	return &itc;
 }
 

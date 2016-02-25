@@ -15,17 +15,23 @@
  *
  */
 
-#ifndef DETAILS_PATH_H
-#define DETAILS_PATH_H
+#ifndef DETAILS_ITEM_LAYOUT_METRICS_H
+#define DETAILS_ITEM_LAYOUT_METRICS_H
 
-#define DETAILS_IMG_DIR "details/images/"
-#define DETAILS_EDJ_DIR "details/edje/"
+#define PAD_T 13
+#define PAD_L 10
+#define PAD_R 17
+#define PAD_B 28
 
-#define DETAILS_ITEM_LAYOUT_EDJ   DETAILS_EDJ_DIR"details-item-layout.edj"
+#define BTN_WH 80
+#define BTN_SIZE BTN_WH BTN_WH
+#define THUMBNAIL_SIZE 240 240
+#define THUMBNAIL_PAD_T 44
 
-#define DETAILS_ICON_CALL         DETAILS_IMG_DIR"contacts_btn_ic_call.png"
-#define DETAILS_ICON_MESSAGE      DETAILS_IMG_DIR"contacts_btn_ic_message.png"
-#define DETAILS_ICON_EMAIL        DETAILS_IMG_DIR"contacts_btn_ic_email.png"
-#define DETAILS_ICON_INTERNET     DETAILS_IMG_DIR"contacts_btn_ic_Internet.png"
+#define TEXT_PAD_X 24
+#define TEXT_PAD_Y 2
 
-#endif /* DETAILS_PATH_H */
+#define NAME_H 76
+#define NAME_TEXT_SIZE 56
+
+#endif /* DETAILS_ITEM_LAYOUT_METRICS_H */
