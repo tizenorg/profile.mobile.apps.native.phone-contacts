@@ -98,6 +98,18 @@ AppControl App::requestShareMyProfile(int recordId)
 	return request;
 }
 
+AppControl App::requestPickVcard(const char *path)
+{
+	//TODO: Replace it with AppControl which will not use application id.
+	AppControl request(nullptr);
+	request.addExtra("path", path);
+	request.addExtra("select_type", "IMPORT_PATH_SELECT");
+	request.addExtra("file_type", "vcf");
+	app_control_set_app_id(request.getHandle(), "ug-myfile-efl");
+
+	return request;
+}
+
 std::string App::getSingleExtraData(app_control_h appControl, const char *key)
 {
 	std::string result;
