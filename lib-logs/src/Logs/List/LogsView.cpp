@@ -25,6 +25,9 @@
 #include "Ui/Navigator.h"
 #include "Ui/RadioPopup.h"
 
+#include "Utils/Logger.h"
+#include "Utils/Callback.h"
+
 using namespace Logs::Model;
 using namespace Logs::List;
 using namespace Logs::Details;
@@ -36,6 +39,25 @@ LogsView::LogsView(FilterType filterType)
 	  m_Mode(ItemMode::Default),
 	  m_FilterType(filterType)
 {
+	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
+	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
+	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_TIME_CHANGED, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
+}
+
+LogsView::~LogsView()
+{
+	system_settings_unset_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR);
+	system_settings_unset_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY);
+	system_settings_unset_changed_cb(SYSTEM_SETTINGS_KEY_TIME_CHANGED);
+}
+
+void LogsView::onSettingsChanged(system_settings_key_e key)
+{
+	if (key == SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY ||
+			key == SYSTEM_SETTINGS_KEY_TIME_CHANGED) {
+		elm_genlist_clear(m_Genlist->getEvasObject());
+		fillGenlist();
+	}
 }
 
 Evas_Object *LogsView::onCreate(Evas_Object *parent)
@@ -81,13 +103,15 @@ void LogsView::onSelectViewBy()
 	Ui::RadioPopup *popup = new Ui::RadioPopup();
 	popup->create(getEvasObject());
 	popup->setTitle("IDS_CLOG_OPT_VIEW_BY");
-	popup->setSelectedItem(m_FilterType);
 	popup->addItem("IDS_LOGS_BODY_ALL_CALLS", (void *) FilterAll);
 	popup->addItem("IDS_LOGS_OPT_MISSED_CALLS", (void *) FilterMissed);
+	popup->setSelectedItem(m_FilterType);
 	popup->setSelectedCallback([this](void *data) {
-		elm_genlist_clear(m_Genlist->getEvasObject());
-		m_FilterType = (FilterType)(long)data;
-		fillGenlist();
+		if (m_FilterType != (FilterType)(long)data) {
+			elm_genlist_clear(m_Genlist->getEvasObject());
+			m_FilterType = (FilterType)(long)data;
+			fillGenlist();
+		}
 	});
 }
 
@@ -106,6 +130,10 @@ void LogsView::fillGenlist()
 		}
 	}
 
+	if (!elm_genlist_items_count(m_Genlist->getEvasObject())) {
+		return;
+	}
+
 	groupItem = dynamic_cast<LogGroupItem *>(m_Genlist->getFirstItem());
 	groupItem->scrollTo(ELM_GENLIST_ITEM_SCROLLTO_TOP);
 }
@@ -119,7 +147,8 @@ bool LogsView::shouldDisplayLogs(const LogGroup &group)
 			return (type == CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN ||
 					type == CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN);
 		}
-			break;
+		break;
+
 		default:
 			return true;
 	}
