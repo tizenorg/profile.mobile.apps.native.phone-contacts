@@ -24,6 +24,7 @@ Evas_Object *Genlist::onCreate(Evas_Object *parent)
 {
 	Evas_Object *genlist = elm_genlist_add(parent);
 	elm_genlist_mode_set(genlist, ELM_LIST_COMPRESS);
+	elm_genlist_homogeneous_set(genlist, EINA_TRUE);
 
 	evas_object_smart_callback_add(genlist, "selected",
 			(Evas_Smart_Cb) &Genlist::onItemSelected, this);
