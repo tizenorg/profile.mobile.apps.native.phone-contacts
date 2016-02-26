@@ -26,13 +26,13 @@
 
 #define APP_CONTROL_MIME_CONTACT "application/vnd.tizen.contact"
 
-#define APP_CONTROL_SELECT_SINGLE "single"
+#define APP_CONTROL_SELECT_SINGLE   "single"
 #define APP_CONTROL_SELECT_MULTIPLE "multiple"
 
-#define APP_CONTROL_RESULT_ID "id"
-#define APP_CONTROL_RESULT_PHONE "phone"
-#define APP_CONTROL_RESULT_EMAIL "email"
-#define APP_CONTROL_RESULT_VCARD "vcf"
+#define APP_CONTROL_RESULT_ID       "id"
+#define APP_CONTROL_RESULT_PHONE    "phone"
+#define APP_CONTROL_RESULT_EMAIL    "email"
+#define APP_CONTROL_RESULT_VCARD    "vcf"
 
 namespace App
 {
@@ -130,6 +130,14 @@ namespace App
 	 * @return First string from array on success, otherwise empty string.
 	 */
 	std::string EXPORT_API getSingleExtraData(app_control_h appControl, const char *key);
+
+	/**
+	 * @brief Get integer value from App Control array extra data.
+	 * @param[in]   appControl  App Control handle
+	 * @param[in]   key         Extra data array key
+	 * @return Integer value.
+	 */
+	int EXPORT_API getIntExtraData(app_control_h appControl, const char *key);
 
 	/**
 	 * @brief Get vector of integer values from App Control array extra data.
