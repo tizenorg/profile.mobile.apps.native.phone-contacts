@@ -18,6 +18,7 @@
 #ifndef LOGS_LIST_LOGS_VIEW_H
 #define LOGS_LIST_LOGS_VIEW_H
 
+#include "App/AppControl.h"
 #include "Ui/View.h"
 #include "Logs/Model/LogProvider.h"
 #include <system_settings.h>
@@ -80,6 +81,8 @@ namespace Logs
 			Ui::Genlist *m_Genlist;
 			ItemMode m_Mode;
 			FilterType m_FilterType;
+
+			App::AppControl m_AppControl;
 		};
 	}
 }
