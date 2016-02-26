@@ -20,6 +20,8 @@
 #include "Logs/List/LogItem.h"
 #include "Logs/Details/DetailsView.h"
 
+#include "App/AppControlRequest.h"
+
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
@@ -191,6 +193,15 @@ LogItem *LogsView::createLogItem(LogGroup *group)
 		delete item;
 		if (itemGroup->empty()) {
 			delete itemGroup;
+		}
+	});
+
+	item->setSelectCallback([this, group]() {
+		const char *number = group->getLogList().back()->getNumber();
+		if (number) {
+			App::AppControl appControl = App::requestTelephonyCall(number);
+			appControl.launch(nullptr, nullptr, false);
+			appControl.detach();
 		}
 	});
 
