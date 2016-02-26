@@ -52,12 +52,17 @@ namespace Utils
 		/**
 		 * @return I18n string
 		 */
-		const I18nString &getI18nStr() const;
+		I18nString &getI18nStr();
 
 		/**
 		 * @return UTF8 multibyte string
 		 */
-		const std::string &getUtf8Str() const;
+		std::string &getUtf8Str();
+
+		/**
+		 * @brief Erases the contents of the string
+		 */
+		void clear();
 
 	private:
 		static std::string toUtf8(const I18nString &ustring);

@@ -47,6 +47,7 @@ namespace Contacts
 		 */
 		enum ChangedInfo
 		{
+			ChangedNone     = 0,      /**< Nothing was changed */
 			ChangedName     = 1 << 0, /**< Name has changed */
 			ChangedNumber   = 1 << 1, /**< Number has changed */
 			ChangedImage    = 1 << 2  /**< Image path has changed */
