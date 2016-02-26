@@ -20,6 +20,8 @@
 
 #include "Ui/GenlistCheckItem.h"
 
+#define PART_LOG_TIME           "elm.text.sub.end"
+
 namespace Logs
 {
 	namespace Model
@@ -79,11 +81,6 @@ namespace Logs
 			 * @brief Get group
 			 */
 			Model::LogGroup *getGroup() const;
-
-			/**
-			 * @brief Remove group
-			 */
-			void removeGroup();
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
