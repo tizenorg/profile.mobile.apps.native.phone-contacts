@@ -19,12 +19,12 @@
 
 using namespace Contacts;
 
-ContactData::ContactData(ContactDataType type)
+ContactData::ContactData(Type type)
 	: m_Type(type)
 {
 }
 
-ContactData::ContactDataType ContactData::getType() const
+ContactData::Type ContactData::getType() const
 {
 	return m_Type;
 }

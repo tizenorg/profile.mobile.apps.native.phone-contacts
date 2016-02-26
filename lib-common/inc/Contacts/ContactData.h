@@ -33,9 +33,9 @@ namespace Contacts
 	{
 	public:
 		/**
-		 * @brief Determine ContactData object type
+		 * @brief Determine object type
 		 */
-		enum ContactDataType
+		enum Type
 		{
 			TypeSpeeddial,  /**< Speeddial number */
 			TypeLog,        /**< Log number */
@@ -67,7 +67,7 @@ namespace Contacts
 		 * @brief Create ContactData object
 		 * @param[in]   type    ContactData type
 		 */
-		ContactData(ContactDataType type);
+		ContactData(Type type);
 		virtual ~ContactData() { }
 
 		/**
@@ -93,7 +93,7 @@ namespace Contacts
 		/**
 		 * @return ContactData type
 		 */
-		ContactDataType getType() const;
+		Type getType() const;
 
 		/**
 		 * @brief Determine if object searchable string contains @a str
@@ -136,7 +136,7 @@ namespace Contacts
 		void onDeleted();
 
 	private:
-		ContactDataType m_Type;
+		Type m_Type;
 		UpdateCallback m_OnUpdated;
 		DeleteCallback m_OnDeleted;
 	};
