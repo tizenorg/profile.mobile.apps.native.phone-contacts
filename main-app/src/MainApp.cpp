@@ -25,10 +25,10 @@
 #include "Utils/Logger.h"
 
 #include "OperationDefaultController.h"
+#include "OperationPickController.h"
 /* TODO:
 #include "OperationEditController.h"
 #include "OperationViewController.h"
-#include "OperationPickController.h"
  */
 
 MainApp::MainApp()
@@ -80,19 +80,19 @@ void MainApp::onAppControl(app_control_h request)
 		m_Controller = nullptr;
 
 		switch (operation) {
-			case OPERATION_DEFAULT:
-			case OPERATION_DIAL:
+			case OperationDefault:
+			case OperationDial:
 				m_Controller = new OperationDefaultController();
 				break;
-			case OPERATION_ADD:
-			case OPERATION_EDIT:
+			case OperationAdd:
+			case OperationEdit:
 				/* TODO: m_Controller = new OperationEditController(); */
 				break;
-			case OPERATION_VIEW:
+			case OperationView:
 				/* TODO: m_Controller = new OperationViewController(); */
 				break;
-			case OPERATION_PICK:
-				/* TODO: m_Controller = new OperationPickController(); */
+			case OperationPick:
+				m_Controller = new OperationPickController();
 				break;
 		}
 

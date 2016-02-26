@@ -131,6 +131,22 @@ std::string App::getSingleExtraData(app_control_h appControl, const char *key)
 	return result;
 }
 
+int App::getIntExtraData(app_control_h appControl, const char *key)
+{
+	int result = 0;
+	char *resultStr = nullptr;
+
+	int err = app_control_get_extra_data(appControl, key, &resultStr);
+	RETVM_IF_ERR(err, result, "app_control_get_extra_data_array() failed.");
+
+	if (resultStr) {
+		result = atoi(resultStr);
+		free(resultStr);
+	}
+
+	return result;
+}
+
 std::vector<int> App::getIntExtraDataArray(app_control_h appControl, const char *key)
 {
 	std::vector<int> result;

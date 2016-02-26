@@ -22,12 +22,12 @@
 
 enum Operation
 {
-	OPERATION_DEFAULT = 1 << 0,
-	OPERATION_DIAL    = 1 << 1,
-	OPERATION_ADD     = 1 << 2,
-	OPERATION_EDIT    = 1 << 3,
-	OPERATION_VIEW    = 1 << 4,
-	OPERATION_PICK    = 1 << 5
+	OperationDefault = 1 << 0,
+	OperationDial    = 1 << 1,
+	OperationAdd     = 1 << 2,
+	OperationEdit    = 1 << 3,
+	OperationView    = 1 << 4,
+	OperationPick    = 1 << 5
 };
 
 class MainApp;

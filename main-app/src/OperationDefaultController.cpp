@@ -32,7 +32,7 @@
 #define PREFERENCE_KEY_LAST_TAB "last_tab"
 
 OperationDefaultController::OperationDefaultController()
-	: OperationController(OPERATION_DEFAULT | OPERATION_DIAL),
+	: OperationController(OperationDefault | OperationDial),
 	  m_Navigator(nullptr), m_Tabs{nullptr}
 {
 }
@@ -63,7 +63,7 @@ void OperationDefaultController::onRequest(Operation operation, app_control_h re
 	app_control_get_app_id(request, &appId);
 
 	TabId selectedTab = TabContacts;
-	if (operation == OPERATION_DIAL) {
+	if (operation == OperationDial) {
 		auto dialer = static_cast<Phone::Dialer::DialerView *>(m_Tabs[TabDialer]);
 		dialer->setNumber(getPhoneNumber(request));
 		selectedTab = TabDialer;
