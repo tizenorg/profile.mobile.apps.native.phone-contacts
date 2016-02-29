@@ -44,6 +44,11 @@ void GenlistCheckItem::setCheckCallback(CheckCallback callback)
 	m_OnChecked = std::move(callback);
 }
 
+void GenlistCheckItem::updateCheckPart()
+{
+	elm_genlist_item_fields_update(getObjectItem(), m_CheckPart.c_str(), ELM_GENLIST_ITEM_FIELD_CONTENT);
+}
+
 Evas_Object *GenlistCheckItem::getContent(Evas_Object *parent, const char *part)
 {
 	m_CheckPart = part;
