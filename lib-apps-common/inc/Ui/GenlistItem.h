@@ -44,6 +44,11 @@ namespace Ui
 		bool isRealized() const;
 
 		/**
+		 * @return Whether the item is inserted into genlist.
+		 */
+		bool isInserted() const;
+
+		/**
 		 * @return Whether the item is a group item.
 		 */
 		virtual bool isGroupItem() const { return false; }

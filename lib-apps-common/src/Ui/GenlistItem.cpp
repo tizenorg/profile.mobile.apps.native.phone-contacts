@@ -40,6 +40,11 @@ bool GenlistItem::isRealized() const
 	return m_IsRealized;
 }
 
+bool GenlistItem::isInserted() const
+{
+	return m_Item != nullptr;
+}
+
 Elm_Object_Item *GenlistItem::getObjectItem() const
 {
 	return m_Item;
