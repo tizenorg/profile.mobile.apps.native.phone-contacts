@@ -24,8 +24,8 @@
 #include "Ui/Scale.h"
 #include "Utils/Callback.h"
 
-#include "DetailsItemLayout.h"
-#include "DetailsItemLayoutMetrics.h"
+#include "ContactsDetailsItemLayout.h"
+#include "ContactsDetailsItemLayoutMetrics.h"
 
 using namespace Contacts::Details;
 using namespace Contacts::Model;

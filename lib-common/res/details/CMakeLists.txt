@@ -1,5 +1,5 @@
-set(EDCFILES dummy.edc)
-set(EDJDIR "${RES_DIR}/common/edje")
+set(EDCFILES details-item-layout.edc)
+set(EDJDIR "${RES_DIR}/details/edje")
 
 foreach(EDCFILE ${EDCFILES})
 	get_filename_component(EDJFILE ${EDCFILE} NAME_WE)

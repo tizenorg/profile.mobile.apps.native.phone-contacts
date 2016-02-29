@@ -15,17 +15,14 @@
  *
  */
 
-#include "DetailsItemLayout.h"
-#include "DetailsItemLayoutMetrics.h"
+#include "ContactsDetailsItemLayout.h"
+#include "ContactsDetailsItemLayoutMetrics.h"
 
 #include "../../../../lib-apps-common/res/apps-common/edje/apps-common-colors.edc"
 #include "../../../../lib-apps-common/res/apps-common/edje/apps-common-utils.edc"
+#include "../../../../lib-common/res/details/edje/details-item-layout.edc"
 
 styles {
-	style {
-		name: "name_style";
-		base: "font=Tizen:style=Light font_size="NAME_TEXT_SIZE" align=center wrap=mixed color=#fafafa ellipsis=1.0";
-	}
 	style {
 		name: "phonetic_name_style";
 		base: "font=Tizen:style=Light font_size="PHONETIC_NAME_TEXT_SIZE" align=center wrap=mixed color=#fafafa ellipsis=1.0";
@@ -50,48 +47,17 @@ collections
 			"touch_icon_normal", "touch_icon_pressed");
 
 	group {
-		name: "elm/genlist/item/"DETAILS_ITEM_STYLE"/default";
-		alias: "elm/genlist/item_compress/"DETAILS_ITEM_STYLE"/default";
-		alias: "elm/genlist/tree/"DETAILS_ITEM_STYLE"/default";
-		alias: "elm/genlist/tree_compress/"DETAILS_ITEM_STYLE"/default";
+		name: "elm/genlist/item/"CONTACTS_DETAILS_ITEM_STYLE"/default";
+		alias: "elm/genlist/item_compress/"CONTACTS_DETAILS_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree/"CONTACTS_DETAILS_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree_compress/"CONTACTS_DETAILS_ITEM_STYLE"/default";
+		inherit: "elm/genlist/item/"DETAILS_ITEM_STYLE"/default";
 
 		data.item: "texts" PART_NAME" "PART_PHONETIC_NAME" "PART_COMPANY;
 		data.item: "contents" PART_BACK_BTN" "PART_FAV_BTN" "PART_THUMBNAIL;
 		data.item: "states" PART_PHONETIC_NAME" "PART_COMPANY;
 
 		parts {
-			spacer { "spacer.top"; scale;
-				desc { "default";
-					min: 0 PAD_T;
-					align: 0.5 0.0;
-					rel1.relative: 0.0 0.0;
-					rel2.relative: 1.0 0.0;
-				}
-			}
-			spacer { "spacer.left"; scale;
-				desc { "default";
-					min: PAD_L 0;
-					align: 0.0 0.5;
-					rel1.relative: 0.0 0.0;
-					rel2.relative: 0.0 1.0;
-				}
-			}
-			spacer { "spacer.right"; scale;
-				desc { "default";
-					min: PAD_R 0;
-					align: 1.0 0.5;
-					rel1.relative: 1.0 0.0;
-					rel2.relative: 1.0 1.0;
-				}
-			}
-			swallow { PART_BACK_BTN; scale;
-				desc { "default";
-					min: BTN_SIZE;
-					max: BTN_SIZE;
-					align: 0.0 0.0;
-					rel1 { relative: 1.0 1.0; to_x: "spacer.left"; to_y: "spacer.top"; }
-				}
-			}
 			swallow { PART_FAV_BTN; scale;
 				desc { "default";
 					min: BTN_SIZE;
@@ -99,59 +65,6 @@ collections
 					align: 1.0 0.0;
 					rel1 { relative: 0.0 1.0; to_y: "spacer.top"; }
 					rel2 { relative: 0.0 1.0; to_x: "spacer.right"; }
-				}
-			}
-			spacer { "spacer.thumbnail.top"; scale;
-				desc { "default";
-					min: 0 THUMBNAIL_PAD_T;
-					align: 0.5 0.0;
-					rel1.relative: 0.0 0.0;
-					rel2.relative: 1.0 0.0;
-				}
-			}
-			swallow { PART_THUMBNAIL; scale;
-				desc { "default";
-					align: 0.5 0.0;
-					min: THUMBNAIL_SIZE;
-					max: THUMBNAIL_SIZE;
-					rel1 { relative: 0.0 1.0; to_y: "spacer.thumbnail.top"; }
-				}
-			}
-			spacer { "spacer.text.left"; scale;
-				desc { "default";
-					min: TEXT_PAD_X 0;
-					align: 0.0 0.5;
-					rel1.relative: 0.0 0.0;
-					rel2.relative: 0.0 1.0;
-				}
-			}
-			spacer { "spacer.text.right"; scale;
-				desc { "default";
-					min: TEXT_PAD_X 0;
-					align: 1.0 0.5;
-					rel1.relative: 1.0 0.0;
-					rel2.relative: 1.0 1.0;
-				}
-			}
-			spacer { "spacer.name.top"; scale;
-				desc { "default";
-					min: 0 TEXT_PAD_Y;
-					align: 0.5 0.0;
-					rel1 { relative: 0.0 1.0; to_y: PART_THUMBNAIL; }
-					rel2 { relative: 1.0 1.0; to_y: PART_THUMBNAIL; }
-				}
-			}
-			textblock { PART_NAME; scale;
-				desc { "default";
-					min: 0 NAME_H;
-					max: -1 NAME_H;
-					align: 0.5 0.0;
-					rel1 { relative: 1.0 1.0; to_x: "spacer.text.left"; to_y: "spacer.name.top"; }
-					rel2 { relative: 0.0 1.0; to_x: "spacer.text.right"; }
-					text {
-						align: 0.5 0.0;
-						style: "name_style";
-					}
 				}
 			}
 			spacer { "spacer.phonetic_name.top"; scale;

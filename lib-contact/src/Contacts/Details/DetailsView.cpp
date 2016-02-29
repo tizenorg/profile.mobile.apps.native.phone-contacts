@@ -32,7 +32,7 @@
 #include "Utils/Logger.h"
 #include "Utils/Range.h"
 
-#include "DetailsItemLayout.h"
+#include "ContactsDetailsItemLayout.h"
 
 #include <app_i18n.h>
 
