@@ -30,6 +30,10 @@ GenlistItem::GenlistItem()
 
 GenlistItem::~GenlistItem()
 {
+	if (m_OnDestroy) {
+		m_OnDestroy();
+	}
+
 	if (m_Item) {
 		pop();
 	}
@@ -38,6 +42,11 @@ GenlistItem::~GenlistItem()
 bool GenlistItem::isRealized() const
 {
 	return m_IsRealized;
+}
+
+bool GenlistItem::isInserted() const
+{
+	return m_Item != nullptr;
 }
 
 Elm_Object_Item *GenlistItem::getObjectItem() const
@@ -73,6 +82,11 @@ GenlistItem *GenlistItem::getPrevItem() const
 void GenlistItem::setSelectCallback(SelectCallback callback)
 {
 	m_OnSelected = std::move(callback);
+}
+
+void GenlistItem::setDestroyCallback(DestroyCallback callback)
+{
+	m_OnDestroy = std::move(callback);
 }
 
 void GenlistItem::scrollTo(Elm_Genlist_Item_Scrollto_Type position, bool isAnimated)

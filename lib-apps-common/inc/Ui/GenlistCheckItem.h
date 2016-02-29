@@ -55,6 +55,11 @@ namespace Ui
 
 	protected:
 		/**
+		 * @brief Update the part containing check component.
+		 */
+		void updateCheckPart();
+
+		/**
 		 * @see GenlistItem::getContent()
 		 * @remark Use it in derived class to create check component
 		 */

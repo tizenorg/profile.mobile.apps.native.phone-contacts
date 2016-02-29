@@ -37,7 +37,7 @@ NaviframePage::~NaviframePage()
 void NaviframePage::setTitle(const char *title)
 {
 	elm_object_item_translatable_part_text_set(m_NaviItem, "elm.text.title", title);
-	elm_naviframe_item_title_enabled_set(m_NaviItem, title != nullptr, EINA_TRUE);
+	elm_naviframe_item_title_enabled_set(m_NaviItem, title && *title, EINA_TRUE);
 }
 
 void NaviframePage::setStyle(const char *style)
