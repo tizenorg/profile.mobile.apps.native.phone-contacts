@@ -35,6 +35,11 @@ namespace Ui
 		 */
 		typedef std::function<void()> SelectCallback;
 
+		/**
+		 * @brief Called before item is destroyed.
+		 */
+		typedef std::function<void()> DestroyCallback;
+
 		GenlistItem();
 		virtual ~GenlistItem();
 
@@ -42,6 +47,11 @@ namespace Ui
 		 * @return Whether the item is realized.
 		 */
 		bool isRealized() const;
+
+		/**
+		 * @return Whether the item is inserted into genlist.
+		 */
+		bool isInserted() const;
 
 		/**
 		 * @return Whether the item is a group item.
@@ -88,6 +98,12 @@ namespace Ui
 		 * @param[in]   callback    Callback to be called when item is selected
 		 */
 		void setSelectCallback(SelectCallback callback);
+
+		/**
+		 * @brief Set item destruction callback.
+		 * @param[in]   callback    Callback to be called before item is destroyed
+		 */
+		void setDestroyCallback(SelectCallback callback);
 
 		/**
 		 * @brief Scroll genlist to item.
@@ -196,6 +212,7 @@ namespace Ui
 		bool m_IsFocusPending;
 
 		SelectCallback m_OnSelected;
+		DestroyCallback m_OnDestroy;
 	};
 }
 
