@@ -20,8 +20,8 @@
 
 #include "Contacts/List/Model/PersonProvider.h"
 #include "Contacts/List/PersonItem.h"
+#include "Contacts/Common/SelectView.h"
 
-#include "Ui/View.h"
 #include "Utils/UniString.h"
 
 #include <map>
@@ -44,7 +44,7 @@ namespace Contacts
 		/**
 		 * @brief Contacts list view
 		 */
-		class EXPORT_API ListView : public Ui::View
+		class EXPORT_API ListView : public SelectView
 		{
 		public:
 			/**
@@ -54,33 +54,11 @@ namespace Contacts
 			ListView(int filterType = FilterNone);
 			virtual ~ListView() override;
 
-			/**
-			 * @brief Set selection mode.
-			 * @param[in]   selectMode  Item selection mode
-			 */
-			void setSelectMode(SelectMode selectMode);
-
-			/**
-			 * @brief Set item selection limit
-			 * @remark Used only in ModeMultiSelectWithLimit view mode
-			 * @param[in]   count   Maximal selectable items count
-			 */
-			void setSelectLimit(size_t count);
-
-			/**
-			 * @brief Set view result callback
-			 * @remark Used in Singlepick/Multipick view modes
-			 * @param[in]   callback    Done pressed callback
-			 */
-			void setSelectCallback(SelectCallback callback);
-
 		private:
 			enum SectionId
 			{
 				SectionFirst,
-				SectionSearch = SectionFirst,
-				SectionSelectAll,
-				SectionMyProfile,
+				SectionMyProfile = SectionFirst,
 				SectionFavorites,
 				SectionMfc,
 				SectionPerson,
@@ -92,30 +70,27 @@ namespace Contacts
 			virtual void onCreated() override;
 			virtual void onMenuPressed() override;
 
-			void fillSearchItem();
-			void fillSelectAllItem();
+			virtual const char *getPageTitle() override;
+			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onSelectModeChanged(SelectMode selectMode) override;
+
 			void fillMyProfile();
 			void fillFavorites();
 			void fillMfc();
 			void fillPersonList();
 
 			void setFavouriteItemsMode(SelectMode selectMode);
-			void setPersonItemsMode(SelectMode selectMode);
 
 			void addSection(SectionId sectionId);
 			void removeSection(SectionId sectionId);
 			Ui::GenlistItem *getNextSectionItem(SectionId currentSection);
 			bool getSectionVisibility(SelectMode selectMode, SectionId sectionId);
 
-			void updateTitle();
-			void updateSelectAllState();
 			void updatePageMode();
 			void updateSectionsMode();
 
 			void createAddButton();
 			void deleteAddButton();
-			void createPageButtons();
-			void deletePageButtons();
 
 			void insertMyProfileGroupItem();
 			void updateMyProfileItem(const char *view_uri);
@@ -135,44 +110,23 @@ namespace Contacts
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
 
-			void launchPersonDetail(PersonItem *item);
+			virtual void onItemPressed(SelectItem *item) override;
+			void onAddPressed(Evas_Object *button, void *eventInfo);
 
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
-			void onAddPressed(Evas_Object *button, void *eventInfo);
-			void onDonePressed(Evas_Object *button, void *eventInfo);
-			void onCancelPressed(Evas_Object *button, void *eventInfo);
-
-			void onPersonItemInserted(PersonItem *item);
-			void onPersonItemDelete(PersonItem *item);
-
 			void onPersonInserted(Model::PersonPtr person);
 			void onPersonChanged(Model::PersonPtr person, contacts_changed_e changeType, PersonItem *item);
-			void onPersonSelected(const Model::Person &person);
-
-			void onSelectAllChecked(bool isChecked);
-			void onItemChecked(PersonItem *item, bool isChecked);
-			void onItemSelected(PersonItem *item);
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
-
 			Evas_Object *m_AddButton;
-			Evas_Object *m_DoneButton;
-			Evas_Object *m_CancelButton;
 
-			Ui::GenlistItem *m_Sections[SectionMax];
+			Ui::GenlistGroupItem *m_Sections[SectionMax];
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
 
 			Model::PersonProvider m_Provider;
-
-			size_t m_PersonCount;
-			size_t m_SelectCount;
-			size_t m_SelectLimit;
-
-			SelectMode m_SelectMode;
-			SelectCallback m_OnSelected;
 		};
 	}
 }
