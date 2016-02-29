@@ -48,6 +48,11 @@ const LogProvider::LogGroupList &LogProvider::getLogGroupList()
 	return m_Groups;
 }
 
+void LogProvider::removeLogGroups()
+{
+	m_Groups.clear();
+}
+
 void LogProvider::setInsertCallback(InsertCallback callback)
 {
 	m_InsertCallback = std::move(callback);
@@ -148,7 +153,6 @@ contacts_list_h LogProvider::fetchLogList()
 void LogProvider::onLogChanged(const char *viewUri)
 {
 	LogList newLogList;
-
 	fillList(newLogList);
 
 	LogIterator newIt = newLogList.begin();
@@ -267,14 +271,5 @@ void LogProvider::addNewLogs(LogIterator &newIt, LogList &newLogList)
 
 void LogProvider::onContactChanged(const char *viewUri)
 {
-	contacts_list_h changes = nullptr;
-	contacts_db_get_changes_by_version(_contacts_contact_updated_info._uri, 0, m_DbVersion, &changes, &m_DbVersion);
-
-	contacts_record_h record = nullptr;
-	CONTACTS_LIST_FOREACH(changes, record) {
-		/*
-		 * TODO
-		 */
-	}
-	contacts_list_destroy(changes, true);
+/* TODO*/
 }

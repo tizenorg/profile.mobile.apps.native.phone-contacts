@@ -84,6 +84,11 @@ namespace Logs
 			const LogGroupList &getLogGroupList();
 
 			/**
+			 * @brief Remove log group list
+			 */
+			void removeLogGroups();
+
+			/**
 			 * @brief Set new log callback
 			 * @param[in]    callback    New Log callback
 			 */

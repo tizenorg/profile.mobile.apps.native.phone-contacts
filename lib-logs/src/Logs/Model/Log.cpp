@@ -32,7 +32,7 @@ Log::~Log()
 		m_Group->removeLog(this);
 	}
 	contacts_record_destroy(m_LogRecord, true);
-	if (m_ContactRecord != nullptr) {
+	if (m_ContactRecord) {
 		contacts_record_destroy(m_ContactRecord, true);
 	}
 }
@@ -40,7 +40,7 @@ Log::~Log()
 const char *Log::getName() const
 {
 	char *name = nullptr;
-	if (m_ContactRecord != nullptr) {
+	if (m_ContactRecord) {
 		contacts_record_get_str_p(m_ContactRecord, _contacts_person.display_name, &name);
 	}
 	return name;
@@ -56,7 +56,7 @@ const char *Log::getNumber() const
 const char *Log::getImagePath() const
 {
 	char *path = nullptr;
-	if (m_ContactRecord != nullptr) {
+	if (m_ContactRecord) {
 		contacts_record_get_str_p(m_ContactRecord, _contacts_person.image_thumbnail_path, &path);
 	}
 	return path;
@@ -76,10 +76,7 @@ tm Log::getTime() const
 	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_time, &time);
 
 	time_t logTime = time;
-	struct tm logDate;
-
-	localtime_r(&logTime, &logDate);
-	return logDate;
+	return *localtime(&logTime);
 }
 
 int Log::getId() const
@@ -114,6 +111,13 @@ void Log::setLogGroup(LogGroup *group)
 LogGroup *Log::getLogGroup() const
 {
 	return m_Group;
+}
+
+void Log::update()
+{
+	int id = getId();
+	contacts_record_destroy(m_LogRecord, true);
+	contacts_db_get_record(_contacts_phone_log._uri, id, &m_LogRecord);
 }
 
 void Log::remove()
