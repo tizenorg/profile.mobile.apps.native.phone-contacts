@@ -121,6 +121,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-logs/res/logs/edje}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-common/res/details/edje}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-logs/res/details/edje}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-apps-common/res/apps-common/edje}&quot;"/>
 								</option>
 								<option id="sbi.gnu.cpp.compiler.option.frameworks.core.738575116" name="Tizen-Frameworks" superClass="sbi.gnu.cpp.compiler.option.frameworks.core" valueType="userObjs">
 									<listOptionValue builtIn="false" value="Native_API"/>
