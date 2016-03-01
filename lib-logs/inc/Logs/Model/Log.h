@@ -88,6 +88,11 @@ namespace Logs
 			LogGroup *getLogGroup() const;
 
 			/**
+			 * @brief Update record
+			 */
+			void update();
+
+			/**
 			 * @return Remove log from database
 			 */
 			void remove();
