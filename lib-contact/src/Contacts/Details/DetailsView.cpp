@@ -63,33 +63,9 @@ namespace
 }
 
 DetailsView::DetailsView(int recordId, Type type, int filterType)
-	: m_RecordId(recordId), m_Contact(ContactObjectType(type)),
-	  m_FilterType(filterType), m_SelectMode(SelectNone),
-	  m_DoneButton(nullptr), m_CancelButton(nullptr),
-	  m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_Items{nullptr}, m_SelectCount(0)
+	: m_RecordId(recordId), m_Contact(ContactObjectType(type)), m_FilterType(filterType),
+	  m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_Items{nullptr}
 {
-}
-
-void DetailsView::setSelectCallback(SelectCallback callback)
-{
-	m_OnSelected = std::move(callback);
-}
-
-void DetailsView::setSelectMode(SelectMode mode)
-{
-	m_SelectMode = mode;
-
-	if (m_BasicInfoItem) {
-		m_BasicInfoItem->setSelectMode(mode);
-
-		auto item = m_BasicInfoItem->getNextItem();
-		for (; item; item = item->getNextItem()) {
-			FieldItem *fieldItem = static_cast<FieldItem *>(item);
-			fieldItem->setSelectMode(mode);
-		}
-	}
-
-	updatePageMode();
 }
 
 Evas_Object *DetailsView::onCreate(Evas_Object *parent)
@@ -109,7 +85,7 @@ void DetailsView::onCreated()
 	RETM_IF_ERR(err, "Contact::initialize() failed.");
 
 	m_BasicInfoItem = new BasicInfoItem(m_Contact);
-	m_BasicInfoItem->setSelectMode(m_SelectMode);
+	m_BasicInfoItem->setSelectMode(getSelectMode());
 	m_Genlist->insert(m_BasicInfoItem);
 
 	for (auto &&field : m_Contact) {
@@ -141,14 +117,9 @@ void DetailsView::onCreated()
 	}
 }
 
-void DetailsView::onPageAttached()
-{
-	updatePageMode();
-}
-
 void DetailsView::onMenuPressed()
 {
-	if (m_SelectMode != SelectNone) {
+	if (getSelectMode() != SelectNone) {
 		return;
 	}
 
@@ -186,72 +157,15 @@ void DetailsView::onMenuPressed()
 	menu->show();
 }
 
-void DetailsView::createPageButtons()
+void DetailsView::onSelectAllInsert(Ui::GenlistItem *item)
 {
-	m_DoneButton = elm_button_add(getEvasObject());
-	elm_object_style_set(m_DoneButton, "naviframe/title_right");
-	elm_object_translatable_text_set(m_DoneButton, "IDS_PB_BUTTON_DONE_ABB3");
-	evas_object_smart_callback_add(m_DoneButton, "clicked",
-			makeCallback(&DetailsView::onDonePressed), this);
-
-	m_CancelButton = elm_button_add(getEvasObject());
-	elm_object_style_set(m_CancelButton, "naviframe/title_left");
-	elm_object_translatable_text_set(m_CancelButton, "IDS_PB_BUTTON_CANCEL");
-	evas_object_smart_callback_add(m_CancelButton, "clicked",
-			makeCallback(&DetailsView::onCancelPressed), this);
+	m_Genlist->insert(item, nullptr, m_BasicInfoItem, Ui::Genlist::After);
 }
 
-void DetailsView::destroyPageButtons()
+void DetailsView::onSelectModeChanged(SelectMode selectMode)
 {
-	evas_object_del(m_DoneButton);
-	evas_object_del(m_CancelButton);
-
-	m_DoneButton = nullptr;
-	m_CancelButton = nullptr;
-}
-
-void DetailsView::updatePageTitle()
-{
-	Ui::NavigatorPage *page = getPage();
-	switch (m_SelectMode) {
-		case SelectNone:
-			page->setTitle(nullptr);
-			break;
-
-		case SelectSingle:
-			page->setTitle("IDS_PB_HEADER_SELECT");
-			break;
-
-		case SelectMulti:
-		{
-			char title[TITLE_SIZE];
-			snprintf(title, TITLE_SIZE, _("IDS_PB_HEADER_PD_SELECTED_ABB"), m_SelectCount);
-			page->setTitle(title);
-		}
-			break;
-	}
-}
-
-void DetailsView::updatePageMode()
-{
-	Ui::NavigatorPage *page = getPage();
-	if (!page) {
-		return;
-	}
-
-	updatePageTitle();
-
-	switch (m_SelectMode) {
-		case SelectNone:
-		case SelectSingle:
-			destroyPageButtons();
-			break;
-
-		case SelectMulti:
-			createPageButtons();
-			page->setContent("title_right_btn", m_DoneButton);
-			page->setContent("title_left_btn", m_CancelButton);
-			break;
+	if (m_BasicInfoItem) {
+		m_BasicInfoItem->setSelectMode(selectMode);
 	}
 }
 
@@ -274,10 +188,6 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 		item = new FieldItem(field);
 	}
 
-	item->setSelectMode(m_SelectMode);
-	item->setSelectCallback(std::bind(&DetailsView::onSingleSelected, this, _1));
-	item->setCheckCallback(std::bind(&DetailsView::onItemChecked, this, _1));
-
 	return item;
 }
 
@@ -298,6 +208,7 @@ FieldItem *DetailsView::addFieldItem(ContactObject &field)
 
 	FieldItem *item = createFieldItem(field);
 	m_Genlist->insert(item, nullptr, getNextFieldItem(fieldId));
+	onItemInserted(item);
 
 	if (!m_Items[fieldId]) {
 		m_Items[fieldId] = item;
@@ -312,6 +223,7 @@ FieldItem *DetailsView::addFieldItem(ContactObject &field)
 void DetailsView::removeFieldItem(FieldItem *item)
 {
 	ContactFieldId fieldId = ContactFieldId(item->getObject().getId());
+	onItemRemove(item);
 
 	if (item == m_Items[fieldId]) {
 		FieldItem *nextItem = static_cast<FieldItem *>(item->getNextItem());
@@ -326,37 +238,6 @@ void DetailsView::removeFieldItem(FieldItem *item)
 			this, nullptr, _1, _2));
 
 	delete item;
-}
-
-void DetailsView::onItemChecked(bool isChecked)
-{
-	m_SelectCount += isChecked ? 1 : -1;
-	updatePageTitle();
-}
-
-void DetailsView::onSingleSelected(SelectResult result)
-{
-	if (!m_OnSelected || m_OnSelected({ &result, 1 })) {
-		delete this;
-	}
-}
-
-void DetailsView::onMultiSelected()
-{
-	std::vector<SelectResult> results;
-
-	auto item = m_BasicInfoItem->getNextItem();
-	for (; item; item = item->getNextItem()) {
-		FieldItem *fieldItem = static_cast<FieldItem *>(item);
-		if (fieldItem && fieldItem->isChecked()) {
-			ContactObject &object = fieldItem->getObject();
-			results.push_back({ object.getSubType(), object.getRecordId()});
-		}
-	}
-
-	if (!m_OnSelected || m_OnSelected({ results.data(), results.size() })) {
-		delete this;
-	}
 }
 
 void DetailsView::onArrayUpdated(ContactField &field, contacts_changed_e change)
@@ -385,14 +266,4 @@ void DetailsView::onObjectUpdated(FieldItem *item, ContactField &field, contacts
 			removeFieldItem(item);
 		}
 	}
-}
-
-void DetailsView::onDonePressed(Evas_Object *button, void *eventInfo)
-{
-	onMultiSelected();
-}
-
-void DetailsView::onCancelPressed(Evas_Object *button, void *eventInfo)
-{
-	delete this;
 }
