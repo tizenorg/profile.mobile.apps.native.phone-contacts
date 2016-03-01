@@ -20,6 +20,7 @@
 #include "Logs/Model/LogGroup.h"
 #include "Logs/Details/DetailsView.h"
 #include "Utils/Callback.h"
+#include "Logs/Common/Utils.h"
 
 #include "App/Path.h"
 #include "Ui/Scale.h"
@@ -34,11 +35,11 @@
 
 #define BUFFER_SIZE             32
 #define LOG_TYPE_SIZE           50
+#define LOG_TIME_TEXT_SIZE      22
 
 #define PART_LOG_NAME           "elm.text"
 #define PART_LOG_NUMBER         "elm.text.sub"
 #define PART_LOG_COUNT          "elm.text.end"
-#define PART_LOG_TYPE           "elm.text.sub.end"
 
 #define PART_PERSON_THUMBNAIL   "elm.swallow.icon"
 #define PART_END                "elm.swallow.end"
@@ -87,11 +88,6 @@ LogGroup *LogItem::getGroup() const
 	return m_Group;
 }
 
-void LogItem::removeGroup()
-{
-	m_Group->remove();
-}
-
 char *LogItem::getText(Evas_Object *parent, const char *part)
 {
 	const Log *log = m_Group->getLogList().back();
@@ -112,10 +108,9 @@ char *LogItem::getText(Evas_Object *parent, const char *part)
 		char buffer[BUFFER_SIZE];
 		snprintf(buffer, sizeof(buffer), "(%zu)", m_Group->getLogList().size());
 		return strdup(buffer);
-	} else if (strcmp(part, PART_LOG_TYPE) == 0) {
-		tm date = log->getTime();
+	} else if (strcmp(part, PART_LOG_TIME) == 0) {
 		char buffer[BUFFER_SIZE];
-		strftime(buffer, sizeof(buffer), "%X", &date);
+		snprintf(buffer, sizeof(buffer), "<font_size=%d>%s</font_size>", LOG_TIME_TEXT_SIZE, Logs::Common::formatTime(log->getTime()).c_str());
 		return strdup(buffer);
 	}
 

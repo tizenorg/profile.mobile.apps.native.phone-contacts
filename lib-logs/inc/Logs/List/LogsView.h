@@ -20,6 +20,7 @@
 
 #include "Ui/View.h"
 #include "Logs/Model/LogProvider.h"
+#include <system_settings.h>
 
 namespace Ui
 {
@@ -56,11 +57,14 @@ namespace Logs
 			 */
 			LogsView(FilterType filterType = FilterAll);
 
+			virtual ~LogsView() override;
+
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
 
+			void onSettingsChanged(system_settings_key_e key);
 			void onSelectViewBy();
 			void fillGenlist();
 			bool shouldDisplayLogs(const Model::LogGroup &group);
