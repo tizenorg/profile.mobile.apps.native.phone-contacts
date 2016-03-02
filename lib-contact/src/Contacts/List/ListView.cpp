@@ -123,10 +123,9 @@ void ListView::onMenuPressed()
 	menu->create(getEvasObject());
 
 	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
-		ListView *deleteView = new ListView();
-		getNavigator()->navigateTo(deleteView);
-		deleteView->setSelectMode(SelectMulti);
-		deleteView->setSelectCallback([](SelectResults results) {
+		ListView *view = new ListView();
+		view->setSelectMode(SelectMulti);
+		view->setSelectCallback([](SelectResults results) {
 			std::vector<int> ids;
 			for (auto &&result : results) {
 				ids.push_back(result.itemId);
@@ -135,6 +134,7 @@ void ListView::onMenuPressed()
 			contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
 			return true;
 		});
+		getNavigator()->navigateTo(view);
 	});
 
 	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
