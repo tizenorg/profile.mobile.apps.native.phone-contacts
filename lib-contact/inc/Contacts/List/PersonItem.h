@@ -18,9 +18,8 @@
 #ifndef CONTACTS_LIST_PERSON_ITEM_H
 #define CONTACTS_LIST_PERSON_ITEM_H
 
-#include "Contacts/Common/SelectMode.h"
+#include "Contacts/Common/SelectItem.h"
 #include "Contacts/List/Model/Person.h"
-#include "Ui/GenlistCheckItem.h"
 #include <functional>
 
 #define PART_PERSON_NAME        "elm.text"
@@ -34,7 +33,7 @@ namespace Contacts
 		/**
 		 * @brief Person list item
 		 */
-		class PersonItem : public Ui::GenlistCheckItem
+		class PersonItem : public SelectItem
 		{
 		public:
 			/**
@@ -42,12 +41,6 @@ namespace Contacts
 			 * @param[in]   person      Person object
 			 */
 			explicit PersonItem(Model::PersonPtr person);
-
-			/**
-			 * @brief Set item selection mode
-			 * @param[in]   selectMode  Item selection mode
-			 */
-			void setSelectMode(SelectMode selectMode);
 
 			/**
 			 * @return Person object
@@ -63,9 +56,9 @@ namespace Contacts
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
+			virtual SelectResult getSelectResult() const override;
 
 			Model::PersonPtr m_Person;
-			SelectMode m_SelectMode;
 		};
 	}
 }
