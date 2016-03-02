@@ -18,7 +18,7 @@
 #ifndef CONTACTS_COMMON_CHOOSER_H
 #define CONTACTS_COMMON_CHOOSER_H
 
-#include "Contacts/Common/SelectMode.h"
+#include "Contacts/Common/ContactSelectTypes.h"
 #include "Ui/Naviframe.h"
 
 namespace Contacts

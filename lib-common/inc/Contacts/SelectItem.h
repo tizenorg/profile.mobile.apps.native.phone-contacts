@@ -18,7 +18,7 @@
 #ifndef CONTACTS_SELECT_ITEM_H
 #define CONTACTS_SELECT_ITEM_H
 
-#include "Contacts/Common/SelectMode.h"
+#include "Contacts/SelectTypes.h"
 #include "Ui/GenlistCheckItem.h"
 
 namespace Contacts
@@ -26,7 +26,7 @@ namespace Contacts
 	/**
 	 * @brief Genlist item for SelectView that supports selection mode switching.
 	 */
-	class SelectItem : public Ui::GenlistCheckItem
+	class EXPORT_API SelectItem : public Ui::GenlistCheckItem
 	{
 	public:
 		SelectItem();
