@@ -15,7 +15,7 @@
  *
  */
 
-#include "Contacts/Utils.h"
+#include "Contacts/ContactRecordChildIterator.h"
 
 namespace Contacts
 {
