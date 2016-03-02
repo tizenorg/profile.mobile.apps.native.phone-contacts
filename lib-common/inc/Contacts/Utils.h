@@ -14,12 +14,11 @@
  * limitations under the License.
  *
  */
+
 #ifndef CONTACTS_UTILS_H
 #define CONTACTS_UTILS_H
 
 #include <contacts.h>
-#include "Utils/Iterator.h"
-#include "Utils/Range.h"
 
 #define CONTACTS_LIST_FOREACH(list, record) \
 	bool success = (contacts_list_get_current_record_p(list, &record) == CONTACTS_ERROR_NONE); \
@@ -30,39 +29,17 @@
 
 namespace Contacts
 {
-	/**
-	 * @brief Iterator for child record property.
-	 */
-	class ContactRecordChildIterator :
-		public Utils::IndexIterator<ContactRecordChildIterator, contacts_record_h>
+	inline contacts_record_h getDisplayContact(contacts_record_h personRecord)
 	{
-	public:
-		/**
-		 * @brief Create child record iterator.
-		 * @param[in]   record      Record containing child records
-		 * @param[in]   property    Child record property ID
-		 * @param[in]   index       Child record index
-		 */
-		ContactRecordChildIterator(contacts_record_h record, int property, size_t index);
+		int id = 0;
+		contacts_record_get_int(personRecord, _contacts_person.display_contact_id, &id);
 
-		/**
-		 * @brief Dereference iterator.
-		 */
-		contacts_record_h operator*() const;
+		contacts_record_h contactRecord = nullptr;
+		contacts_db_get_record(_contacts_contact._uri, id, &contactRecord);
 
-	private:
-		contacts_record_h m_Record;
-		int m_Property;
-	};
-
-	/**
-	 * @see ContactRecordChildIterator::ContactRecordChildIterator()
-	 */
-	ContactRecordChildIterator begin(contacts_record_h record, int property);
-	ContactRecordChildIterator end(contacts_record_h record, int property);
-	Utils::Range<ContactRecordChildIterator> makeRange(contacts_record_h record, int property);
+		return contactRecord;
+	}
 }
 
-#include "Contacts/UtilsImpl.h"
 
 #endif /* CONTACTS_UTILS_H */

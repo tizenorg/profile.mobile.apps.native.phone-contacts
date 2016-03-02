@@ -20,14 +20,14 @@
 
 #include <memory>
 #include <tizen.h>
-#include <vector>
+#include <list>
 
 namespace Contacts
 {
 	class ContactData;
 
 	typedef std::unique_ptr<ContactData> ContactDataPtr;
-	typedef std::vector<ContactData *> ContactDataList;
+	typedef std::list<ContactData *> ContactDataList;
 
 	class EXPORT_API ContactData
 	{
@@ -43,13 +43,26 @@ namespace Contacts
 		};
 
 		/**
+		 * @brief Determine object fields
+		 */
+		enum Field
+		{
+			FieldFirst,
+			FieldName = FieldFirst, /**< Name */
+			FieldNumber,            /**< Number */
+			FieldImage,             /**< Image path */
+			FieldMax                /**< Sentinel value */
+		};
+
+		/**
 		 * @brief Represents ContactData changes on update event
 		 */
 		enum ChangedInfo
 		{
-			ChangedName     = 1 << 0, /**< Name has changed */
-			ChangedNumber   = 1 << 1, /**< Number has changed */
-			ChangedImage    = 1 << 2  /**< Image path has changed */
+			ChangedNone     = 0,                /**< Nothing was changed */
+			ChangedName     = 1 << FieldName,   /**< Name has changed */
+			ChangedNumber   = 1 << FieldNumber, /**< Number has changed */
+			ChangedImage    = 1 << FieldImage   /**< Image path has changed */
 		};
 
 		/**
