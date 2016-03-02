@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_PERSON_ITEM_H
 #define CONTACTS_LIST_PERSON_ITEM_H
 
-#include "Contacts/Common/SelectItem.h"
+#include "Contacts/SelectItem.h"
 #include "Contacts/List/Model/Person.h"
 #include <functional>
 

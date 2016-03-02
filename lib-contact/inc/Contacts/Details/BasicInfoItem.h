@@ -18,7 +18,7 @@
 #ifndef CONTACTS_DETAILS_BASIC_INFO_ITEM_H
 #define CONTACTS_DETAILS_BASIC_INFO_ITEM_H
 
-#include "Contacts/Common/SelectMode.h"
+#include "Contacts/SelectTypes.h"
 #include "Ui/GenlistItem.h"
 
 #include <contacts.h>

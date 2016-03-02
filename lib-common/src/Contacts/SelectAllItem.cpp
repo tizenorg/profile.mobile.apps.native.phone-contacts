@@ -15,40 +15,25 @@
  *
  */
 
-#include "Contacts/Common/SelectItem.h"
+#include "Contacts/SelectAllItem.h"
+#include <app_i18n.h>
 
 using namespace Contacts;
 
-SelectItem::SelectItem()
-	: m_SelectMode(SelectNone)
+char *SelectAllItem::getText(Evas_Object *parent, const char *part)
 {
-}
-
-SelectMode SelectItem::getSelectMode() const
-{
-	return m_SelectMode;
-}
-
-void SelectItem::setSelectMode(SelectMode selectMode)
-{
-	m_SelectMode = selectMode;
-	updateCheckPart();
-
-	onSelectModeChanged(m_SelectMode);
-}
-
-Evas_Object *SelectItem::getContent(Evas_Object *parent, const char *part)
-{
-	if (m_SelectMode == SelectMulti) {
-		return GenlistCheckItem::getContent(parent, part);
+	if (strcmp(part, "elm.text") == 0) {
+		return strdup(_("IDS_PB_MBODY_SELECT_ALL"));
 	}
 
 	return nullptr;
 }
 
-void SelectItem::onSelected()
+Evas_Object *SelectAllItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (m_SelectMode == SelectMulti) {
-		GenlistCheckItem::onSelected();
+	if (strcmp(part, "elm.swallow.end") == 0) {
+		return GenlistCheckItem::getContent(parent, part);
 	}
+
+	return nullptr;
 }

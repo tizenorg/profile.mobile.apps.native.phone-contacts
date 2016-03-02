@@ -19,7 +19,7 @@
 #define OPERATION_PICK_CONTROLLER_H
 
 #include "OperationController.h"
-#include "Contacts/Common/SelectMode.h"
+#include "Contacts/Common/ContactSelectTypes.h"
 
 #include <Evas.h>
 

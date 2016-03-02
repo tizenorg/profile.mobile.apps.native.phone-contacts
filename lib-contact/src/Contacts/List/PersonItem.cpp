@@ -16,6 +16,7 @@
  */
 
 #include "Contacts/List/PersonItem.h"
+#include "Contacts/Common/ContactSelectTypes.h"
 #include "Ui/Thumbnail.h"
 #include <app_i18n.h>
 

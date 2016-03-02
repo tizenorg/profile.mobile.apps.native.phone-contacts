@@ -93,7 +93,7 @@ void ListView::onMenuPressed()
 		view->setSelectCallback([](SelectResults results) {
 			std::vector<int> ids;
 			for (auto &&result : results) {
-				ids.push_back(result.itemId);
+				ids.push_back(result.value.id);
 			}
 
 			contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());

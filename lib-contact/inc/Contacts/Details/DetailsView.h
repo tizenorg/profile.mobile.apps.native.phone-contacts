@@ -19,9 +19,9 @@
 #define CONTACTS_DETAILS_DETAILS_VIEW_H
 
 #include "App/AppControl.h"
-#include "Contacts/Common/SelectView.h"
+#include "Contacts/Common/ContactSelectTypes.h"
 #include "Contacts/Model/Contact.h"
-#include "Ui/View.h"
+#include "Contacts/SelectView.h"
 
 namespace Ui
 {

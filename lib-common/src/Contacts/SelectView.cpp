@@ -15,8 +15,8 @@
  *
  */
 
-#include "Contacts/Common/SelectView.h"
-#include "Contacts/Common/SelectItem.h"
+#include "Contacts/SelectView.h"
+#include "Contacts/SelectItem.h"
 
 #include "Ui/Genlist.h"
 #include "Utils/Callback.h"
