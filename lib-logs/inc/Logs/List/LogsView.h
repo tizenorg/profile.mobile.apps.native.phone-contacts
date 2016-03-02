@@ -64,6 +64,7 @@ namespace Logs
 			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
 
+			Evas_Object *createNoContentLayout(Evas_Object *parent);
 			void onSettingsChanged(system_settings_key_e key);
 			void onSelectViewBy();
 			void fillGenlist();

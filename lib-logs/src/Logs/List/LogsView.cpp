@@ -67,6 +67,10 @@ void LogsView::onSettingsChanged(system_settings_key_e key)
 
 Evas_Object *LogsView::onCreate(Evas_Object *parent)
 {
+	if (m_LogProvider.getLogGroupList().empty()) {
+		return createNoContentLayout(parent);
+	}
+
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
 
@@ -101,6 +105,22 @@ void LogsView::onMenuPressed()
 		getNavigator()->navigateTo(deleteView);
 	});
 	menu->show();
+}
+
+Evas_Object *LogsView::createNoContentLayout(Evas_Object *parent)
+{
+	Evas_Object *noContentLayout = elm_layout_add(parent);
+	elm_layout_theme_set(noContentLayout, "layout", "nocontents", "default");
+	evas_object_size_hint_weight_set(noContentLayout, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	evas_object_size_hint_align_set(noContentLayout, EVAS_HINT_FILL, EVAS_HINT_FILL);
+
+	elm_object_translatable_part_text_set(noContentLayout, "elm.text", "IDS_CLOG_BODY_NO_LOGS");
+	elm_object_translatable_part_text_set(noContentLayout, "elm.help.text", "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE");
+
+	elm_layout_signal_emit(noContentLayout, "text,disabled", "");
+	elm_layout_signal_emit(noContentLayout, "align.center", "elm");
+
+	return noContentLayout;
 }
 
 void LogsView::onSelectViewBy()
