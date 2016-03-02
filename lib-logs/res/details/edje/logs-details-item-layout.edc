@@ -1,0 +1,122 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#include "LogsDetailsItemLayout.h"
+#include "LogsDetailsItemLayoutMetrics.h"
+
+#include "../../../../lib-apps-common/res/apps-common/edje/apps-common-colors.edc"
+#include "../../../../lib-apps-common/res/apps-common/edje/apps-common-utils.edc"
+#include "../../../../lib-common/res/details/edje/details-item-layout.edc"
+
+collections
+{
+	base_scale: 2.6;
+
+	IMAGE_WITH_PRESSED_COLOR(GROUP_ICON_CALL, DETAILS_ICON_CALL,
+			"touch_icon_normal", "touch_icon_pressed");
+	IMAGE_WITH_PRESSED_COLOR(GROUP_ICON_MESSAGE, DETAILS_ICON_MESSAGE,
+			"touch_icon_normal", "touch_icon_pressed");
+
+	group {
+		name: "elm/genlist/item/"LOGS_DETAILS_ITEM_STYLE"/default";
+		alias: "elm/genlist/item_compress/"LOGS_DETAILS_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree/"LOGS_DETAILS_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree_compress/"LOGS_DETAILS_ITEM_STYLE"/default";
+		inherit: "elm/genlist/item/"DETAILS_ITEM_STYLE"/default";
+
+		data.item: "texts" PART_NAME;
+		data.item: "contents" PART_BACK_BTN" "PART_THUMBNAIL" "PART_UNSAVED_BTNS;
+		data.item: "states" STATE_SAVED;
+
+		parts {
+			spacer { "spacer.thumbnail.top"; scale;
+				desc { "default";
+					min: 0 LOGS_THUMBNAIL_PAD_T;
+				}
+			}
+			spacer { "spacer.name.top"; scale;
+				desc { "default";
+					min: 0 NAME_PAD_T;
+					max: -1 NAME_PAD_T;
+				}
+			}
+			textblock { PART_NAME; scale;
+				desc { "default";
+					max: 0 0;
+				}
+				desc { "visible";
+					inherit: "default";
+					min: 0 NAME_H;
+					max: -1 NAME_H;
+				}
+			}
+			spacer { "spacer.unsaved.top"; scale;
+				desc { "default";
+					min: 0 UNSAVED_BTN_PAD_T;
+					max: -1 UNSAVED_BTN_PAD_T;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: PART_THUMBNAIL; }
+					rel2 { relative: 1.0 1.0; to_y: PART_THUMBNAIL; }
+				}
+			}
+			swallow { PART_UNSAVED_BTNS; scale;
+				desc { "default";
+					max: 0 0;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: "spacer.unsaved.top"; }
+					rel2 { relative: 1.0 1.0; }
+				}
+				desc { "visible";
+					inherit: "default";
+					min: 0 UNSAVED_BTN_H;
+					max: -1 UNSAVED_BTN_H;
+				}
+			}
+			spacer { "spacer.unsaved.bottom"; scale;
+				desc { "default";
+					min: 0 UNSAVED_BTN_PAD_B;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: PART_UNSAVED_BTNS; }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+			spacer { "spacer.bottom"; scale;
+				desc { "default";
+					min: 0 NAME_PAD_B;
+				}
+			}
+		}
+		programs {
+			program {
+				signal: "elm,state,"STATE_SAVED",active";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: PART_UNSAVED_BTNS;
+				action: STATE_SET "visible" 0.0;
+				target: PART_NAME;
+			}
+			program {
+				signal: "elm,state,"STATE_SAVED",passive";
+				source: "elm";
+				action: STATE_SET "default" 0.0;
+				target: PART_NAME;
+				action: STATE_SET "visible" 0.0;
+				target: PART_UNSAVED_BTNS;
+			}
+		}
+	}
+}
