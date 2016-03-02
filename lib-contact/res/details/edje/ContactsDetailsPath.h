@@ -21,7 +21,7 @@
 #define DETAILS_IMG_DIR "details/images/"
 #define DETAILS_EDJ_DIR "details/edje/"
 
-#define DETAILS_ITEM_LAYOUT_EDJ   DETAILS_EDJ_DIR"contacts-details-item-layout.edj"
+#define CONTACTS_DETAILS_ITEM_LAYOUT_EDJ   DETAILS_EDJ_DIR"contacts-details-item-layout.edj"
 
 #define DETAILS_ICON_CALL         DETAILS_IMG_DIR"contacts_btn_ic_call.png"
 #define DETAILS_ICON_MESSAGE      DETAILS_IMG_DIR"contacts_btn_ic_message.png"
