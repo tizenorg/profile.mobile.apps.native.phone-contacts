@@ -66,18 +66,23 @@ namespace Logs
 
 			void onSettingsChanged(system_settings_key_e key);
 			void onSelectViewBy();
-			void fillGenlist();
-			bool shouldDisplayLogs(const Model::LogGroup &group);
 			void onLogInserted(Model::LogGroup *group);
-			LogGroupItem *insertLogItem(Model::LogGroup *group, LogGroupItem *groupItem);
+
+			Evas_Object *createNoContentLayout(Evas_Object *parent);
+			void fillGenlist();
 
 			LogGroupItem *createLogGroupItem(tm date);
+			LogGroupItem *insertLogItem(Model::LogGroup *group, LogGroupItem *groupItem);
 			LogItem *createLogItem(Model::LogGroup *group);
 
+			bool shouldDisplayLogs(const Model::LogGroup &group);
 			void setMode(ItemMode mode);
 
 			Model::LogProvider m_LogProvider;
+
+			Evas_Object *m_ContentLayout;
 			Ui::Genlist *m_Genlist;
+
 			ItemMode m_Mode;
 			FilterType m_FilterType;
 		};

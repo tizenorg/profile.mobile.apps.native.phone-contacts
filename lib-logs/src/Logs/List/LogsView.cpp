@@ -53,28 +53,24 @@ LogsView::~LogsView()
 	system_settings_unset_changed_cb(SYSTEM_SETTINGS_KEY_TIME_CHANGED);
 }
 
-void LogsView::onSettingsChanged(system_settings_key_e key)
-{
-	if (key == SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY ||
-			key == SYSTEM_SETTINGS_KEY_TIME_CHANGED) {
-		elm_genlist_clear(m_Genlist->getEvasObject());
-		m_LogProvider.resetLogGroups();
-		fillGenlist();
-	} else {
-		m_Genlist->update(PART_LOG_TIME, ELM_GENLIST_ITEM_FIELD_TEXT);
-	}
-}
-
 Evas_Object *LogsView::onCreate(Evas_Object *parent)
 {
-	m_Genlist = new Ui::Genlist();
-	m_Genlist->create(parent);
+	m_ContentLayout = elm_layout_add(parent);
+	elm_layout_theme_set(m_ContentLayout, "layout", "application", "default");
 
-	elm_genlist_homogeneous_set(m_Genlist->getEvasObject(), EINA_TRUE);
-	fillGenlist();
-	m_LogProvider.setInsertCallback(std::bind(&LogsView::onLogInserted, this, _1));
+	if (m_LogProvider.getLogGroupList().empty()) {
+		elm_object_part_content_set(m_ContentLayout, "elm.swallow.content", createNoContentLayout(m_ContentLayout));
+	} else {
+		m_Genlist = new Ui::Genlist();
+		m_Genlist->create(m_ContentLayout);
 
-	return m_Genlist->getEvasObject();
+		elm_genlist_homogeneous_set(m_Genlist->getEvasObject(), EINA_TRUE);
+		fillGenlist();
+		m_LogProvider.setInsertCallback(std::bind(&LogsView::onLogInserted, this, _1));
+		elm_object_part_content_set(m_ContentLayout, "elm.swallow.content", m_Genlist->getEvasObject());
+	}
+
+	return m_ContentLayout;
 }
 
 void LogsView::onPageAttached()
@@ -103,6 +99,18 @@ void LogsView::onMenuPressed()
 	menu->show();
 }
 
+void LogsView::onSettingsChanged(system_settings_key_e key)
+{
+	if (key == SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY ||
+			key == SYSTEM_SETTINGS_KEY_TIME_CHANGED) {
+		elm_genlist_clear(m_Genlist->getEvasObject());
+		m_LogProvider.resetLogGroups();
+		fillGenlist();
+	} else {
+		m_Genlist->update(PART_LOG_TIME, ELM_GENLIST_ITEM_FIELD_TEXT);
+	}
+}
+
 void LogsView::onSelectViewBy()
 {
 	Ui::RadioPopup *popup = new Ui::RadioPopup();
@@ -120,6 +128,31 @@ void LogsView::onSelectViewBy()
 	});
 }
 
+void LogsView::onLogInserted(LogGroup *group)
+{
+	if (shouldDisplayLogs(*group)) {
+		LogGroupItem *groupItem = dynamic_cast<LogGroupItem *>(m_Genlist->getFirstItem());
+		groupItem = insertLogItem(group, groupItem);
+		groupItem->scrollTo(ELM_GENLIST_ITEM_SCROLLTO_TOP);
+	}
+}
+
+Evas_Object *LogsView::createNoContentLayout(Evas_Object *parent)
+{
+	Evas_Object *noContentLayout = elm_layout_add(parent);
+	elm_layout_theme_set(noContentLayout, "layout", "nocontents", "default");
+	evas_object_size_hint_weight_set(noContentLayout, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	evas_object_size_hint_align_set(noContentLayout, EVAS_HINT_FILL, EVAS_HINT_FILL);
+
+	elm_object_translatable_part_text_set(noContentLayout, "elm.text", "IDS_CLOG_BODY_NO_LOGS");
+	elm_object_translatable_part_text_set(noContentLayout, "elm.help.text", "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE");
+
+	elm_layout_signal_emit(noContentLayout, "text,disabled", "");
+	elm_layout_signal_emit(noContentLayout, "align.center", "elm");
+
+	return noContentLayout;
+}
+
 void LogsView::fillGenlist()
 {
 	if (m_LogProvider.getLogGroupList().empty()) {
@@ -134,36 +167,16 @@ void LogsView::fillGenlist()
 		}
 	}
 
-	if (!elm_genlist_items_count(m_Genlist->getEvasObject())) {
-		return;
-	}
-
 	groupItem = dynamic_cast<LogGroupItem *>(m_Genlist->getFirstItem());
 	groupItem->scrollTo(ELM_GENLIST_ITEM_SCROLLTO_TOP);
 }
 
-bool LogsView::shouldDisplayLogs(const LogGroup &group)
+LogGroupItem *LogsView::createLogGroupItem(tm date)
 {
-	switch (m_FilterType) {
-		case FilterMissed:
-		{
-			int type = group.getLogList().back()->getType();
-			return (type == CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN ||
-					type == CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN);
-		}
-			break;
-		default:
-			return true;
-	}
-}
-
-void LogsView::onLogInserted(LogGroup *group)
-{
-	if (shouldDisplayLogs(*group)) {
-		LogGroupItem *groupItem = dynamic_cast<LogGroupItem *>(m_Genlist->getFirstItem());
-		groupItem = insertLogItem(group, groupItem);
-		groupItem->scrollTo(ELM_GENLIST_ITEM_SCROLLTO_TOP);
-	}
+	LogGroupItem *groupItem = new LogGroupItem(date);
+	m_Genlist->insert(groupItem, nullptr, nullptr, Ui::Genlist::After);
+	elm_genlist_item_select_mode_set(groupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+	return groupItem;
 }
 
 LogGroupItem *LogsView::insertLogItem(LogGroup *group, LogGroupItem *groupItem)
@@ -177,14 +190,6 @@ LogGroupItem *LogsView::insertLogItem(LogGroup *group, LogGroupItem *groupItem)
 	return groupItem;
 }
 
-LogGroupItem *LogsView::createLogGroupItem(tm date)
-{
-	LogGroupItem *groupItem = new LogGroupItem(date);
-	m_Genlist->insert(groupItem, nullptr, nullptr, Ui::Genlist::After);
-	elm_genlist_item_select_mode_set(groupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
-	return groupItem;
-}
-
 LogItem *LogsView::createLogItem(LogGroup *group)
 {
 	LogItem *item = new LogItem(group, m_Mode);
@@ -194,6 +199,10 @@ LogItem *LogsView::createLogItem(LogGroup *group)
 		delete item;
 		if (itemGroup->empty()) {
 			delete itemGroup;
+		}
+
+		if (!elm_genlist_items_count(m_Genlist->getEvasObject())) {
+			elm_object_part_content_set(m_ContentLayout, "elm.swallow.content", createNoContentLayout(m_ContentLayout));
 		}
 	});
 
@@ -211,6 +220,21 @@ LogItem *LogsView::createLogItem(LogGroup *group)
 	});
 
 	return item;
+}
+
+bool LogsView::shouldDisplayLogs(const LogGroup &group)
+{
+	switch (m_FilterType) {
+		case FilterMissed:
+		{
+			int type = group.getLogList().back()->getType();
+			return (type == CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN ||
+					type == CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN);
+		}
+			break;
+		default:
+			return true;
+	}
 }
 
 void LogsView::setMode(ItemMode mode)
