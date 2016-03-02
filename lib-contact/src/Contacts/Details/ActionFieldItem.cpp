@@ -27,6 +27,9 @@
 #include "ContactsDetailsItemLayout.h"
 #include "ContactsDetailsItemLayoutMetrics.h"
 
+#define PART_ACTION_BUTTON1 "elm.swallow.icon.2"
+#define PART_ACTION_BUTTON2 "elm.swallow.end"
+
 using namespace Contacts::Details;
 using namespace Contacts::Model;
 
@@ -54,9 +57,9 @@ ActionFieldItem::ActionFieldItem(Model::ContactObject &object, ActionId actionId
 Evas_Object *ActionFieldItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (getSelectMode() == SelectNone) {
-		if (strcmp(part, "elm.swallow.icon.1") == 0) {
+		if (strcmp(part, PART_ACTION_BUTTON1) == 0) {
 			return createActionButton(parent, m_ActionId);
-		} else if (m_ActionId == ActionCall && strcmp(part, "elm.swallow.icon.2") == 0) {
+		} else if (m_ActionId == ActionCall && strcmp(part, PART_ACTION_BUTTON2) == 0) {
 			return createActionButton(parent, ActionMessage);
 		}
 	}
@@ -70,6 +73,15 @@ void ActionFieldItem::onSelected()
 		executeAction(m_ActionId);
 	} else {
 		TypedFieldItem::onSelected();
+	}
+}
+
+void ActionFieldItem::onSelectModeChanged(SelectMode selectMode)
+{
+	Elm_Object_Item *item = getObjectItem();
+	if (item) {
+		elm_genlist_item_fields_update(item, PART_ACTION_BUTTON1, ELM_GENLIST_ITEM_FIELD_CONTENT);
+		elm_genlist_item_fields_update(item, PART_ACTION_BUTTON2, ELM_GENLIST_ITEM_FIELD_CONTENT);
 	}
 }
 

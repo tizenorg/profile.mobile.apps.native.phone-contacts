@@ -18,8 +18,7 @@
 #ifndef CONTACTS_DETAILS_FIELD_ITEM_H
 #define CONTACTS_DETAILS_FIELD_ITEM_H
 
-#include "Contacts/Common/SelectMode.h"
-#include "Ui/GenlistCheckItem.h"
+#include "Contacts/Common/SelectItem.h"
 #include <contacts.h>
 
 namespace Contacts
@@ -35,32 +34,14 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing ContactObject and its first field.
 		 */
-		class FieldItem : public Ui::GenlistCheckItem
+		class FieldItem : public SelectItem
 		{
 		public:
-			/**
-			 * @brief Called when the item (or an action) is selected in #SelectSingle mode.
-			 * @param[in]   Selection result
-			 */
-			typedef std::function<void(SelectResult)> SelectCallback;
-
 			/**
 			 * @brief Create genlist item representing ContactObject.
 			 * @param[in]   object  Contact field of TypeObject type
 			 */
 			FieldItem(Model::ContactObject &object);
-
-			/**
-			 * @brief Set item selection mode and result type.
-			 * @param[in]   mode    Selection mode
-			 */
-			void setSelectMode(SelectMode mode);
-
-			/**
-			 * @brief Set selection callback.
-			 * @param[in]   callback    Callback to be called when item is selected.
-			 */
-			void setSelectCallback(SelectCallback callback);
 
 			/**
 			 * @return ContactField associated with the item.
@@ -71,11 +52,6 @@ namespace Contacts
 			 * @return ContactObject associated with the item.
 			 */
 			Model::ContactObject &getObject() const;
-
-			/**
-			 * @return Item selection mode.
-			 */
-			SelectMode getSelectMode() const;
 
 		protected:
 			friend class DetailsView;
@@ -96,9 +72,9 @@ namespace Contacts
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::onSelected()
+			 * @see SelectItem::getSelectResult()
 			 */
-			virtual void onSelected() override;
+			virtual SelectResult getSelectResult() const override;
 
 			/**
 			 * @see ContactField::UpdatedCallback
@@ -108,9 +84,6 @@ namespace Contacts
 		private:
 			Model::ContactObject &m_Object;
 			Model::ContactField &m_Field;
-
-			SelectMode m_SelectMode;
-			SelectCallback m_OnSelected;
 		};
 	}
 }

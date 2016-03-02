@@ -31,20 +31,8 @@ using namespace std::placeholders;
 #define DATE_BUFFER_SIZE 32
 
 FieldItem::FieldItem(ContactObject &object)
-	: m_Object(object), m_Field(*object.getField(0)),
-	  m_SelectMode(SelectNone)
+	: m_Object(object), m_Field(*object.getField(0))
 {
-}
-
-void FieldItem::setSelectMode(SelectMode mode)
-{
-	m_SelectMode = mode;
-	elm_genlist_item_fields_update(getObjectItem(), "*", ELM_GENLIST_ITEM_FIELD_CONTENT);
-}
-
-void FieldItem::setSelectCallback(SelectCallback callback)
-{
-	m_OnSelected = std::move(callback);
 }
 
 ContactObject &FieldItem::getObject() const
@@ -55,11 +43,6 @@ ContactObject &FieldItem::getObject() const
 ContactField &FieldItem::getField() const
 {
 	return m_Field;
-}
-
-SelectMode FieldItem::getSelectMode() const
-{
-	return m_SelectMode;
 }
 
 Elm_Genlist_Item_Class *FieldItem::getItemClass() const
@@ -97,7 +80,7 @@ char *FieldItem::getText(Evas_Object *parent, const char *part)
 
 Evas_Object *FieldItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (m_SelectMode == SelectMulti) {
+	if (getSelectMode() == SelectMulti) {
 		if (strcmp(part, "elm.swallow.end") == 0) {
 			return GenlistCheckItem::getContent(parent, part);
 		}
@@ -106,15 +89,9 @@ Evas_Object *FieldItem::getContent(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-void FieldItem::onSelected()
+SelectResult FieldItem::getSelectResult() const
 {
-	if (m_SelectMode == SelectSingle) {
-		if (m_OnSelected) {
-			m_OnSelected({ m_Object.getSubType(), m_Object.getRecordId()});
-		}
-	} else {
-		GenlistCheckItem::onSelected();
-	}
+	return { m_Object.getSubType(), m_Object.getRecordId() };
 }
 
 void FieldItem::onFieldUpdated(ContactField &field, contacts_changed_e change)

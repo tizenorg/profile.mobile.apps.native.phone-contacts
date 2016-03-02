@@ -59,6 +59,11 @@ namespace Contacts
 			virtual void onSelected() override;
 
 			/**
+			 * @see SelectItem::onSelectModeChanged()
+			 */
+			virtual void onSelectModeChanged(SelectMode selectMode) override;
+
+			/**
 			 * @brief Create action button.
 			 * @param[in]   parent      Parent widget
 			 * @param[in]   actionId    Button's action ID

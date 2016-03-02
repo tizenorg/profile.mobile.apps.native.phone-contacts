@@ -19,7 +19,7 @@
 #define CONTACTS_DETAILS_DETAILS_VIEW_H
 
 #include "App/AppControl.h"
-#include "Contacts/Common/SelectMode.h"
+#include "Contacts/Common/SelectView.h"
 #include "Contacts/Model/Contact.h"
 #include "Ui/View.h"
 
@@ -38,7 +38,7 @@ namespace Contacts
 		/**
 		 * @brief Contact/My profile details view.
 		 */
-		class DetailsView : public Ui::View
+		class DetailsView : public SelectView
 		{
 		public:
 			/**
@@ -58,29 +58,13 @@ namespace Contacts
 			 */
 			DetailsView(int recordId, Type type = TypeContact, int filterType = FilterNone);
 
-			/**
-			 * @brief Set selection callback.
-			 * @param[in]   callback    Callback to be called when selection is done
-			 */
-			void setSelectCallback(SelectCallback callback);
-
-			/**
-			 * @brief Set selection mode and result type.
-			 * @param[in]   mode    Selection mode
-			 */
-			void setSelectMode(SelectMode mode);
-
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
-			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
 
-			void createPageButtons();
-			void destroyPageButtons();
-
-			void updatePageTitle();
-			void updatePageMode();
+			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onSelectModeChanged(SelectMode selectMode) override;
 
 			FieldItem *createFieldItem(Model::ContactObject &field);
 			FieldItem *getNextFieldItem(Model::ContactFieldId fieldId);
@@ -88,30 +72,16 @@ namespace Contacts
 			FieldItem *addFieldItem(Model::ContactObject &field);
 			void removeFieldItem(FieldItem *item);
 
-			void onItemChecked(bool isChecked);
-			void onSingleSelected(SelectResult result);
-			void onMultiSelected();
-
 			void onArrayUpdated(Model::ContactField &field, contacts_changed_e change);
 			void onObjectUpdated(FieldItem *item, Model::ContactField &field, contacts_changed_e change);
 
-			void onDonePressed(Evas_Object *button, void *eventInfo);
-			void onCancelPressed(Evas_Object *button, void *eventInfo);
-
 			int m_RecordId;
 			Model::Contact m_Contact;
-
 			int m_FilterType;
-			SelectMode m_SelectMode;
-			SelectCallback m_OnSelected;
-
-			Evas_Object *m_DoneButton;
-			Evas_Object *m_CancelButton;
 
 			Ui::Genlist *m_Genlist;
 			BasicInfoItem *m_BasicInfoItem;
 			FieldItem *m_Items[Model::FieldEnd];
-			size_t m_SelectCount;
 
 			App::AppControl m_AppControl;
 		};
