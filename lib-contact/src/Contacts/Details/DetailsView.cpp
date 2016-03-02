@@ -94,7 +94,7 @@ void DetailsView::setSelectMode(SelectMode mode)
 
 Evas_Object *DetailsView::onCreate(Evas_Object *parent)
 {
-	elm_theme_extension_add(nullptr, App::getResourcePath(DETAILS_ITEM_LAYOUT_EDJ).c_str());
+	elm_theme_extension_add(nullptr, App::getResourcePath(CONTACTS_DETAILS_ITEM_LAYOUT_EDJ).c_str());
 
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);

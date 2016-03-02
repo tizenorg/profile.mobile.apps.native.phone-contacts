@@ -33,6 +33,8 @@ namespace Logs
 	}
 	namespace Details
 	{
+		class BasicInfoItem;
+
 		/**
 		 * @brief Log details view.
 		 */
@@ -47,9 +49,12 @@ namespace Logs
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
+			virtual void onCreated() override;
+			virtual void onPageAttached() override;
 
 			Model::LogGroup *m_Group;
 			Ui::Genlist *m_Genlist;
+			BasicInfoItem *m_BasicInfoItem;
 		};
 	}
 }
