@@ -19,8 +19,11 @@
 #include "Contacts/Utils.h"
 #include "Utils/UniString.h"
 
+#include <cstring>
+
 using namespace Contacts::List::Model;
 using namespace Utils;
+using namespace std::placeholders;
 
 namespace
 {
@@ -63,38 +66,16 @@ namespace
 }
 
 Person::Person(contacts_record_h record)
-	: m_PersonRecord(record), m_ContactRecord(nullptr)
+	: ContactRecordData(TypePerson), m_PersonRecord(record)
 {
-	int contactId = 0;
-	contacts_record_get_int(m_PersonRecord, _contacts_person.display_contact_id, &contactId);
-
-	//Todo: Store only handle for contact name while Contact list view will be implemented
-	contacts_db_get_record(_contacts_contact._uri, contactId, &m_ContactRecord);
-
-	char *indexLetter = nullptr;
-	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name_index, &indexLetter);
-	m_IndexLetter = indexLetter;
+	init();
+	subscribeToDb();
 }
 
 Person::~Person()
 {
 	contacts_record_destroy(m_PersonRecord, true);
-	contacts_record_destroy(m_ContactRecord, true);
-}
-
-bool Person::operator<(const Person &that) const
-{
-	return getSortValue() < that.getSortValue();
-}
-
-bool Person::operator==(const Person &that) const
-{
-	return getSortValue() == that.getSortValue();
-}
-
-bool Person::operator!=(const Person &that) const
-{
-	return getSortValue() != that.getSortValue();
+	unsubscribeFromDb();
 }
 
 int Person::getId() const
@@ -113,11 +94,6 @@ int Person::getDisplayContactId() const
 
 const Person::ContactIds &Person::getContactIds() const
 {
-	if (m_ContactIds.empty()) {
-		//Todo: If will be link contact functionality, retrieve it again on link/unlink
-		m_ContactIds = ::getContactIds(getId());
-	}
-
 	return m_ContactIds;
 }
 
@@ -126,23 +102,62 @@ const UniString &Person::getIndexLetter() const
 	return m_IndexLetter;
 }
 
-const char *Person::getName() const
-{
-	char *name = nullptr;
-	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name, &name);
-	return name;
-}
-
-const char *Person::getImagePath() const
-{
-	char *path = nullptr;
-	contacts_record_get_str_p(m_PersonRecord, _contacts_person.image_thumbnail_path, &path);
-	return path;
-}
-
 const contacts_record_h Person::getRecord() const
 {
 	return m_PersonRecord;
+}
+
+void Person::setRecord(contacts_record_h record)
+{
+	clear();
+	m_PersonRecord = record;
+	init();
+}
+
+bool Person::operator<(const Person &that) const
+{
+	return getSortValue() < that.getSortValue();
+}
+
+bool Person::operator!=(const Person &that) const
+{
+	return getSortValue() != that.getSortValue();
+}
+
+void Person::init()
+{
+	int contactId = 0;
+	contacts_record_get_int(m_PersonRecord, _contacts_person.display_contact_id, &contactId);
+	updateContactRecord(contactId);
+
+	char *indexLetter = nullptr;
+	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name_index, &indexLetter);
+	m_IndexLetter = indexLetter;
+
+	m_ContactIds = ::getContactIds(getId());
+}
+
+void Person::clear()
+{
+	contacts_record_destroy(m_PersonRecord, true);
+	m_PersonRecord = nullptr;
+
+	m_IndexLetter.clear();
+	m_SortValue.clear();
+	m_ContactIds.clear();
+	m_Handles.clear();
+}
+
+int Person::update(contacts_record_h record)
+{
+	contacts_record_h contactRecord = Contacts::getDisplayContact(record);
+
+	auto changes = getChanges(contactRecord);
+	setRecord(record);
+
+	contacts_record_destroy(contactRecord, true);
+
+	return changes;
 }
 
 const UniString &Person::getSortValue() const
@@ -161,10 +176,67 @@ const char *Person::getDbSortValue() const
 	unsigned sortField = getSortProperty(order);
 
 	contacts_record_h nameRecord = nullptr;
-	contacts_record_get_child_record_at_p(m_ContactRecord, _contacts_contact.name, 0, &nameRecord);
+	contacts_record_get_child_record_at_p(getRecord(), _contacts_contact.name, 0, &nameRecord);
 
 	char *sortValue = nullptr;
 	contacts_record_get_str_p(nameRecord, sortField, &sortValue);
 
 	return sortValue;
+}
+
+void Person::subscribeToDb()
+{
+	for (auto &&id : m_ContactIds) {
+		auto handle = DbChangeObserver::getInstance()->addCallback(id,
+			std::bind(&Person::onChanged, this, _1, _2));
+
+		m_Handles.push_back(handle);
+	}
+}
+
+void Person::unsubscribeFromDb()
+{
+	for (size_t i = 0; i <  m_ContactIds.size(); ++i) {
+		DbChangeObserver::getInstance()->removeCallback(m_ContactIds[i], m_Handles[i]);
+	}
+}
+
+int Person::getChanges(contacts_record_h record)
+{
+	auto isChanged = [](const char *str1, const char *str2) {
+		return (str1 && str2)
+				? (strcmp(str1, str2) != 0)
+				: (str1 != str2);
+	};
+
+	int changes = ChangedNone;
+
+	for (int i = ContactData::FieldFirst; i < ContactData::FieldMax; ++i) {
+		auto fieldId = static_cast<ContactData::Field>(i);
+
+		auto oldValue = getValue(getRecord(), fieldId);
+		auto newValue = getValue(record, fieldId);
+		auto changedInfo = 1 << fieldId;
+
+		if (isChanged(oldValue, newValue)) {
+			changes |= changedInfo;
+		}
+	}
+
+	return changes;
+}
+
+void Person::onChanged(int id, contacts_changed_e changeType)
+{
+	if (changeType == CONTACTS_CHANGE_UPDATED) {
+		contacts_record_h record = nullptr;//Todo: Retrieve person record, using contactId
+		if (record) {
+			int changes = update(record);
+			onUpdated(changes);
+		} else {
+			onDeleted();
+		}
+	} else if (changeType == CONTACTS_CHANGE_DELETED) {
+		onDeleted();
+	}
 }

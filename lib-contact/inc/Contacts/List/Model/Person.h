@@ -18,6 +18,8 @@
 #ifndef CONTACTS_LIST_MODEL_PERSON_H
 #define CONTACTS_LIST_MODEL_PERSON_H
 
+#include "Contacts/DbChangeObserver.h"
+#include "Contacts/List/Model/ContactRecordData.h"
 #include "Utils/UniString.h"
 #include <contacts.h>
 #include <memory>
@@ -42,7 +44,7 @@ namespace Contacts
 			typedef std::unique_ptr<Person> PersonPtr;
 			typedef std::vector<PersonPtr> PersonList;
 
-			class Person
+			class Person : public ContactRecordData
 			{
 			public:
 				/**
@@ -58,30 +60,12 @@ namespace Contacts
 				 * @param[in]   record      _contacts_person record
 				 */
 				explicit Person(contacts_record_h record);
-				~Person();
-
-				/**
-				 * @brief Compares person's "Sort by" (first name/last name) values
-				 * @return True if sort value less than in @a that, otherwise false
-				 */
-				bool operator<(const Person &that) const;
-
-				/**
-				 * @brief Compares person's "Sort by" (first name/last name) values on equality
-				 * @return True if sort values are equivalent, otherwise false
-				 */
-				bool operator==(const Person &that) const;
-
-				/**
-				 * @brief Compares person's "Sort by" (first name/last name) values on inequality
-				 * @return True if sort values are not equivalent, otherwise false
-				 */
-				bool operator!=(const Person &that) const;
+				virtual ~Person() override;
 
 				/**
 				 * @return Person ID
 				 */
-				int getId() const;
+				virtual int getId() const override;
 
 				/**
 				 * @return Displayed by default contact ID
@@ -99,32 +83,50 @@ namespace Contacts
 				const Utils::UniString &getIndexLetter() const;
 
 				/**
-				 * @return Person name
-				 */
-				const char *getName() const;
-
-				/**
-				 * @return Person image path
-				 */
-				const char *getImagePath() const;
-
-				/**
 				 * @return _contacts_person record
 				 */
 				const contacts_record_h getRecord() const;
 
+				/**
+				 * @brief Set new _contacts_person record
+				 */
+				void setRecord(contacts_record_h record);
+
+				/**
+				 * @brief Compares person's "Sort by" (first name/last name) values
+				 * @return True if sort value less than in @a that, otherwise false
+				 */
+				bool operator<(const Person &that) const;
+
+				/**
+				 * @brief Compares person's "Sort by" (first name/last name) values on inequality
+				 * @return True if sort values are not equivalent, otherwise false
+				 */
+				bool operator!=(const Person &that) const;//Todo: Delete when refactor will be finished
+
 			private:
+				void init();
+				void clear();
+				int update(contacts_record_h record);
+
 				const Utils::UniString &getSortValue() const;
-				void initSortValue(const char *sortValue) const;
 				const char *getDbSortValue() const;
 
+				void subscribeToDb();
+				void unsubscribeFromDb();
+
+				int getChanges(contacts_record_h record);
+
+				void onChanged(int id, contacts_changed_e changeType);
+
 				contacts_record_h m_PersonRecord;
-				contacts_record_h m_ContactRecord;
 
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;
 
-				mutable ContactIds m_ContactIds;
+				ContactIds m_ContactIds;
+
+				std::vector<DbChangeObserver::CallbackHandle> m_Handles;
 			};
 		}
 	}
