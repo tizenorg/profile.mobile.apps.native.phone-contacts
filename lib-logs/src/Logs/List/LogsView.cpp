@@ -30,13 +30,14 @@
 #include "Utils/Logger.h"
 #include "Utils/Callback.h"
 
+using namespace Contacts;
 using namespace Logs::Model;
 using namespace Logs::List;
 using namespace Logs::Details;
 using namespace std::placeholders;
 
 LogsView::LogsView(FilterType filterType)
-	: m_Mode(ItemMode::Default), m_FilterType(filterType),
+	: m_FilterType(filterType),
 	  m_Genlist(nullptr), m_LastGroupItem(nullptr)
 {
 	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
@@ -65,14 +66,9 @@ void LogsView::onCreated()
 	fillLayout();
 }
 
-void LogsView::onPageAttached()
-{
-	getPage()->setTitle("IDS_LOGS_ITAB3_LOGS");
-}
-
 void LogsView::onMenuPressed()
 {
-	if (m_Mode == ItemMode::Pick) {
+	if (getSelectMode() != SelectNone) {
 		return;
 	}
 
@@ -84,11 +80,47 @@ void LogsView::onMenuPressed()
 	});
 
 	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
-		LogsView *deleteView = new LogsView(m_FilterType);
-		deleteView->setMode(ItemMode::Pick);
-		getNavigator()->navigateTo(deleteView);
+		LogsView *view = new LogsView(m_FilterType);
+		view->setSelectMode(SelectMulti);
+		view->setSelectCallback([](SelectResults results) {
+			for (auto &&result : results) {
+				LogGroup *group = (LogGroup *) result.value.data;
+				group->remove();
+			}
+
+			return true;
+		});
+		getNavigator()->navigateTo(view);
 	});
+
 	menu->show();
+}
+
+const char *LogsView::getPageTitle() const
+{
+	if (getSelectMode() == SelectNone) {
+		return "IDS_LOGS_ITAB3_LOGS";
+	}
+
+	return SelectView::getPageTitle();
+}
+
+void LogsView::onSelectAllInsert(Ui::GenlistItem *item)
+{
+	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
+}
+
+void LogsView::onItemPressed(Contacts::SelectItem *item)
+{
+	LogItem *logItem = (LogItem *) item;
+	LogGroup *group = logItem->getGroup();
+
+	const char *number = group->getLogList().back()->getNumber();
+	if (number) {
+		App::AppControl appControl = App::requestTelephonyCall(number);
+		appControl.launch(nullptr, nullptr, false);
+		appControl.detach();
+	}
 }
 
 void LogsView::fillLayout()
@@ -164,18 +196,8 @@ bool LogsView::shouldDisplayLogs(const LogGroup *group) const
 
 LogItem *LogsView::createLogItem(LogGroup *group)
 {
-	LogItem *item = new LogItem(group, m_Mode);
-
+	LogItem *item = new LogItem(group);
 	item->setDeleteCallback(std::bind(&LogsView::onLogItemDelete, this, _1));
-	item->setSelectCallback([this, group]() {
-		const char *number = group->getLogList().back()->getNumber();
-		if (number) {
-			App::AppControl appControl = App::requestTelephonyCall(number);
-			appControl.launch(nullptr, nullptr, false);
-			appControl.detach();
-		}
-	});
-
 	item->setDetailsCallback([this](LogItem *item) {
 		getNavigator()->navigateTo(new DetailsView(item->getGroup()));
 	});
@@ -192,6 +214,7 @@ LogItem *LogsView::insertLogItem(LogGroup *group)
 
 	LogItem *item = createLogItem(group);
 	m_Genlist->insert(item, m_LastGroupItem, *m_LastGroupItem->begin());
+	onItemInserted(item);
 	return item;
 }
 
@@ -203,11 +226,6 @@ LogGroupItem *LogsView::insertLogGroupItem(tm date)
 
 	elm_genlist_item_select_mode_set(m_LastGroupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 	return m_LastGroupItem;
-}
-
-void LogsView::setMode(ItemMode mode)
-{
-	m_Mode = mode;
 }
 
 void LogsView::onSettingsChanged(system_settings_key_e key)
@@ -254,6 +272,7 @@ void LogsView::onLogInserted(LogGroup *group)
 void LogsView::onLogItemDelete(LogItem *item)
 {
 	Ui::GenlistGroupItem *groupItem = item->getParentItem();
+	onItemRemove(item);
 	delete item;
 
 	if (groupItem->empty()) {

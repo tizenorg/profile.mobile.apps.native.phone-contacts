@@ -18,7 +18,7 @@
 #ifndef LOGS_LIST_LOG_ITEM_H
 #define LOGS_LIST_LOG_ITEM_H
 
-#include "Ui/GenlistCheckItem.h"
+#include "Contacts/SelectItem.h"
 
 #define PART_LOG_TIME           "elm.text.sub.end"
 
@@ -28,18 +28,10 @@ namespace Logs
 	{
 		class LogGroup;
 	}
+
 	namespace List
 	{
-		/**
-		 * @brief Represents item mode
-		 */
-		enum class ItemMode
-		{
-			Default,    /*< Usual mode */
-			Pick        /*< Mode with ability to select item */
-		};
-
-		class LogItem : public Ui::GenlistCheckItem
+		class LogItem : public Contacts::SelectItem
 		{
 		public:
 			/**
@@ -55,15 +47,8 @@ namespace Logs
 			/**
 			 * @brief Create log item
 			 * @param[in]   group       Log group
-			 * @param[in]   mode        Item mode
 			 */
-			LogItem(Model::LogGroup *group, ItemMode mode = ItemMode::Default);
-
-			/**
-			 * @brief Set item mode
-			 * @param[in]   mode    Item mode
-			 */
-			void setMode(ItemMode mode);
+			LogItem(Model::LogGroup *group);
 
 			/**
 			 * @brief Set delete item callback
@@ -85,6 +70,7 @@ namespace Logs
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
+			virtual Contacts::SelectResult getSelectResult() const override;
 
 			Evas_Object *createThumbnail(Evas_Object *parent);
 			Evas_Object *createLayout(Evas_Object *parent, const char *layoutName);
@@ -98,7 +84,6 @@ namespace Logs
 			DeleteCallback m_OnDelete;
 			DetailsCallback m_OnDetails;
 			Model::LogGroup *m_Group;
-			ItemMode m_Mode;
 		};
 	}
 }
