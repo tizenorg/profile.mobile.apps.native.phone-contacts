@@ -17,6 +17,8 @@
 
 #include "Logs/Details/DetailsView.h"
 #include "Logs/Model/LogGroup.h"
+#include "Logs/Details/BasicInfoItem.h"
+#include "LogsDetailsItemLayout.h"
 
 #include "App/Path.h"
 #include "Ui/Genlist.h"
@@ -25,12 +27,29 @@ using namespace Logs::Model;
 using namespace Logs::Details;
 
 DetailsView::DetailsView(LogGroup *group)
-	: m_Group(group), m_Genlist(nullptr)
+	: m_Group(group), m_Genlist(nullptr), m_BasicInfoItem(nullptr)
 {
 }
 
 Evas_Object *DetailsView::onCreate(Evas_Object *parent)
 {
+	elm_theme_extension_add(nullptr, App::getResourcePath(LOGS_DETAILS_ITEM_LAYOUT_EDJ).c_str());
+
 	m_Genlist = new Ui::Genlist();
 	return m_Genlist->create(parent);
+}
+
+void DetailsView::onCreated()
+{
+	m_BasicInfoItem = new BasicInfoItem(m_Group);
+	m_BasicInfoItem->setBackCallback([this] {
+		delete this;
+	});
+	m_Genlist->insert(m_BasicInfoItem);
+}
+
+void DetailsView::onPageAttached()
+{
+	Ui::NavigatorPage *page = getPage();
+	page->setTitle(nullptr);
 }

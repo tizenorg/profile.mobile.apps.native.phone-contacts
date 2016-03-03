@@ -46,7 +46,7 @@ namespace
 		/* ActionUrl     = */ { GROUP_ICON_INTERNET, APP_CONTROL_OPERATION_VIEW, "" }
 	};
 
-	const std::string layoutPath = App::getResourcePath(DETAILS_ITEM_LAYOUT_EDJ);
+	const std::string layoutPath = App::getResourcePath(CONTACTS_DETAILS_ITEM_LAYOUT_EDJ);
 }
 
 ActionFieldItem::ActionFieldItem(Model::ContactObject &object, ActionId actionId)
