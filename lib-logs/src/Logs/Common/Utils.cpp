@@ -32,3 +32,11 @@ std::string Common::formatTime(const tm &time)
 
 	return buffer;
 }
+
+std::string Common::formatDuration(const tm &time)
+{
+	char buffer[BUFFER_SIZE];
+	strftime(buffer, sizeof(buffer), "%T", &time);
+
+	return buffer;
+}

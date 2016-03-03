@@ -77,6 +77,11 @@ namespace Logs
 			int getPersonId() const;
 
 			/**
+			 * @return log duration in seconds
+			 */
+			time_t getDuration() const;
+
+			/**
 			 * @brief  Set log group
 			 * @param[in]   logGroup  Parent log group
 			 */
