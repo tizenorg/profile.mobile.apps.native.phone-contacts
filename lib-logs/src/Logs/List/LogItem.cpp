@@ -45,6 +45,7 @@
 #define PART_END                "elm.swallow.end"
 
 using namespace Ui;
+using namespace Contacts;
 using namespace Logs::List;
 using namespace Logs::Model;
 using namespace Logs::Details;
@@ -54,16 +55,10 @@ namespace
 	const std::string layoutPath = App::getResourcePath(LOG_ITEM_LAYOUT_EDJ);
 }
 
-LogItem::LogItem(LogGroup *group, ItemMode mode)
-	: m_Group(group), m_Mode(mode)
+LogItem::LogItem(LogGroup *group)
+	: m_Group(group)
 {
 	setUpdateCallback();
-}
-
-void LogItem::setMode(ItemMode mode)
-{
-	m_Mode = mode;
-	elm_genlist_item_fields_update(getObjectItem(), PART_END, ELM_GENLIST_ITEM_FIELD_CONTENT);
 }
 
 void LogItem::setDeleteCallback(DeleteCallback callback)
@@ -93,10 +88,12 @@ char *LogItem::getText(Evas_Object *parent, const char *part)
 	const Log *log = m_Group->getLogList().back();
 	const char *name = log->getName();
 	const char *number = log->getNumber();
+
 	if (name == nullptr) {
 		name = number;
 		number = _("IDS_LOGS_SBODY_UNSAVED_M_STATUS");
 	}
+
 	if (strcmp(part, PART_LOG_NAME) == 0) {
 		return strdup(name);
 	} else if (strcmp(part, PART_LOG_NUMBER) == 0) {
@@ -122,18 +119,23 @@ Evas_Object *LogItem::getContent(Evas_Object *parent, const char *part)
 	if (strcmp(part, PART_PERSON_THUMBNAIL) == 0) {
 		return createThumbnail(parent);
 	} else if (strcmp(part, PART_END) == 0) {
-		if (m_Mode == ItemMode::Pick) {
-			return GenlistCheckItem::getContent(parent, part);
-		} else {
+		if (getSelectMode() == SelectNone) {
 			Evas_Object *icon = createIcon(parent, ICON_INFO);
 			evas_object_propagate_events_set(icon, EINA_FALSE);
 			evas_object_smart_callback_add(icon, "clicked",
 					(Evas_Smart_Cb) makeCallback(&LogItem::onInfoIconPressed), this);
 			return icon;
+		} else {
+			return SelectItem::getContent(parent, part);
 		}
 	}
 
 	return nullptr;
+}
+
+SelectResult LogItem::getSelectResult() const
+{
+	return { 0, m_Group };
 }
 
 Evas_Object *LogItem::createThumbnail(Evas_Object *parent)
