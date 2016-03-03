@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 #define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
-#include "Contacts/Common/SelectMode.h"
+#include "Contacts/Common/ContactSelectTypes.h"
 #include "Contacts/DbChangeObserver.h"
 #include "Contacts/List/Model/Person.h"
 

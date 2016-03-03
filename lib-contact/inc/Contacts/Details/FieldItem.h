@@ -18,7 +18,7 @@
 #ifndef CONTACTS_DETAILS_FIELD_ITEM_H
 #define CONTACTS_DETAILS_FIELD_ITEM_H
 
-#include "Contacts/Common/SelectItem.h"
+#include "Contacts/SelectItem.h"
 #include <contacts.h>
 
 namespace Contacts

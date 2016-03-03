@@ -20,7 +20,7 @@
 
 #include "Contacts/List/Model/PersonProvider.h"
 #include "Contacts/List/PersonItem.h"
-#include "Contacts/Common/SelectView.h"
+#include "Contacts/SelectView.h"
 
 #include "Utils/UniString.h"
 

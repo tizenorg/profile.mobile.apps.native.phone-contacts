@@ -71,7 +71,7 @@ void Chooser::onPageAttached()
 bool Chooser::onSinglePersonSelected(SelectResults personResults)
 {
 	const SelectResult &person = *personResults.begin();
-	int resultId = getSingleResultId(person.itemId, m_ResultType);
+	int resultId = getSingleResultId(person.value.id, m_ResultType);
 
 	if (resultId > 0) {
 		SelectResult result = { m_ResultType, resultId };
@@ -79,7 +79,7 @@ bool Chooser::onSinglePersonSelected(SelectResults personResults)
 	}
 
 	/* FIXME: Implement person support in DetailsView */
-	DetailsView *view = new DetailsView(getContactId(person.itemId),
+	DetailsView *view = new DetailsView(getContactId(person.value.id),
 			DetailsView::Type(person.type), m_FilterType);
 	view->setSelectMode(m_SelectMode);
 	view->setSelectCallback(std::bind(&Chooser::onSelected, this, _1));
@@ -99,7 +99,7 @@ bool Chooser::onMultiPersonSelected(SelectResults personResults)
 	results.reserve(personResults.count());
 
 	for (auto &&result : personResults) {
-		contacts_person_get_default_property(property, result.itemId, &id);
+		contacts_person_get_default_property(property, result.value.id, &id);
 		results.push_back({ m_ResultType, id });
 	}
 

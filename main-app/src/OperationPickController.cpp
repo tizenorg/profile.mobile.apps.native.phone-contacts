@@ -71,7 +71,7 @@ bool OperationPickController::onSelected(SelectResults results)
 	std::vector<const char *> ids(count);
 
 	for (size_t i = 0; i < count; ++i) {
-		snprintf(buffers[i], sizeof(buffers[i]), "%d", results[i].itemId);
+		snprintf(buffers[i], sizeof(buffers[i]), "%d", results[i].value.id);
 		ids[i] = buffers[i];
 	}
 

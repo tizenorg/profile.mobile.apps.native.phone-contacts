@@ -15,13 +15,10 @@
  *
  */
 
-#ifndef CONTACTS_COMMON_SELECT_MODE_H
-#define CONTACTS_COMMON_SELECT_MODE_H
+#ifndef CONTACTS_SELECT_TYPES_H
+#define CONTACTS_SELECT_TYPES_H
 
-#include "Contacts/Model/ContactField.h"
-#include "Contacts/Model/ContactTypes.h"
 #include "Utils/Range.h"
-
 #include <functional>
 
 namespace Contacts
@@ -37,33 +34,18 @@ namespace Contacts
 	};
 
 	/**
-	 * @brief Determines which items are displayed.
-	 */
-	enum FilterType
-	{
-		FilterNone   = -1,                      /**< All items are displayed */
-		FilterNumber = 1 << Model::FieldNumber, /**< Only items with number */
-		FilterEmail  = 1 << Model::FieldEmail   /**< Only items with email */
-	};
-
-	/**
-	 * @brief Determines what should be the result of selection.
-	 */
-	enum ResultType
-	{
-		ResultMyProfile = Model::ObjectTypeMyProfile, /**< My Profile ID is the result */
-		ResultPerson    = Model::ObjectTypeContact,   /**< Person ID is the result */
-		ResultNumber    = Model::ObjectTypeNumber,    /**< Number ID is the result */
-		ResultEmail     = Model::ObjectTypeEmail      /**< Email ID is the result */
-	};
-
-	/**
 	 * @brief Selection result.
 	 */
 	struct SelectResult
 	{
-		unsigned type;  /**< @ref ResultType. */
-		int itemId;     /**< Item database ID (for _contacts_person, _contacts_number or _contacts_email). */
+		unsigned type;  /**< Result type (depends on result source) */
+		union Value
+		{
+			Value(void *data) : data(data) { }
+			Value(int id) : id(id) { }
+			void *data; /**< Result data */
+			int id;     /**< Result data ID */
+		} value;        /**< Result value (depends on type) */
 	};
 
 	/**
@@ -79,4 +61,4 @@ namespace Contacts
 	typedef std::function<bool(SelectResults)> SelectCallback;
 }
 
-#endif /* CONTACTS_COMMON_SELECT_MODE_H */
+#endif /* CONTACTS_SELECT_TYPES_H */

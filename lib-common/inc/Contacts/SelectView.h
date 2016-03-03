@@ -18,8 +18,8 @@
 #ifndef CONTACTS_SELECT_VIEW_H
 #define CONTACTS_SELECT_VIEW_H
 
-#include "Contacts/Common/SelectAllItem.h"
-#include "Contacts/Common/SelectMode.h"
+#include "Contacts/SelectAllItem.h"
+#include "Contacts/SelectTypes.h"
 #include "Ui/View.h"
 
 #include <memory>
@@ -37,7 +37,7 @@ namespace Contacts
 	/**
 	 * @brief Base class for a view that support single and multiple selection modes.
 	 */
-	class SelectView : public Ui::View
+	class EXPORT_API SelectView : public Ui::View
 	{
 	public:
 		SelectView();
