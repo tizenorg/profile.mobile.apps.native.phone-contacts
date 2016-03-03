@@ -38,11 +38,6 @@ namespace Contacts
 			/**
 			 * @brief Person object
 			 */
-			class Person;
-
-			typedef std::unique_ptr<Person> PersonPtr;
-			typedef std::vector<PersonPtr> PersonList;
-
 			class Person : public ContactRecordData
 			{
 			public:
@@ -96,12 +91,6 @@ namespace Contacts
 				 * @return True if sort value less than in @a that, otherwise false
 				 */
 				bool operator<(const Person &that) const;
-
-				/**
-				 * @brief Compares person's "Sort by" (first name/last name) values on inequality
-				 * @return True if sort values are not equivalent, otherwise false
-				 */
-				bool operator!=(const Person &that) const;//Todo: Delete when refactor will be finished
 
 			private:
 				void init();

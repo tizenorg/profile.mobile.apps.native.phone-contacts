@@ -119,11 +119,6 @@ bool Person::operator<(const Person &that) const
 	return getSortValue() < that.getSortValue();
 }
 
-bool Person::operator!=(const Person &that) const
-{
-	return getSortValue() != that.getSortValue();
-}
-
 void Person::init()
 {
 	char *indexLetter = nullptr;
