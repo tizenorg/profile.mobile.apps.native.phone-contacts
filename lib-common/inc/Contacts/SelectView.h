@@ -129,9 +129,21 @@ namespace Contacts
 		virtual void onSelectLimitChanged(size_t selectLimit) { }
 
 	private:
+		enum CountChange
+		{
+			CountIncrement,
+			CountDecrement
+		};
+
 		void updatePageTitle();
 		void updatePageButtons();
 		void updateSelectAllItem();
+
+		void updateDoneButtonState();
+		void updateSelectAllState();
+
+		void updateSelectCount(CountChange change);
+		void updateItemCount(CountChange change, SelectItem *item);
 
 		void createPageButtons();
 		void destroyPageButtons();

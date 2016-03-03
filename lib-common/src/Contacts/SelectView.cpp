@@ -122,18 +122,17 @@ void SelectView::onItemInserted(SelectItem *item)
 	item->setCheckCallback(std::bind(&SelectView::onItemChecked, this, item, _1));
 	m_Items.push_back(item);
 
-	updateSelectAllItem();
+	updateItemCount(CountIncrement, item);
 }
 
 void SelectView::onItemRemove(SelectItem *item)
 {
-	if (item->isChecked()) {
-		--m_SelectCount;
-		updatePageTitle();
+	auto it = std::find(m_Items.begin(), m_Items.end(), item);
+	if (it != m_Items.end()) {
+		m_Items.erase(it);
 	}
 
-	m_Items.erase(std::remove(m_Items.begin(), m_Items.end(), item), m_Items.end());
-	updateSelectAllItem();
+	updateItemCount(CountDecrement, item);
 }
 
 void SelectView::updatePageTitle()
@@ -158,13 +157,18 @@ void SelectView::updatePageButtons()
 	switch (m_SelectMode) {
 		case SelectNone:
 		case SelectSingle:
-			destroyPageButtons();
+			if (m_DoneButton) {
+				destroyPageButtons();
+			}
 			break;
 
 		case SelectMulti:
-			createPageButtons();
-			page->setContent("title_right_btn", m_DoneButton);
-			page->setContent("title_left_btn", m_CancelButton);
+			if (!m_DoneButton) {
+				createPageButtons();
+				page->setContent("title_right_btn", m_DoneButton);
+				page->setContent("title_left_btn", m_CancelButton);
+			}
+			updateDoneButtonState();
 			break;
 	}
 }
@@ -180,12 +184,52 @@ void SelectView::updateSelectAllItem()
 			m_SelectAllItem->scrollTo();
 		}
 
-		m_SelectAllItem->setChecked(m_SelectCount == m_Items.size());
+		updateSelectAllState();
 	} else {
 		if (m_SelectAllItem) {
 			onSelectAllRemove();
 			m_SelectAllItem.reset();
 		}
+	}
+}
+
+void SelectView::updateDoneButtonState()
+{
+	elm_object_disabled_set(m_DoneButton, m_SelectCount == 0);
+}
+
+void SelectView::updateSelectAllState()
+{
+	if (m_SelectAllItem) {
+		m_SelectAllItem->setChecked(m_SelectCount == m_Items.size());
+	}
+}
+
+void SelectView::updateSelectCount(CountChange change)
+{
+	size_t checkCount = (change == CountIncrement) ? ++m_SelectCount : m_SelectCount--;
+	if (checkCount == m_Items.size()) {
+		updateSelectAllState();
+	}
+	if (checkCount == 1) {
+		updateDoneButtonState();
+	}
+
+	updatePageTitle();
+}
+
+void SelectView::updateItemCount(CountChange change, SelectItem *item)
+{
+	if (item->isChecked()) {
+		updateSelectCount(change);
+	}
+
+	size_t checkCount = (change == CountIncrement) ? (m_Items.size() - 1): m_Items.size();
+	if (checkCount == m_SelectCount) {
+		updateSelectAllState();
+	}
+	if (checkCount == 1) {
+		updateSelectAllItem();
 	}
 }
 
@@ -237,12 +281,7 @@ void SelectView::onItemChecked(SelectItem *item, bool isChecked)
 	if (m_SelectLimit && m_SelectCount == m_SelectLimit && isChecked) {
 		item->setChecked(false);
 	} else {
-		size_t checkCount = isChecked ? ++m_SelectCount : m_SelectCount--;
-		if (checkCount == m_Items.size()) {
-			updateSelectAllItem();
-		}
-
-		updatePageTitle();
+		updateSelectCount(isChecked ? CountIncrement : CountDecrement);
 	}
 }
 
@@ -254,6 +293,7 @@ void SelectView::onSelectAllChecked(bool isChecked)
 
 	m_SelectCount = isChecked ? m_Items.size() : 0;
 	updatePageTitle();
+	updateDoneButtonState();
 }
 
 void SelectView::onSelectAllDestroy()
