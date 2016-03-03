@@ -26,11 +26,18 @@ namespace Logs
 	namespace Common
 	{
 		/**
-		 * @brief Convert tm to string
+		 * @brief Convert tm to string in format HH:MM
 		 * @param[in]   time   Time to convert
 		 * @return string.
 		 */
 		std::string formatTime(const tm &time);
+
+		/**
+		 * @brief Convert tm to string in format HH:MM:SS
+		 * @param[in]   time   Time to convert
+		 * @return string.
+		 */
+		std::string formatTTime(const tm &time);
 	}
 }
 

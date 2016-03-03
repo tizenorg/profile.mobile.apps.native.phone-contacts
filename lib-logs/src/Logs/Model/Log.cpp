@@ -93,6 +93,13 @@ int Log::getPersonId() const
 	return id;
 }
 
+int Log::getDuration() const
+{
+	int duration = 0;
+	contacts_record_get_int(m_LogRecord, _contacts_phone_log.extra_data1, &duration);
+	return duration;
+}
+
 contacts_record_h Log::getContactRecord()
 {
 	contacts_record_h record = nullptr;
