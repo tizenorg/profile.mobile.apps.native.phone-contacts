@@ -18,7 +18,7 @@
 #ifndef LOGS_LIST_LOGS_VIEW_H
 #define LOGS_LIST_LOGS_VIEW_H
 
-#include "Ui/View.h"
+#include "Contacts/SelectView.h"
 #include "Logs/Model/LogProvider.h"
 #include <system_settings.h>
 
@@ -33,12 +33,11 @@ namespace Logs
 	{
 		class LogGroupItem;
 		class LogItem;
-		enum class ItemMode;
 
 		/**
 		 * @brief Logs list view
 		 */
-		class EXPORT_API LogsView : public Ui::View
+		class EXPORT_API LogsView : public Contacts::SelectView
 		{
 		public:
 
@@ -61,8 +60,11 @@ namespace Logs
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
-			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
+
+			virtual const char *getPageTitle() const override;
+			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onItemPressed(Contacts::SelectItem *item) override;
 
 			void fillLayout();
 			void updateLayout(bool isEmpty);
@@ -78,15 +80,12 @@ namespace Logs
 			void setLastGroupItem(LogGroupItem *groupItem);
 
 
-			void setMode(ItemMode mode);
-
 			void onSettingsChanged(system_settings_key_e key);
 			void onSelectViewBy();
 			void onLogInserted(Model::LogGroup *group);
 			void onLogItemDelete(LogItem *item);
 
 			Model::LogProvider m_LogProvider;
-			ItemMode m_Mode;
 			FilterType m_FilterType;
 
 			Ui::Genlist *m_Genlist;
