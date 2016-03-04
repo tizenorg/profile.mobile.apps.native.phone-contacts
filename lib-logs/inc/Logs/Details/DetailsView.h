@@ -18,7 +18,7 @@
 #ifndef LOGS_DETAILS_DETAILS_VIEW_H
 #define LOGS_DETAILS_DETAILS_VIEW_H
 
-#include "Ui/View.h"
+#include "Contacts/SelectView.h"
 
 namespace Ui
 {
@@ -38,19 +38,26 @@ namespace Logs
 		/**
 		 * @brief Log details view.
 		 */
-		class DetailsView : public Ui::View
+		class DetailsView : public Contacts::SelectView
 		{
 		public:
-
 			/**
 			 * @brief Create log details view.
+			 * @param[in]   group   Log group
 			 */
 			DetailsView(Model::LogGroup *group);
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
-			virtual void onPageAttached() override;
+			virtual void onSelectModeChanged(Contacts::SelectMode selectMode) override;
+			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onMenuPressed() override;
+
+			void fillGenList();
+			void insertBasicInfoItem();
+			void insertLogGroupItem();
+			void insertLogDetailItems();
 
 			Model::LogGroup *m_Group;
 			Ui::Genlist *m_Genlist;
