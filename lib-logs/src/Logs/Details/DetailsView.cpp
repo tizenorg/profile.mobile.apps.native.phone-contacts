@@ -16,15 +16,22 @@
  */
 
 #include "Logs/Details/DetailsView.h"
-#include "Logs/Model/LogGroup.h"
 #include "Logs/Details/BasicInfoItem.h"
+#include "Logs/Details/LogDetailItem.h"
+#include "Logs/List/LogGroupItem.h"
+#include "Logs/Model/LogGroup.h"
+#include "Logs/Model/Log.h"
 #include "LogsDetailsItemLayout.h"
 
 #include "App/Path.h"
 #include "Ui/Genlist.h"
+#include "Ui/Menu.h"
+#include "Ui/Navigator.h"
 
 using namespace Logs::Model;
 using namespace Logs::Details;
+using namespace Logs::List;
+using namespace Contacts;
 
 DetailsView::DetailsView(LogGroup *group)
 	: m_Group(group), m_Genlist(nullptr), m_BasicInfoItem(nullptr)
@@ -41,6 +48,49 @@ Evas_Object *DetailsView::onCreate(Evas_Object *parent)
 
 void DetailsView::onCreated()
 {
+	fillGenList();
+}
+
+void DetailsView::onSelectAllInsert(Ui::GenlistItem *item)
+{
+	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
+}
+
+void DetailsView::onMenuPressed()
+{
+	if (getSelectMode() != SelectNone) {
+		return;
+	}
+
+	Ui::Menu *menu = new Ui::Menu();
+	menu->create(getEvasObject());
+
+	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
+		DetailsView *view = new DetailsView(m_Group);
+		view->setSelectMode(SelectMulti);
+		view->setSelectCallback([](SelectResults results) {
+			for (auto &&result : results) {
+				Log *log = (Log *)result.value.data;
+				log->remove();
+			}
+			return true;
+		});
+		getNavigator()->navigateTo(view);
+	});
+	menu->show();
+}
+
+void DetailsView::fillGenList()
+{
+	if (getSelectMode() != SelectMulti) {
+		createBaseInfoItem();
+	}
+	createLogGroupItem();
+	createLogDetailItems();
+}
+
+void DetailsView::createBaseInfoItem()
+{
 	m_BasicInfoItem = new BasicInfoItem(m_Group);
 	m_BasicInfoItem->setBackCallback([this] {
 		delete this;
@@ -48,8 +98,22 @@ void DetailsView::onCreated()
 	m_Genlist->insert(m_BasicInfoItem);
 }
 
-void DetailsView::onPageAttached()
+void DetailsView::createLogGroupItem()
 {
-	Ui::NavigatorPage *page = getPage();
-	page->setTitle(nullptr);
+	Log *log = m_Group->getLogList().back();
+	LogGroupItem *groupItem = new LogGroupItem(log->getTime());
+	m_Genlist->insert(groupItem);
+	elm_genlist_item_select_mode_set(groupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+}
+
+void DetailsView::createLogDetailItems()
+{
+	for (auto &log:m_Group->getLogList()) {
+		LogDetailItem *logItem = new LogDetailItem(log);
+		m_Genlist->insert(logItem);
+		onItemInserted(logItem);
+		if (getSelectMode() != SelectMulti) {
+			elm_genlist_item_select_mode_set(logItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+		}
+	}
 }
