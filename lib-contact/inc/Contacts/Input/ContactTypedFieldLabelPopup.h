@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_INPUT_CONTACT_OBJECT_CUSTOM_TYPE_POPUP_H
-#define CONTACTS_INPUT_CONTACT_OBJECT_CUSTOM_TYPE_POPUP_H
+#ifndef CONTACTS_INPUT_CONTACT_TYPED_FIELD_LABEL_POPUP_H
+#define CONTACTS_INPUT_CONTACT_TYPED_FIELD_LABEL_POPUP_H
 
 #include "Ui/Popup.h"
 
@@ -34,7 +34,7 @@ namespace Contacts
 		 *
 		 * @see ContactTypedObject
 		 */
-		class ContactObjectCustomTypePopup : public Ui::Popup
+		class ContactTypedFieldLabelPopup : public Ui::Popup
 		{
 		public:
 			/**
@@ -43,7 +43,7 @@ namespace Contacts
 			 */
 			typedef std::function<void(const char *)> ResultCallback;
 
-			ContactObjectCustomTypePopup();
+			ContactTypedFieldLabelPopup();
 
 			/**
 			 * @brief Set user input result callback.
@@ -64,4 +64,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_INPUT_CONTACT_OBJECT_CUSTOM_TYPE_POPUP_H */
+#endif /* CONTACTS_INPUT_CONTACT_TYPED_FIELD_LABEL_POPUP_H */

@@ -16,7 +16,7 @@
  */
 
 #include "Contacts/Input/ContactTypedFieldItem.h"
-#include "Contacts/Input/ContactObjectTypeControl.h"
+#include "Contacts/Input/ContactTypedFieldControl.h"
 #include "Contacts/Model/ContactTypedObject.h"
 
 #include "InputItemLayout.h"
@@ -39,7 +39,7 @@ const ContactTypedObject &ContactTypedFieldItem::getTypedObject() const
 Evas_Object *ContactTypedFieldItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_LEFT) == 0) {
-		Ui::Control *control = new ContactObjectTypeControl(m_TypeField, m_LabelField);
+		Ui::Control *control = new ContactTypedFieldControl(m_TypeField, m_LabelField);
 		return control->create(parent);
 	} else {
 		return ContactFieldItem::getContent(parent, part);

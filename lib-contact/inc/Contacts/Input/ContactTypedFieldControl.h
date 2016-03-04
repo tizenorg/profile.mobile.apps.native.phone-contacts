@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_INPUT_CONTACT_OBJECT_TYPE_CONTROL_H
-#define CONTACTS_INPUT_CONTACT_OBJECT_TYPE_CONTROL_H
+#ifndef CONTACTS_INPUT_CONTACT_TYPED_FIELD_CONTROL_H
+#define CONTACTS_INPUT_CONTACT_TYPED_FIELD_CONTROL_H
 
 #include "Ui/Hoversel.h"
 
@@ -31,11 +31,11 @@ namespace Contacts
 	namespace Input
 	{
 		/**
-		 * @brief UI control for displaying and editing type of typed object.
+		 * @brief UI control for displaying and editing type of typed field.
 		 *
 		 * @see ContactTypedObject
 		 */
-		class ContactObjectTypeControl : public Ui::Hoversel
+		class ContactTypedFieldControl : public Ui::Hoversel
 		{
 		public:
 			/**
@@ -43,7 +43,7 @@ namespace Contacts
 			 * @param[in]   typeField   Object's "type" field
 			 * @param[in]   labelField  Object's custom type label field
 			 */
-			ContactObjectTypeControl(Model::ContactEnumField &typeField,
+			ContactTypedFieldControl(Model::ContactEnumField &typeField,
 					Model::ContactTextField &labelField);
 
 		private:
@@ -56,4 +56,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_INPUT_CONTACT_OBJECT_TYPE_CONTROL_H */
+#endif /* CONTACTS_INPUT_CONTACT_TYPED_FIELD_CONTROL_H */

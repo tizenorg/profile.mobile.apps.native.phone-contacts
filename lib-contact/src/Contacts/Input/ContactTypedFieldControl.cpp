@@ -15,8 +15,8 @@
  *
  */
 
-#include "Contacts/Input/ContactObjectTypeControl.h"
-#include "Contacts/Input/ContactObjectCustomTypePopup.h"
+#include "Contacts/Input/ContactTypedFieldControl.h"
+#include "Contacts/Input/ContactTypedFieldLabelPopup.h"
 #include "Contacts/Model/ContactEnumField.h"
 #include "Contacts/Model/ContactTextField.h"
 #include "Contacts/Common/Strings.h"
@@ -25,13 +25,13 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactObjectTypeControl::ContactObjectTypeControl(ContactEnumField &typeField,
+ContactTypedFieldControl::ContactTypedFieldControl(ContactEnumField &typeField,
 		ContactTextField &labelField)
 	: m_TypeField(typeField), m_LabelField(labelField)
 {
 }
 
-void ContactObjectTypeControl::onCreated()
+void ContactTypedFieldControl::onCreated()
 {
 	int currentValue = m_TypeField.getValue();
 
@@ -51,14 +51,14 @@ void ContactObjectTypeControl::onCreated()
 		setText(m_LabelField.getValue());
 	}
 
-	setSelectedCallback(std::bind(&ContactObjectTypeControl::onSelected, this,
+	setSelectedCallback(std::bind(&ContactTypedFieldControl::onSelected, this,
 			std::placeholders::_1));
 }
 
-bool ContactObjectTypeControl::onSelected(int value)
+bool ContactTypedFieldControl::onSelected(int value)
 {
 	if (value == m_TypeField.getCustomValue()) {
-		auto popup = new ContactObjectCustomTypePopup();
+		auto popup = new ContactTypedFieldLabelPopup();
 		popup->setResultCallback([this, value](const char *label) {
 			m_TypeField.setValue(value);
 			m_LabelField.setValue(label);

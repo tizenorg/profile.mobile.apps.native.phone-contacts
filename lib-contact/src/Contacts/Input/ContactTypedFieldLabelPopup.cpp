@@ -15,23 +15,23 @@
  *
  */
 
-#include "Contacts/Input/ContactObjectCustomTypePopup.h"
+#include "Contacts/Input/ContactTypedFieldLabelPopup.h"
 #include "Ui/Editfield.h"
 #include "Utils/Callback.h"
 
 using namespace Contacts::Input;
 
-ContactObjectCustomTypePopup::ContactObjectCustomTypePopup()
+ContactTypedFieldLabelPopup::ContactTypedFieldLabelPopup()
 	: m_Editfield(nullptr)
 {
 }
 
-void ContactObjectCustomTypePopup::setResultCallback(ResultCallback callback)
+void ContactTypedFieldLabelPopup::setResultCallback(ResultCallback callback)
 {
 	m_OnResult = std::move(callback);
 }
 
-void ContactObjectCustomTypePopup::onCreated()
+void ContactTypedFieldLabelPopup::onCreated()
 {
 	setTitle("IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB");
 
@@ -48,13 +48,13 @@ void ContactObjectCustomTypePopup::onCreated()
 	elm_entry_input_panel_return_key_autoenabled_set(entry, EINA_TRUE);
 	elm_entry_input_panel_return_key_type_set(entry, ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE);
 	evas_object_smart_callback_add(entry, "changed",
-			(Evas_Smart_Cb) &ContactObjectCustomTypePopup::onEntryChanged, button);
+			(Evas_Smart_Cb) &ContactTypedFieldLabelPopup::onEntryChanged, button);
 	evas_object_smart_callback_add(entry, "activated",
-			makeCallback(&ContactObjectCustomTypePopup::onDonePressed), this);
+			makeCallback(&ContactTypedFieldLabelPopup::onDonePressed), this);
 	elm_object_focus_set(entry, EINA_TRUE);
 }
 
-void ContactObjectCustomTypePopup::onCreatePressed()
+void ContactTypedFieldLabelPopup::onCreatePressed()
 {
 	if (m_OnResult) {
 		char *text = elm_entry_markup_to_utf8(elm_entry_entry_get(m_Editfield->getEntry()));
@@ -63,13 +63,13 @@ void ContactObjectCustomTypePopup::onCreatePressed()
 	}
 }
 
-void ContactObjectCustomTypePopup::onDonePressed(Evas_Object *entry, void *eventInfo)
+void ContactTypedFieldLabelPopup::onDonePressed(Evas_Object *entry, void *eventInfo)
 {
 	onCreatePressed();
 	delete this;
 }
 
-void ContactObjectCustomTypePopup::onEntryChanged(Evas_Object *button, Evas_Object *entry, void *eventInfo)
+void ContactTypedFieldLabelPopup::onEntryChanged(Evas_Object *button, Evas_Object *entry, void *eventInfo)
 {
 	elm_object_disabled_set(button, elm_entry_is_empty(entry));
 }
