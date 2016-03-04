@@ -61,23 +61,31 @@ namespace Logs
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
+			virtual void onCreated() override;
 			virtual void onPageAttached() override;
 			virtual void onMenuPressed() override;
 
-			void onSettingsChanged(system_settings_key_e key);
-			void onSelectViewBy();
+			void fillLayout();
+			void updateLayout(bool isEmpty);
+			Evas_Object *createNoContentsLayout(Evas_Object *parent);
 			void fillGenlist();
-			bool shouldDisplayLogs(const Model::LogGroup &group);
-			void onLogInserted(Model::LogGroup *group);
-			LogGroupItem *insertLogItem(Model::LogGroup *group, LogGroupItem *groupItem);
 
-			LogGroupItem *createLogGroupItem(tm date);
+			bool shouldDisplayLogs(const Model::LogGroup &group);
 			LogItem *createLogItem(Model::LogGroup *group);
+			LogGroupItem *insertLogItem(Model::LogGroup *group, LogGroupItem *groupItem);
+			LogGroupItem *createLogGroupItem(tm date);
 
 			void setMode(ItemMode mode);
 
+			void onSettingsChanged(system_settings_key_e key);
+			void onSelectViewBy();
+			void onLogInserted(Model::LogGroup *group);
+			void onLogItemDelete(LogItem *item);
+
 			Model::LogProvider m_LogProvider;
+
 			Ui::Genlist *m_Genlist;
+
 			ItemMode m_Mode;
 			FilterType m_FilterType;
 		};
