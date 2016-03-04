@@ -56,7 +56,6 @@ namespace Logs
 			 * @param[in]   filterType    Defines how to filter log list
 			 */
 			LogsView(FilterType filterType = FilterAll);
-
 			virtual ~LogsView() override;
 
 		private:
@@ -70,10 +69,10 @@ namespace Logs
 			Evas_Object *createNoContentsLayout(Evas_Object *parent);
 			void fillGenlist();
 
-			bool shouldDisplayLogs(const Model::LogGroup &group);
-			LogItem *createLogItem(Model::LogGroup *group);
-			LogGroupItem *insertLogItem(Model::LogGroup *group, LogGroupItem *groupItem);
-			LogGroupItem *createLogGroupItem(tm date);
+			bool shouldDisplayLogs(const Model::LogGroup *logGroup) const;
+			LogItem *createLogItem(Model::LogGroup *logGroup);
+			LogItem *insertLogItem(Model::LogGroup *logGroup);
+			LogGroupItem *insertLogGroupItem(tm date);
 
 			void setMode(ItemMode mode);
 
@@ -83,11 +82,11 @@ namespace Logs
 			void onLogItemDelete(LogItem *item);
 
 			Model::LogProvider m_LogProvider;
-
-			Ui::Genlist *m_Genlist;
-
 			ItemMode m_Mode;
 			FilterType m_FilterType;
+
+			Ui::Genlist *m_Genlist;
+			LogGroupItem *m_LastGroupItem;
 		};
 	}
 }
