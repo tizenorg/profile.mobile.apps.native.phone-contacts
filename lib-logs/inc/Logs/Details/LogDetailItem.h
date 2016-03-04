@@ -42,6 +42,7 @@ namespace Logs
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
+			virtual void onSelectModeChanged(Contacts::SelectMode selectMode) override;
 			virtual Contacts::SelectResult getSelectResult() const override;
 
 			static Evas_Object *createIcon(Evas_Object *parent, const char *path);
