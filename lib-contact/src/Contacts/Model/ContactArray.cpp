@@ -18,7 +18,7 @@
 #include "Contacts/Model/ContactArray.h"
 #include "Contacts/Model/ContactObject.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
-#include "Contacts/Utils.h"
+#include "Contacts/ContactRecordChildIterator.h"
 
 using namespace Contacts::Model;
 
