@@ -39,7 +39,8 @@ namespace Contacts
 		{
 			TypeSpeeddial,  /**< Speeddial number */
 			TypeLog,        /**< Log number */
-			TypePerson      /**< Person */
+			TypePerson,     /**< Person */
+			TypeContact     /**< Contact */
 		};
 
 		/**
