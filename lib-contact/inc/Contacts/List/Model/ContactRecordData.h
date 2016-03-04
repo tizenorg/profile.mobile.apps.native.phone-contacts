@@ -35,7 +35,22 @@ namespace Contacts
 				 * @param[in]   type    ContactRecordData type
 				 */
 				ContactRecordData(Type type);
+				ContactRecordData(const ContactRecordData &contact) = delete;
 				virtual ~ContactRecordData() override;
+
+				ContactRecordData &operator=(const ContactRecordData &contact) = delete;
+
+				/**
+				 * @brief Update contact record handle
+				 * @param[in]   record  Contact record
+				 */
+				void updateContactRecord(contacts_record_h record);
+
+				/**
+				 * @see ContactData::getId()
+				 * @return Contact ID
+				 */
+				virtual int getId() const override;
 
 				/**
 				 * @see ContactData::getName()
@@ -62,11 +77,6 @@ namespace Contacts
 				virtual bool compare(const char *str) override;
 
 			protected:
-				/**
-				 * @brief Update contact record handle
-				 * @param[in]   record  Contact record
-				 */
-				void updateContactRecord(contacts_record_h record);
 
 				/**
 				 * @return contact record
