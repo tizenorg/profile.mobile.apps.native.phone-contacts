@@ -29,16 +29,26 @@
 
 namespace Contacts
 {
-	inline contacts_record_h getDisplayContact(contacts_record_h personRecord)
-	{
-		int id = 0;
-		contacts_record_get_int(personRecord, _contacts_person.display_contact_id, &id);
+	/**
+	 * @brief Get display contact record for a person.
+	 * @param[in]   personRecord    _contacts_person record
+	 * @return Display contact's _contacts_contact record.
+	 */
+	contacts_record_h EXPORT_API getDisplayContact(contacts_record_h personRecord);
 
-		contacts_record_h contactRecord = nullptr;
-		contacts_db_get_record(_contacts_contact._uri, id, &contactRecord);
+	/**
+	 * @brief Get display contact ID by person ID.
+	 * @param[in]   personId    _contacts_person ID
+	 * @return Display contact's _contacts_contact ID.
+	 */
+	int EXPORT_API getDisplayContactId(int personId);
 
-		return contactRecord;
-	}
+	/**
+	 * @brief Get person ID by contact ID.
+	 * @param[in]   contactId   _contacts_contact ID
+	 * @return _contacts_person ID.
+	 */
+	int EXPORT_API getPersonId(int contactId);
 }
 
 

@@ -18,6 +18,7 @@
 #include "Contacts/Common/Chooser.h"
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/List/ListView.h"
+#include "Contacts/Utils.h"
 #include "Utils/Logger.h"
 
 using namespace Contacts;
@@ -79,7 +80,7 @@ bool Chooser::onSinglePersonSelected(SelectResults personResults)
 	}
 
 	/* FIXME: Implement person support in DetailsView */
-	DetailsView *view = new DetailsView(getContactId(person.value.id),
+	DetailsView *view = new DetailsView(getDisplayContactId(person.value.id),
 			DetailsView::Type(person.type), m_FilterType);
 	view->setSelectMode(m_SelectMode);
 	view->setSelectCallback(std::bind(&Chooser::onSelected, this, _1));
@@ -113,19 +114,6 @@ bool Chooser::onSelected(SelectResults results)
 	}
 
 	return false;
-}
-
-int Chooser::getContactId(int personId)
-{
-	contacts_record_h record = 0;
-	int err = contacts_db_get_record(_contacts_person._uri, personId, &record);
-	RETVM_IF_ERR(err, 0, "contacts_db_get_record() failed.");
-
-	int id = 0;
-	contacts_record_get_int(record, _contacts_person.display_contact_id, &id);
-	contacts_record_destroy(record, true);
-
-	return id;
 }
 
 int Chooser::getSingleResultId(int personId, ResultType resultType)
