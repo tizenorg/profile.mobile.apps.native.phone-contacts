@@ -16,8 +16,6 @@
  */
 
 #include "Utils/UniString.h"
-#include <cstring>
-#include <memory>
 
 using namespace Utils;
 
@@ -59,18 +57,24 @@ bool UniString::operator>=(const UniString &that) const
 	return i18n_ustring_compare_code_point_order(m_UniStr.c_str(), that.m_UniStr.c_str()) >= 0;
 }
 
-const UniString::I18nString &UniString::getI18nStr() const
+UniString::I18nString &UniString::getI18nStr()
 {
 	return m_UniStr;
 }
 
-const std::string &UniString::getUtf8Str() const
+std::string &UniString::getUtf8Str()
 {
 	if (m_Utf8Str.empty() && !m_UniStr.empty()) {
 		m_Utf8Str = toUtf8(m_UniStr);
 	}
 
 	return m_Utf8Str;
+}
+
+void UniString::clear()
+{
+	m_Utf8Str.clear();
+	m_UniStr.clear();
 }
 
 std::string UniString::toUtf8(const I18nString &ustring)

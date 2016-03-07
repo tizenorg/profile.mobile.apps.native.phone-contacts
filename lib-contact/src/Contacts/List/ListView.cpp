@@ -17,8 +17,10 @@
 
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/GroupItem.h"
+#include "Contacts/List/Model/Person.h"
 #include "Contacts/List/MyProfileItem.h"
 #include "Contacts/List/PersonGroupItem.h"
+#include "Contacts/List/PersonItem.h"
 
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/Input/InputView.h"
@@ -38,7 +40,7 @@ using namespace std::placeholders;
 ListView::ListView(int filterType)
 	: m_Genlist(nullptr), m_Index(nullptr), m_AddButton(nullptr),
 	  m_Sections{ nullptr },
-	  m_Provider(PersonProvider::ModeAll, filterType)
+	  m_Provider(filterType)
 {
 }
 
@@ -153,17 +155,18 @@ void ListView::fillMfc()
 void ListView::fillPersonList()
 {
 	if (m_PersonGroups.empty()) {
-		PersonList list = m_Provider.getPersonList();
+		ContactDataList list = m_Provider.getContactDataList();
 		PersonGroupItem *group = nullptr;
 
-		for (auto &&person : list) {
+		for (auto &&contactData : list) {
+			auto person = static_cast<Person *>(contactData);
 			const UniString &nextLetter = person->getIndexLetter();
 
 			if (!group || group->getTitle() != nextLetter) {
 				group = insertPersonGroupItem(nextLetter);
 			}
 
-			auto item = createPersonItem(std::move(person));
+			auto item = createPersonItem(*person);
 			m_Genlist->insert(item, group);
 			onItemInserted(item);
 		}
@@ -379,11 +382,11 @@ PersonGroupItem *ListView::getNextPersonGroupItem(const Utils::UniString &indexL
 	return nullptr;
 }
 
-PersonItem *ListView::createPersonItem(PersonPtr person)
+PersonItem *ListView::createPersonItem(Person &person)
 {
-	PersonItem *item = new PersonItem(std::move(person));
-	m_Provider.setChangeCallback(item->getPerson(),
-			std::bind(&ListView::onPersonChanged, this, _1, _2, item));
+	PersonItem *item = new PersonItem(person);
+	person.setUpdateCallback(std::bind(&ListView::onPersonUpdated, this, item, _1));
+	person.setDeleteCallback(std::bind(&ListView::onDeleted, this, item));
 
 	return item;
 }
@@ -406,31 +409,20 @@ void ListView::insertPersonItem(PersonItem *item)
 	m_Genlist->insert(item, group, nextItem);
 }
 
-void ListView::updatePersonItem(PersonItem *item, Model::PersonPtr person)
+void ListView::updatePersonItem(PersonItem *item, int changes)
 {
-	if (item->getPerson() != *person) {
+	if (changes & ContactData::ChangedName) {
 		PersonGroupItem *oldGroup = static_cast<PersonGroupItem *>(item->getParentItem());
 
 		item->pop();
-
-		item->setPerson(std::move(person));
 		insertPersonItem(item);
 
 		if (oldGroup->empty()) {
 			deletePersonGroupItem(oldGroup);
 		}
-	} else {
-		const char *oldImagePath = item->getPerson().getImagePath();
-		const char *newImagePath = person->getImagePath();
-
-		bool equalImages = (!oldImagePath && !newImagePath) ||
-				(oldImagePath && newImagePath && strcmp(oldImagePath, newImagePath) == 0);
-
-		item->setPerson(std::move(person));
-		if (!equalImages) {
-			elm_genlist_item_fields_update(item->getObjectItem(),
-					PART_PERSON_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
-		}
+	} else if (changes & ContactData::ChangedImage) {
+		elm_genlist_item_fields_update(item->getObjectItem(),
+				PART_PERSON_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
 	}
 }
 
@@ -438,7 +430,8 @@ void ListView::deletePersonItem(PersonItem *item)
 {
 	PersonGroupItem *oldGroup = static_cast<PersonGroupItem *>(item->getParentItem());
 
-	m_Provider.unsetChangeCallback(item->getPerson());
+	item->getPerson().unsetUpdateCallback();
+	item->getPerson().unsetDeleteCallback();
 	delete item;
 
 	if (oldGroup->empty()) {
@@ -482,19 +475,19 @@ void ListView::onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem)
 	elm_index_item_selected_set(indexItem, EINA_FALSE);
 }
 
-void ListView::onPersonInserted(PersonPtr person)
+void ListView::onPersonInserted(ContactData &person)
 {
-	auto item = createPersonItem(std::move(person));
+	auto item = createPersonItem(static_cast<Person &>(person));
 	insertPersonItem(item);
 	onItemInserted(item);
 }
 
-void ListView::onPersonChanged(PersonPtr person, contacts_changed_e changeType, PersonItem *item)
+void ListView::onPersonUpdated(PersonItem *item, int changes)
 {
-	if (changeType == CONTACTS_CHANGE_UPDATED) {
-		updatePersonItem(item, std::move(person));
-	} else if (changeType == CONTACTS_CHANGE_DELETED) {
-		onItemRemove(item);
-		deletePersonItem(item);
-	}
+	updatePersonItem(item, changes);
+}
+
+void ListView::onDeleted(PersonItem *item)
+{
+	deletePersonItem(item);
 }
