@@ -38,7 +38,7 @@ namespace Contacts
 		/**
 		 * @brief Contact/My profile details view.
 		 */
-		class DetailsView : public SelectView
+		class EXPORT_API DetailsView : public SelectView
 		{
 		public:
 			/**
