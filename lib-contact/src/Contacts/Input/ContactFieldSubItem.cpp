@@ -48,6 +48,20 @@ bool ContactFieldSubItem::isFocusable() const
 	return m_Field.getType() == TypeText;
 }
 
+void ContactFieldSubItem::update()
+{
+	Ui::Control *control = getFieldControl();
+	if (control) {
+		if (m_Field.getType() == TypeText) {
+			auto textControl = static_cast<ContactTextFieldControl *>(control);
+			textControl->update();
+		} else if (m_Field.getType() == TypeDate) {
+			auto dateControl = static_cast<ContactDateFieldControl *>(control);
+			dateControl->update();
+		}
+	}
+}
+
 Elm_Genlist_Item_Class *ContactFieldSubItem::getItemClass() const
 {
 	static Elm_Genlist_Item_Class itc = createItemClass(INPUT_ITEM_STYLE);
@@ -60,7 +74,7 @@ Evas_Object *ContactFieldSubItem::getContent(Evas_Object *parent, const char *pa
 	if (strcmp(part, PART_MIDDLE) == 0) {
 		switch (m_Field.getType()) {
 			case TypeText:
-				control= new ContactTextFieldControl(this, m_Field.cast<ContactTextField>());
+				control = new ContactTextFieldControl(this, m_Field.cast<ContactTextField>());
 				break;
 			case TypeDate:
 				control = new ContactDateFieldControl(m_Field.cast<ContactDateField>());
@@ -84,10 +98,11 @@ void ContactFieldSubItem::onFocused()
 	Ui::Control *control = getFieldControl();
 	if (control) {
 		if (m_Field.getType() == TypeText) {
-			Evas_Object *entry = static_cast<Ui::Editfield *>(control)->getEntry();
-			elm_object_focus_set(entry, EINA_TRUE);
+			auto textControl = static_cast<ContactTextFieldControl *>(control);
+			elm_object_focus_set(textControl->getEntry(), EINA_TRUE);
 		} else if (m_Field.getType() == TypeDate) {
-			static_cast<ContactDateFieldControl *>(control)->showPicker();
+			auto dateControl = static_cast<ContactDateFieldControl *>(control);
+			dateControl->showPicker();
 		}
 	}
 }

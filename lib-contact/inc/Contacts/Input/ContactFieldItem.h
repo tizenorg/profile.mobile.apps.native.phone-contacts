@@ -65,6 +65,11 @@ namespace Contacts
 			 */
 			Model::ContactObject &getObject() const;
 
+			/**
+			 * @brief Update the item and it's sub-items using field values.
+			 */
+			virtual void update() override;
+
 		protected:
 			friend class ContactFieldSubItem;
 

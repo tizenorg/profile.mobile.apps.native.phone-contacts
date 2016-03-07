@@ -61,6 +61,11 @@ namespace Contacts
 			 */
 			virtual bool isFocusable() const override;
 
+			/**
+			 * @brief Update the item using field's value.
+			 */
+			virtual void update();
+
 		protected:
 			/**
 			 * @see GenlistItem::getItemClass()
