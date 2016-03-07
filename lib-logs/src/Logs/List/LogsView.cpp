@@ -36,10 +36,8 @@ using namespace Logs::Details;
 using namespace std::placeholders;
 
 LogsView::LogsView(FilterType filterType)
-	: m_LogProvider(),
-	  m_Genlist(nullptr),
-	  m_Mode(ItemMode::Default),
-	  m_FilterType(filterType)
+	: m_Mode(ItemMode::Default), m_FilterType(filterType),
+	  m_Genlist(nullptr), m_LastGroupItem(nullptr)
 {
 	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
 	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
@@ -137,11 +135,9 @@ Evas_Object *LogsView::createNoContentsLayout(Evas_Object *parent)
 
 void LogsView::fillGenlist()
 {
-	LogGroupItem *groupItem = nullptr;
-
 	for (auto &&group : m_LogProvider.getLogGroupList()) {
-		if (shouldDisplayLogs(*group)) {
-			groupItem = insertLogItem(group.get(), groupItem);
+		if (shouldDisplayLogs(group.get())) {
+			insertLogItem(group.get());
 		}
 	}
 
@@ -151,12 +147,12 @@ void LogsView::fillGenlist()
 	}
 }
 
-bool LogsView::shouldDisplayLogs(const LogGroup &group)
+bool LogsView::shouldDisplayLogs(const LogGroup *group) const
 {
 	switch (m_FilterType) {
 		case FilterMissed:
 		{
-			int type = group.getLogList().back()->getType();
+			int type = group->getLogList().back()->getType();
 			return (type == CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN ||
 					type == CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN);
 		}
@@ -187,24 +183,53 @@ LogItem *LogsView::createLogItem(LogGroup *group)
 	return item;
 }
 
-LogGroupItem *LogsView::insertLogItem(LogGroup *group, LogGroupItem *groupItem)
+LogItem *LogsView::insertLogItem(LogGroup *group)
 {
 	Log *log = group->getLogList().back();
-
+	LogGroupItem *groupItem = getLastGroupItem();
 	if (!groupItem || !LogProvider::compareDate(groupItem->getDate(), log->getTime())) {
-		groupItem = createLogGroupItem(log->getTime());
+		groupItem = insertGroupItem(log->getTime());
 	}
 
-	m_Genlist->insert(createLogItem(group), groupItem, (*groupItem->begin()));
+	LogItem *item = createLogItem(group);
+	m_Genlist->insert(item, groupItem, *groupItem->begin());
+	return item;
+}
+
+LogGroupItem *LogsView::insertGroupItem(tm date)
+{
+	LogGroupItem *groupItem = new LogGroupItem(date);
+	m_Genlist->insert(groupItem, nullptr, getLastGroupItem());
+	elm_genlist_item_select_mode_set(groupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+
+	setLastGroupItem(groupItem);
 	return groupItem;
 }
 
-LogGroupItem *LogsView::createLogGroupItem(tm date)
+LogGroupItem *LogsView::getLastGroupItem()
 {
-	LogGroupItem *groupItem = new LogGroupItem(date);
-	m_Genlist->insert(groupItem, nullptr, nullptr, Ui::Genlist::After);
-	elm_genlist_item_select_mode_set(groupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
-	return groupItem;
+	if (!m_LastGroupItem) {
+		for (auto &&item : *m_Genlist) {
+			if (item->isGroupItem()) {
+				m_LastGroupItem = dynamic_cast<LogGroupItem *>(item);
+				break;
+			}
+		}
+	}
+
+	return m_LastGroupItem;
+}
+
+void LogsView::setLastGroupItem(LogGroupItem *groupItem)
+{
+	if (m_LastGroupItem) {
+		m_LastGroupItem->setDestroyCallback(nullptr);
+	}
+
+	m_LastGroupItem = groupItem;
+	m_LastGroupItem->setDestroyCallback([this] {
+		m_LastGroupItem = nullptr;
+	});
 }
 
 void LogsView::setMode(ItemMode mode)
@@ -243,23 +268,23 @@ void LogsView::onSelectViewBy()
 
 void LogsView::onLogInserted(LogGroup *group)
 {
-	if (shouldDisplayLogs(*group)) {
+	if (shouldDisplayLogs(group)) {
 		if (!m_Genlist) {
 			updateLayout(false);
 		}
 
-		LogGroupItem *groupItem = dynamic_cast<LogGroupItem *>(m_Genlist->getFirstItem());
-		groupItem = insertLogItem(group, groupItem);
-		groupItem->scrollTo();
+		insertLogItem(group);
+		m_Genlist->getFirstItem()->scrollTo();
 	}
 }
 
 void LogsView::onLogItemDelete(LogItem *item)
 {
-	LogGroupItem *itemGroup = static_cast<LogGroupItem *>(item->getParentItem());
+	Ui::GenlistGroupItem *groupItem = item->getParentItem();
 	delete item;
-	if (itemGroup->empty()) {
-		delete itemGroup;
+
+	if (groupItem->empty()) {
+		delete groupItem;
 	}
 
 	if (!elm_genlist_items_count(m_Genlist->getEvasObject())) {
