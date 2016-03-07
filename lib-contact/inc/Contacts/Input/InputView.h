@@ -37,9 +37,15 @@ namespace Contacts
 		/**
 		 * @brief Contact/My profile create/edit view.
 		 */
-		class InputView : public Ui::View
+		class EXPORT_API InputView : public Ui::View
 		{
 		public:
+			/**
+			 * @brief Called when contact editing is finished.
+			 * @param[in]   Edited contact ID
+			 */
+			typedef std::function<void(int)> ResultCallback;
+
 			/**
 			 * @brief Type of object to create or edit.
 			 */
@@ -55,6 +61,21 @@ namespace Contacts
 			 * @param[in]   type        Type of edited object
 			 */
 			InputView(int recordId = 0, Type type = TypeContact);
+
+			/**
+			 * @brief Add field with text value.
+			 * @remark If the field can't have multiple instances,
+			 *         then existing single field's value is reassigned instead.
+			 * @param[in]   fieldId     Contact field ID
+			 * @param[in]   value       Field value
+			 */
+			void addField(Model::ContactFieldId fieldId, const char *value);
+
+			/**
+			 * @brief Set editing result callback.
+			 * @param[in]   callback    Callback to be called when editing is finished.
+			 */
+			void setResultCallback(ResultCallback callback);
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -79,8 +100,8 @@ namespace Contacts
 			void onCancelPressed(Evas_Object *button, void *eventInfo);
 			bool onCancel();
 
-			int m_RecordId;
 			Model::Contact m_Contact;
+			ResultCallback m_OnResult;
 
 			Evas_Object *m_DoneButton;
 			Ui::Genlist *m_Genlist;

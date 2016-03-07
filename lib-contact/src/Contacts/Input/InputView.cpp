@@ -21,7 +21,10 @@
 #include "Contacts/Input/ContactImageFieldItem.h"
 #include "Contacts/Input/ContactRelationshipFieldItem.h"
 #include "Contacts/Input/ContactTypedFieldItem.h"
+
 #include "Contacts/Model/ContactArray.h"
+#include "Contacts/Model/ContactTextField.h"
+#include "Contacts/Model/ContactCompoundObject.h"
 
 #include "App/Path.h"
 #include "Ui/Genlist.h"
@@ -58,10 +61,47 @@ namespace
 }
 
 InputView::InputView(int recordId, Type type)
-	: m_RecordId(recordId), m_Contact(ContactObjectType(type)),
+	: m_Contact(ContactObjectType(type)),
 	  m_DoneButton(nullptr), m_Genlist(nullptr),
 	  m_Items{nullptr}, m_AddFieldsItem(nullptr)
 {
+	m_Contact.initialize(recordId);
+	m_Contact.setFillCallback(std::bind(&InputView::onContactFilled,
+				this, std::placeholders::_1));
+}
+
+void InputView::addField(Model::ContactFieldId fieldId, const char *value)
+{
+	if (!value) {
+		return;
+	}
+
+	ContactObject &field = addField(fieldId);
+	if (field.getSubType() & ObjectCompound) {
+		field.cast<ContactCompoundObject>().setValue(value);
+	} else {
+		ContactField *subField = field.getField(0);
+		if (subField && subField->getType() == TypeText) {
+			subField->cast<ContactTextField>().setValue(value);
+		} else {
+			removeField(field);
+			return;
+		}
+	}
+
+	if (m_Genlist) {
+		ContactFieldItem *item = m_Items[fieldId];
+		if (item && (&item->getObject() == &field)) {
+			item->update();
+		} else {
+			addFieldItem(field);
+		}
+	}
+}
+
+void InputView::setResultCallback(ResultCallback callback)
+{
+	m_OnResult = std::move(callback);
 }
 
 Evas_Object *InputView::onCreate(Evas_Object *parent)
@@ -87,18 +127,8 @@ Evas_Object *InputView::onCreate(Evas_Object *parent)
 
 void InputView::onCreated()
 {
-	int err = m_Contact.initialize(m_RecordId);
-	RETM_IF_ERR(err, "Contact::initialize() failed.");
-	m_Contact.setFillCallback(std::bind(&InputView::onContactFilled,
-				this, std::placeholders::_1));
-
 	addFieldItem(addField(FieldImage));
 	addFieldItem(addField(FieldName))->focus();
-
-	if (m_Contact.isNew()) {
-		addFieldItem(addField(FieldNumber));
-		return;
-	}
 
 	for (auto &&field : m_Contact) {
 		ContactFieldId fieldId = ContactFieldId(field.getId());
@@ -121,6 +151,10 @@ void InputView::onCreated()
 			default:
 				break;
 		}
+	}
+
+	if (m_Contact.isNew() && m_Contact.getFieldById(FieldNumber)->isEmpty()) {
+		addFieldItem(addField(FieldNumber));
 	}
 }
 
@@ -187,7 +221,9 @@ ContactObject &InputView::addField(ContactFieldId fieldId)
 	if (parentField.getType() == TypeArray) {
 		return parentField.cast<ContactArray>().addField().cast<ContactObject>();
 	} else {
-		m_AddFieldsItem->setAddFieldState(fieldId, false);
+		if (m_AddFieldsItem) {
+			m_AddFieldsItem->setAddFieldState(fieldId, false);
+		}
 		return parentField.cast<ContactObject>();
 	}
 }
@@ -199,7 +235,9 @@ void InputView::removeField(ContactObject &field)
 	if (parentField.getType() == TypeArray) {
 		parentField.cast<ContactArray>().removeField(field);
 	} else {
-		m_AddFieldsItem->setAddFieldState(fieldId, true);
+		if (m_AddFieldsItem) {
+			m_AddFieldsItem->setAddFieldState(fieldId, true);
+		}
 		field.reset();
 	}
 }
@@ -254,8 +292,10 @@ void InputView::onContactFilled(bool isFilled)
 
 void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 {
-	int err = m_Contact.save();
-	RETM_IF_ERR(err, "Contact::save() failed.");
+	int id = m_Contact.save();
+	if (m_OnResult) {
+		m_OnResult(id);
+	}
 
 	delete this;
 }
