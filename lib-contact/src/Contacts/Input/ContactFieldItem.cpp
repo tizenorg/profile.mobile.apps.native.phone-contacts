@@ -48,6 +48,15 @@ ContactObject &ContactFieldItem::getObject() const
 	return m_Object;
 }
 
+void ContactFieldItem::update()
+{
+	ContactFieldSubItem::update();
+	for (auto &&item : *this) {
+		auto subItem = dynamic_cast<ContactFieldSubItem *>(item);
+		subItem->update();
+	}
+}
+
 Elm_Genlist_Item_Class *ContactFieldItem::getItemClass() const
 {
 	static Elm_Genlist_Item_Class itc = createItemClass(INPUT_ITEM_STYLE);
