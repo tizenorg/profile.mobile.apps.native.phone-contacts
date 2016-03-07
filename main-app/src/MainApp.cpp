@@ -27,9 +27,7 @@
 #include "OperationDefaultController.h"
 #include "OperationEditController.h"
 #include "OperationPickController.h"
-/* TODO:
 #include "OperationViewController.h"
- */
 
 MainApp::MainApp()
 	: m_Window(nullptr), m_Navigator(nullptr), m_Controller(nullptr)
@@ -89,7 +87,7 @@ void MainApp::onAppControl(app_control_h request)
 				m_Controller = new OperationEditController();
 				break;
 			case OperationView:
-				/* TODO: m_Controller = new OperationViewController(); */
+				m_Controller = new OperationViewController();
 				break;
 			case OperationPick:
 				m_Controller = new OperationPickController();

@@ -178,6 +178,12 @@
             <operation name="http://tizen.org/appcontrol/operation/pick"/>
             <mime name="application/vnd.tizen.contact"/>
         </app-control>
+        <app-control>
+            <operation name="http://tizen.org/appcontrol/operation/view"/>
+            <mime name="application/vnd.tizen.contact"/>
+            <mime name="text/vcard"/>
+            <mime name="text/x-vcard"/>
+        </app-control>
     </ui-application>
     <privileges>
         <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
