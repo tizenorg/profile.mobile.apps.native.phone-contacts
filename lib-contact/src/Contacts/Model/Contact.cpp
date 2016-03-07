@@ -18,7 +18,9 @@
 #include "Contacts/Model/Contact.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
 #include "Contacts/Utils.h"
+
 #include "Utils/Callback.h"
+#include "Utils/Logger.h"
 
 using namespace Contacts::Model;
 
@@ -59,15 +61,20 @@ bool Contact::isNew() const
 
 int Contact::save()
 {
+	int id = 0;
 	int err = CONTACTS_ERROR_NONE;
+
 	if (m_IsNew) {
-		err = contacts_db_insert_record(getRecord(), nullptr);
+		err = contacts_db_insert_record(getRecord(), &id);
+		RETVM_IF_ERR(err, err, "contacts_db_insert_record() failed.");
 		setChangeCallback();
 	} else {
 		err = contacts_db_update_record(getRecord());
+		RETVM_IF_ERR(err, err, "contacts_db_update_record() failed.");
+		id = getRecordId();
 	}
 
-	return err;
+	return id;
 }
 
 int Contact::remove()
@@ -75,7 +82,8 @@ int Contact::remove()
 	int err = CONTACTS_ERROR_NONE;
 	if (!m_IsNew) {
 		unsetChangeCallback();
-		contacts_db_delete_record(getObjectMetadata().uri, getRecordId());
+		err = contacts_db_delete_record(getObjectMetadata().uri, getRecordId());
+		WARN_IF_ERR(err, "contacts_db_delete_record() failed.");
 	}
 
 	return err;
