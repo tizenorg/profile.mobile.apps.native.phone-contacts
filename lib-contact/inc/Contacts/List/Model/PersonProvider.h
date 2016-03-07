@@ -19,12 +19,10 @@
 #define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
+#include "Contacts/ContactDataProvider.h"
 #include "Contacts/DbChangeObserver.h"
-#include "Contacts/List/Model/Person.h"
 
 #include <contacts.h>
-#include <functional>
-#include <unordered_map>
 
 namespace Contacts
 {
@@ -32,84 +30,42 @@ namespace Contacts
 	{
 		namespace Model
 		{
+			class Person;
+
 			/**
 			 * @brief Provides list of person
 			 */
-			class PersonProvider
+			class PersonProvider : public ContactDataProvider
 			{
 			public:
-				/**
-				 * @brief Determines what persons to provide
-				 */
-				enum Mode
-				{
-					ModeAll,
-					ModeFavorites,
-					ModeMFC
-				};
-
-				/**
-				 * @brief Person insert callback
-				 * @param[in]    person        Person object
-				 */
-				typedef std::function<void(PersonPtr person)> InsertCallback;
-
-				/**
-				 * @brief Person change callback
-				 * @param[in]    person        Person object
-				 * @param[in]    changeType    Change type
-				 */
-				typedef std::function<void(PersonPtr person, contacts_changed_e changeType)> ChangeCallback;
-
 				/**
 				 * @brief Constructor
 				 * @param[in]    filterType    Contact filter
 				 */
-				explicit PersonProvider(Mode modeType = ModeAll,
-						int filterType = FilterNone);
+				explicit PersonProvider(int filterType = FilterNone);
 
-				~PersonProvider();
+				virtual ~PersonProvider() override;
 
 				/**
 				 * @brief Get person list
 				 * @return List of contact objects
 				 */
-				PersonList getPersonList() const;
-
-				/**
-				 * @brief Set person insert callback
-				 * @param[in]    callback    Create callback
-				 */
-				void setInsertCallback(InsertCallback callback);
-
-				/**
-				 * @brief Unset person insert callback
-				 */
-				void unsetInsertCallback();
-
-				/**
-				 * @brief Set person change callback
-				 * @remark It can be update or delete of person
-				 * @param[in]    person      Person
-				 * @param[in]    callback    Change callback
-				 */
-				void setChangeCallback(const Person &person, ChangeCallback callback);
-
-				/**
-				 * @brief Unset person change callback
-				 * @param[in]    person      Person
-				 */
-				void unsetChangeCallback(const Person &person);
+				virtual const ContactDataList &getContactDataList() override;
 
 			private:
-				void onPersonInserted(int id, contacts_changed_e changeType);
-				void onPersonChanged(int id, contacts_changed_e changeType);
+				contacts_record_h getFilteredRecord(int contactId);
 
-				Mode m_Mode;
+				void setChangedCallback(ContactDataList::iterator personIt);
+				void updateChangedCallback(ContactDataList::iterator personIt);
+				void unsetChangedCallback(const Person &person);
+
+				void onPersonInserted(int id, contacts_changed_e changeType);
+				void onPersonChanged(ContactDataList::iterator it, int id, contacts_changed_e changeType);
+
 				int m_FilterType;
 
-				std::pair<InsertCallback, DbChangeObserver::CallbackHandle> m_InsertCallback;
-				std::unordered_map<int, std::pair<ChangeCallback, DbChangeObserver::CallbackHandle>> m_ChangeCallbacks;
+				DbChangeObserver::CallbackHandle m_Handle;
+				ContactDataList m_PersonList;
 			};
 		}
 	}

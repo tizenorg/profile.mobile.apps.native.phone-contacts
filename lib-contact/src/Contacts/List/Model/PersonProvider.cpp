@@ -16,10 +16,8 @@
  */
 
 #include "Contacts/List/Model/PersonProvider.h"
+#include "Contacts/List/Model/Person.h"
 #include "Contacts/Utils.h"
-#include "Utils/Callback.h"
-#include "Utils/Range.h"
-#include "Utils/Logger.h"
 
 using namespace Contacts;
 using namespace Contacts::List::Model;
@@ -37,25 +35,7 @@ namespace
 		_contacts_person.favorite_priority
 	};
 
-
-	contacts_filter_h prepareModeTypeFilter(PersonProvider::Mode modeType)
-	{
-		contacts_filter_h filter = nullptr;
-
-		if (modeType != PersonProvider::ModeAll) {
-			contacts_filter_create(_contacts_person._uri, &filter);
-
-			if (modeType == PersonProvider::ModeFavorites) {
-				contacts_filter_add_bool(filter, _contacts_person.is_favorite, true);
-			} else if (modeType == PersonProvider::ModeMFC) {
-				//TODO Implement
-			}
-		}
-
-		return filter;
-	}
-
-	contacts_filter_h prepareFilterTypeFilter(int filterType)
+	contacts_filter_h getProviderFilter(int filterType)
 	{
 		contacts_filter_h filter = nullptr;
 
@@ -79,39 +59,17 @@ namespace
 		return filter;
 	}
 
-	contacts_filter_h getProviderFilter(PersonProvider::Mode modeType, int filterType)
-	{
-		contacts_filter_h result = nullptr;
-		contacts_filter_h modeTypeFilter = prepareModeTypeFilter(modeType);
-		contacts_filter_h filterTypeFilter = prepareFilterTypeFilter(filterType);
-
-		if (modeTypeFilter) {
-			if (filterTypeFilter) {
-				contacts_filter_add_operator(modeTypeFilter, CONTACTS_FILTER_OPERATOR_AND);
-				contacts_filter_add_filter(modeTypeFilter, filterTypeFilter);
-			}
-			result = modeTypeFilter;
-		} else if (filterTypeFilter) {
-			result = filterTypeFilter;
-		}
-
-		return result;
-	}
-
-	contacts_list_h getPersonList(PersonProvider::Mode modeType, int filterType)
+	contacts_list_h getPersonList(int filterType)
 	{
 		contacts_query_h query = nullptr;
 		contacts_query_create(_contacts_person._uri, &query);
 
-		contacts_filter_h filter = getProviderFilter(modeType, filterType);
+		contacts_filter_h filter = getProviderFilter(filterType);
 		if (filter) {
 			contacts_query_set_filter(query, filter);
 		}
 
 		contacts_query_set_projection(query, projection, Utils::count(projection));
-		if (PersonProvider::ModeFavorites == modeType) {
-			contacts_query_set_sort(query, _contacts_person.favorite_priority, true);
-		}
 
 		contacts_list_h list = nullptr;
 		contacts_db_get_records_with_query(query, 0, 0, &list);
@@ -121,147 +79,133 @@ namespace
 
 		return list;
 	}
-
-	contacts_record_h getPersonRecord(int contactId, PersonProvider::Mode modeType, int filterType)
-	{
-		contacts_query_h query = nullptr;
-		contacts_query_create(_contacts_person._uri, &query);
-
-		contacts_filter_h filter = getProviderFilter(modeType, filterType);
-		if (filter) {
-			contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-		} else {
-			contacts_filter_create(_contacts_person._uri, &filter);
-		}
-
-		contacts_filter_add_int(filter, _contacts_person.display_contact_id, CONTACTS_MATCH_EQUAL, contactId);
-		contacts_query_set_filter(query, filter);
-		contacts_query_set_projection(query, projection, Utils::count(projection));
-
-		contacts_list_h list = nullptr;
-		contacts_db_get_records_with_query(query, 0, 1, &list);
-
-		contacts_record_h record = nullptr;
-		contacts_list_get_current_record_p(list, &record);
-
-		contacts_list_destroy(list, false);
-		contacts_query_destroy(query);
-		contacts_filter_destroy(filter);
-
-		return record;
-	}
 }
 
-PersonProvider::PersonProvider(Mode modeType, int filterType)
-	: m_Mode(modeType), m_FilterType(filterType)
+PersonProvider::PersonProvider(int filterType)
+	: m_FilterType(filterType)
 {
-	if (m_Mode == ModeMFC) {
-		//TODO Implement support of ModeMFC
-		ERR("ModeTypeMFC is not supported");
-		m_Mode = ModeAll;
-	}
+	m_Handle = DbChangeObserver::getInstance()->addCallback(
+			std::bind(&PersonProvider::onPersonInserted, this, _1, _2));
 }
 
 PersonProvider::~PersonProvider()
 {
-	unsetInsertCallback();
+	DbChangeObserver::getInstance()->removeCallback(m_Handle);
 
-	for (auto &&callback : m_ChangeCallbacks) {
-		DbChangeObserver::getInstance()->removeCallback(callback.first, callback.second.second);
+	for(auto &&person : m_PersonList) {
+		unsetChangedCallback(person);
+		delete person;
 	}
 }
 
-PersonList PersonProvider::getPersonList() const
+const ContactDataList &PersonProvider::getContactDataList()
 {
-	PersonList personList;
-	contacts_list_h list = ::getPersonList(m_Mode, m_FilterType);
+	contacts_list_h list = ::getPersonList(m_FilterType);
 
 	contacts_record_h record = nullptr;
 	CONTACTS_LIST_FOREACH(list, record) {
-		personList.push_back(PersonPtr(new Person(record)));
+		auto person = new Person(record);
+		m_PersonList.push_back(person);
+
+		auto personIt = m_PersonList.end();
+		std::advance(personIt, -1);
+		setChangedCallback(personIt);
 	}
 
 	contacts_list_destroy(list, false);
 
-	return personList;
+	return m_PersonList;
 }
 
-void PersonProvider::setInsertCallback(InsertCallback callback)
+contacts_record_h PersonProvider::getFilteredRecord(int contactId)
 {
-	auto handle = DbChangeObserver::getInstance()->addCallback(
-			std::bind(&PersonProvider::onPersonInserted, this, _1, _2));
-	m_InsertCallback = { std::move(callback), std::move(handle) };
-}
+	contacts_query_h query = nullptr;
+	contacts_query_create(_contacts_person._uri, &query);
 
-void PersonProvider::unsetInsertCallback()
-{
-	if (m_InsertCallback.first) {
-		auto handle = m_InsertCallback.second;
-		DbChangeObserver::getInstance()->removeCallback(handle);
-		m_InsertCallback.first = nullptr;
+	contacts_filter_h filter = getProviderFilter(m_FilterType);
+	if (filter) {
+		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+	} else {
+		contacts_filter_create(_contacts_person._uri, &filter);
 	}
+
+	contacts_filter_add_int(filter, _contacts_person.display_contact_id, CONTACTS_MATCH_EQUAL, contactId);
+	contacts_query_set_filter(query, filter);
+	contacts_query_set_projection(query, projection, Utils::count(projection));
+
+	contacts_list_h list = nullptr;
+	contacts_db_get_records_with_query(query, 0, 1, &list);
+
+	contacts_record_h record = nullptr;
+	contacts_list_get_current_record_p(list, &record);
+
+	contacts_list_destroy(list, false);
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+
+	return record;
 }
 
-void PersonProvider::setChangeCallback(const Person &person, ChangeCallback callback)
+void PersonProvider::setChangedCallback(ContactDataList::iterator personIt)
 {
-	auto addCallback = [this](int id, ChangeCallback callback) {
+	auto person = static_cast<Person *>(*personIt);
+
+	for (auto &&id : person->getContactIds()) {
 		auto handle = DbChangeObserver::getInstance()->addCallback(id,
-			std::bind(&PersonProvider::onPersonChanged, this, _1, _2));
+			std::bind(&PersonProvider::onPersonChanged, this, personIt, _1, _2));
 
-		m_ChangeCallbacks.insert({ id, { std::move(callback), std::move(handle) } });
-	};
-
-	auto ids = person.getContactIds();
-	auto it = ids.begin();
-
-	for (; it < ids.end() - 1; ++it) {
-		addCallback(*it, callback);
+		person->m_Handles.push_back(handle);
 	}
-
-	addCallback(*it, std::move(callback));
 }
 
-void PersonProvider::unsetChangeCallback(const Person &person)
+void PersonProvider::updateChangedCallback(ContactDataList::iterator personIt)
 {
-	for (auto &&id: person.getContactIds()) {
-		auto it = m_ChangeCallbacks.find(id);
-		if (it != m_ChangeCallbacks.end()) {
-			auto handle = it->second.second;
-			DbChangeObserver::getInstance()->removeCallback(id, handle);
+	auto person = static_cast<Person *>(*personIt);
 
-			m_ChangeCallbacks.erase(it);
-		}
+	unsetChangedCallback(*person);
+	person->m_Handles.clear();
+	setChangedCallback(personIt);
+}
+
+void PersonProvider::unsetChangedCallback(const Person &person)
+{
+	for (size_t i = 0; i <  person.getContactIds().size(); ++i) {
+		DbChangeObserver::getInstance()->removeCallback(person.getContactIds()[i], person.m_Handles[i]);
 	}
 }
 
 void PersonProvider::onPersonInserted(int id, contacts_changed_e changeType)
 {
 	if (changeType == CONTACTS_CHANGE_INSERTED) {
-		auto callback = m_InsertCallback.first;
-		if (callback) {
-			contacts_record_h record = getPersonRecord(id, m_Mode, m_FilterType);
-			callback(PersonPtr(new Person(record)));
+		auto record = getFilteredRecord(id);
+		if (record) {
+			m_PersonList.push_back(new Person(record));
+
+			onInserted(*m_PersonList.back());
 		}
 	}
 }
 
-void PersonProvider::onPersonChanged(int id, contacts_changed_e changeType)
+void PersonProvider::onPersonChanged(ContactDataList::iterator it, int id, contacts_changed_e changeType)
 {
-	auto it = m_ChangeCallbacks.find(id);
-	if (it != m_ChangeCallbacks.end()) {
-		auto callback = it->second.first;
+	auto person = static_cast<Person *>(*it);
 
-		if (callback) {
-			if (changeType == CONTACTS_CHANGE_UPDATED) {
-				contacts_record_h record = getPersonRecord(id, m_Mode, m_FilterType);
-				if (record) {
-					callback(PersonPtr(new Person(record)), changeType);
-				} else {
-					callback(nullptr, CONTACTS_CHANGE_DELETED);
-				}
-			} else if (changeType == CONTACTS_CHANGE_DELETED) {
-				callback(nullptr, changeType);
-			}
+	if (changeType == CONTACTS_CHANGE_UPDATED) {
+		contacts_record_h record = getFilteredRecord(id);
+		if (record) {
+			int changes = person->update(record);
+
+			updateChangedCallback(it);
+
+			person->onUpdated(changes);
+
+			return;
 		}
 	}
+
+	unsetChangedCallback(*person);
+	person->onDeleted();
+
+	delete person;
+	m_PersonList.erase(it);
 }
