@@ -72,6 +72,15 @@ Evas_Object *LogDetailItem::getContent(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
+void LogDetailItem::onSelectModeChanged(SelectMode selectMode)
+{
+	if (getSelectMode() == SelectNone) {
+		elm_genlist_item_select_mode_set(getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+	} else {
+		elm_genlist_item_select_mode_set(getObjectItem(), ELM_OBJECT_SELECT_MODE_DEFAULT);
+	}
+}
+
 SelectResult LogDetailItem::getSelectResult() const
 {
 	return { 0, m_Log };
