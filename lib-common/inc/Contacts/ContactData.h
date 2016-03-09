@@ -39,7 +39,8 @@ namespace Contacts
 		{
 			TypeSpeeddial,  /**< Speeddial number */
 			TypeLog,        /**< Log number */
-			TypePerson      /**< Person */
+			TypePerson,     /**< Person */
+			TypeContact     /**< Contact */
 		};
 
 		/**
@@ -81,7 +82,10 @@ namespace Contacts
 		 * @param[in]   type    ContactData type
 		 */
 		ContactData(Type type);
+		ContactData(const ContactData &that) = delete;
 		virtual ~ContactData() { }
+
+		ContactData &operator=(const ContactData &that) = delete;
 
 		/**
 		 * @return ID

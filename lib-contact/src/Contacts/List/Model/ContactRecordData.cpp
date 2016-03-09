@@ -31,6 +31,19 @@ ContactRecordData::~ContactRecordData()
 	contacts_record_destroy(m_Record, true);
 }
 
+void ContactRecordData::updateContactRecord(contacts_record_h record)
+{
+	contacts_record_destroy(m_Record, true);
+	m_Record = record;
+}
+
+int ContactRecordData::getId() const
+{
+	int id = 0;
+	contacts_record_get_int(m_Record, _contacts_contact.id, &id);
+	return id;
+}
+
 const char *ContactRecordData::getName() const
 {
 	return getValue(m_Record, FieldName);
@@ -49,12 +62,6 @@ const char *ContactRecordData::getImagePath() const
 bool ContactRecordData::compare(const char *str)
 {
 	return strstr(getName(), str); //Todo: Compare unicode strings
-}
-
-void ContactRecordData::updateContactRecord(contacts_record_h record)
-{
-	contacts_record_destroy(m_Record, true);
-	m_Record = record;
 }
 
 const contacts_record_h ContactRecordData::getContactRecord() const
