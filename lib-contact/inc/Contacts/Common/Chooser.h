@@ -54,7 +54,6 @@ namespace Contacts
 			bool onMultiPersonSelected(SelectResults personResults);
 			bool onSelected(SelectResults results);
 
-			static int getContactId(int personId);
 			static int getSingleResultId(int personId, ResultType resultType);
 			static int getFilterType(ResultType resultType);
 

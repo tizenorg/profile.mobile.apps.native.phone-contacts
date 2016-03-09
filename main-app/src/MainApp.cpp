@@ -25,9 +25,9 @@
 #include "Utils/Logger.h"
 
 #include "OperationDefaultController.h"
+#include "OperationEditController.h"
 #include "OperationPickController.h"
 /* TODO:
-#include "OperationEditController.h"
 #include "OperationViewController.h"
  */
 
@@ -86,7 +86,7 @@ void MainApp::onAppControl(app_control_h request)
 				break;
 			case OperationAdd:
 			case OperationEdit:
-				/* TODO: m_Controller = new OperationEditController(); */
+				m_Controller = new OperationEditController();
 				break;
 			case OperationView:
 				/* TODO: m_Controller = new OperationViewController(); */

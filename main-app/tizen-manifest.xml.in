@@ -166,6 +166,14 @@
 		<label xml:lang="zh-hk">聯絡人</label>
 		<label xml:lang="zh-tw">聯絡人</label>
 		<app-control>
+			<operation name="http://tizen.org/appcontrol/operation/add"/>
+			<mime name="application/vnd.tizen.contact"/>
+		</app-control>
+		<app-control>
+			<operation name="http://tizen.org/appcontrol/operation/edit"/>
+			<mime name="application/vnd.tizen.contact"/>
+		</app-control>
+		<app-control>
 			<operation name="http://tizen.org/appcontrol/operation/pick"/>
 			<mime name="application/vnd.tizen.contact"/>
 		</app-control>
