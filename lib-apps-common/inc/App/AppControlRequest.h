@@ -117,7 +117,7 @@ namespace App
 	AppControl EXPORT_API requestShareMyProfile(int recordId);
 
 	/**
-	 * @brief Request pick vcard(s)
+	 * @brief Request pick vcard(s) from filesystem
 	 * @param[in]   path    Path of storage from where files should be picked
 	 * @return AppControl wrapper
 	 */

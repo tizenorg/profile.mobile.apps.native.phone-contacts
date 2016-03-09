@@ -38,6 +38,18 @@ namespace Contacts
 				virtual ~ContactRecordData() override;
 
 				/**
+				 * @brief Update contact record handle
+				 * @param[in]   record  Contact record
+				 */
+				void updateContactRecord(contacts_record_h record);
+
+				/**
+				 * @see ContactData::getId()
+				 * @return Contact ID
+				 */
+				virtual int getId() const override;
+
+				/**
 				 * @see ContactData::getName()
 				 * @return Contact name
 				 */
@@ -62,11 +74,6 @@ namespace Contacts
 				virtual bool compare(const char *str) override;
 
 			protected:
-				/**
-				 * @brief Update contact record handle
-				 * @param[in]   record  Contact record
-				 */
-				void updateContactRecord(contacts_record_h record);
 
 				/**
 				 * @return contact record
