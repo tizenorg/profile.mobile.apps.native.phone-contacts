@@ -52,12 +52,13 @@ namespace Contacts
 
 			/**
 			 * @brief Save contact to the database.
-			 * @return Contacts API error code.
+			 * @return Contact ID on success, Contacts API error code otherwise.
 			 */
 			int save();
 
 			/**
 			 * @brief Remove contact from the database.
+			 * @return Contacts API error code.
 			 */
 			int remove();
 
