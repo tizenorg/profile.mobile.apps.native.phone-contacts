@@ -59,6 +59,11 @@ namespace Utils
 		 */
 		const std::string &getUtf8Str() const;
 
+		/**
+		 * @brief Erases the contents of the string
+		 */
+		void clear();
+
 	private:
 		static std::string toUtf8(const I18nString &ustring);
 		static I18nString fromUtf8(const std::string &utf8Str);

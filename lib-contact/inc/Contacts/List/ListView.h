@@ -19,7 +19,6 @@
 #define CONTACTS_LIST_LIST_VIEW_H
 
 #include "Contacts/List/Model/PersonProvider.h"
-#include "Contacts/List/PersonItem.h"
 #include "Contacts/SelectView.h"
 
 #include "Utils/UniString.h"
@@ -40,6 +39,12 @@ namespace Contacts
 		class GroupItem;
 		class SelectAllItem;
 		class PersonGroupItem;
+		class PersonItem;
+
+		namespace Model
+		{
+			class Person;
+		}
 
 		/**
 		 * @brief Contacts list view
@@ -104,9 +109,9 @@ namespace Contacts
 			void deletePersonGroupItem(PersonGroupItem *group);
 			PersonGroupItem *getNextPersonGroupItem(const Utils::UniString &indexLetter);
 
-			PersonItem *createPersonItem(Model::PersonPtr person);
+			PersonItem *createPersonItem(Model::Person &person);
 			void insertPersonItem(PersonItem *item);
-			void updatePersonItem(PersonItem *item, Model::PersonPtr person);
+			void updatePersonItem(PersonItem *item, int changes);
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
 
@@ -116,8 +121,9 @@ namespace Contacts
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
-			void onPersonInserted(Model::PersonPtr person);
-			void onPersonChanged(Model::PersonPtr person, contacts_changed_e changeType, PersonItem *item);
+			void onPersonInserted(ContactData &person);
+			void onPersonUpdated(PersonItem *item, int changes);
+			void onPersonDeleted(PersonItem *item);
 
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
