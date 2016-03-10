@@ -19,8 +19,6 @@
 #define CONTACTS_LIST_PERSON_ITEM_H
 
 #include "Contacts/SelectItem.h"
-#include "Contacts/List/Model/Person.h"
-#include <functional>
 
 #define PART_PERSON_NAME        "elm.text"
 #define PART_PERSON_THUMBNAIL   "elm.swallow.icon"
@@ -30,6 +28,11 @@ namespace Contacts
 {
 	namespace List
 	{
+		namespace Model
+		{
+			class Person;
+		}
+
 		/**
 		 * @brief Person list item
 		 */
@@ -40,25 +43,19 @@ namespace Contacts
 			 * @brief Create person item
 			 * @param[in]   person      Person object
 			 */
-			explicit PersonItem(Model::PersonPtr person);
+			explicit PersonItem(Model::Person &person);
 
 			/**
 			 * @return Person object
 			 */
 			Model::Person &getPerson();
 
-			/**
-			 * @brief Set person object
-			 * @param[in]   person      Person object
-			 */
-			void setPerson(Model::PersonPtr person);
-
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual SelectResult getSelectResult() const override;
 
-			Model::PersonPtr m_Person;
+			Model::Person &m_Person;
 		};
 	}
 }
