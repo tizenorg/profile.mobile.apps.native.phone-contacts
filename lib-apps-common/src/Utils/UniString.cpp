@@ -16,8 +16,6 @@
  */
 
 #include "Utils/UniString.h"
-#include <cstring>
-#include <memory>
 
 using namespace Utils;
 
@@ -71,6 +69,12 @@ const std::string &UniString::getUtf8Str() const
 	}
 
 	return m_Utf8Str;
+}
+
+void UniString::clear()
+{
+	m_Utf8Str.clear();
+	m_UniStr.clear();
 }
 
 std::string UniString::toUtf8(const I18nString &ustring)

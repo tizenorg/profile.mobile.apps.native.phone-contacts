@@ -17,6 +17,7 @@
 
 #include "Contacts/List/PersonItem.h"
 #include "Contacts/Common/ContactSelectTypes.h"
+#include "Contacts/List/Model/Person.h"
 #include "Ui/Thumbnail.h"
 #include <app_i18n.h>
 
@@ -24,24 +25,19 @@ using namespace Contacts;
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
-PersonItem::PersonItem(PersonPtr person)
-	: m_Person(std::move(person))
+PersonItem::PersonItem(Person &person)
+	: m_Person(person)
 { }
 
 Person &PersonItem::getPerson()
 {
-	return *m_Person;
-}
-
-void PersonItem::setPerson(Model::PersonPtr person)
-{
-	m_Person = std::move(person);
+	return m_Person;
 }
 
 char *PersonItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_PERSON_NAME) == 0) {
-		const char *name = m_Person->getName();
+		const char *name = m_Person.getName();
 		return strdup(name ? name : _("IDS_LOGS_MBODY_UNKNOWN"));
 	}
 
@@ -54,7 +50,7 @@ Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 
 	if (strcmp(part, PART_PERSON_THUMBNAIL) == 0) {
 		Thumbnail *thumbnail = Thumbnail::create(parent, Thumbnail::SizeSmall,
-				m_Person->getImagePath());
+				m_Person.getImagePath());
 		thumbnail->setSizeHint(true);
 		return thumbnail->getEvasObject();
 	} else if (strcmp(part, PART_CHECK) == 0) {
@@ -66,5 +62,5 @@ Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 
 SelectResult PersonItem::getSelectResult() const
 {
-	return { ResultPerson, m_Person->getId() };
+	return { ResultPerson, m_Person.getId() };
 }
