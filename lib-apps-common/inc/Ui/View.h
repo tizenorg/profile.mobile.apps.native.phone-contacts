@@ -67,7 +67,7 @@ namespace Ui
 		/**
 		 * @brief Called when NavigatorPage is attached to this View
 		 */
-		virtual void onPageAttached() { }
+		virtual void onPageAttached(NavigatorPage *page) { }
 
 		/**
 		 * @brief Called when "back" button is pressed

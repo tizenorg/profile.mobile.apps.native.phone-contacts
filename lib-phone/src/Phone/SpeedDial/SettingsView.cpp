@@ -80,9 +80,9 @@ Evas_Object *SettingsView::onCreate(Evas_Object *parent)
 	return layout;
 }
 
-void SettingsView::onPageAttached()
+void SettingsView::onPageAttached(Ui::NavigatorPage *page)
 {
-	getPage()->setTitle("IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2");
+	page->setTitle("IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2");
 }
 
 void SettingsView::fetchItemsData()

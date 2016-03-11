@@ -39,7 +39,7 @@ namespace Ui
 
 	protected:
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
-		virtual void onPageAttached() override;
+		virtual void onPageAttached(NavigatorPage *page) override;
 
 		virtual TabPage *attachView(View *view) override;
 		virtual void navigateToPage(NavigatorPage *page) override;

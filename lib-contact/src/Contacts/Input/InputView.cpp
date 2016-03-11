@@ -158,7 +158,7 @@ void InputView::onCreated()
 	}
 }
 
-void InputView::onPageAttached()
+void InputView::onPageAttached(Ui::NavigatorPage *page)
 {
 	m_DoneButton = elm_button_add(getEvasObject());
 	elm_object_disabled_set(m_DoneButton, !m_Contact.isFilled());
@@ -173,7 +173,6 @@ void InputView::onPageAttached()
 	evas_object_smart_callback_add(cancelButton, "clicked",
 			makeCallback(&InputView::onCancelPressed), this);
 
-	Ui::NavigatorPage *page = getPage();
 	page->setTitle(m_Contact.isNew() ? "IDS_PB_HEADER_CREATE" : "IDS_PB_HEADER_EDIT");
 	page->setContent("title_right_btn", m_DoneButton);
 	page->setContent("title_left_btn", cancelButton);

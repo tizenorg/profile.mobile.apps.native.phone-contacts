@@ -48,7 +48,7 @@ namespace Contacts
 
 		private:
 			virtual void onCreated() override;
-			virtual void onPageAttached() override;
+			virtual void onPageAttached(Ui::NavigatorPage *page) override;
 
 			bool onSinglePersonSelected(SelectResults personResults);
 			bool onMultiPersonSelected(SelectResults personResults);

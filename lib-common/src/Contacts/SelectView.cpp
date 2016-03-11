@@ -109,7 +109,7 @@ const char *SelectView::getPageTitle() const
 	}
 }
 
-void SelectView::onPageAttached()
+void SelectView::onPageAttached(Ui::NavigatorPage *page)
 {
 	updatePageTitle();
 	updatePageButtons();
