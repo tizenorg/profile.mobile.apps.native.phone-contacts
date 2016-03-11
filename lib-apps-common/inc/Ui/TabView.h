@@ -19,6 +19,7 @@
 #define UI_TAB_VIEW_H
 
 #include "Ui/Navigator.h"
+#include "Ui/TabPage.h"
 #include <vector>
 
 namespace Ui
@@ -32,20 +33,20 @@ namespace Ui
 		TabView();
 
 		/**
-		 * @see Navigator::getCurrentView()
+		 * @see Navigator::getCurrentPage()
 		 */
-		virtual View *getCurrentView() const override;
+		virtual TabPage *getCurrentPage() const override;
 
 	protected:
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 		virtual void onPageAttached() override;
 
-		virtual NavigatorPage *attachView(View *view) override;
-		virtual void navigateToView(View *view) override;
+		virtual TabPage *attachView(View *view) override;
+		virtual void navigateToPage(NavigatorPage *page) override;
 
 	private:
 		static void onTabDestroy(void *data, Evas_Object *obj, void *tabItem);
-		void onTabSelect(Evas_Object *obj, void *tabItem);
+		void onTabSelected(Evas_Object *obj, Elm_Object_Item *selectedItem);
 		void onPageChanged(Evas_Object *obj, void *eventInfo);
 		void onResize(Evas *e, Evas_Object *obj, void *eventInfo);
 
@@ -57,8 +58,8 @@ namespace Ui
 		Evas_Coord m_Height;
 
 		bool m_IsNavigating;
-		size_t m_CurrentPage;
-		std::vector<View *> m_Views;
+		TabPage *m_CurrentPage;
+		std::vector<TabPage *> m_Pages;
 	};
 }
 

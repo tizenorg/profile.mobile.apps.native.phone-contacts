@@ -16,11 +16,13 @@
  */
 
 #include "Ui/NaviframePage.h"
+
 using namespace Ui;
 
 NaviframePage::NaviframePage(Elm_Object_Item *naviItem)
 	: m_NaviItem(naviItem)
 {
+	elm_object_item_data_set(m_NaviItem, this);
 }
 
 NaviframePage::~NaviframePage()
@@ -36,8 +38,9 @@ NaviframePage::~NaviframePage()
 
 void NaviframePage::setTitle(const char *title)
 {
+	bool isEnabled = title && *title;
 	elm_object_item_translatable_part_text_set(m_NaviItem, "elm.text.title", title);
-	elm_naviframe_item_title_enabled_set(m_NaviItem, title && *title, EINA_TRUE);
+	elm_naviframe_item_title_enabled_set(m_NaviItem, isEnabled, EINA_TRUE);
 }
 
 void NaviframePage::setStyle(const char *style)

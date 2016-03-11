@@ -27,14 +27,10 @@ Naviframe::Naviframe()
 {
 }
 
-View *Naviframe::getCurrentView() const
+NaviframePage *Naviframe::getCurrentPage() const
 {
 	Elm_Object_Item *item = elm_naviframe_top_item_get(getEvasObject());
-	if (!item) {
-		return nullptr;
-	}
-
-	return static_cast<View*>(elm_object_item_data_get(item));
+	return (NaviframePage *) elm_object_item_data_get(item);
 }
 
 Evas_Object *Naviframe::onCreate(Evas_Object *parent)
@@ -42,42 +38,41 @@ Evas_Object *Naviframe::onCreate(Evas_Object *parent)
 	Evas_Object *naviframe = elm_naviframe_add(parent);
 	elm_naviframe_prev_btn_auto_pushed_set(naviframe, EINA_TRUE);
 
+	evas_object_smart_callback_add(naviframe, "transition,finished",
+			makeCallback(&Naviframe::onTransition), this);
+
 	return naviframe;
 }
 
-NavigatorPage *Naviframe::attachView(View *view)
+NaviframePage *Naviframe::attachView(View *view)
 {
+	notifyNavigation(getCurrentPage(), false);
+
 	Elm_Object_Item *naviItem = elm_naviframe_item_push(getEvasObject(), nullptr,
-			nullptr, nullptr, view->getEvasObject(), nullptr);
-	elm_object_item_data_set(naviItem, view);
+			nullptr, nullptr, view->create(getEvasObject()), nullptr);
 	elm_naviframe_item_pop_cb_set(naviItem, makeCallback(&Naviframe::onItemPop), this);
+
 	return new NaviframePage(naviItem);
 }
 
-void Naviframe::navigateToView(View *view)
+void Naviframe::navigateToPage(NavigatorPage *page)
 {
-	if (view != getCurrentView()) {
-		NaviframePage *page = static_cast<NaviframePage*>(view->getPage());
-		elm_naviframe_item_pop_to(page->m_NaviItem);
+	if (page != getCurrentPage()) {
+		Elm_Object_Item *naviItem = static_cast<NaviframePage *>(page)->m_NaviItem;
+		elm_naviframe_item_pop_to(naviItem);
 	}
 }
 
 Eina_Bool Naviframe::onItemPop(Elm_Object_Item *item)
 {
-	evas_object_smart_callback_add(getEvasObject(), "transition,finished",
-			makeCallback(&Naviframe::onTransition), this);
-
-	View *view = static_cast<View*>(elm_object_item_data_get(item));
-	notifyNavigation(view, false);
+	NaviframePage *page = static_cast<NaviframePage *>(elm_object_item_data_get(item));
+	notifyNavigation(page, false);
 	return EINA_TRUE;
 }
 
 void Naviframe::onTransition(Evas_Object *obj, void *eventInfo)
 {
-	notifyNavigation(getCurrentView(), true);
-
-	evas_object_smart_callback_del(getEvasObject(), "transition,finished",
-			makeCallback(&Naviframe::onTransition));
+	notifyNavigation(getCurrentPage(), true);
 }
 
 bool Naviframe::onBackPressed()
