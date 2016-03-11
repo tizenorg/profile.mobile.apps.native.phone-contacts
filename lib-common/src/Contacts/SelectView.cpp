@@ -275,7 +275,7 @@ void SelectView::onItemSelected(SelectItem *item)
 		{
 			SelectResult result = item->getSelectResult();
 			if (m_OnSelected && m_OnSelected({ &result, 1 })) {
-				delete this;
+				getPage()->close();
 			}
 		}
 			break;
@@ -319,11 +319,11 @@ void SelectView::onDonePressed(Evas_Object *button, void *eventInfo)
 	}
 
 	if (m_OnSelected && m_OnSelected({ results.data(), results.size()})) {
-		delete this;
+		getPage()->close();
 	}
 }
 
 void SelectView::onCancelPressed(Evas_Object *button, void *eventInfo)
 {
-	delete this;
+	getPage()->close();
 }

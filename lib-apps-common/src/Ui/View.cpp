@@ -24,11 +24,6 @@ View::View()
 {
 }
 
-View::~View()
-{
-	delete m_Page;
-}
-
 Navigator *View::getNavigator(NavigatorType type) const
 {
 	return type == StackNavigator ? m_StackNavi : m_TabNavi;
@@ -44,10 +39,10 @@ void View::onNavigatorAttached(Navigator *stackNavi, Navigator *tabNavi, Navigat
 	m_StackNavi = stackNavi;
 	m_TabNavi = tabNavi;
 
-	if (page != m_Page) {
-		delete m_Page;
-		m_Page = page;
+	if (m_Page) {
+		m_Page->close();
 	}
 
+	m_Page = page;
 	onPageAttached(m_Page);
 }

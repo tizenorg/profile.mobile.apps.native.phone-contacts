@@ -62,6 +62,15 @@ void Naviframe::navigateToPage(NavigatorPage *page)
 		elm_naviframe_item_pop_to(naviItem);
 	}
 }
+void Naviframe::navigateFromPage(NavigatorPage *page)
+{
+	Elm_Object_Item *naviItem = static_cast<NaviframePage *>(page)->m_NaviItem;
+	if (naviItem == elm_naviframe_top_item_get(getEvasObject())) {
+		elm_naviframe_item_pop(getEvasObject());
+	} else {
+		elm_object_item_del(naviItem);
+	}
+}
 
 Eina_Bool Naviframe::onItemPop(Elm_Object_Item *item)
 {
@@ -81,9 +90,8 @@ bool Naviframe::onBackPressed()
 		return false;
 	}
 
-	if (elm_naviframe_top_item_get(getEvasObject())
-			!= elm_naviframe_bottom_item_get(getEvasObject())) {
-		elm_naviframe_item_pop(getEvasObject());
+	NaviframePage *page = getCurrentPage();
+	if (page && navigateFrom(page->getView())) {
 		return false;
 	}
 

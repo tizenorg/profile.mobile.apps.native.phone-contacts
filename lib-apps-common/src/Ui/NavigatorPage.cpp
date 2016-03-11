@@ -42,6 +42,11 @@ View *NavigatorPage::getView() const
 	return m_View;
 }
 
+void NavigatorPage::close()
+{
+	m_Navigator->navigateFrom(m_View);
+}
+
 void NavigatorPage::onNavigatorAttached(Navigator *navigator, View *view)
 {
 	m_Navigator = navigator;

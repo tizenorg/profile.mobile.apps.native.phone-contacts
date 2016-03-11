@@ -42,7 +42,6 @@ namespace Ui
 	{
 	public:
 		View();
-		virtual ~View() override;
 
 		/**
 		 * @brief Get parent Navigator

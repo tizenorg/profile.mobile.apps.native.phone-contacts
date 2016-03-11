@@ -60,6 +60,26 @@ void Navigator::navigateTo(View *view)
 	navigateToPage(page);
 }
 
+bool Navigator::navigateFrom(View *view)
+{
+	if (!view || view->getNavigator(m_Type) != this) {
+		return false;
+	}
+
+	if (getPageCount() == 1) {
+		NavigatorPage *page = getPage();
+		if (page) {
+			page->close();
+			return true;
+		}
+
+		return false;
+	}
+
+	navigateFromPage(view->getPage());
+	return true;
+}
+
 void Navigator::notifyNavigation(NavigatorPage *page, bool isCurrent)
 {
 	if (page) {

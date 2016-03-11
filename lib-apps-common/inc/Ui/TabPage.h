@@ -48,6 +48,7 @@ namespace Ui
 		friend class TabView;
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 		void onTabAttached(Elm_Object_Item *tabItem);
+		void onTabDestroy(Evas_Object *obj, void *eventInfo);
 
 		size_t m_Index;
 		Elm_Object_Item *m_TabItem;

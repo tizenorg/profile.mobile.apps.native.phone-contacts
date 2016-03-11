@@ -16,6 +16,7 @@
  */
 
 #include "Ui/NaviframePage.h"
+#include "Utils/Callback.h"
 
 using namespace Ui;
 
@@ -23,17 +24,7 @@ NaviframePage::NaviframePage(Elm_Object_Item *naviItem)
 	: m_NaviItem(naviItem)
 {
 	elm_object_item_data_set(m_NaviItem, this);
-}
-
-NaviframePage::~NaviframePage()
-{
-	elm_object_item_part_content_unset(m_NaviItem, "elm.swallow.content");
-	Evas_Object *navi = elm_object_item_widget_get(m_NaviItem);
-	if (m_NaviItem == elm_naviframe_top_item_get(navi)) {
-		elm_naviframe_item_pop(navi);
-	} else {
-		elm_object_item_del(m_NaviItem);
-	}
+	elm_object_item_del_cb_set(m_NaviItem, makeCallback(&NaviframePage::onDestroy));
 }
 
 void NaviframePage::setTitle(const char *title)
@@ -51,4 +42,9 @@ void NaviframePage::setStyle(const char *style)
 void NaviframePage::setContent(const char *part, Evas_Object *content)
 {
 	elm_object_item_part_content_set(m_NaviItem, part, content);
+}
+
+void NaviframePage::onDestroy(Evas_Object *obj, void *eventInfo)
+{
+	delete this;
 }

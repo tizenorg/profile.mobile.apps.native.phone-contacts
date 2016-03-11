@@ -19,6 +19,7 @@
 #define UI_NAVIGATOR_H
 
 #include "Ui/View.h"
+#include <functional>
 
 namespace Ui
 {
@@ -46,6 +47,13 @@ namespace Ui
 		 */
 		void navigateTo(View *view);
 
+		/**
+		 * @brief Navigate away from the view and destroy it.
+		 * @param[in]   view    View to navigate from
+		 * @return Whether navigation occurred.
+		 */
+		bool navigateFrom(View *view);
+
 	protected:
 		Navigator(NavigatorType type);
 
@@ -68,6 +76,12 @@ namespace Ui
 		 * @param[in]   page    Page to navigate to
 		 */
 		virtual void navigateToPage(NavigatorPage *page) = 0;
+
+		/**
+		 * @brief Called after navigateFrom() is called
+		 * @param[in]   page    Page to navigate from
+		 */
+		virtual void navigateFromPage(NavigatorPage *page) = 0;
 
 		/**
 		 * @see View::onNavigation()

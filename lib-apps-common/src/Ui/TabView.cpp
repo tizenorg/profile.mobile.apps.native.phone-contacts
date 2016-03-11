@@ -61,7 +61,6 @@ void TabView::onPageAttached(NavigatorPage *page)
 	elm_toolbar_shrink_mode_set(m_Tabbar, ELM_TOOLBAR_SHRINK_EXPAND);
 	elm_toolbar_select_mode_set(m_Tabbar, ELM_OBJECT_SELECT_MODE_ALWAYS);
 	elm_toolbar_transverse_expanded_set(m_Tabbar, EINA_TRUE);
-	evas_object_smart_data_set(m_Tabbar, this);
 	evas_object_smart_callback_add(m_Tabbar, "selected",
 			(Evas_Smart_Cb) makeCallback(&TabView::onTabSelected), this);
 
@@ -75,7 +74,6 @@ TabPage *TabView::attachView(View *view)
 	m_Pages.push_back(page);
 
 	Elm_Object_Item *item = elm_toolbar_item_append(m_Tabbar, nullptr, nullptr, nullptr, page);
-	elm_object_item_del_cb_set(item, &TabView::onTabDestroy);
 	page->onTabAttached(item);
 
 	Evas_Object *layout = page->create(getEvasObject());
@@ -101,17 +99,16 @@ void TabView::navigateToPage(NavigatorPage *page)
 	notifyNavigation(tabPage, true);
 }
 
-void TabView::onTabDestroy(void *data, Evas_Object *obj, void *tabItem)
+void TabView::navigateFromPage(NavigatorPage *page)
 {
-	TabView *tabView = (TabView *) evas_object_smart_data_get(obj);
-	TabPage *page = (TabPage *) data;
-	
-	size_t index = page->m_Index;
-	tabView->m_Pages.erase(	tabView->m_Pages.begin() + index);
+	size_t index = static_cast<TabPage *>(page)->m_Index;
+	m_Pages.erase(m_Pages.begin() + index);
 
-	for (; index < tabView->m_Pages.size(); ++index) {
-		--(tabView->m_Pages[index]->m_Index);
+	for (; index < m_Pages.size(); ++index) {
+		--(m_Pages[index]->m_Index);
 	}
+
+	delete page;
 }
 
 void TabView::onTabSelected(Evas_Object *obj, Elm_Object_Item *selectedItem)

@@ -26,7 +26,6 @@ namespace Ui
 	{
 	public:
 		NaviframePage(Elm_Object_Item *naviItem);
-		virtual ~NaviframePage() override;
 
 		/**
 		 * @see NavigatorPage::setTitle()
@@ -45,6 +44,8 @@ namespace Ui
 
 	private:
 		friend class Naviframe;
+
+		void onDestroy(Evas_Object *obj, void *eventInfo);
 
 		Elm_Object_Item *m_NaviItem;
 	};

@@ -16,6 +16,7 @@
  */
 
 #include "Ui/TabPage.h"
+#include "Utils/Callback.h"
 
 #define BUFFER_SIZE 64
 
@@ -28,7 +29,6 @@ TabPage::TabPage(size_t index)
 
 TabPage::~TabPage()
 {
-	elm_object_part_content_unset(m_Page, "elm.swallow.content");
 	elm_object_item_del(m_TabItem);
 }
 
@@ -73,4 +73,10 @@ void TabPage::setContent(const char *part, Evas_Object *content)
 void TabPage::onTabAttached(Elm_Object_Item *tabItem)
 {
 	m_TabItem = tabItem;
+	elm_object_item_del_cb_set(m_TabItem, makeCallback(&TabPage::onTabDestroy));
+}
+
+void TabPage::onTabDestroy(Evas_Object *obj, void *eventInfo)
+{
+	m_TabItem = nullptr;
 }
