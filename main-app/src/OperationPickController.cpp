@@ -22,7 +22,6 @@
 
 #include "App/AppControlRequest.h"
 #include "Ui/Navigator.h"
-#include "Ui/Window.h"
 
 #include <vector>
 
@@ -34,23 +33,8 @@ using namespace std::placeholders;
 
 OperationPickController::OperationPickController()
 	: OperationController(OperationPick),
-	  m_Navigator(nullptr),
 	  m_SelectMode(SelectSingle), m_ResultType(ResultPerson)
 {
-}
-
-OperationPickController::~OperationPickController()
-{
-	getApplication()->getWindow()->unsetBackCallback();
-}
-
-void OperationPickController::onCreate()
-{
-	m_Navigator = getApplication()->getNavigator();
-	getApplication()->getWindow()->setBackCallback([] {
-		ui_app_exit();
-		return true;
-	});
 }
 
 void OperationPickController::onRequest(Operation operation, app_control_h request)
@@ -61,7 +45,7 @@ void OperationPickController::onRequest(Operation operation, app_control_h reque
 	int limit = App::getIntExtraData(request, APP_CONTROL_DATA_TOTAL_COUNT);
 	Chooser *chooser = new Chooser(m_SelectMode, m_ResultType, limit);
 	chooser->setSelectCallback(std::bind(&OperationPickController::onSelected, this, _1));
-	m_Navigator->navigateTo(chooser);
+	getNavigator()->navigateTo(chooser);
 }
 
 bool OperationPickController::onSelected(SelectResults results)
@@ -84,7 +68,6 @@ bool OperationPickController::onSelected(SelectResults results)
 	app_control_reply_to_launch_request(reply, getRequest(), APP_CONTROL_RESULT_SUCCEEDED);
 	app_control_destroy(reply);
 
-	ui_app_exit();
 	return true;
 }
 

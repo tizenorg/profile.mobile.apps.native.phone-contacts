@@ -33,16 +33,6 @@ class MainApp : public App::Application
 public:
 	MainApp();
 
-	/**
-	 * @return Application main Window
-	 */
-	Ui::Window *getWindow() const;
-
-	/**
-	 * @return Application main Navigator
-	 */
-	Ui::Navigator *getNavigator() const;
-
 private:
 	virtual bool onCreate() override;
 	virtual void onAppControl(app_control_h request) override;

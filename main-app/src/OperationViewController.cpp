@@ -24,7 +24,6 @@
 
 #include "App/AppControlRequest.h"
 #include "Ui/Navigator.h"
-#include "Ui/Window.h"
 
 #include <string.h>
 
@@ -35,19 +34,6 @@ using namespace Contacts::List;
 OperationViewController::OperationViewController()
 	: OperationController(OperationView)
 {
-}
-
-OperationViewController::~OperationViewController()
-{
-	getApplication()->getWindow()->unsetBackCallback();
-}
-
-void OperationViewController::onCreate()
-{
-	getApplication()->getWindow()->setBackCallback([] {
-		ui_app_exit();
-		return true;
-	});
 }
 
 void OperationViewController::onRequest(Operation operation, app_control_h request)
@@ -74,7 +60,7 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 	free(mime);
 
 	if (view) {
-		getApplication()->getNavigator()->navigateTo(view);
+		getNavigator()->navigateTo(view);
 	} else {
 		ui_app_exit();
 	}

@@ -32,10 +32,8 @@ class OperationPickController : public OperationController
 {
 public:
 	OperationPickController();
-	virtual ~OperationPickController();
 
 private:
-	virtual void onCreate() override;
 	virtual void onRequest(Operation operation, app_control_h request) override;
 	bool onSelected(Contacts::SelectResults results);
 
@@ -43,7 +41,6 @@ private:
 	static Contacts::ResultType getResultType(app_control_h request);
 	static const char *getResultTypeString(Contacts::ResultType resultType);
 
-	Ui::Navigator *m_Navigator;
 	Contacts::SelectMode m_SelectMode;
 	Contacts::ResultType m_ResultType;
 };

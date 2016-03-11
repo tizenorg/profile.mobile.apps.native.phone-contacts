@@ -24,10 +24,8 @@ class OperationViewController : public OperationController
 {
 public:
 	OperationViewController();
-	virtual ~OperationViewController();
 
 private:
-	virtual void onCreate();
 	virtual void onRequest(Operation operation, app_control_h request);
 };
 

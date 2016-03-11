@@ -31,12 +31,6 @@ namespace Ui
 	class EXPORT_API Window : public Control
 	{
 	public:
-		/**
-		 * @brief Called when "back" button was pressed and wasn't handled by any view.
-		 * @return true to lower the window, otherwise false.
-		 */
-		typedef std::function<bool()> BackCallback;
-
 		Window();
 
 		/**
@@ -48,17 +42,6 @@ namespace Ui
 		 * @return Basic Window layout Evas_Object.
 		 */
 		Evas_Object *getBaseLayout() const;
-
-		/**
-		 * @brief Set "back" button callback.
-		 * @param[in]   callback    "back" button callback
-		 */
-		void setBackCallback(BackCallback callback);
-
-		/**
-		 * @brief Unset "back" button callback.
-		 */
-		void unsetBackCallback();
 
 		/**
 		 * @brief Attach main View to be displayed in the Window.
@@ -74,7 +57,6 @@ namespace Ui
 		Evas_Object *m_Conform;
 		Evas_Object *m_Layout;
 		View *m_MainView;
-		BackCallback m_OnBackPressed;
 	};
 }
 
