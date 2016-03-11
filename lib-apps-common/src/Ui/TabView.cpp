@@ -55,7 +55,7 @@ Evas_Object *TabView::onCreate(Evas_Object *parent)
 	return m_Scroller;
 }
 
-void TabView::onPageAttached()
+void TabView::onPageAttached(NavigatorPage *page)
 {
 	m_Tabbar = elm_toolbar_add(getEvasObject());
 	elm_toolbar_shrink_mode_set(m_Tabbar, ELM_TOOLBAR_SHRINK_EXPAND);
@@ -65,8 +65,8 @@ void TabView::onPageAttached()
 	evas_object_smart_callback_add(m_Tabbar, "selected",
 			(Evas_Smart_Cb) makeCallback(&TabView::onTabSelected), this);
 
-	getPage()->setStyle("tabbar/notitle");
-	getPage()->setContent("tabbar", m_Tabbar);
+	page->setStyle("tabbar/notitle");
+	page->setContent("tabbar", m_Tabbar);
 }
 
 TabPage *TabView::attachView(View *view)

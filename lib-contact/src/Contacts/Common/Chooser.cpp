@@ -63,10 +63,10 @@ void Chooser::onCreated()
 	navigateTo(view);
 }
 
-void Chooser::onPageAttached()
+void Chooser::onPageAttached(Ui::NavigatorPage *page)
 {
 	/* FIXME: Disable naviframe item title by default */
-	getPage()->setTitle(nullptr);
+	page->setTitle(nullptr);
 }
 
 bool Chooser::onSinglePersonSelected(SelectResults personResults)

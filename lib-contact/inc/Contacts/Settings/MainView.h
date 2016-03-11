@@ -39,7 +39,7 @@ namespace Contacts
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
-			virtual void onPageAttached() override;
+			virtual void onPageAttached(Ui::NavigatorPage *page) override;
 
 			Ui::Genlist *m_Genlist;
 		};

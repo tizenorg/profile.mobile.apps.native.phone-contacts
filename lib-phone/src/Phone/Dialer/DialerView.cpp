@@ -93,9 +93,9 @@ void DialerView::setNumber(const std::string &number)
 	}
 }
 
-void DialerView::onPageAttached()
+void DialerView::onPageAttached(Ui::NavigatorPage *page)
 {
-	getPage()->setTitle("IDS_KPD_ITAB3_KEYPAD");
+	page->setTitle("IDS_KPD_ITAB3_KEYPAD");
 }
 
 void DialerView::onNavigation(bool isCurrentView)

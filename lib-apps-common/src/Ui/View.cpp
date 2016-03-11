@@ -49,5 +49,5 @@ void View::onNavigatorAttached(Navigator *stackNavi, Navigator *tabNavi, Navigat
 		m_Page = page;
 	}
 
-	onPageAttached();
+	onPageAttached(m_Page);
 }

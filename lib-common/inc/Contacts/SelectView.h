@@ -85,7 +85,7 @@ namespace Contacts
 		 * @brief Creates "Done" and "Cancel" buttons in #SelectMulti mode.
 		 * @see View::onPageAttached()
 		 */
-		virtual void onPageAttached() override;
+		virtual void onPageAttached(Ui::NavigatorPage *page) override;
 
 		/**
 		 * @brief Should be called when selectable item is inserted.

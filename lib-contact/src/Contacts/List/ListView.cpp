@@ -65,9 +65,9 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	return layout;
 }
 
-void ListView::onPageAttached()
+void ListView::onPageAttached(Ui::NavigatorPage *page)
 {
-	SelectView::onPageAttached();
+	SelectView::onPageAttached(page);
 	updatePageMode();
 }
 

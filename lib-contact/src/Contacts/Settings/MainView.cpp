@@ -41,7 +41,7 @@ Evas_Object *MainView::onCreate(Evas_Object *parent)
 	return m_Genlist->getEvasObject();
 }
 
-void MainView::onPageAttached()
+void MainView::onPageAttached(Ui::NavigatorPage *page)
 {
-	getPage()->setTitle("IDS_PB_HEADER_SETTINGS");
+	page->setTitle("IDS_PB_HEADER_SETTINGS");
 }
