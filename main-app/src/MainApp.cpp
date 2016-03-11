@@ -34,16 +34,6 @@ MainApp::MainApp()
 {
 }
 
-Ui::Window *MainApp::getWindow() const
-{
-	return m_Window;
-}
-
-Ui::Navigator *MainApp::getNavigator() const
-{
-	return m_Navigator;
-}
-
 bool MainApp::onCreate()
 {
 	int err = contacts_connect();
@@ -95,7 +85,7 @@ void MainApp::onAppControl(app_control_h request)
 		}
 
 		if (m_Controller) {
-			m_Controller->create(this);
+			m_Controller->create(m_Window, m_Navigator);
 		}
 	}
 

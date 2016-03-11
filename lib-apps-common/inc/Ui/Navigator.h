@@ -32,6 +32,13 @@ namespace Ui
 	{
 	public:
 		/**
+		 * @brief Called when the navigator is about to navigate away
+		 *        from it's last remaining page.
+		 * @return Whether to navigate from the last page.
+		 */
+		typedef std::function<bool()> LastPageCallback;
+
+		/**
 		 * @return Currently displayed page.
 		 */
 		virtual NavigatorPage *getCurrentPage() const = 0;
@@ -53,6 +60,17 @@ namespace Ui
 		 * @return Whether navigation occurred.
 		 */
 		bool navigateFrom(View *view);
+
+		/**
+		 * @brief Set last page callback.
+		 * @param[in]   callback    Last page navigation callback.
+		 */
+		void setLastPageCallback(LastPageCallback callback);
+
+		/**
+		 * @brief Unset last page callback.
+		 */
+		void unsetLastPageCallback();
 
 	protected:
 		Navigator(NavigatorType type);
@@ -104,6 +122,7 @@ namespace Ui
 
 		NavigatorType m_Type;
 		size_t m_PageCount;
+		LastPageCallback m_OnLastPage;
 	};
 }
 

@@ -19,6 +19,13 @@
 #define OPERATION_CONTROLLER_H
 
 #include <app_control.h>
+#include <Evas.h>
+
+namespace Ui
+{
+	class Navigator;
+	class Window;
+}
 
 enum Operation
 {
@@ -30,8 +37,6 @@ enum Operation
 	OperationPick    = 1 << 5
 };
 
-class MainApp;
-
 /**
  * @brief Handles operations requested through App Control
  */
@@ -42,9 +47,10 @@ public:
 
 	/**
 	 * @brief Create operation controller
-	 * @param[in]   application     Main application instance
+	 * @param[in]   window      Main application Window
+	 * @param[in]   navigator   Main application Navigator
 	 */
-	void create(MainApp *application);
+	void create(Ui::Window *window, Ui::Navigator *navigator);
 
 	/**
 	 * @brief Request the controller to handle the operation
@@ -77,14 +83,20 @@ protected:
 	/**
 	 * @brief Create operation controller
 	 * @param[in]   supportedOperations     Supported operations mask
+	 * @param[in]   isMinimizable           Whether application can be minimized
 	 * @see Operation
 	 */
-	OperationController(int supportedOperations);
+	OperationController(int supportedOperations, bool isMinimizable = false);
 
 	/**
-	 * @return Main application instance
+	 * @return Main application Window
 	 */
-	MainApp *getApplication() const;
+	Ui::Window *getWindow() const;
+
+	/**
+	 * @return Main application Navigator
+	 */
+	Ui::Navigator *getNavigator() const;
 
 	/**
 	 * @return Last received request
@@ -107,9 +119,14 @@ protected:
 	virtual void onRequest(Operation operation, app_control_h request) = 0;
 
 private:
+	static void onWindowLowered(void *data, Evas_Object *obj, void *eventInfo);
+
 	int m_SupportedOperations;
-	MainApp *m_Application;
 	app_control_h m_Request;
+	bool m_IsMinimizable;
+
+	Ui::Window *m_Window;
+	Ui::Navigator *m_Navigator;
 };
 
 #endif /* OPERATION_CONTROLLER_H */

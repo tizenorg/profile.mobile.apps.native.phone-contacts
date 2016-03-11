@@ -67,10 +67,12 @@ bool Navigator::navigateFrom(View *view)
 	}
 
 	if (getPageCount() == 1) {
-		NavigatorPage *page = getPage();
-		if (page) {
-			page->close();
-			return true;
+		if (!m_OnLastPage || m_OnLastPage()) {
+			NavigatorPage *page = getPage();
+			if (page) {
+				page->close();
+				return true;
+			}
 		}
 
 		return false;
@@ -78,6 +80,16 @@ bool Navigator::navigateFrom(View *view)
 
 	navigateFromPage(view->getPage());
 	return true;
+}
+
+void Navigator::setLastPageCallback(LastPageCallback callback)
+{
+	m_OnLastPage = std::move(callback);
+}
+
+void Navigator::unsetLastPageCallback()
+{
+	m_OnLastPage = nullptr;
 }
 
 void Navigator::notifyNavigation(NavigatorPage *page, bool isCurrent)

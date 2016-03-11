@@ -30,11 +30,9 @@ class OperationEditController : public OperationController
 {
 public:
 	OperationEditController();
-	virtual ~OperationEditController() override;
 
 private:
 	virtual void onRequest(Operation operation, app_control_h request);
-	virtual void onCreate() override;
 
 	Ui::View *createInputView(int personId);
 

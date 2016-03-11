@@ -24,7 +24,6 @@
 
 #include "App/AppControlRequest.h"
 #include "Ui/Navigator.h"
-#include "Ui/Window.h"
 
 #include <string>
 
@@ -37,19 +36,6 @@ using namespace std::placeholders;
 OperationEditController::OperationEditController()
 	: OperationController(OperationAdd | OperationEdit)
 {
-}
-
-OperationEditController::~OperationEditController()
-{
-	getApplication()->getWindow()->unsetBackCallback();
-}
-
-void OperationEditController::onCreate()
-{
-	getApplication()->getWindow()->setBackCallback([] {
-		ui_app_exit();
-		return true;
-	});
 }
 
 void OperationEditController::onRequest(Operation operation, app_control_h request)
@@ -66,7 +52,7 @@ void OperationEditController::onRequest(Operation operation, app_control_h reque
 		view = createInputView(personId);
 	}
 
-	getApplication()->getNavigator()->navigateTo(view);
+	getNavigator()->navigateTo(view);
 }
 
 Ui::View *OperationEditController::createInputView(int personId)
@@ -100,7 +86,7 @@ Ui::View *OperationEditController::createInputView(int personId)
 bool OperationEditController::onSelectResult(SelectResults results)
 {
 	Ui::View *view = createInputView(results.begin()->value.id);
-	getApplication()->getNavigator()->navigateTo(view);
+	getNavigator()->navigateTo(view);
 	return true;
 }
 
@@ -113,6 +99,4 @@ void OperationEditController::onInputResult(int contactId)
 	app_control_add_extra_data(reply, APP_CONTROL_DATA_ID, std::to_string(personId).c_str());
 	app_control_reply_to_launch_request(reply, getRequest(), APP_CONTROL_RESULT_SUCCEEDED);
 	app_control_destroy(reply);
-
-	ui_app_exit();
 }

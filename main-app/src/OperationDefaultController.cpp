@@ -32,7 +32,7 @@
 #define PREFERENCE_KEY_LAST_TAB "last_tab"
 
 OperationDefaultController::OperationDefaultController()
-	: OperationController(OperationDefault | OperationDial),
+	: OperationController(OperationDefault | OperationDial, true),
 	  m_Navigator(nullptr), m_Tabs{nullptr}
 {
 }
@@ -44,9 +44,8 @@ OperationDefaultController::~OperationDefaultController()
 
 void OperationDefaultController::onCreate()
 {
-	Ui::Navigator *mainNavigator = getApplication()->getNavigator();
 	m_Navigator = new Ui::TabView();
-	mainNavigator->navigateTo(m_Navigator);
+	getNavigator()->navigateTo(m_Navigator);
 
 	m_Tabs[TabDialer] = new Phone::Dialer::DialerView();
 	m_Tabs[TabLogs] = new Logs::List::LogsView();
