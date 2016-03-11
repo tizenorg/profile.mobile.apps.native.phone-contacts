@@ -46,6 +46,11 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Back button pressed callback
+			 */
+			typedef std::function<void()> BackCallback;
+
+			/**
 			 * @brief Create basic info item.
 			 * @param[in]   contact    Contact to display
 			 */
@@ -56,6 +61,12 @@ namespace Contacts
 			 * @param[in]   mode    Selection mode
 			 */
 			void setSelectMode(SelectMode mode);
+
+			/**
+			 * @brief Set "back" button callback.
+			 * @param[in]   callback    "back" button callback
+			 */
+			void setBackCallback(BackCallback callback);
 
 		protected:
 			/**
@@ -101,6 +112,7 @@ namespace Contacts
 			Model::ContactTextField &m_JobTitle;
 
 			SelectMode m_SelectMode;
+			BackCallback m_OnBackPressed;
 		};
 	}
 }

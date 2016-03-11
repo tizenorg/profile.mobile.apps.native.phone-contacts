@@ -86,6 +86,9 @@ void DetailsView::onCreated()
 
 	m_BasicInfoItem = new BasicInfoItem(m_Contact);
 	m_BasicInfoItem->setSelectMode(getSelectMode());
+	m_BasicInfoItem->setBackCallback([this] {
+		getPage()->close();
+	});
 	m_Genlist->insert(m_BasicInfoItem);
 
 	for (auto &&field : m_Contact) {
@@ -138,7 +141,7 @@ void DetailsView::onMenuPressed()
 		popup->addButton("IDS_PB_BUTTON_CANCEL");
 		popup->addButton("IDS_PB_BUTTON_DELETE_ABB4", [this] {
 			m_Contact.remove();
-			delete this;
+			getPage()->close();
 			return true;
 		});
 	});

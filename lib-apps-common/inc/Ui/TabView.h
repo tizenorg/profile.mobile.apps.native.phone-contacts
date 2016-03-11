@@ -43,9 +43,9 @@ namespace Ui
 
 		virtual TabPage *attachView(View *view) override;
 		virtual void navigateToPage(NavigatorPage *page) override;
+		virtual void navigateFromPage(NavigatorPage *page) override;
 
 	private:
-		static void onTabDestroy(void *data, Evas_Object *obj, void *tabItem);
 		void onTabSelected(Evas_Object *obj, Elm_Object_Item *selectedItem);
 		void onPageChanged(Evas_Object *obj, void *eventInfo);
 		void onResize(Evas *e, Evas_Object *obj, void *eventInfo);

@@ -296,13 +296,13 @@ void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 		m_OnResult(id);
 	}
 
-	delete this;
+	getPage()->close();
 }
 
 void InputView::onCancelPressed(Evas_Object *button, void *eventInfo)
 {
 	if (onCancel()) {
-		delete this;
+		getPage()->close();
 	}
 }
 
@@ -319,7 +319,7 @@ bool InputView::onCancel()
 
 	popup->addButton("IDS_PB_BUTTON_CANCEL");
 	popup->addButton("IDS_PB_BUTTON_DISCARD_ABB", [this] {
-		delete this;
+		getPage()->close();
 		return true;
 	});
 

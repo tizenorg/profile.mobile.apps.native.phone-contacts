@@ -40,6 +40,7 @@ namespace Ui
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 		virtual NaviframePage *attachView(View *view) override;
 		virtual void navigateToPage(NavigatorPage *page) override;
+		virtual void navigateFromPage(NavigatorPage *page) override;
 
 		Eina_Bool onItemPop(Elm_Object_Item *item);
 		void onTransition(Evas_Object *obj, void *eventInfo);

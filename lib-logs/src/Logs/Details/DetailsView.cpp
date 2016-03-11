@@ -103,7 +103,7 @@ void DetailsView::insertBasicInfoItem()
 {
 	m_BasicInfoItem = new BasicInfoItem(m_Group);
 	m_BasicInfoItem->setBackCallback([this] {
-		delete this;
+		getPage()->close();
 	});
 	m_Genlist->insert(m_BasicInfoItem, nullptr, nullptr, Ui::Genlist::After);
 }

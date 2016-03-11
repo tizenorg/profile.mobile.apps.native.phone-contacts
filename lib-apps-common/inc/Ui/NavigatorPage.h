@@ -63,6 +63,11 @@ namespace Ui
 		 */
 		virtual void setContent(const char *part, Evas_Object *content) = 0;
 
+		/**
+		 * @brief Close the page and destroy its content.
+		 */
+		void close();
+
 	private:
 		friend class Navigator;
 		void onNavigatorAttached(Navigator *navigator, View *view);

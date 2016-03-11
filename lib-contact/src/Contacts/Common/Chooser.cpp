@@ -110,7 +110,7 @@ bool Chooser::onMultiPersonSelected(SelectResults personResults)
 bool Chooser::onSelected(SelectResults results)
 {
 	if (!m_OnSelected || m_OnSelected(results)) {
-		delete this;
+		getPage()->close();
 	}
 
 	return false;

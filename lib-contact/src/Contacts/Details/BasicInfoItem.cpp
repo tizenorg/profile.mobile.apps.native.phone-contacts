@@ -57,6 +57,11 @@ void BasicInfoItem::setSelectMode(SelectMode mode)
 	elm_genlist_item_fields_update(getObjectItem(), PART_FAV_BTN, ELM_GENLIST_ITEM_FIELD_CONTENT);
 }
 
+void BasicInfoItem::setBackCallback(BackCallback callback)
+{
+	m_OnBackPressed = std::move(callback);
+}
+
 Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
 {
 	static Elm_Genlist_Item_Class itc = createItemClass(CONTACTS_DETAILS_ITEM_STYLE);
@@ -147,8 +152,9 @@ Evas_Object *BasicInfoItem::createFavButton(Evas_Object *parent)
 
 void BasicInfoItem::onBackPressed(Evas_Object *button, void *eventInfo)
 {
-	/* FIXME: Add possibility to get View or Navigator from child control */
-	delete getParent();
+	if (m_OnBackPressed) {
+		m_OnBackPressed();
+	}
 }
 
 void BasicInfoItem::onFavChanged(Evas_Object *check, void *eventInfo)
@@ -160,7 +166,10 @@ void BasicInfoItem::onFavChanged(Evas_Object *check, void *eventInfo)
 void BasicInfoItem::onFieldUpdated(ContactField &field, contacts_changed_e change)
 {
 	if (&field == &m_Contact && change == CONTACTS_CHANGE_DELETED) {
-		delete getParent();
+		/* FIXME: Add possibility to get View from child control */
+		if (m_OnBackPressed) {
+			m_OnBackPressed();
+		}
 		return;
 	}
 
