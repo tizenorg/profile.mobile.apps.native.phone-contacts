@@ -19,6 +19,7 @@
 #define UI_NAVIFRAME_H
 
 #include "Ui/Navigator.h"
+#include "Ui/NaviframePage.h"
 
 namespace Ui
 {
@@ -31,14 +32,14 @@ namespace Ui
 		Naviframe();
 
 		/**
-		 * @see Navigator::getCurrentView()
+		 * @see Navigator::getCurrentPage()
 		 */
-		virtual View *getCurrentView() const override;
+		virtual NaviframePage *getCurrentPage() const override;
 
 	protected:
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
-		virtual NavigatorPage *attachView(View *view) override;
-		virtual void navigateToView(View *view) override;
+		virtual NaviframePage *attachView(View *view) override;
+		virtual void navigateToPage(NavigatorPage *page) override;
 
 		Eina_Bool onItemPop(Elm_Object_Item *item);
 		void onTransition(Evas_Object *obj, void *eventInfo);

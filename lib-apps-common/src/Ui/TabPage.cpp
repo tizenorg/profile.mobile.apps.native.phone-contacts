@@ -16,14 +16,13 @@
  */
 
 #include "Ui/TabPage.h"
-#include "Utils/Logger.h"
 
 #define BUFFER_SIZE 64
 
 using namespace Ui;
 
-TabPage::TabPage(size_t index, Elm_Object_Item *tabItem)
-	: m_Index(index), m_TabItem(tabItem), m_Sizer(nullptr), m_Page(nullptr)
+TabPage::TabPage(size_t index)
+	: m_Index(index), m_TabItem(nullptr), m_Sizer(nullptr), m_Page(nullptr)
 {
 }
 
@@ -69,4 +68,9 @@ void TabPage::setContent(const char *part, Evas_Object *content)
 	snprintf(buffer, sizeof(buffer), "elm,state,%s,%s", part, content ? "show" : "hide");
 	elm_layout_signal_emit(m_Page, buffer, "elm");
 	elm_object_part_content_set(m_Page, part, content);
+}
+
+void TabPage::onTabAttached(Elm_Object_Item *tabItem)
+{
+	m_TabItem = tabItem;
 }

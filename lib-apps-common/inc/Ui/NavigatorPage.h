@@ -23,13 +23,27 @@
 
 namespace Ui
 {
+	class Navigator;
+	class View;
+
 	/**
-	 * @brief Navigator page interface
+	 * @brief Navigator page base class.
 	 */
 	class EXPORT_API NavigatorPage
 	{
 	public:
-		virtual ~NavigatorPage() { }
+		NavigatorPage();
+		virtual ~NavigatorPage();
+
+		/**
+		 * @return Parent navigator.
+		 */
+		Navigator *getNavigator() const;
+
+		/**
+		 * @return Contained view.
+		 */
+		View *getView() const;
 
 		/**
 		 * @brief Set page title.
@@ -48,6 +62,13 @@ namespace Ui
 		 * @param[in]   content Content to set to page part
 		 */
 		virtual void setContent(const char *part, Evas_Object *content) = 0;
+
+	private:
+		friend class Navigator;
+		void onNavigatorAttached(Navigator *navigator, View *view);
+
+		Navigator *m_Navigator;
+		View *m_View;
 	};
 }
 

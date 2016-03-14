@@ -23,16 +23,25 @@
 namespace Ui
 {
 	class NavigatorPage;
+
+	/**
+	 * @brief Navigator base class.
+	 */
 	class EXPORT_API Navigator : public View
 	{
 	public:
 		/**
-		 * @return Currently displayed view
+		 * @return Currently displayed page.
 		 */
-		virtual View *getCurrentView() const = 0;
+		virtual NavigatorPage *getCurrentPage() const = 0;
 
 		/**
-		 * @brief Navigate to existing or new View
+		 * @return Page count.
+		 */
+		size_t getPageCount() const;
+
+		/**
+		 * @brief Navigate to existing or new View.
 		 * @param[in]   view    View to navigate to
 		 */
 		void navigateTo(View *view);
@@ -41,11 +50,11 @@ namespace Ui
 		Navigator(NavigatorType type);
 
 		/**
-		 * @brief Notify specified View about navigation
-		 * @param[in]   view            View to notify
-		 * @param[in]   isCurrentView   Specifies the new state of the @a view
+		 * @brief Notify specified Page about navigation.
+		 * @param[in]   page        Page to notify
+		 * @param[in]   isCurrent   The new state of the @a page
 		 */
-		void notifyNavigation(View *view, bool isCurrentView);
+		void notifyNavigation(NavigatorPage *page, bool isCurrent);
 
 		/**
 		 * @brief Called after navigateTo() is called for a new view
@@ -56,14 +65,14 @@ namespace Ui
 
 		/**
 		 * @brief Called after navigateTo() is called
-		 * @param[in]   view    View to navigate to
+		 * @param[in]   page    Page to navigate to
 		 */
-		virtual void navigateToView(View *view) = 0;
+		virtual void navigateToPage(NavigatorPage *page) = 0;
 
 		/**
 		 * @see View::onNavigation()
 		 */
-		virtual void onNavigation(bool isCurrentView) override;
+		virtual void onNavigation(bool isCurrent) override;
 
 		/**
 		 * @see View::onBackPressed()
@@ -76,7 +85,11 @@ namespace Ui
 		virtual void onMenuPressed() override;
 
 	private:
+		friend class NavigatorPage;
+		void onPageDestroy(NavigatorPage *page);
+
 		NavigatorType m_Type;
+		size_t m_PageCount;
 	};
 }
 

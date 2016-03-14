@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
  *
- * Licensed under the Apache License, Version 2.0 (the License);
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -15,39 +15,35 @@
  *
  */
 
-#include "Ui/View.h"
+#include "Ui/NavigatorPage.h"
+#include "Ui/Navigator.h"
 
 using namespace Ui;
 
-View::View()
-	: m_StackNavi(nullptr), m_TabNavi(nullptr), m_Page(nullptr)
+NavigatorPage::NavigatorPage()
+	: m_Navigator(nullptr), m_View(nullptr)
 {
 }
 
-View::~View()
+NavigatorPage::~NavigatorPage()
 {
-	delete m_Page;
-}
-
-Navigator *View::getNavigator(NavigatorType type) const
-{
-	return type == StackNavigator ? m_StackNavi : m_TabNavi;
-}
-
-NavigatorPage *View::getPage() const
-{
-	return m_Page;
-}
-
-void View::onNavigatorAttached(Navigator *stackNavi, Navigator *tabNavi, NavigatorPage *page)
-{
-	m_StackNavi = stackNavi;
-	m_TabNavi = tabNavi;
-
-	if (page != m_Page) {
-		delete m_Page;
-		m_Page = page;
+	if (m_Navigator) {
+		m_Navigator->onPageDestroy(this);
 	}
+}
 
-	onPageAttached();
+Navigator *NavigatorPage::getNavigator() const
+{
+	return m_Navigator;
+}
+
+View *NavigatorPage::getView() const
+{
+	return m_View;
+}
+
+void NavigatorPage::onNavigatorAttached(Navigator *navigator, View *view)
+{
+	m_Navigator = navigator;
+	m_View = view;
 }

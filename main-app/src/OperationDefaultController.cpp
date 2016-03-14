@@ -105,7 +105,7 @@ unsigned OperationDefaultController::getBadgeCount(const char *package)
 
 void OperationDefaultController::saveLastTab()
 {
-	Ui::View *currentTab = m_Navigator->getCurrentView();
+	Ui::View *currentTab = m_Navigator->getCurrentPage()->getView();
 	for (int tab = TabFirst; tab < TabMax; ++tab) {
 		if (currentTab == m_Tabs[tab]) {
 			if (tab != TabContacts) {

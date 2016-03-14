@@ -26,7 +26,7 @@ namespace Ui
 	class EXPORT_API TabPage : public Control, public NavigatorPage
 	{
 	public:
-		TabPage(size_t index, Elm_Object_Item *tabItem);
+		TabPage(size_t index);
 		virtual ~TabPage() override;
 
 		/**
@@ -47,6 +47,7 @@ namespace Ui
 	private:
 		friend class TabView;
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
+		void onTabAttached(Elm_Object_Item *tabItem);
 
 		size_t m_Index;
 		Elm_Object_Item *m_TabItem;

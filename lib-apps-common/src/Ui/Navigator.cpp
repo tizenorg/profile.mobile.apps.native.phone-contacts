@@ -16,21 +16,30 @@
  */
 
 #include "Ui/Navigator.h"
+#include "Ui/NavigatorPage.h"
 
 using namespace Ui;
 
 Navigator::Navigator(NavigatorType type)
-	: m_Type(type)
+	: m_Type(type), m_PageCount(0)
 {
+}
+
+size_t Navigator::getPageCount() const
+{
+	return m_PageCount;
 }
 
 void Navigator::navigateTo(View *view)
 {
-	if (!view || view == getCurrentView()) {
+	if (!view) {
 		return;
 	}
 
-	notifyNavigation(getCurrentView(), false);
+	NavigatorPage *page = view->getPage();
+	if (page && page == getCurrentPage()) {
+		return;
+	}
 
 	if (view->getNavigator(m_Type) != this) {
 		Navigator *stackNavi = m_StackNavi;
@@ -41,37 +50,43 @@ void Navigator::navigateTo(View *view)
 			tabNavi = this;
 		}
 
-		view->create(getEvasObject());
-		view->onViewAttached(stackNavi, tabNavi);
-		view->onPageAttached(attachView(view));
+		page = attachView(view);
+		page->onNavigatorAttached(this, view);
+		view->onNavigatorAttached(stackNavi, tabNavi, page);
+
+		++m_PageCount;
 	}
 
-	navigateToView(view);
-	notifyNavigation(view, true);
+	navigateToPage(page);
 }
 
-void Navigator::notifyNavigation(View *view, bool isCurrentView)
+void Navigator::notifyNavigation(NavigatorPage *page, bool isCurrent)
 {
-	if (view) {
-		view->onNavigation(isCurrentView);
+	if (page) {
+		page->getView()->onNavigation(isCurrent);
 	}
 }
 
-void Navigator::onNavigation(bool isCurrentView)
+void Navigator::onNavigation(bool isCurrent)
 {
-	notifyNavigation(getCurrentView(), isCurrentView);
+	notifyNavigation(getCurrentPage(), isCurrent);
 }
 
 bool Navigator::onBackPressed()
 {
-	View *view = getCurrentView();
-	return view ? view->onBackPressed() : true;
+	NavigatorPage *page = getCurrentPage();
+	return page ? page->getView()->onBackPressed() : true;
 }
 
 void Navigator::onMenuPressed()
 {
-	View *view = getCurrentView();
-	if (view) {
-		view->onMenuPressed();
+	NavigatorPage *page = getCurrentPage();
+	if (page) {
+		page->getView()->onMenuPressed();
 	}
+}
+
+void Navigator::onPageDestroy(NavigatorPage *page)
+{
+	--m_PageCount;
 }

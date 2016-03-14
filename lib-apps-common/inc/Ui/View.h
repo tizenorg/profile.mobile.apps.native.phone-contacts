@@ -41,6 +41,9 @@ namespace Ui
 	class EXPORT_API View : public Control
 	{
 	public:
+		View();
+		virtual ~View() override;
+
 		/**
 		 * @brief Get parent Navigator
 		 * @param[in]   type    Navigator type
@@ -55,14 +58,11 @@ namespace Ui
 		NavigatorPage *getPage() const;
 
 	protected:
-		View();
-		virtual ~View() override;
-
 		/**
 		 * @brief Called after Navigator has navigated to or from this View
-		 * @param[in]   isCurrentView   Specifies the new state of this View
+		 * @param[in]   isCurrent   Specifies the new state of this View
 		 */
-		virtual void onNavigation(bool isCurrentView) { }
+		virtual void onNavigation(bool isCurrent) { }
 
 		/**
 		 * @brief Called when NavigatorPage is attached to this View
@@ -83,13 +83,11 @@ namespace Ui
 	private:
 		friend class Window;
 		friend class Navigator;
-
-		void onViewAttached(Navigator *stackNavi, Navigator *tabNavi);
-		void onPageAttached(NavigatorPage *page);
+		void onNavigatorAttached(Navigator *stackNavi, Navigator *tabNavi, NavigatorPage *page);
 
 		Navigator     *m_StackNavi;
 		Navigator     *m_TabNavi;
-		NavigatorPage *m_NaviPage;
+		NavigatorPage *m_Page;
 	};
 }
 
