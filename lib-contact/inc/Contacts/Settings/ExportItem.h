@@ -43,6 +43,7 @@ namespace Contacts
 
 			void onPickResult(app_control_h request, app_control_h reply,
 					app_control_result_e result);
+			void onExportFinish(const Ui::ProgressController &controller);
 
 		private:
 			App::AppControl m_AppControl;

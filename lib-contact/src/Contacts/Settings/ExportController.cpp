@@ -67,6 +67,11 @@ const std::string &ExportController::getVcardPath() const
 	return m_VcardPath;
 }
 
+size_t ExportController::getTotalCount() const
+{
+	return m_PersonIdList.size();
+}
+
 void ExportController::createDirectory(const std::string &directoryPath)
 {
 	std::string command("mkdir -p ");
@@ -141,19 +146,6 @@ void ExportController::onStart()
 	}
 	fclose(file);
 	contacts_disconnect_on_thread();
-}
-
-void ExportController::onFinish()
-{
-	char text[BUFFER_SIZE] = { 0, };
-	snprintf(text, sizeof(text), _("IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"),
-			m_PersonIdList.size(), getVcardRelativePath());
-
-	Ui::Popup *finishPopup = new Ui::Popup();
-	finishPopup->create(m_Parent);
-	finishPopup->setTitle("IDS_PB_HEADER_CONTACTS_EXPORTED_ABB");
-	finishPopup->setText(text);
-	finishPopup->addButton("IDS_PB_BUTTON_OK_ABB2");
 }
 
 void ExportController::onCanceled()
