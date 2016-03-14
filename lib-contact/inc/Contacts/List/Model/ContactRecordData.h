@@ -74,18 +74,34 @@ namespace Contacts
 				virtual bool compare(const char *str) override;
 
 			protected:
-
 				/**
 				 * @return contact record
 				 */
 				const contacts_record_h getContactRecord() const;
 
 				/**
+				 * @brief Get contact integer value
 				 * @param[in]   record  Contact record
 				 * @param[in]   field   Contact field
-				 * @return contact value Name/Number/ImagePath
+				 * @param[out]  value   Contact value
 				 */
-				static const char *getValue(contacts_record_h record, Field field);
+				static void getValue(contacts_record_h record, Field field, int *value);
+
+				/**
+				 * @brief Get contact string value
+				 * @remark You MUST NOT free @a value
+				 * @param[in]   record  Contact record
+				 * @param[in]   field   Contact field
+				 * @param[out]  value   Contact value Name/Number/ImagePath
+				 */
+				static void getValue(contacts_record_h record, Field field, char **value);
+
+				/**
+				 * @param[in]   haystack    Contact record
+				 * @param[in]   needle      Contact record
+				 * @return Changes between @a haystack and @a needle
+				 */
+				static int getChanges(contacts_record_h haystack, contacts_record_h needle);
 
 			private:
 				contacts_record_h m_Record;

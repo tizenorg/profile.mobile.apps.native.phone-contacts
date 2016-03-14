@@ -29,22 +29,22 @@ ContactData::Type ContactData::getType() const
 	return m_Type;
 }
 
-void ContactData::setUpdateCallback(UpdateCallback callback)
+void ContactData::setUpdatedCallback(UpdateCallback callback)
 {
 	m_OnUpdated = std::move(callback);
 }
 
-void ContactData::unsetUpdateCallback()
+void ContactData::unsetUpdatedCallback()
 {
 	m_OnUpdated = nullptr;
 }
 
-void ContactData::setDeleteCallback(DeleteCallback callback)
+void ContactData::setDeletedCallback(DeleteCallback callback)
 {
 	m_OnDeleted = std::move(callback);
 }
 
-void ContactData::unsetDeleteCallback()
+void ContactData::unsetDeletedCallback()
 {
 	m_OnDeleted = nullptr;
 }

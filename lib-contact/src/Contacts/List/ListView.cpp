@@ -385,8 +385,8 @@ PersonGroupItem *ListView::getNextPersonGroupItem(const Utils::UniString &indexL
 PersonItem *ListView::createPersonItem(Person &person)
 {
 	PersonItem *item = new PersonItem(person);
-	person.setUpdateCallback(std::bind(&ListView::onPersonUpdated, this, item, _1));
-	person.setDeleteCallback(std::bind(&ListView::onPersonDeleted, this, item));
+	person.setUpdatedCallback(std::bind(&ListView::onPersonUpdated, this, item, _1));
+	person.setDeletedCallback(std::bind(&ListView::onPersonDeleted, this, item));
 
 	return item;
 }
@@ -430,8 +430,8 @@ void ListView::deletePersonItem(PersonItem *item)
 {
 	PersonGroupItem *oldGroup = static_cast<PersonGroupItem *>(item->getParentItem());
 
-	item->getPerson().unsetUpdateCallback();
-	item->getPerson().unsetDeleteCallback();
+	item->getPerson().unsetUpdatedCallback();
+	item->getPerson().unsetDeletedCallback();
 	delete item;
 
 	if (oldGroup->empty()) {

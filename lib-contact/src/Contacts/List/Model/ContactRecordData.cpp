@@ -40,23 +40,29 @@ void ContactRecordData::updateContactRecord(contacts_record_h record)
 int ContactRecordData::getId() const
 {
 	int id = 0;
-	contacts_record_get_int(m_Record, _contacts_contact.id, &id);
+	getValue(m_Record, FieldId, &id);
 	return id;
 }
 
 const char *ContactRecordData::getName() const
 {
-	return getValue(m_Record, FieldName);
+	char *name = nullptr;
+	getValue(m_Record, FieldName, &name);
+	return name;
 }
 
 const char *ContactRecordData::getNumber() const
 {
-	return getValue(m_Record, FieldNumber);
+	char *number = nullptr;
+	getValue(m_Record, FieldNumber, &number);
+	return number;
 }
 
 const char *ContactRecordData::getImagePath() const
 {
-	return getValue(m_Record, FieldImage);
+	char *image = nullptr;
+	getValue(m_Record, FieldImage, &image);
+	return image;
 }
 
 bool ContactRecordData::compare(const char *str)
@@ -69,15 +75,22 @@ const contacts_record_h ContactRecordData::getContactRecord() const
 	return m_Record;
 }
 
-const char *ContactRecordData::getValue(contacts_record_h record, Field field)
+void ContactRecordData::getValue(contacts_record_h record, Field field, int *value)
+{
+	static unsigned int properties[] {
+		/* FieldId = */ _contacts_contact.id
+	};
+
+	contacts_record_get_int(record, properties[field], value);
+}
+
+void ContactRecordData::getValue(contacts_record_h record, Field field, char **value)
 {
 	static unsigned int properties[] {
 		/* FieldName   = */ _contacts_contact.display_name,
 		/* FieldNumber = */ _contacts_contact.number,
 		/* FieldImage  = */ _contacts_contact.image_thumbnail_path
 	};
-
-	char *strValue = nullptr;
 
 	if (field == FieldNumber) {
 		auto numbers = Contacts::makeRange(record, properties[field]);
@@ -86,13 +99,38 @@ const char *ContactRecordData::getValue(contacts_record_h record, Field field)
 			contacts_record_get_bool(number, _contacts_number.is_default, &isDefault);
 
 			if (isDefault) {
-				contacts_record_get_str_p(number, _contacts_number.number, &strValue);
+				contacts_record_get_str_p(number, _contacts_number.number, value);
 				break;
 			}
 		}
 	} else {
-		contacts_record_get_str_p(record, properties[field], &strValue);
+		contacts_record_get_str_p(record, properties[field], value);
+	}
+}
+
+int ContactRecordData::getChanges(contacts_record_h haystack, contacts_record_h needle)
+{
+	auto isChanged = [](const char *str1, const char *str2) {
+		return (str1 && str2)
+				? (strcmp(str1, str2) != 0)
+				: (str1 != str2);
+	};
+
+	int changes = ChangedNone;
+
+	for (int i = FieldName; i < FieldMax; ++i) {
+		auto fieldId = static_cast<Field>(i);
+		char *oldValue = nullptr;
+		char *newValue = nullptr;
+
+		getValue(haystack, fieldId, &oldValue);
+		getValue(needle, fieldId, &newValue);
+		int changedInfo = 1 << fieldId;
+
+		if (isChanged(oldValue, newValue)) {
+			changes |= changedInfo;
+		}
 	}
 
-	return strValue;
+	return changes;
 }

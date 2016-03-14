@@ -49,10 +49,11 @@ namespace Contacts
 		enum Field
 		{
 			FieldFirst,
-			FieldName = FieldFirst, /**< Name */
-			FieldNumber,            /**< Number */
-			FieldImage,             /**< Image path */
-			FieldMax                /**< Sentinel value */
+			FieldId = FieldFirst, /**< ID */
+			FieldName,            /**< Name */
+			FieldNumber,          /**< Number */
+			FieldImage,           /**< Image path */
+			FieldMax              /**< Sentinel value */
 		};
 
 		/**
@@ -119,26 +120,26 @@ namespace Contacts
 		virtual bool compare(const char *str) = 0;
 
 		/**
-		 * @brief Set update callback
+		 * @brief Set updated callback
 		 * @param[in]   callback    Update callback
 		 */
-		void setUpdateCallback(UpdateCallback callback);
+		void setUpdatedCallback(UpdateCallback callback);
 
 		/**
-		 * @brief Unset update callback
+		 * @brief Unset updated callback
 		 */
-		void unsetUpdateCallback();
+		void unsetUpdatedCallback();
 
 		/**
-		 * @brief Set delete callback
+		 * @brief Set deleted callback
 		 * @param[in]   callback    Delete callback
 		 */
-		void setDeleteCallback(DeleteCallback callback);
+		void setDeletedCallback(DeleteCallback callback);
 
 		/**
-		 * @brief Unset delete callback
+		 * @brief Unset deleted callback
 		 */
-		void unsetDeleteCallback();
+		void unsetDeletedCallback();
 
 	protected:
 		/**
