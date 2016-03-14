@@ -25,6 +25,8 @@ namespace Contacts
 {
 	namespace Settings
 	{
+		class ImportController;
+
 		/**
 		 * @brief Import item
 		 */
@@ -34,6 +36,7 @@ namespace Contacts
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			void onSelected();
 			void onPickResult(app_control_h request, app_control_h reply, app_control_result_e result);
+			void onImportFinish(ImportController *importer);
 
 		private:
 			App::AppControl m_AppControl;
