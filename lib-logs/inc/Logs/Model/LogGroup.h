@@ -27,6 +27,14 @@ namespace Logs
 	{
 		class Log;
 
+		enum class ChangedType {
+			Remove,
+			UpdateName,
+			UpdateImage,
+			UpdateCount,
+			UpdateApp
+		};
+
 		/**
 		 * @brief Group of logs
 		 */
@@ -34,10 +42,6 @@ namespace Logs
 		{
 		public:
 
-			enum ChangedType {
-				Remove,
-				Update
-			};
 			/**
 			 * @brief Changed group callback
 			 */
@@ -94,6 +98,17 @@ namespace Logs
 			 * @brief Remove all logs from database
 			 */
 			void remove();
+
+			/**
+			 * @brief Get first log
+			 * @return first log. The reference will be valid till this LogGroup object exist.
+			 */
+			Log &getFirstLog();
+
+			/**
+			 * @brief Update all logs
+			 */
+			void updateLogList();
 
 		private:
 			LogList m_LogList;

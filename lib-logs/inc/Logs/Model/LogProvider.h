@@ -110,9 +110,9 @@ namespace Logs
 		private:
 			void fillList(LogList &logList);
 			void fillGroupList(LogList &logList, LogGroupList &logGroupList);
-			bool shouldGroupLogs(Log *log, LogGroup *prevLogGroup);
+			bool shouldGroupLogs(Log &log, Log &prevLog);
 
-			LogGroup *addLog(LogGroupList &logList, Log *log);
+			LogGroup *addLog(LogGroupList &logList, Log &log);
 
 			contacts_filter_h getFilter();
 			contacts_list_h fetchLogList();

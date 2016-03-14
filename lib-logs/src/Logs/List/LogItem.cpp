@@ -197,20 +197,28 @@ const char *LogItem::getImagePath(int type)
 	return path;
 }
 
-void LogItem::updateItem()
+void LogItem::updateItem(ChangedType type)
 {
-	elm_genlist_item_fields_update(getObjectItem(), PART_LOG_COUNT, ELM_GENLIST_ITEM_FIELD_TEXT);
+	if (type == ChangedType::UpdateName) {
+		elm_genlist_item_fields_update(getObjectItem(), PART_LOG_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+	} else if (type == ChangedType::UpdateImage) {
+		elm_genlist_item_fields_update(getObjectItem(), PART_PERSON_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	} else if (type == ChangedType::UpdateCount) {
+		elm_genlist_item_fields_update(getObjectItem(), PART_LOG_COUNT, ELM_GENLIST_ITEM_FIELD_TEXT);
+	} else if (type == ChangedType::UpdateApp) {
+		elm_genlist_item_update(getObjectItem());
+	}
 }
 
 void LogItem::setUpdateCallback()
 {
-	m_Group->setChangeCallback([this](LogGroup::ChangedType type){
-		if (type == LogGroup::Update) {
-			updateItem();
-		} else {
+	m_Group->setChangeCallback([this](ChangedType type){
+		if (type == ChangedType::Remove) {
 			if (m_OnDelete) {
 				m_OnDelete(this);
 			}
+		} else {
+			updateItem(type);
 		}
 	});
 }

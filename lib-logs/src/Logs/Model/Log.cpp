@@ -125,6 +125,11 @@ void Log::update()
 	int id = getId();
 	contacts_record_destroy(m_LogRecord, true);
 	contacts_db_get_record(_contacts_phone_log._uri, id, &m_LogRecord);
+
+	if (m_ContactRecord) {
+		contacts_record_destroy(m_ContactRecord, true);
+	}
+	m_ContactRecord = getContactRecord();
 }
 
 void Log::remove()
