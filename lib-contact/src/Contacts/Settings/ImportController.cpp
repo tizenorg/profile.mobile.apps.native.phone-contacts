@@ -39,6 +39,11 @@ ImportController::~ImportController()
 	delete m_CancelPopup;
 }
 
+size_t ImportController::getTotalCount() const
+{
+	m_ImportedContacts.size();
+}
+
 void ImportController::createCancelPopup(Evas_Object *parent)
 {
 	m_CancelPopup = new Ui::Popup();
@@ -86,25 +91,9 @@ void ImportController::onStart()
 	contacts_disconnect_on_thread();
 }
 
-void ImportController::onFinish()
-{
-	int count = m_ImportedContacts.size();
-	RETM_IF(count <= 0, "invalid count");
-	int err = NOTIFICATION_ERROR_NONE;
-
-	if (count == 1) {
-		err = notification_status_message_post(_("IDS_PB_TPOP_1_CONTACT_IMPORTED"));
-	} else {
-		char text[BUFFER_SIZE] = { 0, };
-		snprintf(text, sizeof(text), _("IDS_PB_TPOP_PD_CONTACTS_IMPORTED"), count);
-		err = notification_status_message_post(text);
-	}
-	WARN_IF_ERR(err, "notification_status_message_post() failed.");
-}
-
 void ImportController::onCanceled()
 {
-	contacts_db_delete_records(_contacts_contact._uri, m_ImportedContacts.data(), m_ImportedContacts.size());
+	contacts_db_delete_records(_contacts_contact._uri, m_ImportedContacts.data(), getTotalCount());
 
 	int err = notification_status_message_post(_("IDS_PB_SBODY_IMPORTING_CANCELLED_M_STATUS_ABB"));
 	WARN_IF_ERR(err, "notification_status_message_post() failed.");
@@ -133,7 +122,7 @@ bool ImportController::onVcardParse(contacts_record_h record, void *data)
 
 	importer->m_ImportedContacts.push_back(id);
 
-	if (!importer->onProgress(importer->m_ImportedContacts.size())) {
+	if (!importer->onProgress(importer->getTotalCount())) {
 		return false;
 	}
 

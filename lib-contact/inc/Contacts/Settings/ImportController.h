@@ -49,6 +49,11 @@ namespace Contacts
 			ImportController(Evas_Object *parent, const char *title,
 					size_t totalCount, std::vector<std::string> vcards);
 
+			/**
+			 * @return Total count of imported contacts.
+			 */
+			size_t getTotalCount() const;
+
 		private:
 			/**
 			 * @brief Private destructor. Only parent class ProgressController should call it.
@@ -60,7 +65,6 @@ namespace Contacts
 			bool onPopupCancel();
 
 			virtual void onStart() override;
-			virtual void onFinish() override;
 			virtual void onCanceled() override;
 			virtual bool onCancel() override;
 

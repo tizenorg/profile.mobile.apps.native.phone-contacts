@@ -21,17 +21,14 @@
 #include "App/AppControl.h"
 #include "Ui/GenlistItem.h"
 
-namespace Ui
-{
-	class ProgressController;
-}
-
 using namespace Ui;
 
 namespace Contacts
 {
 	namespace Settings
 	{
+		class ExportController;
+
 		/**
 		 * @brief Export item
 		 */
@@ -43,6 +40,7 @@ namespace Contacts
 
 			void onPickResult(app_control_h request, app_control_h reply,
 					app_control_result_e result);
+			void onExportFinish(ExportController *exporter);
 
 		private:
 			App::AppControl m_AppControl;
