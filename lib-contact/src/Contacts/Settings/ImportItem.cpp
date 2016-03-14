@@ -25,10 +25,14 @@
 
 #include <app_i18n.h>
 #include <string>
+#include <notification.h>
 #include <vector>
 
 using namespace Contacts::Common;
 using namespace Contacts::Settings;
+using namespace Ui;
+
+#define BUFFER_SIZE        1024
 
 char *ImportItem::getText(Evas_Object *parent, const char *part)
 {
@@ -71,5 +75,24 @@ void ImportItem::onPickResult(app_control_h request, app_control_h reply,
 
 	ImportController *controller = new ImportController(getParent()->getEvasObject(),
 			"IDS_PB_HEADER_IMPORT_CONTACTS_ABB2", totalCount, std::move(vcards));
+	controller->setFinishCallback(std::bind(&ImportItem::onImportFinish, this, std::placeholders::_1));
 	controller->run();
+}
+
+void ImportItem::onImportFinish(const ProgressController &controller)
+{
+	const ImportController &importer = static_cast<const ImportController &>(controller);
+
+	int count = importer.getTotalCount();
+	RETM_IF(count <= 0, "invalid count");
+	int err = NOTIFICATION_ERROR_NONE;
+
+	if (count == 1) {
+		err = notification_status_message_post(_("IDS_PB_TPOP_1_CONTACT_IMPORTED"));
+	} else {
+		char text[BUFFER_SIZE] = { 0, };
+		snprintf(text, sizeof(text), _("IDS_PB_TPOP_PD_CONTACTS_IMPORTED"), count);
+		err = notification_status_message_post(text);
+	}
+	WARN_IF_ERR(err, "notification_status_message_post() failed.");
 }
