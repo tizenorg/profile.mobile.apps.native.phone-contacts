@@ -50,6 +50,17 @@ void OperationPickController::onRequest(Operation operation, app_control_h reque
 
 bool OperationPickController::onSelected(SelectResults results)
 {
+	if (m_ResultType == ResultVcard) {
+		replyPath(results);
+	} else {
+		replyIds(results);
+	}
+
+	return true;
+}
+
+void OperationPickController::replyIds(Contacts::SelectResults results)
+{
 	size_t count = results.count();
 	std::vector<char[ID_BUFFER_SIZE]> buffers(count);
 	std::vector<const char *> ids(count);
@@ -59,16 +70,25 @@ bool OperationPickController::onSelected(SelectResults results)
 		ids[i] = buffers[i];
 	}
 
+	replyResults(ids.data(), ids.size());
+}
+
+void OperationPickController::replyPath(Contacts::SelectResults results)
+{
+	auto &result = *results.begin();
+	replyResults((const char **) &result.value.data, 1);
+}
+
+void OperationPickController::replyResults(const char **results, size_t count)
+{
 	app_control_h reply = nullptr;
 	app_control_create(&reply);
 
 	app_control_add_extra_data(reply, APP_CONTROL_DATA_TYPE, getResultTypeString(m_ResultType));
-	app_control_add_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, ids.data(), ids.size());
+	app_control_add_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, results, count);
 
 	app_control_reply_to_launch_request(reply, getRequest(), APP_CONTROL_RESULT_SUCCEEDED);
 	app_control_destroy(reply);
-
-	return true;
 }
 
 SelectMode OperationPickController::getSelectMode(app_control_h request)
@@ -101,6 +121,8 @@ ResultType OperationPickController::getResultType(app_control_h request)
 			return ResultNumber;
 		} else if (strcmp(resultType, APP_CONTROL_RESULT_EMAIL) == 0) {
 			return ResultEmail;
+		} else if (strcmp(resultType, APP_CONTROL_RESULT_VCARD) == 0) {
+			return ResultVcard;
 		}
 
 		free(resultType);
@@ -119,6 +141,8 @@ const char *OperationPickController::getResultTypeString(ResultType resultType)
 			return APP_CONTROL_RESULT_PHONE;
 		case ResultEmail:
 			return APP_CONTROL_RESULT_EMAIL;
+		case ResultVcard:
+			return APP_CONTROL_RESULT_VCARD;
 	}
 
 	return APP_CONTROL_RESULT_ID;
