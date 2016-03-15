@@ -25,6 +25,7 @@ namespace
 {
 	const char *fieldNames[] = {
 		/* [FieldFavorite]     = */ nullptr,
+		/* [FieldDisplayName]  = */ nullptr,
 		/* [FieldImage]        = */ "IDS_PB_BODY_PHOTO",
 		/* [FieldName]         = */ "IDS_PB_BODY_NAME",
 		/* [FieldPhoneticName] = */ "IDS_PB_BODY_PHONETIC_NAME_ABB",
@@ -42,6 +43,7 @@ namespace
 
 	const char *childFieldNames[] = {
 		/* [FieldFavorite]     = */ nullptr,
+		/* [FieldDisplayName]  = */ nullptr,
 		/* [FieldImage]        = */ "IDS_PB_BODY_IMAGE",
 		/* [FieldName]         = */ "IDS_PB_BODY_NAME",
 		/* [FieldPhoneticName] = */ "IDS_PB_BODY_PHONETIC_NAME_ABB",

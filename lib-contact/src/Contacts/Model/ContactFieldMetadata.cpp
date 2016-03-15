@@ -313,7 +313,8 @@ const ContactArrayMetadata contactMsgs = {
 
 /****************************** Contact Object ********************************/
 const ContactFieldMetadata contactFields[] = {
-	{ FieldFavorite,     _contacts_contact.is_favorite,  false, UPCAST(&contactBool) },
+	{ FieldFavorite,     _contacts_contact.is_favorite,  false, &contactBool },
+	{ FieldDisplayName,  _contacts_contact.display_name, false, &contactRegularText },
 	{ FieldImage,        _contacts_contact.image,        false, UPCAST(&contactImage) },
 	{ FieldName,         _contacts_contact.name,         true,  UPCAST(&contactName) },
 	{ FieldPhoneticName, _contacts_contact.name,         false, UPCAST(&contactPhName) },
@@ -337,6 +338,7 @@ const ContactFieldMetadata contact = { 0, 0, true, UPCAST(&contactObject) };
 /****************************** My Profile Object *****************************/
 const ContactFieldMetadata myProfileFields[] = {
 	{ FieldImage,        _contacts_my_profile.image,        false, UPCAST(&contactImage) },
+	{ FieldDisplayName,  _contacts_my_profile.display_name, false, &contactRegularText },
 	{ FieldName,         _contacts_my_profile.name,         true,  UPCAST(&contactName) },
 	{ FieldPhoneticName, _contacts_my_profile.name,         false, UPCAST(&contactPhName) },
 	{ FieldCompany,      _contacts_my_profile.company,      true,  UPCAST(&contactCompany) },

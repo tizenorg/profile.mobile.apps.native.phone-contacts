@@ -38,7 +38,7 @@ BasicInfoItem::BasicInfoItem(Contact &contact)
 	  m_Image       (contact.getFieldById(FieldImage)->cast<ContactObject>()),
 	  m_ImagePath   (m_Image.getField(0)->cast<ContactTextField>()),
 
-	  m_Name        (contact.getFieldById(FieldName)->cast<ContactCompoundObject>()),
+	  m_Name        (contact.getFieldById(FieldDisplayName)->cast<ContactTextField>()),
 	  m_PhoneticName(contact.getFieldById(FieldPhoneticName)->cast<ContactCompoundObject>()),
 
 	  m_Company     (contact.getFieldById(FieldCompany)->cast<ContactObject>()),
@@ -71,7 +71,7 @@ Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
 char *BasicInfoItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_NAME) == 0) {
-		return strdup(m_Name.getValue().c_str());
+		return strdup(m_Name.getValue());
 	} else if (strcmp(part, PART_PHONETIC_NAME) == 0) {
 		return strdup(m_PhoneticName.getValue().c_str());
 	} else if (strcmp(part, PART_COMPANY) == 0) {

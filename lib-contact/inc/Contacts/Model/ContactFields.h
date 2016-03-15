@@ -29,6 +29,7 @@ namespace Contacts
 		{
 			FieldBegin,
 			FieldFavorite = FieldBegin,
+			FieldDisplayName,
 			FieldImage,
 			FieldName,
 			FieldPhoneticName,
