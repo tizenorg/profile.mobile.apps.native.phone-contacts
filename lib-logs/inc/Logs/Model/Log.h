@@ -77,6 +77,11 @@ namespace Logs
 			int getPersonId() const;
 
 			/**
+			 * @return log contact id
+			 */
+			int getContactId() const;
+
+			/**
 			 * @return log duration in seconds
 			 */
 			time_t getDuration() const;
