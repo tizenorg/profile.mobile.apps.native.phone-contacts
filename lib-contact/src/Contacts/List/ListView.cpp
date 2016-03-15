@@ -112,11 +112,14 @@ void ListView::onMenuPressed()
 
 const char *ListView::getPageTitle() const
 {
-	if (getSelectMode() == SelectNone) {
-		return "IDS_PB_TAB_CONTACTS";
+	switch (getSelectMode()) {
+		case SelectNone:
+			return "IDS_PB_TAB_CONTACTS";
+		case SelectSingle:
+			return "IDS_PB_HEADER_SELECT_CONTACT_ABB2";
+		default:
+			return SelectView::getPageTitle();
 	}
-
-	return SelectView::getPageTitle();
 }
 
 void ListView::onSelectAllInsert(Ui::GenlistItem *item)

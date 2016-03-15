@@ -37,6 +37,10 @@ private:
 	virtual void onRequest(Operation operation, app_control_h request) override;
 	bool onSelected(Contacts::SelectResults results);
 
+	void replyIds(Contacts::SelectResults results);
+	void replyPath(Contacts::SelectResults results);
+	void replyResults(const char **results, size_t count);
+
 	static Contacts::SelectMode getSelectMode(app_control_h request);
 	static Contacts::ResultType getResultType(app_control_h request);
 	static const char *getResultTypeString(Contacts::ResultType resultType);

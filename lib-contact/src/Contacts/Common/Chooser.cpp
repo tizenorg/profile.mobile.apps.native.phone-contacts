@@ -18,6 +18,7 @@
 #include "Contacts/Common/Chooser.h"
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/List/ListView.h"
+#include "Contacts/Settings/ExportController.h"
 #include "Contacts/Utils.h"
 #include "Utils/Logger.h"
 
@@ -55,6 +56,9 @@ void Chooser::onCreated()
 			} else {
 				view->setSelectCallback(std::bind(&Chooser::onMultiPersonSelected, this, _1));
 			}
+			break;
+		case ResultVcard:
+			view->setSelectCallback(std::bind(&Chooser::onSelectedForVcard, this, _1));
 			break;
 		default:
 			break;
@@ -112,6 +116,29 @@ bool Chooser::onSelected(SelectResults results)
 	if (!m_OnSelected || m_OnSelected(results)) {
 		getPage()->close();
 	}
+
+	return false;
+}
+
+bool Chooser::onSelectedForVcard(SelectResults results)
+{
+	using namespace Settings;
+
+	std::vector<int> ids;
+	ids.reserve(results.count());
+	for (auto &&result : results) {
+		ids.push_back(result.value.id);
+	}
+
+	auto exporter = new ExportController(getEvasObject(), "IDS_PB_HEADER_EXPORT_CONTACTS_ABB",
+			std::move(ids), StorageInternalOther);
+	exporter->setFinishCallback([this, exporter] {
+		SelectResult result = { ResultVcard, (void *) exporter->getVcardPath().c_str() };
+		if (!m_OnSelected || m_OnSelected({ &result, 1 })) {
+			getPage()->close();
+		}
+	});
+	exporter->run();
 
 	return false;
 }
