@@ -44,6 +44,7 @@ namespace
 {
 	bool isFieldVisible[] = {
 		/* [FieldFavorite]     = */ false,
+		/* [FieldDisplayName]  = */ false,
 		/* [FieldImage]        = */ true,
 		/* [FieldName]         = */ true,
 		/* [FieldPhoneticName] = */ true,

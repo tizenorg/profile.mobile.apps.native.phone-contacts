@@ -104,7 +104,7 @@ namespace Contacts
 			Model::ContactObject &m_Image;
 			Model::ContactTextField &m_ImagePath;
 
-			Model::ContactCompoundObject &m_Name;
+			Model::ContactTextField &m_Name;
 			Model::ContactCompoundObject &m_PhoneticName;
 
 			Model::ContactObject &m_Company;
