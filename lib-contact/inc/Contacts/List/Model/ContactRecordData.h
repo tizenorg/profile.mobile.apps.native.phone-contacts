@@ -19,6 +19,7 @@
 #define CONTACTS_LIST_MODEL_CONTACT_RECORD_DATA_H
 
 #include "Contacts/ContactData.h"
+#include "Contacts/DbChangeObserver.h"
 #include <contacts.h>
 
 namespace Contacts
@@ -74,21 +75,50 @@ namespace Contacts
 				virtual bool compare(const char *str) override;
 
 			protected:
-
 				/**
 				 * @return contact record
 				 */
 				const contacts_record_h getContactRecord() const;
 
 				/**
+				 * @brief Set changed callback
+				 * @param[in]   callback    Change callback
+				 */
+				void setChangedCallback(DbChangeObserver::Callback callback);
+
+				/**
+				 * @brief Unset changed callback
+				 */
+				void unsetChangedCallback();
+
+				/**
+				 * @param[in]   record  Contact record
+				 * @return Contact ID
+				 */
+				static int getContactId(contacts_record_h record);
+
+				/**
 				 * @param[in]   record  Contact record
 				 * @param[in]   field   Contact field
-				 * @return contact value Name/Number/ImagePath
+				 * @return Contact value Name/Number/ImagePath
 				 */
 				static const char *getValue(contacts_record_h record, Field field);
 
+				/**
+				 * @param[in]   oldContact  Old contact record
+				 * @param[in]   newContact  New contact record
+				 * @return Changes between both contacts
+				 */
+				static int getChanges(contacts_record_h oldContact, contacts_record_h newContact);
+
 			private:
+				friend class ContactRecordProvider;
+
+				void onUpdate(contacts_record_h record);
+				void onDelete();
+
 				contacts_record_h m_Record;
+				DbChangeObserver::CallbackHandle m_Handle;
 			};
 		}
 	}

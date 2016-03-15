@@ -94,8 +94,6 @@ namespace Contacts
 				const Utils::UniString &getSortValue() const;
 				const char *getDbSortValue() const;
 
-				int getChanges(contacts_record_h record);
-
 				contacts_record_h m_PersonRecord;
 				ContactIds m_ContactIds;
 
