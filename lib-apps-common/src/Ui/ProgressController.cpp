@@ -38,6 +38,11 @@ void ProgressController::run()
 	m_MainThread = ecore_thread_feedback_run(onStart, onNotify, onFinish, onCanceled, this, EINA_FALSE);
 }
 
+void ProgressController::setFinishCallback(FinishCallback callback)
+{
+	m_OnFinish = std::move(callback);
+}
+
 bool ProgressController::onCancel()
 {
 	return true;
@@ -106,7 +111,9 @@ void ProgressController::onFinish(void *data, Ecore_Thread *thread)
 {
 	RETM_IF(!data, "invalid data");
 	ProgressController *controller = (ProgressController *)data;
-	controller->onFinish();
+	if (controller->m_OnFinish) {
+		controller->m_OnFinish();
+	}
 
 	delete controller;
 }

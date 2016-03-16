@@ -55,18 +55,26 @@ namespace Contacts
 					std::vector<int> personIdList, StorageType vcardStorage);
 
 			/**
+			 * @return Vcard path relative to the storage root directory.
+			 */
+			const char *getVcardRelativePath() const;
+
+			/**
 			 * @return Vcard path.
 			 */
 			const std::string &getVcardPath() const;
 
+			/**
+			 * @return Total count of exported contacts.
+			 */
+			size_t getTotalCount() const;
+
 		private:
 			void createDirectory(const std::string &directoryPath);
 			std::string getVcardDirectoryPath();
-			const char *getVcardRelativePath() const;
 			std::string getVcardFilePath();
 
 			virtual void onStart() override;
-			virtual void onFinish() override;
 			virtual void onCanceled() override;
 
 		private:
