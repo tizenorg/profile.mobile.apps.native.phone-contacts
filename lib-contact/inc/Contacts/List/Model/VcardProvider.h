@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_MODEL_VCARD_PROVIDER_H
 #define CONTACTS_LIST_MODEL_VCARD_PROVIDER_H
 
-#include "Contacts/ContactDataProvider.h"
+#include "Contacts/Model/ContactDataProvider.h"
 
 namespace Contacts
 {
@@ -29,7 +29,7 @@ namespace Contacts
 			/**
 			 * @brief Provides list of contacts from vcard
 			 */
-			class VcardProvider : public ContactDataProvider
+			class VcardProvider : public Contacts::Model::ContactDataProvider
 			{
 			public:
 				/**
@@ -46,13 +46,13 @@ namespace Contacts
 				 * @see ContactDataProvider::getContactDataList()
 				 * @return Contact data list
 				 */
-				virtual const ContactDataList &getContactDataList() override;
+				virtual const Contacts::Model::ContactDataList &getContactDataList() override;
 
 			private:
 				contacts_list_h getListFromVcard(const char *path);
 
 			private:
-				ContactDataList m_ContactsList;
+				Contacts::Model::ContactDataList m_ContactsList;
 			};
 		}
 	}

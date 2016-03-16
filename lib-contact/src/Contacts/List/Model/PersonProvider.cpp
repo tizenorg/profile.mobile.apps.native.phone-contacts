@@ -20,6 +20,7 @@
 #include "Contacts/Utils.h"
 
 using namespace Contacts;
+using namespace Contacts::Model;
 using namespace Contacts::List::Model;
 using namespace std::placeholders;
 

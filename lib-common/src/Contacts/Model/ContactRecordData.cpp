@@ -15,11 +15,11 @@
  *
  */
 
-#include "Contacts/List/Model/ContactRecordData.h"
+#include "Contacts/Model/ContactRecordData.h"
 #include "Contacts/ContactRecordChildIterator.h"
 #include <cstring>
 
-using namespace Contacts::List::Model;
+using namespace Contacts::Model;
 
 ContactRecordData::ContactRecordData(Type type)
 	: ContactData(type), m_Record(nullptr)

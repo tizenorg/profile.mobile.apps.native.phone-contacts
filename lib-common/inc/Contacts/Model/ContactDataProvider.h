@@ -18,50 +18,53 @@
 #ifndef CONTACTS_CONTACT_DATA_PROVIDER_H
 #define CONTACTS_CONTACT_DATA_PROVIDER_H
 
-#include "Contacts/ContactData.h"
+#include "Contacts/Model/ContactData.h"
 
 #include <functional>
 #include <tizen.h>
 
 namespace Contacts
 {
-	class EXPORT_API ContactDataProvider
+	namespace Model
 	{
-	public:
-		/**
-		 * @brief Insert callback
-		 * @param[in] Contact data
-		 */
-		typedef std::function<void(ContactData &)> InsertCallback;
+		class EXPORT_API ContactDataProvider
+		{
+		public:
+			/**
+			 * @brief Insert callback
+			 * @param[in] Contact data
+			 */
+			typedef std::function<void(ContactData &)> InsertCallback;
 
-		virtual ~ContactDataProvider() { }
+			virtual ~ContactDataProvider() { }
 
-		/**
-		 * @return Contact data list
-		 */
-		virtual const ContactDataList &getContactDataList() = 0;
+			/**
+			 * @return Contact data list
+			 */
+			virtual const ContactDataList &getContactDataList() = 0;
 
-		/**
-		 * @brief Set insert callback
-		 * @param[in]   callback    Create callback
-		 */
-		void setInsertCallback(InsertCallback callback);
+			/**
+			 * @brief Set insert callback
+			 * @param[in]   callback    Create callback
+			 */
+			void setInsertCallback(InsertCallback callback);
 
-		/**
-		 * @brief Unset insert callback
-		 */
-		void unsetInsertCallback();
+			/**
+			 * @brief Unset insert callback
+			 */
+			void unsetInsertCallback();
 
-	protected:
-		/**
-		 * @brief ContactData inserted callback
-		 * @param[in]   contactData     Contact data
-		 */
-		void onInserted(ContactData &contactData);
+		protected:
+			/**
+			 * @brief ContactData inserted callback
+			 * @param[in]   contactData     Contact data
+			 */
+			void onInserted(ContactData &contactData);
 
-	private:
-		InsertCallback m_OnInserted;
-	};
+		private:
+			InsertCallback m_OnInserted;
+		};
+	}
 }
 
 #endif /* CONTACTS_CONTACT_DATA_PROVIDER_H */

@@ -15,9 +15,9 @@
  *
  */
 
-#include "Contacts/ContactData.h"
+#include "Contacts/Model/ContactData.h"
 
-using namespace Contacts;
+using namespace Contacts::Model;
 
 ContactData::ContactData(Type type)
 	: m_Type(type)
