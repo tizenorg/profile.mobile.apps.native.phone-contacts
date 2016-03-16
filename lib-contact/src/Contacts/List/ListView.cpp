@@ -32,6 +32,7 @@
 #include "Utils/Callback.h"
 
 using namespace Contacts;
+using namespace Contacts::Model;
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 using namespace Utils;

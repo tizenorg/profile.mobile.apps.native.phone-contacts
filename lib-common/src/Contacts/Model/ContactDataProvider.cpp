@@ -15,9 +15,9 @@
  *
  */
 
-#include "Contacts/ContactDataProvider.h"
+#include "Contacts/Model/ContactDataProvider.h"
 
-using namespace Contacts;
+using namespace Contacts::Model;
 
 void ContactDataProvider::setInsertCallback(InsertCallback callback)
 {

@@ -19,8 +19,8 @@
 #define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Contacts/ContactDataProvider.h"
-#include "Contacts/DbChangeObserver.h"
+#include "Contacts/Model/ContactDataProvider.h"
+#include "Contacts/Model/DbChangeObserver.h"
 
 #include <contacts.h>
 
@@ -35,7 +35,7 @@ namespace Contacts
 			/**
 			 * @brief Provides list of person
 			 */
-			class PersonProvider : public ContactDataProvider
+			class PersonProvider : public Contacts::Model::ContactDataProvider
 			{
 			public:
 				/**
@@ -50,24 +50,24 @@ namespace Contacts
 				 * @brief Get person list
 				 * @return List of contact objects
 				 */
-				virtual const ContactDataList &getContactDataList() override;
+				virtual const Contacts::Model::ContactDataList &getContactDataList() override;
 
 			private:
 				contacts_record_h getFilteredRecord(int contactId);
 
 				void insertPerson(contacts_record_h record);
 
-				void setChangedCallback(ContactDataList::iterator personIt);
-				void updateChangedCallback(ContactDataList::iterator personIt);
+				void setChangedCallback(Contacts::Model::ContactDataList::iterator personIt);
+				void updateChangedCallback(Contacts::Model::ContactDataList::iterator personIt);
 				void unsetChangedCallback(const Person &person);
 
 				void onPersonInserted(int id, contacts_changed_e changeType);
-				void onPersonChanged(ContactDataList::iterator it, int id, contacts_changed_e changeType);
+				void onPersonChanged(Contacts::Model::ContactDataList::iterator it, int id, contacts_changed_e changeType);
 
 				int m_FilterType;
 
-				DbChangeObserver::CallbackHandle m_Handle;
-				ContactDataList m_PersonList;
+				Contacts::Model::DbChangeObserver::CallbackHandle m_Handle;
+				Contacts::Model::ContactDataList m_PersonList;
 			};
 		}
 	}

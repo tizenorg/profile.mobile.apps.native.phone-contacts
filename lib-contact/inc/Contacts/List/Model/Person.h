@@ -18,8 +18,8 @@
 #ifndef CONTACTS_LIST_MODEL_PERSON_H
 #define CONTACTS_LIST_MODEL_PERSON_H
 
-#include "Contacts/DbChangeObserver.h"
-#include "Contacts/List/Model/ContactRecordData.h"
+#include "Contacts/Model/DbChangeObserver.h"
+#include "Contacts/Model/ContactRecordData.h"
 #include "Utils/UniString.h"
 #include <contacts.h>
 #include <vector>
@@ -38,7 +38,7 @@ namespace Contacts
 			/**
 			 * @brief Person object
 			 */
-			class Person : public ContactRecordData
+			class Person : public Contacts::Model::ContactRecordData
 			{
 			public:
 				/**
@@ -100,7 +100,7 @@ namespace Contacts
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;
 
-				std::vector<DbChangeObserver::CallbackHandle> m_Handles;
+				std::vector<Contacts::Model::DbChangeObserver::CallbackHandle> m_Handles;
 			};
 		}
 	}

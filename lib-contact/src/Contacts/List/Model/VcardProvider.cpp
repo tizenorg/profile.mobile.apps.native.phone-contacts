@@ -15,12 +15,13 @@
  *
  */
 
-#include "Contacts/List/Model/ContactRecordData.h"
+#include "Contacts/Model/ContactRecordData.h"
 #include "Contacts/List/Model/VcardProvider.h"
 #include "Contacts/Utils.h"
 #include "Utils/Logger.h"
 
 using namespace Contacts;
+using namespace Contacts::Model;
 using namespace Contacts::List::Model;
 
 VcardProvider::VcardProvider(const char *path)

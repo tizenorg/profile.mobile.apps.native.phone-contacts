@@ -15,12 +15,12 @@
  *
  */
 
-#include "Contacts/DbChangeObserver.h"
+#include "Contacts/Model/DbChangeObserver.h"
 #include "Contacts/Utils.h"
 #include "Utils/Callback.h"
 #include "Utils/Range.h"
 
-using namespace Contacts;
+using namespace Contacts::Model;
 
 namespace
 {

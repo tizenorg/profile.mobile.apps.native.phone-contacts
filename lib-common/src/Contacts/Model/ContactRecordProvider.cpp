@@ -15,12 +15,12 @@
  *
  */
 
-#include "Contacts/List/Model/ContactRecordProvider.h"
-#include "Contacts/List/Model/ContactRecordData.h"
+#include "Contacts/Model/ContactRecordProvider.h"
+#include "Contacts/Model/ContactRecordData.h"
 #include "Contacts/Utils.h"
 
 using namespace Contacts;
-using namespace Contacts::List::Model;
+using namespace Contacts::Model;
 using namespace std::placeholders;
 
 ContactRecordProvider::ContactRecordProvider()

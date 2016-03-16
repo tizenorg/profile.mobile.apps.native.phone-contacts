@@ -18,34 +18,31 @@
 #ifndef CONTACTS_LIST_MODEL_CONTACT_RECORD_PROVIDER_H
 #define CONTACTS_LIST_MODEL_CONTACT_RECORD_PROVIDER_H
 
-#include "Contacts/ContactDataProvider.h"
-#include "Contacts/DbChangeObserver.h"
+#include "Contacts/Model/ContactDataProvider.h"
+#include "Contacts/Model/DbChangeObserver.h"
 
 namespace Contacts
 {
-	namespace List
+	namespace Model
 	{
-		namespace Model
+		class EXPORT_API ContactRecordProvider : public ContactDataProvider
 		{
-			class ContactRecordProvider : public ContactDataProvider
-			{
-			public:
-				ContactRecordProvider();
-				~ContactRecordProvider();
+		public:
+			ContactRecordProvider();
+			~ContactRecordProvider();
 
-				/**
-				 * @see ContactDataProvider::getContactDataList()
-				 */
-				virtual const ContactDataList &getContactDataList() override;
+			/**
+			 * @see ContactDataProvider::getContactDataList()
+			 */
+			virtual const ContactDataList &getContactDataList() override;
 
-			private:
-				void onContactInserted(int id, contacts_changed_e changeType);
-				void onContactChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType);
+		private:
+			void onContactInserted(int id, contacts_changed_e changeType);
+			void onContactChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType);
 
-				DbChangeObserver::CallbackHandle m_Handle;
-				ContactDataList m_ContactList;
-			};
-		}
+			DbChangeObserver::CallbackHandle m_Handle;
+			ContactDataList m_ContactList;
+		};
 	}
 }
 
