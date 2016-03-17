@@ -53,6 +53,7 @@ namespace Contacts
 			bool onSinglePersonSelected(SelectResults personResults);
 			bool onMultiPersonSelected(SelectResults personResults);
 			bool onSelected(SelectResults results);
+			bool onSelectedForVcard(SelectResults results);
 
 			static int getSingleResultId(int personId, ResultType resultType);
 			static int getFilterType(ResultType resultType);

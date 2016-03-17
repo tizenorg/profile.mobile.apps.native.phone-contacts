@@ -42,7 +42,8 @@ namespace Contacts
 		ResultMyProfile = Model::ObjectTypeMyProfile, /**< My Profile ID is the result */
 		ResultPerson    = Model::ObjectTypeContact,   /**< Person ID is the result */
 		ResultNumber    = Model::ObjectTypeNumber,    /**< Number ID is the result */
-		ResultEmail     = Model::ObjectTypeEmail      /**< Email ID is the result */
+		ResultEmail     = Model::ObjectTypeEmail,     /**< Email ID is the result */
+		ResultVcard
 	};
 }
 
