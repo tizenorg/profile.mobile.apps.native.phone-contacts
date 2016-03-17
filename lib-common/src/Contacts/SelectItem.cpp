@@ -20,7 +20,7 @@
 using namespace Contacts;
 
 SelectItem::SelectItem()
-	: m_SelectMode(SelectNone)
+	: m_SelectMode(SelectNone), m_CustomResult{ 0, 0 }, m_HasCustomResult(false)
 {
 }
 
@@ -35,6 +35,22 @@ void SelectItem::setSelectMode(SelectMode selectMode)
 	updateCheckPart();
 
 	onSelectModeChanged(m_SelectMode);
+}
+
+SelectResult SelectItem::getSelectResult() const
+{
+	return m_HasCustomResult ? m_CustomResult : getDefaultResult();
+}
+
+void SelectItem::setCustomResult(SelectResult result)
+{
+	m_CustomResult = result;
+	m_HasCustomResult = true;
+}
+
+void SelectItem::unsetCustomResult()
+{
+	m_HasCustomResult = false;
 }
 
 Evas_Object *SelectItem::getContent(Evas_Object *parent, const char *part)

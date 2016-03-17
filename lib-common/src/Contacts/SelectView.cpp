@@ -78,6 +78,11 @@ void SelectView::setSelectCallback(SelectCallback callback)
 	m_OnSelected = std::move(callback);
 }
 
+void SelectView::setCheckCallback(CheckCallback callback)
+{
+	m_OnChecked = std::move(callback);
+}
+
 SelectMode SelectView::getSelectMode() const
 {
 	return m_SelectMode;
@@ -287,6 +292,10 @@ void SelectView::onItemSelected(SelectItem *item)
 bool SelectView::onItemChecked(SelectItem *item, bool isChecked)
 {
 	if (m_SelectLimit && m_SelectCount == m_SelectLimit && isChecked) {
+		return false;
+	}
+
+	if (m_OnChecked && !m_OnChecked(item, isChecked)) {
 		return false;
 	}
 

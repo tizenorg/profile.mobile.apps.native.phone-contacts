@@ -74,7 +74,7 @@ namespace Contacts
 			/**
 			 * @see SelectItem::getSelectResult()
 			 */
-			virtual SelectResult getSelectResult() const override;
+			virtual SelectResult getDefaultResult() const override;
 
 			/**
 			 * @see ContactField::UpdatedCallback

@@ -70,7 +70,7 @@ namespace Logs
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
-			virtual Contacts::SelectResult getSelectResult() const override;
+			virtual Contacts::SelectResult getDefaultResult() const override;
 
 			Evas_Object *createThumbnail(Evas_Object *parent);
 			Evas_Object *createLayout(Evas_Object *parent, const char *layoutName);

@@ -40,6 +40,11 @@ namespace Contacts
 	class EXPORT_API SelectView : public Ui::View
 	{
 	public:
+		/**
+		 * @brief Called when item's "checked" state changed in #SelectMulti mode.
+		 */
+		typedef std::function<bool(SelectItem *, bool)> CheckCallback;
+
 		SelectView();
 
 		/**
@@ -59,6 +64,12 @@ namespace Contacts
 		 * @param[in]   callback    Selection callback
 		 */
 		void setSelectCallback(SelectCallback callback);
+
+		/**
+		 * @brief Set item check callback.
+		 * @param[in]   callback    Check callback
+		 */
+		void setCheckCallback(CheckCallback callback);
 
 	protected:
 		/**
@@ -167,6 +178,7 @@ namespace Contacts
 
 		SelectMode m_SelectMode;
 		SelectCallback m_OnSelected;
+		CheckCallback m_OnChecked;
 	};
 }
 

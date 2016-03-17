@@ -89,7 +89,7 @@ Evas_Object *FieldItem::getContent(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-SelectResult FieldItem::getSelectResult() const
+SelectResult FieldItem::getDefaultResult() const
 {
 	return { m_Object.getSubType(), m_Object.getRecordId() };
 }
