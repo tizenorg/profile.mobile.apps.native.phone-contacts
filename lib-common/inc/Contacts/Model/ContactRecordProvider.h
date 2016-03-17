@@ -36,6 +36,12 @@ namespace Contacts
 			 */
 			virtual const ContactDataList &getContactDataList() override;
 
+		protected:
+			/**
+			 * @see ContactData::ContactData()
+			 */
+			virtual ContactData *createContact(contacts_record_h record);
+
 		private:
 			void onContactInserted(int id, contacts_changed_e changeType);
 			void onContactChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType);

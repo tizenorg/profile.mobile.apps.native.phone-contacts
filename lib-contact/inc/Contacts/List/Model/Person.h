@@ -87,8 +87,7 @@ namespace Contacts
 			private:
 				friend class PersonProvider;
 
-				void initialize(contacts_record_h personRecord,
-						contacts_record_h contactRecord);
+				void initialize(contacts_record_h personRecord);
 				int updatePerson(contacts_record_h record);
 
 				const Utils::UniString &getSortValue() const;

@@ -32,15 +32,10 @@ namespace Contacts
 			/**
 			 * @brief Create ContactRecordData object
 			 * @param[in]   type    ContactRecordData type
-			 */
-			ContactRecordData(Type type);
-			virtual ~ContactRecordData() override;
-
-			/**
-			 * @brief Update contact record handle
 			 * @param[in]   record  Contact record
 			 */
-			void updateContactRecord(contacts_record_h record);
+			ContactRecordData(Type type, contacts_record_h record = nullptr);
+			virtual ~ContactRecordData() override;
 
 			/**
 			 * @see ContactData::getId()
@@ -77,6 +72,12 @@ namespace Contacts
 			 * @return contact record
 			 */
 			const contacts_record_h getContactRecord() const;
+
+			/**
+			 * @brief Update contact record handle
+			 * @param[in]   record  Contact record
+			 */
+			void updateContactRecord(contacts_record_h record);
 
 			/**
 			 * @brief Set changed callback

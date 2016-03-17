@@ -47,8 +47,7 @@ const ContactDataList &ContactRecordProvider::getContactDataList()
 
 	contacts_record_h record = nullptr;
 	CONTACTS_LIST_FOREACH(list, record) {
-		auto contact = new ContactRecordData(ContactData::TypeContact);
-		contact->updateContactRecord(record);
+		auto contact = static_cast<ContactRecordData *>(createContact(record));
 		m_ContactList.push_back(contact);
 
 		contact->setChangedCallback(
@@ -60,14 +59,19 @@ const ContactDataList &ContactRecordProvider::getContactDataList()
 	return m_ContactList;
 }
 
+ContactData *ContactRecordProvider::createContact(contacts_record_h record)
+{
+	auto contact = new ContactRecordData(ContactData::TypeContact, record);
+	return contact;
+}
+
 void ContactRecordProvider::onContactInserted(int id, contacts_changed_e changeType)
 {
 	if (changeType == CONTACTS_CHANGE_INSERTED) {
 		contacts_record_h record = nullptr;
 		contacts_db_get_record(_contacts_contact._uri, id, &record);
 
-		auto contact = new ContactRecordData(ContactData::TypeContact);
-		contact->updateContactRecord(record);
+		auto contact = new ContactRecordData(ContactData::TypeContact, record);
 		m_ContactList.push_back(contact);
 
 		onInserted(*contact);

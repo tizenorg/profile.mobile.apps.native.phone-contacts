@@ -64,9 +64,9 @@ namespace
 }
 
 Person::Person(contacts_record_h record)
-	: ContactRecordData(TypePerson), m_PersonRecord(nullptr)
+	: ContactRecordData(TypePerson, getDisplayContact(record)), m_PersonRecord(nullptr)
 {
-	initialize(record, getDisplayContact(record));
+	initialize(record);
 }
 
 Person::~Person()
@@ -108,10 +108,9 @@ bool Person::operator<(const Person &that) const
 	return getSortValue() < that.getSortValue();
 }
 
-void Person::initialize(contacts_record_h personRecord, contacts_record_h contactRecord)
+void Person::initialize(contacts_record_h personRecord)
 {
 	m_PersonRecord = personRecord;
-	updateContactRecord(contactRecord);
 	m_ContactIds = ::getContactIds(getId());
 
 	char *indexLetter = nullptr;
@@ -126,7 +125,9 @@ int Person::updatePerson(contacts_record_h personRecord)
 
 	contacts_record_destroy(m_PersonRecord, true);
 	m_SortValue.clear();
-	initialize(personRecord, contactRecord);
+
+	updateContactRecord(contactRecord);
+	initialize(personRecord);
 
 	return changes;
 }

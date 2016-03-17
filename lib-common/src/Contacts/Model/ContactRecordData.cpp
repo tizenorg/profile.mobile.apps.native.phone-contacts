@@ -21,8 +21,8 @@
 
 using namespace Contacts::Model;
 
-ContactRecordData::ContactRecordData(Type type)
-	: ContactData(type), m_Record(nullptr)
+ContactRecordData::ContactRecordData(Type type, contacts_record_h record)
+	: ContactData(type), m_Record(record)
 {
 }
 
@@ -30,12 +30,6 @@ ContactRecordData::~ContactRecordData()
 {
 	contacts_record_destroy(m_Record, true);
 	unsetChangedCallback();
-}
-
-void ContactRecordData::updateContactRecord(contacts_record_h record)
-{
-	contacts_record_destroy(m_Record, true);
-	m_Record = record;
 }
 
 int ContactRecordData::getId() const
@@ -66,6 +60,12 @@ bool ContactRecordData::compare(const char *str)
 const contacts_record_h ContactRecordData::getContactRecord() const
 {
 	return m_Record;
+}
+
+void ContactRecordData::updateContactRecord(contacts_record_h record)
+{
+	contacts_record_destroy(m_Record, true);
+	m_Record = record;
 }
 
 void ContactRecordData::setChangedCallback(DbChangeObserver::Callback callback)
