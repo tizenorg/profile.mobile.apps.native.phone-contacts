@@ -65,3 +65,15 @@ void LogGroup::remove()
 		log->remove();
 	}
 }
+
+Log &LogGroup::getFirstLog()
+{
+	return *(*m_LogList.begin());
+}
+
+void LogGroup::updateLogList()
+{
+	for(auto &&log : m_LogList) {
+		log->update();
+	}
+}
