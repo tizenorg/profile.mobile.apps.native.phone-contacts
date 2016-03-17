@@ -21,6 +21,7 @@
 #include "Contacts/Input/ContactImageFieldItem.h"
 #include "Contacts/Input/ContactRelationshipFieldItem.h"
 #include "Contacts/Input/ContactTypedFieldItem.h"
+#include "Contacts/Details/DetailsView.h"
 
 #include "Contacts/Model/ContactArray.h"
 #include "Contacts/Model/ContactTextField.h"
@@ -28,6 +29,7 @@
 
 #include "App/Path.h"
 #include "Ui/Genlist.h"
+#include "Ui/Navigator.h"
 #include "Ui/Popup.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
@@ -294,6 +296,12 @@ void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 	int id = m_Contact.save();
 	if (m_OnResult) {
 		m_OnResult(id);
+	}
+
+	if (m_Contact.isNew()) {
+		using Details::DetailsView;
+		DetailsView *view = new DetailsView(id, DetailsView::Type(m_Contact.getSubType()));
+		getNavigator()->navigateTo(view);
 	}
 
 	getPage()->close();
