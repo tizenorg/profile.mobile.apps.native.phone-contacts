@@ -81,7 +81,7 @@ void LogDetailItem::onSelectModeChanged(SelectMode selectMode)
 	}
 }
 
-SelectResult LogDetailItem::getSelectResult() const
+SelectResult LogDetailItem::getDefaultResult() const
 {
 	return { 0, m_Log };
 }

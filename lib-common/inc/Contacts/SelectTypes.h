@@ -51,7 +51,7 @@ namespace Contacts
 	/**
 	 * @brief Range of consecutive selection results.
 	 */
-	typedef Utils::Range<const SelectResult *> SelectResults;
+	typedef Utils::Range<SelectResult *> SelectResults;
 
 	/**
 	 * @brief Callback to be called when selection is done.

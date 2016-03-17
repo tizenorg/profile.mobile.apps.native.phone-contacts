@@ -41,11 +41,26 @@ namespace Contacts
 		 */
 		void setSelectMode(SelectMode selectMode);
 
-	protected:
 		/**
 		 * @return Selection result associated with the item.
 		 */
-		virtual SelectResult getSelectResult() const = 0;
+		SelectResult getSelectResult() const;
+
+		/**
+		 * @brief Set custom selection result to override the default result.
+		 */
+		void setCustomResult(SelectResult result);
+
+		/**
+		 * @brief Unset custom selection result to use default result.
+		 */
+		void unsetCustomResult();
+
+	protected:
+		/**
+		 * @return Default selection result associated with the item.
+		 */
+		virtual SelectResult getDefaultResult() const = 0;
 
 		/**
 		 * @see GenlistItem::getContent()
@@ -67,6 +82,8 @@ namespace Contacts
 		friend class SelectView;
 
 		SelectMode m_SelectMode;
+		SelectResult m_CustomResult;
+		bool m_HasCustomResult;
 	};
 }
 
