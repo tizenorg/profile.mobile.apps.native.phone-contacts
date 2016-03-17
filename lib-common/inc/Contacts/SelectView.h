@@ -149,8 +149,8 @@ namespace Contacts
 		void destroyPageButtons();
 
 		void onItemSelected(SelectItem *item);
-		void onItemChecked(SelectItem *item, bool isChecked);
-		void onSelectAllChecked(bool isChecked);
+		bool onItemChecked(SelectItem *item, bool isChecked);
+		bool onSelectAllChecked(bool isChecked);
 		void onSelectAllDestroy();
 
 		void onDonePressed(Evas_Object *button, void *eventInfo);

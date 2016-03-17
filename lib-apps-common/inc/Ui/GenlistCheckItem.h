@@ -31,8 +31,9 @@ namespace Ui
 		/**
 		 * @brief Item check callback.
 		 * @param[in]   Whether item is checked
+		 * @return Whether item's state should be changed.
 		 */
-		typedef std::function<void(bool)> CheckCallback;
+		typedef std::function<bool(bool)> CheckCallback;
 
 		GenlistCheckItem();
 
@@ -71,14 +72,15 @@ namespace Ui
 		virtual void onSelected() override;
 
 		/**
-		 * @brief Called when item is checked or unchecked.
+		 * @brief Called when item's "checked" state changes.
 		 * @param[in]   isChecked   Whether item is checked
+		 * @return Whether item's state should be changed.
 		 */
-		virtual void onChecked(bool isChecked) { }
+		virtual bool onChecked(bool isChecked) { return true; }
 
 	private:
-		void onChecked();
 		void onCheckChanged(Evas_Object *check, void *eventInfo);
+		bool notifyCheck(bool isChecked);
 
 		std::string m_CheckPart;
 		Eina_Bool m_IsChecked;
