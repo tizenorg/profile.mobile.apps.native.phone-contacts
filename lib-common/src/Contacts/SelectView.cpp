@@ -284,16 +284,17 @@ void SelectView::onItemSelected(SelectItem *item)
 	}
 }
 
-void SelectView::onItemChecked(SelectItem *item, bool isChecked)
+bool SelectView::onItemChecked(SelectItem *item, bool isChecked)
 {
 	if (m_SelectLimit && m_SelectCount == m_SelectLimit && isChecked) {
-		item->setChecked(false);
-	} else {
-		updateSelectCount(isChecked ? CountIncrement : CountDecrement);
+		return false;
 	}
+
+	updateSelectCount(isChecked ? CountIncrement : CountDecrement);
+	return true;
 }
 
-void SelectView::onSelectAllChecked(bool isChecked)
+bool SelectView::onSelectAllChecked(bool isChecked)
 {
 	for (auto &&item : m_Items) {
 		item->setChecked(isChecked);
@@ -302,6 +303,8 @@ void SelectView::onSelectAllChecked(bool isChecked)
 	m_SelectCount = isChecked ? m_Items.size() : 0;
 	updatePageTitle();
 	updateDoneButtonState();
+
+	return true;
 }
 
 void SelectView::onSelectAllDestroy()

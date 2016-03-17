@@ -65,20 +65,27 @@ Evas_Object *GenlistCheckItem::getContent(Evas_Object *parent, const char *part)
 
 void GenlistCheckItem::onSelected()
 {
-	setChecked(!m_IsChecked);
-	onChecked();
-}
-
-void GenlistCheckItem::onChecked()
-{
-	onChecked(m_IsChecked);
-
-	if (m_OnChecked) {
-		m_OnChecked(m_IsChecked);
+	if (notifyCheck(!m_IsChecked)) {
+		setChecked(!m_IsChecked);
 	}
 }
 
 void GenlistCheckItem::onCheckChanged(Evas_Object *check, void *eventInfo)
 {
-	onChecked();
+	if (!notifyCheck(m_IsChecked)) {
+		elm_check_state_set(check, !m_IsChecked);
+	}
+}
+
+bool GenlistCheckItem::notifyCheck(bool isChecked)
+{
+	if (!onChecked(isChecked)) {
+		return false;
+	}
+
+	if (m_OnChecked && !m_OnChecked(isChecked)) {
+		return false;
+	}
+
+	return true;
 }
