@@ -122,7 +122,7 @@ void Person::initialize(contacts_record_h personRecord, contacts_record_h contac
 int Person::updatePerson(contacts_record_h personRecord)
 {
 	contacts_record_h contactRecord = getDisplayContact(personRecord);
-	auto changes = getChanges(contactRecord);
+	auto changes = getChanges(getContactRecord(), contactRecord);
 
 	contacts_record_destroy(m_PersonRecord, true);
 	m_SortValue.clear();
@@ -153,29 +153,4 @@ const char *Person::getDbSortValue() const
 	contacts_record_get_str_p(nameRecord, sortField, &sortValue);
 
 	return sortValue;
-}
-
-int Person::getChanges(contacts_record_h record)
-{
-	auto isChanged = [](const char *str1, const char *str2) {
-		return (str1 && str2)
-				? (strcmp(str1, str2) != 0)
-				: (str1 != str2);
-	};
-
-	int changes = ChangedNone;
-
-	for (int i = FieldFirst; i < FieldMax; ++i) {
-		auto fieldId = static_cast<Field>(i);
-
-		const char *oldValue = getValue(getContactRecord(), fieldId);
-		const char *newValue = getValue(record, fieldId);
-		int changedInfo = 1 << fieldId;
-
-		if (isChanged(oldValue, newValue)) {
-			changes |= changedInfo;
-		}
-	}
-
-	return changes;
 }

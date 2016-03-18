@@ -121,7 +121,7 @@ namespace Contacts
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
-			void onPersonInserted(ContactData &person);
+			void onPersonInserted(Contacts::Model::ContactData &person);
 			void onPersonUpdated(PersonItem *item, int changes);
 			void onPersonDeleted(PersonItem *item);
 
