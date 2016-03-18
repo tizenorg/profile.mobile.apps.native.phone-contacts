@@ -23,6 +23,9 @@
 
 namespace Contacts
 {
+	class SelectItem;
+	class SelectView;
+
 	namespace Common
 	{
 		/**
@@ -50,8 +53,9 @@ namespace Contacts
 			virtual void onCreated() override;
 			virtual void onPageAttached(Ui::NavigatorPage *page) override;
 
-			bool onSinglePersonSelected(SelectResults personResults);
-			bool onMultiPersonSelected(SelectResults personResults);
+			bool onPersonChecked(SelectItem *item, bool isChecked);
+			bool onSinglePersonSelected(SelectResults results);
+			bool onMultiPersonSelected(SelectResults results);
 			bool onSelected(SelectResults results);
 			bool onSelectedForVcard(SelectResults results);
 
@@ -65,6 +69,7 @@ namespace Contacts
 			size_t m_SelectLimit;
 
 			SelectCallback m_OnSelected;
+			SelectView *m_ListView;
 		};
 	}
 }
