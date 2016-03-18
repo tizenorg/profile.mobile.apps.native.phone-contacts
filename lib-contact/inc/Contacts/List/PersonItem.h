@@ -53,7 +53,7 @@ namespace Contacts
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
-			virtual SelectResult getSelectResult() const override;
+			virtual SelectResult getDefaultResult() const override;
 
 			Model::Person &m_Person;
 		};

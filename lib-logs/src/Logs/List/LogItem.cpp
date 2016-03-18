@@ -133,7 +133,7 @@ Evas_Object *LogItem::getContent(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-SelectResult LogItem::getSelectResult() const
+SelectResult LogItem::getDefaultResult() const
 {
 	return { 0, m_Group };
 }

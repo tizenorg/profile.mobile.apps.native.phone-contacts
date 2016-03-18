@@ -40,6 +40,15 @@ namespace Contacts
 	class EXPORT_API SelectView : public Ui::View
 	{
 	public:
+		/**
+		 * @brief Called when item's "checked" state changed in #SelectMulti mode.
+		 * @remark Use SelectView::setCheckCallback() to properly change item's state
+		 *         if necessary.
+		 * @param[in]   Changed item
+		 * @param[in]   Whether item is checked
+		 */
+		typedef std::function<bool(SelectItem *, bool)> CheckCallback;
+
 		SelectView();
 
 		/**
@@ -60,6 +69,21 @@ namespace Contacts
 		 */
 		void setSelectCallback(SelectCallback callback);
 
+		/**
+		 * @brief Set item check callback.
+		 * @param[in]   callback    Check callback
+		 */
+		void setCheckCallback(CheckCallback callback);
+
+		/**
+		 * @brief Set item's "checked" state.
+		 * @remark Item "checked" state should always be changed via this function,
+		 *         otherwise SelectView wouldn't know to update the select count.
+		 * @param[in]   item       Item to change state for
+		 * @param[in]   isChecked  Whether item should be checked
+		 */
+		void setCheckedItem(SelectItem *item, bool isChecked);
+
 	protected:
 		/**
 		 * @return View selection mode.
@@ -67,7 +91,7 @@ namespace Contacts
 		SelectMode getSelectMode() const;
 
 		/**
-		 * @return Current seleciton limit.
+		 * @return Current selection limit.
 		 */
 		size_t getSelectLimit() const;
 
@@ -167,6 +191,7 @@ namespace Contacts
 
 		SelectMode m_SelectMode;
 		SelectCallback m_OnSelected;
+		CheckCallback m_OnChecked;
 	};
 }
 

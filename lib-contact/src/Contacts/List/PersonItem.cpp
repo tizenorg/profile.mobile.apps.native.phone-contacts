@@ -60,7 +60,7 @@ Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-SelectResult PersonItem::getSelectResult() const
+SelectResult PersonItem::getDefaultResult() const
 {
 	return { ResultPerson, m_Person.getId() };
 }
