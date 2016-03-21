@@ -17,6 +17,7 @@
 
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/GroupItem.h"
+#include "Contacts/List/ManageFavoritesController.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/List/MyProfileItem.h"
 #include "Contacts/List/PersonGroupItem.h"
@@ -27,6 +28,7 @@
 #include "Contacts/Settings/MainView.h"
 
 #include "Ui/Genlist.h"
+#include "Ui/ListPopup.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
 #include "Utils/Callback.h"
@@ -103,6 +105,11 @@ void ListView::onMenuPressed()
 			return true;
 		});
 		getNavigator()->navigateTo(view);
+	});
+
+	menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB", [this] {
+		auto manageFavController = new ManageFavoritesController(getNavigator());
+		manageFavController->showPopup(getEvasObject());
 	});
 
 	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
