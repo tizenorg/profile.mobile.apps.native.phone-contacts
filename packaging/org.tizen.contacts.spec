@@ -13,6 +13,7 @@ BuildRequires: gettext
 BuildRequires: pkgconfig(badge)
 BuildRequires: pkgconfig(capi-appfw-application)
 BuildRequires: pkgconfig(capi-appfw-preference)
+BuildRequires: pkgconfig(capi-appfw-widget-application)
 BuildRequires: pkgconfig(capi-base-utils-i18n)
 BuildRequires: pkgconfig(capi-system-system-settings)
 BuildRequires: pkgconfig(contacts-service2)
@@ -23,6 +24,7 @@ BuildRequires: pkgconfig(feedback)
 BuildRequires: pkgconfig(libtzplatform-config)
 BuildRequires: pkgconfig(notification)
 BuildRequires: pkgconfig(storage)
+BuildRequires: pkgconfig(widget_service)
 
 %description
 Contacts and Phone Reference Applications.

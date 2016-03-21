@@ -49,8 +49,19 @@ namespace Ui
 		 */
 		void attachView(View *view);
 
-	private:
+	protected:
+		/**
+		 * @see Control::onCreate()
+		 */
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
+
+		/**
+		 * @brief Called to create window Evas_Object.
+		 * @return Window Evas_Object.
+		 */
+		virtual Evas_Object *onWindowCreate();
+
+	private:
 		void onBackPressed(Evas_Object *obj, void *eventInfo);
 		void onMenuPressed(Evas_Object *obj, void *eventInfo);
 

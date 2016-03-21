@@ -6,6 +6,7 @@ pkg_check_modules(TIZEN_PACKAGES REQUIRED
 	badge
 	capi-appfw-application
 	capi-appfw-preference
+	capi-appfw-widget-application
 	capi-base-utils-i18n
 	capi-system-system-settings
 	contacts-service2
@@ -16,6 +17,7 @@ pkg_check_modules(TIZEN_PACKAGES REQUIRED
 	libtzplatform-config
 	notification
 	storage
+	widget_service
 )
 
 set(INCLUDES      "${TIZEN_PACKAGES_INCLUDE_DIRS};inc")
