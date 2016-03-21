@@ -21,6 +21,7 @@
 #include "Contacts/Model/ContactData.h"
 #include "Contacts/Model/DbChangeObserver.h"
 #include <contacts.h>
+#include <vector>
 
 namespace Contacts
 {
@@ -32,15 +33,10 @@ namespace Contacts
 			/**
 			 * @brief Create ContactRecordData object
 			 * @param[in]   type    ContactRecordData type
-			 */
-			ContactRecordData(Type type);
-			virtual ~ContactRecordData() override;
-
-			/**
-			 * @brief Update contact record handle
 			 * @param[in]   record  Contact record
 			 */
-			void updateContactRecord(contacts_record_h record);
+			ContactRecordData(Type type, contacts_record_h record = nullptr);
+			virtual ~ContactRecordData() override;
 
 			/**
 			 * @see ContactData::getId()
@@ -73,21 +69,44 @@ namespace Contacts
 			virtual bool compare(const char *str) override;
 
 			/**
+			 * @brief Set changed callback
+			 * @param[in]   callback    Change callback
+			 */
+			virtual void setChangedCallback(DbChangeObserver::Callback callback);
+
+			/**
+			 * @brief Unset changed callback
+			 */
+			virtual void unsetChangedCallback();
+
+			/**
 			 * @return contact record
 			 */
 			const contacts_record_h getContactRecord() const;
 
 		protected:
 			/**
-			 * @brief Set changed callback
-			 * @param[in]   callback    Change callback
+			 * @brief Update contact record handle
+			 * @param[in]   record  Contact record
 			 */
-			void setChangedCallback(DbChangeObserver::Callback callback);
+			void updateContactRecord(contacts_record_h record);
 
 			/**
-			 * @brief Unset changed callback
+			 * @brief Add @a handle to list of changed handles
+			 * @param[in]   handle  DB handle
 			 */
-			void unsetChangedCallback();
+			void addChangedHandle(DbChangeObserver::CallbackHandle handle);
+
+			/**
+			 * @param[in]   index   Index in handle container
+			 * @return Changed handle at @a i position
+			 */
+			DbChangeObserver::CallbackHandle getChangedHandle(size_t index) const;
+
+			/**
+			 * @brief Clear handle list
+			 */
+			void clearChangedHandles();
 
 			/**
 			 * @param[in]   record  Contact record
@@ -112,10 +131,10 @@ namespace Contacts
 		private:
 			friend class ContactRecordProvider;
 
-			void onUpdate(contacts_record_h record);
+			virtual void onUpdate(contacts_record_h record);
 
 			contacts_record_h m_Record;
-			DbChangeObserver::CallbackHandle m_Handle;
+			std::vector<DbChangeObserver::CallbackHandle> m_Handles;
 		};
 	}
 }
