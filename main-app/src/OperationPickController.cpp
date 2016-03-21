@@ -143,6 +143,8 @@ const char *OperationPickController::getResultTypeString(ResultType resultType)
 			return APP_CONTROL_RESULT_EMAIL;
 		case ResultVcard:
 			return APP_CONTROL_RESULT_VCARD;
+		case ResultContact:
+			break;
 	}
 
 	return APP_CONTROL_RESULT_ID;

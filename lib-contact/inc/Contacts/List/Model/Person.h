@@ -71,7 +71,7 @@ namespace Contacts
 				/**
 				 * @return First letter from formatted person name
 				 */
-				const Utils::UniString &getIndexLetter() const;
+				virtual const Utils::UniString *getIndexLetter() const override;
 
 				/**
 				 * @return _contacts_person record
@@ -83,6 +83,11 @@ namespace Contacts
 				 * @return True if sort value less than in @a that, otherwise false
 				 */
 				bool operator<(const Person &that) const;
+
+				/**
+				 * @return Selection result associated with the data.
+				 */
+				virtual SelectResult getResult() const override;
 
 			private:
 				friend class PersonProvider;

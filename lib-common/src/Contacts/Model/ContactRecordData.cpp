@@ -17,6 +17,7 @@
 
 #include "Contacts/Model/ContactRecordData.h"
 #include "Contacts/ContactRecordChildIterator.h"
+
 #include <cstring>
 
 using namespace Contacts::Model;
@@ -61,6 +62,11 @@ const char *ContactRecordData::getImagePath() const
 bool ContactRecordData::compare(const char *str)
 {
 	return strstr(getName(), str); //Todo: Compare unicode strings
+}
+
+Contacts::SelectResult ContactRecordData::getResult() const
+{
+	return { ResultContact, m_Record };
 }
 
 const contacts_record_h ContactRecordData::getContactRecord() const

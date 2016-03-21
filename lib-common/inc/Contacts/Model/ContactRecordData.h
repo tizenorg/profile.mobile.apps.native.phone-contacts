@@ -72,6 +72,11 @@ namespace Contacts
 			 */
 			virtual bool compare(const char *str) override;
 
+			/**
+			 * @return Selection result associated with the data.
+			 */
+			virtual SelectResult getResult() const override;
+
 		protected:
 			/**
 			 * @return contact record

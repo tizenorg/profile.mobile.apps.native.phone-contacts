@@ -51,8 +51,14 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 		char *uri = NULL;
 		app_control_get_uri(request, &uri);
 		if (uri) {
-			view = new ListView();
-			/* TODO: use VcardProvider */
+			view = new ListView(uri);
+			ListView *listView = (ListView *)view;
+			listView->setSelectMode(SelectMulti);
+			listView->setSelectCallback([](SelectResults results) {
+				//TODO: Launch Importer for selected contacts.
+				return false;
+			});
+
 			free(uri);
 		}
 	}

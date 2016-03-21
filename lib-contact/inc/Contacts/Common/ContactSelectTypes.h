@@ -33,18 +33,6 @@ namespace Contacts
 		FilterNumber = 1 << Model::FieldNumber, /**< Only items with number */
 		FilterEmail  = 1 << Model::FieldEmail   /**< Only items with email */
 	};
-
-	/**
-	 * @brief Determines what should be the result of selection.
-	 */
-	enum ResultType
-	{
-		ResultMyProfile = Model::ObjectTypeMyProfile, /**< My Profile ID is the result */
-		ResultPerson    = Model::ObjectTypeContact,   /**< Person ID is the result */
-		ResultNumber    = Model::ObjectTypeNumber,    /**< Number ID is the result */
-		ResultEmail     = Model::ObjectTypeEmail,     /**< Email ID is the result */
-		ResultVcard
-	};
 }
 
 #endif /* CONTACTS_COMMON_CONTACT_SELECT_TYPES_H */

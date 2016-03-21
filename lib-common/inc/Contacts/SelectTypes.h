@@ -18,7 +18,9 @@
 #ifndef CONTACTS_SELECT_TYPES_H
 #define CONTACTS_SELECT_TYPES_H
 
+#include "Contacts/ObjectType.h"
 #include "Utils/Range.h"
+
 #include <functional>
 
 namespace Contacts
@@ -31,6 +33,19 @@ namespace Contacts
 		SelectNone,     /**< Selection is disabled */
 		SelectSingle,   /**< Only one item can be selected */
 		SelectMulti     /**< Multiple items can be selected */
+	};
+
+	/**
+	 * @brief Determines what should be the result of selection.
+	 */
+	enum ResultType
+	{
+		ResultMyProfile = ObjectTypeMyProfile, /**< My Profile ID is the result */
+		ResultPerson    = ObjectTypeContact,   /**< Person ID is the result */
+		ResultNumber    = ObjectTypeNumber,    /**< Number ID is the result */
+		ResultEmail     = ObjectTypeEmail,     /**< Email ID is the result */
+		ResultVcard,
+		ResultContact                          /**< Contact record is the result */
 	};
 
 	/**
