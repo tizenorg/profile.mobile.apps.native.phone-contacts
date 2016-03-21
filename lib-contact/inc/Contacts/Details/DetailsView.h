@@ -46,8 +46,8 @@ namespace Contacts
 			 */
 			enum Type
 			{
-				TypeContact = Model::ObjectTypeContact,
-				TypeMyProfile = Model::ObjectTypeMyProfile
+				TypeContact = ObjectTypeContact,
+				TypeMyProfile = ObjectTypeMyProfile
 			};
 
 			/**

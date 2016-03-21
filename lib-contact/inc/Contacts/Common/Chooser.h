@@ -41,7 +41,7 @@ namespace Contacts
 			 * @param[in]   resultType  Requested result type
 			 * @param[in]   selectLimit Selection limit for #SelectMulti mode
 			 */
-			Chooser(SelectMode selectMode, ResultType resultType, size_t selectLimit);
+			Chooser(SelectMode selectMode, ResultType resultType, size_t selectLimit, std::string vcardPath = std::string());
 
 			/**
 			 * @brief Set selection callback
@@ -58,6 +58,7 @@ namespace Contacts
 			bool onMultiPersonSelected(SelectResults results);
 			bool onSelected(SelectResults results);
 			bool onSelectedForVcard(SelectResults results);
+			bool onMultiContactSelected(SelectResults results);
 
 			static int getSingleResultId(int personId, ResultType resultType);
 			static int getFilterType(ResultType resultType);
@@ -70,6 +71,8 @@ namespace Contacts
 
 			SelectCallback m_OnSelected;
 			SelectView *m_ListView;
+
+			std::string m_VcardPath;
 		};
 	}
 }

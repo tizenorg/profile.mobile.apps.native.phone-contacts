@@ -15,21 +15,22 @@
  *
  */
 
+#include "Contacts/Model/ContactData.h"
 #include "Contacts/List/PersonItem.h"
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Contacts/List/Model/Person.h"
 #include "Ui/Thumbnail.h"
 #include <app_i18n.h>
 
 using namespace Contacts;
 using namespace Contacts::List;
-using namespace Contacts::List::Model;
+using namespace Contacts::Model;
 
-PersonItem::PersonItem(Person &person)
+PersonItem::PersonItem(ContactData &person)
 	: m_Person(person)
-{ }
+{
+}
 
-Person &PersonItem::getPerson()
+ContactData &PersonItem::getPerson()
 {
 	return m_Person;
 }
@@ -62,5 +63,5 @@ Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 
 SelectResult PersonItem::getDefaultResult() const
 {
-	return { ResultPerson, m_Person.getId() };
+	return m_Person.getResult();
 }

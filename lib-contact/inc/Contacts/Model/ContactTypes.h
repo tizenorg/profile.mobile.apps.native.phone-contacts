@@ -18,6 +18,8 @@
 #ifndef CONTACTS_MODEL_CONTACT_TYPES_H
 #define CONTACTS_MODEL_CONTACT_TYPES_H
 
+#include "Contacts/ObjectType.h"
+
 namespace Contacts
 {
 	namespace Model
@@ -33,37 +35,6 @@ namespace Contacts
 			TypeEnum,   /**< Integer type with limited possible values. @see ContactEnumField */
 			TypeArray,  /**< Array of objects. @see ContactArray */
 			TypeObject  /**< Object with fields. @see ContactObject */
-		};
-
-		/**
-		 * @brief Specifies additional interface supported by object
-		 */
-		enum ContactObjectInterface
-		{
-			ObjectTyped = 0x100, /**< Object supports ContactTypedObject interface */
-			ObjectCompound = 0x100 << 1, /**< Object supports ContactCompoundObject interface */
-		};
-
-		/**
-		 * @brief Subtype for field of TypeObject type
-		 */
-		enum ContactObjectType
-		{
-			ObjectTypeContact      = 1,
-			ObjectTypeMyProfile    = 2,
-			ObjectTypeImage        = 3,
-			ObjectTypeName         = 4 + ObjectCompound,
-			ObjectTypeNumber       = 5 + ObjectTyped,
-			ObjectTypeEmail        = 6 + ObjectTyped,
-			ObjectTypeNote         = 7,
-			ObjectTypeAddress      = 8 + ObjectTyped,
-			ObjectTypeEvent        = 9 + ObjectTyped,
-			ObjectTypeRelationship = 10 + ObjectTyped,
-			ObjectTypeUrl          = 11 + ObjectTyped,
-			ObjectTypeMessenger    = 12 + ObjectTyped,
-			ObjectTypeNickname     = 13,
-			ObjectTypeCompany      = 14,
-			ObjectTypePhoneticName = 15 + ObjectCompound
 		};
 
 		/**

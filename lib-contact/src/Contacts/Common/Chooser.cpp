@@ -29,9 +29,10 @@ using namespace Contacts::List;
 using namespace Contacts::Details;
 using namespace std::placeholders;
 
-Chooser::Chooser(SelectMode selectMode, ResultType resultType, size_t selectLimit)
+Chooser::Chooser(SelectMode selectMode, ResultType resultType, size_t selectLimit, std::string vcardPath)
 	: m_SelectMode(selectMode), m_ResultType(resultType),
-	  m_FilterType(getFilterType(m_ResultType)), m_SelectLimit(selectLimit)
+	  m_FilterType(getFilterType(m_ResultType)), m_SelectLimit(selectLimit),
+	  m_VcardPath(vcardPath)
 {
 }
 
@@ -42,7 +43,11 @@ void Chooser::setSelectCallback(SelectCallback callback)
 
 void Chooser::onCreated()
 {
-	m_ListView = new ListView(m_FilterType);
+	if (!m_VcardPath.empty()) {
+		m_ListView = new ListView(m_VcardPath.c_str());
+	} else {
+		m_ListView = new ListView(m_FilterType);
+	}
 	m_ListView->setSelectMode(m_SelectMode);
 	m_ListView->setSelectLimit(m_SelectLimit);
 
@@ -61,6 +66,9 @@ void Chooser::onCreated()
 			break;
 		case ResultVcard:
 			m_ListView->setSelectCallback(std::bind(&Chooser::onSelectedForVcard, this, _1));
+			break;
+		case ResultContact:
+			m_ListView->setSelectCallback(std::bind(&Chooser::onMultiContactSelected, this, _1));
 			break;
 		default:
 			break;
@@ -168,6 +176,12 @@ bool Chooser::onSelectedForVcard(SelectResults results)
 	});
 	exporter->run();
 
+	return false;
+}
+
+bool Chooser::onMultiContactSelected(SelectResults results)
+{
+	//TODO: Launch Importer for selected contacts.
 	return false;
 }
 

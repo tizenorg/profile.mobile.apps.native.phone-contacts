@@ -15,6 +15,7 @@
  *
  */
 
+#include "Contacts/Common/ContactSelectTypes.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/Utils.h"
 
@@ -93,9 +94,9 @@ const Person::ContactIds &Person::getContactIds() const
 	return m_ContactIds;
 }
 
-const UniString &Person::getIndexLetter() const
+const UniString *Person::getIndexLetter() const
 {
-	return m_IndexLetter;
+	return &m_IndexLetter;
 }
 
 const contacts_record_h Person::getRecord() const
@@ -106,6 +107,11 @@ const contacts_record_h Person::getRecord() const
 bool Person::operator<(const Person &that) const
 {
 	return getSortValue() < that.getSortValue();
+}
+
+Contacts::SelectResult Person::getResult() const
+{
+	return { ResultPerson, getId() };
 }
 
 void Person::initialize(contacts_record_h personRecord, contacts_record_h contactRecord)

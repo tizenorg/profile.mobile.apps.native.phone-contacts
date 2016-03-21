@@ -18,6 +18,7 @@
 #include "OperationViewController.h"
 
 #include "MainApp.h"
+#include "Contacts/Common/Chooser.h"
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/List/ListView.h"
 #include "Contacts/Utils.h"
@@ -51,8 +52,7 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 		char *uri = NULL;
 		app_control_get_uri(request, &uri);
 		if (uri) {
-			view = new ListView();
-			/* TODO: use VcardProvider */
+			view = new Common::Chooser(SelectMulti, ResultContact, 0, uri);
 			free(uri);
 		}
 	}
