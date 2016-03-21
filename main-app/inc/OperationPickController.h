@@ -39,11 +39,12 @@ private:
 
 	void replyIds(Contacts::SelectResults results);
 	void replyPath(Contacts::SelectResults results);
-	void replyResults(const char **results, size_t count);
+	void replyResults(const char *resultType, const char **results, size_t count);
 
 	static Contacts::SelectMode getSelectMode(app_control_h request);
 	static Contacts::ResultType getResultType(app_control_h request);
 	static const char *getResultTypeString(Contacts::ResultType resultType);
+	static const char *getActionTypeString(Contacts::ActionType actionType);
 
 	Contacts::SelectMode m_SelectMode;
 	Contacts::ResultType m_ResultType;

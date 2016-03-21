@@ -59,7 +59,7 @@ bool OperationPickController::onSelected(SelectResults results)
 	return true;
 }
 
-void OperationPickController::replyIds(Contacts::SelectResults results)
+void OperationPickController::replyIds(SelectResults results)
 {
 	size_t count = results.count();
 	std::vector<char[ID_BUFFER_SIZE]> buffers(count);
@@ -70,21 +70,25 @@ void OperationPickController::replyIds(Contacts::SelectResults results)
 		ids[i] = buffers[i];
 	}
 
-	replyResults(ids.data(), ids.size());
+	const char *type = (m_ResultType == ResultAction)
+			? getActionTypeString(ActionType(results.begin()->type))
+			: getResultTypeString(m_ResultType);
+	replyResults(type, ids.data(), ids.size());
 }
 
-void OperationPickController::replyPath(Contacts::SelectResults results)
+void OperationPickController::replyPath(SelectResults results)
 {
-	auto &result = *results.begin();
-	replyResults((const char **) &result.value.data, 1);
+	const char *type = getResultTypeString(m_ResultType);
+	const char *result = (const char *) results.begin()->value.data;
+	replyResults(type, &result, 1);
 }
 
-void OperationPickController::replyResults(const char **results, size_t count)
+void OperationPickController::replyResults(const char *resultType, const char **results, size_t count)
 {
 	app_control_h reply = nullptr;
 	app_control_create(&reply);
 
-	app_control_add_extra_data(reply, APP_CONTROL_DATA_TYPE, getResultTypeString(m_ResultType));
+	app_control_add_extra_data(reply, APP_CONTROL_DATA_TYPE, resultType);
 	app_control_add_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, results, count);
 
 	app_control_reply_to_launch_request(reply, getRequest(), APP_CONTROL_RESULT_SUCCEEDED);
@@ -123,6 +127,8 @@ ResultType OperationPickController::getResultType(app_control_h request)
 			return ResultEmail;
 		} else if (strcmp(resultType, APP_CONTROL_RESULT_VCARD) == 0) {
 			return ResultVcard;
+		} else if (strcmp(resultType, APP_CONTROL_RESULT_ACTION) == 0) {
+			return ResultAction;
 		}
 
 		free(resultType);
@@ -143,7 +149,23 @@ const char *OperationPickController::getResultTypeString(ResultType resultType)
 			return APP_CONTROL_RESULT_EMAIL;
 		case ResultVcard:
 			return APP_CONTROL_RESULT_VCARD;
+		case ResultAction:
+			return APP_CONTROL_RESULT_ACTION;
 	}
 
 	return APP_CONTROL_RESULT_ID;
+}
+
+const char *OperationPickController::getActionTypeString(ActionType actionType)
+{
+	switch (actionType) {
+		case ActionCall:
+			return APP_CONTROL_RESULT_CALL;
+		case ActionMessage:
+			return APP_CONTROL_RESULT_MESSAGE;
+		case ActionEmail:
+			return APP_CONTROL_RESULT_EMAIL;
+	}
+
+	return APP_CONTROL_RESULT_CALL;
 }
