@@ -27,14 +27,6 @@ namespace Logs
 	{
 		class Log;
 
-		enum class ChangedType {
-			Remove,
-			UpdateName,
-			UpdateImage,
-			UpdateCount,
-			UpdateAll
-		};
-
 		/**
 		 * @brief Group of logs
 		 */
@@ -42,10 +34,17 @@ namespace Logs
 		{
 		public:
 
+			enum ChangedType {
+				Remove      = 1 << 0,
+				UpdateName  = 1 << 1,
+				UpdateImage = 1 << 2,
+				UpdateCount = 1 << 3
+			};
+
 			/**
 			 * @brief Changed group callback
 			 */
-			typedef std::function<void(ChangedType)> ChangeCallback;
+			typedef std::function<void(int)> ChangeCallback;
 
 			/**
 			 * @brief List of logs.
@@ -62,7 +61,13 @@ namespace Logs
 			 * @brief Get log group list
 			 * @return list of log. The reference will be valid till this LogGroup object exist.
 			 */
-			const LogList &getLogList() const;
+			LogList &getLogList();
+
+			/**
+			 * @brief Add new log list
+			 * @param[in]   list  Log list to add
+			 */
+			void addLogList(LogList &list);
 
 			/**
 			 * @brief Set log changed callback
@@ -78,9 +83,8 @@ namespace Logs
 
 			/**
 			 * @brief Call log change callback
-			 * @param[in]   type  Changed type
 			 */
-			void onChange(ChangedType type);
+			void onChange();
 
 			/**
 			 * @brief Add log to LogGroup
@@ -110,10 +114,17 @@ namespace Logs
 			 */
 			void updateLogList();
 
+			/**
+			 * @brief Set type of log group changes
+			 * @param[in]   type  Changed type
+			 */
+			void setChangedType(int type);
+
 		private:
 			LogList m_LogList;
 
 			ChangeCallback m_ChangeCallback;
+			int m_ChangedType;
 		};
 	}
 }

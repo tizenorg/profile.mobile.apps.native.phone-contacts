@@ -41,10 +41,9 @@ const LogProvider::LogGroupList &LogProvider::getLogGroupList()
 {
 	if (m_Groups.empty()) {
 		if (m_Logs.empty()) {
-			fillList(m_Logs);
+			fillList();
 		}
-
-		fillGroupList(m_Logs, m_Groups);
+		fillGroupList(m_Logs.begin(), m_Logs.end());
 	}
 	return m_Groups;
 }
@@ -52,7 +51,7 @@ const LogProvider::LogGroupList &LogProvider::getLogGroupList()
 void LogProvider::resetLogGroups()
 {
 	m_Groups.clear();
-	fillGroupList(m_Logs, m_Groups);
+	fillGroupList(m_Logs.begin(), m_Logs.end());
 }
 
 void LogProvider::setInsertCallback(InsertCallback callback)
@@ -65,29 +64,50 @@ void LogProvider::unsetInsertCallback()
 	m_InsertCallback = nullptr;
 }
 
-void LogProvider::fillList(LogList &logList)
+void LogProvider::fillList()
 {
 	contacts_list_h list = fetchLogList();
 	contacts_record_h record = nullptr;
 
 	CONTACTS_LIST_FOREACH(list, record) {
-		logList.push_back(LogPtr(new Log(record)));
+		m_Logs.push_back(LogPtr(new Log(record)));
 	}
 
 	contacts_list_destroy(list, false);
 }
 
-void LogProvider::fillGroupList(LogList &logList, LogGroupList &logGroupList)
+void LogProvider::fillRecordList(RecordList &recordList)
 {
-	if (logList.empty()) {
-		return;
-	}
-	LogList::iterator log = logList.begin();
-	logGroupList.push_back(LogGroupPtr(new LogGroup(log->get())));
+	contacts_list_h list = fetchLogList();
+	contacts_record_h record = nullptr;
 
-	for (++log; log != logList.end(); ++log) {
-		addLog(logGroupList, *(log->get()));
+	CONTACTS_LIST_FOREACH(list, record) {
+		recordList.push_back(record);
 	}
+
+	contacts_list_destroy(list, false);
+}
+
+size_t LogProvider::fillGroupList(LogIterator begin, LogIterator end)
+{
+	LogGroup *lastLogGroup = nullptr;
+	if (!m_Groups.empty()) {
+		lastLogGroup = m_Groups.back().get();
+	}
+	size_t newGropsCount = 0;
+
+	while (begin != end) {
+		if (lastLogGroup && shouldGroupLogs(*(begin->get()), lastLogGroup->getFirstLog())) {
+			lastLogGroup->addLog(begin->get());
+		} else {
+			lastLogGroup = new LogGroup(begin->get());
+			m_Groups.push_back(LogGroupPtr(lastLogGroup));
+			++newGropsCount;
+		}
+		++begin;
+	}
+
+	return newGropsCount;
 }
 
 bool LogProvider::shouldGroupLogs(Log &log, Log &prevLog)
@@ -121,6 +141,21 @@ LogGroup *LogProvider::addLog(LogGroupList &logGroupList, Log &log)
 	return nullptr;
 }
 
+void LogProvider::margeGroup(GroupIterator &group)
+{
+	if (group == m_Groups.begin()) {
+		return;
+	}
+	GroupIterator prevGroup = group;
+	--prevGroup;
+	if (shouldGroupLogs((*group)->getFirstLog(), (*prevGroup)->getFirstLog())) {
+		(*prevGroup)->addLogList((*group)->getLogList());
+		onGroupChanged(group);
+		prevGroup->get()->onChange();
+	}
+	++group;
+}
+
 contacts_filter_h LogProvider::getFilter()
 {
 	contacts_filter_h filter = nullptr;
@@ -152,125 +187,87 @@ contacts_list_h LogProvider::fetchLogList()
 
 void LogProvider::onLogChanged(const char *viewUri)
 {
-	LogList newLogList;
-	fillList(newLogList);
+	RecordList newLogList;
+	fillRecordList(newLogList);
 
-	LogIterator newIt = newLogList.begin();
-	deleteRemovedLogs(newIt, newLogList);
-	addNewLogs(newIt, newLogList);
-}
-
-void LogProvider::onGroupChanged(LogGroup *group)
-{
-	if (group->getLogList().empty()) {
-		group->onChange(ChangedType::Remove);
-		m_Groups.remove_if([group](const LogGroupPtr &groupPtr) {
-			return groupPtr.get() == group;
-		});
-	} else {
-		group->onChange(ChangedType::UpdateAll);
-	}
-}
-
-void LogProvider::onGroupInsert(LogGroup *group)
-{
-	if (m_InsertCallback) {
-		m_InsertCallback(group);
-	}
-}
-
-void LogProvider::deleteRemovedLogs(LogIterator &newIt, LogList &newLogList)
-{
+	RecordIterator newIt = newLogList.begin();
 	LogIterator oldIt = m_Logs.begin();
-	LogGroup *prevGroup = nullptr;
 
-	bool isChanged = false;
-	while (newIt != newLogList.end() && oldIt != m_Logs.end()) {
-		if (prevGroup != (*oldIt)->getLogGroup()) {
-			if (isChanged) {
-				onGroupChanged(prevGroup);
-				isChanged = false;
-			}
-			prevGroup = (*oldIt)->getLogGroup();
-		}
+	while (oldIt != m_Logs.end() && newIt != newLogList.end()) {
+		int id = 0;
+		contacts_record_get_int(*newIt, _contacts_phone_log.id, &id);
 
-		if ((*newIt)->getId() != (*oldIt)->getId()) {
-			isChanged = true;
+		if (id != (*oldIt)->getId()) {
 			oldIt = m_Logs.erase(oldIt);
 		} else {
-			if ((*newIt)->getPersonId() != (*oldIt)->getPersonId()) {
+			int personId = 0;
+			contacts_record_get_int(*newIt, _contacts_phone_log.person_id, &personId);
+
+			if (personId != (*oldIt)->getPersonId()) {
 				(*oldIt)->update();
-				isChanged = true;
+				(*oldIt)->getLogGroup()->setChangedType(LogGroup::UpdateImage | LogGroup::UpdateName);
 			}
-			++newIt;
 			++oldIt;
+			++newIt;
 		}
 	}
 
 	while (oldIt != m_Logs.end()) {
-		if (prevGroup != (*oldIt)->getLogGroup()) {
-			if (isChanged) {
-				onGroupChanged(prevGroup);
-				isChanged = false;
-			}
-			prevGroup = (*oldIt)->getLogGroup();
-		}
-
-		isChanged = true;
 		oldIt = m_Logs.erase(oldIt);
 	}
 
-	if (isChanged) {
-		onGroupChanged(prevGroup);
+	LogIterator oldLast = m_Logs.end();
+
+	if (newIt != newLogList.end()) {
+		m_Logs.push_back(LogPtr(new Log(*newIt)));
+		oldLast = --m_Logs.end();
+		++newIt;
+	}
+	while (newIt != newLogList.end()) {
+		m_Logs.push_back(LogPtr(new Log(std::move(*newIt))));
+		++newIt;
+	}
+
+	size_t count = fillGroupList(oldLast, m_Logs.end());
+	int updateCount = m_Groups.size() - count;
+	GroupIterator updateIt = m_Groups.begin();
+	bool isDelete = false;
+
+	while (updateCount != 0) {
+		bool state = isDelete;
+		isDelete = onGroupChanged(updateIt);
+		if (state && !isDelete) {
+			margeGroup(--updateIt);
+		}
+		--updateCount;
+	}
+
+	while (updateIt != m_Groups.end()) {
+		onGroupInsert(updateIt);
 	}
 }
 
-void LogProvider::addNewLogs(LogIterator &newIt, LogList &newLogList)
+bool LogProvider::onGroupChanged(GroupIterator &groupIt)
 {
-	LogGroup *group = nullptr;
-
-	if (newIt != newLogList.end() && m_Groups.empty()) {
-		group = new LogGroup(newIt->get());
-		m_Logs.push_back(std::move(*newIt));
-		m_Groups.push_back(LogGroupPtr(group));
-		++newIt;
+	LogGroup *group = groupIt->get();
+	if (group->getLogList().empty()) {
+		group->setChangedType(LogGroup::Remove);
+		group->onChange();
+		groupIt = m_Groups.erase(groupIt);
+		return true;
 	} else {
-		group = m_Groups.back().get();
-		bool isChanged = false;
-
-		LogGroup *newGroup = nullptr;
-		for (; newIt != newLogList.end(); ++newIt) {
-			newGroup = addLog(m_Groups, *(newIt->get()));
-			m_Logs.push_back(std::move(*newIt));
-
-			if (newGroup) {
-				++newIt;
-				break;
-			}
-			isChanged = true;
-		}
-		if (isChanged) {
-			group->onChange(ChangedType::UpdateAll);
-		}
-
-		group = newGroup;
+		group->onChange();
+		++groupIt;
 	}
+	return false;
+}
 
-
-	for (; newIt != newLogList.end(); ++newIt) {
-		LogGroup *newGroup = addLog(m_Groups, *(newIt->get()));
-		if (newGroup) {
-			if (group) {
-				onGroupInsert(group);
-			}
-			group = newGroup;
-		}
-		m_Logs.push_back(std::move(*newIt));
+void LogProvider::onGroupInsert(GroupIterator &groupIt)
+{
+	if (m_InsertCallback) {
+		m_InsertCallback(groupIt->get());
 	}
-
-	if (group) {
-		onGroupInsert(group);
-	}
+	++groupIt;
 }
 
 void LogProvider::onContactChanged(const char *viewUri)
@@ -304,11 +301,13 @@ void LogProvider::onContactChanged(const char *viewUri)
 					group.get()->updateLogList();
 
 					if (strcmp(name, logName) != 0) {
-						group.get()->onChange(ChangedType::UpdateName);
+						group.get()->setChangedType(LogGroup::UpdateName);
+						group->onChange();
 					}
 
 					if (isImageChanged) {
-						group.get()->onChange(ChangedType::UpdateImage);
+						group.get()->setChangedType(LogGroup::UpdateImage);
+						group->onChange();
 					}
 				}
 			}

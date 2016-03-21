@@ -17,6 +17,7 @@
 
 #include "Logs/Model/LogGroup.h"
 #include "Logs/Model/Log.h"
+#include "Utils/Logger.h"
 
 using namespace Logs::Model;
 
@@ -25,9 +26,14 @@ LogGroup::LogGroup(Log *log)
 	addLog(log);
 }
 
-const LogGroup::LogList &LogGroup::getLogList() const
+LogGroup::LogList &LogGroup::getLogList()
 {
 	return m_LogList;
+}
+
+void LogGroup::addLogList(LogList &list)
+{
+	m_LogList.merge(list);
 }
 
 void LogGroup::setChangeCallback(ChangeCallback callback)
@@ -40,21 +46,23 @@ void LogGroup::unsetChangeCallback()
 	m_ChangeCallback = nullptr;
 }
 
-void LogGroup::onChange(ChangedType type)
+void LogGroup::onChange()
 {
 	if (m_ChangeCallback) {
-		m_ChangeCallback(type);
+		m_ChangeCallback(m_ChangedType);
 	}
 }
 
 void LogGroup::addLog(Log *log)
 {
+	m_ChangedType |= LogGroup::UpdateCount;
 	m_LogList.push_back(log);
 	log->setLogGroup(this);
 }
 
 void LogGroup::removeLog(Log *log)
 {
+	m_ChangedType |= LogGroup::UpdateCount;
 	m_LogList.remove(log);
 	log->setLogGroup(nullptr);
 }
@@ -76,4 +84,9 @@ void LogGroup::updateLogList()
 	for(auto &&log : m_LogList) {
 		log->update();
 	}
+}
+
+void LogGroup::setChangedType(int type)
+{
+	m_ChangedType |= type;
 }

@@ -19,17 +19,12 @@
 #define LOGS_LIST_LOG_ITEM_H
 
 #include "Contacts/SelectItem.h"
+#include "Logs/Model/LogGroup.h"
 
 #define PART_LOG_TIME           "elm.text.sub.end"
 
 namespace Logs
 {
-	namespace Model
-	{
-		class LogGroup;
-		enum class ChangedType;
-	}
-
 	namespace List
 	{
 		class LogItem : public Contacts::SelectItem
@@ -79,7 +74,7 @@ namespace Logs
 			const char *getImagePath(int type);
 			void onInfoIconPressed();
 
-			void updateItem(Model::ChangedType type);
+			void updateItem(int type);
 			void setUpdateCallback();
 
 			DeleteCallback m_OnDelete;
