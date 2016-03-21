@@ -30,8 +30,7 @@ VcardProvider::VcardProvider(const char *path)
 	contacts_record_h record = nullptr;
 
 	CONTACTS_LIST_FOREACH(list, record) {
-		ContactRecordData *contact = new ContactRecordData(ContactData::TypeContact);
-		contact->updateContactRecord(record);
+		ContactRecordData *contact = new ContactRecordData(ContactData::TypeContact, record);
 		m_ContactsList.push_back(contact);
 	}
 

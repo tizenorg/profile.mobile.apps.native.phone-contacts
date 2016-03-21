@@ -84,13 +84,22 @@ namespace Contacts
 				 */
 				bool operator<(const Person &that) const;
 
+			protected:
+				/**
+				 * @see ContactRecordData::setChangedCallback()
+				 */
+				virtual void setChangedCallback(Contacts::Model::DbChangeObserver::Callback callback) override;
+
+				/**
+				 * @see ContactRecordData::unsetChangedCallback
+				 */
+				virtual void unsetChangedCallback() override;
+
 			private:
 				friend class PersonProvider;
 
-				void initialize(contacts_record_h personRecord,
-						contacts_record_h contactRecord);
-				int updatePerson(contacts_record_h record);
-
+				virtual void onUpdate(contacts_record_h personRecord) override;
+				void initialize(contacts_record_h personRecord);
 				const Utils::UniString &getSortValue() const;
 				const char *getDbSortValue() const;
 
@@ -99,8 +108,6 @@ namespace Contacts
 
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;
-
-				std::vector<Contacts::Model::DbChangeObserver::CallbackHandle> m_Handles;
 			};
 		}
 	}
