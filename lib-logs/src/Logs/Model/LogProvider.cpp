@@ -112,7 +112,10 @@ size_t LogProvider::fillGroupList(LogIterator begin, LogIterator end)
 
 bool LogProvider::shouldGroupLogs(Log &log, Log &prevLog)
 {
-	return (log.getType() == prevLog.getType()
+	int type = log.getType();
+	return (type == prevLog.getType()
+			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN
+			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN
 			&& strcmp(log.getNumber(), prevLog.getNumber()) == 0
 			&& compareDate(log.getTime(), prevLog.getTime()));
 }
