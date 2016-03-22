@@ -52,14 +52,34 @@ namespace Logs
 			typedef std::list<LogPtr> LogList;
 
 			/**
-			 * @brief Log group list.
+			 * @brief Log list.
+			 */
+			typedef std::list<contacts_record_h> RecordList;
+
+			/**
+			 * @brief Unique log group list.
 			 */
 			typedef std::list<LogGroupPtr> LogGroupList;
+
+			/**
+			 * @brief Log group list.
+			 */
+			typedef std::list<LogGroup *> GroupList;
 
 			/**
 			 * @brief Log iterator.
 			 */
 			typedef LogList::iterator LogIterator;
+
+			/**
+			 * @brief Record iterator.
+			 */
+			typedef RecordList::iterator RecordIterator;
+
+			/**
+			 * @brief Group iterator.
+			 */
+			typedef LogGroupList::iterator GroupIterator;
 
 			/**
 			 * @brief New log group callback
@@ -108,21 +128,19 @@ namespace Logs
 			static bool compareDate(const tm &firstDate, const tm &secondDate);
 
 		private:
-			void fillList(LogList &logList);
-			void fillGroupList(LogList &logList, LogGroupList &logGroupList);
+			void fillList();
+			void fillRecordList(RecordList &recordList);
+			size_t fillGroupList(LogIterator begin, LogIterator end);
 			bool shouldGroupLogs(Log &log, Log &prevLog);
+			bool mergeGroup(GroupIterator group);
 
-			LogGroup *addLog(LogGroupList &logList, Log &log);
+			LogIterator updateLogs();
+			void updateGroups(LogIterator newBegin, LogIterator newEnd);
 
 			contacts_filter_h getFilter();
 			contacts_list_h fetchLogList();
 
-			void onLogChanged(const char *viewUri);
-			void onGroupChanged(LogGroup *group);
-			void onGroupInsert(LogGroup *group);
-
-			void deleteRemovedLogs(LogIterator &newIt, LogList &newLogList);
-			void addNewLogs(LogIterator &newIt, LogList &newLogList);
+			void onLogsChanged(const char *viewUri);
 			void onContactChanged(const char *viewUri);
 
 			int m_DbVersion;

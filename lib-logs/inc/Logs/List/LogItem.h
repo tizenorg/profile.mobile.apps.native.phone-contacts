@@ -27,7 +27,6 @@ namespace Logs
 	namespace Model
 	{
 		class LogGroup;
-		enum class ChangedType;
 	}
 
 	namespace List
@@ -79,7 +78,7 @@ namespace Logs
 			const char *getImagePath(int type);
 			void onInfoIconPressed();
 
-			void updateItem(Model::ChangedType type);
+			void updateItem(int type);
 			void setUpdateCallback();
 
 			DeleteCallback m_OnDelete;

@@ -71,7 +71,7 @@ namespace Logs
 			Evas_Object *createNoContentsLayout(Evas_Object *parent);
 			void fillGenlist();
 
-			bool shouldDisplayLogs(const Model::LogGroup *logGroup) const;
+			bool shouldDisplayLogs(Model::LogGroup *logGroup) const;
 			LogItem *createLogItem(Model::LogGroup *logGroup);
 			LogItem *insertLogItem(Model::LogGroup *logGroup);
 
