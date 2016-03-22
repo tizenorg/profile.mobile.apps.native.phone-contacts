@@ -129,12 +129,22 @@ LogGroup *Log::getLogGroup() const
 	return m_Group;
 }
 
-void Log::update()
+void Log::update(contacts_record_h record)
 {
-	int id = getId();
-	contacts_record_destroy(m_LogRecord, true);
-	contacts_db_get_record(_contacts_phone_log._uri, id, &m_LogRecord);
+	int personId = 0;
+	contacts_record_get_int(record, _contacts_phone_log.person_id, &personId);
 
+	if (personId != getPersonId()) {
+		contacts_record_destroy(m_LogRecord, true);
+		m_LogRecord = record;
+
+		updateContact();
+	}
+	m_Group->setChangedType(LogGroup::ChangeImage | LogGroup::ChangeName);
+}
+
+void Log::updateContact()
+{
 	if (m_ContactRecord) {
 		contacts_record_destroy(m_ContactRecord, true);
 	}

@@ -99,9 +99,14 @@ namespace Logs
 
 			/**
 			 * @brief Update record
+			 * @param[in]   record  Log record
 			 */
-			void update();
+			void update(contacts_record_h record);
 
+			/**
+			 * @brief Update contact record
+			 */
+			void updateContact();
 			/**
 			 * @return Remove log from database
 			 */
