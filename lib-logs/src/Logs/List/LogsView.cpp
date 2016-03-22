@@ -93,6 +93,11 @@ void LogsView::onMenuPressed()
 		getNavigator()->navigateTo(view);
 	});
 
+	menu->addItem("IDS_KPD_OPT_CALL_SETTINGS_ABB", [this] {
+		App::AppControl appControl = App::requestCallSettings();
+		appControl.launch();
+	});
+
 	menu->show();
 }
 
