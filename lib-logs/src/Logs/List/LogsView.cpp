@@ -179,7 +179,7 @@ void LogsView::fillGenlist()
 	}
 }
 
-bool LogsView::shouldDisplayLogs(const LogGroup *group) const
+bool LogsView::shouldDisplayLogs(LogGroup *group) const
 {
 	switch (m_FilterType) {
 		case FilterMissed:
