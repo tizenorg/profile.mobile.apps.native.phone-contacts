@@ -17,10 +17,12 @@
 
 #include "Logs/Model/LogGroup.h"
 #include "Logs/Model/Log.h"
+#include "Utils/Logger.h"
 
 using namespace Logs::Model;
 
 LogGroup::LogGroup(Log *log)
+	: m_ChangedType(ChangeNone)
 {
 	addLog(log);
 }
@@ -28,6 +30,46 @@ LogGroup::LogGroup(Log *log)
 const LogGroup::LogList &LogGroup::getLogList() const
 {
 	return m_LogList;
+}
+
+void LogGroup::updateLogList()
+{
+	for (auto &&log : m_LogList) {
+		log->updateContact();
+	}
+}
+
+void LogGroup::addLogList(LogGroup &group)
+{
+	group.setChangedType(ChangeRemoved);
+	setChangedType(ChangeCount | ChangeTime);
+	m_LogList.merge(group.m_LogList);
+}
+
+void LogGroup::addLog(Log *log)
+{
+	setChangedType(ChangeCount);
+	m_LogList.push_back(log);
+	log->setLogGroup(this);
+}
+
+void LogGroup::removeLog(Log *log)
+{
+	setChangedType(ChangeCount);
+	m_LogList.remove(log);
+	log->setLogGroup(nullptr);
+}
+
+Log &LogGroup::getFirstLog()
+{
+	return *(*m_LogList.begin());
+}
+
+void LogGroup::remove()
+{
+	for (auto &&log : m_LogList) {
+		log->remove();
+	}
 }
 
 void LogGroup::setChangeCallback(ChangeCallback callback)
@@ -40,40 +82,23 @@ void LogGroup::unsetChangeCallback()
 	m_ChangeCallback = nullptr;
 }
 
-void LogGroup::onChange(ChangedType type)
+void LogGroup::onChange()
 {
 	if (m_ChangeCallback) {
-		m_ChangeCallback(type);
+		if (m_ChangedType != ChangeNone) {
+			if (m_LogList.empty()) {
+				m_ChangedType = ChangeRemoved;
+			}
+
+			m_ChangeCallback(m_ChangedType);
+			m_ChangedType = ChangeNone;
+		}
 	}
 }
 
-void LogGroup::addLog(Log *log)
+void LogGroup::setChangedType(int type)
 {
-	m_LogList.push_back(log);
-	log->setLogGroup(this);
-}
-
-void LogGroup::removeLog(Log *log)
-{
-	m_LogList.remove(log);
-	log->setLogGroup(nullptr);
-}
-
-void LogGroup::remove()
-{
-	for (auto &&log : m_LogList) {
-		log->remove();
-	}
-}
-
-Log &LogGroup::getFirstLog()
-{
-	return *(*m_LogList.begin());
-}
-
-void LogGroup::updateLogList()
-{
-	for(auto &&log : m_LogList) {
-		log->update();
+	if (m_ChangeCallback) {
+		m_ChangedType |= type;
 	}
 }

@@ -27,25 +27,26 @@ namespace Logs
 	{
 		class Log;
 
-		enum class ChangedType {
-			Remove,
-			UpdateName,
-			UpdateImage,
-			UpdateCount,
-			UpdateAll
-		};
-
 		/**
 		 * @brief Group of logs
 		 */
 		class LogGroup
 		{
 		public:
+			enum ChangeType {
+				ChangeNone      = 0,
+				ChangeRemoved   = 1 << 0,
+				ChangeName      = 1 << 1,
+				ChangeImage     = 1 << 2,
+				ChangeCount     = 1 << 3,
+				ChangeTime      = 1 << 4
+			};
 
 			/**
 			 * @brief Changed group callback
+			 * @param[in]   type  Type of log group changes
 			 */
-			typedef std::function<void(ChangedType)> ChangeCallback;
+			typedef std::function<void(int)> ChangeCallback;
 
 			/**
 			 * @brief List of logs.
@@ -65,22 +66,15 @@ namespace Logs
 			const LogList &getLogList() const;
 
 			/**
-			 * @brief Set log changed callback
-			 * @remark Callback called when log is changed.
-			 * @param[in]    callback    Changed log callback
+			 * @brief Update all logs
 			 */
-			void setChangeCallback(ChangeCallback callback);
+			void updateLogList();
 
 			/**
-			 * @brief Unset log change callback
+			 * @brief Add new log list
+			 * @param[in]   list  Log list to add
 			 */
-			void unsetChangeCallback();
-
-			/**
-			 * @brief Call log change callback
-			 * @param[in]   type  Changed type
-			 */
-			void onChange(ChangedType type);
+			void addLogList(LogGroup &group);
 
 			/**
 			 * @brief Add log to LogGroup
@@ -95,25 +89,44 @@ namespace Logs
 			void removeLog(Log *log);
 
 			/**
-			 * @brief Remove all logs from database
-			 */
-			void remove();
-
-			/**
 			 * @brief Get first log
 			 * @return first log. The reference will be valid while this LogGroup object exist.
 			 */
 			Log &getFirstLog();
 
 			/**
-			 * @brief Update all logs
+			 * @brief Remove all logs from database
 			 */
-			void updateLogList();
+			void remove();
+
+			/**
+			 * @brief Set log changed callback
+			 * @remark Callback called when log is changed.
+			 * @param[in]    callback    Changed log callback
+			 */
+			void setChangeCallback(ChangeCallback callback);
+
+			/**
+			 * @brief Unset log change callback
+			 */
+			void unsetChangeCallback();
+
+			/**
+			 * @brief Call log change callback
+			 */
+			void onChange();
+
+			/**
+			 * @brief Set type of log group changes
+			 * @param[in]   type  Changed type
+			 */
+			void setChangedType(int type);
 
 		private:
 			LogList m_LogList;
 
 			ChangeCallback m_ChangeCallback;
+			int m_ChangedType;
 		};
 	}
 }
