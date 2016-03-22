@@ -71,7 +71,7 @@ namespace Contacts
 				/**
 				 * @return First letter from formatted person name
 				 */
-				const Utils::UniString &getIndexLetter() const;
+				virtual const Utils::UniString *getIndexLetter() const override;
 
 				/**
 				 * @return _contacts_person record
