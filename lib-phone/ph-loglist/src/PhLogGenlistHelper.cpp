@@ -275,7 +275,7 @@ Elm_Object_Item *PhLogGenlistHelper::appendItem(
 
 	if (!itemData->it) {
 		WERROR("elm_genlist_nth_item_get() is failed");
-		free(itemData);
+		delete itemData;
 		return NULL;
 	}
 
@@ -332,7 +332,7 @@ Elm_Object_Item *PhLogGenlistHelper::appendCheckItem(
 
 	if (!itemData->it) {
 		WERROR("elm_genlist_nth_item_get() is failed");
-		free(itemData);
+		delete itemData;
 		return NULL;
 	}
 

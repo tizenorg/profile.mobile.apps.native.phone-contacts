@@ -3559,7 +3559,7 @@ char* CtListView::__getSearchHighlightNumber(const char *src)
 
 		snprintf(first, pos1+1, "%s", src);
 		snprintf(middle, (pos2 - pos1)+1, "%s", (char *)(src+pos1));
-		sprintf(color_set_middle, "<color=#%02x%02x%02x%02x>%s</color>", r, g, b, a, middle);
+		snprintf(color_set_middle, CT_TEXT_MAX_LEN, "<color=#%02x%02x%02x%02x>%s</color>", r, g, b, a, middle);
 		snprintf(display, sizeof(display), "%s%s%s", first, color_set_middle, (char *)(src+pos2));
 
 		return strdup(display);
