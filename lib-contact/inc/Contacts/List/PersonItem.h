@@ -26,13 +26,13 @@
 
 namespace Contacts
 {
+	namespace Model
+	{
+		class ContactData;
+	}
+
 	namespace List
 	{
-		namespace Model
-		{
-			class Person;
-		}
-
 		/**
 		 * @brief Person list item
 		 */
@@ -43,19 +43,19 @@ namespace Contacts
 			 * @brief Create person item
 			 * @param[in]   person      Person object
 			 */
-			explicit PersonItem(Model::Person &person);
+			explicit PersonItem(Contacts::Model::ContactData &person);
 
 			/**
 			 * @return Person object
 			 */
-			Model::Person &getPerson();
+			Contacts::Model::ContactData &getPerson();
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual SelectResult getDefaultResult() const override;
 
-			Model::Person &m_Person;
+			Contacts::Model::ContactData &m_Person;
 		};
 	}
 }

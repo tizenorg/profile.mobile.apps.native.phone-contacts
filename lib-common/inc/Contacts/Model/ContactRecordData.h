@@ -72,12 +72,12 @@ namespace Contacts
 			 */
 			virtual bool compare(const char *str) override;
 
-		protected:
 			/**
 			 * @return contact record
 			 */
-			const contacts_record_h getContactRecord() const;
+			const contacts_record_h *getContactRecord() const;
 
+		protected:
 			/**
 			 * @brief Set changed callback
 			 * @param[in]   callback    Change callback

@@ -93,9 +93,9 @@ const Person::ContactIds &Person::getContactIds() const
 	return m_ContactIds;
 }
 
-const UniString &Person::getIndexLetter() const
+const UniString *Person::getIndexLetter() const
 {
-	return m_IndexLetter;
+	return &m_IndexLetter;
 }
 
 const contacts_record_h Person::getRecord() const
@@ -122,7 +122,7 @@ void Person::initialize(contacts_record_h personRecord, contacts_record_h contac
 int Person::updatePerson(contacts_record_h personRecord)
 {
 	contacts_record_h contactRecord = getDisplayContact(personRecord);
-	auto changes = getChanges(getContactRecord(), contactRecord);
+	auto changes = getChanges(*getContactRecord(), contactRecord);
 
 	contacts_record_destroy(m_PersonRecord, true);
 	m_SortValue.clear();
@@ -147,7 +147,7 @@ const char *Person::getDbSortValue() const
 	unsigned sortField = getSortProperty(order);
 
 	contacts_record_h nameRecord = nullptr;
-	contacts_record_get_child_record_at_p(getContactRecord(), _contacts_contact.name, 0, &nameRecord);
+	contacts_record_get_child_record_at_p(*getContactRecord(), _contacts_contact.name, 0, &nameRecord);
 
 	char *sortValue = nullptr;
 	contacts_record_get_str_p(nameRecord, sortField, &sortValue);

@@ -18,9 +18,16 @@
 #ifndef CONTACTS_CONTACT_DATA_H
 #define CONTACTS_CONTACT_DATA_H
 
+#include "Contacts/SelectTypes.h"
+
 #include <memory>
 #include <tizen.h>
 #include <list>
+
+namespace Utils
+{
+	class UniString;
+}
 
 namespace Contacts
 {
@@ -141,6 +148,11 @@ namespace Contacts
 			 * @brief Unset delete callback
 			 */
 			void unsetDeleteCallback();
+
+			/**
+			 * @return First letter from formatted person name
+			 */
+			virtual const Utils::UniString *getIndexLetter() const;
 
 		protected:
 			/**

@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_LIST_VIEW_H
 #define CONTACTS_LIST_LIST_VIEW_H
 
-#include "Contacts/List/Model/PersonProvider.h"
+#include "Contacts/Common/ContactSelectTypes.h"
 #include "Contacts/SelectView.h"
 
 #include "Utils/UniString.h"
@@ -34,6 +34,12 @@ namespace Ui
 
 namespace Contacts
 {
+	namespace Model
+	{
+		class ContactData;
+		class ContactDataProvider;
+	}
+
 	namespace List
 	{
 		class GroupItem;
@@ -57,6 +63,13 @@ namespace Contacts
 			 * @param]in]   filterType  Defines how to filter person list
 			 */
 			ListView(int filterType = FilterNone);
+
+			/**
+			 * @brief Create new vcard contact list view
+			 * @param]in]   vcardPath   Path of the vcard file
+			 */
+			explicit ListView(const char *vcardPath);
+
 			virtual ~ListView() override;
 
 		private:
@@ -109,7 +122,7 @@ namespace Contacts
 			void deletePersonGroupItem(PersonGroupItem *group);
 			PersonGroupItem *getNextPersonGroupItem(const Utils::UniString &indexLetter);
 
-			PersonItem *createPersonItem(Model::Person &person);
+			PersonItem *createPersonItem(Contacts::Model::ContactData &person);
 			void insertPersonItem(PersonItem *item);
 			void updatePersonItem(PersonItem *item, int changes);
 			void deletePersonItem(PersonItem *item);
@@ -132,7 +145,9 @@ namespace Contacts
 			Ui::GenlistGroupItem *m_Sections[SectionMax];
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
 
-			Model::PersonProvider m_Provider;
+			Contacts::Model::ContactDataProvider *m_Provider;
+
+			bool m_IsFastscroll;
 		};
 	}
 }

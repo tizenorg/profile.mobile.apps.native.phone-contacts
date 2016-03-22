@@ -17,6 +17,7 @@
 
 #include "Contacts/Model/ContactRecordData.h"
 #include "Contacts/ContactRecordChildIterator.h"
+
 #include <cstring>
 
 using namespace Contacts::Model;
@@ -63,9 +64,9 @@ bool ContactRecordData::compare(const char *str)
 	return strstr(getName(), str); //Todo: Compare unicode strings
 }
 
-const contacts_record_h ContactRecordData::getContactRecord() const
+const contacts_record_h *ContactRecordData::getContactRecord() const
 {
-	return m_Record;
+	return &m_Record;
 }
 
 void ContactRecordData::setChangedCallback(DbChangeObserver::Callback callback)
