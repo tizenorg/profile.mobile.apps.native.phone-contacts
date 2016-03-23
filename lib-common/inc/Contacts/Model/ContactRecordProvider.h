@@ -36,9 +36,49 @@ namespace Contacts
 			 */
 			virtual const ContactDataList &getContactDataList() override;
 
+		protected:
+			using ContactDataProvider::onInserted;
+
+			/**
+			 * @brief Create contact object
+			 * @param[in]   record  Contact record
+			 */
+			virtual ContactData *createContact(contacts_record_h record);
+
+			/**
+			 * @brief Insert contact
+			 * @param[in]   record  Contact record
+			 */
+			void insertContact(contacts_record_h record);
+
+			/**
+			 * @param[in]   id  Contact ID
+			 * @return Contact record
+			 */
+			virtual contacts_record_h getRecord(int id);
+
+			/**
+			 * @return contact list
+			 */
+			const ContactDataList &getContactList();
+
+			/**
+			 * @brief Contact inserted callback
+			 * @param[in]   id          Contact ID
+			 * @param[in]   changeType  Contact change type (Inserted)
+			 */
+			void onInserted(int id, contacts_changed_e changeType);
+
+			/**
+			 * @brief Contact changed callback
+			 * @param[in]   contactIt   Iterator to contact object in @m m_ContactList
+			 * @param[in]   id          Contact ID
+			 * @param[in]   changeType  Contact change type (Updated/Deleted)
+			 */
+			void onChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType);
+
 		private:
-			void onContactInserted(int id, contacts_changed_e changeType);
-			void onContactChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType);
+			virtual void updateChangedCallback(ContactDataList::iterator it) { }
 
 			DbChangeObserver::CallbackHandle m_Handle;
 			ContactDataList m_ContactList;

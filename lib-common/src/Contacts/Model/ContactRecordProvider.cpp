@@ -26,11 +26,16 @@ using namespace std::placeholders;
 ContactRecordProvider::ContactRecordProvider()
 {
 	m_Handle = DbChangeObserver::getInstance()->addCallback(
-			std::bind(&ContactRecordProvider::onContactInserted, this, _1, _2));
+		[this](int id, contacts_changed_e changeType) {
+			onInserted(id, changeType);
+		}
+	);
 }
 
 ContactRecordProvider::~ContactRecordProvider()
 {
+	DbChangeObserver::getInstance()->removeCallback(m_Handle);
+
 	for (auto &&contact : m_ContactList) {
 		delete contact;
 	}
@@ -47,12 +52,7 @@ const ContactDataList &ContactRecordProvider::getContactDataList()
 
 	contacts_record_h record = nullptr;
 	CONTACTS_LIST_FOREACH(list, record) {
-		auto contact = new ContactRecordData(ContactData::TypeContact);
-		contact->updateContactRecord(record);
-		m_ContactList.push_back(contact);
-
-		contact->setChangedCallback(
-				std::bind(&ContactRecordProvider::onContactChanged, this, --m_ContactList.end(), _1, _2));
+		insertContact(record);
 	}
 
 	contacts_list_destroy(list, false);
@@ -60,33 +60,59 @@ const ContactDataList &ContactRecordProvider::getContactDataList()
 	return m_ContactList;
 }
 
-void ContactRecordProvider::onContactInserted(int id, contacts_changed_e changeType)
+ContactData *ContactRecordProvider::createContact(contacts_record_h record)
+{
+	return new ContactRecordData(ContactData::TypeContact, record);
+}
+
+void ContactRecordProvider::insertContact(contacts_record_h record)
+{
+	auto contact = static_cast<ContactRecordData *>(createContact(record));
+	m_ContactList.push_back(contact);
+
+	contact->setChangedCallback(
+			std::bind(&ContactRecordProvider::onChanged, this, --m_ContactList.end(), _1, _2));
+}
+
+contacts_record_h ContactRecordProvider::getRecord(int id)
+{
+	contacts_record_h record = nullptr;
+	contacts_db_get_record(_contacts_contact._uri, id, &record);
+
+	return record;
+}
+
+const ContactDataList &ContactRecordProvider::getContactList()
+{
+	return m_ContactList;
+}
+
+void ContactRecordProvider::onInserted(int id, contacts_changed_e changeType)
 {
 	if (changeType == CONTACTS_CHANGE_INSERTED) {
-		contacts_record_h record = nullptr;
-		contacts_db_get_record(_contacts_contact._uri, id, &record);
-
-		auto contact = new ContactRecordData(ContactData::TypeContact);
-		contact->updateContactRecord(record);
-		m_ContactList.push_back(contact);
-
-		onInserted(*contact);
+		auto record = getRecord(id);
+		if (record) {
+			insertContact(record);
+			onInserted(*m_ContactList.back());
+		}
 	}
 }
 
-void ContactRecordProvider::onContactChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType)
+void ContactRecordProvider::onChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType)
 {
 	auto contact = static_cast<ContactRecordData *>(*contactIt);
 
 	if (changeType == CONTACTS_CHANGE_UPDATED) {
-		contacts_record_h contactRecord = nullptr;
-		contacts_db_get_record(_contacts_contact._uri, id, &contactRecord);
+		auto record = getRecord(id);
+		if (record) {
+			contact->onUpdate(record);
+			updateChangedCallback(contactIt);
 
-		contact->onUpdate(contactRecord);
-	} else if (changeType == CONTACTS_CHANGE_DELETED) {
-		contact->onDeleted();
-
-		delete contact;
-		m_ContactList.erase(contactIt);
+			return;
+		}
 	}
+
+	contact->onDeleted();
+	delete contact;
+	m_ContactList.erase(contactIt);
 }

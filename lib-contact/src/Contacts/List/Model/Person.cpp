@@ -20,6 +20,7 @@
 
 #include <cstring>
 
+using namespace Contacts::Model;
 using namespace Contacts::List::Model;
 using namespace Utils;
 
@@ -64,9 +65,9 @@ namespace
 }
 
 Person::Person(contacts_record_h record)
-	: ContactRecordData(TypePerson), m_PersonRecord(nullptr)
+	: ContactRecordData(TypePerson, getDisplayContact(record)), m_PersonRecord(nullptr)
 {
-	initialize(record, getDisplayContact(record));
+	initialize(record);
 }
 
 Person::~Person()
@@ -108,27 +109,44 @@ bool Person::operator<(const Person &that) const
 	return getSortValue() < that.getSortValue();
 }
 
-void Person::initialize(contacts_record_h personRecord, contacts_record_h contactRecord)
+void Person::setChangedCallback(Contacts::Model::DbChangeObserver::Callback callback)
 {
-	m_PersonRecord = personRecord;
-	updateContactRecord(contactRecord);
-	m_ContactIds = ::getContactIds(getId());
-
-	char *indexLetter = nullptr;
-	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name_index, &indexLetter);
-	m_IndexLetter = indexLetter;
+	for (auto &&id : m_ContactIds) {
+		auto handle = DbChangeObserver::getInstance()->addCallback(id, callback);
+		addChangedHandle(handle);
+	}
 }
 
-int Person::updatePerson(contacts_record_h personRecord)
+void Person::unsetChangedCallback()
+{
+	for (size_t i = 0; i < m_ContactIds.size(); ++i) {
+		DbChangeObserver::getInstance()->removeCallback(m_ContactIds[i], getChangedHandle(i));
+	}
+	clearChangedHandles();
+}
+
+void Person::onUpdate(contacts_record_h personRecord)
 {
 	contacts_record_h contactRecord = getDisplayContact(personRecord);
 	auto changes = getChanges(getContactRecord(), contactRecord);
 
 	contacts_record_destroy(m_PersonRecord, true);
 	m_SortValue.clear();
-	initialize(personRecord, contactRecord);
 
-	return changes;
+	updateContactRecord(contactRecord);
+	initialize(personRecord);
+
+	onUpdated(changes);
+}
+
+void Person::initialize(contacts_record_h personRecord)
+{
+	m_PersonRecord = personRecord;
+	m_ContactIds = ::getContactIds(getId());
+
+	char *indexLetter = nullptr;
+	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name_index, &indexLetter);
+	m_IndexLetter = indexLetter;
 }
 
 const UniString &Person::getSortValue() const
@@ -151,6 +169,10 @@ const char *Person::getDbSortValue() const
 
 	char *sortValue = nullptr;
 	contacts_record_get_str_p(nameRecord, sortField, &sortValue);
+
+	if (!(sortValue && *sortValue)) {
+		contacts_record_get_str_p(getContactRecord(), _contacts_contact.display_name, &sortValue);
+	}
 
 	return sortValue;
 }

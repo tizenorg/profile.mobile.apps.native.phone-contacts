@@ -29,10 +29,9 @@ VcardProvider::VcardProvider(const char *path)
 		RETVM_IF(!record || !data, true, "invalid data");
 		ContactDataList *list = (ContactDataList *)data;
 
-		ContactRecordData *contact = new ContactRecordData(ContactData::TypeContact);
 		contacts_record_h recordClone;
 		contacts_record_clone(record, &recordClone);
-		contact->updateContactRecord(recordClone);
+		ContactRecordData *contact = new ContactRecordData(ContactData::TypeContact, recordClone);
 		list->push_back(contact);
 
 		// Return true to continue to scan next contact, according to contacts_vcard_parse_cb specification.

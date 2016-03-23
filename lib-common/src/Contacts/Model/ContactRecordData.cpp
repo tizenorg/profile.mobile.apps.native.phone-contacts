@@ -21,21 +21,15 @@
 
 using namespace Contacts::Model;
 
-ContactRecordData::ContactRecordData(Type type)
-	: ContactData(type), m_Record(nullptr)
+ContactRecordData::ContactRecordData(Type type, contacts_record_h record)
+	: ContactData(type), m_Record(record)
 {
 }
 
 ContactRecordData::~ContactRecordData()
 {
-	contacts_record_destroy(m_Record, true);
 	unsetChangedCallback();
-}
-
-void ContactRecordData::updateContactRecord(contacts_record_h record)
-{
 	contacts_record_destroy(m_Record, true);
-	m_Record = record;
 }
 
 int ContactRecordData::getId() const
@@ -63,20 +57,44 @@ bool ContactRecordData::compare(const char *str)
 	return strstr(getName(), str); //Todo: Compare unicode strings
 }
 
+void ContactRecordData::setChangedCallback(DbChangeObserver::Callback callback)
+{
+	int id = getContactId(m_Record);
+	m_Handles.push_back(DbChangeObserver::getInstance()->addCallback(id, callback));
+}
+
+void ContactRecordData::unsetChangedCallback()
+{
+	if (!m_Handles.empty()) {
+		DbChangeObserver::getInstance()->removeCallback(getId(), m_Handles.front());
+		m_Handles.clear();
+	}
+}
+
 const contacts_record_h ContactRecordData::getContactRecord() const
 {
 	return m_Record;
 }
 
-void ContactRecordData::setChangedCallback(DbChangeObserver::Callback callback)
+void ContactRecordData::updateContactRecord(contacts_record_h record)
 {
-	int id = getContactId(m_Record);
-	m_Handle = DbChangeObserver::getInstance()->addCallback(id, callback);
+	contacts_record_destroy(m_Record, true);
+	m_Record = record;
 }
 
-void ContactRecordData::unsetChangedCallback()
+void ContactRecordData::addChangedHandle(DbChangeObserver::CallbackHandle handle)
 {
-	DbChangeObserver::getInstance()->removeCallback(getId(), m_Handle);
+	m_Handles.push_back(handle);
+}
+
+DbChangeObserver::CallbackHandle ContactRecordData::getChangedHandle(size_t index) const
+{
+	return m_Handles[index];
+}
+
+void ContactRecordData::clearChangedHandles()
+{
+	m_Handles.clear();
 }
 
 int ContactRecordData::getContactId(contacts_record_h record)
@@ -142,5 +160,6 @@ void ContactRecordData::onUpdate(contacts_record_h record)
 {
 	int changes = getChanges(m_Record, record);
 	updateContactRecord(record);
+
 	onUpdated(changes);
 }
