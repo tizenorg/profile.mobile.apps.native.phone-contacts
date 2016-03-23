@@ -17,7 +17,6 @@
 
 #include "Contacts/Model/ContactRecordData.h"
 #include "Contacts/List/Model/VcardProvider.h"
-#include "Contacts/Utils.h"
 #include "Utils/Logger.h"
 
 using namespace Contacts;
@@ -26,16 +25,20 @@ using namespace Contacts::List::Model;
 
 VcardProvider::VcardProvider(const char *path)
 {
-	contacts_list_h list = getListFromVcard(path);
-	contacts_record_h record = nullptr;
+	int err = contacts_vcard_parse_to_contact_foreach(path, [](contacts_record_h record, void *data)->bool {
+		RETVM_IF(!record || !data, true, "invalid data");
+		ContactDataList *list = (ContactDataList *)data;
 
-	CONTACTS_LIST_FOREACH(list, record) {
 		ContactRecordData *contact = new ContactRecordData(ContactData::TypeContact);
-		contact->updateContactRecord(record);
-		m_ContactsList.push_back(contact);
-	}
+		contacts_record_h recordClone;
+		contacts_record_clone(record, &recordClone);
+		contact->updateContactRecord(recordClone);
+		list->push_back(contact);
 
-	contacts_list_destroy(list, false);
+		// Return true to continue to scan next contact, according to contacts_vcard_parse_cb specification.
+		return true;
+	}, &m_ContactsList);
+	WARN_IF_ERR(err, "contacts_vcard_parse_to_contact_foreach() failed.");
 }
 
 VcardProvider::~VcardProvider()
@@ -48,27 +51,4 @@ VcardProvider::~VcardProvider()
 const ContactDataList &VcardProvider::getContactDataList()
 {
 	return m_ContactsList;
-}
-
-contacts_list_h VcardProvider::getListFromVcard(const char *path)
-{
-	contacts_list_h list = nullptr;
-
-	FILE *file = fopen(path, "r");
-	RETVM_IF(!file, nullptr, "fopen() failed");
-	fseek(file, 0, SEEK_END);
-	long size = ftell(file);
-	rewind(file);
-
-	char *stream = new char[size];
-	if (stream) {
-		fread(stream, 1, size, file);
-
-		int err = contacts_vcard_parse_to_contacts(stream, &list);
-		WARN_IF_ERR(err, "contacts_vcard_parse_to_contacts() failed.");
-		delete[] stream;
-	}
-
-	fclose(file);
-	return list;
 }

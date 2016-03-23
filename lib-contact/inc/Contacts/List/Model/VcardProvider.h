@@ -49,9 +49,6 @@ namespace Contacts
 				virtual const Contacts::Model::ContactDataList &getContactDataList() override;
 
 			private:
-				contacts_list_h getListFromVcard(const char *path);
-
-			private:
 				Contacts::Model::ContactDataList m_ContactsList;
 			};
 		}
