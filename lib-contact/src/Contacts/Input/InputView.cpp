@@ -80,7 +80,7 @@ void InputView::addField(Model::ContactFieldId fieldId, const char *value)
 	}
 
 	ContactObject &field = addField(fieldId);
-	if (field.getSubType() & ObjectCompound) {
+	if (field.getInterfaces() & InterfaceCompoundObject) {
 		field.cast<ContactCompoundObject>().setValue(value);
 	} else {
 		ContactField *subField = field.getField(0);
@@ -193,9 +193,9 @@ ContactFieldItem *InputView::createFieldItem(ContactObject &field)
 		item = new ContactImageFieldItem(field);
 	} else if (field.getId() == FieldRelationship) {
 		item = new ContactRelationshipFieldItem(field);
-	} else if (field.getSubType() & ObjectTyped) {
+	} else if (field.getInterfaces() & InterfaceTypedObject) {
 		item = new ContactTypedFieldItem(field);
-	} else if (field.getSubType() & ObjectCompound) {
+	} else if (field.getInterfaces() & InterfaceCompoundObject) {
 		item = new ContactCompoundFieldItem(field);
 	} else {
 		item = new ContactFieldItem(field);

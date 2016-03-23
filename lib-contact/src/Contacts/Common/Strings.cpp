@@ -142,7 +142,6 @@ namespace
 	};
 
 	Utils::Range<const char **> enumValueNames[] = {
-		/* [EnumTypeImage]        = */ { nullptr, nullptr },
 		/* [EnumTypeNumber]       = */ numberValueNames,
 		/* [EnumTypeEmail]        = */ emailValueNames,
 		/* [EnumTypeAddress]      = */ addressValueNames,

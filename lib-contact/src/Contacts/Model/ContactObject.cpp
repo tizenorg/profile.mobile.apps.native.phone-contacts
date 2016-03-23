@@ -31,6 +31,11 @@ ContactField *ContactObject::getFieldById(unsigned id) const
 	return nullptr;
 }
 
+unsigned ContactObject::getInterfaces() const
+{
+	return getObjectMetadata().interfaces;
+}
+
 int ContactObject::getRecordId() const
 {
 	return getRecordId(getRecord());

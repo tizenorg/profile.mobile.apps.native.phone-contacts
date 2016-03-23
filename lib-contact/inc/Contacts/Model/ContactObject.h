@@ -36,6 +36,11 @@ namespace Contacts
 			using ContactFieldContainer::ContactFieldContainer;
 
 			/**
+			 * @return Interfaces supported by the object.
+			 */
+			unsigned getInterfaces() const;
+
+			/**
 			 * @brief Get child field by id.
 			 * @param[in]   id      Child field id
 			 * @return Child field.
