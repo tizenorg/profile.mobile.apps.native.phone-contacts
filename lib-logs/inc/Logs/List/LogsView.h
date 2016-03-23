@@ -18,8 +18,10 @@
 #ifndef LOGS_LIST_LOGS_VIEW_H
 #define LOGS_LIST_LOGS_VIEW_H
 
+#include "App/AppControlRequest.h"
 #include "Contacts/SelectView.h"
 #include "Logs/Model/LogProvider.h"
+
 #include <system_settings.h>
 
 namespace Ui
@@ -87,6 +89,7 @@ namespace Logs
 
 			Model::LogProvider m_LogProvider;
 			FilterType m_FilterType;
+			App::AppControl m_AppControl;
 
 			Ui::Genlist *m_Genlist;
 			LogGroupItem *m_LastGroupItem;

@@ -20,8 +20,6 @@
 #include "Logs/List/LogItem.h"
 #include "Logs/Details/DetailsView.h"
 
-#include "App/AppControlRequest.h"
-
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
@@ -91,6 +89,11 @@ void LogsView::onMenuPressed()
 			return true;
 		});
 		getNavigator()->navigateTo(view);
+	});
+
+	menu->addItem("IDS_KPD_OPT_CALL_SETTINGS_ABB", [this] {
+		m_AppControl = App::requestCallSettings();
+		m_AppControl.launch();
 	});
 
 	menu->show();
