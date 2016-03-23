@@ -51,7 +51,7 @@ namespace
 
 			if (filterType & FilterEmail) {
 				if (!emptyFilter) {
-					contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+					contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_OR);
 				}
 				contacts_filter_add_bool(filter, _contacts_person.has_email, true);
 			}

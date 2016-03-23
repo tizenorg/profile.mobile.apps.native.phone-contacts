@@ -21,6 +21,8 @@
 #include "Contacts/List/ListView.h"
 #include "Contacts/Settings/ExportController.h"
 #include "Contacts/Utils.h"
+
+#include "Ui/ListPopup.h"
 #include "Utils/Logger.h"
 
 using namespace Contacts;
@@ -62,6 +64,9 @@ void Chooser::onCreated()
 		case ResultVcard:
 			m_ListView->setSelectCallback(std::bind(&Chooser::onSelectedForVcard, this, _1));
 			break;
+		case ResultAction:
+			m_ListView->setSelectCallback(std::bind(&Chooser::onSelectedForAction, this, _1));
+			break;
 		default:
 			break;
 	}
@@ -78,48 +83,20 @@ void Chooser::onPageAttached(Ui::NavigatorPage *page)
 bool Chooser::onPersonChecked(SelectItem *item, bool isChecked)
 {
 	if (isChecked) {
-		SelectResult result = item->getSelectResult();
-		int resultId = getSingleResultId(result.value.id, m_ResultType);
-		if (resultId > 0) {
-			item->setCustomResult({ m_ResultType, resultId });
-		} else {
-			DetailsView *view = new DetailsView(getDisplayContactId(result.value.id),
-					DetailsView::Type(result.type), m_FilterType);
-			view->setSelectMode(SelectSingle);
-			view->setSelectCallback([this, item](SelectResults results) {
-				item->setCustomResult(*results.begin());
-				m_ListView->setCheckedItem(item, true);
-				return true;
-			});
-
-			navigateTo(view);
-			return false;
-		}
-	} else {
-		item->unsetCustomResult();
+		return selectSingleResult(item->getSelectResult(), [this, item](SelectResults results) {
+			item->setCustomResult(*results.begin());
+			m_ListView->setCheckedItem(item, true);
+			return true;
+		});
 	}
 
+	item->unsetCustomResult();
 	return true;
 }
 
 bool Chooser::onSinglePersonSelected(SelectResults results)
 {
-	const SelectResult &person = *results.begin();
-	int resultId = getSingleResultId(person.value.id, m_ResultType);
-
-	if (resultId > 0) {
-		SelectResult result = { m_ResultType, resultId };
-		return onSelected({ &result, 1 });
-	}
-
-	/* FIXME: Implement person support in DetailsView */
-	DetailsView *view = new DetailsView(getDisplayContactId(person.value.id),
-			DetailsView::Type(person.type), m_FilterType);
-	view->setSelectMode(m_SelectMode);
-	view->setSelectCallback(std::bind(&Chooser::onSelected, this, _1));
-	navigateTo(view);
-
-	return false;
+	return selectSingleResult(*results.begin(), std::bind(&Chooser::onSelected, this, _1));
 }
 
 bool Chooser::onMultiPersonSelected(SelectResults results)
@@ -139,13 +116,27 @@ bool Chooser::onMultiPersonSelected(SelectResults results)
 	return onSelected(results);
 }
 
-bool Chooser::onSelected(SelectResults results)
+bool Chooser::onSelectedForAction(SelectResults results)
 {
-	if (!m_OnSelected || m_OnSelected(results)) {
-		getPage()->close();
-	}
+	return selectSingleResult(*results.begin(), [this](SelectResults results) {
+		SelectResult result = *results.begin();
+		if (result.type == ResultEmail) {
+			result.type = ActionEmail;
+			return onSelected({ &result, 1 });
+		}
 
-	return false;
+		Ui::ListPopup *popup = new Ui::ListPopup();
+		popup->create(getEvasObject());
+		popup->setTitle(getResultValue(result).c_str());
+		popup->addItem("IDS_PB_OPT_VOICE_CALL", (void *) ActionCall);
+		popup->addItem("IDS_PB_OPT_MESSAGE", (void *) ActionMessage);
+		popup->setSelectedCallback([this, result] (void *data) mutable {
+			result.type = (long) data;
+			onSelected({ &result, 1 });
+		});
+
+		return false;
+	});
 }
 
 bool Chooser::onSelectedForVcard(SelectResults results)
@@ -162,19 +153,66 @@ bool Chooser::onSelectedForVcard(SelectResults results)
 			std::move(ids), StorageInternalOther);
 	exporter->setFinishCallback([this, exporter] {
 		SelectResult result = { ResultVcard, (void *) exporter->getVcardPath().c_str() };
-		if (!m_OnSelected || m_OnSelected({ &result, 1 })) {
-			getPage()->close();
-		}
+		onSelected({ &result, 1 });
 	});
 	exporter->run();
 
 	return false;
 }
 
-int Chooser::getSingleResultId(int personId, ResultType resultType)
+bool Chooser::onSelected(SelectResults results)
 {
-	int resultId = 0;
+	if (!m_OnSelected || m_OnSelected(results)) {
+		getPage()->close();
+	}
 
+	return false;
+}
+
+bool Chooser::selectSingleResult(SelectResult person, SelectCallback callback)
+{
+	SelectResult result = getSingleResult(person.value.id);
+	if (result.value.id > 0) {
+		return callback({ &result, 1 });
+	}
+
+	DetailsView *view = new DetailsView(getDisplayContactId(person.value.id),
+			DetailsView::Type(person.type), m_FilterType);
+	view->setSelectMode(SelectSingle);
+	view->setSelectCallback(callback);
+	navigateTo(view);
+
+	return false;
+}
+
+SelectResult Chooser::getSingleResult(int personId)
+{
+	int count = 0;
+
+	int numberId = 0;
+	if (m_FilterType & FilterNumber) {
+		count += getResultCount(personId, ResultNumber, &numberId);
+	}
+
+	int emailId = 0;
+	if (m_FilterType & FilterEmail) {
+		count += getResultCount(personId, ResultEmail, &emailId);
+	}
+
+	SelectResult result = { 0, 0 };
+	if (count == 1) {
+		if (numberId) {
+			result = { ResultNumber, numberId };
+		} else if (emailId) {
+			result = { ResultEmail, emailId };
+		}
+	}
+
+	return result;
+}
+
+int Chooser::getResultCount(int personId, ResultType resultType, int *resultId)
+{
 	const char *uri = nullptr;
 	unsigned personIdProp = 0;
 	unsigned resultIdProp = 0;
@@ -191,7 +229,7 @@ int Chooser::getSingleResultId(int personId, ResultType resultType)
 			resultIdProp = _contacts_person_email.email_id;
 			break;
 		default:
-			return resultId;
+			return 0;
 	}
 
 	contacts_filter_h filter = nullptr;
@@ -214,14 +252,48 @@ int Chooser::getSingleResultId(int personId, ResultType resultType)
 		contacts_record_h record = nullptr;
 		contacts_list_get_current_record_p(list, &record);
 
-		contacts_record_get_int(record, resultIdProp, &resultId);
+		contacts_record_get_int(record, resultIdProp, resultId);
 		contacts_list_destroy(list, true);
 	}
 
 	contacts_query_destroy(query);
 	contacts_filter_destroy(filter);
 
-	return resultId;
+	return count;
+}
+
+std::string Chooser::getResultValue(SelectResult result)
+{
+	std::string value;
+
+	const char *uri = nullptr;
+	int propId = 0;
+	switch (result.type) {
+		case ResultPerson:
+			uri = _contacts_person._uri;
+			propId = _contacts_person.display_name;
+			break;
+		case ResultNumber:
+			uri = _contacts_number._uri;
+			propId = _contacts_number.number;
+			break;
+		case ResultEmail:
+			uri = _contacts_email._uri;
+			propId = _contacts_email.email;
+			break;
+	}
+
+	contacts_record_h record = nullptr;
+	contacts_db_get_record(uri, result.value.id, &record);
+
+	char *str = nullptr;
+	contacts_record_get_str_p(record, propId, &str);
+	if (str) {
+		value = str;
+	}
+	contacts_record_destroy(record, true);
+
+	return value;
 }
 
 int Chooser::getFilterType(ResultType resultType)
@@ -231,6 +303,8 @@ int Chooser::getFilterType(ResultType resultType)
 			return FilterNumber;
 		case ResultEmail:
 			return FilterEmail;
+		case ResultAction:
+			return FilterNumber | FilterEmail;
 		default:
 			return FilterNone;
 	}

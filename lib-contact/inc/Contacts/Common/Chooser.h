@@ -56,10 +56,16 @@ namespace Contacts
 			bool onPersonChecked(SelectItem *item, bool isChecked);
 			bool onSinglePersonSelected(SelectResults results);
 			bool onMultiPersonSelected(SelectResults results);
-			bool onSelected(SelectResults results);
-			bool onSelectedForVcard(SelectResults results);
 
-			static int getSingleResultId(int personId, ResultType resultType);
+			bool onSelectedForAction(SelectResults results);
+			bool onSelectedForVcard(SelectResults results);
+			bool onSelected(SelectResults results);
+
+			bool selectSingleResult(SelectResult person, SelectCallback callback);
+			SelectResult getSingleResult(int personId);
+
+			static int getResultCount(int personId, ResultType resultType, int *resultId);
+			static std::string getResultValue(SelectResult result);
 			static int getFilterType(ResultType resultType);
 
 			SelectMode m_SelectMode;

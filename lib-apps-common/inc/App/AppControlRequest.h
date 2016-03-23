@@ -33,6 +33,9 @@
 #define APP_CONTROL_RESULT_PHONE    "phone"
 #define APP_CONTROL_RESULT_EMAIL    "email"
 #define APP_CONTROL_RESULT_VCARD    "vcf"
+#define APP_CONTROL_RESULT_ACTION   "action"
+#define APP_CONTROL_RESULT_CALL     "call"
+#define APP_CONTROL_RESULT_MESSAGE  "message"
 
 namespace App
 {

@@ -43,7 +43,18 @@ namespace Contacts
 		ResultPerson    = Model::ObjectTypeContact,   /**< Person ID is the result */
 		ResultNumber    = Model::ObjectTypeNumber,    /**< Number ID is the result */
 		ResultEmail     = Model::ObjectTypeEmail,     /**< Email ID is the result */
-		ResultVcard
+		ResultVcard,    /**< vCard file path is the result */
+		ResultAction    /**< @ref ActionType is the result*/
+	};
+
+	/**
+	 * @brief Determines selected action for requested #ResultAction type.
+	 */
+	enum ActionType
+	{
+		ActionCall,
+		ActionMessage,
+		ActionEmail
 	};
 }
 
