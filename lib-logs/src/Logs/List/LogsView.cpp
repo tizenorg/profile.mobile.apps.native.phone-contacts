@@ -20,8 +20,6 @@
 #include "Logs/List/LogItem.h"
 #include "Logs/Details/DetailsView.h"
 
-#include "App/AppControlRequest.h"
-
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
@@ -93,6 +91,11 @@ void LogsView::onMenuPressed()
 		getNavigator()->navigateTo(view);
 	});
 
+	menu->addItem("IDS_KPD_OPT_CALL_SETTINGS_ABB", [this] {
+		App::AppControl appControl = App::requestCallSettings();
+		appControl.launch();
+	});
+
 	menu->show();
 }
 
@@ -117,9 +120,9 @@ void LogsView::onItemPressed(Contacts::SelectItem *item)
 
 	const char *number = group->getLogList().back()->getNumber();
 	if (number) {
-		App::AppControl appControl = App::requestTelephonyCall(number);
-		appControl.launch(nullptr, nullptr, false);
-		appControl.detach();
+		m_AppControl = App::requestTelephonyCall(number);
+		m_AppControl.launch(nullptr, nullptr, false);
+		m_AppControl.detach();
 	}
 }
 
