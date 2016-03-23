@@ -36,7 +36,7 @@ namespace Contacts
 		/**
 		 * @brief Controller for Import ProgressPopup
 		 */
-		class ImportController : public Ui::ProgressController
+		class EXPORT_API ImportController : public Ui::ProgressController
 		{
 		public:
 			/**
@@ -44,10 +44,12 @@ namespace Contacts
 			 * @param[in]   parent          Parent object.
 			 * @param[in]   title           Progress popup title.
 			 * @param[in]   totalCount      Total count of contacts that will be imported.
-			 * @param[in]   vcards          Vcards which will be imported.
+			 * @param[in]   vcards          Vcards from which contacts will be imported.
+			 * @param[in]   records         Contact records which will be imported. If it is not filled, contacts will be imported directly from vcard.
 			 */
 			ImportController(Evas_Object *parent, const char *title,
-					size_t totalCount, std::vector<std::string> vcards);
+					size_t totalCount, std::vector<std::string> vcards,
+					std::vector<contacts_record_h> records = std::vector<contacts_record_h>());
 
 			/**
 			 * @return Total count of imported contacts.
@@ -76,6 +78,7 @@ namespace Contacts
 			std::string m_CurrentVcard;
 			std::vector<int> m_ImportedContacts;
 			bool m_IsPaused;
+			std::vector<contacts_record_h> m_Records;
 			std::vector<std::string> m_Vcards;
 		};
 	}
