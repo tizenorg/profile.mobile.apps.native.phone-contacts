@@ -98,10 +98,15 @@ namespace Logs
 			LogGroup *getLogGroup() const;
 
 			/**
-			 * @brief Update record
+			 * @brief Update log record
+			 * @param[in]   record  Log record
 			 */
-			void update();
+			void update(contacts_record_h record);
 
+			/**
+			 * @brief Update contact record
+			 */
+			void updateContactRecord();
 			/**
 			 * @return Remove log from database
 			 */
