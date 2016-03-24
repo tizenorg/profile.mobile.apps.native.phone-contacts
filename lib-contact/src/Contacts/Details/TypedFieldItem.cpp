@@ -17,11 +17,12 @@
 
 #include "Contacts/Details/TypedFieldItem.h"
 #include "Contacts/Model/ContactTypedObject.h"
-#include "Contacts/Common/Strings.h"
+#include "Common/Strings.h"
 #include "Utils/Logger.h"
 
 #include <app_i18n.h>
 
+using namespace Common;
 using namespace Contacts::Details;
 using namespace Contacts::Model;
 
@@ -44,8 +45,8 @@ char *TypedFieldItem::getText(Evas_Object *parent, const char *part)
 		if (m_TypeField.hasCustomValue()) {
 			name = m_LabelField.getValue();
 		} else {
-			ContactEnumType type = ContactEnumType(m_TypeField.getSubType());
-			name = _(Common::getContactEnumValueName(type, m_TypeField.getValue()));
+			EnumType type = EnumType(m_TypeField.getSubType());
+			name = _(getEnumValueName(type, m_TypeField.getValue()));
 		}
 
 		return name ? strdup(name) : nullptr;

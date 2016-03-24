@@ -18,12 +18,14 @@
 #include "Contacts/Model/ContactFieldMetadata.h"
 #include "Contacts/Model/ContactFields.h"
 #include "Contacts/Model/ContactTypes.h"
+#include "Common/DataTypes.h"
 #include "Utils/Range.h"
 
 #include <contacts.h>
 
 #define UPCAST(metadata) (const ContactTypeMetadata *) metadata
 
+using namespace Common;
 using namespace Contacts;
 using namespace Contacts::Model;
 using namespace Utils;
@@ -117,7 +119,7 @@ const int contactNumberTypeValues[] = {
 	CONTACTS_NUMBER_TYPE_CUSTOM
 };
 const ContactEnumMetadata contactNumberType = {
-	TypeEnum, EnumTypeNumber, makeRange(contactNumberTypeValues),
+	TypeEnum, EnumNumberType, makeRange(contactNumberTypeValues),
 	CONTACTS_NUMBER_TYPE_CELL, CONTACTS_NUMBER_TYPE_CUSTOM
 };
 const ContactFieldMetadata contactNumberFields[] = {
@@ -138,7 +140,7 @@ const int contactEmailTypeValues[] = {
 	CONTACTS_EMAIL_TYPE_CUSTOM
 };
 const ContactEnumMetadata contactEmailType = {
-	TypeEnum, EnumTypeEmail, makeRange(contactEmailTypeValues),
+	TypeEnum, EnumEmailType, makeRange(contactEmailTypeValues),
 	CONTACTS_EMAIL_TYPE_HOME, CONTACTS_EMAIL_TYPE_CUSTOM
 };
 const ContactFieldMetadata contactEmailFields[] = {
@@ -159,7 +161,7 @@ const int contactAddrTypeValues[] = {
 	CONTACTS_ADDRESS_TYPE_CUSTOM
 };
 const ContactEnumMetadata contactAddrType = {
-	TypeEnum, EnumTypeAddress, makeRange(contactAddrTypeValues),
+	TypeEnum, EnumAddressType, makeRange(contactAddrTypeValues),
 	CONTACTS_ADDRESS_TYPE_HOME, CONTACTS_ADDRESS_TYPE_CUSTOM
 };
 const ContactFieldMetadata contactAddrFields[] = {
@@ -180,7 +182,7 @@ const int contactEventTypeValues[] = {
 	CONTACTS_EVENT_TYPE_CUSTOM
 };
 const ContactEnumMetadata contactEventType = {
-	TypeEnum, EnumTypeEvent, makeRange(contactEventTypeValues),
+	TypeEnum, EnumEventType, makeRange(contactEventTypeValues),
 	CONTACTS_EVENT_TYPE_BIRTH, CONTACTS_EVENT_TYPE_CUSTOM
 };
 const ContactFieldMetadata contactEventFields[] = {
@@ -212,7 +214,7 @@ const int contactRelTypeValues[] = {
 	CONTACTS_RELATIONSHIP_TYPE_CUSTOM
 };
 const ContactEnumMetadata contactRelType = {
-	TypeEnum, EnumTypeRelationship, makeRange(contactRelTypeValues),
+	TypeEnum, EnumRelationshipType, makeRange(contactRelTypeValues),
 	CONTACTS_RELATIONSHIP_TYPE_ASSISTANT, CONTACTS_RELATIONSHIP_TYPE_CUSTOM
 };
 const ContactFieldMetadata contactRelFields[] = {
@@ -233,7 +235,7 @@ const int contactUrlTypeValues[] = {
 	CONTACTS_URL_TYPE_CUSTOM
 };
 const ContactEnumMetadata contactUrlType = {
-	TypeEnum, EnumTypeUrl, makeRange(contactUrlTypeValues),
+	TypeEnum, EnumUrlType, makeRange(contactUrlTypeValues),
 	CONTACTS_URL_TYPE_HOME, CONTACTS_URL_TYPE_CUSTOM
 };
 const ContactFieldMetadata contactUrlFields[] = {
@@ -258,7 +260,7 @@ const int contactMsgTypeValues[] = {
 	CONTACTS_MESSENGER_TYPE_CUSTOM
 };
 const ContactEnumMetadata contactMsgType = {
-	TypeEnum, EnumTypeMessenger, makeRange(contactMsgTypeValues),
+	TypeEnum, EnumMessengerType, makeRange(contactMsgTypeValues),
 	CONTACTS_MESSENGER_TYPE_AIM, CONTACTS_MESSENGER_TYPE_CUSTOM
 };
 const ContactFieldMetadata contactMsgFields[] = {

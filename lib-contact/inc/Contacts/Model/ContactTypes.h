@@ -68,20 +68,6 @@ namespace Contacts
 		};
 
 		/**
-		 * @brief Subtype for field of TypeEnum type
-		 */
-		enum ContactEnumType
-		{
-			EnumTypeNumber,
-			EnumTypeEmail,
-			EnumTypeAddress,
-			EnumTypeEvent,
-			EnumTypeRelationship,
-			EnumTypeUrl,
-			EnumTypeMessenger
-		};
-
-		/**
 		 * @brief Subtype for field of TypeText type
 		 */
 		enum ContactTextType
