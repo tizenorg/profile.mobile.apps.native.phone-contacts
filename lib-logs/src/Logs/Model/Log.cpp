@@ -31,10 +31,23 @@ Log::~Log()
 	if (m_Group) {
 		m_Group->removeLog(this);
 	}
+	if (m_OnRemoved) {
+		m_OnRemoved();
+	}
 	contacts_record_destroy(m_LogRecord, true);
 	if (m_ContactRecord) {
 		contacts_record_destroy(m_ContactRecord, true);
 	}
+}
+
+void Log::setRemoveCallback(RemoveCallback callback)
+{
+	m_OnRemoved = std::move(callback);
+}
+
+void Log::unsetRemoveCallback()
+{
+	m_OnRemoved = nullptr;
 }
 
 const char *Log::getName() const
