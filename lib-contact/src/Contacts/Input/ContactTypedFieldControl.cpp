@@ -19,9 +19,10 @@
 #include "Contacts/Input/ContactTypedFieldLabelPopup.h"
 #include "Contacts/Model/ContactEnumField.h"
 #include "Contacts/Model/ContactTextField.h"
-#include "Contacts/Common/Strings.h"
+#include "Common/Strings.h"
 #include "Utils/Logger.h"
 
+using namespace Common;
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
@@ -35,7 +36,7 @@ void ContactTypedFieldControl::onCreated()
 {
 	int currentValue = m_TypeField.getValue();
 
-	auto pairs = Common::getContactEnumValueNames(ContactEnumType(m_TypeField.getSubType()));
+	auto pairs = getEnumValueNames(EnumType(m_TypeField.getSubType()));
 	for (auto &&pair : pairs) {
 		addItem(pair.name, pair.value);
 
