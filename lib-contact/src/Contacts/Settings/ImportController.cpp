@@ -16,7 +16,6 @@
  */
 
 #include "Contacts/Settings/ImportController.h"
-#include "Contacts/Utils.h"
 #include "Ui/Popup.h"
 #include "Utils/Logger.h"
 
@@ -27,9 +26,9 @@ using namespace Contacts::Settings;
 #define BUFFER_SIZE        1024
 
 ImportController::ImportController(Evas_Object *parent, const char *title,
-			size_t totalCount, std::vector<std::string> vcards)
+		size_t totalCount, Vcards vcards, Records records)
 	: ProgressController(parent, title, totalCount), m_IsPaused(false),
-	  m_Vcards(std::move(vcards))
+	  m_Records(std::move(records)), m_Vcards(std::move(vcards))
 {
 	createCancelPopup(parent);
 }
@@ -83,9 +82,16 @@ void ImportController::onStart()
 
 	for (auto &&vcard : m_Vcards) {
 		m_CurrentVcard = vcard;
-
-		int err = contacts_vcard_parse_to_contact_foreach(vcard.c_str(), onVcardParse, this);
-		WARN_IF_ERR(err, "contacts_vcard_parse_to_contact_foreach() failed.");
+		if (!m_Records.empty()) {
+			for (auto &&record : m_Records) {
+				if (!onVcardParse(record, this)) {
+					break;
+				}
+			}
+		} else {
+			int err = contacts_vcard_parse_to_contact_foreach(vcard.c_str(), onVcardParse, this);
+			WARN_IF_ERR(err, "contacts_vcard_parse_to_contact_foreach() failed.");
+		}
 	}
 
 	contacts_disconnect_on_thread();
