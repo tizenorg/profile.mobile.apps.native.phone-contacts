@@ -20,6 +20,7 @@
 
 #include <contacts.h>
 #include <time.h>
+#include <functional>
 
 namespace Logs
 {
@@ -33,6 +34,12 @@ namespace Logs
 		{
 		public:
 			/**
+			 * @brief Callback to be called when log was removed to group.
+			 * @param[in]   log   Removed log
+			 */
+			typedef std::function<void()> LogRemoveCallback;
+
+			/**
 			 * @brief Create log record
 			 * @param[in]   record  Log record (_contact_person_phone_log)
 			 */
@@ -40,6 +47,12 @@ namespace Logs
 			~Log();
 			Log(const Log &log) = delete;
 			Log &operator=(const Log &log) = delete;
+
+			/**
+			 * @brief Set log remove callback.
+			 * @param[in]   callback    log remove callback
+			 */
+			void setLogRemoveCallback(LogRemoveCallback callback);
 
 			/**
 			 * @return log name
@@ -119,6 +132,7 @@ namespace Logs
 			contacts_record_h m_ContactRecord;
 
 			LogGroup *m_Group;
+			LogRemoveCallback m_OnLogRemoved;
 		};
 	}
 }

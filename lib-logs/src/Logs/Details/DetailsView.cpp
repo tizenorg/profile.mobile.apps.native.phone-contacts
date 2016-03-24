@@ -19,23 +19,35 @@
 #include "Logs/Details/BasicInfoItem.h"
 #include "Logs/Details/LogDetailItem.h"
 #include "Logs/List/LogGroupItem.h"
-#include "Logs/Model/LogGroup.h"
 #include "Logs/Model/Log.h"
 #include "LogsDetailsItemLayout.h"
 
 #include "App/Path.h"
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
-#include "Ui/Navigator.h"
+
+#include <algorithm>
 
 using namespace Logs::Model;
 using namespace Logs::Details;
 using namespace Logs::List;
 using namespace Contacts;
+using namespace std::placeholders;
 
 DetailsView::DetailsView(LogGroup *group)
-	: m_Group(group), m_Genlist(nullptr), m_BasicInfoItem(nullptr)
+	: m_Group(group), m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_GroupItem(nullptr)
 {
+	setSelectCallback(std::bind(&DetailsView::onSelected, this, _1));
+	setCancelCallback(std::bind(&DetailsView::onCanceled, this));
+	m_Group->setLogAddCallback(std::bind(&DetailsView::onLogAdded, this, _1));
+	m_GroupChangeCbHandle = m_Group->addChangeCallback(std::bind(&DetailsView::onGroupChanged, this, _1));
+}
+
+DetailsView::~DetailsView()
+{
+	if (m_Group) {
+		m_Group->removeChangeCallback(m_GroupChangeCbHandle);
+	}
 }
 
 Evas_Object *DetailsView::onCreate(Evas_Object *parent)
@@ -49,6 +61,15 @@ Evas_Object *DetailsView::onCreate(Evas_Object *parent)
 void DetailsView::onCreated()
 {
 	fillGenList();
+}
+
+bool DetailsView::onBackPressed()
+{
+	if (getSelectMode() != SelectNone) {
+		setSelectMode(SelectNone);
+		return false;
+	}
+	return true;
 }
 
 void DetailsView::onSelectModeChanged(SelectMode selectMode)
@@ -74,18 +95,8 @@ void DetailsView::onMenuPressed()
 
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
-
 	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
-		DetailsView *view = new DetailsView(m_Group);
-		view->setSelectMode(SelectMulti);
-		view->setSelectCallback([](SelectResults results) {
-			for (auto &&result : results) {
-				Log *log = (Log *)result.value.data;
-				log->remove();
-			}
-			return true;
-		});
-		getNavigator()->navigateTo(view);
+		setSelectMode(SelectMulti);
 	});
 	menu->show();
 }
@@ -111,16 +122,57 @@ void DetailsView::insertBasicInfoItem()
 void DetailsView::insertLogGroupItem()
 {
 	Log *log = m_Group->getLogList().back();
-	LogGroupItem *groupItem = new LogGroupItem(log->getTime());
-	m_Genlist->insert(groupItem);
-	elm_genlist_item_select_mode_set(groupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+	m_GroupItem = new LogGroupItem(log->getTime());
+	m_Genlist->insert(m_GroupItem);
+	elm_genlist_item_select_mode_set(m_GroupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+}
+
+void DetailsView::insertLogDetailItem(Log *log)
+{
+	LogDetailItem *logItem = new LogDetailItem(log);
+	m_Genlist->insert(logItem, m_GroupItem, m_GroupItem, Ui::Genlist::After);
+	log->setLogRemoveCallback(std::bind(&DetailsView::onLogRemoved, this, logItem));
+	onItemInserted(logItem);
 }
 
 void DetailsView::insertLogDetailItems()
 {
 	for (auto &log:m_Group->getLogList()) {
-		LogDetailItem *logItem = new LogDetailItem(log);
-		m_Genlist->insert(logItem);
-		onItemInserted(logItem);
+		insertLogDetailItem(log);
 	}
+}
+
+bool DetailsView::onSelected(SelectResults results)
+{
+	for (auto &&result : results) {
+		Log *log = (Log *)result.value.data;
+		log->remove();
+	}
+	setSelectMode(SelectNone);
+	return false;
+}
+
+bool DetailsView::onCanceled()
+{
+	setSelectMode(SelectNone);
+	return false;
+}
+
+void DetailsView::onGroupChanged(int type)
+{
+	if (type & LogGroup::ChangeRemoved) {
+		getPage()->close();
+		m_Group = nullptr;
+	}
+}
+
+void DetailsView::onLogAdded(Log *log)
+{
+	insertLogDetailItem(log);
+}
+
+void DetailsView::onLogRemoved(LogDetailItem *logItem)
+{
+	onItemRemove(logItem);
+	delete logItem;
 }
