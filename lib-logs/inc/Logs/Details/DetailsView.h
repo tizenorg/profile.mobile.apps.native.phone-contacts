@@ -19,6 +19,7 @@
 #define LOGS_DETAILS_DETAILS_VIEW_H
 
 #include "Contacts/SelectView.h"
+#include "Logs/Model/LogGroup.h"
 
 namespace Ui
 {
@@ -29,11 +30,16 @@ namespace Logs
 {
 	namespace Model
 	{
-		class LogGroup;
+		class Log;
+	}
+	namespace List
+	{
+		class LogGroupItem;
 	}
 	namespace Details
 	{
 		class BasicInfoItem;
+		class LogDetailItem;
 
 		/**
 		 * @brief Log details view.
@@ -48,8 +54,10 @@ namespace Logs
 			DetailsView(Model::LogGroup *group);
 
 		private:
+			virtual ~DetailsView() override;
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
+			virtual bool onBackPressed() override;
 			virtual void onSelectModeChanged(Contacts::SelectMode selectMode) override;
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onMenuPressed() override;
@@ -57,11 +65,20 @@ namespace Logs
 			void fillGenList();
 			void insertBasicInfoItem();
 			void insertLogGroupItem();
+			void insertLogDetailItem(Model::Log *log);
 			void insertLogDetailItems();
+			bool onSelected(Contacts::SelectResults results);
+			bool onCanceled();
+			void onGroupChanged(int type);
+			void onLogAdded(Model::Log *log);
+			void onLogRemoved(Model::Log *log);
 
 			Model::LogGroup *m_Group;
 			Ui::Genlist *m_Genlist;
 			BasicInfoItem *m_BasicInfoItem;
+			List::LogGroupItem *m_GroupItem;
+			Model::LogGroup::ChangeCbHandle m_GroupChangeCbHandle;
+			std::list<LogDetailItem *> m_LogItems;
 		};
 	}
 }

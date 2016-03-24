@@ -89,6 +89,11 @@ void SelectView::setCheckedItem(SelectItem *item, bool isChecked)
 	updateSelectCount(isChecked ? CountIncrement : CountDecrement);
 }
 
+void SelectView::setCancelCallback(CancelCallback callback)
+{
+	m_OnCanceled = std::move(callback);
+}
+
 SelectMode SelectView::getSelectMode() const
 {
 	return m_SelectMode;
@@ -343,5 +348,7 @@ void SelectView::onDonePressed(Evas_Object *button, void *eventInfo)
 
 void SelectView::onCancelPressed(Evas_Object *button, void *eventInfo)
 {
-	getPage()->close();
+	if (m_OnCanceled && m_OnCanceled()) {
+		getPage()->close();
+	}
 }

@@ -39,6 +39,11 @@ namespace Logs
 			 */
 			LogDetailItem(Model::Log *log);
 
+			/**
+			 * @return log id
+			 */
+			int getLogId();
+
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;

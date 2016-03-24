@@ -51,6 +51,9 @@ void LogGroup::addLog(Log *log)
 	setChangedType(ChangeCount);
 	m_LogList.push_back(log);
 	log->setLogGroup(this);
+	if (m_OnLogAdded) {
+		m_OnLogAdded(log);
+	}
 }
 
 void LogGroup::removeLog(Log *log)
@@ -58,6 +61,9 @@ void LogGroup::removeLog(Log *log)
 	setChangedType(ChangeCount);
 	m_LogList.remove(log);
 	log->setLogGroup(nullptr);
+	if (m_OnLogRemoved) {
+		m_OnLogRemoved(log);
+	}
 }
 
 Log &LogGroup::getFirstLog()
@@ -72,25 +78,29 @@ void LogGroup::remove()
 	}
 }
 
-void LogGroup::setChangeCallback(ChangeCallback callback)
+LogGroup::ChangeCbHandle LogGroup::setChangeCallback(ChangeCallback callback)
 {
-	m_ChangeCallback = std::move(callback);
+	m_ChangeCbs.push_back(std::move(callback));
+	return --m_ChangeCbs.cend();
 }
 
-void LogGroup::unsetChangeCallback()
+void LogGroup::unsetChangeCallback(ChangeCbHandle handle)
 {
-	m_ChangeCallback = nullptr;
+	m_ChangeCbs.erase(handle);
 }
 
 void LogGroup::onChange()
 {
-	if (m_ChangeCallback) {
+	if (!m_ChangeCbs.empty()) {
 		if (m_ChangedType != ChangeNone) {
 			if (m_LogList.empty()) {
 				m_ChangedType = ChangeRemoved;
 			}
-
-			m_ChangeCallback(m_ChangedType);
+			for (auto &changeCb : m_ChangeCbs) {
+				if (changeCb) {
+					changeCb(m_ChangedType);
+				}
+			}
 			m_ChangedType = ChangeNone;
 		}
 	}
@@ -98,7 +108,17 @@ void LogGroup::onChange()
 
 void LogGroup::setChangedType(int type)
 {
-	if (m_ChangeCallback) {
+	if (!m_ChangeCbs.empty()) {
 		m_ChangedType |= type;
 	}
+}
+
+void LogGroup::setLogAddCallback(LogAddCallback callback)
+{
+	m_OnLogAdded = std::move(callback);
+}
+
+void LogGroup::setLogRemoveCallback(LogRemoveCallback callback)
+{
+	m_OnLogRemoved = std::move(callback);
 }

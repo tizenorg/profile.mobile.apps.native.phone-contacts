@@ -84,6 +84,12 @@ namespace Contacts
 		 */
 		void setCheckedItem(SelectItem *item, bool isChecked);
 
+		/**
+		 * @brief Set cancel callback.
+		 * @param[in]   callback    Cancel callback
+		 */
+		void setCancelCallback(CancelCallback callback);
+
 	protected:
 		/**
 		 * @return View selection mode.
@@ -192,6 +198,7 @@ namespace Contacts
 		SelectMode m_SelectMode;
 		SelectCallback m_OnSelected;
 		CheckCallback m_OnChecked;
+		CancelCallback m_OnCanceled;
 	};
 }
 

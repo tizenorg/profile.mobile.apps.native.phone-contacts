@@ -59,6 +59,12 @@ namespace Contacts
 	 * @return Whether the component that provided the selection should be destroyed.
 	 */
 	typedef std::function<bool(SelectResults)> SelectCallback;
+
+	/**
+	 * @brief Callback to be called when cancel is pressed.
+	 * @return Whether the component that provided the selection should be destroyed.
+	 */
+	typedef std::function<bool()> CancelCallback;
 }
 
 #endif /* CONTACTS_SELECT_TYPES_H */

@@ -50,6 +50,11 @@ LogDetailItem::LogDetailItem(Log *log)
 {
 }
 
+int LogDetailItem::getLogId()
+{
+	return m_Log->getId();
+}
+
 char *LogDetailItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_LOG_TYPE) == 0) {
