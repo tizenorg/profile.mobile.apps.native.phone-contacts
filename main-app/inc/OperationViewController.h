@@ -19,6 +19,19 @@
 #define OPERATION_VIEW_CONTROLLER_H
 
 #include "OperationController.h"
+#include "Contacts/SelectTypes.h"
+
+namespace Contacts
+{
+	namespace List
+	{
+		class ListView;
+	}
+	namespace Settings
+	{
+		class ImportController;
+	}
+}
 
 class OperationViewController : public OperationController
 {
@@ -27,6 +40,10 @@ public:
 
 private:
 	virtual void onRequest(Operation operation, app_control_h request);
+	bool onSelectResult(Contacts::SelectResults results,
+			Contacts::List::ListView *view, std::string uri);
+	void onImportFinish(Contacts::Settings::ImportController *importer,
+			Contacts::List::ListView *view);
 };
 
 #endif /* _OPERATION_VIEW_CONTROLLER_H_ */

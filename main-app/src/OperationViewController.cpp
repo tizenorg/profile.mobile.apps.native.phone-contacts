@@ -20,16 +20,21 @@
 #include "MainApp.h"
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/List/ListView.h"
+#include "Contacts/Settings/ImportController.h"
 #include "Contacts/Utils.h"
+#include "Utils/Logger.h"
 
 #include "App/AppControlRequest.h"
 #include "Ui/Navigator.h"
 
+#include <notification.h>
 #include <string.h>
 
 using namespace Contacts;
 using namespace Contacts::Details;
 using namespace Contacts::List;
+
+#define BUFFER_SIZE        1024
 
 OperationViewController::OperationViewController()
 	: OperationController(OperationView)
@@ -54,10 +59,8 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 			view = new ListView(uri);
 			ListView *listView = (ListView *)view;
 			listView->setSelectMode(SelectMulti);
-			listView->setSelectCallback([](SelectResults results) {
-				//TODO: Launch Importer for selected contacts.
-				return false;
-			});
+			listView->setSelectCallback(std::bind(&OperationViewController::onSelectResult, this,
+					std::placeholders::_1, listView, std::string(uri)));
 
 			free(uri);
 		}
@@ -70,4 +73,41 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 	} else {
 		ui_app_exit();
 	}
+}
+
+bool OperationViewController::onSelectResult(SelectResults results, ListView *view, std::string uri)
+{
+	std::vector<contacts_record_h> records;
+	for(auto &&result: results) {
+		records.push_back((contacts_record_h)result.value.data);
+	}
+	int count = records.size();
+	if (count) {
+		std::vector<std::string> vcards;
+		vcards.push_back(uri);
+		Settings::ImportController *importer = new Settings::ImportController(view->getEvasObject(),
+				"IDS_PB_HEADER_IMPORT_CONTACTS_ABB2", count, std::move(vcards), std::move(records));
+		importer->setFinishCallback(std::bind(&OperationViewController::onImportFinish, this, importer, view));
+		importer->run();
+	}
+
+	return false;
+}
+
+void OperationViewController::onImportFinish(Settings::ImportController *importer, ListView *view)
+{
+	int count = importer->getTotalCount();
+	RETM_IF(count <= 0, "invalid count");
+	int err = NOTIFICATION_ERROR_NONE;
+
+	if (count == 1) {
+		err = notification_status_message_post(_("IDS_PB_TPOP_1_CONTACT_IMPORTED"));
+	} else {
+		char text[BUFFER_SIZE] = { 0, };
+		snprintf(text, sizeof(text), _("IDS_PB_TPOP_PD_CONTACTS_IMPORTED"), count);
+		err = notification_status_message_post(text);
+	}
+	WARN_IF_ERR(err, "notification_status_message_post() failed.");
+
+	view->getPage()->close();
 }
