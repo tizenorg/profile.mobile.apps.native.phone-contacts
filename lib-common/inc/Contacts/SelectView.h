@@ -70,6 +70,12 @@ namespace Contacts
 		void setSelectCallback(SelectCallback callback);
 
 		/**
+		 * @brief Set cancel callback.
+		 * @param[in]   callback    Cancel callback
+		 */
+		void setCancelCallback(CancelCallback callback);
+
+		/**
 		 * @brief Set item check callback.
 		 * @param[in]   callback    Check callback
 		 */
@@ -192,6 +198,7 @@ namespace Contacts
 		SelectMode m_SelectMode;
 		SelectCallback m_OnSelected;
 		CheckCallback m_OnChecked;
+		CancelCallback m_OnCanceled;
 	};
 }
 

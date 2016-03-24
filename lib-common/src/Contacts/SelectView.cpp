@@ -78,6 +78,11 @@ void SelectView::setSelectCallback(SelectCallback callback)
 	m_OnSelected = std::move(callback);
 }
 
+void SelectView::setCancelCallback(CancelCallback callback)
+{
+	m_OnCanceled = std::move(callback);
+}
+
 void SelectView::setCheckCallback(CheckCallback callback)
 {
 	m_OnChecked = std::move(callback);
@@ -343,5 +348,7 @@ void SelectView::onDonePressed(Evas_Object *button, void *eventInfo)
 
 void SelectView::onCancelPressed(Evas_Object *button, void *eventInfo)
 {
-	getPage()->close();
+	if (!m_OnCanceled || m_OnCanceled()) {
+		getPage()->close();
+	}
 }

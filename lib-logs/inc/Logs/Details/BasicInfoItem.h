@@ -20,6 +20,7 @@
 
 #include "Ui/GenlistItem.h"
 #include "App/AppControl.h"
+#include "Logs/Model/LogGroup.h"
 
 namespace Logs
 {
@@ -47,6 +48,11 @@ namespace Logs
 			 * @param[in]   group    Log group for display
 			 */
 			BasicInfoItem(Model::LogGroup *group);
+
+			/**
+			 * @brief Destroy basic info item.
+			 */
+			virtual ~BasicInfoItem() override;
 
 			/**
 			 * @brief Set "back" button callback.
@@ -89,11 +95,13 @@ namespace Logs
 			void onBackPressed(Evas_Object *button, void *eventInfo);
 			void onCreatePressed();
 			void onUpdatePressed();
+			void onGroupChanged(int type);
 
 			Model::LogGroup *m_Group;
 			Model::Log *m_Log;
 			App::AppControl m_AppControl;
 			BackCallback m_OnBackPressed;
+			Model::LogGroup::ChangeCbHandle m_GroupChangeCbHandle;
 		};
 	}
 }

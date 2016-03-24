@@ -215,7 +215,7 @@ void LogItem::updateItem(int type)
 
 void LogItem::setUpdateCallback()
 {
-	m_Group->setChangeCallback([this](int type){
+	m_Group->addChangeCallback([this](int type){
 		if (type & LogGroup::ChangeRemoved) {
 			if (m_OnDelete) {
 				m_OnDelete(this);
