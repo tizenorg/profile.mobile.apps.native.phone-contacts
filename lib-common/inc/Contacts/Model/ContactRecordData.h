@@ -15,12 +15,13 @@
  *
  */
 
-#ifndef CONTACTS_LIST_MODEL_CONTACT_RECORD_DATA_H
-#define CONTACTS_LIST_MODEL_CONTACT_RECORD_DATA_H
+#ifndef CONTACTS_MODEL_CONTACT_RECORD_DATA_H
+#define CONTACTS_MODEL_CONTACT_RECORD_DATA_H
 
 #include "Contacts/Model/ContactData.h"
 #include "Contacts/Model/DbChangeObserver.h"
 #include <contacts.h>
+#include <vector>
 
 namespace Contacts
 {
@@ -32,15 +33,10 @@ namespace Contacts
 			/**
 			 * @brief Create ContactRecordData object
 			 * @param[in]   type    ContactRecordData type
-			 */
-			ContactRecordData(Type type);
-			virtual ~ContactRecordData() override;
-
-			/**
-			 * @brief Update contact record handle
 			 * @param[in]   record  Contact record
 			 */
-			void updateContactRecord(contacts_record_h record);
+			ContactRecordData(Type type, contacts_record_h record = nullptr);
+			virtual ~ContactRecordData() override;
 
 			/**
 			 * @see ContactData::getId()
@@ -82,12 +78,35 @@ namespace Contacts
 			 * @brief Set changed callback
 			 * @param[in]   callback    Change callback
 			 */
-			void setChangedCallback(DbChangeObserver::Callback callback);
+			virtual void setChangedCallback(DbChangeObserver::Callback callback);
 
 			/**
 			 * @brief Unset changed callback
 			 */
-			void unsetChangedCallback();
+			virtual void unsetChangedCallback();
+
+			/**
+			 * @brief Update contact record handle
+			 * @param[in]   record  Contact record
+			 */
+			void updateRecord(contacts_record_h record);
+
+			/**
+			 * @brief Add @a handle to list of changed handles
+			 * @param[in]   handle  DB handle
+			 */
+			void addChangedHandle(DbChangeObserver::CallbackHandle handle);
+
+			/**
+			 * @param[in]   index   Index in handle container
+			 * @return Changed handle at @a i position
+			 */
+			DbChangeObserver::CallbackHandle getChangedHandle(size_t index) const;
+
+			/**
+			 * @brief Clear handle list
+			 */
+			void clearChangedHandles();
 
 			/**
 			 * @param[in]   record  Contact record
@@ -112,12 +131,12 @@ namespace Contacts
 		private:
 			friend class ContactRecordProvider;
 
-			void onUpdate(contacts_record_h record);
+			virtual void onUpdate(contacts_record_h record);
 
 			contacts_record_h m_Record;
-			DbChangeObserver::CallbackHandle m_Handle;
+			std::vector<DbChangeObserver::CallbackHandle> m_Handles;
 		};
 	}
 }
 
-#endif /* CONTACTS_LIST_MODEL_CONTACT_RECORD_DATA_H */
+#endif /* CONTACTS_MODEL_CONTACT_RECORD_DATA_H */
