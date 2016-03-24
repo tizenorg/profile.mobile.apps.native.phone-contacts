@@ -85,36 +85,37 @@ namespace
 PersonProvider::PersonProvider(int filterType)
 	: m_FilterType(filterType)
 {
-	m_Handle = DbChangeObserver::getInstance()->addCallback(
-			std::bind(&PersonProvider::onPersonInserted, this, _1, _2));
 }
 
 PersonProvider::~PersonProvider()
 {
-	DbChangeObserver::getInstance()->removeCallback(m_Handle);
-
-	for(auto &&item : m_PersonList) {
-		auto person = static_cast<Person *>(item);
-		unsetChangedCallback(*person);
-		delete person;
-	}
 }
 
 const ContactDataList &PersonProvider::getContactDataList()
 {
+	auto &contactList = getContactList();
+	if (!contactList.empty()) {
+		return contactList;
+	}
+
 	contacts_list_h list = ::getPersonList(m_FilterType);
 
 	contacts_record_h record = nullptr;
 	CONTACTS_LIST_FOREACH(list, record) {
-		insertPerson(record);
+		insertContactData(record);
 	}
 
 	contacts_list_destroy(list, false);
 
-	return m_PersonList;
+	return contactList;
 }
 
-contacts_record_h PersonProvider::getFilteredRecord(int contactId)
+ContactData *PersonProvider::createContactData(contacts_record_h record)
+{
+	return new Person(record);
+}
+
+contacts_record_h PersonProvider::getRecord(int contactId)
 {
 	contacts_query_h query = nullptr;
 	contacts_query_create(_contacts_person._uri, &query);
@@ -143,70 +144,7 @@ contacts_record_h PersonProvider::getFilteredRecord(int contactId)
 	return record;
 }
 
-void PersonProvider::insertPerson(contacts_record_h record)
+bool PersonProvider::shouldUpdateChangedCallback()
 {
-	m_PersonList.push_back(new Person(record));
-	setChangedCallback(--m_PersonList.end());
-}
-
-void PersonProvider::setChangedCallback(ContactDataList::iterator personIt)
-{
-	auto person = static_cast<Person *>(*personIt);
-
-	for (auto &&id : person->getContactIds()) {
-		auto handle = DbChangeObserver::getInstance()->addCallback(id,
-			std::bind(&PersonProvider::onPersonChanged, this, personIt, _1, _2));
-
-		person->m_Handles.push_back(handle);
-	}
-}
-
-void PersonProvider::updateChangedCallback(ContactDataList::iterator personIt)
-{
-	auto person = static_cast<Person *>(*personIt);
-
-	unsetChangedCallback(*person);
-	person->m_Handles.clear();
-	setChangedCallback(personIt);
-}
-
-void PersonProvider::unsetChangedCallback(const Person &person)
-{
-	auto &contactIds = person.getContactIds();
-	for (size_t i = 0; i <  contactIds.size(); ++i) {
-		DbChangeObserver::getInstance()->removeCallback(contactIds[i], person.m_Handles[i]);
-	}
-}
-
-void PersonProvider::onPersonInserted(int id, contacts_changed_e changeType)
-{
-	if (changeType == CONTACTS_CHANGE_INSERTED) {
-		auto record = getFilteredRecord(id);
-		if (record) {
-			insertPerson(record);
-			onInserted(*m_PersonList.back());
-		}
-	}
-}
-
-void PersonProvider::onPersonChanged(ContactDataList::iterator it, int id, contacts_changed_e changeType)
-{
-	auto person = static_cast<Person *>(*it);
-
-	if (changeType == CONTACTS_CHANGE_UPDATED) {
-		contacts_record_h record = getFilteredRecord(id);
-		if (record) {
-			int changes = person->updatePerson(record);
-			updateChangedCallback(it);
-			person->onUpdated(changes);
-
-			return;
-		}
-	}
-
-	unsetChangedCallback(*person);
-	person->onDeleted();
-
-	delete person;
-	m_PersonList.erase(it);
+	return true;
 }

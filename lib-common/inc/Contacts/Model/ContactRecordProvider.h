@@ -36,9 +36,60 @@ namespace Contacts
 			 */
 			virtual const ContactDataList &getContactDataList() override;
 
+		protected:
+			using ContactDataProvider::onInserted;
+
+			/**
+			 * @brief Create ContactData object
+			 * @param[in]   record  Contact record
+			 */
+			virtual ContactData *createContactData(contacts_record_h record);
+
+			/**
+			 * @brief Creates contact data and insert it in the list
+			 * @param[in]   record  Contact record
+			 */
+			void insertContactData(contacts_record_h record);
+
+			/**
+			 * @brief Retrieve _contacts_contact record from db by @a id
+			 * @remark Override this method when you need to get _contacts_contact
+			 *      record filtered, with projection etc. Or when you need to get
+			 *      record from another DB view (not _contacts_contact)
+			 * @param[in]   id  Contact ID
+			 * @return Record on success, otherwise nullptr
+			 */
+			virtual contacts_record_h getRecord(int id);
+
+			/**
+			 * @return contact list
+			 */
+			const ContactDataList &getContactList();
+
+			/**
+			 * @brief Contact inserted callback
+			 * @param[in]   id          Contact ID
+			 * @param[in]   changeType  Contact change type (Inserted)
+			 */
+			void onInserted(int id, contacts_changed_e changeType);
+
+			/**
+			 * @brief Contact changed callback
+			 * @param[in]   contactIt   Iterator to contact object in @m m_ContactList
+			 * @param[in]   id          Contact ID
+			 * @param[in]   changeType  Contact change type (Updated/Deleted)
+			 */
+			void onChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType);
+
 		private:
-			void onContactInserted(int id, contacts_changed_e changeType);
-			void onContactChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType);
+			/**
+			 * @brief Determine should we reassign changed callback on ContactData update or not
+			 * @remark Override this method only when you need to reassign changed callback
+			 * @return true if should update callback, false if not
+			 */
+			virtual bool shouldUpdateChangedCallback() { return false; }
+
+			void updateChangedCallback(ContactDataList::iterator it);
 
 			DbChangeObserver::CallbackHandle m_Handle;
 			ContactDataList m_ContactList;
