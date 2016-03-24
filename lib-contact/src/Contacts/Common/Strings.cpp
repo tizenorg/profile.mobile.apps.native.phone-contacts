@@ -16,9 +16,10 @@
  */
 
 #include "Contacts/Common/Strings.h"
-#include "Utils/Range.h"
+#include <contacts.h>
 
 using namespace Contacts;
+using namespace Contacts::Common;
 using namespace Contacts::Model;
 
 namespace
@@ -72,76 +73,76 @@ namespace
 		/* [PhoneticNameFieldLast]   = */ "IDS_PB_BODY_PHONETIC_LAST_NAME_ABB"
 	};
 
-	const char *numberValueNames[] = {
-		"IDS_PB_OPT_MOBILE",
-		"IDS_PB_OPT_HOME_ABB",
-		"IDS_PB_OPT_WORK",
-		"IDS_PB_OPT_MAIN",
-		"IDS_PB_OPT_FAX_HWORK_ABB",
-		"IDS_PB_OPT_FAX_HHOME_ABB",
-		"IDS_PB_OPT_PAGER",
-		"IDS_PB_OPT_OTHER",
-		"IDS_PB_OPT_CUSTOM"
+	ContactEnumValueName numberValueNames[] = {
+		{ CONTACTS_NUMBER_TYPE_CELL,                              "IDS_PB_OPT_MOBILE" },
+		{ CONTACTS_NUMBER_TYPE_VOICE | CONTACTS_NUMBER_TYPE_HOME, "IDS_PB_OPT_HOME_ABB" },
+		{ CONTACTS_NUMBER_TYPE_VOICE | CONTACTS_NUMBER_TYPE_WORK, "IDS_PB_OPT_WORK" },
+		{ CONTACTS_NUMBER_TYPE_MAIN,                              "IDS_PB_OPT_MAIN" },
+		{ CONTACTS_NUMBER_TYPE_FAX | CONTACTS_NUMBER_TYPE_WORK,   "IDS_PB_OPT_FAX_HWORK_ABB" },
+		{ CONTACTS_NUMBER_TYPE_FAX | CONTACTS_NUMBER_TYPE_HOME,   "IDS_PB_OPT_FAX_HHOME_ABB" },
+		{ CONTACTS_NUMBER_TYPE_PAGER,                             "IDS_PB_OPT_PAGER" },
+		{ CONTACTS_NUMBER_TYPE_OTHER,                             "IDS_PB_OPT_OTHER" },
+		{ CONTACTS_NUMBER_TYPE_CUSTOM,                            "IDS_PB_OPT_CUSTOM" }
 	};
 
-	const char *emailValueNames[] = {
-		"IDS_PB_OPT_HOME_ABB",
-		"IDS_PB_OPT_WORK",
-		"IDS_PB_OPT_OTHER",
-		"IDS_PB_OPT_CUSTOM"
+	ContactEnumValueName emailValueNames[] = {
+		{ CONTACTS_EMAIL_TYPE_HOME,         "IDS_PB_OPT_HOME_ABB" },
+		{ CONTACTS_EMAIL_TYPE_WORK,         "IDS_PB_OPT_WORK" },
+		{ CONTACTS_EMAIL_TYPE_OTHER,        "IDS_PB_OPT_OTHER" },
+		{ CONTACTS_EMAIL_TYPE_CUSTOM,       "IDS_PB_OPT_CUSTOM" }
 	};
 
-	const char *addressValueNames[] = {
-		"IDS_PB_OPT_HOME_ABB",
-		"IDS_PB_OPT_WORK",
-		"IDS_PB_OPT_OTHER",
-		"IDS_PB_OPT_CUSTOM"
+	ContactEnumValueName addressValueNames[] = {
+		{ CONTACTS_ADDRESS_TYPE_HOME,       "IDS_PB_OPT_HOME_ABB" },
+		{ CONTACTS_ADDRESS_TYPE_WORK,       "IDS_PB_OPT_WORK" },
+		{ CONTACTS_ADDRESS_TYPE_OTHER,      "IDS_PB_OPT_OTHER" },
+		{ CONTACTS_ADDRESS_TYPE_CUSTOM,     "IDS_PB_OPT_CUSTOM" }
 	};
 
-	const char *eventValueNames[] = {
-		"IDS_PB_OPT_BIRTHDAY",
-		"IDS_PB_OPT_ANNIVERSARY_ABB",
-		"IDS_PB_OPT_OTHER",
-		"IDS_PB_OPT_CUSTOM"
+	ContactEnumValueName eventValueNames[] = {
+		{ CONTACTS_EVENT_TYPE_BIRTH,        "IDS_PB_OPT_BIRTHDAY" },
+		{ CONTACTS_EVENT_TYPE_ANNIVERSARY,  "IDS_PB_OPT_ANNIVERSARY_ABB" },
+		{ CONTACTS_EVENT_TYPE_OTHER,        "IDS_PB_OPT_OTHER" },
+		{ CONTACTS_EVENT_TYPE_CUSTOM,       "IDS_PB_OPT_CUSTOM" }
 	};
 
-	const char *relValueNames[] = {
-		"IDS_PB_OPT_ASSISTANT_M_CONTACTS",
-		"IDS_PB_OPT_BROTHER",
-		"IDS_PB_OPT_CHILD",
-		"IDS_PB_OPT_DOMESTIC_PARTNER_ABB2",
-		"IDS_PB_OPT_FATHER",
-		"IDS_PB_OPT_FRIEND",
-		"IDS_PB_OPT_MANAGER",
-		"IDS_PB_OPT_MOTHER",
-		"IDS_PB_OPT_PARENT",
-		"IDS_PB_OPT_PARTNER",
-		"IDS_PB_OPT_REFERRED_BY_ABB",
-		"IDS_PB_OPT_RELATIVE",
-		"IDS_PB_OPT_SISTER",
-		"IDS_PB_OPT_SPOUSE",
-		"IDS_PB_OPT_CUSTOM"
+	ContactEnumValueName relValueNames[] = {
+		{ CONTACTS_RELATIONSHIP_TYPE_ASSISTANT,        "IDS_PB_OPT_ASSISTANT_M_CONTACTS" },
+		{ CONTACTS_RELATIONSHIP_TYPE_BROTHER,          "IDS_PB_OPT_BROTHER" },
+		{ CONTACTS_RELATIONSHIP_TYPE_CHILD,            "IDS_PB_OPT_CHILD" },
+		{ CONTACTS_RELATIONSHIP_TYPE_DOMESTIC_PARTNER, "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2" },
+		{ CONTACTS_RELATIONSHIP_TYPE_FATHER,           "IDS_PB_OPT_FATHER" },
+		{ CONTACTS_RELATIONSHIP_TYPE_FRIEND,           "IDS_PB_OPT_FRIEND" },
+		{ CONTACTS_RELATIONSHIP_TYPE_MANAGER,          "IDS_PB_OPT_MANAGER" },
+		{ CONTACTS_RELATIONSHIP_TYPE_MOTHER,           "IDS_PB_OPT_MOTHER" },
+		{ CONTACTS_RELATIONSHIP_TYPE_PARENT,           "IDS_PB_OPT_PARENT" },
+		{ CONTACTS_RELATIONSHIP_TYPE_PARTNER,          "IDS_PB_OPT_PARTNER" },
+		{ CONTACTS_RELATIONSHIP_TYPE_REFERRED_BY,      "IDS_PB_OPT_REFERRED_BY_ABB" },
+		{ CONTACTS_RELATIONSHIP_TYPE_RELATIVE,         "IDS_PB_OPT_RELATIVE" },
+		{ CONTACTS_RELATIONSHIP_TYPE_SISTER,           "IDS_PB_OPT_SISTER" },
+		{ CONTACTS_RELATIONSHIP_TYPE_SPOUSE,           "IDS_PB_OPT_SPOUSE" },
+		{ CONTACTS_RELATIONSHIP_TYPE_CUSTOM,           "IDS_PB_OPT_CUSTOM" }
 	};
 
-	const char *urlValueNames[] = {
-		"IDS_PB_OPT_HOME_ABB",
-		"IDS_PB_OPT_WORK",
-		"IDS_PB_OPT_OTHER",
-		"IDS_PB_OPT_CUSTOM"
+	ContactEnumValueName urlValueNames[] = {
+		{ CONTACTS_URL_TYPE_HOME,   "IDS_PB_OPT_HOME_ABB" },
+		{ CONTACTS_URL_TYPE_WORK,   "IDS_PB_OPT_WORK" },
+		{ CONTACTS_URL_TYPE_OTHER,  "IDS_PB_OPT_OTHER" },
+		{ CONTACTS_URL_TYPE_CUSTOM, "IDS_PB_OPT_CUSTOM" }
 	};
 
-	const char *msgValueNames[] = {
-		"IDS_PB_OPT_AIM",
-		"IDS_PB_OPT_YAHOO_E",
-		"IDS_PB_BODY_SKYPE",
-		"IDS_PB_OPT_QQ",
-		"IDS_PB_OPT_HANGOUTS",
-		"IDS_PB_OPT_ICQ",
-		"IDS_PB_OPT_JABBER",
-		"IDS_PB_OPT_CUSTOM"
+	ContactEnumValueName msgValueNames[] = {
+		{ CONTACTS_MESSENGER_TYPE_AIM,    "IDS_PB_OPT_AIM" },
+		{ CONTACTS_MESSENGER_TYPE_YAHOO,  "IDS_PB_OPT_YAHOO_E" },
+		{ CONTACTS_MESSENGER_TYPE_SKYPE,  "IDS_PB_BODY_SKYPE" },
+		{ CONTACTS_MESSENGER_TYPE_QQ,     "IDS_PB_OPT_QQ" },
+		{ CONTACTS_MESSENGER_TYPE_GOOGLE, "IDS_PB_OPT_HANGOUTS" },
+		{ CONTACTS_MESSENGER_TYPE_ICQ,    "IDS_PB_OPT_ICQ" },
+		{ CONTACTS_MESSENGER_TYPE_JABBER, "IDS_PB_OPT_JABBER" },
+		{ CONTACTS_MESSENGER_TYPE_CUSTOM, "IDS_PB_OPT_CUSTOM" }
 	};
 
-	Utils::Range<const char **> enumValueNames[] = {
+	Utils::Range<const ContactEnumValueName *> enumValueNames[] = {
 		/* [EnumTypeNumber]       = */ numberValueNames,
 		/* [EnumTypeEmail]        = */ emailValueNames,
 		/* [EnumTypeAddress]      = */ addressValueNames,
@@ -152,7 +153,7 @@ namespace
 	};
 }
 
-const char *Common::getContactFieldName(Model::ContactFieldId fieldId)
+const char *Common::getContactFieldName(ContactFieldId fieldId)
 {
 	return Utils::at(fieldNames, fieldId);
 }
@@ -162,7 +163,23 @@ const char *Common::getContactChildFieldName(unsigned fieldId)
 	return Utils::at(childFieldNames, fieldId);
 }
 
-Utils::Range<const char **> Common::getContactEnumValueNames(Model::ContactEnumType type)
+Utils::Range<const ContactEnumValueName *> Common::getContactEnumValueNames(ContactEnumType type)
 {
 	return Utils::at(enumValueNames, type);
+}
+
+const char *Common::getContactEnumValueName(Model::ContactEnumType type, int value)
+{
+	auto pairs = getContactEnumValueNames(type);
+	if (!pairs) {
+		return nullptr;
+	}
+
+	for (auto &&pair : pairs) {
+		if (pair.value == value) {
+			return pair.name;
+		}
+	}
+
+	return nullptr;
 }

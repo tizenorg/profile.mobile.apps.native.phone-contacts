@@ -35,15 +35,12 @@ void ContactTypedFieldControl::onCreated()
 {
 	int currentValue = m_TypeField.getValue();
 
-	auto names = Common::getContactEnumValueNames(ContactEnumType(m_TypeField.getSubType()));
-	auto values = m_TypeField.getValues();
-	RETM_IF(names.count() != values.count(), "names.count() != values.count()");
+	auto pairs = Common::getContactEnumValueNames(ContactEnumType(m_TypeField.getSubType()));
+	for (auto &&pair : pairs) {
+		addItem(pair.name, pair.value);
 
-	for (size_t i = 0; i < values.count(); ++i) {
-		addItem(names[i], values[i]);
-
-		if (values[i] == currentValue) {
-			setText(names[i]);
+		if (pair.value == currentValue) {
+			setText(pair.name);
 		}
 	}
 

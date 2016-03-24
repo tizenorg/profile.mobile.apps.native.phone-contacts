@@ -46,11 +46,29 @@ namespace Contacts
 		const char *getContactChildFieldName(unsigned fieldId);
 
 		/**
+		 * @brief Contact enum value-name pair.
+		 * @see ContactEnumType
+		 */
+		struct ContactEnumValueName
+		{
+			int value;          /**< Enum value */
+			const char *name;   /**< Translatable value name */
+		};
+
+		/**
 		 * @brief Get contact enum value names.
 		 * @param[in]   type    Enum type
 		 * @return Enum value translatable names range.
 		 */
-		Utils::Range<const char **> getContactEnumValueNames(Model::ContactEnumType type);
+		Utils::Range<const ContactEnumValueName *> getContactEnumValueNames(Model::ContactEnumType type);
+
+		/**
+		 * @brief Get translatable name for enum value.
+		 * @param[in]   type    Enum type
+		 * @param[in]   value   Enum value
+		 * @return Enum value translatable name.
+		 */
+		const char *getContactEnumValueName(Model::ContactEnumType type, int value);
 	}
 }
 
