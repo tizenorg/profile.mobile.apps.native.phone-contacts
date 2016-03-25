@@ -27,6 +27,7 @@
 
 #define ID_BUFFER_SIZE 16
 
+using namespace Common;
 using namespace Contacts;
 using namespace Contacts::Common;
 using namespace std::placeholders;
@@ -151,9 +152,9 @@ const char *OperationPickController::getResultTypeString(ResultType resultType)
 			return APP_CONTROL_RESULT_VCARD;
 		case ResultAction:
 			return APP_CONTROL_RESULT_ACTION;
+		default:
+			return APP_CONTROL_RESULT_ID;
 	}
-
-	return APP_CONTROL_RESULT_ID;
 }
 
 const char *OperationPickController::getActionTypeString(ActionType actionType)
@@ -165,7 +166,7 @@ const char *OperationPickController::getActionTypeString(ActionType actionType)
 			return APP_CONTROL_RESULT_MESSAGE;
 		case ActionEmail:
 			return APP_CONTROL_RESULT_EMAIL;
+		default:
+			return APP_CONTROL_RESULT_CALL;
 	}
-
-	return APP_CONTROL_RESULT_CALL;
 }
