@@ -75,6 +75,65 @@ const char *Log::getImagePath() const
 	return path;
 }
 
+int Log::getNumberType() const
+{
+	int type = CONTACTS_NUMBER_TYPE_OTHER;
+
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_person_phone_log._uri, &filter);
+	contacts_filter_add_int(filter, _contacts_person_phone_log.log_id, CONTACTS_MATCH_EQUAL, getId());
+
+	contacts_query_h query = nullptr;
+	contacts_query_create(_contacts_person_phone_log._uri, &query);
+	contacts_query_set_filter(query, filter);
+
+	contacts_list_h list = nullptr;
+	int err = contacts_db_get_records_with_query(query, 0, 1, &list);
+	WARN_IF_ERR(err, "contacts_db_get_records_with_query() failed.");
+
+	contacts_record_h record = nullptr;
+	contacts_list_get_current_record_p(list, &record);
+	contacts_record_get_int(record, _contacts_person_phone_log.address_type, &type);
+
+	contacts_list_destroy(list, true);
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+
+	return type;
+}
+
+std::string Log::getNumberLabel() const
+{
+	std::string label;
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_person_number._uri, &filter);
+	contacts_filter_add_int(filter, _contacts_person_number.person_id, CONTACTS_MATCH_EQUAL, getPersonId());
+	contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+	contacts_filter_add_str(filter, _contacts_person_number.number, CONTACTS_MATCH_EXACTLY, getNumber());
+
+	contacts_query_h query = nullptr;
+	contacts_query_create(_contacts_person_number._uri, &query);
+	contacts_query_set_filter(query, filter);
+
+	contacts_list_h list = nullptr;
+	int err = contacts_db_get_records_with_query(query, 0, 0, &list);
+	WARN_IF_ERR(err, "contacts_db_get_records_with_query() failed.");
+
+	contacts_record_h record = nullptr;
+	char *tmp = nullptr;
+	contacts_list_get_current_record_p(list, &record);
+	contacts_record_get_str_p(record, _contacts_person_number.label, &tmp);
+	if (tmp) {
+		label = tmp;
+	}
+
+	contacts_list_destroy(list, true);
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+
+	return label;
+}
+
 int Log::getType() const
 {
 	int type = CONTACTS_PLOG_TYPE_NONE;
