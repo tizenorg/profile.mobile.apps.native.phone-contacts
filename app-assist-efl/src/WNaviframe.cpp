@@ -152,8 +152,9 @@ void WNaviframe::setName(const char* name)
 	}
 	if( name )
 	{
-		__pv->__name = (char*)malloc( strlen(name)+1);
-		strcpy( __pv->__name, name);
+		size_t len = strlen(name) + 1;
+		__pv->__name = (char*)malloc(len);
+		strncpy( __pv->__name, name, len);
 	}
 }
 

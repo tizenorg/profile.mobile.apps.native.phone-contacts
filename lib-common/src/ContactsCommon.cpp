@@ -73,9 +73,10 @@ void ContactsCommon::loadLocalization()
 #else
 	char *path = app_get_resource_path();
 	size_t len = strlen(path);
+	size_t newLen = len + sizeof(LOCALE_DIR);
 
-	path = (char*) realloc(path, len + sizeof(LOCALE_DIR));
-	strcpy(path + len, LOCALE_DIR);
+	path = (char*) realloc(path, newLen);
+	strncpy(path + len, LOCALE_DIR, newLen);
 
 	bindtextdomain(PACKAGE, path);
 	free(path);
