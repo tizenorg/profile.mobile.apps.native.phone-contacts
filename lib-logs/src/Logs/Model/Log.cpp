@@ -18,6 +18,7 @@
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
 #include "Utils/Logger.h"
+#include "Contacts/Utils.h"
 
 using namespace Logs::Model;
 
@@ -68,6 +69,65 @@ const char *Log::getImagePath() const
 		contacts_record_get_str_p(m_ContactRecord, _contacts_person.image_thumbnail_path, &path);
 	}
 	return path;
+}
+
+int Log::getNumberType() const
+{
+	int type = CONTACTS_NUMBER_TYPE_OTHER;
+
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_person_phone_log._uri, &filter);
+	contacts_filter_add_int(filter, _contacts_person_phone_log.log_id, CONTACTS_MATCH_EQUAL, getId());
+
+	contacts_query_h query = nullptr;
+	contacts_query_create(_contacts_person_phone_log._uri, &query);
+	contacts_query_set_filter(query, filter);
+
+	contacts_list_h list = nullptr;
+	int err = contacts_db_get_records_with_query(query, 0, 1, &list);
+	WARN_IF_ERR(err, "contacts_db_get_records_with_query() failed.");
+
+	contacts_record_h record = nullptr;
+	contacts_list_get_current_record_p(list, &record);
+	contacts_record_get_int(record, _contacts_person_phone_log.address_type, &type);
+
+	contacts_list_destroy(list, true);
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+
+	return type;
+}
+
+std::string Log::getNumberLabel() const
+{
+	std::string label;
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_person_number._uri, &filter);
+	contacts_filter_add_int(filter, _contacts_person_number.person_id, CONTACTS_MATCH_EQUAL, getPersonId());
+
+	contacts_query_h query = nullptr;
+	contacts_query_create(_contacts_person_number._uri, &query);
+	contacts_query_set_filter(query, filter);
+
+	contacts_list_h list = nullptr;
+	int err = contacts_db_get_records_with_query(query, 0, 0, &list);
+	WARN_IF_ERR(err, "contacts_db_get_records_with_query() failed.");
+	const char *currentNumber = getNumber();
+	contacts_record_h tempRecord = nullptr;
+	CONTACTS_LIST_FOREACH(list, tempRecord) {
+		char *number = nullptr;
+		contacts_record_get_str_p(tempRecord, _contacts_person_number.number, &number);
+		if (strcmp(number, currentNumber) == 0) {
+			char *tmp = nullptr;
+			contacts_record_get_str_p(tempRecord, _contacts_person_number.label, &tmp);
+			label = tmp;
+			break;
+		}
+	}
+	contacts_list_destroy(list, true);
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+	return label;
 }
 
 int Log::getType() const

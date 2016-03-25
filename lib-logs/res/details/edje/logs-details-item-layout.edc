@@ -22,6 +22,13 @@
 #include "../../../../lib-apps-common/res/apps-common/edje/apps-common-utils.edc"
 #include "../../../../lib-common/res/details/edje/details-item-layout.edc"
 
+styles {
+	style {
+		name: "number_type_style";
+		base: "font=Tizen:style=Regular font_size="NUMBER_TYPE_TEXT_SIZE" align=left wrap=mixed color=#808080 ellipsis=1.0";
+	}
+}
+
 collections
 {
 	base_scale: 2.6;
@@ -116,6 +123,112 @@ collections
 				target: PART_NAME;
 				action: STATE_SET "visible" 0.0;
 				target: PART_UNSAVED_BTNS;
+			}
+		}
+	}
+
+	group {
+		name: "elm/genlist/item/"LOGS_DETAILS_ACTION_ITEM_STYLE"/default";
+		alias: "elm/genlist/item_compress/"LOGS_DETAILS_ACTION_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree/"LOGS_DETAILS_ACTION_ITEM_STYLE"/default";
+		alias: "elm/genlist/tree_compress/"LOGS_DETAILS_ACTION_ITEM_STYLE"/default";
+
+		data.item: "banded_bg_area" "swallow.bg";
+		data.item: "texts" PART_NUMBER_TYPE;
+		data.item: "contents" PART_NUMBER" "PART_ICON_CALL" "PART_ICON_MESSAGE;
+
+		parts {
+			swallow { "swallow.bg"; }
+				spacer { "spacer.base"; scale;
+					desc { "default";
+						min: 0 ACTION_ITEM_H;
+					}
+			}
+			spacer { "spacer.top"; scale;
+				desc { "default";
+					min: 0 ACTION_ITEM_PAD_TB;
+					align: 0.5 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 1.0 0.0;
+				}
+			}
+			spacer { "spacer.bottom"; scale;
+				desc { "default";
+					min: 0 ACTION_ITEM_PAD_TB;
+					align: 0.5 0.0;
+					rel1.relative: 0.0 1.0;
+					rel2.relative: 1.0 1.0;
+				}
+			}
+			spacer { "spacer.left"; scale;
+				desc { "default";
+					min: ACTION_ITEM_PAD_L 0;
+					align: 0.0 0.5;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 0.0 1.0;
+				}
+			}
+			spacer { "spacer.right"; scale;
+				desc { "default";
+					min: ACTION_ITEM_PAD_R 0;
+					align: 1.0 0.5;
+					rel1.relative: 1.0 0.0;
+					rel2.relative: 1.0 1.0;
+				}
+			}
+			textblock { PART_NUMBER_TYPE; scale;
+				desc { "default";
+					min: 0 ACTION_ITEM_NUMBER_TYPE_H;
+					max: -1 ACTION_ITEM_NUMBER_TYPE_H;
+					align: 0.0 0.0;
+					rel1 { relative: 1.0 1.0; to_x: "spacer.left"; to_y: "spacer.top"; }
+					rel2 { relative: 0.0 1.0; to_x: "spacer.icon.call.left"; }
+					text {
+						align: 0.5 0.5;
+						style: "number_type_style";
+					}
+				}
+			}
+			swallow { PART_NUMBER; scale;
+				desc { "default";
+					min: 0 ACTION_ITEM_NUMBER_H;
+					align: 0.5 0.0;
+					rel1 { relative: 1.0 1.0; to_x: "spacer.left"; to_y: PART_NUMBER_TYPE; }
+					rel2 { relative: 0.0 0.0; to_x: "spacer.icon.call.left"; to_y: "spacer.bottom"; }
+				}
+			}
+			spacer { "spacer.icon.call.left"; scale;
+				desc { "default";
+					min: ACTION_ITEM_PAD_BETWEEN 0;
+					align: 1.0 0.5;
+					rel1 { relative: 1.0 0.0; }
+					rel1 { relative: 0.0 0.0; to_x: PART_ICON_CALL; }
+				}
+			}
+			swallow { PART_ICON_CALL; scale;
+				desc { "default";
+					min: BTN_SIZE;
+					max: BTN_SIZE;
+					align: 1.0 0.5;
+					rel1 { relative: 1.0 0.0; to_x: "spacer.icon.call.left";}
+					rel2 { relative: 0.0 1.0; to_x: "spacer.icon.message.left";}
+				}
+			}
+			spacer { "spacer.icon.message.left"; scale;
+				desc { "default";
+					min: ACTION_ITEM_PAD_BETWEEN 0;
+					align: 1.0 0.5;
+					rel1 { relative: 0.0 0.0; to_x: PART_ICON_MESSAGE; }
+				}
+			}
+			swallow { PART_ICON_MESSAGE; scale;
+				desc { "default";
+					min: BTN_SIZE;
+					max: BTN_SIZE;
+					align: 1.0 0.5;
+					rel1 { relative: 1.0 0.0; to_x: "spacer.icon.message.left";}
+					rel2 { relative: 0.0 1.0; to_x: "spacer.right";}
+				}
 			}
 		}
 	}
