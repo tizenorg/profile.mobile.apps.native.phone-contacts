@@ -17,6 +17,7 @@
 
 #include "Logs/Details/DetailsView.h"
 #include "Logs/Details/BasicInfoItem.h"
+#include "Logs/Details/ActionItem.h"
 #include "Logs/Details/LogDetailItem.h"
 #include "Logs/List/LogGroupItem.h"
 #include "Logs/Model/Log.h"
@@ -35,7 +36,8 @@ using namespace Contacts;
 using namespace std::placeholders;
 
 DetailsView::DetailsView(LogGroup *group)
-	: m_Group(group), m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_GroupItem(nullptr)
+	: m_Group(group), m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_ActionItem(nullptr),
+	m_GroupItem(nullptr)
 {
 	setSelectCallback(std::bind(&DetailsView::onSelected, this, _1));
 	setCancelCallback(std::bind(&DetailsView::onCanceled, this));
@@ -76,9 +78,16 @@ void DetailsView::onSelectModeChanged(SelectMode selectMode)
 {
 	if (getSelectMode() == SelectNone) {
 		insertBasicInfoItem();
-	} else if (m_BasicInfoItem) {
-		delete m_BasicInfoItem;
-		m_BasicInfoItem = nullptr;
+		insertActionItem();
+	} else {
+		if (m_BasicInfoItem) {
+			delete m_BasicInfoItem;
+			m_BasicInfoItem = nullptr;
+		}
+		if (m_ActionItem) {
+			delete m_ActionItem;
+			m_ActionItem = nullptr;
+		}
 	}
 }
 
@@ -105,6 +114,7 @@ void DetailsView::fillGenList()
 {
 	if (getSelectMode() == SelectNone) {
 		insertBasicInfoItem();
+		insertActionItem();
 	}
 	insertLogGroupItem();
 	insertLogDetailItems();
@@ -117,6 +127,13 @@ void DetailsView::insertBasicInfoItem()
 		getPage()->close();
 	});
 	m_Genlist->insert(m_BasicInfoItem, nullptr, nullptr, Ui::Genlist::After);
+}
+
+void DetailsView::insertActionItem()
+{
+	m_ActionItem = new ActionItem(m_Group);
+	m_Genlist->insert(m_ActionItem, nullptr, m_BasicInfoItem, Ui::Genlist::After);
+	elm_genlist_item_select_mode_set(m_ActionItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 }
 
 void DetailsView::insertLogGroupItem()

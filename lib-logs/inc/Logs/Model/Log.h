@@ -21,6 +21,7 @@
 #include <contacts.h>
 #include <time.h>
 #include <functional>
+#include <string>
 
 namespace Logs
 {
@@ -68,6 +69,16 @@ namespace Logs
 			 * @return log name image path
 			 */
 			const char *getImagePath() const;
+
+			/**
+			 * @return type of number
+			 */
+			int getNumberType() const;
+
+			/**
+			 * @return label of number, when the number type is CONTACTS_NUMBER_TYPE_CUSTOM
+			 */
+			std::string getNumberLabel() const;
 
 			/**
 			 * @return log type

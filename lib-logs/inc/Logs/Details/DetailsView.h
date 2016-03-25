@@ -39,6 +39,7 @@ namespace Logs
 	namespace Details
 	{
 		class BasicInfoItem;
+		class ActionItem;
 		class LogDetailItem;
 
 		/**
@@ -64,6 +65,7 @@ namespace Logs
 
 			void fillGenList();
 			void insertBasicInfoItem();
+			void insertActionItem();
 			void insertLogGroupItem();
 			void insertLogDetailItem(Model::Log *log);
 			void insertLogDetailItems();
@@ -76,6 +78,7 @@ namespace Logs
 			Model::LogGroup *m_Group;
 			Ui::Genlist *m_Genlist;
 			BasicInfoItem *m_BasicInfoItem;
+			ActionItem *m_ActionItem;
 			List::LogGroupItem *m_GroupItem;
 			Model::LogGroup::ChangeCbHandle m_GroupChangeCbHandle;
 		};
