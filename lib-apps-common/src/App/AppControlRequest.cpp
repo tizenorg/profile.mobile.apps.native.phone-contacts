@@ -98,6 +98,13 @@ AppControl App::requestShareMyProfile(int recordId)
 	return request;
 }
 
+AppControl App::requestMultiShareContacts(const char **personIds, int count)
+{
+	AppControl request(APP_CONTROL_OPERATION_MULTI_SHARE, APP_CONTROL_MIME_CONTACT);
+	request.addExtra(APP_CONTROL_DATA_ID, personIds, count);
+	return request;
+}
+
 AppControl App::requestPickVcard(const char *path)
 {
 	//TODO: Replace it with AppControl which will not use application id.

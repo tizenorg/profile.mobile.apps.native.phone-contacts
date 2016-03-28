@@ -60,13 +60,13 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Create new person list view
-			 * @param]in]   filterType  Defines how to filter person list
+			 * @param[in]   filterType  Defines how to filter person list
 			 */
 			ListView(int filterType = FilterNone);
 
 			/**
 			 * @brief Create new vcard contact list view
-			 * @param]in]   vcardPath   Path of the vcard file
+			 * @param[in]   vcardPath   Path of the vcard file
 			 */
 			explicit ListView(const char *vcardPath);
 
@@ -87,6 +87,8 @@ namespace Contacts
 			virtual void onPageAttached(Ui::NavigatorPage *page) override;
 			virtual void onCreated() override;
 			virtual void onMenuPressed() override;
+
+			void onSharePressed();
 
 			virtual const char *getPageTitle() const override;
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;

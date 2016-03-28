@@ -120,6 +120,14 @@ namespace App
 	AppControl EXPORT_API requestShareMyProfile(int recordId);
 
 	/**
+	 * @brief Request share of multiple contacts via other application
+	 * @param[in]   personIds   Contact's person IDs
+	 * @param[in]   count       Person IDs count
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestMultiShareContacts(const char **personIds, int count);
+
+	/**
 	 * @brief Request pick vcard(s) from filesystem
 	 * @param[in]   path    Path of storage from where files should be picked
 	 * @return AppControl wrapper

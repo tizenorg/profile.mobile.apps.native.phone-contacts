@@ -29,6 +29,7 @@
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Settings/MainView.h"
 
+#include "App/AppControlRequest.h"
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
@@ -119,6 +120,8 @@ void ListView::onMenuPressed()
 		getNavigator()->navigateTo(view);
 	});
 
+	menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onSharePressed, this));
+
 	menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB", [this] {
 		auto manageFavPopup = new ManageFavoritesPopup(getNavigator());
 		manageFavPopup->create(getEvasObject());
@@ -129,6 +132,31 @@ void ListView::onMenuPressed()
 	});
 
 	menu->show();
+}
+
+void ListView::onSharePressed()
+{
+	ListView *view = new ListView();
+	view->setSelectMode(SelectMulti);
+	view->setSelectCallback([](SelectResults results) {
+		size_t count = results.count();
+
+		std::vector<std::string> idString(count);
+		idString.reserve(count);
+		std::vector<const char *> ids(count);
+		ids.reserve(count);
+
+		for (size_t i = 0; i < count; ++i) {
+			idString[i] = std::to_string(results[i].value.id);
+			ids[i] = idString[i].c_str();
+		}
+		App::AppControl control = App::requestMultiShareContacts(ids.data(), count);
+		control.launch();
+		control.detach();
+
+		return true;
+	});
+	getNavigator()->navigateTo(view);
 }
 
 const char *ListView::getPageTitle() const
