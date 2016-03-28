@@ -49,9 +49,25 @@ namespace Logs
 			typedef std::function<void(int)> ChangeCallback;
 
 			/**
+			 * @brief Callback to be called when log was added to group.
+			 * @param[in]   log   Added log
+			 */
+			typedef std::function<void(Log *log)> LogAddCallback;
+
+		private:
+			typedef std::list<ChangeCallback> ChangeCbs;
+
+		public:
+			/**
 			 * @brief List of logs.
 			 */
 			typedef std::list<Log *> LogList;
+
+			/**
+			 * @brief Callback handle
+			 * @remark Used to remove callback
+			 */
+			typedef ChangeCbs::const_iterator ChangeCbHandle;
 
 			/**
 			 * @brief Constructor
@@ -100,16 +116,18 @@ namespace Logs
 			void remove();
 
 			/**
-			 * @brief Set log changed callback
+			 * @brief Add log changed callback
 			 * @remark Callback called when log is changed.
-			 * @param[in]    callback    Changed log callback
+			 * @param[in]   callback    Changed log callback
+			 * @return handle of change callback
 			 */
-			void setChangeCallback(ChangeCallback callback);
+			ChangeCbHandle addChangeCallback(ChangeCallback callback);
 
 			/**
-			 * @brief Unset log change callback
+			 * @brief Remove log change callback
+			 * @param[in]   handle   Handle of change callback
 			 */
-			void unsetChangeCallback();
+			void removeChangeCallback(ChangeCbHandle handle);
 
 			/**
 			 * @brief Call log change callback
@@ -122,11 +140,22 @@ namespace Logs
 			 */
 			void setChangedType(int type);
 
+			/**
+			 * @brief Set log add callback.
+			 * @param[in]   callback    log add callback
+			 */
+			void setLogAddCallback(LogAddCallback callback);
+
+			/**
+			 * @brief Unset log add callback.
+			 */
+			void unsetLogAddCallback();
+
 		private:
 			LogList m_LogList;
-
-			ChangeCallback m_ChangeCallback;
 			int m_ChangedType;
+			ChangeCbs m_ChangeCbs;
+			LogAddCallback m_OnLogAdded;
 		};
 	}
 }

@@ -31,11 +31,20 @@
 
 using namespace Logs::Details;
 using namespace Logs::Model;
+using namespace std::placeholders;
 
 BasicInfoItem::BasicInfoItem(LogGroup *group)
 	: m_Group(group)
 {
 	m_Log = m_Group->getLogList().back();
+	m_GroupChangeCbHandle = m_Group->addChangeCallback(std::bind(&BasicInfoItem::onGroupChanged, this, _1));
+}
+
+BasicInfoItem::~BasicInfoItem()
+{
+	if (m_Group) {
+		m_Group->removeChangeCallback(m_GroupChangeCbHandle);
+	}
 }
 
 void BasicInfoItem::setBackCallback(BackCallback callback)
@@ -51,9 +60,8 @@ Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
 
 char *BasicInfoItem::getText(Evas_Object *parent, const char *part)
 {
-	const char *name = m_Log->getName();
 	if (isSavedLog() && strcmp(part, PART_NAME) == 0) {
-		return strdup(name);
+		return strdup(m_Log->getName());
 	}
 
 	return nullptr;
@@ -94,6 +102,7 @@ Evas_Object *BasicInfoItem::createBackButton(Evas_Object *parent)
 {
 	Evas_Object *button = elm_button_add(parent);
 	elm_object_style_set(button, "naviframe/back_btn/default");
+	evas_object_propagate_events_set(button, EINA_FALSE);
 	evas_object_smart_callback_add(button, "clicked",
 			makeCallback(&BasicInfoItem::onBackPressed), this);
 	return button;
@@ -150,4 +159,21 @@ void BasicInfoItem::onUpdatePressed()
 {
 	m_AppControl = App::requestContactEdit(0, m_Log->getNumber());
 	m_AppControl.launch();
+}
+
+void BasicInfoItem::onGroupChanged(int type)
+{
+	if (type & LogGroup::ChangeRemoved) {
+		m_Group = nullptr;
+	} else {
+		m_Log = m_Group->getLogList().back();
+		if (type & LogGroup::ChangeName) {
+			elm_genlist_item_fields_update(getObjectItem(), STATE_SAVED, ELM_GENLIST_ITEM_FIELD_STATE);
+			elm_genlist_item_fields_update(getObjectItem(), PART_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+			elm_genlist_item_fields_update(getObjectItem(), PART_UNSAVED_BTNS, ELM_GENLIST_ITEM_FIELD_CONTENT);
+		}
+		if (type & LogGroup::ChangeImage) {
+			elm_genlist_item_fields_update(getObjectItem(), PART_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+		}
+	}
 }
