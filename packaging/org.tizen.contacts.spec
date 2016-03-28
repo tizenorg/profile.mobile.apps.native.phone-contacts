@@ -23,6 +23,7 @@ BuildRequires: pkgconfig(elementary)
 BuildRequires: pkgconfig(feedback)
 BuildRequires: pkgconfig(libtzplatform-config)
 BuildRequires: pkgconfig(notification)
+BuildRequires: pkgconfig(sqlite3)
 BuildRequires: pkgconfig(storage)
 BuildRequires: pkgconfig(widget_service)
 
@@ -71,6 +72,7 @@ make %{?_smp_mflags}
 %{_res_dir}/input
 %{_res_dir}/speeddial
 %{_res_dir}/logs
+%{_res_dir}/widget
 
 %{_manifest_dir}/%{name}.xml
 %{_icon_dir}/*.png

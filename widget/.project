@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>contacts</name>
+	<name>contacts-widget</name>
 	<comment></comment>
 	<projects>
-		<project>lib-contact</project>
-		<project>lib-phone</project>
-		<project>lib-logs</project>
-		<project>lib-apps-common</project>
 		<project>lib-common</project>
-		<project>contacts-widget</project>
+		<project>lib-apps-common</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -37,7 +33,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1448271491128</id>
+			<id>1443699590989</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
@@ -46,7 +42,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1448271491135</id>
+			<id>1443699590990</id>
 			<name></name>
 			<type>6</type>
 			<matcher>
@@ -55,12 +51,12 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1448271491137</id>
+			<id>1443699590993</id>
 			<name></name>
 			<type>22</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-CMakeLists.txt</arguments>
+				<arguments>1.0-name-matches-true-false-CMakeLists.txt</arguments>
 			</matcher>
 		</filter>
 	</filteredResources>

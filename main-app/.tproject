@@ -9,6 +9,7 @@
         <blacklist/>
         <resFallback autoGen="true"/>
         <subProjects>
+            <tizenProject project="contacts-widget"/>
             <tizenProject project="lib-apps-common"/>
             <tizenProject project="lib-common"/>
             <tizenProject project="lib-contact"/>
