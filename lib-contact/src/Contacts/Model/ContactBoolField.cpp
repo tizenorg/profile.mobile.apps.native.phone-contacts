@@ -16,6 +16,7 @@
  */
 
 #include "Contacts/Model/ContactBoolField.h"
+#include "Contacts/Utils.h"
 
 using namespace Contacts::Model;
 
@@ -26,7 +27,7 @@ bool ContactBoolField::isChanged() const
 
 bool ContactBoolField::getValue() const
 {
-	return getValue(getRecord());
+	return getRecordBool(getRecord(), getPropertyId());
 }
 
 void ContactBoolField::setValue(bool value)
@@ -34,14 +35,7 @@ void ContactBoolField::setValue(bool value)
 	contacts_record_set_bool(getRecord(), getPropertyId(), value);
 }
 
-bool ContactBoolField::getValue(contacts_record_h record) const
-{
-	bool value = false;
-	contacts_record_get_bool(record, getPropertyId(), &value);
-	return value;
-}
-
 void ContactBoolField::onInitialize(contacts_record_h record)
 {
-	m_InitialValue = getValue(record);
+	m_InitialValue = getRecordBool(record, getPropertyId());
 }

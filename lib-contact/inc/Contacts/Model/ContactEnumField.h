@@ -76,11 +76,6 @@ namespace Contacts
 
 		protected:
 			/**
-			 * @brief Get field value from the given record.
-			 */
-			int getValue(contacts_record_h record) const;
-
-			/**
 			 * @brief Enum type metadata.
 			 */
 			const ContactEnumMetadata &getEnumMetadata() const;

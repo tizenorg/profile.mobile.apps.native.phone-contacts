@@ -17,6 +17,7 @@
 
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
+#include "Contacts/Utils.h"
 #include "Utils/Logger.h"
 
 using namespace Logs::Model;
@@ -61,9 +62,7 @@ const char *Log::getName() const
 
 const char *Log::getNumber() const
 {
-	char *number = nullptr;
-	contacts_record_get_str_p(m_LogRecord, _contacts_phone_log.address, &number);
-	return number;
+	return Contacts::getRecordStr(m_LogRecord, _contacts_phone_log.address);
 }
 
 const char *Log::getImagePath() const
@@ -77,33 +76,24 @@ const char *Log::getImagePath() const
 
 int Log::getType() const
 {
-	int type = CONTACTS_PLOG_TYPE_NONE;
-	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_type, &type);
-
-	return type;
+	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.log_type);
 }
 
 tm Log::getTime() const
 {
-	int time = 0;
-	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_time, &time);
-
-	time_t logTime = time;
-	return *localtime(&logTime);
+	time_t time = 0;
+	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_time, (int *) &time);
+	return *localtime(&time);
 }
 
 int Log::getId() const
 {
-	int id = 0;
-	contacts_record_get_int(m_LogRecord, _contacts_phone_log.id, &id);
-	return id;
+	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.id);
 }
 
 int Log::getPersonId() const
 {
-	int id = 0;
-	contacts_record_get_int(m_LogRecord, _contacts_phone_log.person_id, &id);
-	return id;
+	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.person_id);
 }
 
 int Log::getContactId() const
@@ -117,9 +107,7 @@ int Log::getContactId() const
 
 time_t Log::getDuration() const
 {
-	time_t duration = 0;
-	contacts_record_get_int(m_LogRecord, _contacts_phone_log.extra_data1, (int *)&duration);
-	return duration;
+	return (time_t) Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.extra_data1);
 }
 
 contacts_record_h Log::getContactRecord()

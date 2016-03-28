@@ -19,6 +19,7 @@
 #define CONTACTS_UTILS_H
 
 #include <contacts.h>
+#include "Utils/String.h"
 
 #define CONTACTS_LIST_FOREACH(list, record) \
 	bool success = (contacts_list_get_current_record_p(list, &record) == CONTACTS_ERROR_NONE); \
@@ -29,6 +30,62 @@
 
 namespace Contacts
 {
+	/**
+	 * @brief Convenience wrapper.
+	 * @see contacts_record_get_str_p()
+	 */
+	inline const char *getRecordStr(contacts_record_h record, unsigned propertyId)
+	{
+		char *str = nullptr;
+		contacts_record_get_str_p(record, propertyId, &str);
+		return str;
+	}
+
+	/**
+	 * @brief Convenience wrapper.
+	 * @see contacts_record_get_int()
+	 */
+	inline int getRecordInt(contacts_record_h record, unsigned propertyId)
+	{
+		int value = 0;
+		contacts_record_get_int(record, propertyId, &value);
+		return value;
+	}
+
+	/**
+	 * @brief Convenience wrapper.
+	 * @see contacts_record_get_bool()
+	 */
+	inline bool getRecordBool(contacts_record_h record, unsigned propertyId)
+	{
+		bool value = 0;
+		contacts_record_get_bool(record, propertyId, &value);
+		return value;
+	}
+
+	/**
+	 * @brief Compare two records by the same string property.
+	 * @param[in]   record1     First record
+	 * @param[in]   records     Second record
+	 * @param[in]   propertyId  Property to compare by
+	 * @return Whether properties are equal.
+	 */
+	inline bool compareRecordsStr(contacts_record_h record1, contacts_record_h record2,
+			unsigned propertyId)
+	{
+		return Utils::safeCmp(getRecordStr(record1, propertyId), getRecordStr(record2, propertyId));
+	}
+
+	/**
+	 * @brief Compare two records by the same integer property.
+	 * @see compareRecordsStr()
+	 */
+	inline bool compareRecordsInt(contacts_record_h record1, contacts_record_h record2,
+			unsigned propertyId)
+	{
+		return getRecordInt(record1, propertyId) == getRecordInt(record2, propertyId);
+	}
+
 	/**
 	 * @brief Get display contact record for a person.
 	 * @param[in]   personRecord    _contacts_person record

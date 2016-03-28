@@ -62,11 +62,6 @@ namespace Contacts
 
 		protected:
 			/**
-			 * @brief Get field value from the given record.
-			 */
-			const char *getValue(contacts_record_h record) const;
-
-			/**
 			 * @see ContactField::onInitialize()
 			 */
 			virtual void onInitialize(contacts_record_h record) override;

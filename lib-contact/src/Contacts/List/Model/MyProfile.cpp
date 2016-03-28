@@ -16,6 +16,7 @@
  */
 
 #include "Contacts/List/Model/MyProfile.h"
+#include "Contacts/Utils.h"
 
 using namespace Contacts::List::Model;
 
@@ -24,9 +25,7 @@ MyProfile::MyProfile()
 {
 	contacts_list_h list = nullptr;
 	contacts_db_get_all_records(_contacts_my_profile._uri, 0, 1, &list);
-
 	contacts_list_get_current_record_p(list, &m_MyProfileRecord);
-
 	contacts_list_destroy(list, false);
 }
 
@@ -37,27 +36,20 @@ MyProfile::~MyProfile()
 
 const int MyProfile::getId() const
 {
-	int id = 0;
-	contacts_record_get_int(m_MyProfileRecord, _contacts_my_profile.id, &id);
-	return id;
+	return getRecordInt(m_MyProfileRecord, _contacts_my_profile.id);
 }
 
 const char *MyProfile::getName() const
 {
-	char *name = nullptr;
-	contacts_record_get_str_p(m_MyProfileRecord, _contacts_my_profile.display_name, &name);
-	return name;
+	return getRecordStr(m_MyProfileRecord, _contacts_my_profile.display_name);
 }
 
 const char *MyProfile::getImagePath() const
 {
-	char *path = nullptr;
-	contacts_record_get_str_p(m_MyProfileRecord, _contacts_my_profile.image_thumbnail_path, &path);
-	return path;
+	return getRecordStr(m_MyProfileRecord, _contacts_my_profile.image_thumbnail_path);
 }
 
 const contacts_record_h MyProfile::getRecord() const
 {
 	return m_MyProfileRecord;
 }
-
