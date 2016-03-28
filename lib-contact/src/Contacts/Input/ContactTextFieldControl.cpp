@@ -27,11 +27,14 @@ using namespace Contacts::Input;
 
 namespace
 {
-	Elm_Input_Panel_Layout inputLayout[] = {
-		/* [TextTypeRegular] = */ ELM_INPUT_PANEL_LAYOUT_NORMAL,
-		/* [TextTypeNumber]  = */ ELM_INPUT_PANEL_LAYOUT_PHONENUMBER,
-		/* [TextTypeEmail]   = */ ELM_INPUT_PANEL_LAYOUT_EMAIL,
-		/* [TextTypeUrl]     = */ ELM_INPUT_PANEL_LAYOUT_URL
+	struct EntryLayout {
+		Elm_Input_Panel_Layout inputLayout;
+		Elm_Entry_Filter_Accept_Set filter;
+	} entryLayout[] = {
+		/* [TextTypeRegular] = */ { ELM_INPUT_PANEL_LAYOUT_NORMAL,      { nullptr } },
+		/* [TextTypeNumber]  = */ { ELM_INPUT_PANEL_LAYOUT_PHONENUMBER, { "+*#;,1234567890", nullptr } },
+		/* [TextTypeEmail]   = */ { ELM_INPUT_PANEL_LAYOUT_EMAIL,       { nullptr } },
+		/* [TextTypeUrl]     = */ { ELM_INPUT_PANEL_LAYOUT_URL,         { nullptr } }
 	};
 }
 
@@ -84,7 +87,13 @@ void ContactTextFieldControl::updateReturnKey()
 void ContactTextFieldControl::updateEntryLayout()
 {
 	setGuideText(Common::getContactChildFieldName(m_Field.getId()));
-	elm_entry_input_panel_layout_set(getEntry(), Utils::at(inputLayout, m_Field.getSubType()));
+
+	EntryLayout &layout = entryLayout[m_Field.getSubType()];
+	elm_entry_input_panel_layout_set(getEntry(), layout.inputLayout);
+
+	if (layout.filter.accepted) {
+		elm_entry_markup_filter_append(getEntry(), elm_entry_filter_accept_set, &layout.filter);
+	}
 }
 
 std::string ContactTextFieldControl::getFieldValue() const
