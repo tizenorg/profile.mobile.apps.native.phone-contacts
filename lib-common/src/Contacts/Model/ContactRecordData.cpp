@@ -17,7 +17,7 @@
 
 #include "Contacts/Model/ContactRecordData.h"
 #include "Contacts/ContactRecordChildIterator.h"
-#include <cstring>
+#include "Utils/String.h"
 
 using namespace Contacts::Model;
 
@@ -134,12 +134,6 @@ const char *ContactRecordData::getValue(contacts_record_h record, Field field)
 
 int ContactRecordData::getChanges(contacts_record_h oldContact, contacts_record_h newContact)
 {
-	auto isChanged = [](const char *str1, const char *str2) {
-		return (str1 && str2)
-				? (strcmp(str1, str2) != 0)
-				: (str1 != str2);
-	};
-
 	int changes = ChangedNone;
 
 	for (int i = FieldName; i < FieldMax; ++i) {
@@ -148,7 +142,7 @@ int ContactRecordData::getChanges(contacts_record_h oldContact, contacts_record_
 		const char *newValue = getValue(newContact, fieldId);
 		int changedInfo = 1 << fieldId;
 
-		if (isChanged(oldValue, newValue)) {
+		if (!Utils::safeCmp(oldValue, newValue)) {
 			changes |= changedInfo;
 		}
 	}

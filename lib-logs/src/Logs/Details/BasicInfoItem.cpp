@@ -51,9 +51,8 @@ Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
 
 char *BasicInfoItem::getText(Evas_Object *parent, const char *part)
 {
-	const char *name = m_Log->getName();
 	if (isSavedLog() && strcmp(part, PART_NAME) == 0) {
-		return strdup(name);
+		return Utils::safeDup(m_Log->getName());
 	}
 
 	return nullptr;

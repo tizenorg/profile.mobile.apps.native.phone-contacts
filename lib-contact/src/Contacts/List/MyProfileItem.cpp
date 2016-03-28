@@ -59,7 +59,7 @@ char *MyProfileItem::getText(Evas_Object *parent, const char *part)
 		}
 	}
 
-	return itemText ? strdup(itemText) : nullptr;
+	return Utils::safeDup(itemText);
 }
 
 Evas_Object *MyProfileItem::getContent(Evas_Object *parent, const char *part)

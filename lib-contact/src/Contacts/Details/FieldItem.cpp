@@ -56,10 +56,7 @@ char *FieldItem::getText(Evas_Object *parent, const char *part)
 	if (strcmp(part, "elm.text") == 0) {
 		switch (m_Field.getType()) {
 			case TypeText:
-			{
-				const char *value = m_Field.cast<ContactTextField>().getValue();
-				return value ? strdup(value) : nullptr;
-			}
+				return Utils::safeDup(m_Field.cast<ContactTextField>().getValue());
 			case TypeDate:
 			{
 				tm date = m_Field.cast<ContactDateField>().getValue();
@@ -72,7 +69,7 @@ char *FieldItem::getText(Evas_Object *parent, const char *part)
 		}
 	} else if (strcmp(part, "elm.text.sub") == 0) {
 		const char *name = Common::getContactFieldName(ContactFieldId(m_Object.getId()));
-		return name ? strdup(_(name)) : nullptr;
+		return Utils::safeDup(_(name));
 	}
 
 	return nullptr;

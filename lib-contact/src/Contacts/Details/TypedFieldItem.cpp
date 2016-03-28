@@ -49,7 +49,7 @@ char *TypedFieldItem::getText(Evas_Object *parent, const char *part)
 			name = _(getEnumValueName(type, m_TypeField.getValue()));
 		}
 
-		return name ? strdup(name) : nullptr;
+		return Utils::safeDup(name);
 	}
 
 	return FieldItem::getText(parent, part);
