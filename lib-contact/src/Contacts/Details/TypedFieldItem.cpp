@@ -40,21 +40,15 @@ ContactTypedObject &TypedFieldItem::getTypedObject() const
 char *TypedFieldItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text.sub") == 0) {
+		const char *name = nullptr;
 		if (m_TypeField.hasCustomValue()) {
-			return strdup(m_LabelField.getValue());
+			name = m_LabelField.getValue();
+		} else {
+			ContactEnumType type = ContactEnumType(m_TypeField.getSubType());
+			name = _(Common::getContactEnumValueName(type, m_TypeField.getValue()));
 		}
 
-		int currentValue = m_TypeField.getValue();
-
-		auto names = Common::getContactEnumValueNames(ContactEnumType(m_TypeField.getSubType()));
-		auto values = m_TypeField.getValues();
-		RETVM_IF(names.count() != values.count(), nullptr, "names.count() != values.count()");
-
-		for (size_t i = 0; i < values.count(); ++i) {
-			if (values[i] == currentValue) {
-				return strdup(_(names[i]));
-			}
-		}
+		return name ? strdup(name) : nullptr;
 	}
 
 	return FieldItem::getText(parent, part);
