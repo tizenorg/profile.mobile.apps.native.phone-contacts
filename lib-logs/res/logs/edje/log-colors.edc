@@ -44,4 +44,8 @@ color_classes {
 		name: "info_icon_bg_pressed";
 		color: 45 138 153 255;
 	}
+	color_class {
+		name: "info_rect";
+		color: 255 255 255 0;
+	}
 }
