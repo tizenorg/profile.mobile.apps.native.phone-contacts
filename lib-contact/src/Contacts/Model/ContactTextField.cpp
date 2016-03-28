@@ -17,6 +17,7 @@
 
 #include "Contacts/Model/ContactTextField.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
+#include "Contacts/Utils.h"
 
 using namespace Contacts::Model;
 
@@ -43,7 +44,7 @@ bool ContactTextField::isChanged() const
 
 const char *ContactTextField::getValue() const
 {
-	return getValue(getRecord());
+	return getRecordStr(getRecord(), getPropertyId());
 }
 
 void ContactTextField::setValue(const char *value)
@@ -57,16 +58,9 @@ void ContactTextField::setValue(const char *value)
 	}
 }
 
-const char *ContactTextField::getValue(contacts_record_h record) const
-{
-	char *value = nullptr;
-	contacts_record_get_str_p(record, getPropertyId(), &value);
-	return value;
-}
-
 void ContactTextField::onInitialize(contacts_record_h record)
 {
-	const char *value = getValue(record);
+	const char *value = getRecordStr(record, getPropertyId());
 	if (value) {
 		m_InitialValue = value;
 	}
