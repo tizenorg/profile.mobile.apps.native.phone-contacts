@@ -21,6 +21,7 @@
 #include <Elementary.h>
 #include <functional>
 #include <tizen.h>
+#include "Utils/String.h"
 
 namespace Ui
 {
