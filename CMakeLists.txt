@@ -16,6 +16,7 @@ pkg_check_modules(TIZEN_PACKAGES REQUIRED
 	feedback
 	libtzplatform-config
 	notification
+	sqlite3
 	storage
 	widget_service
 )
@@ -43,3 +44,4 @@ add_subdirectory(lib-contact)
 add_subdirectory(lib-phone)
 add_subdirectory(lib-logs)
 add_subdirectory(main-app)
+add_subdirectory(widget)

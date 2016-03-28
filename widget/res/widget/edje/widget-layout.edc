@@ -1,0 +1,157 @@
+/*
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+images {
+	image: BUTTON_ADD COMP;
+	image: BUTTON_ADD_PRESSED COMP;
+}
+
+styles {
+	style {
+		name: "no_contacts_title";
+		base: "font=Tizen:style=Condensed font_size="TITLE_TEXT_SIZE" align=center color=#fafafa style=shadow,bottom_right shadow_color=#00000066";
+	}
+	style {
+		name: "no_contacts_text";
+		base: "font=Tizen:style=Regular font_size="HELP_TEXT_SIZE" align=center color=#fafafa style=shadow,bottom_right shadow_color=#00000066";
+	}
+}
+
+collections {
+	base_scale: 2.6;
+
+	group {
+		name: GROUP_ICON_ADD;
+		parts {
+			image { "icon";
+				desc { "default";
+					aspect: 1 1;
+					aspect_preference: SOURCE;
+					image.normal: BUTTON_ADD;
+				}
+				desc { "pressed";
+					inherit: "default" 0.0;
+					image.normal: BUTTON_ADD_PRESSED;
+				}
+			}
+		}
+		programs {
+			program {
+				name: "pressed";
+				signal: "mouse,down,*";
+				source: "*";
+				action: STATE_SET "pressed" 0.0;
+				target: "icon";
+			}
+			program {
+				name: "unpressed";
+				signal: "mouse,up,*";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: "icon";
+			}
+		}
+	}
+
+	group {
+		name: GROUP_NO_CONTACTS;
+
+		images {
+			image: NOCONTACTS_BG COMP;
+			image: NOCONTACTS_BORDER COMP;
+		}
+
+		parts {
+			image { "bg";
+				desc { "default";
+					color: 0 0 0 15;
+					image.normal: NOCONTACTS_BG;
+					rel1.offset: BORDER_W BORDER_H;
+					rel2.offset: -BORDER_W -BORDER_H;
+				}
+				desc { "pressed";
+					inherit: "default" 0.0;
+					color: 0 0 0 45;
+				}
+			}
+			image { "border";
+				desc { "default";
+					color: 255 255 255 75;
+					image.normal: NOCONTACTS_BORDER;
+				}
+			}
+			textblock { PART_TITLE; scale;
+				desc { "default";
+					rel1.relative: 0.0 TITLE_OFFSET_Y/WIDGET_HEIGHT;
+					rel2.relative: 1.0 (TITLE_HEIGHT+TITLE_OFFSET_Y)/WIDGET_HEIGHT;
+					text {
+						align: 0.5 0.0;
+						style: "no_contacts_title";
+					}
+				}
+			}
+			textblock { PART_HELP; scale;
+				desc { "default";
+					rel1.relative: 0.0 HELP_OFFSET_Y/WIDGET_HEIGHT;
+					rel2.relative: 1.0 (HELP_HEIGHT+HELP_OFFSET_Y)/WIDGET_HEIGHT;
+					text {
+						align: 0.5 0.0;
+						style: "no_contacts_text";
+					}
+				}
+			}
+			programs {
+				program {
+					name: "pressed";
+					signal: "mouse,down,*";
+					source: "*";
+					action: STATE_SET "pressed" 0.0;
+					target: "bg";
+				}
+				program {
+					name: "unpressed";
+					signal: "mouse,up,*";
+					source: "*";
+					action: STATE_SET "default" 0.0;
+					target: "bg";
+				}
+			}
+		}
+	}
+
+	group {
+		name: GROUP_CONTACTS;
+
+		parts {
+			swallow { PART_BUTTON;
+				desc { "default";
+					fixed: 1 1;
+					rel1.relative: 1.0-(BUTTON_WIDTH+BUTTON_OFFSET_X)/WIDGET_WIDTH BUTTON_OFFSET_Y/WIDGET_HEIGHT;
+					rel2.relative: 1.0-BUTTON_OFFSET_X/WIDGET_WIDTH (BUTTON_HEIGHT+BUTTON_OFFSET_Y)/WIDGET_HEIGHT;
+				}
+			}
+			swallow { PART_CONTENT;
+				desc { "default";
+					rel1 {
+						relative: 0.0 1.0;
+						to_y: PART_BUTTON;
+					}
+				}
+			}
+		}
+	}
+}

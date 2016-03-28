@@ -184,6 +184,62 @@
 			<mime name="text/x-vcard"/>
 		</app-control>
 	</ui-application>
+	<widget-application appid="org.tizen.contacts.widget" exec="@BIN_DIR@/widget" main="true" update-period="0">
+		<label>Contacts</label>
+		<label xml:lang="ar-ae">الأسماء</label>
+		<label xml:lang="az-az">Adlar</label>
+		<label xml:lang="bg-bg">Телефонен указател</label>
+		<label xml:lang="ca-es">Contactes</label>
+		<label xml:lang="cs-cz">Kontakty</label>
+		<label xml:lang="da-dk">Kontakter</label>
+		<label xml:lang="de-de">Kontakte</label>
+		<label xml:lang="el-gr">Επαφές</label>
+		<label xml:lang="en-gb">Contacts</label>
+		<label xml:lang="en-ph">Contacts</label>
+		<label xml:lang="en-us">Contacts</label>
+		<label xml:lang="es-es">Contactos</label>
+		<label xml:lang="es-mx">Contactos</label>
+		<label xml:lang="et-ee">Kontaktid</label>
+		<label xml:lang="eu-es">Kontaktuak</label>
+		<label xml:lang="fi-fi">Yhteystiedot</label>
+		<label xml:lang="fr-ca">Contacts</label>
+		<label xml:lang="fr-fr">Contacts</label>
+		<label xml:lang="ga-ie">Teagmhálaithe</label>
+		<label xml:lang="gl-es">Contactos</label>
+		<label xml:lang="hi-in">संपर्क</label>
+		<label xml:lang="hr-hr">Imenik</label>
+		<label xml:lang="hu-hu">Névjegyek</label>
+		<label xml:lang="hy-am">Կոնտակտներ</label>
+		<label xml:lang="is-is">Tengiliðir</label>
+		<label xml:lang="it-it">Rubrica</label>
+		<label xml:lang="ja-jp">電話帳</label>
+		<label xml:lang="ka-ge">კონტაქტები</label>
+		<label xml:lang="kk-kz">Контактілер</label>
+		<label xml:lang="ko-kr">연락처</label>
+		<label xml:lang="lt-lt">Adresatai</label>
+		<label xml:lang="lv-lv">Kontakti</label>
+		<label xml:lang="mk-mk">Именик</label>
+		<label xml:lang="nb-no">Kontakter</label>
+		<label xml:lang="nl-nl">Contacten</label>
+		<label xml:lang="pl-pl">Kontakty</label>
+		<label xml:lang="pt-br">Contatos</label>
+		<label xml:lang="pt-pt">Contactos</label>
+		<label xml:lang="ro-ro">Contacte</label>
+		<label xml:lang="ru-ru">Контакты</label>
+		<label xml:lang="sk-sk">Kontakty</label>
+		<label xml:lang="sl-si">Imenik</label>
+		<label xml:lang="sr-rs">Kontakti</label>
+		<label xml:lang="sv-se">Kontakter</label>
+		<label xml:lang="tr-tr">Rehber</label>
+		<label xml:lang="uk-ua">Контакти</label>
+		<label xml:lang="uz-uz">Kontaktlar</label>
+		<label xml:lang="zh-cn">联系人</label>
+		<label xml:lang="zh-hk">聯絡人</label>
+		<label xml:lang="zh-tw">聯絡人</label>
+		<icon>org.tizen.contacts.png</icon>
+		<support-size preview="preview_4x4.png">4x4</support-size>
+		<support-size preview="preview_4x2.png">4x2</support-size>
+	</widget-application>
 	<privileges>
 		<privilege>http://tizen.org/privilege/appmanager.launch</privilege>
 		<privilege>http://tizen.org/privilege/call</privilege>
