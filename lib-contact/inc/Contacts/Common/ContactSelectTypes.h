@@ -19,7 +19,6 @@
 #define CONTACTS_COMMON_CONTACT_SELECT_TYPES_H
 
 #include "Contacts/SelectTypes.h"
-#include "Contacts/Model/ContactField.h"
 #include "Contacts/Model/ContactTypes.h"
 
 namespace Contacts
@@ -29,9 +28,9 @@ namespace Contacts
 	 */
 	enum FilterType
 	{
-		FilterNone   = -1,                      /**< All items are displayed */
-		FilterNumber = 1 << Model::FieldNumber, /**< Only items with number */
-		FilterEmail  = 1 << Model::FieldEmail   /**< Only items with email */
+		FilterNone   = -1,                           /**< All items are displayed */
+		FilterNumber = 1 << Model::ObjectTypeNumber, /**< Only items with number */
+		FilterEmail  = 1 << Model::ObjectTypeEmail   /**< Only items with email */
 	};
 
 	/**
@@ -45,16 +44,6 @@ namespace Contacts
 		ResultEmail     = Model::ObjectTypeEmail,     /**< Email ID is the result */
 		ResultVcard,    /**< vCard file path is the result */
 		ResultAction    /**< @ref ActionType is the result*/
-	};
-
-	/**
-	 * @brief Determines selected action for requested #ResultAction type.
-	 */
-	enum ActionType
-	{
-		ActionCall,
-		ActionMessage,
-		ActionEmail
 	};
 }
 

@@ -21,10 +21,12 @@
 #include "Contacts/List/ListView.h"
 #include "Contacts/Settings/ExportController.h"
 #include "Contacts/Utils.h"
+#include "Common/Actions.h"
 
 #include "Ui/ListPopup.h"
 #include "Utils/Logger.h"
 
+using namespace Common;
 using namespace Contacts;
 using namespace Contacts::Common;
 using namespace Contacts::List;

@@ -18,8 +18,8 @@
 #ifndef CONTACTS_DETAILS_ACTION_FIELD_ITEM_H
 #define CONTACTS_DETAILS_ACTION_FIELD_ITEM_H
 
+#include "Common/Actions.h"
 #include "Contacts/Details/TypedFieldItem.h"
-#include "App/AppControl.h"
 
 namespace Contacts
 {
@@ -32,20 +32,12 @@ namespace Contacts
 		class ActionFieldItem : public TypedFieldItem
 		{
 		public:
-			enum ActionId
-			{
-				ActionCall,     /**< Make a telephony call using value as a number */
-				ActionMessage,  /**< Compose an SMS using value as recipient */
-				ActionEmail,    /**< Compose an E-mail using value as an address */
-				ActionUrl       /**< Open webpage in browser using value as URL */
-			};
-
 			/**
 			 * @brief Create action item.
 			 * @param[in]   object      Contact field of TypeObject type
-			 * @param[in]   actionId    Action to perform using object's first field value
+			 * @param[in]   actionType  Action to perform using object's first field value
 			 */
-			ActionFieldItem(Model::ContactObject &object, ActionId actionId);
+			ActionFieldItem(Model::ContactObject &object, Common::ActionType actionType);
 
 		protected:
 			/**
@@ -69,13 +61,13 @@ namespace Contacts
 			 * @param[in]   actionId    Button's action ID
 			 * @return Action button.
 			 */
-			Evas_Object *createActionButton(Evas_Object *parent, ActionId actionId);
+			Evas_Object *createActionButton(Evas_Object *parent, Common::ActionType actionType);
 
 		private:
-			void executeAction(ActionId actionId);
+			void executeAction(Common::ActionType actionType);
 			void onButtonPressed(Evas_Object *button, void *eventInfo);
 
-			ActionId m_ActionId;
+			Common::ActionType m_ActionType;
 			App::AppControl m_AppControl;
 		};
 	}

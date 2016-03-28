@@ -94,7 +94,7 @@ void DetailsView::onCreated()
 
 	for (auto &&field : m_Contact) {
 		ContactFieldId fieldId = ContactFieldId(field.getId());
-		if (!isFieldVisible[fieldId] || !(m_FilterType & (1 << fieldId))) {
+		if (!isFieldVisible[fieldId] || !(m_FilterType & (1 << field.getSubType()))) {
 			continue;
 		}
 
@@ -179,11 +179,11 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 	ContactFieldId fieldId = ContactFieldId(field.getId());
 
 	if (fieldId == FieldNumber) {
-		item = new ActionFieldItem(field, ActionFieldItem::ActionCall);
+		item = new ActionFieldItem(field, Common::ActionCall);
 	} else if (fieldId == FieldEmail) {
-		item = new ActionFieldItem(field, ActionFieldItem::ActionEmail);
+		item = new ActionFieldItem(field, Common::ActionEmail);
 	} else if (fieldId == FieldUrl) {
-		item = new ActionFieldItem(field, ActionFieldItem::ActionUrl);
+		item = new ActionFieldItem(field, Common::ActionUrl);
 	} else if (fieldId == FieldNote) {
 		item = new MultilineFieldItem(field);
 	} else if (field.getInterfaces() & InterfaceTypedObject) {
