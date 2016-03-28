@@ -40,8 +40,9 @@ namespace Contacts
 		 */
 		enum ContactObjectInterface
 		{
-			ObjectTyped = 0x100, /**< Object supports ContactTypedObject interface */
-			ObjectCompound = 0x100 << 1, /**< Object supports ContactCompoundObject interface */
+			InterfaceNone           = 0,
+			InterfaceTypedObject    = 1 << 0, /**< Object supports ContactTypedObject interface */
+			InterfaceCompoundObject = 1 << 1, /**< Object supports ContactCompoundObject interface */
 		};
 
 		/**
@@ -49,21 +50,21 @@ namespace Contacts
 		 */
 		enum ContactObjectType
 		{
-			ObjectTypeContact      = 1,
-			ObjectTypeMyProfile    = 2,
-			ObjectTypeImage        = 3,
-			ObjectTypeName         = 4 + ObjectCompound,
-			ObjectTypeNumber       = 5 + ObjectTyped,
-			ObjectTypeEmail        = 6 + ObjectTyped,
-			ObjectTypeNote         = 7,
-			ObjectTypeAddress      = 8 + ObjectTyped,
-			ObjectTypeEvent        = 9 + ObjectTyped,
-			ObjectTypeRelationship = 10 + ObjectTyped,
-			ObjectTypeUrl          = 11 + ObjectTyped,
-			ObjectTypeMessenger    = 12 + ObjectTyped,
-			ObjectTypeNickname     = 13,
-			ObjectTypeCompany      = 14,
-			ObjectTypePhoneticName = 15 + ObjectCompound
+			ObjectTypeContact,
+			ObjectTypeMyProfile,
+			ObjectTypeImage,
+			ObjectTypeName,
+			ObjectTypeNumber,
+			ObjectTypeEmail,
+			ObjectTypeNote,
+			ObjectTypeAddress,
+			ObjectTypeEvent,
+			ObjectTypeRelationship,
+			ObjectTypeUrl,
+			ObjectTypeMessenger,
+			ObjectTypeNickname,
+			ObjectTypeCompany,
+			ObjectTypePhoneticName
 		};
 
 		/**
@@ -71,7 +72,6 @@ namespace Contacts
 		 */
 		enum ContactEnumType
 		{
-			EnumTypeImage,
 			EnumTypeNumber,
 			EnumTypeEmail,
 			EnumTypeAddress,

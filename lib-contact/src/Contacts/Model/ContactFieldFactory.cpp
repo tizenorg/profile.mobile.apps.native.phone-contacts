@@ -34,7 +34,9 @@ ContactFieldPtr ContactFieldFactory::createField(ContactFieldContainer *parent,
 		const ContactFieldMetadata &metadata)
 {
 	ContactField *field = nullptr;
-	switch(metadata.typeMetadata->type) {
+	const ContactTypeMetadata *typeMetadata = metadata.typeMetadata;
+
+	switch(typeMetadata->type) {
 		case TypeBool:
 			field = new ContactBoolField(parent, metadata); break;
 		case TypeEnum:
@@ -47,15 +49,16 @@ ContactFieldPtr ContactFieldFactory::createField(ContactFieldContainer *parent,
 			field = new ContactArray(parent, metadata); break;
 		case TypeObject:
 		{
-			unsigned subType = metadata.typeMetadata->subType;
-			if (subType & ObjectTyped) {
+			auto objectMetadata = (const ContactObjectMetadata *) typeMetadata;
+			unsigned interfaces = objectMetadata->interfaces;
+			if (interfaces & InterfaceTypedObject) {
 				field = new ContactTypedObject(parent, metadata);
-			} else if (subType & ObjectCompound) {
-				switch (metadata.id) {
-					case FieldName:
+			} else if (interfaces & InterfaceCompoundObject) {
+				switch (typeMetadata->subType) {
+					case ObjectTypeName:
 						field = new ContactName(parent, metadata);
 						break;
-					case FieldPhoneticName:
+					case ObjectTypePhoneticName:
 						field = new ContactPhoneticName(parent, metadata);
 						break;
 				}

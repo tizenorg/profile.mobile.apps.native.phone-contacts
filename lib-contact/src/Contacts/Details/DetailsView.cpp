@@ -186,7 +186,7 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 		item = new ActionFieldItem(field, ActionFieldItem::ActionUrl);
 	} else if (fieldId == FieldNote) {
 		item = new MultilineFieldItem(field);
-	} else if (field.getSubType() & ObjectTyped) {
+	} else if (field.getInterfaces() & InterfaceTypedObject) {
 		item = new TypedFieldItem(field);
 	} else {
 		item = new FieldItem(field);
