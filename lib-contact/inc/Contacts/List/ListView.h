@@ -99,6 +99,12 @@ namespace Contacts
 			void fillMfc();
 			void fillPersonList();
 
+			void setFastscollState(bool state);
+			Evas_Object *createNoContentLayout(Evas_Object *parent);
+			void showNoContentLayout();
+			void hideNoContentLayout();
+			void updateNoContentLayout();
+
 			void setFavouriteItemsMode(SelectMode selectMode);
 
 			void addSection(SectionId sectionId);
@@ -140,9 +146,11 @@ namespace Contacts
 			void onPersonUpdated(PersonItem *item, int changes);
 			void onPersonDeleted(PersonItem *item);
 
+			Evas_Object *m_Box;
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
 			Evas_Object *m_AddButton;
+			Evas_Object *m_NoContent;
 
 			Ui::GenlistGroupItem *m_Sections[SectionMax];
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
