@@ -18,7 +18,7 @@
 #ifndef LOGS_DETAILS_LOG_DETAIL_ITEM_H
 #define LOGS_DETAILS_LOG_DETAIL_ITEM_H
 
-#include "Contacts/SelectItem.h"
+#include "Ux/SelectItem.h"
 
 namespace Logs
 {
@@ -29,7 +29,7 @@ namespace Logs
 
 	namespace Details
 	{
-		class LogDetailItem : public Contacts::SelectItem
+		class LogDetailItem : public Ux::SelectItem
 		{
 		public:
 
@@ -42,8 +42,8 @@ namespace Logs
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
-			virtual void onSelectModeChanged(Contacts::SelectMode selectMode) override;
-			virtual Contacts::SelectResult getDefaultResult() const override;
+			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
+			virtual Ux::SelectResult getDefaultResult() const override;
 
 			static Evas_Object *createIcon(Evas_Object *parent, const char *path);
 			static const char *getImagePath(int type);

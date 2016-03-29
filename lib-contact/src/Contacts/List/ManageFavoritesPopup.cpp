@@ -42,8 +42,8 @@ void ManageFavoritesPopup::onCreated()
 void ManageFavoritesPopup::onAdd()
 {
 	ListView *view = new ListView();
-	view->setSelectMode(SelectMulti);
-	view->setSelectCallback([](SelectResults results) {
+	view->setSelectMode(Ux::SelectMulti);
+	view->setSelectCallback([](Ux::SelectResults results) {
 		//todo
 		return true;
 	});

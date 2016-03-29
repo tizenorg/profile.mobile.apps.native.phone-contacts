@@ -15,8 +15,8 @@
  *
  */
 
-#include "Contacts/SelectView.h"
-#include "Contacts/SelectItem.h"
+#include "Ux/SelectView.h"
+#include "Ux/SelectItem.h"
 
 #include "Ui/Genlist.h"
 #include "Utils/Callback.h"
@@ -26,14 +26,19 @@
 
 #define TITLE_BUFFER_SIZE 32
 
-using namespace Contacts;
+using namespace Ux;
 using namespace std::placeholders;
 
 SelectView::SelectView()
 	: m_DoneButton(nullptr), m_CancelButton(nullptr),
-	  m_SelectCount(0), m_SelectLimit(0),
-	  m_SelectMode(SelectNone)
+	  m_SelectCount(0), m_SelectLimit(0), m_SelectMode(SelectNone),
+	  m_Strings{ nullptr }
 {
+}
+
+void SelectView::setStrings(const Strings &strings)
+{
+	m_Strings = strings;
 }
 
 void SelectView::setSelectMode(SelectMode selectMode)
@@ -109,22 +114,6 @@ size_t SelectView::getSelectCount() const
 	return m_SelectCount;
 }
 
-const char *SelectView::getPageTitle() const
-{
-	switch (m_SelectMode) {
-		case SelectSingle:
-			return "IDS_PB_HEADER_SELECT";
-		case SelectMulti:
-			if (m_SelectLimit) {
-				return "%zu/%zu";
-			} else {
-				return "IDS_PB_HEADER_PD_SELECTED_ABB";
-			}
-		default:
-			return "";
-	}
-}
-
 void SelectView::onPageAttached(Ui::NavigatorPage *page)
 {
 	updatePageTitle();
@@ -158,9 +147,26 @@ void SelectView::updatePageTitle()
 		return;
 	}
 
-	char title[TITLE_BUFFER_SIZE];
-	snprintf(title, sizeof(title), _(getPageTitle()), m_SelectCount, m_SelectLimit);
-	page->setTitle(title);
+	const char *title = nullptr;
+	switch (m_SelectMode) {
+		case SelectNone:
+			title = m_Strings.titleDefault;
+			break;
+		case SelectSingle:
+			title = m_Strings.titleSingle;
+			break;
+		case SelectMulti:
+			if (m_SelectLimit) {
+				title = m_Strings.titleWithLimit;
+			} else {
+				title = m_Strings.titleMulti;
+			}
+			break;
+	}
+
+	char buffer[TITLE_BUFFER_SIZE];
+	snprintf(buffer, sizeof(buffer), _(title), m_SelectCount, m_SelectLimit);
+	page->setTitle(buffer);
 }
 
 void SelectView::updatePageButtons()
@@ -193,7 +199,7 @@ void SelectView::updateSelectAllItem()
 {
 	if (m_SelectMode == SelectMulti && !m_SelectLimit && !m_Items.empty()) {
 		if (!m_SelectAllItem) {
-			m_SelectAllItem.reset(new SelectAllItem());
+			m_SelectAllItem.reset(new SelectAllItem(m_Strings.selectAll));
 			m_SelectAllItem->setCheckCallback(std::bind(&SelectView::onSelectAllChecked, this, _1));
 			m_SelectAllItem->setDestroyCallback(std::bind(&SelectView::onSelectAllDestroy, this));
 			onSelectAllInsert(m_SelectAllItem.get());
@@ -261,13 +267,13 @@ void SelectView::createPageButtons()
 {
 	m_DoneButton = elm_button_add(getEvasObject());
 	elm_object_style_set(m_DoneButton, "naviframe/title_right");
-	elm_object_translatable_text_set(m_DoneButton, "IDS_PB_BUTTON_DONE_ABB3");
+	elm_object_translatable_text_set(m_DoneButton, m_Strings.buttonDone);
 	evas_object_smart_callback_add(m_DoneButton, "clicked",
 			makeCallback(&SelectView::onDonePressed), this);
 
 	m_CancelButton = elm_button_add(getEvasObject());
 	elm_object_style_set(m_CancelButton, "naviframe/title_left");
-	elm_object_translatable_text_set(m_CancelButton, "IDS_PB_BUTTON_CANCEL");
+	elm_object_translatable_text_set(m_CancelButton, m_Strings.buttonCancel);
 	evas_object_smart_callback_add(m_CancelButton, "clicked",
 			makeCallback(&SelectView::onCancelPressed), this);
 }

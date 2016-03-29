@@ -28,6 +28,7 @@
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Settings/MainView.h"
+#include "Common/Strings.h"
 
 #include "App/AppControlRequest.h"
 #include "Ui/Genlist.h"
@@ -39,13 +40,20 @@ using namespace Contacts;
 using namespace Contacts::Model;
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
+
 using namespace Utils;
+using namespace Ux;
 using namespace std::placeholders;
 
 ListView::ListView(int filterType)
 	: m_Genlist(nullptr), m_Index(nullptr), m_AddButton(nullptr),
 	  m_Sections{ nullptr }, m_HasIndex(true)
 {
+	auto strings = Common::getSelectViewStrings();
+	strings.titleDefault = "IDS_PB_TAB_CONTACTS";
+	strings.titleSingle = "IDS_PB_HEADER_SELECT_CONTACT_ABB2";
+	setStrings(strings);
+
 	m_Provider = new PersonProvider(filterType);
 }
 
@@ -53,6 +61,10 @@ ListView::ListView(const char *vcardPath)
 	: m_Genlist(nullptr), m_Index(nullptr), m_AddButton(nullptr),
 	  m_Sections{ nullptr }, m_HasIndex(false)
 {
+	auto strings = Common::getSelectViewStrings();
+	strings.buttonDone = "IDS_PB_HEADER_IMPORT";
+	setStrings(strings);
+
 	m_Provider = new VcardProvider(vcardPath);
 }
 
@@ -106,7 +118,11 @@ void ListView::onMenuPressed()
 	menu->create(getEvasObject());
 
 	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
+		auto strings = Common::getSelectViewStrings();
+		strings.buttonDone = "IDS_LOGS_OPT_DELETE";
+
 		ListView *view = new ListView();
+		view->setStrings(strings);
 		view->setSelectMode(SelectMulti);
 		view->setSelectCallback([](SelectResults results) {
 			std::vector<int> ids;
@@ -136,7 +152,11 @@ void ListView::onMenuPressed()
 
 void ListView::onSharePressed()
 {
+	auto strings = Common::getSelectViewStrings();
+	strings.buttonDone = "IDS_PB_OPT_SHARE";
+
 	ListView *view = new ListView();
+	view->setStrings(strings);
 	view->setSelectMode(SelectMulti);
 	view->setSelectCallback([](SelectResults results) {
 		size_t count = results.count();
@@ -157,18 +177,6 @@ void ListView::onSharePressed()
 		return true;
 	});
 	getNavigator()->navigateTo(view);
-}
-
-const char *ListView::getPageTitle() const
-{
-	switch (getSelectMode()) {
-		case SelectNone:
-			return "IDS_PB_TAB_CONTACTS";
-		case SelectSingle:
-			return "IDS_PB_HEADER_SELECT_CONTACT_ABB2";
-		default:
-			return SelectView::getPageTitle();
-	}
 }
 
 void ListView::onSelectAllInsert(Ui::GenlistItem *item)

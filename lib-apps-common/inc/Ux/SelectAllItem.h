@@ -15,18 +15,25 @@
  *
  */
 
-#ifndef CONTACTS_SELECT_ALL_H
-#define CONTACTS_SELECT_ALL_H
+#ifndef UX_SELECT_ALL_ITEM_H
+#define UX_SELECT_ALL_ITEM_H
 
 #include "Ui/GenlistCheckItem.h"
 
-namespace Contacts
+namespace Ux
 {
 	/**
 	 * @brief "Select all" genlist item
 	 */
 	class SelectAllItem : public Ui::GenlistCheckItem
 	{
+	public:
+		/**
+		 * @brief Create "Select all" item.
+		 * @param[in]   text    Item text
+		 */
+		SelectAllItem(const char *text);
+
 	protected:
 		/**
 		 * @see GenlistItem::getText()
@@ -37,7 +44,10 @@ namespace Contacts
 		 * @see GenlistItem::getContent()
 		 */
 		virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
+
+	private:
+		std::string m_Text;
 	};
 }
 
-#endif /* CONTACTS_SELECT_ALL_H */
+#endif /* UX_SELECT_ALL_ITEM_H */

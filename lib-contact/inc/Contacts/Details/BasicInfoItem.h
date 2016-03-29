@@ -18,8 +18,8 @@
 #ifndef CONTACTS_DETAILS_BASIC_INFO_ITEM_H
 #define CONTACTS_DETAILS_BASIC_INFO_ITEM_H
 
-#include "Contacts/SelectTypes.h"
 #include "Ui/GenlistItem.h"
+#include "Ux/SelectTypes.h"
 
 #include <contacts.h>
 #include <string>
@@ -60,7 +60,7 @@ namespace Contacts
 			 * @brief Set item selection mode.
 			 * @param[in]   mode    Selection mode
 			 */
-			void setSelectMode(SelectMode mode);
+			void setSelectMode(Ux::SelectMode mode);
 
 			/**
 			 * @brief Set "back" button callback.
@@ -111,7 +111,7 @@ namespace Contacts
 			Model::ContactTextField &m_CompanyName;
 			Model::ContactTextField &m_JobTitle;
 
-			SelectMode m_SelectMode;
+			Ux::SelectMode m_SelectMode;
 			BackCallback m_OnBackPressed;
 		};
 	}

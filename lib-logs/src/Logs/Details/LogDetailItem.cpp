@@ -38,7 +38,6 @@ using namespace Ui;
 using namespace Logs::Details;
 using namespace Logs::Model;
 using namespace Logs::Common;
-using namespace Contacts;
 
 namespace
 {
@@ -72,16 +71,16 @@ Evas_Object *LogDetailItem::getContent(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-void LogDetailItem::onSelectModeChanged(SelectMode selectMode)
+void LogDetailItem::onSelectModeChanged(Ux::SelectMode selectMode)
 {
-	if (getSelectMode() == SelectNone) {
+	if (selectMode == Ux::SelectNone) {
 		elm_genlist_item_select_mode_set(getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 	} else {
 		elm_genlist_item_select_mode_set(getObjectItem(), ELM_OBJECT_SELECT_MODE_DEFAULT);
 	}
 }
 
-SelectResult LogDetailItem::getDefaultResult() const
+Ux::SelectResult LogDetailItem::getDefaultResult() const
 {
 	return { 0, m_Log };
 }

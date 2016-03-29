@@ -15,13 +15,13 @@
  *
  */
 
-#ifndef CONTACTS_SELECT_ITEM_H
-#define CONTACTS_SELECT_ITEM_H
+#ifndef UX_SELECT_ITEM_H
+#define UX_SELECT_ITEM_H
 
-#include "Contacts/SelectTypes.h"
 #include "Ui/GenlistCheckItem.h"
+#include "Ux/SelectTypes.h"
 
-namespace Contacts
+namespace Ux
 {
 	/**
 	 * @brief Genlist item for SelectView that supports selection mode switching.
@@ -87,4 +87,4 @@ namespace Contacts
 	};
 }
 
-#endif /* CONTACTS_SELECT_ITEM_H */
+#endif /* UX_SELECT_ITEM_H */

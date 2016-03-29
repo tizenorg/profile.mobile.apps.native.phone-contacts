@@ -53,7 +53,7 @@ namespace Contacts
 			/**
 			 * @see SelectItem::onSelectModeChanged()
 			 */
-			virtual void onSelectModeChanged(SelectMode selectMode) override;
+			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
 			/**
 			 * @brief Create action button.

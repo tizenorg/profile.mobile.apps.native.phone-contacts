@@ -16,7 +16,6 @@
  */
 
 #include "Contacts/Common/Chooser.h"
-#include "Contacts/SelectItem.h"
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/List/ListView.h"
 #include "Contacts/Settings/ExportController.h"
@@ -24,6 +23,7 @@
 #include "Common/Actions.h"
 
 #include "Ui/ListPopup.h"
+#include "Ux/SelectItem.h"
 #include "Utils/Logger.h"
 
 using namespace Common;
@@ -31,6 +31,7 @@ using namespace Contacts;
 using namespace Contacts::Common;
 using namespace Contacts::List;
 using namespace Contacts::Details;
+using namespace Ux;
 using namespace std::placeholders;
 
 Chooser::Chooser(SelectMode selectMode, ResultType resultType, size_t selectLimit)

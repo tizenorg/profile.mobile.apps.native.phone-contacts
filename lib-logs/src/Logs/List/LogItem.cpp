@@ -18,13 +18,12 @@
 #include "Logs/List/LogItem.h"
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
-#include "Logs/Details/DetailsView.h"
-#include "Utils/Callback.h"
 #include "Logs/Common/Utils.h"
 
 #include "App/Path.h"
 #include "Ui/Scale.h"
 #include "Ui/Thumbnail.h"
+#include "Utils/Callback.h"
 #include "Utils/Logger.h"
 
 #include "LogItemLayout.h"
@@ -45,10 +44,8 @@
 #define PART_END                "elm.swallow.end"
 
 using namespace Ui;
-using namespace Contacts;
 using namespace Logs::List;
 using namespace Logs::Model;
-using namespace Logs::Details;
 
 namespace
 {
@@ -119,7 +116,7 @@ Evas_Object *LogItem::getContent(Evas_Object *parent, const char *part)
 	if (strcmp(part, PART_PERSON_THUMBNAIL) == 0) {
 		return createThumbnail(parent);
 	} else if (strcmp(part, PART_END) == 0) {
-		if (getSelectMode() == SelectNone) {
+		if (getSelectMode() == Ux::SelectNone) {
 			Evas_Object *icon = createIcon(parent, ICON_INFO);
 			evas_object_propagate_events_set(icon, EINA_FALSE);
 			evas_object_smart_callback_add(icon, "clicked",
@@ -133,7 +130,7 @@ Evas_Object *LogItem::getContent(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-SelectResult LogItem::getDefaultResult() const
+Ux::SelectResult LogItem::getDefaultResult() const
 {
 	return { 0, m_Group };
 }

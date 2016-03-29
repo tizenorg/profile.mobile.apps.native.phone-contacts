@@ -15,13 +15,13 @@
  *
  */
 
-#ifndef CONTACTS_SELECT_TYPES_H
-#define CONTACTS_SELECT_TYPES_H
+#ifndef UX_SELECT_TYPES_H
+#define UX_SELECT_TYPES_H
 
 #include "Utils/Range.h"
 #include <functional>
 
-namespace Contacts
+namespace Ux
 {
 	/**
 	 * @brief Determines how items can be selected.
@@ -67,4 +67,4 @@ namespace Contacts
 	typedef std::function<bool()> CancelCallback;
 }
 
-#endif /* CONTACTS_SELECT_TYPES_H */
+#endif /* UX_SELECT_TYPES_H */

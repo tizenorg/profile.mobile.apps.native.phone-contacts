@@ -22,6 +22,7 @@
 #include "Logs/List/LogGroupItem.h"
 #include "Logs/Model/Log.h"
 #include "LogsDetailsItemLayout.h"
+#include "Common/Strings.h"
 
 #include "App/Path.h"
 #include "Ui/Genlist.h"
@@ -32,13 +33,18 @@
 using namespace Logs::Model;
 using namespace Logs::Details;
 using namespace Logs::List;
-using namespace Contacts;
+
+using namespace Ux;
 using namespace std::placeholders;
 
 DetailsView::DetailsView(LogGroup *group)
 	: m_Group(group), m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_ActionItem(nullptr),
 	  m_GroupItem(nullptr)
 {
+	auto strings = Common::getSelectViewStrings();
+	strings.buttonDone = "IDS_LOGS_OPT_DELETE";
+	setStrings(strings);
+
 	setSelectCallback(std::bind(&DetailsView::onSelected, this, _1));
 	setCancelCallback(std::bind(&DetailsView::onCanceled, this));
 	m_Group->setLogAddCallback(std::bind(&DetailsView::onLogAdded, this, _1));

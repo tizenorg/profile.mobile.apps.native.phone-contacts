@@ -19,7 +19,7 @@
 #define OPERATION_VIEW_CONTROLLER_H
 
 #include "OperationController.h"
-#include "Contacts/SelectTypes.h"
+#include "Ux/SelectTypes.h"
 
 namespace Contacts
 {
@@ -40,7 +40,7 @@ public:
 
 private:
 	virtual void onRequest(Operation operation, app_control_h request);
-	bool onSelectResult(Contacts::SelectResults results,
+	bool onSelectResult(Ux::SelectResults results,
 			Contacts::List::ListView *view, std::string uri);
 	void onImportFinish(Contacts::Settings::ImportController *importer,
 			Contacts::List::ListView *view);

@@ -61,7 +61,7 @@ Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-SelectResult PersonItem::getDefaultResult() const
+Ux::SelectResult PersonItem::getDefaultResult() const
 {
 	if (m_Person.getType() == ContactData::TypeContact) {
 		return { ResultPerson, (void *)static_cast<ContactRecordData &>(m_Person).getContactRecord() };

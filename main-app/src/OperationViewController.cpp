@@ -58,7 +58,7 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 		if (uri) {
 			view = new ListView(uri);
 			ListView *listView = (ListView *)view;
-			listView->setSelectMode(SelectMulti);
+			listView->setSelectMode(Ux::SelectMulti);
 			listView->setSelectCallback(std::bind(&OperationViewController::onSelectResult, this,
 					std::placeholders::_1, listView, std::string(uri)));
 
@@ -75,7 +75,7 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 	}
 }
 
-bool OperationViewController::onSelectResult(SelectResults results, ListView *view, std::string uri)
+bool OperationViewController::onSelectResult(Ux::SelectResults results, ListView *view, std::string uri)
 {
 	std::vector<contacts_record_h> records;
 	for (auto &&result : results) {

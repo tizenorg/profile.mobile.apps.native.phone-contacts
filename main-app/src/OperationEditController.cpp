@@ -45,7 +45,7 @@ void OperationEditController::onRequest(Operation operation, app_control_h reque
 
 	if (personId == 0 && operation == OperationEdit) {
 		auto *listView = new ListView();
-		listView->setSelectMode(SelectSingle);
+		listView->setSelectMode(Ux::SelectSingle);
 		listView->setSelectCallback(std::bind(&OperationEditController::onSelectResult, this, _1));
 		view = listView;
 	} else {
@@ -83,7 +83,7 @@ Ui::View *OperationEditController::createInputView(int personId)
 	return view;
 }
 
-bool OperationEditController::onSelectResult(SelectResults results)
+bool OperationEditController::onSelectResult(Ux::SelectResults results)
 {
 	Ui::View *view = createInputView(results.begin()->value.id);
 	getNavigator()->navigateTo(view);

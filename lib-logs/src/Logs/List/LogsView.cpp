@@ -19,6 +19,7 @@
 #include "Logs/List/LogGroupItem.h"
 #include "Logs/List/LogItem.h"
 #include "Logs/Details/DetailsView.h"
+#include "Common/Strings.h"
 
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
@@ -28,7 +29,7 @@
 #include "Utils/Logger.h"
 #include "Utils/Callback.h"
 
-using namespace Contacts;
+using namespace Ux;
 using namespace Logs::Model;
 using namespace Logs::List;
 using namespace Logs::Details;
@@ -38,6 +39,10 @@ LogsView::LogsView(FilterType filterType)
 	: m_FilterType(filterType),
 	  m_Genlist(nullptr), m_LastGroupItem(nullptr)
 {
+	auto strings = Common::getSelectViewStrings();
+	strings.titleDefault = "IDS_LOGS_ITAB3_LOGS";
+	setStrings(strings);
+
 	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
 	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
 	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_TIME_CHANGED, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
@@ -78,7 +83,11 @@ void LogsView::onMenuPressed()
 	});
 
 	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
+		auto strings = Common::getSelectViewStrings();
+		strings.buttonDone = "IDS_LOGS_OPT_DELETE";
+
 		LogsView *view = new LogsView(m_FilterType);
+		view->setStrings(strings);
 		view->setSelectMode(SelectMulti);
 		view->setSelectCallback([](SelectResults results) {
 			for (auto &&result : results) {
@@ -99,21 +108,12 @@ void LogsView::onMenuPressed()
 	menu->show();
 }
 
-const char *LogsView::getPageTitle() const
-{
-	if (getSelectMode() == SelectNone) {
-		return "IDS_LOGS_ITAB3_LOGS";
-	}
-
-	return SelectView::getPageTitle();
-}
-
 void LogsView::onSelectAllInsert(Ui::GenlistItem *item)
 {
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 }
 
-void LogsView::onItemPressed(Contacts::SelectItem *item)
+void LogsView::onItemPressed(Ux::SelectItem *item)
 {
 	LogItem *logItem = (LogItem *) item;
 	LogGroup *group = logItem->getGroup();

@@ -30,6 +30,7 @@
 using namespace Common;
 using namespace Contacts;
 using namespace Contacts::Common;
+using namespace Ux;
 using namespace std::placeholders;
 
 OperationPickController::OperationPickController()

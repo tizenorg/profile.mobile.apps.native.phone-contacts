@@ -77,7 +77,7 @@ char *FieldItem::getText(Evas_Object *parent, const char *part)
 
 Evas_Object *FieldItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (getSelectMode() == SelectMulti) {
+	if (getSelectMode() == Ux::SelectMulti) {
 		if (strcmp(part, "elm.swallow.end") == 0) {
 			return GenlistCheckItem::getContent(parent, part);
 		}
@@ -86,7 +86,7 @@ Evas_Object *FieldItem::getContent(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-SelectResult FieldItem::getDefaultResult() const
+Ux::SelectResult FieldItem::getDefaultResult() const
 {
 	return { m_Object.getSubType(), m_Object.getRecordId() };
 }

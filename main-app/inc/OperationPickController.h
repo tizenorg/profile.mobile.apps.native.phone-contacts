@@ -36,18 +36,18 @@ public:
 
 private:
 	virtual void onRequest(Operation operation, app_control_h request) override;
-	bool onSelected(Contacts::SelectResults results);
+	bool onSelected(Ux::SelectResults results);
 
-	void replyIds(Contacts::SelectResults results);
-	void replyPath(Contacts::SelectResults results);
+	void replyIds(Ux::SelectResults results);
+	void replyPath(Ux::SelectResults results);
 	void replyResults(const char *resultType, const char **results, size_t count);
 
-	static Contacts::SelectMode getSelectMode(app_control_h request);
+	static Ux::SelectMode getSelectMode(app_control_h request);
 	static Contacts::ResultType getResultType(app_control_h request);
 	static const char *getResultTypeString(Contacts::ResultType resultType);
 	static const char *getActionTypeString(Common::ActionType actionType);
 
-	Contacts::SelectMode m_SelectMode;
+	Ux::SelectMode m_SelectMode;
 	Contacts::ResultType m_ResultType;
 };
 

@@ -19,8 +19,7 @@
 #define CONTACTS_LIST_LIST_VIEW_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Contacts/SelectView.h"
-
+#include "Ux/SelectView.h"
 #include "Utils/UniString.h"
 
 #include <map>
@@ -55,7 +54,7 @@ namespace Contacts
 		/**
 		 * @brief Contacts list view
 		 */
-		class EXPORT_API ListView : public SelectView
+		class EXPORT_API ListView : public Ux::SelectView
 		{
 		public:
 			/**
@@ -90,21 +89,20 @@ namespace Contacts
 
 			void onSharePressed();
 
-			virtual const char *getPageTitle() const override;
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
-			virtual void onSelectModeChanged(SelectMode selectMode) override;
+			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
 			void fillMyProfile();
 			void fillFavorites();
 			void fillMfc();
 			void fillPersonList();
 
-			void setFavouriteItemsMode(SelectMode selectMode);
+			void setFavouriteItemsMode(Ux::SelectMode selectMode);
 
 			void addSection(SectionId sectionId);
 			void removeSection(SectionId sectionId);
 			Ui::GenlistItem *getNextSectionItem(SectionId currentSection);
-			bool getSectionVisibility(SelectMode selectMode, SectionId sectionId);
+			bool getSectionVisibility(Ux::SelectMode selectMode, SectionId sectionId);
 
 			void updatePageMode();
 			void updateSectionsMode();
@@ -130,7 +128,7 @@ namespace Contacts
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
 
-			virtual void onItemPressed(SelectItem *item) override;
+			virtual void onItemPressed(Ux::SelectItem *item) override;
 			void onAddPressed(Evas_Object *button, void *eventInfo);
 
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
