@@ -21,6 +21,7 @@
 #include "Contacts/Details/MultilineFieldItem.h"
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Model/ContactArray.h"
+#include "Common/Strings.h"
 
 #include "App/AppControlRequest.h"
 #include "App/Path.h"
@@ -67,6 +68,7 @@ DetailsView::DetailsView(int recordId, Type type, int filterType)
 	: m_RecordId(recordId), m_Contact(ContactObjectType(type)), m_FilterType(filterType),
 	  m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_Items{nullptr}
 {
+	setStrings(Common::getSelectViewStrings());
 }
 
 Evas_Object *DetailsView::onCreate(Evas_Object *parent)
@@ -123,7 +125,7 @@ void DetailsView::onCreated()
 
 void DetailsView::onMenuPressed()
 {
-	if (getSelectMode() != SelectNone) {
+	if (getSelectMode() != Ux::SelectNone) {
 		return;
 	}
 
@@ -166,7 +168,7 @@ void DetailsView::onSelectAllInsert(Ui::GenlistItem *item)
 	m_Genlist->insert(item, nullptr, m_BasicInfoItem, Ui::Genlist::After);
 }
 
-void DetailsView::onSelectModeChanged(SelectMode selectMode)
+void DetailsView::onSelectModeChanged(Ux::SelectMode selectMode)
 {
 	if (m_BasicInfoItem) {
 		m_BasicInfoItem->setSelectMode(selectMode);

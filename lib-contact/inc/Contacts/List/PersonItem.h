@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_PERSON_ITEM_H
 #define CONTACTS_LIST_PERSON_ITEM_H
 
-#include "Contacts/SelectItem.h"
+#include "Ux/SelectItem.h"
 
 #define PART_PERSON_NAME        "elm.text"
 #define PART_PERSON_THUMBNAIL   "elm.swallow.icon"
@@ -36,7 +36,7 @@ namespace Contacts
 		/**
 		 * @brief Person list item
 		 */
-		class PersonItem : public SelectItem
+		class PersonItem : public Ux::SelectItem
 		{
 		public:
 			/**
@@ -53,7 +53,7 @@ namespace Contacts
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
-			virtual SelectResult getDefaultResult() const override;
+			virtual Ux::SelectResult getDefaultResult() const override;
 
 			Contacts::Model::ContactData &m_Person;
 		};

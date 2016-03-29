@@ -15,12 +15,12 @@
  *
  */
 
-#ifndef CONTACTS_SELECT_VIEW_H
-#define CONTACTS_SELECT_VIEW_H
+#ifndef UX_SELECT_VIEW_H
+#define UX_SELECT_VIEW_H
 
-#include "Contacts/SelectAllItem.h"
-#include "Contacts/SelectTypes.h"
 #include "Ui/View.h"
+#include "Ux/SelectAllItem.h"
+#include "Ux/SelectTypes.h"
 
 #include <memory>
 #include <vector>
@@ -30,7 +30,7 @@ namespace Ui
 	class GenlistItem;
 }
 
-namespace Contacts
+namespace Ux
 {
 	class SelectItem;
 
@@ -41,6 +41,22 @@ namespace Contacts
 	{
 	public:
 		/**
+		 * @brief Translatable strings table for view elements.
+		 */
+		struct Strings
+		{
+			const char *selectAll;      /**< "Select all" item text. */
+			const char *buttonDone;     /**< "Done" button text. */
+			const char *buttonCancel;   /**< "Cancel" button text. */
+			const char *titleDefault;   /**< Title for #SelectNone mode. */
+			const char *titleSingle;    /**< Title for #SelectSingle mode */
+			const char *titleMulti;     /**< Title for #SelectMulti mode.
+											 Can contain one integer format specifier. */
+			const char *titleWithLimit; /**< Title for #SelectMulti mode with limit.
+											 Can contain two integer format specifiers. */
+		};
+
+		/**
 		 * @brief Called when item's "checked" state changed in #SelectMulti mode.
 		 * @remark Use SelectView::setCheckCallback() to properly change item's state
 		 *         if necessary.
@@ -50,6 +66,13 @@ namespace Contacts
 		typedef std::function<bool(SelectItem *, bool)> CheckCallback;
 
 		SelectView();
+
+		/**
+		 * @brief Set translatable strings for the view.
+		 * @remark Should be called before create().
+		 * @param[in]   strings    Translatable strings table
+		 */
+		void setStrings(const Strings &strings);
 
 		/**
 		 * @brief Set selection mode.
@@ -105,11 +128,6 @@ namespace Contacts
 		 * @return Current selected items count.
 		 */
 		size_t getSelectCount() const;
-
-		/**
-		 * @return Page title format for the current selection mode.
-		 */
-		virtual const char *getPageTitle() const;
 
 		/**
 		 * @brief Creates "Done" and "Cancel" buttons in #SelectMulti mode.
@@ -199,7 +217,9 @@ namespace Contacts
 		SelectCallback m_OnSelected;
 		CheckCallback m_OnChecked;
 		CancelCallback m_OnCanceled;
+
+		Strings m_Strings;
 	};
 }
 
-#endif /* CONTACTS_SELECT_VIEW_H */
+#endif /* UX_SELECT_VIEW_H */

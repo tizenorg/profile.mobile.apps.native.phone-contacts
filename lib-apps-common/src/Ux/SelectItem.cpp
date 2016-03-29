@@ -15,9 +15,9 @@
  *
  */
 
-#include "Contacts/SelectItem.h"
+#include "Ux/SelectItem.h"
 
-using namespace Contacts;
+using namespace Ux;
 
 SelectItem::SelectItem()
 	: m_SelectMode(SelectNone), m_CustomResult{ 0, 0 }, m_HasCustomResult(false)

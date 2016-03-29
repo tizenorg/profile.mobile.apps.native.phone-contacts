@@ -19,8 +19,8 @@
 #define LOGS_LIST_LOGS_VIEW_H
 
 #include "App/AppControlRequest.h"
-#include "Contacts/SelectView.h"
 #include "Logs/Model/LogProvider.h"
+#include "Ux/SelectView.h"
 
 #include <system_settings.h>
 
@@ -39,7 +39,7 @@ namespace Logs
 		/**
 		 * @brief Logs list view
 		 */
-		class EXPORT_API LogsView : public Contacts::SelectView
+		class EXPORT_API LogsView : public Ux::SelectView
 		{
 		public:
 
@@ -64,9 +64,8 @@ namespace Logs
 			virtual void onCreated() override;
 			virtual void onMenuPressed() override;
 
-			virtual const char *getPageTitle() const override;
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
-			virtual void onItemPressed(Contacts::SelectItem *item) override;
+			virtual void onItemPressed(Ux::SelectItem *item) override;
 
 			void fillLayout();
 			void updateLayout(bool isEmpty);

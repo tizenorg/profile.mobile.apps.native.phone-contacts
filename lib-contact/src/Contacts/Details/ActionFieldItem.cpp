@@ -46,7 +46,7 @@ ActionFieldItem::ActionFieldItem(Model::ContactObject &object, ActionType action
 
 Evas_Object *ActionFieldItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (getSelectMode() == SelectNone) {
+	if (getSelectMode() == Ux::SelectNone) {
 		if (strcmp(part, PART_ACTION_BUTTON1) == 0) {
 			return createActionButton(parent, m_ActionType);
 		} else if (m_ActionType == ActionCall && strcmp(part, PART_ACTION_BUTTON2) == 0) {
@@ -59,14 +59,14 @@ Evas_Object *ActionFieldItem::getContent(Evas_Object *parent, const char *part)
 
 void ActionFieldItem::onSelected()
 {
-	if (getSelectMode() == SelectNone) {
+	if (getSelectMode() == Ux::SelectNone) {
 		executeAction(m_ActionType);
 	} else {
 		TypedFieldItem::onSelected();
 	}
 }
 
-void ActionFieldItem::onSelectModeChanged(SelectMode selectMode)
+void ActionFieldItem::onSelectModeChanged(Ux::SelectMode selectMode)
 {
 	Elm_Object_Item *item = getObjectItem();
 	if (item) {

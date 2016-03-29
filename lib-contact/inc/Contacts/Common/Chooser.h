@@ -21,11 +21,14 @@
 #include "Contacts/Common/ContactSelectTypes.h"
 #include "Ui/Naviframe.h"
 
-namespace Contacts
+namespace Ux
 {
 	class SelectItem;
 	class SelectView;
+}
 
+namespace Contacts
+{
 	namespace Common
 	{
 		/**
@@ -41,41 +44,41 @@ namespace Contacts
 			 * @param[in]   resultType  Requested result type
 			 * @param[in]   selectLimit Selection limit for #SelectMulti mode
 			 */
-			Chooser(SelectMode selectMode, ResultType resultType, size_t selectLimit);
+			Chooser(Ux::SelectMode selectMode, ResultType resultType, size_t selectLimit);
 
 			/**
 			 * @brief Set selection callback
 			 * @param[in]   callback    Selection callback
 			 */
-			void setSelectCallback(SelectCallback callback);
+			void setSelectCallback(Ux::SelectCallback callback);
 
 		private:
 			virtual void onCreated() override;
 			virtual void onPageAttached(Ui::NavigatorPage *page) override;
 
-			bool onPersonChecked(SelectItem *item, bool isChecked);
-			bool onSinglePersonSelected(SelectResults results);
-			bool onMultiPersonSelected(SelectResults results);
+			bool onPersonChecked(Ux::SelectItem *item, bool isChecked);
+			bool onSinglePersonSelected(Ux::SelectResults results);
+			bool onMultiPersonSelected(Ux::SelectResults results);
 
-			bool onSelectedForAction(SelectResults results);
-			bool onSelectedForVcard(SelectResults results);
-			bool onSelected(SelectResults results);
+			bool onSelectedForAction(Ux::SelectResults results);
+			bool onSelectedForVcard(Ux::SelectResults results);
+			bool onSelected(Ux::SelectResults results);
 
-			bool selectSingleResult(SelectResult person, SelectCallback callback);
-			SelectResult getSingleResult(int personId);
+			bool selectSingleResult(Ux::SelectResult person, Ux::SelectCallback callback);
+			Ux::SelectResult getSingleResult(int personId);
 
 			static int getResultCount(int personId, ResultType resultType, int *resultId);
-			static std::string getResultValue(SelectResult result);
+			static std::string getResultValue(Ux::SelectResult result);
 			static int getFilterType(ResultType resultType);
 
-			SelectMode m_SelectMode;
+			Ux::SelectMode m_SelectMode;
 			ResultType m_ResultType;
 
 			int m_FilterType;
 			size_t m_SelectLimit;
 
-			SelectCallback m_OnSelected;
-			SelectView *m_ListView;
+			Ux::SelectCallback m_OnSelected;
+			Ux::SelectView *m_ListView;
 		};
 	}
 }

@@ -21,7 +21,7 @@
 #include "App/AppControl.h"
 #include "Contacts/Common/ContactSelectTypes.h"
 #include "Contacts/Model/Contact.h"
-#include "Contacts/SelectView.h"
+#include "Ux/SelectView.h"
 
 namespace Ui
 {
@@ -38,7 +38,7 @@ namespace Contacts
 		/**
 		 * @brief Contact/My profile details view.
 		 */
-		class EXPORT_API DetailsView : public SelectView
+		class EXPORT_API DetailsView : public Ux::SelectView
 		{
 		public:
 			/**
@@ -64,7 +64,7 @@ namespace Contacts
 			virtual void onMenuPressed() override;
 
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
-			virtual void onSelectModeChanged(SelectMode selectMode) override;
+			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
 			FieldItem *createFieldItem(Model::ContactObject &field);
 			FieldItem *getNextFieldItem(Model::ContactFieldId fieldId);

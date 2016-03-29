@@ -100,6 +100,16 @@ namespace
 		/* [EnumTypeUrl]          = */ urlValueNames,
 		/* [EnumTypeMessenger]    = */ msgValueNames
 	};
+
+	Ux::SelectView::Strings selectViewStrings = {
+		"IDS_PB_MBODY_SELECT_ALL",
+		"IDS_PB_BUTTON_DONE_ABB3",
+		"IDS_PB_BUTTON_CANCEL",
+		"",
+		"IDS_PB_HEADER_SELECT",
+		"IDS_PB_HEADER_PD_SELECTED_ABB",
+		"%zu/%zu"
+	};
 }
 
 Utils::Range<const EnumValueNamePair *> Common::getEnumValueNames(EnumType type)
@@ -121,4 +131,9 @@ const char *Common::getEnumValueName(EnumType type, int value)
 	}
 
 	return nullptr;
+}
+
+const Ux::SelectView::Strings &Common::getSelectViewStrings()
+{
+	return selectViewStrings;
 }

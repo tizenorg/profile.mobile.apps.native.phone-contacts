@@ -20,6 +20,7 @@
 
 #include "Common/DataTypes.h"
 #include "Utils/Range.h"
+#include "Ux/SelectView.h"
 
 #include <tizen.h>
 
@@ -49,6 +50,11 @@ namespace Common
 	 * @return Enum value translatable name.
 	 */
 	EXPORT_API const char *getEnumValueName(EnumType type, int value);
+
+	/**
+	 * @return Default translatable strings table for Ux::SelectView.
+	 */
+	EXPORT_API const Ux::SelectView::Strings &getSelectViewStrings();
 }
 
 #endif /* COMMON_STRINGS_H */

@@ -18,8 +18,8 @@
 #ifndef LOGS_DETAILS_DETAILS_VIEW_H
 #define LOGS_DETAILS_DETAILS_VIEW_H
 
-#include "Contacts/SelectView.h"
 #include "Logs/Model/LogGroup.h"
+#include "Ux/SelectView.h"
 
 namespace Ui
 {
@@ -32,10 +32,12 @@ namespace Logs
 	{
 		class Log;
 	}
+
 	namespace List
 	{
 		class LogGroupItem;
 	}
+
 	namespace Details
 	{
 		class BasicInfoItem;
@@ -45,7 +47,7 @@ namespace Logs
 		/**
 		 * @brief Log details view.
 		 */
-		class DetailsView : public Contacts::SelectView
+		class DetailsView : public Ux::SelectView
 		{
 		public:
 			/**
@@ -61,7 +63,7 @@ namespace Logs
 			virtual bool onBackPressed() override;
 			virtual void onMenuPressed() override;
 
-			virtual void onSelectModeChanged(Contacts::SelectMode selectMode) override;
+			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 
 			void fillGenList();
@@ -71,7 +73,7 @@ namespace Logs
 			void insertLogDetailItem(Model::Log *log);
 			void insertLogDetailItems();
 
-			bool onSelected(Contacts::SelectResults results);
+			bool onSelected(Ux::SelectResults results);
 			bool onCanceled();
 			void onGroupChanged(int type);
 			void onLogAdded(Model::Log *log);

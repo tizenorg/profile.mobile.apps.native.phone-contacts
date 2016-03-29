@@ -19,7 +19,7 @@
 #define OPERATION_EDIT_CONTROLLER_H
 
 #include "OperationController.h"
-#include "Contacts/SelectTypes.h"
+#include "Ux/SelectTypes.h"
 
 namespace Ui
 {
@@ -36,7 +36,7 @@ private:
 
 	Ui::View *createInputView(int personId);
 
-	bool onSelectResult(Contacts::SelectResults results);
+	bool onSelectResult(Ux::SelectResults results);
 	void onInputResult(int personId);
 };
 

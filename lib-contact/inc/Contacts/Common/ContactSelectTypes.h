@@ -18,7 +18,7 @@
 #ifndef CONTACTS_COMMON_CONTACT_SELECT_TYPES_H
 #define CONTACTS_COMMON_CONTACT_SELECT_TYPES_H
 
-#include "Contacts/SelectTypes.h"
+#include "Ux/SelectTypes.h"
 #include "Contacts/Model/ContactTypes.h"
 
 namespace Contacts

@@ -15,15 +15,22 @@
  *
  */
 
-#include "Contacts/SelectAllItem.h"
+#include "Ux/SelectAllItem.h"
 #include <app_i18n.h>
 
-using namespace Contacts;
+using namespace Ux;
+
+SelectAllItem::SelectAllItem(const char *text)
+{
+	if (text) {
+		m_Text = text;
+	}
+}
 
 char *SelectAllItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text") == 0) {
-		return strdup(_("IDS_PB_MBODY_SELECT_ALL"));
+		return strdup(_(m_Text.c_str()));
 	}
 
 	return nullptr;

@@ -18,7 +18,7 @@
 #ifndef CONTACTS_DETAILS_FIELD_ITEM_H
 #define CONTACTS_DETAILS_FIELD_ITEM_H
 
-#include "Contacts/SelectItem.h"
+#include "Ux/SelectItem.h"
 #include <contacts.h>
 
 namespace Contacts
@@ -34,7 +34,7 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing ContactObject and its first field.
 		 */
-		class FieldItem : public SelectItem
+		class FieldItem : public Ux::SelectItem
 		{
 		public:
 			/**
@@ -72,9 +72,9 @@ namespace Contacts
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see SelectItem::getSelectResult()
+			 * @see SelectItem::getDefaultResult()
 			 */
-			virtual SelectResult getDefaultResult() const override;
+			virtual Ux::SelectResult getDefaultResult() const override;
 
 			/**
 			 * @see ContactField::UpdatedCallback
