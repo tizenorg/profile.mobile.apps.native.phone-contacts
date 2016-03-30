@@ -114,9 +114,9 @@ void ContactRecordProvider::onChanged(ContactDataList::iterator contactIt, int i
 		}
 	}
 
+	m_ContactList.erase(contactIt);
 	contact->onDeleted();
 	delete contact;
-	m_ContactList.erase(contactIt);
 }
 
 void ContactRecordProvider::updateChangedCallback(ContactDataList::iterator it)

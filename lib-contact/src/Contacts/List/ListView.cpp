@@ -35,6 +35,8 @@
 #include "Ui/Navigator.h"
 #include "Utils/Callback.h"
 
+#include <app_i18n.h>
+
 using namespace Contacts;
 using namespace Contacts::Model;
 using namespace Contacts::List;
@@ -69,14 +71,17 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	Evas_Object *layout = elm_layout_add(parent);
 	elm_layout_theme_set(layout, "layout", "application", "fastscroll");
 
-	m_Genlist = new Ui::Genlist();
-	m_Genlist->create(layout);
+	m_Box = elm_box_add(layout);
 
-	elm_object_part_content_set(layout, "elm.swallow.content", m_Genlist->getEvasObject());
+	m_Genlist = createGenlist(m_Box);
+	elm_box_pack_end(m_Box, m_Genlist->getEvasObject());
+
+	m_NoContent = createNoContentLayout(m_Box);
+
+	elm_object_part_content_set(layout, "elm.swallow.content", m_Box);
 	elm_object_part_content_set(layout, "elm.swallow.fastscroll", createIndex(layout));
 
-	const char *signal = m_HasIndex ? "elm,state,fastscroll,show" : "elm,state,fastscroll,hide";
-	elm_layout_signal_emit(layout, signal, "");
+	setIndexState(layout, m_HasIndex);
 
 	return layout;
 }
@@ -222,7 +227,77 @@ void ListView::fillPersonList()
 			m_Genlist->insert(item, group);
 			onItemInserted(item);
 		}
+		updateNoContentLayout();
 	}
+}
+
+void ListView::setIndexState(Evas_Object *layout, bool state)
+{
+	const char *signal = state ? "elm,state,fastscroll,show" : "elm,state,fastscroll,hide";
+	elm_layout_signal_emit(layout, signal, "");
+}
+
+Ui::Genlist *ListView::createGenlist(Evas_Object *parent)
+{
+	Ui::Genlist *genlist = new Ui::Genlist();
+	genlist->create(parent);
+
+	evas_object_size_hint_weight_set(genlist->getEvasObject(), EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	evas_object_size_hint_align_set(genlist->getEvasObject(), EVAS_HINT_FILL, EVAS_HINT_FILL);
+	evas_object_show(genlist->getEvasObject());
+
+	return genlist;
+}
+
+Evas_Object *ListView::createNoContentLayout(Evas_Object *parent)
+{
+	Evas_Object *noContent = elm_layout_add(parent);
+	elm_layout_theme_set(noContent, "layout", "nocontents", "default");
+
+	evas_object_size_hint_weight_set(noContent, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	evas_object_size_hint_align_set(noContent, EVAS_HINT_FILL, EVAS_HINT_FILL);
+
+	elm_object_translatable_part_text_set(noContent, "elm.text", "IDS_PB_NPBODY_NO_CONTACTS");
+	elm_object_translatable_part_text_set(noContent, "elm.help.text", "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE");
+
+	elm_layout_signal_emit(noContent, "text,disabled", "");
+	elm_layout_signal_emit(noContent, "align.center", "elm");
+
+	return noContent;
+}
+
+void ListView::showNoContentLayout()
+{
+	if (!evas_object_visible_get(m_NoContent)) {
+		setIndexState(getEvasObject(), false);
+
+		elm_scroller_content_min_limit(m_Genlist->getEvasObject(), EINA_FALSE, EINA_TRUE);
+		evas_object_size_hint_weight_set(m_Genlist->getEvasObject(), EVAS_HINT_EXPAND, 0.0);
+		evas_object_size_hint_align_set(m_Genlist->getEvasObject(), EVAS_HINT_FILL, 0.0);
+
+		evas_object_show(m_NoContent);
+		elm_box_pack_end(m_Box, m_NoContent);
+	}
+}
+
+void ListView::hideNoContentLayout()
+{
+	if (evas_object_visible_get(m_NoContent)) {
+		setIndexState(getEvasObject(), m_HasIndex);
+
+		elm_scroller_content_min_limit(m_Genlist->getEvasObject(), EINA_FALSE, EINA_FALSE);
+		evas_object_size_hint_weight_set(m_Genlist->getEvasObject(), EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+		evas_object_size_hint_align_set(m_Genlist->getEvasObject(), EVAS_HINT_FILL, EVAS_HINT_FILL);
+
+		evas_object_hide(m_NoContent);
+		elm_box_unpack(m_Box, m_NoContent);
+	}
+}
+
+void ListView::updateNoContentLayout()
+{
+	ContactDataList list = m_Provider->getContactDataList();
+	list.size() > 0 ? hideNoContentLayout() : showNoContentLayout();
 }
 
 void ListView::setFavouriteItemsMode(SelectMode selectMode)
@@ -461,6 +536,7 @@ void ListView::insertPersonItem(PersonItem *item)
 	}
 
 	m_Genlist->insert(item, group, nextItem);
+	updateNoContentLayout();
 }
 
 void ListView::updatePersonItem(PersonItem *item, int changes)
@@ -491,6 +567,8 @@ void ListView::deletePersonItem(PersonItem *item)
 	if (oldGroup->empty()) {
 		deletePersonGroupItem(oldGroup);
 	}
+
+	updateNoContentLayout();
 }
 
 PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &person)
