@@ -35,6 +35,7 @@
 
 #define BUFFER_SIZE             32
 #define LOG_TYPE_SIZE           50
+#define LOG_INFO_BG_SIZE        100
 #define LOG_TIME_TEXT_SIZE      22
 
 #define PART_LOG_NAME           "elm.text"
@@ -120,10 +121,12 @@ Evas_Object *LogItem::getContent(Evas_Object *parent, const char *part)
 		return createThumbnail(parent);
 	} else if (strcmp(part, PART_END) == 0) {
 		if (getSelectMode() == SelectNone) {
-			Evas_Object *icon = createIcon(parent, ICON_INFO);
+			Evas_Object *icon = elm_image_add(parent);
+			elm_image_file_set(icon, layoutPath.c_str(), LOG_INFO_BG);
+			evas_object_size_hint_min_set(icon, getScaledValue(LOG_TYPE_SIZE), getScaledValue(LOG_INFO_BG_SIZE));
 			evas_object_propagate_events_set(icon, EINA_FALSE);
 			evas_object_smart_callback_add(icon, "clicked",
-					(Evas_Smart_Cb) makeCallback(&LogItem::onInfoIconPressed), this);
+				(Evas_Smart_Cb) makeCallback(&LogItem::onInfoIconPressed), this);
 			return icon;
 		} else {
 			return SelectItem::getContent(parent, part);
@@ -199,6 +202,11 @@ const char *LogItem::getImagePath(int type)
 
 void LogItem::updateItem(int type)
 {
+	if (type & LogGroup::ChangePerson) {
+		elm_genlist_item_fields_update(getObjectItem(), PART_LOG_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+		elm_genlist_item_fields_update(getObjectItem(), PART_LOG_NUMBER, ELM_GENLIST_ITEM_FIELD_TEXT);
+		elm_genlist_item_fields_update(getObjectItem(), PART_PERSON_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	}
 	if (type & LogGroup::ChangeName) {
 		elm_genlist_item_fields_update(getObjectItem(), PART_LOG_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
 	}

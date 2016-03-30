@@ -19,6 +19,7 @@
 #define LOG_ITEM_LAYOUT_H
 
 #define LOG_ITEM                  "log_item"
+#define LOG_INFO_BG               "log_info_bg"
 
 #define ICON_INCOMING             "icon_incoming"
 #define ICON_OUTGOING             "icon_outgoing"
