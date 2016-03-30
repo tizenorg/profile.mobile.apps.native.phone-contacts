@@ -36,8 +36,6 @@ collections
 	IMAGE_WITH_BG_AND_COLOR(ICON_REJECTED, LOG_ICON_REJECTED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
 	IMAGE_WITH_BG_AND_COLOR(ICON_AUTO_REJECTED, LOG_ICON_AUTO_REJECTED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
 
-	IMAGE_WITH_BG_PRESSED_COLOR(ICON_INFO, LOG_ICON_INFO, "info_icon", LOG_ICON_INFO_BG, "info_icon_bg", "info_icon_bg_pressed")
-
 	group {
 		name: LOG_ITEM;
 		parts {
@@ -62,5 +60,63 @@ collections
 				}
 			}
 	   }
+	}
+
+	group {
+		name: ICON_INFO;
+		images.image: LOG_ICON_INFO_BG COMP;
+		images.image: LOG_ICON_INFO COMP;
+		parts {
+		part { name: "rect.bg";
+			scale: 1;
+			type: RECT;
+				description {
+				color: 255 255 255 0;
+					state: "default" 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 1.0 1.0;
+					aspect: 1 1;
+				}
+			}
+			part { name: "image.bg";
+				description {
+					state: "default" 0.0;
+					image.normal: LOG_ICON_INFO_BG;
+					color_class: "info_icon_bg";
+					aspect: 1 1;
+					aspect_preference: SOURCE;
+				}
+				description {
+					state: "pressed" 0.0;
+					inherit:  "default" 0.0;
+					color_class: "info_icon_bg_pressed";
+				}
+			}
+			part { name: "image";
+				description {
+					state: "default" 0.0;
+					image.normal: LOG_ICON_INFO;
+					color_class: "info_icon";
+					aspect: 1 1;
+					aspect_preference: SOURCE;
+				}
+			}
+		}
+		programs {
+			program {
+				name: "pressed";
+				signal: "mouse,down,*";
+				source: "*";
+				action: STATE_SET "pressed" 0.0;
+				target: "image.bg";
+			}
+			program {
+				name: "unpressed";
+				signal: "mouse,up,*";
+				source: "*";
+				action: STATE_SET "default" 0.0;
+				target: "image.bg";
+			}
+		}
 	}
 }
