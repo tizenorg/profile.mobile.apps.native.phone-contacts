@@ -93,7 +93,12 @@ size_t LogProvider::fillGroupList(LogIterator begin, LogIterator end)
 {
 	LogGroup *lastLogGroup = nullptr;
 	if (!m_Groups.empty()) {
-		lastLogGroup = m_Groups.back().get();
+		for (auto groupIt = m_Groups.rbegin(); groupIt != m_Groups.rend(); ++groupIt) {
+			if (!(*groupIt)->getLogList().empty()) {
+				lastLogGroup = groupIt->get();
+				break;
+			}
+		}
 	}
 	size_t newGroupsCount = 0;
 
