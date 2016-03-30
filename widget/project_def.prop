@@ -1,0 +1,73 @@
+
+# Project Name
+APPNAME = contacts-widget
+
+# Project Type
+type = app
+
+# Project Profile
+profile = mobile-3.0
+
+# C Sources
+USER_SRCS = src/Widget.cpp src/WidgetGengridItem.cpp src/WidgetApp.cpp src/WidgetDatabase.cpp src/main.cpp src/WidgetItems.cpp src/WidgetItem.cpp 
+
+# EDC Sources
+USER_EDCS =  
+
+# PO Sources
+USER_POS = 
+
+# User Defines
+USER_DEFS = 
+USER_CPP_DEFS = 
+
+# User Undefines
+USER_UNDEFS = 
+USER_CPP_UNDEFS = 
+
+# User Libraries
+USER_LIBS = common app-assist-efl 
+
+# User Objects
+USER_OBJS = 
+USER_OBJS_ABS = 
+
+# User Includes
+## C Compiler
+USER_INC_DIRS = 
+USER_INC_DIRS_ABS = $(workspace_loc)/phone-contacts/lib-common/inc $(workspace_loc)/phone-contacts/app-assist-efl/inc 
+USER_INC_FILES = 
+USER_INC_FILES_ABS = 
+## C++ Compiler
+USER_CPP_INC_DIRS = inc res/widget/edje 
+USER_CPP_INC_DIRS_ABS = /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/libxml2 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/appcore-agent /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/appfw /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/badge /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/base /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/cairo /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/calendar-service2 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ckm /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/contacts-svc /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/content /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/context-service /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/dali /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/dali-toolkit /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/dbus-1.0 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/device /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/dlog /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-con-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-evas-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-fb-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-file-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-imf-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-imf-evas-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-input-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-input-evas-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-ipc-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ecore-x-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/e_dbus-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/edje-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/eet-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/efl-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/efl-extension /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/efreet-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/eina-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/eina-1/eina /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/eio-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/eldbus-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/elementary-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/embryo-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/eo-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/eom /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ethumb-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ethumb-client-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/evas-1 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ewebkit2-0 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/feedback /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/fontconfig /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/freetype2 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/geofence /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/gio-unix-2.0 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/glib-2.0 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/harfbuzz /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/json-glib-1.0 /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/location /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/maps /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/media /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/media-content /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/messaging /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/metadata-editor /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/minicontrol /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/minizip /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/network /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/notification /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/phonenumber-utils /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/sensor /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/shortcut /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/storage /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/system /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/telephony /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/ui /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/web /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/widget_service /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/widget_viewer_evas /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/include/wifi-direct /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/lib/dbus-1.0/include /home/aleksandr/tizen-sdk/tools/smart-build-interface/../../platforms/tizen-3.0/mobile/rootstraps/mobile-3.0-device.core/usr/lib/glib-2.0/include $(workspace_loc)/phone-contacts/app-assist-efl/inc $(workspace_loc)/phone-contacts/lib-common/inc $(workspace_loc)/phone-contacts/lib-common/res/common/edje $(workspace_loc)/phone-contacts/lib-common/inc $(workspace_loc)/phone-contacts/app-assist-efl/inc 
+USER_CPP_INC_FILES = 
+USER_CPP_INC_FILES_ABS = 
+
+# User Library Path
+USER_LIB_DIRS = 
+USER_LIB_DIRS_ABS = $(workspace_loc)/phone-contacts/lib-common/Debug $(workspace_loc)/phone-contacts/app-assist-efl/Debug 
+
+# EDC Resource Path
+USER_EDCS_IMAGE_DIRS = res 
+USER_EDCS_IMAGE_DIRS_ABS = 
+USER_EDCS_SOUND_DIRS = edje/sounds 
+USER_EDCS_SOUND_DIRS_ABS = 
+USER_EDCS_FONT_DIRS = edje/fonts 
+USER_EDCS_FONT_DIRS_ABS = 
+
+# EDC Flags
+USER_EXT_EDC_KEYS = EDC0 
+
+USER_EXT_EDC0_EDCS = res/widget/edje/widget-item-layout.edc res/widget/edje/widget-layout-4x4.edc res/widget/edje/widget-layout-4x2.edc 
+USER_EXT_EDC0_EDCS_IMAGE_DIRS = res 
+USER_EXT_EDC0_EDCS_IMAGE_DIRS_ABS = 
+USER_EXT_EDC0_EDCS_SOUND_DIRS = edje/sounds 
+USER_EXT_EDC0_EDCS_SOUND_DIRS_ABS = 
+USER_EXT_EDC0_EDCS_FONT_DIRS = edje/fonts 
+USER_EXT_EDC0_EDCS_FONT_DIRS_ABS = 
+
+# Resource Filter
+USER_RES_INCLUDE = 
+USER_RES_EXCLUDE = res/widget/CMakeLists.txt 
+
