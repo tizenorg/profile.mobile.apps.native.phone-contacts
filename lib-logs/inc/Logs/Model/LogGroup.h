@@ -39,7 +39,8 @@ namespace Logs
 				ChangeName      = 1 << 1,
 				ChangeImage     = 1 << 2,
 				ChangeCount     = 1 << 3,
-				ChangeTime      = 1 << 4
+				ChangeTime      = 1 << 4,
+				ChangePerson    = 1 << 5
 			};
 
 			/**
