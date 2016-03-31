@@ -17,6 +17,7 @@
 
 #include "WidgetItemLayout.h"
 #include "WidgetItemLayoutMetrics.h"
+#include "../../../../lib-apps-common/res/apps-common/edje/apps-common-utils.edc"
 
 styles {
 	style {
@@ -27,6 +28,8 @@ styles {
 
 collections {
 	base_scale: 2.6;
+
+	IMAGE_WITH_TOUCH(GROUP_BUTTON_DELETE, BUTTON_DELETE, BUTTON_DELETE_PRESSED);
 
 	group {
 		name: GROUP_THUMBNAIL;
@@ -41,14 +44,8 @@ collections {
 					aspect: 1 1;
 					aspect_preference: SOURCE;
 					image.normal: ICON_THUMBNAIL_MASK;
-					rel1 {
-						relative: 0.0 0.0;
-						to: PART_THUMBNAIL;
-					}
-					rel2 {
-						relative: 1.0 1.0;
-						to: PART_THUMBNAIL;
-					}
+					rel1 { relative: 0.0 0.0; to: PART_THUMBNAIL; }
+					rel2 { relative: 1.0 1.0; to: PART_THUMBNAIL; }
 				}
 				desc { "pressed";
 					inherit: "default" 0.0;
@@ -75,76 +72,73 @@ collections {
 	}
 
 	group {
-		name: GROUP_BUTTON_DELETE;
-		images {
-			image: BUTTON_DELETE COMP;
-			image: BUTTON_DELETE_PRESSED COMP;
-		}
-		parts {
-			image { "icon";
-				desc { "default";
-					aspect: 1 1;
-					aspect_preference: SOURCE;
-					image.normal: BUTTON_DELETE;
-				}
-				desc { "pressed";
-					inherit: "default" 0.0;
-					image.normal: BUTTON_DELETE_PRESSED;
-				}
-			}
-		}
-		programs {
-			program {
-				name: "pressed";
-				signal: "mouse,down,*";
-				source: "*";
-				action: STATE_SET "pressed" 0.0;
-				target: "icon";
-			}
-			program {
-				name: "unpressed";
-				signal: "mouse,up,*";
-				source: "*";
-				action: STATE_SET "default" 0.0;
-				target: "icon";
-			}
-		}
-	}
-
-	group {
 		name: "elm/gengrid/item/"WIDGET_ITEM_STYLE"/default";
 		data.item: "contents" PART_THUMBNAIL" "PART_ICON_DELETE" "PART_ICON_TYPE;
 		data.item: "texts" PART_NAME;
 
 		parts {
-			swallow { PART_THUMBNAIL;
+			spacer { "spacer.thumbnail_top"; scale;
 				desc { "default";
-					rel1.relative: (THUMBNAIL_OFFSET_X/ITEM_WIDTH) (THUMBNAIL_OFFSET_Y/ITEM_HEIGHT);
-					rel2.relative: ((THUMBNAIL_OFFSET_X+THUMBNAIL_SIZE)/ITEM_WIDTH) ((THUMBNAIL_OFFSET_Y+THUMBNAIL_SIZE)/ITEM_HEIGHT);
+					min: 0 THUMBNAIL_T;
+					align: 0.5 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 1.0 0.0;
 				}
 			}
-			swallow { PART_ICON_DELETE;
+			swallow { PART_THUMBNAIL; scale;
 				desc { "default";
-					rel1.relative: BUTTON_DELETE_OFFSET_X/ITEM_WIDTH BUTTON_DELETE_OFFSET_Y/ITEM_HEIGHT;
-					rel2.relative: (BUTTON_DELETE_OFFSET_X+BUTTON_DELETE_SIZE)/ITEM_WIDTH (BUTTON_DELETE_OFFSET_Y+BUTTON_DELETE_SIZE)/ITEM_HEIGHT;
+					min: THUMBNAIL_WH THUMBNAIL_WH;
+					align: 0.5 0.0;
+					rel1 { relative: 0.5 1.0; to_y: "spacer.thumbnail_top"; };
+					rel2 { relative: 0.5 1.0; to_y: "spacer.thumbnail_top"; };
 				}
 			}
-			swallow { PART_ICON_TYPE;
+			spacer { "spacer.button_left_top"; scale;
 				desc { "default";
-					rel1 {
-						relative: 1.0-(ICON_TYPE_SIZE-ICON_TYPE_OFFSET_X)/THUMBNAIL_SIZE 1.0-ICON_TYPE_SIZE/THUMBNAIL_SIZE;
-						to: PART_THUMBNAIL;
-					}
-					rel2 {
-						relative: 1.0 1.0;
-						to_y: PART_THUMBNAIL;
-					}
+					min: BUTTON_DELETE_L BUTTON_DELETE_T;
+					align: 1.0 1.0;
+					rel1 { relative: 0.0 0.0; to: PART_THUMBNAIL; }
+					rel2 { relative: 0.0 0.0; to: PART_THUMBNAIL; }
+				}
+			}
+			swallow { PART_ICON_DELETE; scale;
+				desc { "default";
+					min: BUTTON_DELETE_WH BUTTON_DELETE_WH;
+					align: 0.0 0.0;
+					rel1 { relative: 0.0 0.0; to: "spacer.button_left_top"; };
+					rel2 { relative: 0.0 0.0; to: "spacer.button_left_top"; };
+				}
+			}
+			spacer { "spacer.icon_right_bottom"; scale;
+				desc { "default";
+					min: ICON_TYPE_R 0;
+					align: 0.0 0.0;
+					rel1 { relative: 1.0 1.0; to: PART_THUMBNAIL; }
+					rel2 { relative: 1.0 1.0; to: PART_THUMBNAIL; }
+				}
+			}
+			swallow { PART_ICON_TYPE; scale;
+				desc { "default";
+					min: ICON_TYPE_WH ICON_TYPE_WH;
+					align: 1.0 1.0;
+					rel1 { relative: 1.0 1.0; to: "spacer.icon_right_bottom"; }
+					rel2 { relative: 1.0 1.0; to: "spacer.icon_right_bottom"; }
+				}
+			}
+			spacer { "spacer.name_top"; scale;
+				desc { "default";
+					min: 0 NAME_T;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: PART_THUMBNAIL; }
+					rel2 { relative: 1.0 0.0; }
 				}
 			}
 			textblock { PART_NAME; scale;
 				desc { "default";
-					rel1.relative: NAME_OFFSET_X/ITEM_HEIGHT NAME_OFFSET_Y/ITEM_HEIGHT;
-					rel2.relative: 1.0-NAME_OFFSET_X/ITEM_HEIGHT (NAME_OFFSET_Y+NAME_HEIGHT)/ITEM_HEIGHT;
+					min: 0 NAME_H;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: "spacer.name_top"; }
+					rel2 { relative: 1.0 1.0; to_y: "spacer.name_top"; }
 					text {
 						align: 0.5 0.0;
 						style: "text_style";

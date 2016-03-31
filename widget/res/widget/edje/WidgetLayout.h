@@ -26,12 +26,11 @@
 
 #define PART_TITLE              "text.title"
 #define PART_HELP               "text.help"
-#define PART_ICON               "swallow.icon"
 
 #define PART_BUTTON             "swallow.button"
 #define PART_CONTENT            "swallow.content"
 
-#define COLOR_BUTTON_EDIT_NORMAL    0, 0, 0, 40
-#define COLOR_BUTTON_EDIT_PRESSED   0, 0, 0, 67
+#define COLOR_BUTTON_EDIT_NORMAL    0, 0, 0, 90
+#define COLOR_BUTTON_EDIT_PRESSED   0, 0, 0, 140
 
 #endif /* WIDGET_LAYOUT_H */
