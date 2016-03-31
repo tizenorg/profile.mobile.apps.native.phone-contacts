@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_LIST_MODEL_CONTACT_RECORD_PROVIDER_H
-#define CONTACTS_LIST_MODEL_CONTACT_RECORD_PROVIDER_H
+#ifndef CONTACTS_MODEL_CONTACT_RECORD_PROVIDER_H
+#define CONTACTS_MODEL_CONTACT_RECORD_PROVIDER_H
 
 #include "Contacts/Model/ContactDataProvider.h"
 #include "Contacts/Model/DbChangeObserver.h"
@@ -97,4 +97,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_LIST_MODEL_CONTACT_RECORD_PROVIDER_H */
+#endif /* CONTACTS_MODEL_CONTACT_RECORD_PROVIDER_H */

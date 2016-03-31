@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_CONTACT_DATA_H
-#define CONTACTS_CONTACT_DATA_H
+#ifndef CONTACTS_MODEL_CONTACT_DATA_H
+#define CONTACTS_MODEL_CONTACT_DATA_H
 
 #include <memory>
 #include <tizen.h>
@@ -117,7 +117,7 @@ namespace Contacts
 			/**
 			 * @return ContactData type
 			 */
-			Type getType() const;
+			virtual Type getType() const;
 
 			/**
 			 * @brief Determine if object searchable string contains @a str
@@ -129,40 +129,39 @@ namespace Contacts
 			 * @brief Set update callback
 			 * @param[in]   callback    Update callback
 			 */
-			void setUpdateCallback(UpdateCallback callback);
+			virtual void setUpdateCallback(UpdateCallback callback);
 
 			/**
 			 * @brief Unset update callback
 			 */
-			void unsetUpdateCallback();
+			virtual void unsetUpdateCallback();
 
 			/**
 			 * @brief Set delete callback
 			 * @param[in]   callback    Delete callback
 			 */
-			void setDeleteCallback(DeleteCallback callback);
+			virtual void setDeleteCallback(DeleteCallback callback);
 
 			/**
 			 * @brief Unset delete callback
 			 */
-			void unsetDeleteCallback();
+			virtual void unsetDeleteCallback();
 
 			/**
 			 * @return First letter from formatted person name
 			 */
 			virtual const Utils::UniString *getIndexLetter() const;
 
-		protected:
 			/**
 			 * @brief ContactData updated callback
 			 * @param[in]   changes     Changed info
 			 */
-			void onUpdated(int changes);
+			virtual void onUpdated(int changes);
 
 			/**
 			 * @brief ContactData deleted callback
 			 */
-			void onDeleted();
+			virtual void onDeleted();
 
 		private:
 			Type m_Type;
@@ -172,4 +171,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_CONTACT_DATA_H */
+#endif /* CONTACTS_MODEL_CONTACT_DATA_H */
