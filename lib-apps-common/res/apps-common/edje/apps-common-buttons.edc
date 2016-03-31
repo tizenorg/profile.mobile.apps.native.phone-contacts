@@ -19,13 +19,20 @@
 
 #define BUTTON_CORNER_RADIUS "35"
 #define BUTTON_DEFAULT_H 78
-#define BUTTON_TEXT_H 54
-#define BUTTON_TEXT_X 20
-#define BUTTON_TEXT_Y ((BUTTON_DEFAULT_H-BUTTON_TEXT_H)/2)
+#define BUTTON_DEFAULT_TEXT_H 54
+#define BUTTON_DEFAULT_TEXT_LR 20
+#define BUTTON_DEFAULT_TEXT_TB ((BUTTON_DEFAULT_H-BUTTON_DEFAULT_TEXT_H)/2)
 
-#define BUTTON_CIRCLE_SIZE 98
-#define BUTTON_CONTENT_SIZE 60
-#define BUTTON_CONTENT_REL (((BUTTON_CIRCLE_SIZE-BUTTON_CONTENT_SIZE)/2)/BUTTON_CIRCLE_SIZE)
+#define BUTTON_SMALL_CORNER_RADIUS "25"
+#define BUTTOM_SMALL_H 47
+#define BUTTON_SMALL_TEXT_LR 20
+#define BUTTON_SMALL_TEXT_TB 2
+#define BUTTON_SMALL_TEXT_H (BUTTOM_SMALL_H-(BUTTON_SMALL_TEXT_TB*2))
+
+#define BUTTON_CIRCLE_WH 98
+#define BUTTON_CIRLE_CONTENT_WH 60
+#define BUTTON_CONTENT_REL (((BUTTON_CIRCLE_WH-BUTTON_CIRLE_CONTENT_WH)/2)/BUTTON_CIRCLE_WH)
+
 
 styles {
 	style {
@@ -41,24 +48,14 @@ collections {
 		name: "elm/button/base/custom";
 
 		parts {
-			part {
-				name: "tizen_vg_shape";
-				type: SWALLOW;
-				scale: 1;
-				clip_to: "bg";
-				description {
-					state: "default" 0.0;
-				}
+			swallow { "tizen_vg_shape"; scale;
+				clip_to: "rect.bg";
 			}
-			part {
-				name: "bg";
-				type: RECT;
-				description {
-					state: "default" 0.0;
+			rect { "rect.bg";
+				desc { "default";
 					color_class: BUTTON_COLOR_CLASS_NORMAL;
 				}
-				description {
-					state: "pressed" 0.0;
+				desc { "pressed";
 					color_class: BUTTON_COLOR_CLASS_PRESSED;
 				}
 			}
@@ -69,14 +66,14 @@ collections {
 				signal: "mouse,down,*";
 				source: "*";
 				action: STATE_SET "pressed" 0.0;
-				target: "bg";
+				target: "rect.bg";
 			}
 			program {
 				name: "unpressed";
 				signal: "mouse,up,*";
 				source: "*";
 				action: STATE_SET "default" 0.0;
-				target: "bg";
+				target: "rect.bg";
 			}
 			program {
 				name: "clicked";
@@ -94,20 +91,27 @@ collections {
 		data.item: "corner_radius" BUTTON_CORNER_RADIUS;
 
 		parts {
-			part {
-				name: "elm.text";
-				type: TEXTBLOCK;
-				scale: 1;
-				description {
-					state: "default" 0.0;
-					rel1 {
-						relative: 0.0 (BUTTON_TEXT_Y/BUTTON_DEFAULT_H);
-						offset: BUTTON_TEXT_X 0;
-					}
-					rel2 {
-						relative: 1.0 (1.0-(BUTTON_TEXT_Y/BUTTON_DEFAULT_H));
-						offset: -BUTTON_TEXT_X 0;
-					}
+			spacer { "spacer.top_left"; scale;
+				desc { "default";
+					min: BUTTON_DEFAULT_TEXT_LR BUTTON_DEFAULT_TEXT_TB;
+					align: 0.0 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 0.0 0.0;
+				}
+			}
+			spacer { "spacer.bottom_right"; scale;
+				desc { "default";
+					min: BUTTON_DEFAULT_TEXT_LR BUTTON_DEFAULT_TEXT_TB;
+					align: 1.0 1.0;
+					rel1.relative: 1.0 1.0;
+					rel2.relative: 1.0 1.0;
+				}
+			}
+			textblock { "elm.text"; scale;
+				desc { "default";
+					min: 0 BUTTON_DEFAULT_TEXT_H;
+					rel1 { relative: 1.0 1.0; to: "spacer.top_left"; }
+					rel2 { relative: 0.0 0.0; to: "spacer.bottom_right"; }
 					text {
 						style: "button_main";
 						min: 1 1;
@@ -119,16 +123,38 @@ collections {
 	}
 
 	group {
+		name: "elm/button/base/"BUTTON_STYLE_CUSTOM_SMALL;
+		inherit: "elm/button/base/"BUTTON_STYLE_CUSTOM_DEFAULT;
+		data.item: "vector_ux" "default";
+		data.item: "corner_radius" BUTTON_SMALL_CORNER_RADIUS;
+
+		parts {
+			spacer { "spacer.top_left"; scale;
+				desc { "default";
+					min: BUTTON_SMALL_TEXT_LR BUTTON_SMALL_TEXT_TB;
+				}
+			}
+			spacer { "spacer.bottom_right"; scale;
+				desc { "default";
+					min: BUTTON_SMALL_TEXT_LR BUTTON_SMALL_TEXT_TB;
+				}
+			}
+			textblock { "elm.text"; scale;
+				desc { "default";
+					min: 0 BUTTON_SMALL_TEXT_H;
+				}
+			}
+		}
+	}
+
+	group {
 		name: "elm/button/base/"BUTTON_STYLE_CUSTOM_CIRCLE;
 		inherit: "elm/button/base/custom";
 		data.item: "vector_ux" "circle";
 
 		parts {
-			part {
-				name: "elm.swallow.content";
-				type: SWALLOW;
-				description {
-					state: "default" 0.0;
+			swallow { "elm.swallow.content";
+				desc { "default";
 					rel1.relative: BUTTON_CONTENT_REL BUTTON_CONTENT_REL;
 					rel2.relative: (1.0-BUTTON_CONTENT_REL) (1.0-BUTTON_CONTENT_REL);
 				}

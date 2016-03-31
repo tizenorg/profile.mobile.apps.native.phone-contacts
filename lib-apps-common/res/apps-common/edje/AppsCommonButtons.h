@@ -23,6 +23,7 @@
 #define APPS_COMMON_BUTTONS_EDJ          APPS_COMMON_EDJ_DIR"apps-common-buttons.edj"
 
 #define BUTTON_STYLE_CUSTOM_DEFAULT "custom_default"
+#define BUTTON_STYLE_CUSTOM_SMALL   "custom_small"
 #define BUTTON_STYLE_CUSTOM_CIRCLE  "custom_circle"
 
 #define BUTTON_TEXT_CLASS           "button_text"
