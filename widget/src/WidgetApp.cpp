@@ -19,6 +19,7 @@
 #include "Widget.h"
 
 #include "App/Path.h"
+#include "Ui/Scale.h"
 #include "Utils/Logger.h"
 
 #include <contacts.h>
@@ -34,6 +35,8 @@ void WidgetApp::onCreate()
 	app_event_handler_h handle = nullptr;
 	widget_app_add_event_handler(&handle, APP_EVENT_LANGUAGE_CHANGED,
 			&WidgetApp::onLanguageChanged, this);
+
+	elm_app_base_scale_set(UI_BASE_SCALE);
 }
 
 void WidgetApp::onTerminate()

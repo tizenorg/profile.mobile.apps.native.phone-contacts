@@ -1,4 +1,4 @@
-set(EDC_FILES widget-layout-4x4.edc widget-layout-4x2.edc widget-item-layout.edc)
+set(EDC_FILES widget-layout.edc widget-item-layout.edc)
 set(EDJ_DIR "${RES_DIR}/widget/edje")
 set(IMG_DIR "${RES_DIR}/widget/images")
 
