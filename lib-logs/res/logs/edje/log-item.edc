@@ -30,11 +30,11 @@
 collections
 {
 	base_scale: 2.6;
-	IMAGE_WITH_BG_AND_COLOR(ICON_INCOMING, LOG_ICON_INCOMING, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_incoming")
-	IMAGE_WITH_BG_AND_COLOR(ICON_OUTGOING, LOG_ICON_OUTGOING, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_outgoing")
-	IMAGE_WITH_BG_AND_COLOR(ICON_MISSED, LOG_ICON_MISSED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
-	IMAGE_WITH_BG_AND_COLOR(ICON_REJECTED, LOG_ICON_REJECTED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
-	IMAGE_WITH_BG_AND_COLOR(ICON_AUTO_REJECTED, LOG_ICON_AUTO_REJECTED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
+	IMAGE_WITH_COLOR_AND_BG(ICON_INCOMING, LOG_ICON_INCOMING, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_incoming")
+	IMAGE_WITH_COLOR_AND_BG(ICON_OUTGOING, LOG_ICON_OUTGOING, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_outgoing")
+	IMAGE_WITH_COLOR_AND_BG(ICON_MISSED, LOG_ICON_MISSED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
+	IMAGE_WITH_COLOR_AND_BG(ICON_REJECTED, LOG_ICON_REJECTED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
+	IMAGE_WITH_COLOR_AND_BG(ICON_AUTO_REJECTED, LOG_ICON_AUTO_REJECTED, "log_type_bg",  LOG_ICON_CONTAINER, "log_type_missed_reject")
 
 	group {
 		name: LOG_ITEM;

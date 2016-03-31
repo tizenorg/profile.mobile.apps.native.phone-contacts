@@ -16,13 +16,11 @@
  */
 
 #define IMAGE_WITH_COLOR(GROUP_NAME, IMAGE_PATH, COLOR_CLASS) \
-	group { \
-		name: GROUP_NAME; \
+	group { GROUP_NAME; \
 		images.image: IMAGE_PATH COMP; \
 		parts { \
-			part { name: "image"; \
-				description { \
-					state: "default" 0.0; \
+			image { "image"; \
+				desc { "default"; \
 					image.normal: IMAGE_PATH; \
 					color_class: COLOR_CLASS; \
 					aspect: 1 1; \
@@ -32,15 +30,15 @@
 		} \
 	}
 
-#define IMAGE_WITH_BG_AND_COLOR(GROUP_NAME, IMAGE_PATH, COLOR_CLASS, BG_IMAGE_PATH, BG_COLOR_CLASS) \
-	group { \
-		name: GROUP_NAME; \
-		images.image: BG_IMAGE_PATH COMP; \
-		images.image: IMAGE_PATH COMP; \
+#define IMAGE_WITH_COLOR_AND_BG(GROUP_NAME, IMAGE_PATH, COLOR_CLASS, BG_IMAGE_PATH, BG_COLOR_CLASS) \
+	group { GROUP_NAME; \
+		images { \
+			image: BG_IMAGE_PATH COMP; \
+			image: IMAGE_PATH COMP; \
+		} \
 		parts { \
-			part { name: "image.bg"; \
-				description { \
-					state: "default" 0.0; \
+			image { "image.bg"; \
+				desc { "default"; \
 					image.normal: BG_IMAGE_PATH; \
 					color_class: BG_COLOR_CLASS; \
 					aspect: 1 1; \
@@ -49,9 +47,8 @@
 			} \
 		} \
 		parts { \
-			part { name: "image"; \
-				description { \
-					state: "default" 0.0; \
+			image { "image"; \
+				desc { "default"; \
 					image.normal: IMAGE_PATH; \
 					color_class: COLOR_CLASS; \
 					aspect: 1 1; \
@@ -62,14 +59,12 @@
 	}
 
 #define IMAGE_WITH_MASK(GROUP_NAME, MASK_PATH) \
-	group { \
-		name: GROUP_NAME; \
+	group { GROUP_NAME; \
 		images.image: MASK_PATH COMP; \
 		parts { \
-			part { name: "image.mask"; \
+			image { "image.mask"; \
 				precise_is_inside: 1; \
-				description { \
-					state: "default" 0.0; \
+				desc { "default"; \
 					image.normal: MASK_PATH; \
 					aspect: 1.0 1.0; \
 					aspect_preference: SOURCE; \
@@ -77,31 +72,24 @@
 			} \
 		} \
 		parts { \
-			part { name: "elm.swallow.content"; \
-				type: SWALLOW; \
+			swallow { "elm.swallow.content"; \
 				clip_to: "image.mask"; \
-				description { \
-					state: "default" 0.0; \
-				} \
 			} \
 		} \
 	}
 
-#define IMAGE_WITH_PRESSED_COLOR(GROUP_NAME, IMAGE_PATH, COLOR_CLASS, PRESSED_COLOR_CLASS) \
-	group { \
-		name: GROUP_NAME; \
+#define IMAGE_WITH_COLOR_AND_TOUCH(GROUP_NAME, IMAGE_PATH, COLOR_CLASS, PRESSED_COLOR_CLASS) \
+	group { GROUP_NAME; \
 		images.image: IMAGE_PATH COMP; \
 		parts { \
-			part { name: "image"; \
-				description { \
-					state: "default" 0.0; \
+			image { "image"; \
+				desc { "default"; \
 					image.normal: IMAGE_PATH; \
 					color_class: COLOR_CLASS; \
 					aspect: 1 1; \
 					aspect_preference: SOURCE; \
 				} \
-				description { \
-					state: "pressed" 0.0; \
+				desc { "pressed"; \
 					inherit:  "default" 0.0; \
 					color_class: PRESSED_COLOR_CLASS; \
 				} \
@@ -125,33 +113,22 @@
 		} \
 	}
 
-#define IMAGE_WITH_BG_PRESSED_COLOR(GROUP_NAME, IMAGE_PATH, COLOR_CLASS, BG_IMAGE_PATH, BG_COLOR_CLASS, PRESSED_BG_COLOR_CLASS) \
-	group { \
-		name: GROUP_NAME; \
-		images.image: IMAGE_PATH COMP; \
-		images.image: BG_IMAGE_PATH COMP; \
+#define IMAGE_WITH_TOUCH(GROUP_NAME, IMAGE_PATH, PRESSED_IMAGE_PATH) \
+	group { GROUP_NAME; \
+		images { \
+			image: IMAGE_PATH COMP; \
+			image: PRESSED_IMAGE_PATH COMP; \
+		} \
 		parts { \
-			part { name: "image.bg"; \
-				description { \
-					state: "default" 0.0; \
-					image.normal: BG_IMAGE_PATH; \
-					color_class: BG_COLOR_CLASS; \
-					aspect: 1 1; \
-					aspect_preference: SOURCE; \
-				} \
-				description { \
-					state: "pressed" 0.0; \
-					inherit:  "default" 0.0; \
-					color_class: PRESSED_BG_COLOR_CLASS; \
-				} \
-			} \
-			part { name: "image"; \
-				description { \
-					state: "default" 0.0; \
+			image { "image"; \
+				desc { "default"; \
 					image.normal: IMAGE_PATH; \
-					color_class: COLOR_CLASS; \
 					aspect: 1 1; \
 					aspect_preference: SOURCE; \
+				} \
+				desc { "pressed"; \
+					inherit:  "default" 0.0; \
+					image.normal: PRESSED_IMAGE_PATH; \
 				} \
 			} \
 		} \
@@ -161,14 +138,14 @@
 				signal: "mouse,down,*"; \
 				source: "*"; \
 				action: STATE_SET "pressed" 0.0; \
-				target: "image.bg"; \
+				target: "image"; \
 			} \
 			program { \
 				name: "unpressed"; \
 				signal: "mouse,up,*"; \
 				source: "*"; \
 				action: STATE_SET "default" 0.0; \
-				target: "image.bg"; \
+				target: "image"; \
 			} \
 		} \
 	}
