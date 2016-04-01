@@ -18,20 +18,20 @@
 #ifndef DETAILS_ITEM_LAYOUT_METRICS_H
 #define DETAILS_ITEM_LAYOUT_METRICS_H
 
-#define PAD_T 13
-#define PAD_L 10
-#define PAD_R 17
-#define PAD_B 28
+#define ACTION_BTN_WH 80
 
-#define BTN_WH 80
-#define BTN_SIZE BTN_WH BTN_WH
-#define THUMBNAIL_SIZE 240 240
-#define THUMBNAIL_PAD_T 44
+#define BACK_BTN_WH 80
+#define BACK_BTN_T 13
+#define BACK_BTN_L 10
 
-#define TEXT_PAD_X 24
-#define TEXT_PAD_Y 2
+#define THUMBNAIL_WH 240
+#define THUMBNAIL_T 44
+
+#define TEXT_LR 24
+#define TEXT_T 2
 
 #define NAME_H 76
+#define NAME_B 28
 #define NAME_TEXT_SIZE 56
 
 #endif /* DETAILS_ITEM_LAYOUT_METRICS_H */
