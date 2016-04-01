@@ -18,6 +18,8 @@
 #ifndef LOGS_MODEL_LOG_H
 #define LOGS_MODEL_LOG_H
 
+#include "Contacts/Model/ContactData.h"
+
 #include <contacts.h>
 #include <time.h>
 
@@ -29,7 +31,7 @@ namespace Logs
 		/**
 		 * @brief Log record information
 		 */
-		class Log
+		class Log : public Contacts::Model::ContactData
 		{
 		public:
 			/**
@@ -44,17 +46,28 @@ namespace Logs
 			/**
 			 * @return log name
 			 */
-			const char *getName() const;
+			const char *getName() const override;
 
 			/**
 			 * @return log number
 			 */
-			const char *getNumber() const;
+			const char *getNumber() const override;
 
 			/**
 			 * @return log name image path
 			 */
-			const char *getImagePath() const;
+			const char *getImagePath() const override;
+
+			/**
+			 * @return log id
+			 */
+			int getId() const override;
+
+			/**
+			 * @see ContactData::compare()
+			 * @detail Compares by number
+			 */
+			virtual bool compare(const char *str) override;
 
 			/**
 			 * @return log type
@@ -65,11 +78,6 @@ namespace Logs
 			 * @return log time
 			 */
 			tm getTime() const;
-
-			/**
-			 * @return log id
-			 */
-			int getId() const;
 
 			/**
 			 * @return log person id
