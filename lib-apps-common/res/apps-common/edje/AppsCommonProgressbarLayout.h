@@ -25,7 +25,4 @@
 #define GROUP_PROGRESSBAR_LAYOUT "progressbar_layout"
 #define PART_PROGRESSBAR         "swallow.progressbar"
 
-#define PROGRESSBAR_PAD_X        32
-#define PROGRESSBAR_PAD_Y        17
-
 #endif /* APPS_COMMON_PROGRESSBAR_LAYOUT_H */

@@ -17,48 +17,33 @@
 
 #include "AppsCommonProgressbarLayout.h"
 
+#define PROGRESSBAR_LR 32
+#define PROGRESSBAR_TB 17
+
 collections {
 	base_scale: 2.6;
-	group {
-		name: GROUP_PROGRESSBAR_LAYOUT;
-
+	group { GROUP_PROGRESSBAR_LAYOUT;
 		parts {
-			spacer { "spacer.top"; scale;
+			spacer { "spacer.left_top"; scale;
 				desc { "default";
-					min: 0 PROGRESSBAR_PAD_Y;
-					align: 0.5 0.0;
+					min: PROGRESSBAR_LR PROGRESSBAR_TB;
+					align: 0.0 0.0;
 					rel1.relative: 0.0 0.0;
-					rel2.relative: 1.0 0.0;
+					rel2.relative: 0.0 0.0;
 				}
 			}
-			spacer { "spacer.left"; scale;
+			spacer { "spacer.right_bottom"; scale;
 				desc { "default";
-					min: PROGRESSBAR_PAD_X 0;
-					align: 0.0 0.5;
-					rel1.relative: 0.0 0.0;
-					rel2.relative: 0.0 1.0;
-				}
-			}
-			spacer { "spacer.right"; scale;
-				desc { "default";
-					min: PROGRESSBAR_PAD_X 0;
-					align: 1.0 0.5;
-					rel1.relative: 1.0 0.0;
-					rel2.relative: 1.0 1.0;
-				}
-			}
-			spacer { "spacer.bottom"; scale;
-				desc { "default";
-					min: 0 PROGRESSBAR_PAD_Y;
-					align: 0.5 1.0;
-					rel1.relative: 0.0 1.0;
+					min: PROGRESSBAR_LR PROGRESSBAR_TB;
+					align: 1.0 1.0;
+					rel1.relative: 1.0 1.0;
 					rel2.relative: 1.0 1.0;
 				}
 			}
 			swallow { PART_PROGRESSBAR; scale;
 				desc { "default";
-					rel1 { relative: 1.0 1.0; to_x: "spacer.left"; to_y: "spacer.top"; }
-					rel2 { relative: 0.0 0.0; to_x: "spacer.right"; to_y: "spacer.bottom"; }
+					rel1 { relative: 1.0 1.0; to: "spacer.left_top"; }
+					rel2 { relative: 0.0 0.0; to: "spacer.right_bottom"; }
 				}
 			}
 		}
