@@ -15,6 +15,9 @@
  *
  */
 
+#include "Utils/Logger.h"
+SET_LOG_TAG("contacts-widget");
+
 #include "WidgetApp.h"
 
 int main(int argc, char *argv[])
