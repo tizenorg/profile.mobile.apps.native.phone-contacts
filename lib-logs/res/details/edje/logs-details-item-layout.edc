@@ -50,21 +50,17 @@ collections
 		data.item: "states" STATE_SAVED;
 
 		parts {
-			spacer { "spacer.thumbnail.top"; scale;
+			spacer { "spacer.thumbnail_top"; scale;
 				desc { "default";
 					min: 0 LOGS_THUMBNAIL_PAD_T;
 				}
 			}
-			spacer { "spacer.name.top"; scale;
+			spacer { "spacer.name_top"; scale;
 				desc { "default";
 					min: 0 NAME_PAD_T;
-					max: -1 NAME_PAD_T;
 				}
 			}
 			textblock { PART_NAME; scale;
-				desc { "default";
-					max: 0 0;
-				}
 				desc { "visible";
 					inherit: "default";
 					min: 0 NAME_H;
@@ -74,7 +70,6 @@ collections
 			spacer { "spacer.unsaved.top"; scale;
 				desc { "default";
 					min: 0 UNSAVED_BTN_PAD_T;
-					max: -1 UNSAVED_BTN_PAD_T;
 					align: 0.5 0.0;
 					rel1 { relative: 0.0 1.0; to_y: PART_THUMBNAIL; }
 					rel2 { relative: 1.0 1.0; to_y: PART_THUMBNAIL; }
@@ -207,8 +202,8 @@ collections
 			}
 			swallow { PART_ICON_CALL; scale;
 				desc { "default";
-					min: BTN_SIZE;
-					max: BTN_SIZE;
+					min: ACTION_BTN_WH ACTION_BTN_WH;
+					max: ACTION_BTN_WH ACTION_BTN_WH;
 					align: 1.0 0.5;
 					rel1 { relative: 1.0 0.0; to_x: "spacer.icon_call_left";}
 					rel2 { relative: 0.0 1.0; to_x: "spacer.icon_message_left";}
@@ -223,8 +218,8 @@ collections
 			}
 			swallow { PART_ICON_MESSAGE; scale;
 				desc { "default";
-					min: BTN_SIZE;
-					max: BTN_SIZE;
+					min: ACTION_BTN_WH ACTION_BTN_WH;
+					max: ACTION_BTN_WH ACTION_BTN_WH;
 					align: 1.0 0.5;
 					rel1 { relative: 1.0 0.0; to_x: "spacer.icon_message_left";}
 					rel2 { relative: 0.0 1.0; to_x: "spacer.right";}

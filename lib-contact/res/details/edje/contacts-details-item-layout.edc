@@ -58,29 +58,39 @@ collections
 		data.item: "states" PART_PHONETIC_NAME" "PART_COMPANY;
 
 		parts {
-			swallow { PART_FAV_BTN; scale;
+			spacer { "spacer.right_top"; scale;
 				desc { "default";
-					min: BTN_SIZE;
-					max: BTN_SIZE;
+					min: FAV_BTN_R FAV_BTN_T;
 					align: 1.0 0.0;
-					rel1 { relative: 0.0 1.0; to_y: "spacer.top"; }
-					rel2 { relative: 0.0 1.0; to_x: "spacer.right"; }
+					rel1.relative: 1.0 0.0;
+					rel2.relative: 1.0 0.0;
 				}
 			}
-			spacer { "spacer.phonetic_name.top"; scale;
+			swallow { PART_FAV_BTN; scale;
 				desc { "default";
-					min: 0 TEXT_PAD_Y;
+					min: FAV_BTN_WH FAV_BTN_WH;
+					align: 1.0 0.0;
+					rel1 { relative: 0.0 1.0; to: "spacer.right_top"; }
+					rel2 { relative: 0.0 1.0; to: "spacer.right_top"; }
+				}
+			}
+			spacer { "spacer.phonetic_name_top"; scale;
+				desc { "default";
 					align: 0.5 0.0;
 					rel1 { relative: 0.0 1.0; to_y: PART_NAME; }
 					rel2 { relative: 1.0 1.0; to_y: PART_NAME; }
+				}
+				desc { "visible";
+					inherit: "default";
+					min: 0 TEXT_T;
 				}
 			}
 			textblock { PART_PHONETIC_NAME; scale;
 				desc { "default";
 					max: 0 0;
 					align: 0.5 0.0;
-					rel1 { relative: 1.0 1.0; to_x: "spacer.text.left"; to_y: "spacer.phonetic_name.top"; }
-					rel2 { relative: 0.0 1.0; to_x: "spacer.text.right"; }
+					rel1 { relative: 1.0 1.0; to_x: "spacer.text_left"; to_y: "spacer.phonetic_name_top"; }
+					rel2 { relative: 0.0 1.0; to_x: "spacer.text_right"; }
 					text {
 						align: 0.5 0.0;
 						style: "phonetic_name_style";
@@ -92,20 +102,23 @@ collections
 					max: -1 PHONETIC_NAME_H;
 				}
 			}
-			spacer { "spacer.company.top"; scale;
+			spacer { "spacer.company_top"; scale;
 				desc { "default";
-					min: 0 TEXT_PAD_Y;
 					align: 0.5 0.0;
 					rel1 { relative: 0.0 1.0; to_y: PART_PHONETIC_NAME; }
 					rel2 { relative: 1.0 1.0; to_y: PART_PHONETIC_NAME; }
+				}
+				desc { "visible";
+					inherit: "default";
+					min: 0 TEXT_T;
 				}
 			}
 			textblock { PART_COMPANY; scale;
 				desc { "default";
 					max: 0 0;
 					align: 0.5 0.0;
-					rel1 { relative: 1.0 1.0; to_x: "spacer.text.left"; to_y: "spacer.company.top"; }
-					rel2 { relative: 0.0 1.0; to_x: "spacer.text.right"; }
+					rel1 { relative: 1.0 1.0; to_x: "spacer.text_left"; to_y: "spacer.company_top"; }
+					rel2 { relative: 0.0 1.0; to_x: "spacer.text_right"; }
 					text {
 						align: 0.5 0.0;
 						style: "company_style";
@@ -128,24 +141,28 @@ collections
 				signal: "elm,state,"PART_PHONETIC_NAME",active";
 				source: "elm";
 				action: STATE_SET "visible" 0.0;
+				target: "spacer.phonetic_name_top";
 				target: PART_PHONETIC_NAME;
 			}
 			program {
 				signal: "elm,state,"PART_PHONETIC_NAME",passive";
 				source: "elm";
 				action: STATE_SET "default" 0.0;
+				target: "spacer.phonetic_name_top";
 				target: PART_PHONETIC_NAME;
 			}
 			program {
 				signal: "elm,state,"PART_COMPANY",active";
 				source: "elm";
 				action: STATE_SET "visible" 0.0;
+				target: "spacer.company_top";
 				target: PART_COMPANY;
 			}
 			program {
 				signal: "elm,state,"PART_COMPANY",passive";
 				source: "elm";
 				action: STATE_SET "default" 0.0;
+				target: "spacer.company_top";
 				target: PART_COMPANY;
 			}
 		}

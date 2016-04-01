@@ -39,41 +39,25 @@ collections
 		data.item: "contents" PART_BACK_BTN" "PART_THUMBNAIL;
 
 		parts {
-			spacer { "spacer.top"; scale;
+			spacer { "spacer.left_top"; scale;
 				desc { "default";
-					min: 0 PAD_T;
-					align: 0.5 0.0;
+					min: BACK_BTN_L BACK_BTN_T;
+					align: 0.0 0.0;
 					rel1.relative: 0.0 0.0;
-					rel2.relative: 1.0 0.0;
-				}
-			}
-			spacer { "spacer.left"; scale;
-				desc { "default";
-					min: PAD_L 0;
-					align: 0.0 0.5;
-					rel1.relative: 0.0 0.0;
-					rel2.relative: 0.0 1.0;
-				}
-			}
-			spacer { "spacer.right"; scale;
-				desc { "default";
-					min: PAD_R 0;
-					align: 1.0 0.5;
-					rel1.relative: 1.0 0.0;
-					rel2.relative: 1.0 1.0;
+					rel2.relative: 0.0 0.0;
 				}
 			}
 			swallow { PART_BACK_BTN; scale;
 				desc { "default";
-					min: BTN_SIZE;
-					max: BTN_SIZE;
+					min: BACK_BTN_WH BACK_BTN_WH;
 					align: 0.0 0.0;
-					rel1 { relative: 1.0 1.0; to_x: "spacer.left"; to_y: "spacer.top"; }
+					rel1 { relative: 1.0 1.0; to: "spacer.left_top"; }
+					rel2 { relative: 1.0 1.0; to: "spacer.left_top"; }
 				}
 			}
-			spacer { "spacer.thumbnail.top"; scale;
+			spacer { "spacer.thumbnail_top"; scale;
 				desc { "default";
-					min: 0 THUMBNAIL_PAD_T;
+					min: 0 THUMBNAIL_T;
 					align: 0.5 0.0;
 					rel1.relative: 0.0 0.0;
 					rel2.relative: 1.0 0.0;
@@ -82,30 +66,30 @@ collections
 			swallow { PART_THUMBNAIL; scale;
 				desc { "default";
 					align: 0.5 0.0;
-					min: THUMBNAIL_SIZE;
-					max: THUMBNAIL_SIZE;
-					rel1 { relative: 0.0 1.0; to_y: "spacer.thumbnail.top"; }
+					min: THUMBNAIL_WH THUMBNAIL_WH;
+					rel1 { relative: 0.5 1.0; to_y: "spacer.thumbnail_top"; }
+					rel2 { relative: 0.5 1.0; to_y: "spacer.thumbnail_top"; }
 				}
 			}
-			spacer { "spacer.text.left"; scale;
+			spacer { "spacer.text_left"; scale;
 				desc { "default";
-					min: TEXT_PAD_X 0;
+					min: TEXT_LR 0;
 					align: 0.0 0.5;
 					rel1.relative: 0.0 0.0;
 					rel2.relative: 0.0 1.0;
 				}
 			}
-			spacer { "spacer.text.right"; scale;
+			spacer { "spacer.text_right"; scale;
 				desc { "default";
-					min: TEXT_PAD_X 0;
+					min: TEXT_LR 0;
 					align: 1.0 0.5;
 					rel1.relative: 1.0 0.0;
 					rel2.relative: 1.0 1.0;
 				}
 			}
-			spacer { "spacer.name.top"; scale;
+			spacer { "spacer.name_top"; scale;
 				desc { "default";
-					min: 0 TEXT_PAD_Y;
+					min: 0 TEXT_T;
 					align: 0.5 0.0;
 					rel1 { relative: 0.0 1.0; to_y: PART_THUMBNAIL; }
 					rel2 { relative: 1.0 1.0; to_y: PART_THUMBNAIL; }
@@ -116,8 +100,8 @@ collections
 					min: 0 NAME_H;
 					max: -1 NAME_H;
 					align: 0.5 0.0;
-					rel1 { relative: 1.0 1.0; to_x: "spacer.text.left"; to_y: "spacer.name.top"; }
-					rel2 { relative: 0.0 1.0; to_x: "spacer.text.right"; }
+					rel1 { relative: 1.0 1.0; to_x: "spacer.text_left"; to_y: "spacer.name_top"; }
+					rel2 { relative: 0.0 1.0; to_x: "spacer.text_right"; }
 					text {
 						align: 0.5 0.0;
 						style: "name_style";
@@ -126,7 +110,7 @@ collections
 			}
 			spacer { "spacer.bottom"; scale;
 				desc { "default";
-					min: 0 PAD_B;
+					min: 0 NAME_B;
 					align: 0.5 0.0;
 					rel1 { relative: 0.0 1.0; to_y: PART_NAME; }
 					rel2 { relative: 1.0 1.0; }
