@@ -16,6 +16,9 @@
  */
 
 #include "MainApp.h"
+#include "Utils/Logger.h"
+
+DEFINE_LOG_TAG("contacts");
 
 int main(int argc, char *argv[])
 {

@@ -18,7 +18,14 @@
 #ifndef UTILS_LOGGER_H
 #define UTILS_LOGGER_H
 
-#define LOG_TAG "contacts"
+#ifndef LOG_TAG
+	extern const char *LogTag;
+	#define LOG_TAG LogTag
+	#define DEFINE_LOG_TAG(tag) const char *LOG_TAG = tag
+#else
+	#define DEFINE_LOG_TAG(tag)
+#endif
+
 #include <dlog.h>
 
 #define __MODULE__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
