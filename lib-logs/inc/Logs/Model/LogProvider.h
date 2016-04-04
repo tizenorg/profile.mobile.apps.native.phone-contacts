@@ -24,6 +24,8 @@
 #include <set>
 
 #include "Contacts/Model/ContactRecordProvider.h"
+#include "Contacts/RecordListIterator.h"
+
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
 

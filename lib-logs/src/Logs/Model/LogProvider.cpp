@@ -23,6 +23,7 @@
 
 #include <algorithm>
 
+using namespace Contacts;
 using namespace Logs::Model;
 
 LogProvider::LogProvider()
@@ -198,12 +199,11 @@ void LogProvider::onLogsChanged(const char *viewUri)
 
 LogProvider::LogIterator LogProvider::updateLogs()
 {
-	RecordList newLogList;
-	fillRecordList(newLogList);
-	RecordIterator newIt = newLogList.begin();
+	contacts_list_h list = fetchLogList();
+	RecordListIterator newIt = begin(list);
 	LogIterator oldIt = m_Logs.begin();
 
-	while (oldIt != m_Logs.end() && newIt != newLogList.end()) {
+	while (oldIt != m_Logs.end() && newIt != end(list)) {
 		int id = 0;
 		contacts_record_get_int(*newIt, _contacts_phone_log.id, &id);
 
@@ -223,12 +223,12 @@ LogProvider::LogIterator LogProvider::updateLogs()
 	}
 
 	LogIterator newFirst = m_Logs.end();
-	if (newIt != newLogList.end()) {
+	if (newIt != end(list)) {
 		m_Logs.push_back(new Log(*newIt));
 		newFirst = --m_Logs.end();
 		++newIt;
 	}
-	while (newIt != newLogList.end()) {
+	while (newIt != end(list)) {
 		m_Logs.push_back(new Log(*newIt));
 		++newIt;
 	}
