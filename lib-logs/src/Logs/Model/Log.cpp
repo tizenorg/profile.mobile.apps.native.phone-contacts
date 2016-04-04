@@ -23,7 +23,8 @@
 using namespace Logs::Model;
 
 Log::Log(contacts_record_h record)
-	: m_LogRecord(record), m_ContactRecord(getContactRecord()), m_Group(nullptr)
+	: ContactData(TypeLog),
+	  m_LogRecord(record), m_ContactRecord(getContactRecord()), m_Group(nullptr)
 {
 }
 
@@ -72,6 +73,16 @@ const char *Log::getImagePath() const
 		contacts_record_get_str_p(m_ContactRecord, _contacts_person.image_thumbnail_path, &path);
 	}
 	return path;
+}
+
+int Log::getId() const
+{
+	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.id);
+}
+
+bool Log::compare(const char *str)
+{
+	return strstr(getNumber(), str);
 }
 
 int Log::getNumberType() const
@@ -143,11 +154,6 @@ tm Log::getTime() const
 	time_t time = 0;
 	contacts_record_get_int(m_LogRecord, _contacts_phone_log.log_time, (int *) &time);
 	return *localtime(&time);
-}
-
-int Log::getId() const
-{
-	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.id);
 }
 
 int Log::getPersonId() const
