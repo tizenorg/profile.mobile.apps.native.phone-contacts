@@ -23,6 +23,7 @@
 
 #include <algorithm>
 
+using namespace Contacts;
 using namespace Logs::Model;
 
 LogProvider::LogProvider()
@@ -81,18 +82,6 @@ void LogProvider::fillList()
 
 	CONTACTS_LIST_FOREACH(list, record) {
 		m_Logs.push_back(new Log(record));
-	}
-
-	contacts_list_destroy(list, false);
-}
-
-void LogProvider::fillRecordList(RecordList &recordList)
-{
-	contacts_list_h list = fetchLogList();
-	contacts_record_h record = nullptr;
-
-	CONTACTS_LIST_FOREACH(list, record) {
-		recordList.push_back(record);
 	}
 
 	contacts_list_destroy(list, false);
@@ -198,12 +187,12 @@ void LogProvider::onLogsChanged(const char *viewUri)
 
 LogProvider::LogIterator LogProvider::updateLogs()
 {
-	RecordList newLogList;
-	fillRecordList(newLogList);
-	RecordIterator newIt = newLogList.begin();
+	contacts_list_h list = fetchLogList();
+	RecordListIterator newIt = begin(list);
+	RecordListIterator lastNewIt = end(list);
 	LogIterator oldIt = m_Logs.begin();
 
-	while (oldIt != m_Logs.end() && newIt != newLogList.end()) {
+	while (oldIt != m_Logs.end() && newIt != lastNewIt) {
 		int id = 0;
 		contacts_record_get_int(*newIt, _contacts_phone_log.id, &id);
 
@@ -223,12 +212,12 @@ LogProvider::LogIterator LogProvider::updateLogs()
 	}
 
 	LogIterator newFirst = m_Logs.end();
-	if (newIt != newLogList.end()) {
+	if (newIt != lastNewIt) {
 		m_Logs.push_back(new Log(*newIt));
 		newFirst = --m_Logs.end();
 		++newIt;
 	}
-	while (newIt != newLogList.end()) {
+	while (newIt != lastNewIt) {
 		m_Logs.push_back(new Log(*newIt));
 		++newIt;
 	}
