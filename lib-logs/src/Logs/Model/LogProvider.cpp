@@ -36,6 +36,10 @@ LogProvider::~LogProvider()
 {
 	contacts_db_remove_changed_cb(_contacts_phone_log._uri, makeCallbackWithLastParam(&LogProvider::onLogsChanged), this);
 	contacts_db_remove_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&LogProvider::onContactChanged), this);
+
+	for (auto &&log : m_Logs) {
+		delete &log;
+	}
 }
 
 const LogProvider::LogGroupList &LogProvider::getLogGroupList()
@@ -47,6 +51,15 @@ const LogProvider::LogGroupList &LogProvider::getLogGroupList()
 		fillGroupList(m_Logs.begin(), m_Logs.end());
 	}
 	return m_Groups;
+}
+
+const Contacts::Model::ContactDataList &LogProvider::getContactDataList()
+{
+	if (m_Logs.empty()) {
+		fillList();
+	}
+
+	return m_Logs;
 }
 
 void LogProvider::resetLogGroups()
@@ -71,7 +84,7 @@ void LogProvider::fillList()
 	contacts_record_h record = nullptr;
 
 	CONTACTS_LIST_FOREACH(list, record) {
-		m_Logs.push_back(LogPtr(new Log(record)));
+		m_Logs.push_back(new Log(record));
 	}
 
 	contacts_list_destroy(list, false);
@@ -102,11 +115,12 @@ size_t LogProvider::fillGroupList(LogIterator begin, LogIterator end)
 	}
 	size_t newGroupsCount = 0;
 
-	for (auto &&log : Utils::makeRange(begin, end)) {
+	for (auto &&contactData : Utils::makeRange(begin, end)) {
+		Log *log = static_cast<Log *>(contactData);
 		if (lastLogGroup && shouldGroupLogs(*log, lastLogGroup->getFirstLog())) {
-			lastLogGroup->addLog(log.get());
+			lastLogGroup->addLog(log);
 		} else {
-			lastLogGroup = new LogGroup(log.get());
+			lastLogGroup = new LogGroup(log);
 			m_Groups.push_back(LogGroupPtr(lastLogGroup));
 			++newGroupsCount;
 		}
@@ -198,26 +212,28 @@ LogProvider::LogIterator LogProvider::updateLogs()
 		contacts_record_get_int(*newIt, _contacts_phone_log.id, &id);
 
 		if (id != (*oldIt)->getId()) {
+			delete *oldIt;
 			oldIt = m_Logs.erase(oldIt);
 		} else {
-			(*oldIt)->update(*newIt);
+			static_cast<Log *>(*oldIt)->update(*newIt);
 			++oldIt;
 			++newIt;
 		}
 	}
 
 	while (oldIt != m_Logs.end()) {
+		delete *oldIt;
 		oldIt = m_Logs.erase(oldIt);
 	}
 
 	LogIterator newFirst = m_Logs.end();
 	if (newIt != newLogList.end()) {
-		m_Logs.push_back(LogPtr(new Log(*newIt)));
+		m_Logs.push_back(new Log(*newIt));
 		newFirst = --m_Logs.end();
 		++newIt;
 	}
 	while (newIt != newLogList.end()) {
-		m_Logs.push_back(LogPtr(new Log(*newIt)));
+		m_Logs.push_back(new Log(*newIt));
 		++newIt;
 	}
 
