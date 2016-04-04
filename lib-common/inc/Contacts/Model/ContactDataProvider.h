@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_CONTACT_DATA_PROVIDER_H
-#define CONTACTS_CONTACT_DATA_PROVIDER_H
+#ifndef CONTACTS_MODEL_CONTACT_DATA_PROVIDER_H
+#define CONTACTS_MODEL_CONTACT_DATA_PROVIDER_H
 
 #include "Contacts/Model/ContactData.h"
 
@@ -54,7 +54,6 @@ namespace Contacts
 			 */
 			void unsetInsertCallback();
 
-		protected:
 			/**
 			 * @brief ContactData inserted callback
 			 * @param[in]   contactData     Contact data
@@ -67,4 +66,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_CONTACT_DATA_PROVIDER_H */
+#endif /* CONTACTS_MODEL_CONTACT_DATA_PROVIDER_H */
