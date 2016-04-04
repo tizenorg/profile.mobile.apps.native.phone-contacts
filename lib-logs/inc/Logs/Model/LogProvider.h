@@ -23,6 +23,7 @@
 #include <memory>
 #include <set>
 
+#include "Contacts/Model/ContactRecordProvider.h"
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
 
@@ -33,7 +34,7 @@ namespace Logs
 		/**
 		 * @brief Provides list of logs
 		 */
-		class LogProvider
+		class LogProvider : public Contacts::Model::ContactDataProvider
 		{
 		public:
 			/**
@@ -45,11 +46,6 @@ namespace Logs
 			 * @brief Unique log group pointer.
 			 */
 			typedef std::unique_ptr<LogGroup> LogGroupPtr;
-
-			/**
-			 * @brief Log records list.
-			 */
-			typedef std::list<LogPtr> LogList;
 
 			/**
 			 * @brief Log list.
@@ -69,7 +65,7 @@ namespace Logs
 			/**
 			 * @brief Log iterator.
 			 */
-			typedef LogList::iterator LogIterator;
+			typedef Contacts::Model::ContactDataList::iterator LogIterator;
 
 			/**
 			 * @brief Record iterator.
@@ -102,6 +98,12 @@ namespace Logs
 			 * @return list of logs groups.
 			 */
 			const LogGroupList &getLogGroupList();
+
+			/**
+			 * @brief Get log group list
+			 * @return List of log group objects
+			 */
+			virtual const Contacts::Model::ContactDataList &getContactDataList() override;
 
 			/**
 			 * @brief Reset log group list
@@ -146,7 +148,7 @@ namespace Logs
 			int m_DbVersion;
 
 			LogGroupList m_Groups;
-			LogList m_Logs;
+			Contacts::Model::ContactDataList m_Logs;
 
 			InsertCallback m_InsertCallback;
 		};
