@@ -15,10 +15,9 @@
  *
  */
 
-images {
-	image: BUTTON_ADD COMP;
-	image: BUTTON_ADD_PRESSED COMP;
-}
+#include "WidgetLayout.h"
+#include "WidgetLayoutMetrics.h"
+#include "../../../../lib-apps-common/res/apps-common/edje/apps-common-utils.edc"
 
 styles {
 	style {
@@ -34,80 +33,64 @@ styles {
 collections {
 	base_scale: 2.6;
 
-	group {
-		name: GROUP_ICON_ADD;
-		parts {
-			image { "icon";
-				desc { "default";
-					aspect: 1 1;
-					aspect_preference: SOURCE;
-					image.normal: BUTTON_ADD;
-				}
-				desc { "pressed";
-					inherit: "default" 0.0;
-					image.normal: BUTTON_ADD_PRESSED;
-				}
-			}
-		}
-		programs {
-			program {
-				name: "pressed";
-				signal: "mouse,down,*";
-				source: "*";
-				action: STATE_SET "pressed" 0.0;
-				target: "icon";
-			}
-			program {
-				name: "unpressed";
-				signal: "mouse,up,*";
-				source: "*";
-				action: STATE_SET "default" 0.0;
-				target: "icon";
-			}
-		}
-	}
+	IMAGE_WITH_TOUCH(GROUP_ICON_ADD, BUTTON_ADD, BUTTON_ADD_PRESSED);
 
-	group {
-		name: GROUP_NO_CONTACTS;
-
+	group { GROUP_NO_CONTACTS;
 		images {
 			image: NOCONTACTS_BG COMP;
 			image: NOCONTACTS_BORDER COMP;
 		}
-
 		parts {
-			image { "bg";
+			image { "image.bg";
 				desc { "default";
 					color: 0 0 0 15;
 					image.normal: NOCONTACTS_BG;
-					rel1.offset: BORDER_W BORDER_H;
-					rel2.offset: -BORDER_W -BORDER_H;
 				}
 				desc { "pressed";
 					inherit: "default" 0.0;
 					color: 0 0 0 45;
 				}
 			}
-			image { "border";
+			image { "image.border";
 				desc { "default";
 					color: 255 255 255 75;
 					image.normal: NOCONTACTS_BORDER;
 				}
 			}
+			spacer { "spacer.text_top"; scale;
+				desc { "default";
+					min: 0 TITLE_T;
+					align: 0.5 0.0;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 1.0 0.0;
+				}
+			}
 			textblock { PART_TITLE; scale;
 				desc { "default";
-					rel1.relative: 0.0 TITLE_OFFSET_Y/WIDGET_HEIGHT;
-					rel2.relative: 1.0 (TITLE_HEIGHT+TITLE_OFFSET_Y)/WIDGET_HEIGHT;
+					min: 0 TITLE_H;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: "spacer.text_top"; }
+					rel2 { relative: 1.0 1.0; to_y: "spacer.text_top"; }
 					text {
 						align: 0.5 0.0;
 						style: "no_contacts_title";
 					}
 				}
 			}
+			spacer { "spacer.help_top"; scale;
+				desc { "default";
+					min: 0 HELP_T;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: PART_TITLE; }
+					rel2 { relative: 1.0 1.0; to_y: PART_TITLE; }
+				}
+			}
 			textblock { PART_HELP; scale;
 				desc { "default";
-					rel1.relative: 0.0 HELP_OFFSET_Y/WIDGET_HEIGHT;
-					rel2.relative: 1.0 (HELP_HEIGHT+HELP_OFFSET_Y)/WIDGET_HEIGHT;
+					min: 0 HELP_H;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: "spacer.help_top"; }
+					rel2 { relative: 1.0 1.0; to_y: "spacer.help_top"; }
 					text {
 						align: 0.5 0.0;
 						style: "no_contacts_text";
@@ -120,36 +103,48 @@ collections {
 					signal: "mouse,down,*";
 					source: "*";
 					action: STATE_SET "pressed" 0.0;
-					target: "bg";
+					target: "image.bg";
 				}
 				program {
 					name: "unpressed";
 					signal: "mouse,up,*";
 					source: "*";
 					action: STATE_SET "default" 0.0;
-					target: "bg";
+					target: "image.bg";
 				}
 			}
 		}
 	}
 
-	group {
-		name: GROUP_CONTACTS;
-
+	group { GROUP_CONTACTS;
 		parts {
-			swallow { PART_BUTTON;
+			spacer { "spacer.button_right_top"; scale;
 				desc { "default";
-					fixed: 1 1;
-					rel1.relative: 1.0-(BUTTON_WIDTH+BUTTON_OFFSET_X)/WIDGET_WIDTH BUTTON_OFFSET_Y/WIDGET_HEIGHT;
-					rel2.relative: 1.0-BUTTON_OFFSET_X/WIDGET_WIDTH (BUTTON_HEIGHT+BUTTON_OFFSET_Y)/WIDGET_HEIGHT;
+					min: BUTTON_R BUTTON_T;
+					align: 1.0 0.0;
+					rel1.relative: 1.0 0.0;
+					rel2.relative: 1.0 0.0;
 				}
 			}
-			swallow { PART_CONTENT;
+			swallow { PART_BUTTON; scale;
 				desc { "default";
-					rel1 {
-						relative: 0.0 1.0;
-						to_y: PART_BUTTON;
-					}
+					min: 0 BUTTON_H;
+					align: 1.0 0.0;
+					rel1 { relative: 0.0 1.0; to: "spacer.button_right_top"; }
+					rel2 { relative: 0.0 1.0; to: "spacer.button_right_top"; }
+				}
+			}
+			spacer { "spacer.content_top"; scale;
+				desc { "default";
+					min: 0 BUTTON_B;
+					align: 0.5 0.0;
+					rel1 { relative: 0.0 1.0; to_y: PART_BUTTON; }
+					rel2 { relative: 1.0 1.0; to_y: PART_BUTTON; }
+				}
+			}
+			swallow { PART_CONTENT; scale;
+				desc { "default";
+					rel1 { relative: 0.0 1.0; to_y: "spacer.content_top"; }
 				}
 			}
 		}

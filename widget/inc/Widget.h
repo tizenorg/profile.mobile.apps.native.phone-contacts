@@ -66,9 +66,6 @@ private:
 	bool m_EditMode;
 	size_t m_MaxCount;
 
-	int m_WidgetHeight;
-	std::string m_LayoutPath;
-
 	Evas_Object *m_Layout;
 	Evas_Object *m_EditButton;
 	Evas_Object *m_Gengrid;

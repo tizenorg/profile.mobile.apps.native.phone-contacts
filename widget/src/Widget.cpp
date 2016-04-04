@@ -20,6 +20,7 @@
 
 #include "App/AppControlRequest.h"
 #include "App/Path.h"
+#include "Ui/Scale.h"
 #include "Ui/Window.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
@@ -34,27 +35,31 @@
 
 #define WIDGET_ID_KEY "widget_id"
 
+#define GRID_COLS 4
+#define SMALL_GRID_ROWS 1
+#define LARGE_GRID_ROWS 3
+
 using namespace Common;
 using namespace std::placeholders;
 
 namespace
 {
-	const std::string layout4x4Path = App::getResourcePath(WIDGET_LAYOUT_4X4_EDJ);
-	const std::string layout4x2Path = App::getResourcePath(WIDGET_LAYOUT_4X2_EDJ);
+	const std::string layoutPath = App::getResourcePath(WIDGET_LAYOUT_EDJ);
 }
 
 Widget::Widget()
-	: m_EditMode(false), m_MaxCount(0), m_WidgetHeight(0),
+	: m_EditMode(false), m_MaxCount(0),
 	  m_Layout(nullptr), m_EditButton(nullptr), m_Gengrid(nullptr), m_AddButton(nullptr)
 {
 }
 
 void Widget::onCreate(bundle *content)
 {
-	initializeItems(content);
-
-	elm_theme_extension_add(nullptr, App::getResourcePath(WIDGET_ITEM_LAYOUT_EDJ).c_str());
 	elm_theme_extension_add(nullptr, App::getResourcePath(APPS_COMMON_BUTTONS_EDJ).c_str());
+	elm_theme_extension_add(nullptr, App::getResourcePath(WIDGET_ITEM_LAYOUT_EDJ).c_str());
+
+	initializeItems(content);
+	setEmptyMode(m_Items.count() == 0);
 }
 
 void Widget::onDestroy(widget_app_destroy_type reason)
@@ -65,17 +70,8 @@ void Widget::onDestroy(widget_app_destroy_type reason)
 
 void Widget::onResize(int width, int height)
 {
-	if (getType() == WIDGET_SIZE_TYPE_4x4) {
-		m_MaxCount = 12;
-		m_WidgetHeight = WIDGET_HEIGHT_4X4;
-		m_LayoutPath = layout4x4Path;
-	} else {
-		m_MaxCount = 4;
-		m_WidgetHeight = WIDGET_HEIGHT_4X2;
-		m_LayoutPath = layout4x2Path;
-	}
-
-	setEmptyMode(m_Items.count() == 0);
+	bool isLarge = (getType() == WIDGET_SIZE_TYPE_4x4);
+	m_MaxCount = GRID_COLS * (isLarge ? LARGE_GRID_ROWS : SMALL_GRID_ROWS);
 }
 
 void Widget::initializeItems(bundle *content)
@@ -103,7 +99,7 @@ void Widget::initializeItems(bundle *content)
 Evas_Object *Widget::createEmptyLayout(Evas_Object *parent)
 {
 	Evas_Object *layout = elm_layout_add(parent);
-	elm_layout_file_set(layout, m_LayoutPath.c_str(), GROUP_NO_CONTACTS);
+	elm_layout_file_set(layout, layoutPath.c_str(), GROUP_NO_CONTACTS);
 	edje_object_signal_callback_add(elm_layout_edje_get(layout), "mouse,clicked,*", "*",
 			(Edje_Signal_Cb) makeCallback(&Widget::onAddPressed), this);
 
@@ -118,7 +114,7 @@ Evas_Object *Widget::createEmptyLayout(Evas_Object *parent)
 Evas_Object *Widget::createLayout(Evas_Object *parent)
 {
 	Evas_Object *layout = elm_layout_add(parent);
-	elm_layout_file_set(layout, m_LayoutPath.c_str(), GROUP_CONTACTS);
+	elm_layout_file_set(layout, layoutPath.c_str(), GROUP_CONTACTS);
 	elm_object_part_content_set(layout, PART_BUTTON, createEditButton(layout));
 	elm_object_part_content_set(layout, PART_CONTENT, createGengrid(layout));
 
@@ -129,9 +125,7 @@ Evas_Object *Widget::createGengrid(Evas_Object *parent)
 {
 	m_Gengrid = elm_gengrid_add(parent);
 	elm_gengrid_align_set(m_Gengrid, 0.0, 0.0);
-	elm_gengrid_item_size_set(m_Gengrid,
-			ITEM_WIDTH * getWidth() / WIDGET_WIDTH,
-			ITEM_HEIGHT * getHeight() / m_WidgetHeight);
+	elm_gengrid_item_size_set(m_Gengrid, getWidth() / GRID_COLS, Ui::getScaledValue(ITEM_H));
 
 	return m_Gengrid;
 }
@@ -139,7 +133,7 @@ Evas_Object *Widget::createGengrid(Evas_Object *parent)
 Evas_Object *Widget::createEditButton(Evas_Object *parent)
 {
 	m_EditButton = elm_button_add(parent);
-	elm_object_style_set(m_EditButton, "custom_default");
+	elm_object_style_set(m_EditButton, BUTTON_STYLE_CUSTOM_SMALL);
 	elm_object_translatable_text_set(m_EditButton, "IDS_QP_ACBUTTON_EDIT_ABB");
 	evas_object_smart_callback_add(m_EditButton, "clicked",
 			makeCallback(&Widget::onEditPressed), this);
@@ -163,9 +157,8 @@ Elm_Gengrid_Item_Class *Widget::getAddButtonItemClass()
 		itc.item_style = WIDGET_ITEM_STYLE;
 		itc.func.content_get = [](void *data, Evas_Object *obj, const char *part) -> Evas_Object* {
 			if (strcmp(part, PART_THUMBNAIL) == 0) {
-				Widget *widget = (Widget *) data;
 				Evas_Object *layout = elm_layout_add(obj);
-				elm_layout_file_set(layout, widget->m_LayoutPath.c_str(), GROUP_ICON_ADD);
+				elm_layout_file_set(layout, layoutPath.c_str(), GROUP_ICON_ADD);
 				return layout;
 			}
 

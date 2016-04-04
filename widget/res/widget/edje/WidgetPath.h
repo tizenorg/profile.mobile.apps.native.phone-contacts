@@ -21,8 +21,7 @@
 #define WIDGET_IMG_DIR          "widget/images/"
 #define WIDGET_EDJ_DIR          "widget/edje/"
 
-#define WIDGET_LAYOUT_4X4_EDJ   WIDGET_EDJ_DIR"widget-layout-4x4.edj"
-#define WIDGET_LAYOUT_4X2_EDJ   WIDGET_EDJ_DIR"widget-layout-4x2.edj"
+#define WIDGET_LAYOUT_EDJ       WIDGET_EDJ_DIR"widget-layout.edj"
 #define WIDGET_ITEM_LAYOUT_EDJ  WIDGET_EDJ_DIR"widget-item-layout.edj"
 
 #define NOCONTACTS_BG           WIDGET_IMG_DIR"nocontacts_bg.#.png"
