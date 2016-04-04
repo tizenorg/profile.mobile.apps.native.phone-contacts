@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_CONTACT_DATA_H
-#define CONTACTS_CONTACT_DATA_H
+#ifndef CONTACTS_MODEL_CONTACT_DATA_H
+#define CONTACTS_MODEL_CONTACT_DATA_H
 
 #include <memory>
 #include <tizen.h>
@@ -117,7 +117,7 @@ namespace Contacts
 			/**
 			 * @return ContactData type
 			 */
-			Type getType() const;
+			virtual Type getType() const;
 
 			/**
 			 * @brief Determine if object searchable string contains @a str
@@ -150,7 +150,7 @@ namespace Contacts
 			/**
 			 * @return First letter from formatted person name
 			 */
-			virtual const Utils::UniString *getIndexLetter() const;
+			const Utils::UniString *getIndexLetter() const;
 
 		protected:
 			/**
@@ -172,4 +172,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_CONTACT_DATA_H */
+#endif /* CONTACTS_MODEL_CONTACT_DATA_H */
