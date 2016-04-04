@@ -136,6 +136,7 @@ Evas_Object *ActionItem::createEntryNumber(Evas_Object *parent)
 	elm_entry_scrollable_set(entry, EINA_TRUE);
 	elm_entry_single_line_set(entry, EINA_TRUE);
 	elm_entry_editable_set(entry, EINA_FALSE);
+	elm_scroller_movement_block_set(entry, ELM_SCROLLER_MOVEMENT_BLOCK_VERTICAL);
 
 	char *text = elm_entry_utf8_to_markup(m_Log->getNumber());
 	elm_entry_entry_set(entry, text);
@@ -146,11 +147,8 @@ Evas_Object *ActionItem::createEntryNumber(Evas_Object *parent)
 
 Evas_Object *ActionItem::createActionButton(Evas_Object *parent, ActionId actionId)
 {
-	static const int imageSize = Ui::getScaledValue(ACTION_BTN_WH);
-
 	Evas_Object *image = elm_image_add(parent);
 	elm_image_file_set(image, layoutPath.c_str(), actions[actionId].icon);
-	evas_object_size_hint_min_set(image, imageSize, imageSize);
 	evas_object_propagate_events_set(image, EINA_FALSE);
 	evas_object_smart_data_set(image, (void *) actionId);
 	evas_object_smart_callback_add(image, "clicked",

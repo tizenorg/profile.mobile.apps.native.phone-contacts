@@ -128,6 +128,11 @@ collections
 		data.item: "contents" "swallow.content";
 
 		parts {
+			rect { "rect.bg";
+				desc { "default";
+					color_class: "title_bg";
+				}
+			}
 			spacer { "spacer.base"; scale;
 				desc { "default";
 					min: 0 IMAGE_ITEM_H;

@@ -18,7 +18,6 @@
 #include "ContactsDetailsItemLayout.h"
 #include "ContactsDetailsItemLayoutMetrics.h"
 
-#include "../../../../lib-apps-common/res/apps-common/edje/apps-common-colors.edc"
 #include "../../../../lib-apps-common/res/apps-common/edje/apps-common-utils.edc"
 #include "../../../../lib-common/res/details/edje/details-item-layout.edc"
 
