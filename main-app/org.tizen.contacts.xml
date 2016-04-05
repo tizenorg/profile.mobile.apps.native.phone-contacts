@@ -194,8 +194,8 @@
 		<label xml:lang="zh-hk">聯絡人</label>
 		<label xml:lang="zh-tw">聯絡人</label>
 		<icon>org.tizen.contacts.png</icon>
-		<support-size preview="/usr/apps/org.tizen.contacts/res/widget/images/preview_4x4.png">4x4</support-size>
-		<support-size preview="/usr/apps/org.tizen.contacts/res/widget/images/preview_4x2.png">4x2</support-size>
+		<support-size preview="/usr/apps/org.tizen.contacts/shared/res/preview_4x4.png">4x4</support-size>
+		<support-size preview="/usr/apps/org.tizen.contacts/shared/res/preview_4x2.png">4x2</support-size>
 	</widget-application>
 	<privileges>
 		<privilege>http://tizen.org/privilege/account.read</privilege>

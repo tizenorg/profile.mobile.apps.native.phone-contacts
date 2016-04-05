@@ -78,6 +78,7 @@ make %{?_smp_mflags} \
 
 %{_app_home_dir}/bin
 %{_app_home_dir}/lib
+%{_app_home_dir}/shared
 
 %{_app_home_dir}/res/common
 %{_app_home_dir}/res/contacts
