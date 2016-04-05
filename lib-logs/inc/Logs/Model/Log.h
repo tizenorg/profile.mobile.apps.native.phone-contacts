@@ -63,6 +63,11 @@ namespace Logs
 			void unsetRemoveCallback();
 
 			/**
+			 * @return log id
+			 */
+			virtual int getId() const override;
+
+			/**
 			 * @return log name
 			 */
 			virtual const char *getName() const override;
@@ -76,11 +81,6 @@ namespace Logs
 			 * @return log name image path
 			 */
 			virtual const char *getImagePath() const override;
-
-			/**
-			 * @return log id
-			 */
-			virtual int getId() const override;
 
 			/**
 			 * @see ContactData::compare()
