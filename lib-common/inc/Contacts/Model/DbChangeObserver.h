@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_LIST_MODEL_DB_CHANGE_OBSERVER_H
-#define CONTACTS_LIST_MODEL_DB_CHANGE_OBSERVER_H
+#ifndef CONTACTS_MODEL_DB_CHANGE_OBSERVER_H
+#define CONTACTS_MODEL_DB_CHANGE_OBSERVER_H
 
 #include <contacts.h>
 #include <functional>
@@ -129,4 +129,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_LIST_MODEL_DB_CHANGE_OBSERVER_H */
+#endif /* CONTACTS_MODEL_DB_CHANGE_OBSERVER_H */

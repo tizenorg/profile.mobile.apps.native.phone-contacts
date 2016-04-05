@@ -57,6 +57,11 @@ bool ContactRecordData::compare(const char *str)
 	return strstr(getName(), str); //Todo: Compare unicode strings
 }
 
+const contacts_record_h ContactRecordData::getContactRecord() const
+{
+	return m_Record;
+}
+
 void ContactRecordData::setChangedCallback(DbChangeObserver::Callback callback)
 {
 	int id = getContactId(m_Record);
@@ -69,11 +74,6 @@ void ContactRecordData::unsetChangedCallback()
 		DbChangeObserver::getInstance()->removeCallback(getId(), m_Handles.front());
 		m_Handles.clear();
 	}
-}
-
-const contacts_record_h ContactRecordData::getContactRecord() const
-{
-	return m_Record;
 }
 
 void ContactRecordData::updateRecord(contacts_record_h record)
