@@ -46,4 +46,8 @@ color_classes {
 		name: "touch_icon_pressed";
 		color: 34 104 115 255;
 	}
+	color_class {
+		name: "title_bg";
+		color: 61 185 204 255;
+	}
 }
