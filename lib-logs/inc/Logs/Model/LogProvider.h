@@ -24,6 +24,8 @@
 #include <set>
 
 #include "Contacts/Model/ContactRecordProvider.h"
+#include "Contacts/RecordListIterator.h"
+
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
 
@@ -48,11 +50,6 @@ namespace Logs
 			typedef std::unique_ptr<LogGroup> LogGroupPtr;
 
 			/**
-			 * @brief Log list.
-			 */
-			typedef std::list<contacts_record_h> RecordList;
-
-			/**
 			 * @brief Unique log group list.
 			 */
 			typedef std::list<LogGroupPtr> LogGroupList;
@@ -66,11 +63,6 @@ namespace Logs
 			 * @brief Log iterator.
 			 */
 			typedef Contacts::Model::ContactDataList::iterator LogIterator;
-
-			/**
-			 * @brief Record iterator.
-			 */
-			typedef RecordList::iterator RecordIterator;
 
 			/**
 			 * @brief Group iterator.
@@ -131,7 +123,6 @@ namespace Logs
 
 		private:
 			void fillList();
-			void fillRecordList(RecordList &recordList);
 			size_t fillGroupList(LogIterator begin, LogIterator end);
 			bool shouldGroupLogs(Log &log, Log &prevLog);
 			bool mergeGroup(GroupIterator group);
