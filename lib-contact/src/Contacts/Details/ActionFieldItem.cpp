@@ -77,7 +77,7 @@ void ActionFieldItem::onSelectModeChanged(Ux::SelectMode selectMode)
 
 Evas_Object *ActionFieldItem::createActionButton(Evas_Object *parent, ActionType actionType)
 {
-	static const int imageSize = Ui::getScaledValue(BTN_WH);
+	static const int imageSize = Ui::getScaledValue(ACTION_BTN_WH);
 	static const char *icons[] = {
 		/* ActionCall    = */ GROUP_ICON_CALL,
 		/* ActionMessage = */ GROUP_ICON_MESSAGE,

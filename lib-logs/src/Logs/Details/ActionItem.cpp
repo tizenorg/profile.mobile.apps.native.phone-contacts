@@ -146,7 +146,7 @@ Evas_Object *ActionItem::createEntryNumber(Evas_Object *parent)
 
 Evas_Object *ActionItem::createActionButton(Evas_Object *parent, ActionId actionId)
 {
-	static const int imageSize = Ui::getScaledValue(BTN_WH);
+	static const int imageSize = Ui::getScaledValue(ACTION_BTN_WH);
 
 	Evas_Object *image = elm_image_add(parent);
 	elm_image_file_set(image, layoutPath.c_str(), actions[actionId].icon);

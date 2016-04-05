@@ -20,6 +20,10 @@
 
 #include "../../../../lib-common/res/details/edje/DetailsItemLayoutMetrics.h"
 
+#define FAV_BTN_WH 80
+#define FAV_BTN_T BACK_BTN_T
+#define FAV_BTN_R 17
+
 #define PHONETIC_NAME_H 48
 #define PHONETIC_NAME_TEXT_SIZE 36
 
