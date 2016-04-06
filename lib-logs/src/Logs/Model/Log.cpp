@@ -52,6 +52,11 @@ void Log::unsetRemoveCallback()
 	m_OnRemoved = nullptr;
 }
 
+int Log::getId() const
+{
+	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.id);
+}
+
 const char *Log::getName() const
 {
 	char *name = nullptr;
@@ -73,11 +78,6 @@ const char *Log::getImagePath() const
 		contacts_record_get_str_p(m_ContactRecord, _contacts_person.image_thumbnail_path, &path);
 	}
 	return path;
-}
-
-int Log::getId() const
-{
-	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.id);
 }
 
 bool Log::compare(const char *str)
