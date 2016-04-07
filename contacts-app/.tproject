@@ -12,7 +12,7 @@
             <tizenProject project="contacts-widget"/>
             <tizenProject project="lib-apps-common"/>
             <tizenProject project="lib-common"/>
-            <tizenProject project="lib-contact"/>
+            <tizenProject project="lib-contacts"/>
             <tizenProject project="lib-phone"/>
             <tizenProject project="lib-logs"/>
         </subProjects>

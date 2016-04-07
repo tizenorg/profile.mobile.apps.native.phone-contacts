@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>contacts</name>
+	<name>lib-contacts</name>
 	<comment></comment>
 	<projects>
-		<project>lib-contact</project>
-		<project>lib-phone</project>
-		<project>lib-logs</project>
 		<project>lib-apps-common</project>
 		<project>lib-common</project>
-		<project>contacts-widget</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -22,22 +18,16 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
-		<buildCommand>
-			<name>org.tizen.nativecore.apichecker.core.builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.cdt.core.cnature</nature>
 		<nature>org.eclipse.cdt.core.ccnature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
-		<nature>org.tizen.nativecore.apichecker.core.tizenCppNature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1448271491128</id>
+			<id>0</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
@@ -46,7 +36,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1448271491135</id>
+			<id>0</id>
 			<name></name>
 			<type>6</type>
 			<matcher>
@@ -55,7 +45,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1448271491137</id>
+			<id>0</id>
 			<name></name>
 			<type>22</type>
 			<matcher>
