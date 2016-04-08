@@ -53,3 +53,8 @@ const contacts_record_h MyProfile::getRecord() const
 {
 	return m_MyProfileRecord;
 }
+
+void MyProfile::updateDbRecord()
+{
+	contacts_db_get_record(_contacts_my_profile._uri, getId(), &m_MyProfileRecord);
+}

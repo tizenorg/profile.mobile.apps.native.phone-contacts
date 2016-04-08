@@ -35,8 +35,7 @@
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
 #include "Utils/Callback.h"
-
-#include <app_i18n.h>
+#include "Utils/Logger.h"
 
 using namespace Contacts;
 using namespace Contacts::Model;
@@ -76,6 +75,8 @@ ListView::~ListView()
 	delete m_Provider;
 	contacts_db_remove_changed_cb(_contacts_my_profile._uri,
 			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
+	contacts_setting_remove_name_sorting_order_changed_cb(onNameSortingOrderChanched, this);
+	contacts_setting_remove_name_display_order_changed_cb(onNameDisplayOrderChanched, this);
 }
 
 Evas_Object *ListView::onCreate(Evas_Object *parent)
@@ -111,6 +112,54 @@ void ListView::onCreated()
 	m_Provider->setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
 	contacts_db_add_changed_cb(_contacts_my_profile._uri,
 			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
+
+	contacts_setting_add_name_sorting_order_changed_cb(onNameSortingOrderChanched, this);
+	contacts_setting_add_name_display_order_changed_cb(onNameDisplayOrderChanched, this);
+}
+
+void ListView::onNameSortingOrderChanched(contacts_name_sorting_order_e sortingOrder, void *data)
+{
+	RETM_IF(!data, "invalid data");
+	ListView *view = (ListView *)data;
+
+	if (view->m_Sections[SectionPerson]) {
+		for (auto &personGroup : view->m_PersonGroups) {
+			delete personGroup.second;
+		}
+		view->m_PersonGroups.clear();
+		view->m_Provider->clearContactDataList();
+
+		elm_index_item_clear(view->m_Index);
+		elm_index_level_go(view->m_Index, 0);
+
+		view->m_Sections[SectionPerson] = nullptr;
+
+		view->fillPersonList();
+	}
+}
+
+void ListView::onNameDisplayOrderChanched(contacts_name_display_order_e displayOrder, void *data)
+{
+	RETM_IF(!data, "invalid data");
+	ListView *view = (ListView *)data;
+
+	if (view->m_Genlist) {
+		if (view->m_Sections[SectionMyProfile]) {
+			MyProfileItem *item = static_cast<MyProfileItem *>(view->m_Sections[SectionMyProfile]->getNextItem());
+			item->getMyProfile().updateDbRecord();
+			elm_genlist_item_fields_update(item->getObjectItem(),
+					PART_MY_PROFILE_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+		}
+
+		if (view->m_Sections[SectionPerson]) {
+			for (auto &personGroup : view->m_PersonGroups) {
+				for (auto &&item : *personGroup.second) {
+					PersonItem *personItem = static_cast<PersonItem *>(item);
+					static_cast<Person &>(personItem->getPerson()).updateDbRecord();
+				}
+			}
+		}
+	}
 }
 
 void ListView::onMenuPressed()
@@ -438,19 +487,21 @@ void ListView::insertMyProfileGroupItem()
 
 void ListView::updateMyProfileItem(const char *view_uri)
 {
-	elm_genlist_item_subitems_clear(m_Sections[SectionMyProfile]->getObjectItem());
+	if (m_Sections[SectionMyProfile]) {
+		elm_genlist_item_subitems_clear(m_Sections[SectionMyProfile]->getObjectItem());
 
-	MyProfileItem *item = new MyProfileItem(MyProfilePtr(new MyProfile()));
-	m_Genlist->insert(item, m_Sections[SectionMyProfile]);
+		MyProfileItem *item = new MyProfileItem(MyProfilePtr(new MyProfile()));
+		m_Genlist->insert(item, m_Sections[SectionMyProfile]);
 
-	item->setSelectedCallback([this, item]() {
-		int id = item->getMyProfile().getId();
-		if (id > 0) {
-			getNavigator()->navigateTo(new Details::DetailsView(id, Details::DetailsView::TypeMyProfile));
-		} else {
-			getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
-		}
-	});
+		item->setSelectedCallback([this, item]() {
+			int id = item->getMyProfile().getId();
+			if (id > 0) {
+				getNavigator()->navigateTo(new Details::DetailsView(id, Details::DetailsView::TypeMyProfile));
+			} else {
+				getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
+			}
+		});
+	}
 }
 
 Evas_Object *ListView::createIndex(Evas_Object *parent)
@@ -558,9 +609,16 @@ void ListView::updatePersonItem(PersonItem *item, int changes)
 		if (oldGroup->empty()) {
 			deletePersonGroupItem(oldGroup);
 		}
-	} else if (changes & ContactData::ChangedImage) {
-		elm_genlist_item_fields_update(item->getObjectItem(),
-				PART_PERSON_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	} else {
+		if (changes & ContactData::ChangedImage) {
+			elm_genlist_item_fields_update(item->getObjectItem(),
+					PART_PERSON_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+		}
+
+		if (changes & Person::ChangedSortValue) {
+			elm_genlist_item_fields_update(item->getObjectItem(),
+					PART_PERSON_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+		}
 	}
 }
 

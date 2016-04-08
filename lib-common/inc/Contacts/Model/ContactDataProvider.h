@@ -44,6 +44,11 @@ namespace Contacts
 			virtual const ContactDataList &getContactDataList() = 0;
 
 			/**
+			 * @brief Clear contact data list
+			 */
+			virtual void clearContactDataList() { }
+
+			/**
 			 * @brief Set insert callback
 			 * @param[in]   callback    Create callback
 			 */

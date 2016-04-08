@@ -24,6 +24,7 @@ using namespace Contacts::Model;
 ContactRecordData::ContactRecordData(Type type, contacts_record_h record)
 	: ContactData(type), m_Record(record)
 {
+	m_CombinedName = getCombinedName(m_Record);
 }
 
 ContactRecordData::~ContactRecordData()
@@ -80,6 +81,7 @@ void ContactRecordData::updateRecord(contacts_record_h record)
 {
 	contacts_record_destroy(m_Record, true);
 	m_Record = record;
+	m_CombinedName = getCombinedName(m_Record);
 }
 
 void ContactRecordData::addChangedHandle(DbChangeObserver::CallbackHandle handle)
@@ -132,18 +134,25 @@ const char *ContactRecordData::getValue(contacts_record_h record, Field field)
 	return value;
 }
 
-int ContactRecordData::getChanges(contacts_record_h oldContact, contacts_record_h newContact)
+int ContactRecordData::getChanges(contacts_record_h newContact)
 {
 	int changes = ChangedNone;
 
 	for (int i = FieldName; i < FieldMax; ++i) {
 		auto fieldId = static_cast<Field>(i);
-		const char *oldValue = getValue(oldContact, fieldId);
-		const char *newValue = getValue(newContact, fieldId);
-		int changedInfo = 1 << fieldId;
+		const char *oldValue = nullptr;
+		const char *newValue = nullptr;
+
+		if (fieldId == FieldName) {
+			oldValue = m_CombinedName.c_str();
+			newValue = getCombinedName(newContact).c_str();
+		} else {
+			oldValue = getValue(m_Record, fieldId);
+			newValue = getValue(newContact, fieldId);
+		}
 
 		if (!Utils::safeCmp(oldValue, newValue)) {
-			changes |= changedInfo;
+			changes |= (1 << fieldId);
 		}
 	}
 
@@ -152,8 +161,28 @@ int ContactRecordData::getChanges(contacts_record_h oldContact, contacts_record_
 
 void ContactRecordData::onUpdate(contacts_record_h record)
 {
-	int changes = getChanges(m_Record, record);
+	int changes = getChanges(record);
 	updateRecord(record);
 
 	onUpdated(changes);
+}
+
+std::string ContactRecordData::getCombinedName(contacts_record_h contactRecord)
+{
+	std::string name;
+	char *text = nullptr;
+	contacts_record_h nameRecord = nullptr;
+
+	contacts_record_get_child_record_at_p(contactRecord, _contacts_contact.name, 0, &nameRecord);
+	contacts_record_get_str_p(nameRecord, _contacts_name.first, &text);
+	if (text) {
+		name += text;
+		name += " ";
+	}
+	contacts_record_get_str_p(nameRecord, _contacts_name.last, &text);
+	if (text) {
+		name += text;
+	}
+
+	return name;
 }

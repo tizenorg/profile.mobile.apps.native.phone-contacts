@@ -25,7 +25,7 @@ MyProfileItem::MyProfileItem(Model::MyProfilePtr myProfile)
 	: m_MyProfile(std::move(myProfile))
 { }
 
-const Model::MyProfile &MyProfileItem::getMyProfile() const
+Model::MyProfile &MyProfileItem::getMyProfile() const
 {
 	return *m_MyProfile;
 }

@@ -17,6 +17,7 @@
 
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/Utils.h"
+#include "Utils/String.h"
 
 #include <cstring>
 
@@ -82,6 +83,13 @@ int Person::getId() const
 	return id;
 }
 
+void Person::updateDbRecord()
+{
+	contacts_record_h record = nullptr;
+	contacts_db_get_record(_contacts_person._uri, getId(), &record);
+	onUpdate(record);
+}
+
 int Person::getDisplayContactId() const
 {
 	int id = 0;
@@ -128,7 +136,10 @@ void Person::unsetChangedCallback()
 void Person::onUpdate(contacts_record_h personRecord)
 {
 	contacts_record_h contactRecord = getDisplayContact(personRecord);
-	auto changes = getChanges(getContactRecord(), contactRecord);
+	auto changes = getChanges(contactRecord);
+	if (!Utils::safeCmp(getName(), getValue(contactRecord, FieldName))) {
+		changes |= (1 << PersonFieldSortValue);
+	}
 
 	contacts_record_destroy(m_PersonRecord, true);
 	m_SortValue.clear();
