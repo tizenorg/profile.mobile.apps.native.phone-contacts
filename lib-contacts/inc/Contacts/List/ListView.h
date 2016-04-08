@@ -19,6 +19,8 @@
 #define CONTACTS_LIST_LIST_VIEW_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
+#include "Contacts/List/Model/PersonProvider.h"
+
 #include "Ux/SelectView.h"
 #include "Utils/UniString.h"
 
@@ -27,29 +29,15 @@
 namespace Ui
 {
 	class Genlist;
-	class GenlistItem;
 	class GenlistGroupItem;
 }
 
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactData;
-		class ContactDataProvider;
-	}
-
 	namespace List
 	{
-		class GroupItem;
-		class SelectAllItem;
-		class PersonGroupItem;
 		class PersonItem;
-
-		namespace Model
-		{
-			class Person;
-		}
+		class PersonGroupItem;
 
 		/**
 		 * @brief Contacts list view
@@ -61,14 +49,7 @@ namespace Contacts
 			 * @brief Create new person list view
 			 * @param[in]   filterType  Defines how to filter person list
 			 */
-			ListView(int filterType = FilterNone);
-
-			/**
-			 * @brief Create new vcard contact list view
-			 * @param[in]   vcardPath   Path of the vcard file
-			 */
-			explicit ListView(const char *vcardPath);
-
+			explicit ListView(int filterType = FilterNone);
 			virtual ~ListView() override;
 
 		private:
@@ -87,7 +68,8 @@ namespace Contacts
 			virtual void onCreated() override;
 			virtual void onMenuPressed() override;
 
-			void onSharePressed();
+			void onDeleteSelected();
+			void onShareSelected();
 
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
@@ -129,7 +111,7 @@ namespace Contacts
 			void deletePersonGroupItem(PersonGroupItem *group);
 			PersonGroupItem *getNextPersonGroupItem(const Utils::UniString &indexLetter);
 
-			PersonItem *createPersonItem(Contacts::Model::ContactData &person);
+			PersonItem *createPersonItem(Model::Person &person);
 			void insertPersonItem(PersonItem *item);
 			void updatePersonItem(PersonItem *item, int changes);
 			void deletePersonItem(PersonItem *item);
@@ -146,17 +128,15 @@ namespace Contacts
 			void onPersonDeleted(PersonItem *item);
 
 			Evas_Object *m_Box;
+			Evas_Object *m_NoContent;
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
 			Evas_Object *m_AddButton;
-			Evas_Object *m_NoContent;
 
 			Ui::GenlistGroupItem *m_Sections[SectionMax];
+
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
-
-			Contacts::Model::ContactDataProvider *m_Provider;
-
-			bool m_HasIndex;
+			Model::PersonProvider m_Provider;
 		};
 	}
 }

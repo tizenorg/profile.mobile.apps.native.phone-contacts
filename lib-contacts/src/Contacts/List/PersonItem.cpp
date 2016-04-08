@@ -15,57 +15,24 @@
  *
  */
 
-#include "Contacts/Model/ContactRecordData.h"
 #include "Contacts/List/PersonItem.h"
+#include "Contacts/List/Model/Person.h"
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Ui/Thumbnail.h"
-#include <app_i18n.h>
 
-using namespace Contacts;
 using namespace Contacts::List;
-using namespace Contacts::Model;
+using namespace Contacts::List::Model;
 
-PersonItem::PersonItem(ContactData &person)
-	: m_Person(person)
+PersonItem::PersonItem(Person &person)
+	: ContactItem(person), m_Person(person)
 {
 }
 
-ContactData &PersonItem::getPerson()
+Person &PersonItem::getPerson()
 {
 	return m_Person;
 }
 
-char *PersonItem::getText(Evas_Object *parent, const char *part)
-{
-	if (strcmp(part, PART_PERSON_NAME) == 0) {
-		const char *name = m_Person.getName();
-		return strdup(name ? name : _("IDS_LOGS_MBODY_UNKNOWN"));
-	}
-
-	return nullptr;
-}
-
-Evas_Object *PersonItem::getContent(Evas_Object *parent, const char *part)
-{
-	using Ui::Thumbnail;
-
-	if (strcmp(part, PART_PERSON_THUMBNAIL) == 0) {
-		Thumbnail *thumbnail = Thumbnail::create(parent, Thumbnail::SizeSmall,
-				m_Person.getImagePath());
-		thumbnail->setSizeHint(true);
-		return thumbnail->getEvasObject();
-	} else if (strcmp(part, PART_CHECK) == 0) {
-		return SelectItem::getContent(parent, part);
-	}
-
-	return nullptr;
-}
-
 Ux::SelectResult PersonItem::getDefaultResult() const
 {
-	if (m_Person.getType() == ContactData::TypeContact) {
-		return { ResultPerson, (void *)static_cast<ContactRecordData &>(m_Person).getContactRecord() };
-	} else {
-		return { ResultPerson, m_Person.getId() };
-	}
+	return { ResultPerson, m_Person.getId() };
 }
