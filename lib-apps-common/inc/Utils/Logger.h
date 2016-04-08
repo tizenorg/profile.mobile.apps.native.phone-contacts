@@ -18,17 +18,30 @@
 #ifndef UTILS_LOGGER_H
 #define UTILS_LOGGER_H
 
-extern const char *appsCommonLogTag;
-#define SET_LOG_TAG(tag) const char *appsCommonLogTag = tag
-
+#include <tizen.h>
 #include <dlog.h>
+
+namespace Utils
+{
+	/**
+	 * @brief Sets the log tag
+	 * @param[in]   logTag The log tag
+	 */
+	EXPORT_API void setLogTag(const char *logTag);
+
+	/**
+	 * @brief Returns the log tag
+	 * @return The log tag
+	 */
+	EXPORT_API const char *getLogTag();
+}
 
 #define __MODULE__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
 #include "Utils/Tracer.h"
-#define TRACE ::Utils::Tracer tracer(appsCommonLogTag, __MODULE__, __func__, __LINE__)
+#define TRACE ::Utils::Tracer tracer(::Utils::getLogTag(), __MODULE__, __func__, __LINE__)
 
-#define DLOG(prio, fmt, arg...) dlog_print(prio, appsCommonLogTag, "%s: %s(%d) > " fmt, __MODULE__, __func__, __LINE__, ##arg)
+#define DLOG(prio, fmt, arg...) dlog_print(prio, ::Utils::getLogTag(), "%s: %s(%d) > " fmt, __MODULE__, __func__, __LINE__, ##arg)
 #define DBG(fmt, arg...) DLOG(DLOG_DEBUG, fmt, ##arg)
 #define ERR(fmt, arg...) DLOG(DLOG_ERROR, fmt, ##arg)
 

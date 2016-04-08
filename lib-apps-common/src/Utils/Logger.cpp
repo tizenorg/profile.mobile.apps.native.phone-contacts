@@ -15,11 +15,17 @@
  *
  */
 
-#include "WidgetApp.h"
 #include "Utils/Logger.h"
+#include <stdio.h>
 
-int main(int argc, char *argv[])
+static char appsCommonLogTag[64] = "DefaultLogTag";
+
+void Utils::setLogTag(const char *logTag)
 {
-	Utils::setLogTag("contacts-widget");
-	return WidgetApp().run(argc, argv);
+	snprintf(appsCommonLogTag, sizeof(appsCommonLogTag), "%s", logTag);
+}
+
+const char *Utils::getLogTag()
+{
+	return appsCommonLogTag;
 }
