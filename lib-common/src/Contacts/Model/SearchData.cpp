@@ -16,11 +16,15 @@
  */
 
 #include "Contacts/Model/SearchData.h"
+#include "Contacts/Model/ContactRecordData.h"
+#include "Common/Strings.h"
 
 using namespace Contacts::Model;
 
-SearchData::SearchData(ContactData &contactData)
-	: ContactData(contactData.getType()), m_ContactData(contactData)
+SearchData::SearchData(ContactData &contactData, int matchPattern)
+	: ContactData(contactData.getType()),
+	  m_ContactData(contactData),
+	  m_MatchPattern(matchPattern)
 {
 }
 
@@ -44,10 +48,63 @@ const char *SearchData::getImagePath() const
 	return m_ContactData.getImagePath();
 }
 
-bool SearchData::compare(const char *str)
+int SearchData::compare(const char *str, int pattern)
 {
-	/* Todo: Refactor method logic to return much more informative value,
-	according to what object type we currently wrap */
+	m_MatchPattern = m_ContactData.compare(str, pattern);
+	return m_MatchPattern;
+}
 
-	return false;
+const SearchData::Strings &SearchData::getMatchedStrings(MatchPattern pattern, const char *str)
+{
+	if (pattern & m_MatchPattern) {
+		switch (pattern) {
+			case MatchName:
+				if (m_Names.empty()) {
+					initNames(str);
+				}
+				return m_Names;
+			case MatchNumber:
+				if (m_Numbers.empty()) {
+					initNumbers(str);
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	return m_Numbers;
+}
+
+
+void SearchData::initNames(const char *str) const
+{
+	if (getType() == TypeContact) {
+		addName(static_cast<ContactRecordData &>(m_ContactData).getAlphaName().c_str(), str);
+	} else {
+		addName(getName(), str);
+	}
+}
+
+void SearchData::initNumbers(const char *str) const
+{
+	if (getType() == TypeContact || getType() == TypePerson) {
+		for (auto &&number : static_cast<ContactRecordData &>(m_ContactData).getNumbers()) {
+			addNumber(number, str);
+		}
+	} else {
+		addNumber(getNumber(), str);
+	}
+}
+
+void SearchData::addName(const char *name, const char *str) const
+{
+	const char *position = strstr(name, str);
+	m_Names.push_back(Common::highlightString(name, position - name, strlen(str)));
+}
+
+void SearchData::addNumber(const char *number, const char *str) const
+{
+	const char *position = strstr(number, str);
+	m_Numbers.push_back(Common::highlightString(number, position - number, strlen(str)));
 }

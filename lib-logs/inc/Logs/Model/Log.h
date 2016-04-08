@@ -86,7 +86,7 @@ namespace Logs
 			 * @see ContactData::compare()
 			 * @detail Compares by number
 			 */
-			virtual bool compare(const char *str) override;
+			virtual int compare(const char *str, int pattern) override;
 
 			/**
 			 * @return type of number

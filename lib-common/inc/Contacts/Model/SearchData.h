@@ -19,6 +19,8 @@
 #define CONTACTS_MODEL_SEARCH_DATA_H
 
 #include "Contacts/Model/ContactData.h"
+#include <string>
+#include <vector>
 
 namespace Contacts
 {
@@ -27,7 +29,9 @@ namespace Contacts
 		class SearchData : public ContactData
 		{
 		public:
-			SearchData(ContactData &contactData);
+			typedef std::vector<std::string> Strings;
+
+			SearchData(ContactData &contactData, int matchPattern = MatchAll);
 
 			/**
 			 * @see ContactData::getId()
@@ -52,12 +56,28 @@ namespace Contacts
 			/**
 			 * @see ContactData::compare
 			 */
-			virtual bool compare(const char *str) override;
+			virtual int compare(const char *str, int pattern) override;
+
+			/**
+			 * @brief Get list of matched strings, with highlighted matched substring from compare() method
+			 * @param[in]   pattern     See @ref MatchPattern
+			 * @param[in]   str         String that should be highlighted as substring in each returned string
+			 */
+			const Strings &getMatchedStrings(MatchPattern pattern, const char *str);
 
 		private:
 			friend class SearchProvider;
 
+			void initNames(const char *str) const;
+			void initNumbers(const char *str) const;
+			void addName(const char *name, const char *str) const;
+			void addNumber(const char *number, const char *str) const;
+
 			ContactData &m_ContactData;
+
+			int m_MatchPattern;
+			mutable Strings m_Names;
+			mutable Strings m_Numbers;
 		};
 	}
 }

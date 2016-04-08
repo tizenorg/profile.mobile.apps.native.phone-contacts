@@ -20,6 +20,7 @@
 
 #include <contacts.h>
 #include "Utils/String.h"
+#include "Utils/Range.h"
 
 #define CONTACTS_LIST_FOREACH(list, record) \
 	bool success = (contacts_list_get_current_record_p(list, &record) == CONTACTS_ERROR_NONE); \
@@ -92,6 +93,15 @@ namespace Contacts
 	 * @return Display contact's _contacts_contact record.
 	 */
 	contacts_record_h EXPORT_API getDisplayContact(contacts_record_h personRecord);
+
+	/**
+	 * @brief Get contact records for a person.
+	 * @remark Return value MUST be destroyed with contacts_list_destroy by you
+	 * @param[in]   personRecord    _contacts_person record.
+	 * @param[in]   projection      Query projection in _contacts_contact view
+	 * @return _contacts_contact record list
+	 */
+	contacts_list_h EXPORT_API getContacts(contacts_record_h personRecord, Utils::Range<unsigned *> projection = { });
 
 	/**
 	 * @brief Get display contact ID by person ID.

@@ -23,9 +23,6 @@
 using namespace Phone::Dialer;
 using namespace Phone::Dialer::Utils;
 
-#define TAG_MATCH_PREFIX "<match>"
-#define TAG_MATCH_SUFFIX "</match>"
-
 namespace
 {
 	const char *mask[] = {
@@ -200,17 +197,6 @@ std::string Phone::Dialer::Utils::contactNameToMask(const std::string &name)
 		number.push_back(digit);
 	}
 	return number;
-}
-
-std::string Phone::Dialer::Utils::highlightTextByPos(std::string &text, size_t position, size_t length)
-{
-	std::string highlightText = text;
-	size_t endPos = position + length + sizeof(TAG_MATCH_PREFIX) - 1;
-
-	highlightText.insert(position, TAG_MATCH_PREFIX);
-	highlightText.insert(endPos, TAG_MATCH_SUFFIX);
-
-	return highlightText;
 }
 
 Evas_Object *Phone::Dialer::Utils::createThumbnail(Evas_Object *parent, int contactId)

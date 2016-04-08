@@ -55,6 +55,15 @@ namespace Common
 	 * @return Default translatable strings table for Ux::SelectView.
 	 */
 	EXPORT_API const Ux::SelectView::Strings &getSelectViewStrings();
+
+	/**
+	 * @brief Highlight string @a length chars from @a position
+	 * @param[in]   str        Text to highlight
+	 * @param[in]   position   Position from which the text should be highlighted
+	 * @param[in]   length     Length of highlighted part of text
+	 * @return highlighted string.
+	 */
+	EXPORT_API std::string highlightString(const char *str, size_t position, size_t length);
 }
 
 #endif /* COMMON_STRINGS_H */

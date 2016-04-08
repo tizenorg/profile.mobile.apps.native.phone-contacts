@@ -17,6 +17,7 @@
 
 #include "Phone/Dialer/SearchResult.h"
 #include "Phone/Dialer/SearchUtils.h"
+#include "Common/Strings.h"
 
 using namespace Phone::Dialer;
 using namespace Phone::Dialer::Utils;
@@ -86,10 +87,10 @@ bool SearchResult::updateHighlightText(const std::string searchStr, size_t posit
 	{
 		case ResultLog:
 		case ResultNumber:
-			m_HighlightedText = Utils::highlightTextByPos(m_Number, position, searchStr.size());
+			m_HighlightedText = Common::highlightString(m_Number.c_str(), position, searchStr.size());
 			return true;
 		case ResultName:
-			m_HighlightedText = Utils::highlightTextByPos(m_Name, position, searchStr.size());
+			m_HighlightedText = Common::highlightString(m_Name.c_str(), position, searchStr.size());
 			return true;
 		case ResultNone:
 		case ResultSpeedDial:

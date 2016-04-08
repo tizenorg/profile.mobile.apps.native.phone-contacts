@@ -59,15 +59,6 @@ namespace Phone
 			std::string contactNameToMask(const std::string &name);
 
 			/**
-			 * @brief Highlight text from position
-			 * @param[in]   text       Text to highlight
-			 * @param[in]   position   Position from which the text should be highlighted
-			 * @param[in]   length     Length of highlighted part of text
-			 * @return highlighted string.
-			 */
-			std::string highlightTextByPos(std::string &text, size_t position, size_t length);
-
-			/**
 			 * param[in]	parent				Parent layout
 			 * param[in]	contactId			Contact ID
 			 */
