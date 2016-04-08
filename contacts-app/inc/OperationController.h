@@ -18,8 +18,9 @@
 #ifndef OPERATION_CONTROLLER_H
 #define OPERATION_CONTROLLER_H
 
-#include <app_control.h>
+#include <app.h>
 #include <Evas.h>
+#include <string>
 
 namespace Ui
 {
@@ -102,6 +103,13 @@ protected:
 	 * @return Last received request
 	 */
 	app_control_h getRequest() const;
+
+	/**
+	 * @brief Get URI without prefix (if present).
+	 * @param[in]   scheme  Scheme prefix to remove (e.g. tel: or file://)
+	 * @return URI without scheme.
+	 */
+	std::string getUrn(const char *scheme) const;
 
 	/**
 	 * @brief Send failure reply to the last request

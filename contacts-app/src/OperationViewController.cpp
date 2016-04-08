@@ -17,24 +17,22 @@
 
 #include "OperationViewController.h"
 
-#include "MainApp.h"
 #include "Contacts/Details/DetailsView.h"
-#include "Contacts/List/ListView.h"
-#include "Contacts/Settings/ImportController.h"
+#include "Contacts/List/VcardView.h"
 #include "Contacts/Utils.h"
-#include "Utils/Logger.h"
 
 #include "App/AppControlRequest.h"
 #include "Ui/Navigator.h"
+#include "Utils/Logger.h"
 
-#include <notification.h>
 #include <string.h>
+#include <sys/stat.h>
+
+#define APP_CONTROL_URI_PATH "file://"
 
 using namespace Contacts;
 using namespace Contacts::Details;
 using namespace Contacts::List;
-
-#define BUFFER_SIZE        1024
 
 OperationViewController::OperationViewController()
 	: OperationController(OperationView)
@@ -53,16 +51,12 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 			view = new DetailsView(getDisplayContactId(personId));
 		}
 	} else {
-		char *uri = NULL;
-		app_control_get_uri(request, &uri);
-		if (uri) {
-			view = new ListView(uri);
-			ListView *listView = (ListView *)view;
-			listView->setSelectMode(Ux::SelectMulti);
-			listView->setSelectCallback(std::bind(&OperationViewController::onSelectResult, this,
-					std::placeholders::_1, listView, std::string(uri)));
-
-			free(uri);
+		std::string path = getUrn(APP_CONTROL_URI_PATH);
+		struct stat buffer;
+		if (stat(path.c_str(), &buffer) == 0) {
+			view = new VcardView(path);
+		} else {
+			ERR("Failed to open file: \"%s\". %s", path.c_str(), strerror(errno));
 		}
 	}
 
@@ -73,41 +67,4 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 	} else {
 		ui_app_exit();
 	}
-}
-
-bool OperationViewController::onSelectResult(Ux::SelectResults results, ListView *view, std::string uri)
-{
-	std::vector<contacts_record_h> records;
-	for (auto &&result : results) {
-		records.push_back((contacts_record_h)result.value.data);
-	}
-	int count = records.size();
-	if (count) {
-		std::vector<std::string> vcards;
-		vcards.push_back(uri);
-		Settings::ImportController *importer = new Settings::ImportController(view->getEvasObject(),
-				"IDS_PB_HEADER_IMPORT_CONTACTS_ABB2", count, std::move(vcards), std::move(records));
-		importer->setFinishCallback(std::bind(&OperationViewController::onImportFinish, this, importer, view));
-		importer->run();
-	}
-
-	return false;
-}
-
-void OperationViewController::onImportFinish(Settings::ImportController *importer, ListView *view)
-{
-	int count = importer->getTotalCount();
-	RETM_IF(count <= 0, "invalid count");
-	int err = NOTIFICATION_ERROR_NONE;
-
-	if (count == 1) {
-		err = notification_status_message_post(_("IDS_PB_TPOP_1_CONTACT_IMPORTED"));
-	} else {
-		char text[BUFFER_SIZE] = { 0, };
-		snprintf(text, sizeof(text), _("IDS_PB_TPOP_PD_CONTACTS_IMPORTED"), count);
-		err = notification_status_message_post(text);
-	}
-	WARN_IF_ERR(err, "notification_status_message_post() failed.");
-
-	view->getPage()->close();
 }

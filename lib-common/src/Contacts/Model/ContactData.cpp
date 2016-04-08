@@ -50,11 +50,6 @@ void ContactData::unsetDeleteCallback()
 	m_OnDeleted = nullptr;
 }
 
-const Utils::UniString *ContactData::getIndexLetter() const
-{
-	return nullptr;
-}
-
 void ContactData::onUpdated(int changes)
 {
 	if (m_OnUpdated) {
