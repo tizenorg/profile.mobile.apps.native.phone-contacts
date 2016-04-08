@@ -23,9 +23,9 @@ using namespace Contacts;
 using namespace Contacts::Model;
 using namespace Contacts::List::Model;
 
-VcardProvider::VcardProvider(const char *path)
+VcardProvider::VcardProvider(std::string vcardPath)
 {
-	int err = contacts_vcard_parse_to_contact_foreach(path, [](contacts_record_h record, void *data)->bool {
+	int err = contacts_vcard_parse_to_contact_foreach(vcardPath.c_str(), [](contacts_record_h record, void *data)->bool {
 		RETVM_IF(!record || !data, true, "invalid data");
 		ContactDataList *list = (ContactDataList *)data;
 

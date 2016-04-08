@@ -147,11 +147,6 @@ namespace Contacts
 			 */
 			void unsetDeleteCallback();
 
-			/**
-			 * @return First letter from formatted person name
-			 */
-			virtual const Utils::UniString *getIndexLetter() const;
-
 		protected:
 			/**
 			 * @brief ContactData updated callback

@@ -64,7 +64,7 @@ void OperationDefaultController::onRequest(Operation operation, app_control_h re
 	TabId selectedTab = TabContacts;
 	if (operation == OperationDial) {
 		auto dialer = static_cast<Phone::Dialer::DialerView *>(m_Tabs[TabDialer]);
-		dialer->setNumber(getPhoneNumber(request));
+		dialer->setNumber(getUrn(APP_CONTROL_URI_DIAL));
 		selectedTab = TabDialer;
 	} else if (appId && strcmp(appId, APP_CONTROL_PHONE_APPID) == 0) {
 		if (getBadgeCount(APP_CONTROL_PHONE_APPID) > 0) {
@@ -77,22 +77,6 @@ void OperationDefaultController::onRequest(Operation operation, app_control_h re
 	m_Navigator->navigateTo(m_Tabs[selectedTab]);
 
 	free(appId);
-}
-
-std::string OperationDefaultController::getPhoneNumber(app_control_h appControl)
-{
-	std::string number;
-
-	char *uri = nullptr;
-	app_control_get_uri(appControl, &uri);
-
-	size_t length = sizeof(APP_CONTROL_URI_DIAL) - 1;
-	if (uri && strncmp(uri, APP_CONTROL_URI_DIAL, length) == 0) {
-		number = uri + length;
-	}
-
-	free(uri);
-	return number;
 }
 
 unsigned OperationDefaultController::getBadgeCount(const char *package)

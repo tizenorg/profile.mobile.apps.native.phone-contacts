@@ -119,6 +119,30 @@ app_control_h OperationController::getRequest() const
 	return m_Request;
 }
 
+std::string OperationController::getUrn(const char *scheme) const
+{
+	char *uri = nullptr;
+	app_control_get_uri(m_Request, &uri);
+	if (!uri) {
+		return "";
+	}
+
+	std::string path;
+	if (scheme) {
+		size_t length = strlen(scheme);
+		if (strncmp(uri, scheme, length) == 0) {
+			path = uri + length;
+		}
+	}
+
+	if (path.empty()) {
+		path = uri;
+	}
+
+	free(uri);
+	return path;
+}
+
 void OperationController::replyFailure()
 {
 	app_control_h reply;
