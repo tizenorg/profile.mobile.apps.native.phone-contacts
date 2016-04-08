@@ -74,6 +74,17 @@ namespace Contacts
 			};
 
 			/**
+			 * @brief Determines how contact matches in @ref compare() method
+			 */
+			enum MatchPattern
+			{
+				MatchNone        = 0,                /**< There is no matches */
+				MatchName        = 1 << FieldName,   /**< Contact matches by name */
+				MatchNumber      = 1 << FieldNumber, /**< Contact matches by phone number */
+				MatchAll         = MatchName | MatchNumber
+			};
+
+			/**
 			 * @brief Change callback
 			 * @param[in] Changed info
 			 */
@@ -115,15 +126,22 @@ namespace Contacts
 			virtual const char *getImagePath() const = 0;
 
 			/**
+			 * @return First letter from formatted person name
+			 */
+			virtual const Utils::UniString *getIndexLetter() const { return nullptr; }
+
+			/**
 			 * @return ContactData type
 			 */
 			Type getType() const;
 
 			/**
 			 * @brief Determine if object searchable string contains @a str
-			 * @return true if it contains, false if not
+			 * @param[in]   str     Searchable string
+			 * @param[in]   pattern Pattern that determines which fields shoul be compared see @ref MatchPattern
+			 * @return MatchPattern value MatchNone if not contains, other values if contains
 			 */
-			virtual bool compare(const char *str) = 0;
+			virtual int compare(const char *str, int pattern) = 0;
 
 			/**
 			 * @brief Set update callback
@@ -146,11 +164,6 @@ namespace Contacts
 			 * @brief Unset delete callback
 			 */
 			void unsetDeleteCallback();
-
-			/**
-			 * @return First letter from formatted person name
-			 */
-			virtual const Utils::UniString *getIndexLetter() const;
 
 		protected:
 			/**

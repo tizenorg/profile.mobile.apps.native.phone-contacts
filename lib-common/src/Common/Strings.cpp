@@ -18,6 +18,9 @@
 #include "Common/Strings.h"
 #include <contacts.h>
 
+#define TAG_MATCH_PREFIX "<match>"
+#define TAG_MATCH_SUFFIX "</match>"
+
 using namespace Common;
 
 namespace
@@ -136,4 +139,16 @@ const char *Common::getEnumValueName(EnumType type, int value)
 const Ux::SelectView::Strings &Common::getSelectViewStrings()
 {
 	return selectViewStrings;
+}
+
+
+std::string Common::highlightString(const char *str, size_t position, size_t length)
+{
+	std::string highlightText = str ? str : "";
+	size_t endPos = position + length + sizeof(TAG_MATCH_PREFIX) - 1;
+
+	highlightText.insert(position, TAG_MATCH_PREFIX);
+	highlightText.insert(endPos, TAG_MATCH_SUFFIX);
+
+	return highlightText;
 }

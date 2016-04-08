@@ -22,6 +22,7 @@
 #include "Contacts/Model/DbChangeObserver.h"
 #include <contacts.h>
 #include <vector>
+#include <string>
 
 namespace Contacts
 {
@@ -30,6 +31,7 @@ namespace Contacts
 		class EXPORT_API ContactRecordData : public ContactData
 		{
 		public:
+			typedef std::vector<const char *> Numbers;
 			/**
 			 * @brief Create ContactRecordData object
 			 * @param[in]   type    ContactRecordData type
@@ -63,10 +65,20 @@ namespace Contacts
 			virtual const char *getImagePath() const override;
 
 			/**
+			 * @return Contact number list
+			 */
+			virtual const Numbers &getNumbers() const;
+
+			/**
+			 * @return Contact's name matched by dialer keypad button
+			 */
+			const std::string &getAlphaName() const;
+
+			/**
 			 * @see ContactData::compare()
 			 * @detail Compares by name
 			 */
-			virtual bool compare(const char *str) override;
+			virtual int compare(const char *str, int pattern) override;
 
 			/**
 			 * @return contact record
@@ -128,12 +140,21 @@ namespace Contacts
 			 */
 			static int getChanges(contacts_record_h oldContact, contacts_record_h newContact);
 
+			/**
+			 * @brief Fetch contact numbers from DB
+			 * @param[in]   record     _contacts_contact record
+			 * @param[out]  numbers    Container with numbers
+			 */
+			static void fetchContactNumbers(contacts_record_h record, Numbers &numbers);
+
+			mutable Numbers m_Numbers;
 		private:
 			friend class ContactRecordProvider;
 
 			virtual void onUpdate(contacts_record_h record);
 
 			contacts_record_h m_Record;
+			mutable std::string m_AlphaNumber;
 			std::vector<DbChangeObserver::CallbackHandle> m_Handles;
 		};
 	}

@@ -17,9 +17,11 @@
 
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/Utils.h"
+#include "Contacts/RecordListIterator.h"
 
 #include <cstring>
 
+using namespace Contacts;
 using namespace Contacts::Model;
 using namespace Contacts::List::Model;
 using namespace Utils;
@@ -82,6 +84,27 @@ int Person::getId() const
 	return id;
 }
 
+const Person::Numbers &Person::getNumbers() const
+{
+	unsigned projection[] = {
+		_contacts_contact.number
+	};
+
+	if (m_Numbers.empty()) {
+		contacts_list_h list = getContacts(m_PersonRecord, projection);
+		for (auto &&record : makeRange(list)) {
+			fetchContactNumbers(record, m_Numbers);
+		}
+	}
+
+	return m_Numbers;
+}
+
+const UniString *Person::getIndexLetter() const
+{
+	return &m_IndexLetter;
+}
+
 int Person::getDisplayContactId() const
 {
 	int id = 0;
@@ -92,11 +115,6 @@ int Person::getDisplayContactId() const
 const Person::ContactIds &Person::getContactIds() const
 {
 	return m_ContactIds;
-}
-
-const UniString *Person::getIndexLetter() const
-{
-	return &m_IndexLetter;
 }
 
 const contacts_record_h Person::getRecord() const

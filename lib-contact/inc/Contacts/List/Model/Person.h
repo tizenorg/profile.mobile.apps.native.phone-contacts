@@ -59,6 +59,16 @@ namespace Contacts
 				virtual int getId() const override;
 
 				/**
+				 * @see ContactRecordData::getNumbers()
+				 */
+				virtual const Numbers &getNumbers() const override;
+
+				/**
+				 * @return First letter from formatted person name
+				 */
+				virtual const Utils::UniString *getIndexLetter() const override;
+
+				/**
 				 * @return Displayed by default contact ID
 				 */
 				int getDisplayContactId() const;
@@ -67,11 +77,6 @@ namespace Contacts
 				 * @return Array of contact IDs
 				 */
 				const ContactIds &getContactIds() const;
-
-				/**
-				 * @return First letter from formatted person name
-				 */
-				virtual const Utils::UniString *getIndexLetter() const override;
 
 				/**
 				 * @return _contacts_person record

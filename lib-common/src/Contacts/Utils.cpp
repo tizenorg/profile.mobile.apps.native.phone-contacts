@@ -30,6 +30,27 @@ contacts_record_h Contacts::getDisplayContact(contacts_record_h personRecord)
 	return record;
 }
 
+contacts_list_h Contacts::getContacts(contacts_record_h personRecord, Utils::Range<unsigned *> projection)
+{
+	int id = getRecordInt(personRecord, _contacts_person.id);
+
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_contact._uri, &filter);
+	contacts_filter_add_int(filter, _contacts_contact.person_id, CONTACTS_MATCH_EQUAL, id);
+
+	contacts_query_h query = nullptr;
+	contacts_query_create(_contacts_contact._uri, &query);
+	contacts_query_set_filter(query, filter);
+	if (projection) {
+		contacts_query_set_projection(query, projection.begin(), projection.count());
+	}
+
+	contacts_list_h list = nullptr;
+	contacts_db_get_records_with_query(query, 0, 0, &list);
+
+	return list;
+}
+
 int Contacts::getDisplayContactId(int personId)
 {
 	contacts_record_h record = 0;

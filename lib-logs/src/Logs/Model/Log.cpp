@@ -80,9 +80,17 @@ const char *Log::getImagePath() const
 	return path;
 }
 
-bool Log::compare(const char *str)
+int Log::compare(const char *str, int pattern)
 {
-	return strstr(getNumber(), str);
+	pattern &= ~MatchName;
+
+	if (pattern & MatchNumber) {
+		if (strstr(getNumber(), str)) {
+			pattern &= ~MatchNumber;
+		}
+	}
+
+	return pattern;
 }
 
 int Log::getNumberType() const

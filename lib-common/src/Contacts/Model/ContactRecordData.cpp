@@ -17,8 +17,10 @@
 
 #include "Contacts/Model/ContactRecordData.h"
 #include "Contacts/ContactRecordChildIterator.h"
+#include "Contacts/Utils.h"
 #include "Utils/String.h"
 
+using namespace Contacts;
 using namespace Contacts::Model;
 
 ContactRecordData::ContactRecordData(Type type, contacts_record_h record)
@@ -52,9 +54,43 @@ const char *ContactRecordData::getImagePath() const
 	return getValue(m_Record, FieldImage);
 }
 
-bool ContactRecordData::compare(const char *str)
+const ContactRecordData::Numbers &ContactRecordData::getNumbers() const
 {
-	return strstr(getName(), str); //Todo: Compare unicode strings
+	if (m_Numbers.empty()) {
+		fetchContactNumbers(m_Record, m_Numbers);
+	}
+
+	return m_Numbers;
+}
+
+const std::string &ContactRecordData::getAlphaName() const
+{
+	if (m_AlphaNumber.empty()) {
+		//Todo:
+	}
+
+	return m_AlphaNumber;
+}
+
+int ContactRecordData::compare(const char *str, int pattern)
+{
+	if (pattern & MatchName) {
+		if (!strstr(getName(), str) && !strstr(getAlphaName().c_str(), str)) { //Todo: Compare unicode strings
+			pattern &= ~MatchName;
+		}
+	}
+
+	if (pattern & MatchNumber) {
+		auto numbers = getNumbers();
+		for (auto &&number : numbers) {
+			if (strstr(number, str)) {
+				pattern &= ~MatchNumber;
+				break;
+			}
+		}
+	}
+
+	return pattern;
 }
 
 const contacts_record_h ContactRecordData::getContactRecord() const
@@ -150,9 +186,19 @@ int ContactRecordData::getChanges(contacts_record_h oldContact, contacts_record_
 	return changes;
 }
 
+void ContactRecordData::fetchContactNumbers(contacts_record_h record, Numbers &numbers)
+{
+	auto numberRecords = Contacts::makeRange(record, _contacts_contact.number);
+	for (auto &&numberRecord : numberRecords) {
+		numbers.push_back(Contacts::getRecordStr(numberRecord, _contacts_number.number));
+	}
+}
+
 void ContactRecordData::onUpdate(contacts_record_h record)
 {
 	int changes = getChanges(m_Record, record);
+
+	m_Numbers.clear();
 	updateRecord(record);
 
 	onUpdated(changes);
