@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-project(widget CXX)
+project(contacts-widget CXX)
 
 file(GLOB_RECURSE SOURCES src/*.cpp)
 include_directories(
