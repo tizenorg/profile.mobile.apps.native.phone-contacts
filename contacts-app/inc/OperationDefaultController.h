@@ -46,9 +46,7 @@ private:
 	virtual void onCreate() override;
 	virtual void onRequest(Operation operation, app_control_h request) override;
 
-	static std::string getPhoneNumber(app_control_h appControl);
 	static unsigned getBadgeCount(const char *package);
-
 	void saveLastTab();
 	static TabId getLastTab();
 

@@ -16,7 +16,6 @@
  */
 
 #include "Contacts/Model/ContactData.h"
-#include "Utils/UniString.h"
 
 using namespace Contacts::Model;
 
@@ -48,11 +47,6 @@ void ContactData::setDeleteCallback(DeleteCallback callback)
 void ContactData::unsetDeleteCallback()
 {
 	m_OnDeleted = nullptr;
-}
-
-const Utils::UniString *ContactData::getIndexLetter() const
-{
-	return nullptr;
 }
 
 void ContactData::onUpdated(int changes)

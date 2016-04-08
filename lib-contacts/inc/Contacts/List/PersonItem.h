@@ -18,44 +18,38 @@
 #ifndef CONTACTS_LIST_PERSON_ITEM_H
 #define CONTACTS_LIST_PERSON_ITEM_H
 
-#include "Ux/SelectItem.h"
-
-#define PART_PERSON_NAME        "elm.text"
-#define PART_PERSON_THUMBNAIL   "elm.swallow.icon"
-#define PART_CHECK              "elm.swallow.end"
+#include "Contacts/List/ContactItem.h"
 
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactData;
-	}
-
 	namespace List
 	{
+		namespace Model
+		{
+			class Person;
+		}
+
 		/**
-		 * @brief Person list item
+		 * @brief Person genlist item
 		 */
-		class PersonItem : public Ux::SelectItem
+		class PersonItem : public ContactItem
 		{
 		public:
 			/**
 			 * @brief Create person item
 			 * @param[in]   person      Person object
 			 */
-			explicit PersonItem(Contacts::Model::ContactData &person);
+			explicit PersonItem(Model::Person &person);
 
 			/**
-			 * @return Person object
+			 * @return Person object.
 			 */
-			Contacts::Model::ContactData &getPerson();
+			Model::Person &getPerson();
 
 		private:
-			virtual char *getText(Evas_Object *parent, const char *part) override;
-			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual Ux::SelectResult getDefaultResult() const override;
 
-			Contacts::Model::ContactData &m_Person;
+			Model::Person &m_Person;
 		};
 	}
 }

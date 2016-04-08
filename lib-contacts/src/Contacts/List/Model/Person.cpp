@@ -94,9 +94,9 @@ const Person::ContactIds &Person::getContactIds() const
 	return m_ContactIds;
 }
 
-const UniString *Person::getIndexLetter() const
+const UniString &Person::getIndexLetter() const
 {
-	return &m_IndexLetter;
+	return m_IndexLetter;
 }
 
 const contacts_record_h Person::getRecord() const
