@@ -70,7 +70,7 @@ Evas_Object* CtInputDataTypeCustomPopup::onCreate(Evas_Object* parent, void* vie
 		Evas_Object *clear_btn = editfield->getClearButton();
 		evas_object_smart_callback_add(clear_btn, "clicked", __dataTypeCustomEntryChangedCb, this);
 		evas_object_event_callback_add(entry, EVAS_CALLBACK_SHOW, __entryShowCb, NULL);
-		//evas_object_smart_callback_add(entry, "activated", ct_common_entry_done_activated_cb, NULL);
+		evas_object_smart_callback_add(entry, "activated", __entryActivatedCb, this);
 		__customEntry = entry;
 		return layout;
 	});
@@ -90,6 +90,14 @@ Evas_Object* CtInputDataTypeCustomPopup::onCreate(Evas_Object* parent, void* vie
 void CtInputDataTypeCustomPopup::onDestroy()
 {
 	WHIT();
+}
+
+void CtInputDataTypeCustomPopup::__entryActivatedCb(void *data, Evas_Object *obj, void *event_info)
+{
+	WPRET_M(NULL == data, "data is NULL");
+	CtInputDataTypeCustomPopup *customPopup = (CtInputDataTypeCustomPopup*)data;
+	customPopup->__saveCustomDataType();
+	customPopup->destroy();
 }
 
 CtInputDataTypeCustomPopup::~CtInputDataTypeCustomPopup()

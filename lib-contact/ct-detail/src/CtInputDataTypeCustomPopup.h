@@ -41,6 +41,7 @@ private:
 	static void __dataTypeCustomCancelCb(void *data, Evas_Object *obj, void *event_info);
 	static void __dataTypeCustomEntryChangedCb(void *data, Evas_Object *obj, void *event_info);
 	static void __entryShowCb(void *data, Evas *e, Evas_Object *obj, void *event_info);
+	static void __entryActivatedCb(void *data, Evas_Object *obj, void *event_info);
 
 	static Eina_Bool __notificationTimerCb(void *data);
 	static void __editfieldTextMaxReachedCb(void *data, Evas_Object *obj, void *event_info);
