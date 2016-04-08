@@ -78,27 +78,31 @@ void LogsView::onMenuPressed()
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
 
-	menu->addItem("IDS_CLOG_OPT_VIEW_BY", [this] {
-		onSelectViewBy();
-	});
-
-	menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
-		auto strings = Common::getSelectViewStrings();
-		strings.buttonDone = "IDS_LOGS_OPT_DELETE";
-
-		LogsView *view = new LogsView(m_FilterType);
-		view->setStrings(strings);
-		view->setSelectMode(SelectMulti);
-		view->setSelectCallback([](SelectResults results) {
-			for (auto &&result : results) {
-				LogGroup *group = (LogGroup *) result.value.data;
-				group->remove();
-			}
-
-			return true;
+	if (!m_LogProvider.getLogGroupList().empty()) {
+		menu->addItem("IDS_CLOG_OPT_VIEW_BY", [this] {
+			onSelectViewBy();
 		});
-		getNavigator()->navigateTo(view);
-	});
+	}
+
+	if (m_Genlist && elm_genlist_items_count(m_Genlist->getEvasObject())) {
+		menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
+			auto strings = Common::getSelectViewStrings();
+			strings.buttonDone = "IDS_LOGS_OPT_DELETE";
+
+			LogsView *view = new LogsView(m_FilterType);
+			view->setStrings(strings);
+			view->setSelectMode(SelectMulti);
+			view->setSelectCallback([](SelectResults results) {
+						for (auto &&result : results) {
+							LogGroup *group = (LogGroup *) result.value.data;
+							group->remove();
+						}
+
+						return true;
+					});
+			getNavigator()->navigateTo(view);
+		});
+	}
 
 	menu->addItem("IDS_KPD_OPT_CALL_SETTINGS_ABB", [this] {
 		m_AppControl = App::requestCallSettings();
