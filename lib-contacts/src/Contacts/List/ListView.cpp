@@ -15,6 +15,7 @@
  *
  */
 
+#include "Contacts/List/ContactSearchItem.h"
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/GroupItem.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
@@ -87,6 +88,8 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 
 	m_Genlist = createGenlist(m_Box);
 	elm_box_pack_end(m_Box, m_Genlist->getEvasObject());
+
+	createSearch();
 
 	m_NoContent = createNoContentLayout(m_Box);
 
@@ -410,6 +413,13 @@ void ListView::updateSectionsMode()
 			removeSection(sectionId);
 		}
 	}
+}
+
+void ListView::createSearch()
+{
+	auto item = new ContactSearchItem();
+	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
+	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 }
 
 void ListView::createAddButton()

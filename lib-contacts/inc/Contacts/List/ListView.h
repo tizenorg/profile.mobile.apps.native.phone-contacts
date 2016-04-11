@@ -114,6 +114,8 @@ namespace Contacts
 			void updatePageMode();
 			void updateSectionsMode();
 
+			void createSearch();
+
 			void createAddButton();
 			void deleteAddButton();
 
