@@ -45,6 +45,11 @@ ContactTextFieldControl::ContactTextFieldControl(Ui::GenlistItem *parent,
 {
 }
 
+ContactTextFieldControl::~ContactTextFieldControl()
+{
+	unsetNextItem();
+}
+
 void ContactTextFieldControl::save()
 {
 	if (!m_IsChanged) {
@@ -71,10 +76,10 @@ void ContactTextFieldControl::update()
 
 void ContactTextFieldControl::updateReturnKey()
 {
-	m_NextItem = nullptr;
+	unsetNextItem();
 	for (auto item = m_ParentItem->getNextItem(); item; item = item->getNextItem()) {
 		if (item->isFocusable()) {
-			m_NextItem = item;
+			setNextItem(item);
 			break;
 		}
 	}
@@ -123,6 +128,20 @@ void ContactTextFieldControl::onCreated()
 	update();
 }
 
+void ContactTextFieldControl::setNextItem(Ui::GenlistItem *item)
+{
+	m_NextItem = item;
+	m_NextItem->setDestroyCallback(std::bind(&ContactTextFieldControl::updateReturnKey, this));
+}
+
+void ContactTextFieldControl::unsetNextItem()
+{
+	if (m_NextItem) {
+		m_NextItem->setDestroyCallback(nullptr);
+		m_NextItem = nullptr;
+	}
+}
+
 void ContactTextFieldControl::onChanged(Evas_Object *entry, void *eventInfo)
 {
 	if (m_IsUpdating) {
@@ -145,6 +164,7 @@ void ContactTextFieldControl::onFocused(Evas_Object *entry, void *eventInfo)
 void ContactTextFieldControl::onUnfocused(Evas_Object *entry, void *eventInfo)
 {
 	save();
+	unsetNextItem();
 }
 
 void ContactTextFieldControl::onActivated(Evas_Object *entry, void *eventInfo)

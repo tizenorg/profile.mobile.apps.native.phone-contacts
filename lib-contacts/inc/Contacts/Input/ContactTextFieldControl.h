@@ -48,6 +48,7 @@ namespace Contacts
 			 */
 			ContactTextFieldControl(Ui::GenlistItem *parent,
 					Model::ContactTextField &field);
+			virtual ~ContactTextFieldControl() override;
 
 			/**
 			 * @brief Save the control value into the field.
@@ -83,6 +84,8 @@ namespace Contacts
 
 		private:
 			virtual void onCreated() override;
+			void setNextItem(Ui::GenlistItem *item);
+			void unsetNextItem();
 
 			void onChanged(Evas_Object *entry, void *eventInfo);
 			void onFocused(Evas_Object *entry, void *eventInfo);
