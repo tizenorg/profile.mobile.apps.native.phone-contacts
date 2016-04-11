@@ -1003,12 +1003,15 @@ void CtListView::__onNaviTitleBack(void *data, Evas_Object *obj, void *event_inf
 	CtListView *listView = (CtListView*)data;
 
 	WPRET_M(!listView->__listController, "invalid controller");
-	listView->__listController->onSelectBack();
+	listView->popOut();
 }
 
 void CtListView::__showTitleButton(bool show)
 {
 	WHIT();
+
+	WDEBUG("Show title buttons: %d", show);
+
 	WPRET_M(!getNaviframe(), "getNaviframe() is NULL");
 
 	if(__hasDoneCancel) {
@@ -1056,6 +1059,8 @@ void CtListView::__showTitleButton(bool show)
 	} else {
 		//Back button should be added manually. Auto back button is not created
 		//because there is no previous page.
+
+		WDEBUG("Create back button");
 
 		Evas_Object *backButton = elm_button_add(getViewNaviframe());
 		elm_object_style_set(backButton, "naviframe/back_btn/default");
