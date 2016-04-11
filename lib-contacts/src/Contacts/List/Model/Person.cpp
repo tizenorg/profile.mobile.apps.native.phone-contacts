@@ -17,6 +17,7 @@
 
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/Utils.h"
+#include "Utils/String.h"
 
 #include <cstring>
 
@@ -67,6 +68,7 @@ namespace
 Person::Person(contacts_record_h record)
 	: ContactRecordData(TypePerson, getDisplayContact(record)), m_PersonRecord(nullptr)
 {
+	m_CombinedName = getCombinedName(getContactRecord());
 	initialize(record);
 }
 
@@ -80,6 +82,13 @@ int Person::getId() const
 	int id = 0;
 	contacts_record_get_int(m_PersonRecord, _contacts_person.id, &id);
 	return id;
+}
+
+void Person::updateDbRecord()
+{
+	contacts_record_h record = nullptr;
+	contacts_db_get_record(_contacts_person._uri, getId(), &record);
+	onUpdate(record);
 }
 
 int Person::getDisplayContactId() const
@@ -128,7 +137,12 @@ void Person::unsetChangedCallback()
 void Person::onUpdate(contacts_record_h personRecord)
 {
 	contacts_record_h contactRecord = getDisplayContact(personRecord);
-	auto changes = getChanges(getContactRecord(), contactRecord);
+	auto changes = getChanges(contactRecord);
+	std::string newCombinedName = getCombinedName(contactRecord);
+	if (!Utils::safeCmp(m_CombinedName.c_str(), newCombinedName.c_str())) {
+		m_CombinedName = newCombinedName;
+		changes |= ChangedSortValue;
+	}
 
 	contacts_record_destroy(m_PersonRecord, true);
 	m_SortValue.clear();
@@ -137,6 +151,26 @@ void Person::onUpdate(contacts_record_h personRecord)
 	initialize(personRecord);
 
 	onUpdated(changes);
+}
+
+std::string Person::getCombinedName(contacts_record_h contactRecord)
+{
+	std::string name;
+	char *text = nullptr;
+	contacts_record_h nameRecord = nullptr;
+
+	contacts_record_get_child_record_at_p(contactRecord, _contacts_contact.name, 0, &nameRecord);
+	contacts_record_get_str_p(nameRecord, _contacts_name.first, &text);
+	if (text) {
+		name += text;
+		name += " ";
+	}
+	contacts_record_get_str_p(nameRecord, _contacts_name.last, &text);
+	if (text) {
+		name += text;
+	}
+
+	return name;
 }
 
 void Person::initialize(contacts_record_h personRecord)

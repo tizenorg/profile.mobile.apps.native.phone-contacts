@@ -23,6 +23,7 @@
 #include "Utils/UniString.h"
 
 #include <map>
+#include <contacts_setting.h>
 
 namespace Ui
 {
@@ -84,9 +85,12 @@ namespace Contacts
 
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onPageAttached(Ui::NavigatorPage *page) override;
-			virtual void onCreated() override;
-			virtual void onMenuPressed() override;
 
+			virtual void onCreated() override;
+			static void onNameSortingOrderChanged(contacts_name_sorting_order_e sortingOrder, void *data);
+			static void onNameDisplayOrderChanged(contacts_name_display_order_e displayOrder, void *data);
+
+			virtual void onMenuPressed() override;
 			void onSharePressed();
 
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;

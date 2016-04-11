@@ -46,7 +46,7 @@ namespace Contacts
 			/**
 			 * @return my profile object
 			 */
-			const Model::MyProfile &getMyProfile() const;
+			Model::MyProfile &getMyProfile() const;
 
 			/**
 			 * @brief Set my profile object to item
