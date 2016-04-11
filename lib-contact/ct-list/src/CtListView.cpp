@@ -1003,7 +1003,7 @@ void CtListView::__onNaviTitleBack(void *data, Evas_Object *obj, void *event_inf
 	CtListView *listView = (CtListView*)data;
 
 	WPRET_M(!listView->__listController, "invalid controller");
-	listView->__listController->onSelectBack();
+	listView->popOut();
 }
 
 void CtListView::__showTitleButton(bool show)
