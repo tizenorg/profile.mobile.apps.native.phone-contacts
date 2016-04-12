@@ -46,7 +46,7 @@ namespace Contacts
 			/**
 			 * @return my profile object
 			 */
-			const Model::MyProfile &getMyProfile() const;
+			Model::MyProfile &getMyProfile() const;
 
 			/**
 			 * @brief Set my profile object to item
@@ -59,6 +59,12 @@ namespace Contacts
 			 * @param[in]   callback    Callback, that will be invoked on item selection
 			 */
 			void setSelectedCallback(SelectedCallback callback);
+
+			/**
+			 * @brief Update item
+			 * @param[in]   changes     Changed info
+			 */
+			void update(int changes);
 
 		protected:
 			virtual void onSelected() override;
