@@ -19,6 +19,7 @@
 #define CONTACTS_LIST_MODEL_VCARD_PROVIDER_H
 
 #include "Contacts/Model/ContactDataProvider.h"
+#include <string>
 
 namespace Contacts
 {
@@ -34,9 +35,9 @@ namespace Contacts
 			public:
 				/**
 				 * @brief Create list of vcard contacts
-				 * @param[in]   path    Vcard path
+				 * @param[in]   vcardPath   Vcard path
 				 */
-				VcardProvider(const char *path);
+				VcardProvider(std::string vcardPath);
 				VcardProvider(const VcardProvider &contact) = delete;
 				virtual ~VcardProvider() override;
 
