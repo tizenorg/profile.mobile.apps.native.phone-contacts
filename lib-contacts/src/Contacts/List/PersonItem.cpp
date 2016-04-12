@@ -32,6 +32,19 @@ Person &PersonItem::getPerson()
 	return m_Person;
 }
 
+void PersonItem::update(int changes)
+{
+	if (changes & Person::ChangedName) {
+		elm_genlist_item_fields_update(getObjectItem(),
+			PART_CONTACT_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+	}
+
+	if (changes & Person::ChangedImage) {
+		elm_genlist_item_fields_update(getObjectItem(),
+			PART_CONTACT_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	}
+}
+
 Ux::SelectResult PersonItem::getDefaultResult() const
 {
 	return { ResultPerson, m_Person.getId() };
