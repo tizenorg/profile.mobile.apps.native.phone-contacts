@@ -46,6 +46,12 @@ namespace Contacts
 			 */
 			Model::Person &getPerson();
 
+			/**
+			 * @brief Update item
+			 * @param[in]   changes     Changed info
+			 */
+			void update(int changes);
+
 		private:
 			virtual Ux::SelectResult getDefaultResult() const override;
 

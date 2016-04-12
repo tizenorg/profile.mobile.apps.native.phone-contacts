@@ -42,6 +42,25 @@ namespace Contacts
 			{
 			public:
 				/**
+				 * @brief Complete ContactData::Field with person object fields
+				 * @see ContactData::Field
+				 */
+				enum PersonField
+				{
+					PersonFieldSortValue = FieldMax, /**< Sort value*/
+					PersonFieldMax                   /**< Sentinel value */
+				};
+
+				/**
+				 * @brief Complete ContactData changes on update event with Person changes
+				 * @see ContactData::ChangedInfo
+				 */
+				enum PersonChangedInfo
+				{
+					ChangedSortValue = 1 << PersonFieldSortValue /**< Sort value has changed */
+				};
+
+				/**
 				 * @brief Array of contact IDs
 				 */
 				typedef std::vector<int> ContactIds;
@@ -57,6 +76,11 @@ namespace Contacts
 				 * @return Person ID
 				 */
 				virtual int getId() const override;
+
+				/**
+				 * @see Update record from the database
+				 */
+				void updateDbRecord();
 
 				/**
 				 * @return Displayed by default contact ID
@@ -101,7 +125,7 @@ namespace Contacts
 				virtual void onUpdate(contacts_record_h personRecord) override;
 				void initialize(contacts_record_h personRecord);
 				const Utils::UniString &getSortValue() const;
-				const char *getDbSortValue() const;
+				const char *getDbSortValue(contacts_record_h contactRecord) const;
 
 				contacts_record_h m_PersonRecord;
 				ContactIds m_ContactIds;

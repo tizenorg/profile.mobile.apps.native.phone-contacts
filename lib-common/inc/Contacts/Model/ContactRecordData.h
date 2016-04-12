@@ -85,6 +85,7 @@ namespace Contacts
 			 */
 			virtual void unsetChangedCallback();
 
+
 			/**
 			 * @brief Update contact record handle
 			 * @param[in]   record  Contact record
@@ -122,11 +123,10 @@ namespace Contacts
 			static const char *getValue(contacts_record_h record, Field field);
 
 			/**
-			 * @param[in]   oldContact  Old contact record
 			 * @param[in]   newContact  New contact record
-			 * @return Changes between both contacts
+			 * @return Changes between current and new contacts
 			 */
-			static int getChanges(contacts_record_h oldContact, contacts_record_h newContact);
+			int getChanges(contacts_record_h newContact);
 
 		private:
 			friend class ContactRecordProvider;

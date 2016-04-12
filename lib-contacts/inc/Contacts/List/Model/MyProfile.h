@@ -63,6 +63,11 @@ namespace Contacts
 				 */
 				const contacts_record_h getRecord() const;
 
+				/**
+				 * @brief Update record from the databased
+				 */
+				void updateDbRecord();
+
 			private:
 				contacts_record_h m_MyProfileRecord;
 			};

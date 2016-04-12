@@ -132,18 +132,17 @@ const char *ContactRecordData::getValue(contacts_record_h record, Field field)
 	return value;
 }
 
-int ContactRecordData::getChanges(contacts_record_h oldContact, contacts_record_h newContact)
+int ContactRecordData::getChanges(contacts_record_h newContact)
 {
 	int changes = ChangedNone;
 
 	for (int i = FieldName; i < FieldMax; ++i) {
 		auto fieldId = static_cast<Field>(i);
-		const char *oldValue = getValue(oldContact, fieldId);
+		const char *oldValue = getValue(m_Record, fieldId);
 		const char *newValue = getValue(newContact, fieldId);
-		int changedInfo = 1 << fieldId;
 
 		if (!Utils::safeCmp(oldValue, newValue)) {
-			changes |= changedInfo;
+			changes |= (1 << fieldId);
 		}
 	}
 
@@ -152,7 +151,7 @@ int ContactRecordData::getChanges(contacts_record_h oldContact, contacts_record_
 
 void ContactRecordData::onUpdate(contacts_record_h record)
 {
-	int changes = getChanges(m_Record, record);
+	int changes = getChanges(record);
 	updateRecord(record);
 
 	onUpdated(changes);
