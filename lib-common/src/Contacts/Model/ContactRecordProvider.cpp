@@ -60,6 +60,14 @@ const ContactDataList &ContactRecordProvider::getContactDataList()
 	return m_ContactList;
 }
 
+void ContactRecordProvider::clearContactDataList()
+{
+	for (auto &&contact : m_ContactList) {
+		delete contact;
+	}
+	m_ContactList.clear();
+}
+
 ContactData *ContactRecordProvider::createContactData(contacts_record_h record)
 {
 	return new ContactRecordData(ContactData::TypeContact, record);

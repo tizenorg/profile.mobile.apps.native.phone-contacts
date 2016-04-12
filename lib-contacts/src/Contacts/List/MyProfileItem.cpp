@@ -25,7 +25,7 @@ MyProfileItem::MyProfileItem(Model::MyProfilePtr myProfile)
 	: m_MyProfile(std::move(myProfile))
 { }
 
-const Model::MyProfile &MyProfileItem::getMyProfile() const
+Model::MyProfile &MyProfileItem::getMyProfile() const
 {
 	return *m_MyProfile;
 }
@@ -38,6 +38,21 @@ void MyProfileItem::setMyProfile(Model::MyProfilePtr myProfile)
 void MyProfileItem::setSelectedCallback(SelectedCallback callback)
 {
 	m_OnSelected = std::move(callback);
+}
+
+void MyProfileItem::update(int changes)
+{
+	m_MyProfile->updateDbRecord();
+
+	if (changes & ELM_GENLIST_ITEM_FIELD_TEXT) {
+		elm_genlist_item_fields_update(getObjectItem(),
+			PART_MY_PROFILE_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+	}
+
+	if (changes & ELM_GENLIST_ITEM_FIELD_CONTENT) {
+		elm_genlist_item_fields_update(getObjectItem(),
+			PART_MY_PROFILE_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	}
 }
 
 void MyProfileItem::onSelected()
