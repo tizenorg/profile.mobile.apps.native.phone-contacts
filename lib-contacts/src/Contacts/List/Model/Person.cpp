@@ -17,6 +17,7 @@
 
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/Utils.h"
+#include "Utils/String.h"
 
 #include <cstring>
 
@@ -82,6 +83,13 @@ int Person::getId() const
 	return id;
 }
 
+void Person::updateDbRecord()
+{
+	contacts_record_h record = nullptr;
+	contacts_db_get_record(_contacts_person._uri, getId(), &record);
+	onUpdate(record);
+}
+
 int Person::getDisplayContactId() const
 {
 	int id = 0;
@@ -128,7 +136,11 @@ void Person::unsetChangedCallback()
 void Person::onUpdate(contacts_record_h personRecord)
 {
 	contacts_record_h contactRecord = getDisplayContact(personRecord);
-	auto changes = getChanges(getContactRecord(), contactRecord);
+	auto changes = getChanges(contactRecord);
+	const char *newSortValue = getDbSortValue(contactRecord);
+	if (!Utils::safeCmp(m_SortValue.getUtf8Str().c_str(), newSortValue)) {
+		changes |= ChangedSortValue;
+	}
 
 	contacts_record_destroy(m_PersonRecord, true);
 	m_SortValue.clear();
@@ -143,6 +155,7 @@ void Person::initialize(contacts_record_h personRecord)
 {
 	m_PersonRecord = personRecord;
 	m_ContactIds = ::getContactIds(getId());
+	getSortValue();
 
 	char *indexLetter = nullptr;
 	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name_index, &indexLetter);
@@ -152,26 +165,26 @@ void Person::initialize(contacts_record_h personRecord)
 const UniString &Person::getSortValue() const
 {
 	if (m_SortValue.getI18nStr().empty()) {
-		m_SortValue = getDbSortValue();
+		m_SortValue = getDbSortValue(getContactRecord());
 	}
 
 	return m_SortValue;
 }
 
-const char *Person::getDbSortValue() const
+const char *Person::getDbSortValue(contacts_record_h contactRecord) const
 {
 	contacts_name_sorting_order_e order;
 	contacts_setting_get_name_sorting_order(&order);
 	unsigned sortField = getSortProperty(order);
 
 	contacts_record_h nameRecord = nullptr;
-	contacts_record_get_child_record_at_p(getContactRecord(), _contacts_contact.name, 0, &nameRecord);
+	contacts_record_get_child_record_at_p(contactRecord, _contacts_contact.name, 0, &nameRecord);
 
 	char *sortValue = nullptr;
 	contacts_record_get_str_p(nameRecord, sortField, &sortValue);
 
 	if (!(sortValue && *sortValue)) {
-		contacts_record_get_str_p(getContactRecord(), _contacts_contact.display_name, &sortValue);
+		contacts_record_get_str_p(contactRecord, _contacts_contact.display_name, &sortValue);
 	}
 
 	return sortValue;

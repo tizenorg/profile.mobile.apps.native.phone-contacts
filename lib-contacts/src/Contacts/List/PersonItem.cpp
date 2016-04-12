@@ -35,6 +35,19 @@ ContactData &PersonItem::getPerson()
 	return m_Person;
 }
 
+void PersonItem::updateItemPart(int changes)
+{
+	if (changes & ELM_GENLIST_ITEM_FIELD_TEXT) {
+	elm_genlist_item_fields_update(getObjectItem(),
+			PART_PERSON_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+	}
+
+	if (changes & ELM_GENLIST_ITEM_FIELD_CONTENT) {
+	elm_genlist_item_fields_update(getObjectItem(),
+			PART_PERSON_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	}
+}
+
 char *PersonItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_PERSON_NAME) == 0) {

@@ -39,6 +39,7 @@ namespace Contacts
 		class PersonItem : public Ux::SelectItem
 		{
 		public:
+
 			/**
 			 * @brief Create person item
 			 * @param[in]   person      Person object
@@ -49,6 +50,12 @@ namespace Contacts
 			 * @return Person object
 			 */
 			Contacts::Model::ContactData &getPerson();
+
+			/**
+			 * @brief Update item's parts
+			 * @param[in]   changes     Changed info
+			 */
+			void updateItemPart(int changes);
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
