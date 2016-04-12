@@ -89,6 +89,8 @@ namespace Contacts
 
 			void onSharePressed();
 
+			void createSearchItem();
+
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
