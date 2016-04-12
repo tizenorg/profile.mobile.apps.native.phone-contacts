@@ -15,6 +15,7 @@
  *
  */
 
+#include "Contacts/List/SearchItem.h"
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/GroupItem.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
@@ -50,6 +51,7 @@ using namespace std::placeholders;
 ListView::ListView(int filterType)
 	: m_Box(nullptr), m_NoContent(nullptr), m_Genlist(nullptr),
 	  m_Index(nullptr), m_AddButton(nullptr),
+	  m_SearchItem(nullptr),
 	  m_Sections{ nullptr }, m_Provider(filterType)
 {
 	auto strings = Common::getSelectViewStrings();
@@ -73,6 +75,8 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	m_NoContent = createNoContentLayout(m_Box);
 	m_Genlist = createGenlist(m_Box);
 	elm_box_pack_end(m_Box, m_Genlist->getEvasObject());
+
+	createSearchItem();
 
 	elm_object_part_content_set(layout, "elm.swallow.content", m_Box);
 	elm_object_part_content_set(layout, "elm.swallow.fastscroll", createIndex(layout));
@@ -168,7 +172,7 @@ void ListView::onShareSelected()
 
 void ListView::onSelectAllInsert(Ui::GenlistItem *item)
 {
-	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
+	m_Genlist->insert(item, nullptr, m_SearchItem, Ui::Genlist::After);
 }
 
 void ListView::onSelectModeChanged(SelectMode selectMode)
@@ -388,6 +392,13 @@ void ListView::updateSectionsMode()
 			removeSection(sectionId);
 		}
 	}
+}
+
+void ListView::createSearchItem()
+{
+	m_SearchItem = new SearchItem();
+	m_Genlist->insert(m_SearchItem, nullptr, nullptr, Ui::Genlist::After);
+	elm_genlist_item_select_mode_set(m_SearchItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 }
 
 void ListView::createAddButton()
