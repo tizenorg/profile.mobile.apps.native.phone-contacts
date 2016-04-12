@@ -22,6 +22,7 @@
 #include "Ux/SelectView.h"
 #include "Utils/UniString.h"
 
+
 #include <map>
 
 namespace Ui
@@ -42,6 +43,7 @@ namespace Contacts
 	namespace List
 	{
 		class GroupItem;
+		class SearchItem;
 		class SelectAllItem;
 		class PersonGroupItem;
 		class PersonItem;
@@ -114,6 +116,8 @@ namespace Contacts
 			void updatePageMode();
 			void updateSectionsMode();
 
+			void createSearchItem();
+
 			void createAddButton();
 			void deleteAddButton();
 
@@ -150,6 +154,8 @@ namespace Contacts
 			Evas_Object *m_Index;
 			Evas_Object *m_AddButton;
 			Evas_Object *m_NoContent;
+
+			SearchItem *m_SearchItem;
 
 			Ui::GenlistGroupItem *m_Sections[SectionMax];
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
