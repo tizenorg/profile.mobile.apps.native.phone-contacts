@@ -70,8 +70,9 @@ make %{?_smp_mflags}
 %{_res_dir}/details
 %{_res_dir}/dialer
 %{_res_dir}/input
-%{_res_dir}/speeddial
+%{_res_dir}/list
 %{_res_dir}/logs
+%{_res_dir}/speeddial
 %{_res_dir}/widget
 
 %{_manifest_dir}/%{name}.xml
