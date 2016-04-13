@@ -30,6 +30,10 @@
 #define PART_SUB_TEXT	"elm.text.sub"
 #define PART_CONTENT	"elm.swallow.icon"
 
+#define BOX_MAX_HEIGHT 900
+#define GENLIST_ITEM_HEIGHT 120
+#define POPUP_TITEL_HEIGHT 110
+
 using namespace Ph::Dialer;
 
 PhDialerResultListPopup::PhDialerResultListPopup(const Ph::Dialer::SearchList &result, PhDialerEntry &entry)
@@ -52,10 +56,18 @@ Evas_Object* PhDialerResultListPopup::onCreate(Evas_Object *parent, void *param)
 
 Evas_Object* PhDialerResultListPopup::createContactList(Evas_Object *parent)
 {
+	Evas_Object *box = elm_box_add(parent);
+	evas_object_size_hint_weight_set(box, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	int genlistHeight = m_Result.size() * ContactsCommon::getScaledHeight(GENLIST_ITEM_HEIGHT) + ContactsCommon::getScaledHeight(POPUP_TITEL_HEIGHT);
+	int boxMaxHeight = ContactsCommon::getScaledHeight(BOX_MAX_HEIGHT);
+	int boxHeight = (genlistHeight > boxMaxHeight) ? boxMaxHeight : genlistHeight;
+	evas_object_size_hint_min_set(box, -1, boxHeight);
+
 	Evas_Object *genlist = elm_genlist_add(parent);
+	evas_object_size_hint_weight_set(genlist, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	evas_object_size_hint_align_set(genlist, EVAS_HINT_FILL, EVAS_HINT_FILL);
 	elm_genlist_homogeneous_set(genlist, EINA_TRUE);
-	elm_genlist_mode_set( genlist, ELM_LIST_COMPRESS );
-	elm_scroller_content_min_limit(genlist, EINA_FALSE, EINA_TRUE);
+	elm_genlist_mode_set(genlist, ELM_LIST_COMPRESS);
 
 	Elm_Genlist_Item_Class *itc = createItemClass();
 
@@ -65,7 +77,11 @@ Evas_Object* PhDialerResultListPopup::createContactList(Evas_Object *parent)
 	}
 
 	elm_genlist_item_class_free(itc);
-	return genlist;
+
+	evas_object_show(genlist);
+	elm_box_pack_end(box, genlist);
+
+	return box;
 }
 
 Elm_Genlist_Item_Class* PhDialerResultListPopup::createItemClass()
