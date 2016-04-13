@@ -19,6 +19,7 @@
 #define CONTACTS_MODEL_CONTACT_RECORD_DATA_H
 
 #include "Contacts/Model/ContactData.h"
+#include "Contacts/Model/ContactNumberData.h"
 #include "Contacts/Model/DbChangeObserver.h"
 #include <contacts.h>
 #include <vector>
@@ -30,6 +31,11 @@ namespace Contacts
 		class EXPORT_API ContactRecordData : public ContactData
 		{
 		public:
+			/**
+			 * @brief Number objects list
+			 */
+			typedef std::vector<ContactNumberData *> Numbers;
+
 			/**
 			 * @brief Create ContactRecordData object
 			 * @param[in]   type    ContactRecordData type
@@ -61,6 +67,11 @@ namespace Contacts
 			 * @return Contact image path
 			 */
 			virtual const char *getImagePath() const override;
+
+			/**
+			 * @return Contact number list
+			 */
+			virtual const Numbers &getNumbers();
 
 			/**
 			 * @return contact record
@@ -122,6 +133,13 @@ namespace Contacts
 			 */
 			static int getChanges(contacts_record_h oldContact, contacts_record_h newContact);
 
+			/**
+			 * @brief Fill contact numbers from DB
+			 * @param[in]   record     _contacts_contact record
+			 */
+			void fillContactNumbers(contacts_record_h record);
+
+			Numbers m_Numbers;
 		private:
 			friend class ContactRecordProvider;
 

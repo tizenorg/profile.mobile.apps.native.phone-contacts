@@ -52,6 +52,15 @@ const char *ContactRecordData::getImagePath() const
 	return getValue(m_Record, FieldImage);
 }
 
+const ContactRecordData::Numbers &ContactRecordData::getNumbers()
+{
+	if (m_Numbers.empty()) {
+		fillContactNumbers(m_Record);
+	}
+
+	return m_Numbers;
+}
+
 const contacts_record_h ContactRecordData::getContactRecord() const
 {
 	return m_Record;
@@ -148,7 +157,19 @@ int ContactRecordData::getChanges(contacts_record_h oldContact, contacts_record_
 void ContactRecordData::onUpdate(contacts_record_h record)
 {
 	int changes = getChanges(m_Record, record);
+
+	m_Numbers.clear();//Todo: Here should be ContactNumberData update/delete
+	fillContactNumbers(m_Record);
 	updateRecord(record);
 
 	onUpdated(changes);
+}
+
+void ContactRecordData::fillContactNumbers(contacts_record_h record)
+{
+	auto numberRecords = makeRange(record, _contacts_contact.number);
+	for (auto &&numberRecord : numberRecords) {
+		auto number = new ContactNumberData(*this, numberRecord);
+		m_Numbers.push_back(number);
+	}
 }
