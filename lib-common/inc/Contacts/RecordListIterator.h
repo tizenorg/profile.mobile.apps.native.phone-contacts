@@ -19,13 +19,15 @@
 #define CONTACTS_RECORD_LIST_ITERATOR_H
 
 #include <contacts.h>
+#include "Utils/Range.h"
 
 namespace Contacts
 {
 	/**
 	 * @brief Iterator for record list property.
 	 */
-	class RecordListIterator
+	class RecordListIterator :
+		public std::iterator<std::bidirectional_iterator_tag, contacts_record_h>
 	{
 	public:
 		/**
@@ -98,6 +100,11 @@ namespace Contacts
 		int count = 0;
 		contacts_list_get_count(list, &count);
 		return { list, size_t(count) };
+	}
+
+	inline Utils::Range<RecordListIterator> makeRange(contacts_list_h list)
+	{
+		return { begin(list), end(list) };
 	}
 }
 
