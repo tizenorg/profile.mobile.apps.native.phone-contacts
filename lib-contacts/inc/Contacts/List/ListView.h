@@ -38,9 +38,7 @@ namespace Contacts
 {
 	namespace List
 	{
-		class GroupItem;
 		class SearchItem;
-		class SelectAllItem;
 		class PersonGroupItem;
 		class PersonItem;
 
@@ -113,10 +111,10 @@ namespace Contacts
 			Elm_Index_Item *insertIndexItem(const char *indexLetter,
 					Elm_Index_Item *nextItem = nullptr);
 
-			PersonGroupItem *insertPersonGroupItem(Utils::UniString indexLetter,
-					PersonGroupItem *nextGroup = nullptr);
+			PersonGroupItem *getPersonGroupItem(const Utils::UniString &indexLetter);
+			PersonGroupItem *insertPersonGroupItem(const Utils::UniString &indexLetter,
+					PersonGroupItem *nextGroupItem = nullptr);
 			void deletePersonGroupItem(PersonGroupItem *group);
-			PersonGroupItem *getNextPersonGroupItem(const Utils::UniString &indexLetter);
 
 			PersonItem *createPersonItem(Model::Person &person);
 			void insertPersonItem(PersonItem *item);

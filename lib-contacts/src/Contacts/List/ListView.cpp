@@ -15,16 +15,14 @@
  *
  */
 
-#include "Contacts/List/SearchItem.h"
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/GroupItem.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
 #include "Contacts/List/Model/Person.h"
-#include "Contacts/List/Model/PersonProvider.h"
-#include "Contacts/List/Model/VcardProvider.h"
 #include "Contacts/List/MyProfileItem.h"
 #include "Contacts/List/PersonGroupItem.h"
 #include "Contacts/List/PersonItem.h"
+#include "Contacts/List/SearchItem.h"
 
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/Input/InputView.h"
@@ -259,21 +257,21 @@ void ListView::fillMfc()
 void ListView::fillPersonList()
 {
 	if (m_PersonGroups.empty()) {
-		ContactDataList list = m_Provider.getContactDataList();
 		PersonGroupItem *group = nullptr;
 
-		for (auto &&contactData : list) {
+		for (auto &&contactData : m_Provider.getContactDataList()) {
 			Person &person = static_cast<Person &>(*contactData);
 
 			const UniString &nextLetter = person.getIndexLetter();
 			if (!group || group->getTitle() != nextLetter) {
-				group = insertPersonGroupItem(nextLetter);
+				group = getPersonGroupItem(nextLetter);
 			}
 
-			auto item = createPersonItem(person);
+			PersonItem *item = createPersonItem(person);
 			m_Genlist->insert(item, group);
 			onItemInserted(item);
 		}
+
 		updateNoContentLayout();
 	}
 }
@@ -511,52 +509,53 @@ Evas_Object *ListView::createIndex(Evas_Object *parent)
 
 Elm_Object_Item *ListView::insertIndexItem(const char *indexLetter, Elm_Object_Item *nextItem)
 {
-	Elm_Object_Item *indexItem = nullptr;
-
-	if (nextItem) {
-		indexItem = elm_index_item_insert_before(m_Index, nextItem, indexLetter, nullptr, nullptr);
-	} else {
-		indexItem = elm_index_item_append(m_Index, indexLetter, nullptr, nullptr);
-	}
+	Elm_Object_Item *indexItem = nextItem
+			? elm_index_item_insert_before(m_Index, nextItem, indexLetter, nullptr, nullptr)
+			: elm_index_item_append(m_Index, indexLetter, nullptr, nullptr);
 	elm_index_level_go(m_Index, 0);
-
 	return indexItem;
 }
 
-PersonGroupItem *ListView::insertPersonGroupItem(UniString indexLetter, PersonGroupItem *nextGroup)
+PersonGroupItem *ListView::getPersonGroupItem(const Utils::UniString &indexLetter)
 {
-	Elm_Object_Item *indexItem = insertIndexItem(indexLetter.getUtf8Str().c_str(),
-			nextGroup ? nextGroup->getIndexItem() : nullptr);
+	auto insertResult = m_PersonGroups.insert({ indexLetter, nullptr });
+	auto groupIt = insertResult.first;
 
-	PersonGroupItem *item = new PersonGroupItem(std::move(indexLetter), indexItem);
-	m_Genlist->insert(item, nullptr, nextGroup);
+	/* Whether insert was successful (i.e. there is no such group yet) */
+	if (insertResult.second) {
+		PersonGroupItem *nextGroupItem = nullptr;
+		auto nextGroupIt = Utils::advance(groupIt, 1);
+		if (nextGroupIt != m_PersonGroups.end()) {
+			nextGroupItem = nextGroupIt->second;
+		}
+
+		groupIt->second = insertPersonGroupItem(indexLetter, nextGroupItem);
+		m_Sections[SectionPerson] = m_PersonGroups.begin()->second;
+	}
+
+	return groupIt->second;
+}
+
+PersonGroupItem *ListView::insertPersonGroupItem(const Utils::UniString &indexLetter,
+		PersonGroupItem *nextGroupItem)
+{
+	Elm_Object_Item *nextIndexItem = nextGroupItem ? nextGroupItem->getIndexItem() : nullptr;
+	Elm_Object_Item *indexItem = insertIndexItem(indexLetter.getUtf8Str().c_str(), nextIndexItem);
+
+	PersonGroupItem *item = new PersonGroupItem(indexLetter);
+	item->setIndexItem(indexItem);
+	m_Genlist->insert(item, nullptr, nextGroupItem);
 	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
-
-	elm_object_item_data_set(indexItem, item->getObjectItem());
-	m_PersonGroups.insert({ item->getTitle(), item });
-	m_Sections[SectionPerson] = m_PersonGroups.begin()->second;
 
 	return item;
 }
 
 void ListView::deletePersonGroupItem(PersonGroupItem *group)
 {
-	elm_object_item_del(group->getIndexItem());
-	elm_index_level_go(m_Index, 0);
-
 	m_PersonGroups.erase(group->getTitle());
-	m_Sections[SectionPerson] = !m_PersonGroups.empty() ? m_PersonGroups.begin()->second : nullptr;
 	delete group;
-}
-
-PersonGroupItem *ListView::getNextPersonGroupItem(const Utils::UniString &indexLetter)
-{
-	auto it = m_PersonGroups.lower_bound(indexLetter);
-	if (it != m_PersonGroups.end()) {
-		return it->second;
-	}
-
-	return nullptr;
+	elm_index_level_go(m_Index, 0);
+	m_Sections[SectionPerson] = !m_PersonGroups.empty() ? m_PersonGroups.begin()->second : nullptr;
 }
 
 PersonItem *ListView::createPersonItem(Person &person)
@@ -564,26 +563,16 @@ PersonItem *ListView::createPersonItem(Person &person)
 	PersonItem *item = new PersonItem(person);
 	person.setUpdateCallback(std::bind(&ListView::onPersonUpdated, this, item, _1));
 	person.setDeleteCallback(std::bind(&ListView::onPersonDeleted, this, item));
-
 	return item;
 }
 
 void ListView::insertPersonItem(PersonItem *item)
 {
-	PersonGroupItem *group = nullptr;
-	PersonItem *nextItem = nullptr;
+	Person &person = item->getPerson();
+	PersonGroupItem *groupItem = getPersonGroupItem(person.getIndexLetter());
+	PersonItem *nextItem = getNextPersonItem(groupItem, person);
 
-	const UniString &indexLetter = item->getPerson().getIndexLetter();
-	auto it = m_PersonGroups.find(indexLetter);
-	if (it != m_PersonGroups.end()) {
-		group = it->second;
-		nextItem = getNextPersonItem(it->second, item->getPerson());
-	} else {
-		PersonGroupItem *nextGroup = getNextPersonGroupItem(indexLetter);
-		group = insertPersonGroupItem(indexLetter, nextGroup);
-	}
-
-	m_Genlist->insert(item, group, nextItem);
+	m_Genlist->insert(item, groupItem, nextItem);
 	updateNoContentLayout();
 }
 
@@ -622,7 +611,7 @@ PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &pe
 {
 	for (auto &&item : *group) {
 		PersonItem *personItem = static_cast<PersonItem *>(item);
-		if (person < static_cast<Person &>(personItem->getPerson())) {
+		if (person < personItem->getPerson()) {
 			return personItem;
 		}
 	}
@@ -644,8 +633,8 @@ void ListView::onAddPressed(Evas_Object *button, void *eventInfo)
 
 void ListView::onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem)
 {
-	Elm_Object_Item *genlistItem = (Elm_Object_Item *) elm_object_item_data_get(indexItem);
-	elm_genlist_item_show(genlistItem, ELM_GENLIST_ITEM_SCROLLTO_TOP);
+	PersonGroupItem *groupItem = (PersonGroupItem *) elm_object_item_data_get(indexItem);
+	groupItem->scrollTo(ELM_GENLIST_ITEM_SCROLLTO_TOP);
 }
 
 void ListView::onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem)
