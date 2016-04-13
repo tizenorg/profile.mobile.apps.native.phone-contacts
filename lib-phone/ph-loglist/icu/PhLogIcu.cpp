@@ -270,17 +270,20 @@ void PhLogIcu::setDefaultTimezoneId()
 	WENTER();
 	int error = I18N_ERROR_NONE;
 	i18n_uchar utimezone_id[PH_TEXT_SHORT_LEN] = {0};
-	char  timezone_buffer[PH_TEXT_SHORT_LEN] = {0};
+	char timezone_buffer[PH_TEXT_SHORT_LEN] = {0};
 	char timezone_id[PH_TEXT_SHORT_LEN] = {0};
-	char* buffer;
+	char *buffer = nullptr;
 	int res = 0;
-	int timezone_str_size;
+	int timezone_str_size = 0;
 
 	res =  system_settings_get_value_string(SYSTEM_SETTINGS_KEY_LOCALE_TIMEZONE, &buffer);
 	WPRET_M(SYSTEM_SETTINGS_ERROR_NONE != res, "SYSTEM_SETTINGS_KEY_LOCALE_TIMEZONE is NULL");
-	strncpy(timezone_id, buffer, sizeof(timezone_id)-1);
-	timezone_str_size = readlink("/opt/etc/localtime", timezone_buffer, sizeof(timezone_buffer)-1);
+	if(buffer && *buffer) {
+		snprintf(timezone_id, sizeof(timezone_id), "%s", buffer);
+	}
 	free(buffer);
+
+	timezone_str_size = readlink("/opt/etc/localtime", timezone_buffer, sizeof(timezone_buffer)-1);
 
 	if (timezone_str_size > 0) {
 		char *ptr, *sp, *zone = NULL, *city = NULL;

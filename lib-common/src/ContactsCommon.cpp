@@ -72,13 +72,15 @@ void ContactsCommon::loadLocalization()
 	bindtextdomain(PACKAGE, RESDIR LOCALE_DIR);
 #else
 	char *path = app_get_resource_path();
-	size_t len = strlen(path);
-	size_t newLen = len + sizeof(LOCALE_DIR);
+	if (path && *path) {
+		std::string localePath(path);
+		localePath += LOCALE_DIR;
+		bindtextdomain(PACKAGE, localePath.c_str());
+	}
+	else {
+		WERROR("app_get_resource_path returned wrong path");
+	}
 
-	path = (char*) realloc(path, newLen);
-	strncpy(path + len, LOCALE_DIR, newLen);
-
-	bindtextdomain(PACKAGE, path);
 	free(path);
 #endif
 }
@@ -124,7 +126,11 @@ std::string ContactsCommon::getResourcePath(const std::string& relativePath)
 			resPath = RESDIR;
 		#else
 			char *path = app_get_resource_path();
-			resPath = path;
+			if (path && *path) {
+				resPath = path;
+			} else {
+				WERROR("app_get_resource_path returned wrong path");
+			}
 			free(path);
 		#endif
 	}

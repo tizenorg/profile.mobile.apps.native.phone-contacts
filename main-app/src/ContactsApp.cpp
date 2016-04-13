@@ -47,18 +47,19 @@ bool ContactsApp::onCreate()
 	ContactsCommon::loadLocalization();
 	app_event_handler_h handle = nullptr;
 	ui_app_add_event_handler(&handle, APP_EVENT_LANGUAGE_CHANGED, onLanguageChanged, this);
-
 	elm_app_base_scale_set(2.6);
+
 	attachWindow(new WAppWindow("Phone-Contacts", ELM_WIN_BASIC));
 	getWindow()->attachBaseUiObject(new WNaviframe());
 
 	WLEAVE();
-
 	return true;
 }
 
 void ContactsApp::onAppControl(app_control_h request, bool firstLaunch)
 {
+	WENTER();
+
 	char *operationStr = nullptr;
 	app_control_get_operation(request, &operationStr);
 
@@ -94,26 +95,39 @@ void ContactsApp::onAppControl(app_control_h request, bool firstLaunch)
 	}
 
 	free(operationStr);
+	WLEAVE();
 }
 
 void ContactsApp::onPause()
 {
+	WENTER();
+
 	if (m_Controller) {
 		m_Controller->onPause();
 	}
+
+	WLEAVE();
 }
 
 void ContactsApp::onResume()
 {
+	WENTER();
+
 	if (m_Controller) {
 		m_Controller->onResume();
 	}
+
+	WLEAVE();
 }
 
 void ContactsApp::onTerminate()
 {
+	WENTER();
+
 	delete m_Controller;
 	m_Controller = nullptr;
+
+	WLEAVE();
 }
 
 void ContactsApp::onLanguageChanged(app_event_info_h event, void *data)
