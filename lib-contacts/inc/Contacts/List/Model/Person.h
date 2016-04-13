@@ -59,6 +59,11 @@ namespace Contacts
 				virtual int getId() const override;
 
 				/**
+				 * @see ContactRecordData::getNumbers()
+				 */
+				virtual const Numbers &getNumbers() override;
+
+				/**
 				 * @return Displayed by default contact ID
 				 */
 				int getDisplayContactId() const;
