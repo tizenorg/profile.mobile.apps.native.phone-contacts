@@ -133,12 +133,14 @@ bool WView::popOut()
 //		WASSERT_EX(0,"This view is not on Top of Naviframe!");
 //		return false;
 //	}
+
+	destroyPopup(); // Before popping out view, pop-up is destroyed, if it has.Because pop-up is disappeared too late.
+
 	if( __pv->__naviItem != elm_naviframe_top_item_get(getNaviframe()->getEvasObj()) )
 	{
 		elm_object_item_del(__pv->__naviItem);
+		return true;
 	}
-
-	destroyPopup(); // Before popping out view, pop-up is destroyed, if it has.Because pop-up is disappeared too late.
 
 	elm_naviframe_item_pop(getNaviframe()->getEvasObj());
 	return true;
