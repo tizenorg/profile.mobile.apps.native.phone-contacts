@@ -10,6 +10,7 @@ include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/inc
 	${CMAKE_CURRENT_SOURCE_DIR}/res/details/edje
 	${CMAKE_CURRENT_SOURCE_DIR}/res/input/edje
+	${CMAKE_CURRENT_SOURCE_DIR}/res/list/edje
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})

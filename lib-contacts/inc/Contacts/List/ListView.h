@@ -68,7 +68,7 @@ namespace Contacts
 			};
 
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
-			virtual void onPageAttached(Ui::NavigatorPage *page) override;
+			virtual void onNavigation(bool isCurrent) override;
 			virtual void onCreated() override;
 			virtual void onMenuPressed() override;
 
@@ -96,14 +96,11 @@ namespace Contacts
 			void removeSection(SectionId sectionId);
 			Ui::GenlistItem *getNextSectionItem(SectionId currentSection);
 			bool getSectionVisibility(Ux::SelectMode selectMode, SectionId sectionId);
-
-			void updatePageMode();
 			void updateSectionsMode();
 
-			void createSearchItem();
-
-			void createAddButton();
-			void deleteAddButton();
+			SearchItem *createSearchItem();
+			Evas_Object *createAddButton(Evas_Object *parent);
+			void updateAddButton();
 
 			void insertMyProfileGroupItem();
 			void updateMyProfileItem(const char *view_uri);
@@ -138,9 +135,9 @@ namespace Contacts
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
 			Evas_Object *m_AddButton;
+			bool m_IsCurrentView;
 
 			SearchItem *m_SearchItem;
-
 			Ui::GenlistGroupItem *m_Sections[SectionMax];
 
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;

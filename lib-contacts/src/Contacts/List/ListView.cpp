@@ -32,12 +32,17 @@
 #include "Common/Strings.h"
 
 #include "App/AppControlRequest.h"
+#include "App/Path.h"
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
+#include "Ui/Window.h"
 #include "Utils/Callback.h"
 
 #include <app_i18n.h>
+
+#include "ListPath.h"
+#include <efl_extension.h>
 
 using namespace Contacts;
 using namespace Contacts::Model;
@@ -50,7 +55,7 @@ using namespace std::placeholders;
 
 ListView::ListView(int filterType)
 	: m_Box(nullptr), m_NoContent(nullptr), m_Genlist(nullptr),
-	  m_Index(nullptr), m_AddButton(nullptr),
+	  m_Index(nullptr), m_AddButton(nullptr), m_IsCurrentView(false),
 	  m_SearchItem(nullptr),
 	  m_Sections{ nullptr }, m_Provider(filterType)
 {
@@ -76,7 +81,8 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	m_Genlist = createGenlist(m_Box);
 	elm_box_pack_end(m_Box, m_Genlist->getEvasObject());
 
-	createSearchItem();
+	m_SearchItem = createSearchItem();
+	m_AddButton = createAddButton(layout);
 
 	elm_object_part_content_set(layout, "elm.swallow.content", m_Box);
 	elm_object_part_content_set(layout, "elm.swallow.fastscroll", createIndex(layout));
@@ -84,10 +90,11 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	return layout;
 }
 
-void ListView::onPageAttached(Ui::NavigatorPage *page)
+void ListView::onNavigation(bool isCurrent)
 {
-	SelectView::onPageAttached(page);
-	updatePageMode();
+	DBG("");
+	m_IsCurrentView = isCurrent;
+	updateAddButton();
 }
 
 void ListView::onCreated()
@@ -177,7 +184,7 @@ void ListView::onSelectAllInsert(Ui::GenlistItem *item)
 
 void ListView::onSelectModeChanged(SelectMode selectMode)
 {
-	updatePageMode();
+	updateAddButton();
 	updateSectionsMode();
 }
 
@@ -357,27 +364,6 @@ bool ListView::getSectionVisibility(SelectMode selectMode, SectionId sectionId)
 	return sectionVisibility[selectMode][sectionId];
 }
 
-void ListView::updatePageMode()
-{
-	Ui::NavigatorPage *page = getPage();
-	if (!page) {
-		return;
-	}
-
-	switch (getSelectMode()) {
-		case SelectNone:
-			createAddButton();
-			page->setContent("toolbar", m_AddButton);
-			break;
-
-		case SelectSingle:
-		case SelectMulti:
-			deleteAddButton();
-			page->setContent("toolbar", nullptr);
-			break;
-	}
-}
-
 void ListView::updateSectionsMode()
 {
 	if (!m_Genlist) {
@@ -394,26 +380,37 @@ void ListView::updateSectionsMode()
 	}
 }
 
-void ListView::createSearchItem()
+SearchItem *ListView::createSearchItem()
 {
-	m_SearchItem = new SearchItem();
-	m_Genlist->insert(m_SearchItem, nullptr, nullptr, Ui::Genlist::After);
-	elm_genlist_item_select_mode_set(m_SearchItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+	SearchItem *item = new SearchItem();
+	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
+	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+	return item;
 }
 
-void ListView::createAddButton()
+Evas_Object *ListView::createAddButton(Evas_Object *parent)
 {
-	m_AddButton = elm_button_add(getEvasObject());
-	elm_object_style_set(m_AddButton, "bottom");
-	elm_object_translatable_text_set(m_AddButton, "IDS_PB_OPT_CREATE");
-	evas_object_smart_callback_add(m_AddButton, "clicked",
+	Evas_Object *floatButton = eext_floatingbutton_add(parent);
+	Evas_Object *button = elm_button_add(floatButton);
+	elm_object_part_content_set(floatButton, "button1", button);
+	evas_object_smart_callback_add(button, "clicked",
 			makeCallback(&ListView::onAddPressed), this);
+
+	Evas_Object *image = elm_image_add(button);
+	elm_image_file_set(image, App::getResourcePath(LIST_ADD_BUTTON_ICON).c_str(), nullptr);
+	elm_object_part_content_set(button, "icon", image);
+
+	return floatButton;
 }
 
-void ListView::deleteAddButton()
+void ListView::updateAddButton()
 {
-	evas_object_del(m_AddButton);
-	m_AddButton = nullptr;
+	if (m_IsCurrentView && getSelectMode() == SelectNone) {
+		elm_object_part_content_set(getWindow()->getBaseLayout(), "elm.swallow.floatingbutton", m_AddButton);
+	} else {
+		elm_object_part_content_unset(getWindow()->getBaseLayout(), "elm.swallow.floatingbutton");
+		evas_object_hide(m_AddButton);
+	}
 }
 
 void ListView::insertMyProfileGroupItem()
