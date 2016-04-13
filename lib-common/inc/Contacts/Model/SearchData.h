@@ -19,6 +19,7 @@
 #define CONTACTS_MODEL_SEARCH_DATA_H
 
 #include "Contacts/Model/ContactData.h"
+#include "Utils/Range.h"
 
 namespace Contacts
 {
@@ -27,6 +28,15 @@ namespace Contacts
 		class SearchData : public ContactData
 		{
 		public:
+			/**
+			 * @brief Substring of C-style string
+			 */
+			typedef Utils::Range<const char *> Substring;
+
+			/**
+			 * @brief Create SearchData object
+			 * @param[in]   contactData     Contact reference
+			 */
 			SearchData(ContactData &contactData);
 
 			/**
@@ -49,13 +59,9 @@ namespace Contacts
 			 */
 			virtual const char *getImagePath() const override;
 
-			/**
-			 * @see ContactData::compare
-			 */
-			virtual bool compare(const char *str) override;
-
 		private:
 			friend class SearchProvider;
+			static Substring getSubstring(const char *str1, const char *str2);
 
 			ContactData &m_ContactData;
 		};

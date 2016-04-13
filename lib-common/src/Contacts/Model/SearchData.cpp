@@ -16,6 +16,7 @@
  */
 
 #include "Contacts/Model/SearchData.h"
+#include <cstring>
 
 using namespace Contacts::Model;
 
@@ -44,10 +45,14 @@ const char *SearchData::getImagePath() const
 	return m_ContactData.getImagePath();
 }
 
-bool SearchData::compare(const char *str)
+SearchData::Substring SearchData::getSubstring(const char *str1, const char *str2)
 {
-	/* Todo: Refactor method logic to return much more informative value,
-	according to what object type we currently wrap */
+	Substring substring;
+	const char *res = strstr(str1, str2);
 
-	return false;
+	if (res) {
+		substring = { res, res + strlen(str2) };
+	}
+
+	return substring;
 }
