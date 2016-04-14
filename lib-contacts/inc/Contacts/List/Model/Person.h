@@ -80,7 +80,7 @@ namespace Contacts
 				/**
 				 * @see Update record from the database
 				 */
-				void updateDbRecord();
+				void update();
 
 				/**
 				 * @return Displayed by default contact ID

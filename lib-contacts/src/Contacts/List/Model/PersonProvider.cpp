@@ -18,6 +18,7 @@
 #include "Contacts/List/Model/PersonProvider.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/Utils.h"
+#include "Utils/Callback.h"
 
 using namespace Contacts;
 using namespace Contacts::Model;
@@ -85,10 +86,14 @@ namespace
 PersonProvider::PersonProvider(int filterType)
 	: m_FilterType(filterType)
 {
+	contacts_setting_add_name_display_order_changed_cb(
+			makeCallbackWithLastParam(&PersonProvider::onNameFormatChanged), this);
 }
 
 PersonProvider::~PersonProvider()
 {
+	contacts_setting_remove_name_display_order_changed_cb(
+			makeCallbackWithLastParam(&PersonProvider::onNameFormatChanged), this);
 }
 
 const ContactDataList &PersonProvider::getContactDataList()
@@ -147,4 +152,12 @@ contacts_record_h PersonProvider::getRecord(int contactId)
 bool PersonProvider::shouldUpdateChangedCallback()
 {
 	return true;
+}
+
+void PersonProvider::onNameFormatChanged(contacts_name_display_order_e order)
+{
+	for (auto &&contactData : getContactDataList()) {
+		Person *person = static_cast<Person *>(contactData);
+		person->update();
+	}
 }

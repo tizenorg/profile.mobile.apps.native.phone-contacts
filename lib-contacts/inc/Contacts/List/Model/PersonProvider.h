@@ -43,7 +43,6 @@ namespace Contacts
 				 * @param[in]    filterType    Contact filter
 				 */
 				explicit PersonProvider(int filterType = FilterNone);
-
 				virtual ~PersonProvider() override;
 
 				/**
@@ -65,6 +64,7 @@ namespace Contacts
 
 			private:
 				virtual bool shouldUpdateChangedCallback() override;
+				void onNameFormatChanged(contacts_name_display_order_e order);
 
 				int m_FilterType;
 			};

@@ -75,7 +75,6 @@ namespace Contacts
 			void onShareSelected();
 
 			static void onNameSortingOrderChanged(contacts_name_sorting_order_e sortingOrder, void *data);
-			static void onNameDisplayOrderChanged(contacts_name_display_order_e displayOrder, void *data);
 
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
@@ -105,7 +104,7 @@ namespace Contacts
 			void updateAddButton();
 
 			void insertMyProfileGroupItem();
-			void updateMyProfileItem(const char *view_uri);
+			void insertMyProfileItem();
 
 			Evas_Object *createIndex(Evas_Object *parent);
 			Elm_Index_Item *insertIndexItem(const char *indexLetter,
