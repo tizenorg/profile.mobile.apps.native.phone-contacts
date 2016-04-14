@@ -80,11 +80,6 @@ const char *Log::getImagePath() const
 	return path;
 }
 
-bool Log::compare(const char *str)
-{
-	return strstr(getNumber(), str);
-}
-
 int Log::getNumberType() const
 {
 	int type = CONTACTS_NUMBER_TYPE_OTHER;

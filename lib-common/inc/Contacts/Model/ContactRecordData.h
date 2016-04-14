@@ -63,12 +63,6 @@ namespace Contacts
 			virtual const char *getImagePath() const override;
 
 			/**
-			 * @see ContactData::compare()
-			 * @detail Compares by name
-			 */
-			virtual bool compare(const char *str) override;
-
-			/**
 			 * @return contact record
 			 */
 			const contacts_record_h getContactRecord() const;

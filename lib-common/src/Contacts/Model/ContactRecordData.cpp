@@ -52,11 +52,6 @@ const char *ContactRecordData::getImagePath() const
 	return getValue(m_Record, FieldImage);
 }
 
-bool ContactRecordData::compare(const char *str)
-{
-	return strstr(getName(), str); //Todo: Compare unicode strings
-}
-
 const contacts_record_h ContactRecordData::getContactRecord() const
 {
 	return m_Record;

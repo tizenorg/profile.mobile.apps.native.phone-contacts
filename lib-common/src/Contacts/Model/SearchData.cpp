@@ -43,11 +43,3 @@ const char *SearchData::getImagePath() const
 {
 	return m_ContactData.getImagePath();
 }
-
-bool SearchData::compare(const char *str)
-{
-	/* Todo: Refactor method logic to return much more informative value,
-	according to what object type we currently wrap */
-
-	return false;
-}

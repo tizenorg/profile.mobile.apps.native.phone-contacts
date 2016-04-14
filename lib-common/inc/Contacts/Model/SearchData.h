@@ -27,6 +27,10 @@ namespace Contacts
 		class SearchData : public ContactData
 		{
 		public:
+			/**
+			 * @brief Create SearchData object
+			 * @param[in]   contactData     Contact reference
+			 */
 			SearchData(ContactData &contactData);
 
 			/**
@@ -48,11 +52,6 @@ namespace Contacts
 			 * @see ContactData::getImagePath
 			 */
 			virtual const char *getImagePath() const override;
-
-			/**
-			 * @see ContactData::compare
-			 */
-			virtual bool compare(const char *str) override;
 
 		private:
 			friend class SearchProvider;
