@@ -83,7 +83,7 @@ int Person::getId() const
 	return id;
 }
 
-void Person::updateDbRecord()
+void Person::update()
 {
 	contacts_record_h record = nullptr;
 	contacts_db_get_record(_contacts_person._uri, getId(), &record);

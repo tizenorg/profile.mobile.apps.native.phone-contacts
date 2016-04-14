@@ -64,10 +64,7 @@ ListView::ListView(int filterType)
 
 ListView::~ListView()
 {
-	contacts_db_remove_changed_cb(_contacts_my_profile._uri,
-			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
 	contacts_setting_remove_name_sorting_order_changed_cb(onNameSortingOrderChanged, this);
-	contacts_setting_remove_name_display_order_changed_cb(onNameDisplayOrderChanged, this);
 }
 
 Evas_Object *ListView::onCreate(Evas_Object *parent)
@@ -100,11 +97,7 @@ void ListView::onCreated()
 	updateSectionsMode();
 
 	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
-	contacts_db_add_changed_cb(_contacts_my_profile._uri,
-			makeCallbackWithLastParam(&ListView::updateMyProfileItem), this);
-
 	contacts_setting_add_name_sorting_order_changed_cb(onNameSortingOrderChanged, this);
-	contacts_setting_add_name_display_order_changed_cb(onNameDisplayOrderChanged, this);
 }
 
 void ListView::onMenuPressed()
@@ -199,26 +192,6 @@ void ListView::onNameSortingOrderChanged(contacts_name_sorting_order_e sortingOr
 	}
 }
 
-void ListView::onNameDisplayOrderChanged(contacts_name_display_order_e displayOrder, void *data)
-{
-	RETM_IF(!data, "invalid data");
-	ListView *view = (ListView *)data;
-
-	if (view->m_Genlist) {
-		if (view->m_Sections[SectionMyProfile]) {
-			MyProfileItem *item = static_cast<MyProfileItem *>(view->m_Sections[SectionMyProfile]->getNextItem());
-			item->update(ELM_GENLIST_ITEM_FIELD_TEXT);
-		}
-
-		for (auto &personGroup : view->m_PersonGroups) {
-			for (auto &&item : *personGroup.second) {
-				PersonItem *personItem = static_cast<PersonItem *>(item);
-				static_cast<Person &>(personItem->getPerson()).updateDbRecord();
-			}
-		}
-	}
-}
-
 void ListView::onSelectAllInsert(Ui::GenlistItem *item)
 {
 	m_Genlist->insert(item, nullptr, m_SearchItem, Ui::Genlist::After);
@@ -234,8 +207,8 @@ void ListView::fillMyProfile()
 {
 	if (!m_Sections[SectionMyProfile]) {
 		insertMyProfileGroupItem();
+		insertMyProfileItem();
 	}
-	updateMyProfileItem(nullptr);
 }
 
 void ListView::fillFavorites()
@@ -469,23 +442,19 @@ void ListView::insertMyProfileGroupItem()
 	m_Sections[SectionMyProfile] = group;
 }
 
-void ListView::updateMyProfileItem(const char *view_uri)
+void ListView::insertMyProfileItem()
 {
-	if (m_Sections[SectionMyProfile]) {
-		elm_genlist_item_subitems_clear(m_Sections[SectionMyProfile]->getObjectItem());
+	MyProfileItem *item = new MyProfileItem(MyProfilePtr(new MyProfile()));
+	m_Genlist->insert(item, m_Sections[SectionMyProfile]);
 
-		MyProfileItem *item = new MyProfileItem(MyProfilePtr(new MyProfile()));
-		m_Genlist->insert(item, m_Sections[SectionMyProfile]);
-
-		item->setSelectedCallback([this, item]() {
-			int id = item->getMyProfile().getId();
-			if (id > 0) {
-				getNavigator()->navigateTo(new Details::DetailsView(id, Details::DetailsView::TypeMyProfile));
-			} else {
-				getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
-			}
-		});
-	}
+	item->setSelectCallback([this, item]() {
+		int id = item->getMyProfile().getId();
+		if (id > 0) {
+			getNavigator()->navigateTo(new Details::DetailsView(id, Details::DetailsView::TypeMyProfile));
+		} else {
+			getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
+		}
+	});
 }
 
 Evas_Object *ListView::createIndex(Evas_Object *parent)
