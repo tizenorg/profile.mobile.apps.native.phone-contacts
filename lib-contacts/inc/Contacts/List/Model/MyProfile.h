@@ -18,8 +18,8 @@
 #ifndef CONTACTS_LIST_MODEL_MY_PROFILE_H
 #define CONTACTS_LIST_MODEL_MY_PROFILE_H
 
+#include "Contacts/Model/ContactData.h"
 #include <contacts.h>
-#include <memory>
 
 namespace Contacts
 {
@@ -34,42 +34,42 @@ namespace Contacts
 			/**
 			 * @brief My profile object
 			 */
-			class MyProfile
+			class MyProfile : public Contacts::Model::ContactData
 			{
 			public:
-				MyProfile(const MyProfile &myProfile) = delete;
-				MyProfile &operator=(const MyProfile &myProfile) = delete;
-
 				MyProfile();
-				~MyProfile();
+				virtual ~MyProfile() override;
 
 				/**
-				 * @brief Get my profile ID
+				 * @return My profile ID
 				 */
-				const int getId() const;
+				virtual int getId() const override;
 
 				/**
-				 * @return My profile name
+				 * @see ContactData::getName()
 				 */
-				const char *getName() const;
+				virtual const char *getName() const override;
 
 				/**
-				 * @return My profile image path
+				 * @see ContactData::getNumber()
 				 */
-				const char *getImagePath() const;
+				virtual const char *getNumber() const override;
 
 				/**
-				 * @return _contacts_my_profile record
+				 * @see ContactData::getImagePath()
 				 */
-				const contacts_record_h getRecord() const;
+				virtual const char *getImagePath() const override;
 
 				/**
-				 * @brief Update record from the databased
+				 * @brief Update record from the database
 				 */
-				void updateDbRecord();
+				void update();
 
 			private:
-				contacts_record_h m_MyProfileRecord;
+				static contacts_record_h fetchRecord();
+				static void onChanged(const char *uri, void *data);
+
+				contacts_record_h m_Record;
 			};
 		}
 	}

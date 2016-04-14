@@ -21,42 +21,68 @@
 using namespace Contacts::List::Model;
 
 MyProfile::MyProfile()
-	: m_MyProfileRecord(nullptr)
+	: ContactData(TypeContact), m_Record(fetchRecord())
 {
-	contacts_list_h list = nullptr;
-	contacts_db_get_all_records(_contacts_my_profile._uri, 0, 1, &list);
-	contacts_list_get_current_record_p(list, &m_MyProfileRecord);
-	contacts_list_destroy(list, false);
+	contacts_db_add_changed_cb(_contacts_my_profile._uri, &MyProfile::onChanged, this);
 }
 
 MyProfile::~MyProfile()
 {
-	contacts_record_destroy(m_MyProfileRecord, true);
+	contacts_db_remove_changed_cb(_contacts_my_profile._uri, &MyProfile::onChanged, this);
+	contacts_record_destroy(m_Record, true);
 }
 
-const int MyProfile::getId() const
+int MyProfile::getId() const
 {
-	return getRecordInt(m_MyProfileRecord, _contacts_my_profile.id);
+	return getRecordInt(m_Record, _contacts_my_profile.id);
 }
 
 const char *MyProfile::getName() const
 {
-	return getRecordStr(m_MyProfileRecord, _contacts_my_profile.display_name);
+	return getRecordStr(m_Record, _contacts_my_profile.display_name);
+}
+
+const char *MyProfile::getNumber() const
+{
+	return nullptr;
 }
 
 const char *MyProfile::getImagePath() const
 {
-	return getRecordStr(m_MyProfileRecord, _contacts_my_profile.image_thumbnail_path);
+	return getRecordStr(m_Record, _contacts_my_profile.image_thumbnail_path);
 }
 
-const contacts_record_h MyProfile::getRecord() const
+void MyProfile::update()
 {
-	return m_MyProfileRecord;
+	contacts_record_h record = fetchRecord();
+
+	int changes = ChangedNone;
+	if (!compareRecordsStr(record, m_Record, _contacts_my_profile.display_name)) {
+		changes |= ChangedName;
+	}
+	if (!compareRecordsStr(record, m_Record, _contacts_my_profile.image_thumbnail_path)) {
+		changes |= ChangedImage;
+	}
+
+	contacts_record_destroy(m_Record, true);
+	m_Record = record;
+	onUpdated(changes);
 }
 
-void MyProfile::updateDbRecord()
+contacts_record_h MyProfile::fetchRecord()
 {
-	int recordId = getId();
-	contacts_record_destroy(m_MyProfileRecord, true);
-	contacts_db_get_record(_contacts_my_profile._uri, recordId, &m_MyProfileRecord);
+	contacts_list_h list = nullptr;
+	contacts_db_get_all_records(_contacts_my_profile._uri, 0, 1, &list);
+
+	contacts_record_h record = nullptr;
+	contacts_list_get_current_record_p(list, &record);
+	contacts_list_destroy(list, false);
+
+	return record;
+}
+
+void MyProfile::onChanged(const char *uri, void *data)
+{
+	MyProfile *myProfile = (MyProfile *) data;
+	myProfile->update();
 }
