@@ -40,6 +40,7 @@ namespace Phone
 			SearchResultsPopup(const SearchResults *results);
 
 		private:
+			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
 
 			virtual char *getItemText(void *data, const char *part) override;

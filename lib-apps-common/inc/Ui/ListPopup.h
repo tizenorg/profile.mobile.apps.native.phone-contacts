@@ -85,6 +85,11 @@ namespace Ui
 		 */
 		virtual void onItemSelected(void *data) { }
 
+		/**
+		 * @brief Create genlist
+		 */
+		Evas_Object *createGenlist(Evas_Object *parent);
+
 	private:
 		struct ItemData;
 
