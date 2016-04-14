@@ -78,9 +78,14 @@ namespace Contacts
 				virtual int getId() const override;
 
 				/**
-				 * @see Update record from the database
+				 * @brief Update record from the database
 				 */
 				void updateDbRecord();
+
+				/**
+				 * @see ContactRecordData::getNumbers()
+				 */
+				virtual const Numbers &getNumbers() override;
 
 				/**
 				 * @return Displayed by default contact ID
