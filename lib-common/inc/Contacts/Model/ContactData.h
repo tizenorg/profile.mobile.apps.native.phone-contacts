@@ -39,10 +39,11 @@ namespace Contacts
 			 */
 			enum Type
 			{
-				TypeSpeeddial,  /**< Speeddial number */
-				TypeLog,        /**< Log number */
-				TypePerson,     /**< Person */
-				TypeContact     /**< Contact */
+				TypeSpeeddial,    /**< Speeddial number */
+				TypeLog,          /**< Log number */
+				TypePerson,       /**< Person */
+				TypeContact,      /**< Contact */
+				TypeContactNumber /**< Contact number */
 			};
 
 			/**
@@ -113,12 +114,6 @@ namespace Contacts
 			 * @return ContactData type
 			 */
 			Type getType() const;
-
-			/**
-			 * @brief Determine if object searchable string contains @a str
-			 * @return true if it contains, false if not
-			 */
-			virtual bool compare(const char *str) = 0;
 
 			/**
 			 * @brief Set update callback
