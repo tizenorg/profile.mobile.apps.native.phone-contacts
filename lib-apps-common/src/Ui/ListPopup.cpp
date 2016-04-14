@@ -64,17 +64,22 @@ Evas_Object *ListPopup::onCreate(Evas_Object *parent)
 {
 	Evas_Object *popup = Popup::onCreate(parent);
 
+	elm_object_part_content_set(popup, "elm.swallow.content", createGenlist(popup));
+
+	return popup;
+}
+
+Evas_Object *ListPopup::createGenlist(Evas_Object *parent)
+{
 	m_Genlist = elm_genlist_add(parent);
 	elm_genlist_homogeneous_set(m_Genlist, EINA_TRUE);
 	elm_genlist_mode_set(m_Genlist, ELM_LIST_COMPRESS);
 	elm_scroller_content_min_limit(m_Genlist, EINA_FALSE, EINA_TRUE);
-	elm_object_part_content_set(popup, "elm.swallow.content", m_Genlist);
 
 	evas_object_smart_data_set(m_Genlist, this);
 	evas_object_smart_callback_add(m_Genlist, "selected",
 			(Evas_Smart_Cb) &ListPopup::onSelected, this);
-
-	return popup;
+	return m_Genlist;
 }
 
 char *ListPopup::getText(ItemData *itemData, Evas_Object *genlist, const char *part)

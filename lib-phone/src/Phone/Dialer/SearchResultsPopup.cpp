@@ -17,6 +17,7 @@
 
 #include "Phone/Dialer/SearchResultsPopup.h"
 #include "Phone/Dialer/SearchUtils.h"
+#include "Ui/Scale.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 
@@ -25,6 +26,8 @@
 #include <app_i18n.h>
 
 #define TITLE_BUFFER_SIZE 32
+#define BOX_MAX_HEIGHT 900
+#define GENLIST_ITEM_HEIGHT 144
 
 using namespace Phone::Dialer;
 
@@ -33,10 +36,30 @@ SearchResultsPopup::SearchResultsPopup(const SearchResults *results)
 {
 }
 
+Evas_Object *SearchResultsPopup::onCreate(Evas_Object *parent)
+{
+	Evas_Object *popup = Popup::onCreate(parent);
+
+	Evas_Object *box = elm_box_add(popup);
+	Evas_Object *genlist = ListPopup::createGenlist(box);
+	evas_object_size_hint_weight_set(genlist, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	evas_object_size_hint_align_set(genlist, EVAS_HINT_FILL, EVAS_HINT_FILL);
+
+	int genlistHeight = m_Results->size() * GENLIST_ITEM_HEIGHT;
+	if (genlistHeight > BOX_MAX_HEIGHT) {
+		evas_object_size_hint_min_set(box, 0, Ui::getScaledValue(BOX_MAX_HEIGHT));
+		elm_scroller_content_min_limit(genlist, EINA_FALSE, EINA_FALSE);
+	}
+
+	evas_object_show(genlist);
+	elm_box_pack_end(box, genlist);
+	elm_object_part_content_set(popup, "elm.swallow.content", box);
+
+	return popup;
+}
+
 void SearchResultsPopup::onCreated()
 {
-	elm_popup_orient_set(getEvasObject(), ELM_POPUP_ORIENT_CENTER);
-
 	char buffer[TITLE_BUFFER_SIZE];
 	snprintf(buffer, sizeof(buffer), _("IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"), m_Results->size());
 	setTitle(buffer);

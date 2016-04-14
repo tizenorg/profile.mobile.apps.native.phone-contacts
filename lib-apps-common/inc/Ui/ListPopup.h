@@ -66,6 +66,11 @@ namespace Ui
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 
 		/**
+		 * @brief Create genlist
+		 */
+		Evas_Object *createGenlist(Evas_Object *parent);
+
+		/**
 		 * @brief Called when item's text part needs to be updated.
 		 * @details If "elm.text" part is not handled in this function then it will
 		 *          contain the text specified in ListPopup::addItem().
