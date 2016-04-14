@@ -167,10 +167,12 @@ void BasicInfoItem::onGroupChanged(int type)
 		m_Group = nullptr;
 	} else {
 		m_Log = m_Group->getLogList().back();
-		if (type & LogGroup::ChangeName) {
+		if (type & LogGroup::ChangePerson) {
 			elm_genlist_item_fields_update(getObjectItem(), STATE_SAVED, ELM_GENLIST_ITEM_FIELD_STATE);
-			elm_genlist_item_fields_update(getObjectItem(), PART_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
 			elm_genlist_item_fields_update(getObjectItem(), PART_UNSAVED_BTNS, ELM_GENLIST_ITEM_FIELD_CONTENT);
+		}
+		if (type & LogGroup::ChangeName) {
+			elm_genlist_item_fields_update(getObjectItem(), PART_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
 		}
 		if (type & LogGroup::ChangeImage) {
 			elm_genlist_item_fields_update(getObjectItem(), PART_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
