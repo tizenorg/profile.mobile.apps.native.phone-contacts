@@ -16,11 +16,13 @@
  */
 
 #include "Contacts/List/Model/Person.h"
+#include "Contacts/RecordListIterator.h"
 #include "Contacts/Utils.h"
 #include "Utils/String.h"
 
 #include <cstring>
 
+using namespace Contacts;
 using namespace Contacts::Model;
 using namespace Contacts::List::Model;
 using namespace Utils;
@@ -88,6 +90,25 @@ void Person::updateDbRecord()
 	contacts_record_h record = nullptr;
 	contacts_db_get_record(_contacts_person._uri, getId(), &record);
 	onUpdate(record);
+}
+
+const Person::Numbers &Person::getNumbers()
+{
+	unsigned projection[] = {
+		_contacts_contact.number
+	};
+
+	if (getContactNumbers().empty()) {
+		contacts_list_h list = getContacts(m_PersonRecord, projection);
+		auto contacts = makeRange(list);
+		for (auto &&contact : contacts) {
+			fillContactNumbers(contact);
+		}
+
+		contacts_list_destroy(list, false);
+	}
+
+	return getContactNumbers();
 }
 
 int Person::getDisplayContactId() const
