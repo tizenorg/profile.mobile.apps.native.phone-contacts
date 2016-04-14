@@ -52,6 +52,8 @@ using namespace Utils;
 using namespace Ux;
 using namespace std::placeholders;
 
+#define SYMBOL_MAGNIFIER "\U0001f50d"
+
 ListView::ListView(int filterType)
 	: m_Box(nullptr), m_NoContent(nullptr), m_Genlist(nullptr),
 	  m_Index(nullptr), m_AddButton(nullptr), m_IsCurrentView(false),
@@ -82,11 +84,11 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	m_Genlist = createGenlist(m_Box);
 	elm_box_pack_end(m_Box, m_Genlist->getEvasObject());
 
-	m_SearchItem = createSearchItem();
-	m_AddButton = createAddButton(layout);
-
 	elm_object_part_content_set(layout, "elm.swallow.content", m_Box);
 	elm_object_part_content_set(layout, "elm.swallow.fastscroll", createIndex(layout));
+
+	m_SearchItem = createSearchItem();
+	m_AddButton = createAddButton(layout);
 
 	return layout;
 }
@@ -429,6 +431,9 @@ SearchItem *ListView::createSearchItem()
 	SearchItem *item = new SearchItem();
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+
+	Elm_Object_Item *indexItem = insertIndexItem(SYMBOL_MAGNIFIER, nullptr);
+	elm_object_item_data_set(indexItem, item->getObjectItem());
 	return item;
 }
 
