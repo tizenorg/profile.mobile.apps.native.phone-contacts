@@ -198,7 +198,7 @@ void Log::update(contacts_record_h record)
 	if (personId != getPersonId()) {
 		contacts_record_destroy(m_LogRecord, true);
 		m_LogRecord = record;
-		m_Group->setChangedType(LogGroup::ChangePerson);
+		m_Group->setChangedType(LogGroup::ChangePerson | LogGroup::ChangeName | LogGroup::ChangeImage);
 		updateContactRecord();
 	} else {
 		contacts_record_destroy(record, true);
