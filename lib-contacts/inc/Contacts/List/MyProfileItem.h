@@ -33,11 +33,6 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @brief Item select callback
-			 */
-			typedef std::function<void()> SelectedCallback;
-
-			/**
 			 * @brief Create My profile genlist item
 			 * @param[in]   myProfile   My profile object
 			 */
@@ -48,33 +43,12 @@ namespace Contacts
 			 */
 			Model::MyProfile &getMyProfile() const;
 
-			/**
-			 * @brief Set my profile object to item
-			 * @param[in]   myProfile   My profile object
-			 */
-			void setMyProfile(Model::MyProfilePtr myProfile);
-
-			/**
-			 * @brief Set item selected callback
-			 * @param[in]   callback    Callback, that will be invoked on item selection
-			 */
-			void setSelectedCallback(SelectedCallback callback);
-
-			/**
-			 * @brief Update item
-			 * @param[in]   changes     Changed info
-			 */
-			void update(int changes);
-
-		protected:
-			virtual void onSelected() override;
-
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
+			void onUpdated(int changes);
 
 			Model::MyProfilePtr m_MyProfile;
-			SelectedCallback m_OnSelected;
 		};
 	}
 }

@@ -20,61 +20,32 @@
 #include <app_i18n.h>
 
 using namespace Contacts::List;
+using namespace Contacts::List::Model;
+using namespace std::placeholders;
 
-MyProfileItem::MyProfileItem(Model::MyProfilePtr myProfile)
+MyProfileItem::MyProfileItem(MyProfilePtr myProfile)
 	: m_MyProfile(std::move(myProfile))
-{ }
+{
+	m_MyProfile->setUpdateCallback(std::bind(&MyProfileItem::onUpdated, this, _1));
+}
 
-Model::MyProfile &MyProfileItem::getMyProfile() const
+MyProfile &MyProfileItem::getMyProfile() const
 {
 	return *m_MyProfile;
 }
 
-void MyProfileItem::setMyProfile(Model::MyProfilePtr myProfile)
-{
-	m_MyProfile = std::move(myProfile);
-}
-
-void MyProfileItem::setSelectedCallback(SelectedCallback callback)
-{
-	m_OnSelected = std::move(callback);
-}
-
-void MyProfileItem::update(int changes)
-{
-	m_MyProfile->updateDbRecord();
-
-	if (changes & ELM_GENLIST_ITEM_FIELD_TEXT) {
-		elm_genlist_item_fields_update(getObjectItem(),
-			PART_MY_PROFILE_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
-	}
-
-	if (changes & ELM_GENLIST_ITEM_FIELD_CONTENT) {
-		elm_genlist_item_fields_update(getObjectItem(),
-			PART_MY_PROFILE_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
-	}
-}
-
-void MyProfileItem::onSelected()
-{
-	if (m_OnSelected) {
-		m_OnSelected();
-	}
-}
-
 char *MyProfileItem::getText(Evas_Object *parent, const char *part)
 {
-	const char *itemText = nullptr;
-
 	if (strcmp(part, PART_MY_PROFILE_NAME) == 0) {
-		itemText = m_MyProfile->getName();
-
-		if (!(itemText && *itemText)) {
-			itemText = _("IDS_PB_MBODY_SET_MY_PROFILE");
+		const char *name = m_MyProfile->getName();
+		if (!(name && *name)) {
+			name = _("IDS_PB_MBODY_SET_MY_PROFILE");
 		}
+
+		return strdup(name);
 	}
 
-	return Utils::safeDup(itemText);
+	return nullptr;
 }
 
 Evas_Object *MyProfileItem::getContent(Evas_Object *parent, const char *part)
@@ -89,4 +60,17 @@ Evas_Object *MyProfileItem::getContent(Evas_Object *parent, const char *part)
 	}
 
 	return nullptr;
+}
+
+void MyProfileItem::onUpdated(int changes)
+{
+	if (changes & MyProfile::ChangedName) {
+		elm_genlist_item_fields_update(getObjectItem(),
+			PART_MY_PROFILE_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+	}
+
+	if (changes & MyProfile::ChangedImage) {
+		elm_genlist_item_fields_update(getObjectItem(),
+			PART_MY_PROFILE_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	}
 }

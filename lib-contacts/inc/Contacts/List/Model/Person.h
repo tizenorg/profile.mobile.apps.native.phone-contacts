@@ -80,7 +80,7 @@ namespace Contacts
 				/**
 				 * @brief Update record from the database
 				 */
-				void updateDbRecord();
+				void update();
 
 				/**
 				 * @see ContactRecordData::getNumbers()
