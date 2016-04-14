@@ -83,12 +83,6 @@ namespace Logs
 			virtual const char *getImagePath() const override;
 
 			/**
-			 * @see ContactData::compare()
-			 * @detail Compares by number
-			 */
-			virtual bool compare(const char *str) override;
-
-			/**
 			 * @return type of number
 			 */
 			int getNumberType() const;
