@@ -103,9 +103,6 @@ namespace Contacts
 			Evas_Object *createAddButton(Evas_Object *parent);
 			void updateAddButton();
 
-			void insertMyProfileGroupItem();
-			void insertMyProfileItem();
-
 			Evas_Object *createIndex(Evas_Object *parent);
 			Elm_Index_Item *insertIndexItem(const char *indexLetter,
 					Elm_Index_Item *nextItem = nullptr);

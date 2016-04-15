@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_LIST_GROUP_ITEM_H
-#define CONTACTS_LIST_GROUP_ITEM_H
+#ifndef CONTACTS_LIST_MY_PROFILE_GROUP_H
+#define CONTACTS_LIST_MY_PROFILE_GROUP_H
 
 #include "Ui/GenlistGroupItem.h"
 
@@ -25,23 +25,17 @@ namespace Contacts
 	namespace List
 	{
 		/**
-		 * @brief Represents group item object
+		 * @brief Represents the group containing "My Profile" genlist item.
 		 */
-		class GroupItem : public Ui::GenlistGroupItem
+		class MyProfileGroup : public Ui::GenlistGroupItem
 		{
 		public:
-			/**
-			 * @brief Create new group item object
-			 * @param[in]   title   Group item title
-			 */
-			explicit GroupItem(const char *title);
+			MyProfileGroup();
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
-
-			const char *m_Title;
 		};
 	}
 }
 
-#endif /* CONTACTS_LIST_GROUP_ITEM_H */
+#endif /* CONTACTS_LIST_MY_PROFILE_GROUP_H */

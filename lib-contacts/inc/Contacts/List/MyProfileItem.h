@@ -20,10 +20,6 @@
 
 #include "Contacts/List/Model/MyProfile.h"
 #include "Ui/GenlistItem.h"
-#include <functional>
-
-#define PART_MY_PROFILE_NAME        "elm.text"
-#define PART_MY_PROFILE_THUMBNAIL   "elm.swallow.icon"
 
 namespace Contacts
 {
@@ -32,23 +28,20 @@ namespace Contacts
 		class MyProfileItem : public Ui::GenlistItem
 		{
 		public:
-			/**
-			 * @brief Create My profile genlist item
-			 * @param[in]   myProfile   My profile object
-			 */
-			explicit MyProfileItem(Model::MyProfilePtr myProfile);
+			MyProfileItem();
 
 			/**
-			 * @return my profile object
+			 * @return My profile object
 			 */
-			Model::MyProfile &getMyProfile() const;
+			Model::MyProfile &getMyProfile();
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
+			virtual void onSelected() override;
 			void onUpdated(int changes);
 
-			Model::MyProfilePtr m_MyProfile;
+			Model::MyProfile m_MyProfile;
 		};
 	}
 }
