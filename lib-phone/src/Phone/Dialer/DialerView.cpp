@@ -100,7 +100,7 @@ void DialerView::onPageAttached(Ui::NavigatorPage *page)
 
 void DialerView::onNavigation(bool isCurrentView)
 {
-	Evas_Object *conf = getWindow()->getConformant();
+	Evas_Object *conf = findParent<Ui::Window>()->getConformant();
 	if (isCurrentView) {
 		elm_object_signal_emit(conf, "elm,state,virtualkeypad,disable", "");
 		elm_object_signal_emit(conf, "elm,state,clipboard,disable", "");

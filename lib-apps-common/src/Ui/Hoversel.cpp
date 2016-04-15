@@ -44,7 +44,7 @@ void Hoversel::setSelectedCallback(SelectedCallback callback)
 Evas_Object *Hoversel::onCreate(Evas_Object *parent)
 {
 	Evas_Object *hoverParent = parent;
-	Window *window = getWindow(parent);
+	Window *window = findParent<Window>(parent);
 	if (window) {
 		hoverParent = window->getBaseLayout();
 	}

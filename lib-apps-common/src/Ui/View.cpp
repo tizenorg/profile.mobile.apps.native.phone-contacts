@@ -19,8 +19,17 @@
 
 using namespace Ui;
 
-View::View()
-	: m_StackNavi(nullptr), m_TabNavi(nullptr), m_Page(nullptr)
+namespace Ui
+{
+	template <>
+	View *Control::findParent<View>(Evas_Object *object)
+	{
+		return static_cast<View *>(findParent(object, TypeView));
+	}
+}
+
+View::View(int type)
+	: Control(type), m_StackNavi(nullptr), m_TabNavi(nullptr), m_Page(nullptr)
 {
 }
 

@@ -23,8 +23,17 @@
 
 using namespace Ui;
 
+namespace Ui
+{
+	template <>
+	Window *Control::findParent<Window>(Evas_Object *object)
+	{
+		return static_cast<Window *>(getControl(elm_object_top_widget_get(object)));
+	}
+}
+
 Window::Window()
-	: m_Conform(nullptr), m_Layout(nullptr), m_MainView(nullptr)
+	: Control(TypeWindow), m_Conform(nullptr), m_Layout(nullptr), m_MainView(nullptr)
 {
 }
 
