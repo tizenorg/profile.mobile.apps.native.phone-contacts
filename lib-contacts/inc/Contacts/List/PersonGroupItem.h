@@ -37,7 +37,8 @@ namespace Contacts
 			 * @param[in]   title       Group title
 			 * @param[in]   indexItem   Index item
 			 */
-			explicit PersonGroupItem(Utils::UniString title, Elm_Object_Item *indexItem);
+			explicit PersonGroupItem(Utils::UniString title);
+			virtual ~PersonGroupItem() override;
 
 			/**
 			 * @return Group item title
@@ -48,6 +49,11 @@ namespace Contacts
 			 * @return Linked index item
 			 */
 			Elm_Object_Item *getIndexItem() const;
+
+			/**
+			 * @brief Link index item
+			 */
+			void setIndexItem(Elm_Object_Item *item);
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part);
