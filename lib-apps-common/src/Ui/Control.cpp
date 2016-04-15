@@ -16,15 +16,14 @@
  */
 
 #include "Ui/Control.h"
-#include "Ui/Window.h"
 #include "Utils/Callback.h"
 
 #define CONTROL_DATA_KEY "Ui::Control"
 
 using namespace Ui;
 
-Control::Control()
-	: m_Object(nullptr)
+Control::Control(int type)
+	: m_Type(type), m_Object(nullptr)
 {
 }
 
@@ -43,25 +42,37 @@ Evas_Object *Control::create(Evas_Object *parent)
 	return m_Object;
 }
 
+int Control::getType() const
+{
+	return m_Type;
+}
+
 Evas_Object *Control::getEvasObject() const
 {
 	return m_Object;
 }
 
-Window *Control::getWindow() const
+Control *Control::findParent(int type) const
 {
-	return getWindow(getEvasObject());
+	return findParent(getEvasObject(), type);
+}
+
+Control *Control::findParent(Evas_Object *object, int type)
+{
+	while (object) {
+		Control *control = getControl(object);
+		if (control && control->getType() == type) {
+			return control;
+		}
+		object = elm_object_parent_widget_get(object);
+	}
+
+	return nullptr;
 }
 
 Control *Control::getControl(Evas_Object *object)
 {
 	return (Control *) evas_object_data_get(object, CONTROL_DATA_KEY);
-}
-
-Window *Control::getWindow(Evas_Object *object)
-{
-	Evas_Object *window = elm_object_top_widget_get(object);
-	return static_cast<Window *>(getControl(window));
 }
 
 void Control::setEvasObject(Evas_Object *object)
