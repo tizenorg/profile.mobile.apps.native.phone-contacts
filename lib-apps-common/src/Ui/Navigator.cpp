@@ -20,8 +20,17 @@
 
 using namespace Ui;
 
+namespace Ui
+{
+	template <>
+	Navigator *Control::findParent<Navigator>(Evas_Object *object)
+	{
+		return static_cast<Navigator *>(findParent(object, StackNavigator));
+	}
+}
+
 Navigator::Navigator(NavigatorType type)
-	: m_Type(type), m_PageCount(0)
+	: View(type), m_PageCount(0)
 {
 }
 
@@ -41,10 +50,11 @@ void Navigator::navigateTo(View *view)
 		return;
 	}
 
-	if (view->getNavigator(m_Type) != this) {
+	NavigatorType navigatorType = NavigatorType(getType());
+	if (view->getNavigator(navigatorType) != this) {
 		Navigator *stackNavi = m_StackNavi;
 		Navigator *tabNavi = m_TabNavi;
-		if (m_Type == StackNavigator) {
+		if (navigatorType == StackNavigator) {
 			stackNavi = this;
 		} else {
 			tabNavi = this;
@@ -62,7 +72,7 @@ void Navigator::navigateTo(View *view)
 
 bool Navigator::navigateFrom(View *view)
 {
-	if (!view || view->getNavigator(m_Type) != this) {
+	if (!view || view->getNavigator(NavigatorType(getType())) != this) {
 		return false;
 	}
 

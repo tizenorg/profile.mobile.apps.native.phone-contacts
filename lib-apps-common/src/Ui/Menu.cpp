@@ -34,8 +34,13 @@ Elm_Object_Item *Menu::addItem(const char *text, ItemCallback callback)
 
 void Menu::show()
 {
+	Window *window = findParent<Window>();
+	if (!window) {
+		return;
+	}
+
 	Evas_Coord y = 0, h = 0;
-	evas_object_geometry_get(getWindow()->getEvasObject(), nullptr, &y, nullptr, &h);
+	evas_object_geometry_get(window->getEvasObject(), nullptr, &y, nullptr, &h);
 
 	Evas_Object *menu = getEvasObject();
 	evas_object_move(menu, 0, y + h);
@@ -44,7 +49,7 @@ void Menu::show()
 
 Evas_Object *Menu::onCreate(Evas_Object *parent)
 {
-	Window *window = getWindow(parent);
+	Window *window = findParent<Window>(parent);
 	if (window) {
 		parent = window->getEvasObject();
 	}

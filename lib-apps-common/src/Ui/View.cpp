@@ -19,8 +19,8 @@
 
 using namespace Ui;
 
-View::View()
-	: m_StackNavi(nullptr), m_TabNavi(nullptr), m_Page(nullptr)
+View::View(int type)
+	: Control(type), m_StackNavi(nullptr), m_TabNavi(nullptr), m_Page(nullptr)
 {
 }
 

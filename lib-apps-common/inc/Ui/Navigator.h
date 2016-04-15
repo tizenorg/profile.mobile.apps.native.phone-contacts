@@ -120,7 +120,6 @@ namespace Ui
 		friend class NavigatorPage;
 		void onPageDestroy(NavigatorPage *page);
 
-		NavigatorType m_Type;
 		size_t m_PageCount;
 		LastPageCallback m_OnLastPage;
 	};

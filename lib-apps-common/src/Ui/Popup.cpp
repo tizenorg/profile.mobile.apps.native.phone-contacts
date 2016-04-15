@@ -88,7 +88,7 @@ void Popup::setBackCallback(BackCallback callback)
 
 Evas_Object *Popup::onCreate(Evas_Object *parent)
 {
-	Window *window = getWindow(parent);
+	Window *window = findParent<Window>(parent);
 	if (window) {
 		parent = window->getBaseLayout();
 	}

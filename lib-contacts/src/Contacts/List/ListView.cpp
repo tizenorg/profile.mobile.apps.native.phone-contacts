@@ -425,7 +425,7 @@ Evas_Object *ListView::createAddButton(Evas_Object *parent)
 
 void ListView::updateAddButton()
 {
-	Ui::Window *window = getWindow();
+	Ui::Window *window = findParent<Ui::Window>();
 	if (!window) {
 		return;
 	}
