@@ -19,8 +19,8 @@
 #define LOGS_DETAILS_ACTION_ITEM_H
 
 #include "Logs/Model/LogGroup.h"
-#include "App/AppControl.h"
 #include "Ui/GenlistItem.h"
+#include "Common/Actions.h"
 
 namespace Logs
 {
@@ -67,17 +67,11 @@ namespace Logs
 			virtual void onSelected() override;
 
 		private:
-			enum ActionId
-			{
-				ActionCall,     /**< Make a telephony call using value as a number */
-				ActionMessage,  /**< Compose an SMS using value as recipient */
-			};
-
 			bool isSavedLog();
 			char *getStrNumberType();
 			Evas_Object *createEntryNumber(Evas_Object *parent);
-			Evas_Object *createActionButton(Evas_Object *parent, ActionId actionId);
-			void executeAction(ActionId actionId);
+			Evas_Object *createActionButton(Evas_Object *parent, Common::ActionType actionType);
+			void executeAction(Common::ActionType actionType);
 			void onButtonPressed(Evas_Object *button, void *eventInfo);
 			void onGroupChanged(int type);
 

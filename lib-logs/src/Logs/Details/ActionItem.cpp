@@ -25,39 +25,17 @@
 #include "App/Path.h"
 #include "Ui/Scale.h"
 #include "Utils/Callback.h"
+#include "Common/Strings.h"
 
 #include <app_i18n.h>
 
 using namespace Logs::Details;
 using namespace Logs::Model;
+using namespace Common;
 using namespace std::placeholders;
 
 namespace
 {
-	struct {
-		const char *icon;
-		const char *operation;
-		const char *scheme;
-	} actions[] = {
-		/* ActionCall    = */ { GROUP_ICON_CALL,     APP_CONTROL_OPERATION_CALL, "tel:" },
-		/* ActionMessage = */ { GROUP_ICON_MESSAGE,  APP_CONTROL_OPERATION_COMPOSE, "sms:" },
-	};
-
-	struct {
-		const char *name;
-		int type;
-	} numberTypes[] = {
-		{ "IDS_PB_OPT_MOBILE",        CONTACTS_NUMBER_TYPE_CELL},
-		{ "IDS_PB_OPT_HOME_ABB",      CONTACTS_NUMBER_TYPE_VOICE | CONTACTS_NUMBER_TYPE_HOME },
-		{ "IDS_PB_OPT_WORK",          CONTACTS_NUMBER_TYPE_VOICE | CONTACTS_NUMBER_TYPE_WORK},
-		{ "IDS_PB_OPT_MAIN",          CONTACTS_NUMBER_TYPE_MAIN},
-		{ "IDS_PB_OPT_FAX_HWORK_ABB", CONTACTS_NUMBER_TYPE_FAX | CONTACTS_NUMBER_TYPE_WORK},
-		{ "IDS_PB_OPT_FAX_HHOME_ABB", CONTACTS_NUMBER_TYPE_FAX | CONTACTS_NUMBER_TYPE_HOME},
-		{ "IDS_PB_OPT_PAGER",         CONTACTS_NUMBER_TYPE_PAGER},
-		{ "IDS_PB_OPT_OTHER",         CONTACTS_NUMBER_TYPE_OTHER},
-		{ "IDS_PB_OPT_CUSTOM",        CONTACTS_NUMBER_TYPE_CUSTOM},
-	};
-
 	const std::string layoutPath = App::getResourcePath(LOGS_DETAILS_ITEM_LAYOUT_EDJ);
 }
 
@@ -122,12 +100,8 @@ char *ActionItem::getStrNumberType()
 	if (type == CONTACTS_NUMBER_TYPE_CUSTOM) {
 		return strdup(m_Log->getNumberLabel().c_str());
 	}
-	for (auto &numberType : numberTypes) {
-		if (numberType.type == type) {
-			return strdup(_(numberType.name));
-		}
-	}
-	return nullptr;
+	const char *name = _(getEnumValueName(EnumNumberType, type));
+	return Utils::safeDup(name);
 }
 
 Evas_Object *ActionItem::createEntryNumber(Evas_Object *parent)
@@ -145,35 +119,32 @@ Evas_Object *ActionItem::createEntryNumber(Evas_Object *parent)
 	return entry;
 }
 
-Evas_Object *ActionItem::createActionButton(Evas_Object *parent, ActionId actionId)
+Evas_Object *ActionItem::createActionButton(Evas_Object *parent, ActionType actionType)
 {
+	static const char *actionIcons[] = {
+		/* ActionCall = */ GROUP_ICON_CALL,
+		/* ActionMessage = */ GROUP_ICON_MESSAGE
+	};
+
 	Evas_Object *image = elm_image_add(parent);
-	elm_image_file_set(image, layoutPath.c_str(), actions[actionId].icon);
+	elm_image_file_set(image, layoutPath.c_str(), actionIcons[actionType]);
 	evas_object_propagate_events_set(image, EINA_FALSE);
-	evas_object_smart_data_set(image, (void *) actionId);
+	evas_object_smart_data_set(image, (void *) actionType);
 	evas_object_smart_callback_add(image, "clicked",
 			makeCallback(&ActionItem::onButtonPressed), this);
 
 	return image;
 }
 
-void ActionItem::executeAction(ActionId actionId)
+void ActionItem::executeAction(ActionType actionType)
 {
-	auto action = actions[actionId];
-
-	std::string uri = action.scheme;
-	const char *number = m_Log->getNumber();
-	if (number) {
-		uri.append(number);
-	}
-
-	m_AppControl = App::AppControl(action.operation, nullptr, uri.c_str());
+	m_AppControl = requestAction(actionType, m_Log->getNumber());
 	m_AppControl.launch();
 }
 
 void ActionItem::onButtonPressed(Evas_Object *button, void *eventInfo)
 {
-	executeAction((ActionId) (long) evas_object_smart_data_get(button));
+	executeAction((ActionType) (long) evas_object_smart_data_get(button));
 }
 
 void ActionItem::onGroupChanged(int type)
