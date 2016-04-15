@@ -23,7 +23,16 @@
 
 namespace Ui
 {
-	class Window;
+	/**
+	 * @brief Basic Control types.
+	 */
+	enum ControlType
+	{
+		TypeControl,
+		TypeWindow,
+		TypeView,
+		TypeMax
+	};
 
 	/**
 	 * @brief Evas_Object wrapper.
@@ -33,7 +42,7 @@ namespace Ui
 	class EXPORT_API Control
 	{
 	public:
-		Control();
+		Control(int type = TypeControl);
 		Control(const Control &that) = delete;
 		Control(Control &&that) = delete;
 		virtual ~Control();
@@ -49,14 +58,28 @@ namespace Ui
 		Evas_Object *create(Evas_Object *parent);
 
 		/**
+		 * @return Control type.
+		 */
+		int getType() const;
+
+		/**
 		 * @return Underlying Evas_Object.
 		 */
 		Evas_Object *getEvasObject() const;
 
 		/**
-		 * @return Main application window.
+		 * @brief Find closest parent Control by type.
+		 * @param[in]   object  Child object
+		 * @param[in]   type    Control type
+		 * @return Control if found, otherwise nullptr.
 		 */
-		Window *getWindow() const;
+		template <typename ControlType>
+		ControlType *findParent() const;
+		Control *findParent(int type) const;
+
+		template <typename ControlType>
+		static ControlType *findParent(Evas_Object *object);
+		static Control *findParent(Evas_Object *object, int type);
 
 		/**
 		 * @brief Get Control object from Evas_Object
@@ -64,11 +87,6 @@ namespace Ui
 		 * @return Control tied to Evas_Object
 		 */
 		static Control *getControl(Evas_Object *object);
-
-		/**
-		 * @brief Get main application window from any child object.
-		 */
-		static Window *getWindow(Evas_Object *object);
 
 	protected:
 		/**
@@ -90,8 +108,15 @@ namespace Ui
 
 		void onDestroy(Evas *e, Evas_Object *obj, void *event_info);
 
+		int m_Type;
 		Evas_Object *m_Object;
 	};
+
+	template <typename ControlType>
+	ControlType *Control::findParent() const
+	{
+		return findParent<ControlType>(m_Object);
+	}
 }
 
 #endif /* UI_CONTROL_H */

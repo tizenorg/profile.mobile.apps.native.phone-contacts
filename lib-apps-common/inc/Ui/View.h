@@ -24,15 +24,14 @@
 namespace Ui
 {
 	class Navigator;
-	class Window;
 
 	/**
 	 * @brief Navigation type supported by Navigator
 	 */
 	enum NavigatorType
 	{
-		StackNavigator, /**< Allows navigation to the added View or the previous View */
-		TabNavigator    /**< Allows navigation to any added View */
+		StackNavigator = TypeMax, /**< Allows navigation to the added View or the previous View */
+		TabNavigator              /**< Allows navigation to any added View */
 	};
 
 	/**
@@ -41,7 +40,7 @@ namespace Ui
 	class EXPORT_API View : public Control
 	{
 	public:
-		View();
+		View(int type = TypeView);
 
 		/**
 		 * @brief Get parent Navigator
