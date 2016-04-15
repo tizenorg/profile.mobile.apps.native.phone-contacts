@@ -16,10 +16,9 @@
  */
 
 #include "Contacts/List/ListView.h"
-#include "Contacts/List/GroupItem.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
 #include "Contacts/List/Model/Person.h"
-#include "Contacts/List/MyProfileItem.h"
+#include "Contacts/List/MyProfileGroup.h"
 #include "Contacts/List/PersonGroupItem.h"
 #include "Contacts/List/PersonItem.h"
 #include "Contacts/List/SearchItem.h"
@@ -208,8 +207,10 @@ void ListView::onSelectModeChanged(SelectMode selectMode)
 void ListView::fillMyProfile()
 {
 	if (!m_Sections[SectionMyProfile]) {
-		insertMyProfileGroupItem();
-		insertMyProfileItem();
+		MyProfileGroup *group = new MyProfileGroup();
+		m_Genlist->insert(group, nullptr, getNextSectionItem(SectionMyProfile));
+		elm_genlist_item_select_mode_set(group->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+		m_Sections[SectionMyProfile] = group;
 	}
 }
 
@@ -436,30 +437,6 @@ void ListView::updateAddButton()
 		elm_object_part_content_unset(window->getBaseLayout(), "elm.swallow.floatingbutton");
 		evas_object_hide(m_AddButton);
 	}
-}
-
-void ListView::insertMyProfileGroupItem()
-{
-	auto group = new GroupItem("IDS_PB_HEADER_ME");
-	m_Genlist->insert(group, nullptr, getNextSectionItem(SectionMyProfile));
-	elm_genlist_item_select_mode_set(group->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
-
-	m_Sections[SectionMyProfile] = group;
-}
-
-void ListView::insertMyProfileItem()
-{
-	MyProfileItem *item = new MyProfileItem(MyProfilePtr(new MyProfile()));
-	m_Genlist->insert(item, m_Sections[SectionMyProfile]);
-
-	item->setSelectCallback([this, item]() {
-		int id = item->getMyProfile().getId();
-		if (id > 0) {
-			getNavigator()->navigateTo(new Details::DetailsView(id, Details::DetailsView::TypeMyProfile));
-		} else {
-			getNavigator()->navigateTo(new Input::InputView(id, Input::InputView::TypeMyProfile));
-		}
-	});
 }
 
 Evas_Object *ListView::createIndex(Evas_Object *parent)
