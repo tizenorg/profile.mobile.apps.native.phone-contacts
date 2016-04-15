@@ -15,19 +15,21 @@
  *
  */
 
-#include "Contacts/List/GroupItem.h"
+#include "Contacts/List/MyProfileGroup.h"
+#include "Contacts/List/MyProfileItem.h"
 #include <app_i18n.h>
 
 using namespace Contacts::List;
 
-GroupItem::GroupItem(const char *title)
-	: m_Title(title)
-{ }
+MyProfileGroup::MyProfileGroup()
+{
+	insertSubItem(new MyProfileItem());
+}
 
-char *GroupItem::getText(Evas_Object *parent, const char *part)
+char *MyProfileGroup::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text") == 0) {
-		return strdup(_(m_Title));
+		return strdup(_("IDS_PB_HEADER_ME"));
 	}
 
 	return nullptr;
