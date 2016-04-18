@@ -63,8 +63,23 @@ namespace Contacts
 				 */
 				virtual contacts_record_h getRecord(int id) override;
 
+				//virtual void setAdditionalFilterOptions();
+
+				/**
+				 * @brief Set the additional options for query
+				 * @param[in]    query    The query
+				 */
+				virtual void setAdditionalQueryOptions(contacts_query_h query) {}
+
+				/**
+				 * @brief Get additional filter
+				 * @return The filter or nullptr otherwise. The filter will be destroyed in the PersonProvider.
+				 */
+				virtual contacts_filter_h getAdditionalFilter() {return nullptr;}
+
 			private:
 				virtual bool shouldUpdateChangedCallback() override;
+				contacts_list_h getPersonList();
 
 				int m_FilterType;
 			};

@@ -59,27 +59,6 @@ namespace
 
 		return filter;
 	}
-
-	contacts_list_h getPersonList(int filterType)
-	{
-		contacts_query_h query = nullptr;
-		contacts_query_create(_contacts_person._uri, &query);
-
-		contacts_filter_h filter = getProviderFilter(filterType);
-		if (filter) {
-			contacts_query_set_filter(query, filter);
-		}
-
-		contacts_query_set_projection(query, projection, Utils::count(projection));
-
-		contacts_list_h list = nullptr;
-		contacts_db_get_records_with_query(query, 0, 0, &list);
-
-		contacts_query_destroy(query);
-		contacts_filter_destroy(filter);
-
-		return list;
-	}
 }
 
 PersonProvider::PersonProvider(int filterType)
@@ -98,7 +77,7 @@ const ContactDataList &PersonProvider::getContactDataList()
 		return contactList;
 	}
 
-	contacts_list_h list = ::getPersonList(m_FilterType);
+	contacts_list_h list = getPersonList();
 
 	contacts_record_h record = nullptr;
 	CONTACTS_LIST_FOREACH(list, record) {
@@ -128,6 +107,12 @@ contacts_record_h PersonProvider::getRecord(int contactId)
 	}
 
 	contacts_filter_add_int(filter, _contacts_person.display_contact_id, CONTACTS_MATCH_EQUAL, contactId);
+	contacts_filter_h additionalFilter = getAdditionalFilter();
+	if (additionalFilter) {
+		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+		contacts_filter_add_filter(filter, additionalFilter);
+	}
+
 	contacts_query_set_filter(query, filter);
 	contacts_query_set_projection(query, projection, Utils::count(projection));
 
@@ -140,8 +125,43 @@ contacts_record_h PersonProvider::getRecord(int contactId)
 	contacts_list_destroy(list, false);
 	contacts_query_destroy(query);
 	contacts_filter_destroy(filter);
+	contacts_filter_destroy(additionalFilter);
 
 	return record;
+}
+
+contacts_list_h PersonProvider::getPersonList()
+{
+	contacts_query_h query = nullptr;
+	contacts_query_create(_contacts_person._uri, &query);
+
+	contacts_filter_h filter = getProviderFilter(m_FilterType);
+	contacts_filter_h additionalFilter = getAdditionalFilter();
+
+	if (filter) {
+		if (additionalFilter) {
+			contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+			contacts_filter_add_filter(filter, additionalFilter);
+		}
+	} else {
+		filter = additionalFilter;
+		additionalFilter = nullptr;
+	}
+	if (filter) {
+		contacts_query_set_filter(query, filter);
+	}
+
+	contacts_query_set_projection(query, projection, Utils::count(projection));
+	setAdditionalQueryOptions(query);
+
+	contacts_list_h list = nullptr;
+	contacts_db_get_records_with_query(query, 0, 0, &list);
+
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+	contacts_filter_destroy(additionalFilter);
+
+	return list;
 }
 
 bool PersonProvider::shouldUpdateChangedCallback()
