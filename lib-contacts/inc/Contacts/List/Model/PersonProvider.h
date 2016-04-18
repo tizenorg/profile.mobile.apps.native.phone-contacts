@@ -62,8 +62,21 @@ namespace Contacts
 				 */
 				virtual contacts_record_h getRecord(int id) override;
 
+				/**
+				 * @brief Fills the filter for query
+				 * @return The filter
+				 */
+				virtual contacts_filter_h getFilter() const;
+
+				/**
+				 * @brief Fills the query to get list of persons
+				 * @return The query
+				 */
+				virtual contacts_query_h getQuery() const;
+
 			private:
 				virtual bool shouldUpdateChangedCallback() override;
+				contacts_list_h getPersonList();
 				void onNameFormatChanged(contacts_name_display_order_e order);
 
 				int m_FilterType;
