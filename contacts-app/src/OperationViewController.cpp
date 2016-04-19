@@ -17,9 +17,9 @@
 
 #include "OperationViewController.h"
 
+#include "Common/Database/Queries.h"
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/List/VcardView.h"
-#include "Contacts/Utils.h"
 
 #include "App/AppControlRequest.h"
 #include "Ui/Navigator.h"
@@ -30,6 +30,7 @@
 
 #define APP_CONTROL_URI_PATH "file://"
 
+using namespace Common::Database;
 using namespace Contacts;
 using namespace Contacts::Details;
 using namespace Contacts::List;

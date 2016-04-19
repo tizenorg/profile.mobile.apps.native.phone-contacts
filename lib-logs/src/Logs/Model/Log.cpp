@@ -17,9 +17,10 @@
 
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 #include "Utils/Logger.h"
 
+using namespace Common::Database;
 using namespace Logs::Model;
 
 Log::Log(contacts_record_h record)
@@ -54,7 +55,7 @@ void Log::unsetRemoveCallback()
 
 int Log::getId() const
 {
-	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.id);
+	return getRecordInt(m_LogRecord, _contacts_phone_log.id);
 }
 
 const char *Log::getName() const
@@ -68,7 +69,7 @@ const char *Log::getName() const
 
 const char *Log::getNumber() const
 {
-	return Contacts::getRecordStr(m_LogRecord, _contacts_phone_log.address);
+	return getRecordStr(m_LogRecord, _contacts_phone_log.address);
 }
 
 const char *Log::getImagePath() const
@@ -141,7 +142,7 @@ std::string Log::getNumberLabel() const
 
 int Log::getType() const
 {
-	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.log_type);
+	return getRecordInt(m_LogRecord, _contacts_phone_log.log_type);
 }
 
 tm Log::getTime() const
@@ -153,7 +154,7 @@ tm Log::getTime() const
 
 int Log::getPersonId() const
 {
-	return Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.person_id);
+	return getRecordInt(m_LogRecord, _contacts_phone_log.person_id);
 }
 
 int Log::getContactId() const
@@ -167,7 +168,7 @@ int Log::getContactId() const
 
 time_t Log::getDuration() const
 {
-	return (time_t) Contacts::getRecordInt(m_LogRecord, _contacts_phone_log.extra_data1);
+	return (time_t) getRecordInt(m_LogRecord, _contacts_phone_log.extra_data1);
 }
 
 contacts_record_h Log::getContactRecord()

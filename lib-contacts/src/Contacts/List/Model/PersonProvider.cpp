@@ -17,7 +17,7 @@
 
 #include "Contacts/List/Model/PersonProvider.h"
 #include "Contacts/List/Model/Person.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 #include "Utils/Callback.h"
 
 using namespace Contacts;

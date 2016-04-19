@@ -17,8 +17,9 @@
 
 #include "Contacts/Model/ContactRecordProvider.h"
 #include "Contacts/Model/ContactRecordData.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 
+using namespace Common::Database;
 using namespace Contacts;
 using namespace Contacts::Model;
 using namespace std::placeholders;

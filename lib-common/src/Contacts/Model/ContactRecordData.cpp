@@ -16,9 +16,10 @@
  */
 
 #include "Contacts/Model/ContactRecordData.h"
-#include "Contacts/ContactRecordChildIterator.h"
+#include "Common/Database/ChildRecordIterator.h"
 #include "Utils/String.h"
 
+using namespace Common::Database;
 using namespace Contacts::Model;
 
 ContactRecordData::ContactRecordData(Type type, contacts_record_h record)
@@ -150,7 +151,7 @@ const char *ContactRecordData::getValue(contacts_record_h record, Field field)
 	char *value = nullptr;
 
 	if (field == FieldNumber) {
-		auto numbers = Contacts::makeRange(record, properties[field]);
+		auto numbers = makeRange(record, properties[field]);
 		for (auto &&number : numbers) {
 			bool isDefault = false;
 			contacts_record_get_bool(number, _contacts_number.is_default, &isDefault);

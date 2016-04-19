@@ -17,7 +17,7 @@
 
 #include "Contacts/List/Model/FavoritesProvider.h"
 #include "Contacts/List/Model/Person.h"
-#include "Contacts/Utils.h"
+#include "Utils/Range.h"
 
 using namespace Contacts;
 using namespace Contacts::Model;

@@ -16,12 +16,14 @@
  */
 
 #include "Contacts/List/Model/Person.h"
-#include "Contacts/RecordListIterator.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/Queries.h"
+#include "Common/Database/RecordUtils.h"
+#include "Common/Database/RecordIterator.h"
 #include "Utils/String.h"
 
 #include <cstring>
 
+using namespace Common::Database;
 using namespace Contacts;
 using namespace Contacts::Model;
 using namespace Contacts::List::Model;

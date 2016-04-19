@@ -17,7 +17,6 @@
 
 #include "Contacts/Model/SearchEngine.h"
 #include "Contacts/Model/SearchProvider.h"
-#include "Contacts/Utils.h"
 
 #include <utility>
 #include <algorithm>

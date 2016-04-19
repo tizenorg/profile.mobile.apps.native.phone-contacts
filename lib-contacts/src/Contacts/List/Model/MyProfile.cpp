@@ -16,8 +16,9 @@
  */
 
 #include "Contacts/List/Model/MyProfile.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 
+using namespace Common::Database;
 using namespace Contacts::List::Model;
 
 MyProfile::MyProfile()

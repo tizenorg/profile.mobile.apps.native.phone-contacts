@@ -16,7 +16,7 @@
  */
 
 #include "Phone/Dialer/SearchUtils.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 #include "Ui/Thumbnail.h"
 #include "Utils/Logger.h"
 

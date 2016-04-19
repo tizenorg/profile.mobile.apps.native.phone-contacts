@@ -16,13 +16,15 @@
  */
 
 #include "Logs/Model/LogProvider.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordIterator.h"
+#include "Common/Database/RecordUtils.h"
 #include "Utils/Logger.h"
 #include "Utils/Callback.h"
 #include "Utils/Range.h"
 
 #include <algorithm>
 
+using namespace Common::Database;
 using namespace Contacts;
 using namespace Logs::Model;
 
@@ -192,8 +194,8 @@ void LogProvider::onLogsChanged(const char *viewUri)
 LogProvider::LogIterator LogProvider::updateLogs()
 {
 	contacts_list_h list = fetchLogList();
-	RecordListIterator newIt = begin(list);
-	RecordListIterator newEndIt = end(list);
+	RecordIterator newIt = begin(list);
+	RecordIterator newEndIt = end(list);
 	LogIterator oldIt = m_Logs.begin();
 
 	while (oldIt != m_Logs.end() && newIt != newEndIt) {

@@ -19,7 +19,7 @@
 #include "Phone/SpeedDial/SettingsItem.h"
 
 #include "App/Path.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 #include "Ui/Scale.h"
 #include "Utils/Callback.h"
 

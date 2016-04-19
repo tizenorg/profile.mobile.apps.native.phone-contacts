@@ -17,7 +17,7 @@
 
 #include "Phone/Dialer/SearchEngine.h"
 #include "Phone/Dialer/SearchUtils.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 #include <utility>
 #include <algorithm>
 

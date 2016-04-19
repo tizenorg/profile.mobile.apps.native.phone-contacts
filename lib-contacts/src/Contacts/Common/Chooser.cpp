@@ -19,14 +19,16 @@
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/List/ListView.h"
 #include "Contacts/Settings/ExportController.h"
-#include "Contacts/Utils.h"
 #include "Common/Actions.h"
+#include "Common/Database/Queries.h"
 
 #include "Ui/ListPopup.h"
 #include "Ux/SelectItem.h"
 #include "Utils/Logger.h"
 
 using namespace Common;
+using namespace Common::Database;
+
 using namespace Contacts;
 using namespace Contacts::Common;
 using namespace Contacts::List;

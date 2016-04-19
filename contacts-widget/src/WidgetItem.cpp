@@ -16,11 +16,11 @@
  */
 
 #include "WidgetItem.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 #include "Utils/Logger.h"
 
-using namespace Contacts;
 using namespace Common;
+using namespace Common::Database;
 
 struct Metadata
 {

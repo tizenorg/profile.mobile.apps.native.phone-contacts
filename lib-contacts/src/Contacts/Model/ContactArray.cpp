@@ -18,8 +18,10 @@
 #include "Contacts/Model/ContactArray.h"
 #include "Contacts/Model/ContactObject.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
-#include "Contacts/ContactRecordChildIterator.h"
+#include "Common/Database/ChildRecordIterator.h"
 
+using namespace Common;
+using namespace Common::Database;
 using namespace Contacts::Model;
 
 bool ContactArray::isChanged() const
@@ -70,8 +72,8 @@ void ContactArray::onInitialize(contacts_record_h record)
 
 void ContactArray::onUpdate(contacts_record_h record)
 {
-	auto recordIt = Contacts::begin(record, getPropertyId());
-	auto recordEnd = Contacts::end(record, getPropertyId());
+	auto recordIt = Database::begin(record, getPropertyId());
+	auto recordEnd = Database::end(record, getPropertyId());
 	auto fieldIt = begin();
 
 	while (fieldIt != end() && recordIt != recordEnd) {

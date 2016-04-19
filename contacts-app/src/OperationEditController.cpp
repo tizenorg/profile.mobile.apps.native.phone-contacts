@@ -17,16 +17,16 @@
 
 #include "OperationEditController.h"
 
-#include "MainApp.h"
+#include "Common/Database/Queries.h"
 #include "Contacts/Input/InputView.h"
 #include "Contacts/List/ListView.h"
-#include "Contacts/Utils.h"
 
 #include "App/AppControlRequest.h"
 #include "Ui/Navigator.h"
 
 #include <string>
 
+using namespace Common::Database;
 using namespace Contacts;
 using namespace Contacts::Input;
 using namespace Contacts::List;

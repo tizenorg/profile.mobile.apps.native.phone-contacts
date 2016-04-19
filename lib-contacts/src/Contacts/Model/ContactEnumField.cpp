@@ -17,8 +17,9 @@
 
 #include "Contacts/Model/ContactEnumField.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 
+using namespace Common::Database;
 using namespace Contacts::Model;
 
 void ContactEnumField::reset()

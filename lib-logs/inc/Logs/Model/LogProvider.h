@@ -21,11 +21,8 @@
 #include <contacts.h>
 #include <time.h>
 #include <memory>
-#include <set>
 
-#include "Contacts/Model/ContactRecordProvider.h"
-#include "Contacts/RecordListIterator.h"
-
+#include "Contacts/Model/ContactDataProvider.h"
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
 

@@ -16,7 +16,7 @@
  */
 
 #include "Contacts/Model/DbChangeObserver.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 #include "Utils/Callback.h"
 #include "Utils/Range.h"
 

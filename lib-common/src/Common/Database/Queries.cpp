@@ -15,10 +15,14 @@
  *
  */
 
-#include "Contacts/Utils.h"
+#include "Common/Database/Queries.h"
+#include "Common/Database/RecordUtils.h"
 #include "Utils/Logger.h"
 
-contacts_record_h Contacts::getDisplayContact(contacts_record_h personRecord)
+using namespace Common;
+using namespace Common::Database;
+
+contacts_record_h Database::getDisplayContact(contacts_record_h personRecord)
 {
 	int id = 0;
 	contacts_record_get_int(personRecord, _contacts_person.display_contact_id, &id);
@@ -30,7 +34,7 @@ contacts_record_h Contacts::getDisplayContact(contacts_record_h personRecord)
 	return record;
 }
 
-contacts_list_h Contacts::getContacts(contacts_record_h personRecord, Utils::Range<unsigned *> projection)
+contacts_list_h Database::getContacts(contacts_record_h personRecord, Utils::Range<unsigned *> projection)
 {
 	int id = getRecordInt(personRecord, _contacts_person.id);
 
@@ -52,7 +56,7 @@ contacts_list_h Contacts::getContacts(contacts_record_h personRecord, Utils::Ran
 	return list;
 }
 
-int Contacts::getDisplayContactId(int personId)
+int Database::getDisplayContactId(int personId)
 {
 	contacts_record_h record = 0;
 	int err = contacts_db_get_record(_contacts_person._uri, personId, &record);
@@ -65,7 +69,7 @@ int Contacts::getDisplayContactId(int personId)
 	return id;
 }
 
-int Contacts::getPersonId(int contactId)
+int Database::getPersonId(int contactId)
 {
 	contacts_record_h record = nullptr;
 	int err = contacts_db_get_record(_contacts_contact._uri, contactId, &record);

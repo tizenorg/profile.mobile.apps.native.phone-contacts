@@ -16,8 +16,9 @@
  */
 
 #include "Contacts/Model/ContactNumberData.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 
+using namespace Common::Database;
 using namespace Contacts::Model;
 using namespace Utils;
 

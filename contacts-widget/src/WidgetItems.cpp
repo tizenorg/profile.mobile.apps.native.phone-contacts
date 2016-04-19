@@ -16,7 +16,7 @@
  */
 
 #include "WidgetItems.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 #include "Utils/Callback.h"
 
 WidgetItems::WidgetItems()

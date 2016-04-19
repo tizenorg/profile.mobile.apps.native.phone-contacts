@@ -17,7 +17,7 @@
 
 #include "Contacts/Model/Contact.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
-#include "Contacts/Utils.h"
+#include "Common/Database/RecordUtils.h"
 
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
