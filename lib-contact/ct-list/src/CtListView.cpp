@@ -1538,10 +1538,13 @@ void CtListView::__cleanSearchbar()
 	WHIT();
 	if(__searchbarItem) {
 		//elm_genlist_item_show(__searchbarItem, ELM_GENLIST_ITEM_SCROLLTO_TOP);
-		Evas_Object *editfield = elm_object_item_part_content_get(__searchbarItem, "elm.swallow.content");
+		Evas_Object *layout = elm_object_item_part_content_get(__searchbarItem, "elm.swallow.content");
+		WControl *control = WControl_getInstanceFromEvasObj(layout);
+		WEditfield *editfield = static_cast<WEditfield *>(control);
 		if(editfield) {
-			if(elm_entry_is_empty(editfield) == EINA_FALSE)
-				elm_entry_entry_set(editfield, "");
+			if(elm_entry_is_empty(editfield->getEntry()) == EINA_FALSE) {
+				elm_entry_entry_set(editfield->getEntry(), "");
+			}
 		}
 
 		__showFastScroll();
