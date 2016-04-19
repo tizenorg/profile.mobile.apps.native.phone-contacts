@@ -45,6 +45,8 @@ namespace Contacts
 			 * @param[in]   id      Child field id
 			 * @return Child field.
 			 */
+			template <typename FieldType>
+			FieldType *getFieldById(unsigned id) const;
 			ContactField *getFieldById(unsigned id) const;
 
 			/**
@@ -58,11 +60,6 @@ namespace Contacts
 			bool operator==(contacts_record_h record) const;
 
 		protected:
-			/**
-			 * @return Record ID.
-			 */
-			int getRecordId(contacts_record_h record) const;
-
 			/**
 			 * @return Object type metadata.
 			 */
@@ -82,6 +79,12 @@ namespace Contacts
 			static contacts_record_h getChildRecord(contacts_record_h record,
 					const ContactFieldMetadata &metadata);
 		};
+
+		template <typename FieldType>
+		FieldType *ContactObject::getFieldById(unsigned id) const
+		{
+			return static_cast<FieldType *>(getFieldById(id));
+		}
 	}
 }
 

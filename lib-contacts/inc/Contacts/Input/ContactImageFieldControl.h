@@ -18,16 +18,12 @@
 #ifndef CONTACTS_INPUT_CONTACT_IMAGE_FIELD_CONTROL_H
 #define CONTACTS_INPUT_CONTACT_IMAGE_FIELD_CONTROL_H
 
+#include "Contacts/Model/ContactTextField.h"
 #include "App/AppControl.h"
 #include "Ui/Thumbnail.h"
 
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactTextField;
-	}
-
 	namespace Input
 	{
 		/**

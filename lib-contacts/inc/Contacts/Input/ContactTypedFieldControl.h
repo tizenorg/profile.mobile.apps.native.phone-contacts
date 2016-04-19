@@ -18,16 +18,12 @@
 #ifndef CONTACTS_INPUT_CONTACT_TYPED_FIELD_CONTROL_H
 #define CONTACTS_INPUT_CONTACT_TYPED_FIELD_CONTROL_H
 
+#include "Contacts/Model/ContactEnumField.h"
+#include "Contacts/Model/ContactTextField.h"
 #include "Ui/Hoversel.h"
 
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactEnumField;
-		class ContactTextField;
-	}
-
 	namespace Input
 	{
 		/**

@@ -33,17 +33,17 @@ using namespace std::placeholders;
 
 BasicInfoItem::BasicInfoItem(Contact &contact)
 	: m_Contact     (contact),
-	  m_Favorite    (&contact.getFieldById(FieldFavorite)->cast<ContactBoolField>()),
+	  m_Favorite    (contact.getFieldById<ContactBoolField>(FieldFavorite)),
 
-	  m_Image       (contact.getFieldById(FieldImage)->cast<ContactObject>()),
-	  m_ImagePath   (m_Image.getField(0)->cast<ContactTextField>()),
+	  m_Image       (*contact.getFieldById<ContactObject>(FieldImage)),
+	  m_ImagePath   (*m_Image.getField<ContactTextField>(0)),
 
-	  m_Name        (contact.getFieldById(FieldDisplayName)->cast<ContactTextField>()),
-	  m_PhoneticName(contact.getFieldById(FieldPhoneticName)->cast<ContactCompoundObject>()),
+	  m_Name        (*contact.getFieldById<ContactTextField>(FieldDisplayName)),
+	  m_PhoneticName(*contact.getFieldById<ContactCompoundObject>(FieldPhoneticName)),
 
-	  m_Company     (contact.getFieldById(FieldCompany)->cast<ContactObject>()),
-	  m_CompanyName (m_Company.getFieldById(CompanyFieldName)->cast<ContactTextField>()),
-	  m_JobTitle    (m_Company.getFieldById(CompanyFieldJobTitle)->cast<ContactTextField>()),
+	  m_Company     (*contact.getFieldById<ContactObject>(FieldCompany)),
+	  m_CompanyName (*m_Company.getFieldById<ContactTextField>(CompanyFieldName)),
+	  m_JobTitle    (*m_Company.getFieldById<ContactTextField>(CompanyFieldJobTitle)),
 
 	  m_SelectMode(Ux::SelectNone)
 {

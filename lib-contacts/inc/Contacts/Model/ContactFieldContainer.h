@@ -68,6 +68,8 @@ namespace Contacts
 			 * @param[in]   index   Child field index
 			 * @return Child field.
 			 */
+			template <typename FieldType>
+			FieldType *getField(unsigned index) const;
 			ContactField *getField(unsigned index) const;
 
 			/**
@@ -88,6 +90,12 @@ namespace Contacts
 			ContactFields m_Fields;
 			size_t m_FilledCount = 0;
 		};
+
+		template <typename FieldType>
+		FieldType *ContactFieldContainer::getField(unsigned index) const
+		{
+			return static_cast<FieldType *>(getField(index));
+		}
 	}
 }
 

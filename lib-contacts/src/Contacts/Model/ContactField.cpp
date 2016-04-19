@@ -16,12 +16,7 @@
  */
 
 #include "Contacts/Model/ContactField.h"
-#include "Contacts/Model/ContactArray.h"
-#include "Contacts/Model/ContactBoolField.h"
-#include "Contacts/Model/ContactDateField.h"
-#include "Contacts/Model/ContactEnumField.h"
-#include "Contacts/Model/ContactTypedObject.h"
-#include "Contacts/Model/ContactCompoundObject.h"
+#include "Contacts/Model/ContactFieldContainer.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
 
 using namespace Contacts::Model;
@@ -62,36 +57,6 @@ void ContactField::update(contacts_record_h record)
 		onUpdated(*this, CONTACTS_CHANGE_UPDATED);
 	}
 }
-
-template <typename FieldType>
-FieldType &ContactField::cast()
-{
-	return static_cast<FieldType &>(*this);
-}
-
-template <typename FieldType>
-const FieldType &ContactField::cast() const
-{
-	return static_cast<const FieldType &>(*this);
-}
-
-template ContactArray &ContactField::cast();
-template ContactBoolField &ContactField::cast();
-template ContactDateField &ContactField::cast();
-template ContactEnumField &ContactField::cast();
-template ContactTextField &ContactField::cast();
-template ContactObject &ContactField::cast();
-template ContactTypedObject &ContactField::cast();
-template ContactCompoundObject &ContactField::cast();
-
-template const ContactArray &ContactField::cast() const;
-template const ContactBoolField &ContactField::cast() const;
-template const ContactDateField &ContactField::cast() const;
-template const ContactEnumField &ContactField::cast() const;
-template const ContactTextField &ContactField::cast() const;
-template const ContactObject &ContactField::cast() const;
-template const ContactTypedObject &ContactField::cast() const;
-template const ContactCompoundObject &ContactField::cast() const;
 
 bool ContactField::isRequired() const
 {

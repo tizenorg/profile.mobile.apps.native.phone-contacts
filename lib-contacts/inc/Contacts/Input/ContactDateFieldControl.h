@@ -18,15 +18,11 @@
 #ifndef CONTACTS_INPUT_CONTACT_DATE_FIELD_CONTROL_H
 #define CONTACTS_INPUT_CONTACT_DATE_FIELD_CONTROL_H
 
+#include "Contacts/Model/ContactDateField.h"
 #include "Ui/Control.h"
 
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactDateField;
-	}
-
 	namespace Input
 	{
 		/**

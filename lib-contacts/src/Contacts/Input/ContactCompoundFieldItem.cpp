@@ -18,6 +18,7 @@
 #include "Contacts/Input/ContactCompoundFieldItem.h"
 #include "Contacts/Input/ContactCompoundFieldControl.h"
 #include "Contacts/Model/ContactObject.h"
+#include "Contacts/Model/ContactCompoundObject.h"
 
 #include "App/Path.h"
 #include "Utils/Callback.h"
