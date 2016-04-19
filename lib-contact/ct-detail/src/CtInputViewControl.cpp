@@ -419,11 +419,15 @@ void CtInputViewControl:: __genlistRealizedCb(void *data, Evas_Object *obj, void
 {
 	WHIT();
 	CtInputViewControl *control = (CtInputViewControl*)data;
+	Elm_Object_Item *objectItem = (Elm_Object_Item*) event_info;
+	CtInputViewGenlistItem *item = (CtInputViewGenlistItem*) elm_object_item_data_get(objectItem);
+
+	if (item && !item->getElmObjectItem()) {
+		item->setElmObjectItem(objectItem);
+	}
 
 	control->__updateEntryReturnKeyType(NULL);
 
-	Elm_Object_Item *objectItem = (Elm_Object_Item*) event_info;
-	CtInputViewGenlistItem *item = (CtInputViewGenlistItem*) elm_object_item_data_get(objectItem);
 	if (item) {
 		item->onRealized();
 	}

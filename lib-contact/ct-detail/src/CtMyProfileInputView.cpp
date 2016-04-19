@@ -168,11 +168,15 @@ void CtMyProfileInputView:: __genlistRealizedCb(void *data, Evas_Object *obj, vo
 {
 	WHIT();
 	CtMyProfileInputView *view = (CtMyProfileInputView*)data;
+	Elm_Object_Item *objectItem = (Elm_Object_Item*) event_info;
+	CtInputViewGenlistItem *item = (CtInputViewGenlistItem*) elm_object_item_data_get(objectItem);
+
+	if (item && !item->getElmObjectItem()) {
+		item->setElmObjectItem(objectItem);
+	}
 
 	view->__updateEntryReturnKeyType(NULL);
 
-	Elm_Object_Item *objectItem = (Elm_Object_Item*) event_info;
-	CtInputViewGenlistItem *item = (CtInputViewGenlistItem*) elm_object_item_data_get(objectItem);
 	if (item) {
 		item->onRealized();
 	}
