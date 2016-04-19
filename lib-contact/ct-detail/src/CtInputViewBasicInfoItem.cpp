@@ -288,19 +288,7 @@ Evas_Object* CtInputViewBasicInfoItem::__createNameField(CtInputViewBasicInfoIte
 	evas_object_smart_callback_add(entry, "activated", __activatedCb, item);
 
 	elm_entry_input_panel_imdata_set(entry, (void*)"type=name&allowEmoji=true", 25);
-
-	bool first = false;
-	int error = preference_get_boolean(CT_KEY_CONTACT_CREATE_FIRST, &first);
-	if (error != PREFERENCE_ERROR_NONE)
-	{
-		WDEBUG("preference_get_boolean failed");
-	}
-	else
-	{
-		if (!first && item->__inputData->getContactId() == 0 ) {
-			evas_object_event_callback_add(entry, EVAS_CALLBACK_SHOW, __basicInfoNameShowCb, item);
-		}
-	}
+	evas_object_event_callback_add(entry, EVAS_CALLBACK_SHOW, __basicInfoNameShowCb, item);
 
 	setEntryText( entry, name.c_str());
 
@@ -1262,7 +1250,9 @@ void CtInputViewBasicInfoItem::__basicInfoNameShowCb(void *data, Evas *e, Evas_O
 	CtInputViewBasicInfoItem* item = (CtInputViewBasicInfoItem*)data;
 	evas_object_event_callback_del_full( obj, EVAS_CALLBACK_SHOW, __basicInfoNameShowCb, item );
 
-	item->__showCreateKeypadCb( obj );
+	if (item->__showCreateKeypadCb) {
+		item->__showCreateKeypadCb( obj );
+	}
 }
 
 void CtInputViewBasicInfoItem::__basicInfoSuffixShowCb(void *data, Evas *e, Evas_Object *obj, void *event_info)
