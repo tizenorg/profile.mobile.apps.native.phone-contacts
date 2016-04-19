@@ -84,9 +84,9 @@ void InputView::addField(Model::ContactFieldId fieldId, const char *value)
 	if (field.getInterfaces() & InterfaceCompoundObject) {
 		field.cast<ContactCompoundObject>().setValue(value);
 	} else {
-		ContactField *subField = field.getField(0);
+		ContactTextField *subField = field.getField<ContactTextField>(0);
 		if (subField && subField->getType() == TypeText) {
-			subField->cast<ContactTextField>().setValue(value);
+			subField->setValue(value);
 		} else {
 			removeField(field);
 			return;

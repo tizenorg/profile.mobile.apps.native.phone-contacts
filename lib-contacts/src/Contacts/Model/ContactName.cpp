@@ -28,8 +28,8 @@ std::string ContactName::getValue() const
 	unsigned fieldIds[] = { NameFieldTitle, NameFieldFirst, NameFieldMiddle, NameFieldLast };
 	std::string value = getValues(fieldIds);
 
-	auto suffixField = getFieldById(NameFieldSuffix);
-	const char *suffix = suffixField->cast<ContactTextField>().getValue();
+	auto suffixField = getFieldById<ContactTextField>(NameFieldSuffix);
+	const char *suffix = suffixField->getValue();
 	if (suffix) {
 		if (!value.empty()) {
 			value += ", ";

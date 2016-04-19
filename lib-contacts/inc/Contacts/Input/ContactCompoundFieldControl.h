@@ -19,14 +19,10 @@
 #define CONTACTS_INPUT_CONTACT_COMPOUND_FIELD_CONTROL_H
 
 #include "Contacts/Input/ContactTextFieldControl.h"
+#include "Contacts/Model/ContactCompoundObject.h"
 
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactCompoundObject;
-	}
-
 	namespace Input
 	{
 		/**

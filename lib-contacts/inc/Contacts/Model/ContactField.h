@@ -205,6 +205,18 @@ namespace Contacts
 			UpdateCallback m_OnUpdated;
 		};
 
+		template <typename FieldType>
+		FieldType &ContactField::cast()
+		{
+			return static_cast<FieldType &>(*this);
+		}
+
+		template <typename FieldType>
+		const FieldType &ContactField::cast() const
+		{
+			return static_cast<const FieldType &>(*this);
+		}
+
 		typedef std::unique_ptr<ContactField> ContactFieldPtr;
 		typedef std::vector<ContactFieldPtr> ContactFields;
 	}
