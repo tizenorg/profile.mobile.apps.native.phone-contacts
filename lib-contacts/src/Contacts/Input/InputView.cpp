@@ -131,7 +131,7 @@ Evas_Object *InputView::onCreate(Evas_Object *parent)
 void InputView::onCreated()
 {
 	addFieldItem(addField(FieldImage));
-	addFieldItem(addField(FieldName))->focus();
+	ContactFieldItem *nameItem = addFieldItem(addField(FieldName));
 
 	for (auto &&field : m_Contact) {
 		ContactFieldId fieldId = ContactFieldId(field.getId());
@@ -156,8 +156,11 @@ void InputView::onCreated()
 		}
 	}
 
-	if (m_Contact.isNew() && m_Contact.getFieldById(FieldNumber)->isEmpty()) {
-		addFieldItem(addField(FieldNumber));
+	if (m_Contact.isNew()) {
+		if (m_Contact.getFieldById(FieldNumber)->isEmpty()) {
+			addFieldItem(addField(FieldNumber));
+		}
+		nameItem->focus();
 	}
 }
 
