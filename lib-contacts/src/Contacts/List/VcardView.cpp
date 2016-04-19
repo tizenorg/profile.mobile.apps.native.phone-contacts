@@ -50,7 +50,7 @@ Evas_Object *VcardView::onCreate(Evas_Object *parent)
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
 
-	for (auto &&contact : m_Provider.getContactDataList()) {
+	for (auto &&contact : m_Provider.getDataList()) {
 		ContactItem *item = new ContactItem(static_cast<ContactRecordData &>(*contact));
 		m_Genlist->insert(item);
 		onItemInserted(item);

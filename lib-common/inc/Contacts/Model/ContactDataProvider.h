@@ -30,6 +30,8 @@ namespace Contacts
 		class EXPORT_API ContactDataProvider
 		{
 		public:
+			typedef std::list<ContactData *> DataList;
+
 			/**
 			 * @brief Insert callback
 			 * @param[in] Contact data
@@ -41,12 +43,12 @@ namespace Contacts
 			/**
 			 * @return Contact data list
 			 */
-			virtual const ContactDataList &getContactDataList() = 0;
+			virtual const DataList &getDataList() = 0;
 
 			/**
 			 * @brief Clear contact data list
 			 */
-			virtual void clearContactDataList() { }
+			virtual void clearDataList() { }
 
 			/**
 			 * @brief Set insert callback

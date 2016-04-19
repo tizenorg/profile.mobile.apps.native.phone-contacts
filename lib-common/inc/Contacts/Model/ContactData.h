@@ -26,11 +26,6 @@ namespace Contacts
 {
 	namespace Model
 	{
-		class ContactData;
-
-		typedef std::unique_ptr<ContactData> ContactDataPtr;
-		typedef std::list<ContactData *> ContactDataList;
-
 		class EXPORT_API ContactData
 		{
 		public:

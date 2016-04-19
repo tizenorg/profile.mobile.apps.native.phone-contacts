@@ -42,7 +42,7 @@ ContactRecordProvider::~ContactRecordProvider()
 	}
 }
 
-const ContactDataList &ContactRecordProvider::getContactDataList()
+const ContactRecordProvider::DataList &ContactRecordProvider::getDataList()
 {
 	if (!m_ContactList.empty()) {
 		return m_ContactList;
@@ -61,7 +61,7 @@ const ContactDataList &ContactRecordProvider::getContactDataList()
 	return m_ContactList;
 }
 
-void ContactRecordProvider::clearContactDataList()
+void ContactRecordProvider::clearDataList()
 {
 	for (auto &&contact : m_ContactList) {
 		delete contact;
@@ -91,7 +91,7 @@ contacts_record_h ContactRecordProvider::getRecord(int id)
 	return record;
 }
 
-const ContactDataList &ContactRecordProvider::getContactList()
+const ContactRecordProvider::DataList &ContactRecordProvider::getContactList()
 {
 	return m_ContactList;
 }
@@ -107,7 +107,7 @@ void ContactRecordProvider::onInserted(int id, contacts_changed_e changeType)
 	}
 }
 
-void ContactRecordProvider::onChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType)
+void ContactRecordProvider::onChanged(DataList::iterator contactIt, int id, contacts_changed_e changeType)
 {
 	auto contact = static_cast<ContactRecordData *>(*contactIt);
 
@@ -128,7 +128,7 @@ void ContactRecordProvider::onChanged(ContactDataList::iterator contactIt, int i
 	delete contact;
 }
 
-void ContactRecordProvider::updateChangedCallback(ContactDataList::iterator it)
+void ContactRecordProvider::updateChangedCallback(DataList::iterator it)
 {
 	auto contactData = static_cast<ContactRecordData *>(*it);
 

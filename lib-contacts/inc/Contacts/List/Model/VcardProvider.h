@@ -44,13 +44,13 @@ namespace Contacts
 				VcardProvider &operator=(const VcardProvider &contact) = delete;
 
 				/**
-				 * @see ContactDataProvider::getContactDataList()
+				 * @see ContactDataProvider::getDataList()
 				 * @return Contact data list
 				 */
-				virtual const Contacts::Model::ContactDataList &getContactDataList() override;
+				virtual const DataList &getDataList() override;
 
 			private:
-				Contacts::Model::ContactDataList m_ContactsList;
+				DataList m_ContactsList;
 			};
 		}
 	}

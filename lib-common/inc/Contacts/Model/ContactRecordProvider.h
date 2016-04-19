@@ -32,14 +32,14 @@ namespace Contacts
 			virtual ~ContactRecordProvider() override;
 
 			/**
-			 * @see ContactDataProvider::getContactDataList()
+			 * @see ContactDataProvider::getDataList()
 			 */
-			virtual const ContactDataList &getContactDataList() override;
+			virtual const DataList &getDataList() override;
 
 			/**
-			 * @see ContactDataProvider::clearContactDataList()
+			 * @see ContactDataProvider::clearDataList()
 			 */
-			virtual void clearContactDataList() override;
+			virtual void clearDataList() override;
 
 		protected:
 			using ContactDataProvider::onInserted;
@@ -69,7 +69,7 @@ namespace Contacts
 			/**
 			 * @return contact list
 			 */
-			const ContactDataList &getContactList();
+			const DataList &getContactList();
 
 			/**
 			 * @brief Contact inserted callback
@@ -84,7 +84,7 @@ namespace Contacts
 			 * @param[in]   id          Contact ID
 			 * @param[in]   changeType  Contact change type (Updated/Deleted)
 			 */
-			void onChanged(ContactDataList::iterator contactIt, int id, contacts_changed_e changeType);
+			void onChanged(DataList::iterator contactIt, int id, contacts_changed_e changeType);
 
 		private:
 			/**
@@ -94,10 +94,10 @@ namespace Contacts
 			 */
 			virtual bool shouldUpdateChangedCallback() { return false; }
 
-			void updateChangedCallback(ContactDataList::iterator it);
+			void updateChangedCallback(DataList::iterator it);
 
 			DbChangeObserver::CallbackHandle m_Handle;
-			ContactDataList m_ContactList;
+			DataList m_ContactList;
 		};
 	}
 }

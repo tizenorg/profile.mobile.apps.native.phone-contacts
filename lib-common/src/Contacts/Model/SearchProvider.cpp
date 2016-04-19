@@ -34,14 +34,14 @@ SearchProvider::~SearchProvider()
 	}
 }
 
-const ContactDataList &SearchProvider::getContactDataList()
+const SearchProvider::DataList &SearchProvider::getDataList()
 {
 	return m_ContactList;//Todo: Return filtered list by search engine instead of all contacts
 }
 
 void SearchProvider::addProvider(ContactDataProvider *provider)
 {
-	const ContactDataList &list = provider->getContactDataList();
+	const DataList &list = provider->getDataList();
 	for (auto it = list.begin(); it != list.end(); ++it) {
 		insertContact(m_ContactList.end(), **it, provider);
 	}
@@ -53,13 +53,13 @@ void SearchProvider::addProvider(ContactDataProvider *provider)
 		});
 }
 
-ContactData &SearchProvider::insertContact(ContactDataList::const_iterator position, ContactData &contact,
+ContactData &SearchProvider::insertContact(DataList::const_iterator position, ContactData &contact,
 		ContactDataProvider *provider)
 {
 	auto searchData = new SearchData(contact);
 	auto newDataIt = m_ContactList.insert(position, searchData);
 
-	ContactDataList::iterator contactIt = --m_ContactList.end();
+	DataList::iterator contactIt = --m_ContactList.end();
 
 	contact.setUpdateCallback(std::bind(&SearchProvider::onUpdated, this, std::ref(*searchData), _1));
 	contact.setDeleteCallback(std::bind(&SearchProvider::onDeleted, this, contactIt, provider));
@@ -83,15 +83,15 @@ void SearchProvider::onUpdated(SearchData &searchData, int changes)
 	searchData.onUpdated(changes);
 }
 
-void SearchProvider::onDeleted(ContactDataList::iterator contactIt, ContactDataProvider *provider)
+void SearchProvider::onDeleted(DataList::iterator contactIt, ContactDataProvider *provider)
 {
 	SearchData *searchData = static_cast<SearchData *>(*contactIt);
 	searchData->onDeleted();
 
 	delete searchData;
-	ContactDataList::const_iterator newBound = m_ContactList.erase(contactIt);
+	DataList::const_iterator newBound = m_ContactList.erase(contactIt);
 
-	ContactDataList::const_iterator &oldBound = m_SubProviders[provider];
+	DataList::const_iterator &oldBound = m_SubProviders[provider];
 	if (oldBound == contactIt) {
 		oldBound = Utils::advance(newBound, -1);
 	}

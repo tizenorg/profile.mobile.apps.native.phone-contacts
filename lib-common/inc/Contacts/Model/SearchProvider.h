@@ -35,9 +35,9 @@ namespace Contacts
 			virtual ~SearchProvider() override;
 
 			/**
-			 * @see ContactDataProvider::getContactDataList()
+			 * @see ContactDataProvider::getDataList()
 			 */
-			virtual const ContactDataList &getContactDataList() override;
+			virtual const DataList &getDataList() override;
 
 			/**
 			 * @brief Add @a provider to search provider
@@ -46,17 +46,17 @@ namespace Contacts
 			void addProvider(ContactDataProvider *provider);
 
 		private:
-			typedef std::unordered_map<ContactDataProvider *, ContactDataList::const_iterator> SubProviders;
+			typedef std::unordered_map<ContactDataProvider *, DataList::const_iterator> SubProviders;
 			using ContactDataProvider::onInserted;
 
-			ContactData &insertContact(ContactDataList::const_iterator position, ContactData &contact,
+			ContactData &insertContact(DataList::const_iterator position, ContactData &contact,
 					ContactDataProvider *provider);
 
 			void onInserted(ContactData &contactData, ContactDataProvider *provider);
 			void onUpdated(SearchData &searchData, int changes);
-			void onDeleted(ContactDataList::iterator contactIt, ContactDataProvider *provider);
+			void onDeleted(DataList::iterator contactIt, ContactDataProvider *provider);
 
-			ContactDataList m_ContactList;
+			DataList m_ContactList;
 			SubProviders m_SubProviders;
 		};
 	}

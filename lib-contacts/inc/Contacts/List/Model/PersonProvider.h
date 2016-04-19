@@ -49,7 +49,7 @@ namespace Contacts
 				 * @brief Get person list
 				 * @return List of contact objects
 				 */
-				virtual const Contacts::Model::ContactDataList &getContactDataList() override;
+				virtual const DataList &getDataList() override;
 
 			protected:
 				/**

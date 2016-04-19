@@ -18,7 +18,7 @@
 #ifndef PHONE_DIALER_SEARCH_ENGINE_H
 #define PHONE_DIALER_SEARCH_ENGINE_H
 
-#include "Contacts/Model/ContactData.h"
+#include "Contacts/Model/ContactDataProvider.h"
 #include <string>
 #include <vector>
 
@@ -34,6 +34,8 @@ namespace Contacts
 		class SearchEngine
 		{
 		public:
+			typedef ContactDataProvider::DataList DataList;
+
 			explicit SearchEngine(SearchProvider &searchProvider);
 
 			/**
@@ -46,7 +48,7 @@ namespace Contacts
 			 * @brief Retrieves result list
 			 * @return Result list or nullptr on empty list
 			 */
-			const ContactDataList *getSearchResult() const;
+			const DataList *getSearchResult() const;
 
 			/**
 			 * @return true if there is no results, otherwise false
@@ -54,7 +56,7 @@ namespace Contacts
 			bool empty() const;
 
 		private:
-			typedef std::vector<ContactDataList> SearchHistory;
+			typedef std::vector<DataList> SearchHistory;
 
 			void firstSearch(const std::string &query);
 			void chooseSearch(const std::string &query);

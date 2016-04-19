@@ -59,7 +59,7 @@ namespace Logs
 			/**
 			 * @brief Log iterator.
 			 */
-			typedef Contacts::Model::ContactDataList::iterator LogIterator;
+			typedef DataList::iterator LogIterator;
 
 			/**
 			 * @brief Group iterator.
@@ -92,7 +92,7 @@ namespace Logs
 			 * @brief Get log group list
 			 * @return List of log group objects
 			 */
-			virtual const Contacts::Model::ContactDataList &getContactDataList() override;
+			virtual const DataList &getDataList() override;
 
 			/**
 			 * @brief Reset log group list
@@ -136,7 +136,7 @@ namespace Logs
 			int m_DbVersion;
 
 			LogGroupList m_Groups;
-			Contacts::Model::ContactDataList m_Logs;
+			DataList m_Logs;
 
 			InsertCallback m_InsertCallback;
 		};

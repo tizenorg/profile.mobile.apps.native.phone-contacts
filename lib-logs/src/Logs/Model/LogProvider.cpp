@@ -56,7 +56,7 @@ const LogProvider::LogGroupList &LogProvider::getLogGroupList()
 	return m_Groups;
 }
 
-const Contacts::Model::ContactDataList &LogProvider::getContactDataList()
+const LogProvider::DataList &LogProvider::getDataList()
 {
 	if (m_Logs.empty()) {
 		fillList();

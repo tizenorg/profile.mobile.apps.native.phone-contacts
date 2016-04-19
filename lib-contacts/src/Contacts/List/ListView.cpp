@@ -182,7 +182,7 @@ void ListView::onNameSortingOrderChanged(contacts_name_sorting_order_e sortingOr
 			delete personGroup.second;
 		}
 		view->m_PersonGroups.clear();
-		view->m_Provider.clearContactDataList();
+		view->m_Provider.clearDataList();
 
 		elm_index_item_clear(view->m_Index);
 		elm_index_level_go(view->m_Index, 0);
@@ -233,7 +233,7 @@ void ListView::fillPersonList()
 	if (m_PersonGroups.empty()) {
 		PersonGroupItem *group = nullptr;
 
-		for (auto &&contactData : m_Provider.getContactDataList()) {
+		for (auto &&contactData : m_Provider.getDataList()) {
 			Person &person = static_cast<Person &>(*contactData);
 
 			const UniString &nextLetter = person.getIndexLetter();
@@ -315,8 +315,7 @@ void ListView::hideNoContentLayout()
 
 void ListView::updateNoContentLayout()
 {
-	ContactDataList list = m_Provider.getContactDataList();
-	list.size() > 0 ? hideNoContentLayout() : showNoContentLayout();
+	m_Provider.getDataList().size() > 0 ? hideNoContentLayout() : showNoContentLayout();
 }
 
 void ListView::setFavouriteItemsMode(SelectMode selectMode)

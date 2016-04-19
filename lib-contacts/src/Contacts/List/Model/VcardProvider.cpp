@@ -27,7 +27,7 @@ VcardProvider::VcardProvider(std::string vcardPath)
 {
 	int err = contacts_vcard_parse_to_contact_foreach(vcardPath.c_str(), [](contacts_record_h record, void *data)->bool {
 		RETVM_IF(!record || !data, true, "invalid data");
-		ContactDataList *list = (ContactDataList *)data;
+		DataList *list = (DataList *)data;
 
 		contacts_record_h recordClone;
 		contacts_record_clone(record, &recordClone);
@@ -47,7 +47,7 @@ VcardProvider::~VcardProvider()
 	}
 }
 
-const ContactDataList &VcardProvider::getContactDataList()
+const VcardProvider::DataList &VcardProvider::getDataList()
 {
 	return m_ContactsList;
 }

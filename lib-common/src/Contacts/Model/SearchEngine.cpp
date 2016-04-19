@@ -39,7 +39,7 @@ void SearchEngine::search(const std::string &query)
 	m_Query = query;
 }
 
-const ContactDataList *SearchEngine::getSearchResult() const
+const SearchEngine::DataList *SearchEngine::getSearchResult() const
 {
 	if (!m_Cache.empty()) {
 		return &m_Cache.back();
@@ -57,8 +57,7 @@ void SearchEngine::firstSearch(const std::string &query)
 {
 	clear();
 
-	const ContactDataList searchList = m_SearchProvider.getContactDataList();
-
+	auto &searchList = m_SearchProvider.getDataList();
 	if (!searchList.empty()) {
 		m_Cache.resize(query.size());
 		m_Cache.front() = std::move(searchList);
@@ -93,7 +92,7 @@ void SearchEngine::chooseSearch(const std::string &query)
 
 bool SearchEngine::searchInCache(SearchHistory::iterator from, const std::string &query)
 {
-	ContactDataList searchRes;
+	DataList searchRes;
 	/* for (auto &&contactData : *from) {  Todo: Compare
 	} */
 

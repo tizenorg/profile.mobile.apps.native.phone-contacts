@@ -51,7 +51,7 @@ PersonProvider::~PersonProvider()
 			makeCallbackWithLastParam(&PersonProvider::onNameFormatChanged), this);
 }
 
-const ContactDataList &PersonProvider::getContactDataList()
+const PersonProvider::DataList &PersonProvider::getDataList()
 {
 	auto &contactList = getContactList();
 	if (!contactList.empty()) {
@@ -161,7 +161,7 @@ bool PersonProvider::shouldUpdateChangedCallback()
 
 void PersonProvider::onNameFormatChanged(contacts_name_display_order_e order)
 {
-	for (auto &&contactData : getContactDataList()) {
+	for (auto &&contactData : getDataList()) {
 		Person *person = static_cast<Person *>(contactData);
 		person->update();
 	}
