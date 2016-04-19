@@ -39,7 +39,7 @@ void DatePopup::onCreated()
 	});
 
 	m_DatePicker = elm_datetime_add(getEvasObject());
-	elm_datetime_format_set(m_DatePicker, "%%x");
+	elm_datetime_format_set(m_DatePicker, "%%d %%b %%Y");
 	elm_datetime_value_set(m_DatePicker, &m_Date);
 	setContent(m_DatePicker);
 }

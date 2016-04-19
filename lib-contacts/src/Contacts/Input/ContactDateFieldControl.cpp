@@ -47,7 +47,7 @@ void ContactDateFieldControl::update()
 {
 	tm date = m_Field.getValue();
 	char buffer[DATE_BUFFER_SIZE];
-	strftime(buffer, sizeof(buffer), "%x", &date);
+	strftime(buffer, sizeof(buffer), "%d/%m/%Y", &date);
 	elm_object_text_set(m_Button, buffer);
 }
 
