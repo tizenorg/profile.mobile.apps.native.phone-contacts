@@ -31,7 +31,7 @@ VcardProvider::VcardProvider(std::string vcardPath)
 
 		contacts_record_h recordClone;
 		contacts_record_clone(record, &recordClone);
-		ContactRecordData *contact = new ContactRecordData(ContactData::TypeContact, recordClone);
+		ContactRecordData *contact = new ContactRecordData(recordClone);
 		list->push_back(contact);
 
 		// Return true to continue to scan next contact, according to contacts_vcard_parse_cb specification.

@@ -19,10 +19,7 @@
 #define CONTACTS_MODEL_CONTACT_RECORD_DATA_H
 
 #include "Contacts/Model/ContactData.h"
-#include "Contacts/Model/ContactNumberData.h"
-#include "Contacts/Model/DbChangeObserver.h"
 #include <contacts.h>
-#include <vector>
 
 namespace Contacts
 {
@@ -32,16 +29,10 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @brief Number objects list
-			 */
-			typedef std::vector<ContactNumberData *> Numbers;
-
-			/**
 			 * @brief Create ContactRecordData object
-			 * @param[in]   type    ContactRecordData type
 			 * @param[in]   record  Contact record
 			 */
-			ContactRecordData(Type type, contacts_record_h record = nullptr);
+			ContactRecordData(contacts_record_h record = nullptr);
 			virtual ~ContactRecordData() override;
 
 			/**
@@ -69,61 +60,16 @@ namespace Contacts
 			virtual const char *getImagePath() const override;
 
 			/**
-			 * @return Contact number list
+			 * @return Contact record
 			 */
-			virtual const Numbers &getNumbers();
-
-			/**
-			 * @return contact record
-			 */
-			const contacts_record_h getContactRecord() const;
+			contacts_record_h getRecord() const;
 
 		protected:
-			/**
-			 * @brief Set changed callback
-			 * @param[in]   callback    Change callback
-			 */
-			virtual void setChangedCallback(DbChangeObserver::Callback callback);
-
-			/**
-			 * @brief Unset changed callback
-			 */
-			virtual void unsetChangedCallback();
-
-
 			/**
 			 * @brief Update contact record handle
 			 * @param[in]   record  Contact record
 			 */
 			void updateRecord(contacts_record_h record);
-
-			/**
-			 * @brief Add @a handle to list of changed handles
-			 * @param[in]   handle  DB handle
-			 */
-			void addChangedHandle(DbChangeObserver::CallbackHandle handle);
-
-			/**
-			 * @param[in]   index   Index in handle container
-			 * @return Changed handle at @a i position
-			 */
-			DbChangeObserver::CallbackHandle getChangedHandle(size_t index) const;
-
-			/**
-			 * @brief Clear handle list
-			 */
-			void clearChangedHandles();
-
-			/**
-			 * @brief Fill contact numbers from DB
-			 * @param[in]   record     _contacts_contact record
-			 */
-			void fillContactNumbers(contacts_record_h record);
-
-			/**
-			 * @return Contact numbers
-			 */
-			const Numbers &getContactNumbers() const;
 
 			/**
 			 * @param[in]   newContact  New contact record
@@ -133,25 +79,15 @@ namespace Contacts
 
 			/**
 			 * @param[in]   record  Contact record
-			 * @return Contact ID
-			 */
-			static int getContactId(contacts_record_h record);
-
-			/**
-			 * @param[in]   record  Contact record
 			 * @param[in]   field   Contact field
 			 * @return Contact value Name/Number/ImagePath
 			 */
 			static const char *getValue(contacts_record_h record, Field field);
 
 		private:
-			friend class ContactRecordProvider;
-
-			virtual void onUpdate(contacts_record_h record);
+			void onUpdate(contacts_record_h record);
 
 			contacts_record_h m_Record;
-			Numbers m_Numbers;
-			std::vector<DbChangeObserver::CallbackHandle> m_Handles;
 		};
 	}
 }

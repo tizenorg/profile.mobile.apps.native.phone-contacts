@@ -16,31 +16,15 @@
  */
 
 #include "Common/Database/Queries.h"
-#include "Common/Database/RecordUtils.h"
 #include "Utils/Logger.h"
 
 using namespace Common;
-using namespace Common::Database;
 
-contacts_record_h Database::getDisplayContact(contacts_record_h personRecord)
+contacts_list_h Database::getPersonContacts(int personId, Utils::Range<unsigned *> projection)
 {
-	int id = 0;
-	contacts_record_get_int(personRecord, _contacts_person.display_contact_id, &id);
-
-	contacts_record_h record = nullptr;
-	int err = contacts_db_get_record(_contacts_contact._uri, id, &record);
-	RETVM_IF_ERR(err, nullptr, "contacts_db_get_record() failed.");
-
-	return record;
-}
-
-contacts_list_h Database::getContacts(contacts_record_h personRecord, Utils::Range<unsigned *> projection)
-{
-	int id = getRecordInt(personRecord, _contacts_person.id);
-
 	contacts_filter_h filter = nullptr;
 	contacts_filter_create(_contacts_contact._uri, &filter);
-	contacts_filter_add_int(filter, _contacts_contact.person_id, CONTACTS_MATCH_EQUAL, id);
+	contacts_filter_add_int(filter, _contacts_contact.person_id, CONTACTS_MATCH_EQUAL, personId);
 
 	contacts_query_h query = nullptr;
 	contacts_query_create(_contacts_contact._uri, &query);

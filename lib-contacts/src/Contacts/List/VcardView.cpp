@@ -69,7 +69,7 @@ bool VcardView::onSelectResult(Ux::SelectResults results)
 	std::vector<contacts_record_h> records;
 	for (auto &&result : results) {
 		ContactRecordData *contact = (ContactRecordData *) result.value.data;
-		records.push_back(contact->getContactRecord());
+		records.push_back(contact->getRecord());
 	}
 
 	Settings::ImportController *importer = new Settings::ImportController(getEvasObject(),

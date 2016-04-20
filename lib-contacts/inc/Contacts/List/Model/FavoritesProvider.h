@@ -55,9 +55,9 @@ namespace Contacts
 
 			protected:
 				/**
-				 * @see ContactRecordProvider::createContactData
+				 * @see PersonProvider::createPerson
 				 */
-				virtual Contacts::Model::ContactData *createContactData(contacts_record_h record) override;
+				virtual Person *createPerson(contacts_record_h record) override;
 
 				/**
 				 * @see PersonProvider::getFilter
@@ -70,7 +70,6 @@ namespace Contacts
 				virtual contacts_query_h getQuery() const override;
 
 			private:
-
 				Mode m_Mode;
 			};
 		}
