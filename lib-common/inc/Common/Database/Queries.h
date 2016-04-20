@@ -26,20 +26,13 @@ namespace Common
 	namespace Database
 	{
 		/**
-		 * @brief Get display contact record for a person.
-		 * @param[in]   personRecord    _contacts_person record
-		 * @return Display contact's _contacts_contact record.
-		 */
-		EXPORT_API contacts_record_h getDisplayContact(contacts_record_h personRecord);
-
-		/**
 		 * @brief Get contact records for a person.
 		 * @remark Return value MUST be destroyed with contacts_list_destroy by you
-		 * @param[in]   personRecord    _contacts_person record.
-		 * @param[in]   projection      Query projection in _contacts_contact view
+		 * @param[in]   personId    _contacts_person ID.
+		 * @param[in]   projection  Query projection in _contacts_contact view
 		 * @return _contacts_contact record list
 		 */
-		EXPORT_API contacts_list_h getContacts(contacts_record_h personRecord, Utils::Range<unsigned *> projection = { });
+		EXPORT_API contacts_list_h getPersonContacts(int personId, Utils::Range<unsigned *> projection = { });
 
 		/**
 		 * @brief Get display contact ID by person ID.

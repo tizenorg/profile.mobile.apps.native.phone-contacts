@@ -18,8 +18,7 @@
 #ifndef CONTACTS_LIST_MODEL_PERSON_H
 #define CONTACTS_LIST_MODEL_PERSON_H
 
-#include "Contacts/Model/DbChangeObserver.h"
-#include "Contacts/Model/ContactRecordData.h"
+#include "Contacts/Model/ContactData.h"
 #include "Utils/UniString.h"
 #include <contacts.h>
 #include <vector>
@@ -31,6 +30,11 @@ namespace Utils
 
 namespace Contacts
 {
+	namespace Model
+	{
+		class ContactNumberData;
+	}
+
 	namespace List
 	{
 		namespace Model
@@ -38,9 +42,14 @@ namespace Contacts
 			/**
 			 * @brief Person object
 			 */
-			class Person : public Contacts::Model::ContactRecordData
+			class Person : public Contacts::Model::ContactData
 			{
 			public:
+				/**
+				 * @brief Number objects list
+				 */
+				typedef std::vector<Contacts::Model::ContactNumberData *> Numbers;
+
 				/**
 				 * @brief Complete ContactData::Field with person object fields
 				 * @see ContactData::Field
@@ -61,11 +70,6 @@ namespace Contacts
 				};
 
 				/**
-				 * @brief Array of contact IDs
-				 */
-				typedef std::vector<int> ContactIds;
-
-				/**
 				 * @brief Create person object
 				 * @param[in]   record      _contacts_person record
 				 */
@@ -78,24 +82,34 @@ namespace Contacts
 				virtual int getId() const override;
 
 				/**
-				 * @brief Update record from the database
+				 * @see ContactData::getName()
 				 */
-				void update();
+				virtual const char *getName() const override;
 
 				/**
-				 * @see ContactRecordData::getNumbers()
+				 * @see ContactData::getNumber()
 				 */
-				virtual const Numbers &getNumbers() override;
+				virtual const char *getNumber() const override;
 
 				/**
-				 * @return Displayed by default contact ID
+				 * @see ContactData::getImagePath()
 				 */
-				int getDisplayContactId() const;
+				virtual const char *getImagePath() const override;
 
 				/**
-				 * @return Array of contact IDs
+				 * @return Person record
 				 */
-				const ContactIds &getContactIds() const;
+				contacts_record_h getRecord() const;
+
+				/**
+				 * @return Default contact ID
+				 */
+				int getContactId() const;
+
+				/**
+				 * @return Person number list
+				 */
+				const Numbers &getNumbers();
 
 				/**
 				 * @return First letter from formatted person name
@@ -103,40 +117,24 @@ namespace Contacts
 				const Utils::UniString &getIndexLetter() const;
 
 				/**
-				 * @return _contacts_person record
-				 */
-				const contacts_record_h getRecord() const;
-
-				/**
 				 * @brief Compares person's "Sort by" (first name/last name) values
 				 * @return True if sort value less than in @a that, otherwise false
 				 */
 				bool operator<(const Person &that) const;
 
-			protected:
-				/**
-				 * @see ContactRecordData::setChangedCallback()
-				 */
-				virtual void setChangedCallback(Contacts::Model::DbChangeObserver::Callback callback) override;
-
-				/**
-				 * @see ContactRecordData::unsetChangedCallback
-				 */
-				virtual void unsetChangedCallback() override;
-
 			private:
 				friend class PersonProvider;
 
-				virtual void onUpdate(contacts_record_h personRecord) override;
-				void initialize(contacts_record_h personRecord);
 				const Utils::UniString &getSortValue() const;
-				const char *getDbSortValue(contacts_record_h contactRecord) const;
+				void update(contacts_record_h record);
+				int updateName(contacts_record_h record);
 
-				contacts_record_h m_PersonRecord;
-				ContactIds m_ContactIds;
+				contacts_record_h m_Record;
+				contacts_record_h m_NameRecord;
 
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;
+				Numbers m_Numbers;
 			};
 		}
 	}

@@ -28,6 +28,11 @@ ContactNumberData::ContactNumberData(ContactData &contact, contacts_record_h num
 {
 }
 
+ContactNumberData::~ContactNumberData()
+{
+	contacts_record_destroy(m_NumberRecord, true);
+}
+
 int ContactNumberData::getId() const
 {
 	return m_ContactData.getId();

@@ -17,25 +17,25 @@
 
 #include "Contacts/Model/ContactRecordData.h"
 #include "Common/Database/ChildRecordIterator.h"
+#include "Common/Database/RecordUtils.h"
 #include "Utils/String.h"
 
 using namespace Common::Database;
 using namespace Contacts::Model;
 
-ContactRecordData::ContactRecordData(Type type, contacts_record_h record)
-	: ContactData(type), m_Record(record)
+ContactRecordData::ContactRecordData(contacts_record_h record)
+	: ContactData(TypeContact), m_Record(record)
 {
 }
 
 ContactRecordData::~ContactRecordData()
 {
-	unsetChangedCallback();
 	contacts_record_destroy(m_Record, true);
 }
 
 int ContactRecordData::getId() const
 {
-	return getContactId(m_Record);
+	return getRecordInt(m_Record, _contacts_contact.id);
 }
 
 const char *ContactRecordData::getName() const
@@ -53,67 +53,15 @@ const char *ContactRecordData::getImagePath() const
 	return getValue(m_Record, FieldImage);
 }
 
-const ContactRecordData::Numbers &ContactRecordData::getNumbers()
-{
-	if (m_Numbers.empty()) {
-		fillContactNumbers(m_Record);
-	}
-
-	return m_Numbers;
-}
-
-const contacts_record_h ContactRecordData::getContactRecord() const
+contacts_record_h ContactRecordData::getRecord() const
 {
 	return m_Record;
-}
-
-void ContactRecordData::setChangedCallback(DbChangeObserver::Callback callback)
-{
-	int id = getContactId(m_Record);
-	m_Handles.push_back(DbChangeObserver::getInstance()->addCallback(id, callback));
-}
-
-void ContactRecordData::unsetChangedCallback()
-{
-	if (!m_Handles.empty()) {
-		DbChangeObserver::getInstance()->removeCallback(getId(), m_Handles.front());
-		m_Handles.clear();
-	}
 }
 
 void ContactRecordData::updateRecord(contacts_record_h record)
 {
 	contacts_record_destroy(m_Record, true);
 	m_Record = record;
-}
-
-void ContactRecordData::addChangedHandle(DbChangeObserver::CallbackHandle handle)
-{
-	m_Handles.push_back(handle);
-}
-
-DbChangeObserver::CallbackHandle ContactRecordData::getChangedHandle(size_t index) const
-{
-	return m_Handles[index];
-}
-
-void ContactRecordData::clearChangedHandles()
-{
-	m_Handles.clear();
-}
-
-void ContactRecordData::fillContactNumbers(contacts_record_h record)
-{
-	auto numberRecords = makeRange(record, _contacts_contact.number);
-	for (auto &&numberRecord : numberRecords) {
-		auto number = new ContactNumberData(*this, numberRecord);
-		m_Numbers.push_back(number);
-	}
-}
-
-const ContactRecordData::Numbers &ContactRecordData::getContactNumbers() const
-{
-	return m_Numbers;
 }
 
 int ContactRecordData::getChanges(contacts_record_h newContact)
@@ -133,13 +81,6 @@ int ContactRecordData::getChanges(contacts_record_h newContact)
 	return changes;
 }
 
-int ContactRecordData::getContactId(contacts_record_h record)
-{
-	int value = 0;
-	contacts_record_get_int(record, _contacts_contact.id, &value);
-	return value;
-}
-
 const char *ContactRecordData::getValue(contacts_record_h record, Field field)
 {
 	static unsigned int properties[] {
@@ -153,9 +94,7 @@ const char *ContactRecordData::getValue(contacts_record_h record, Field field)
 	if (field == FieldNumber) {
 		auto numbers = makeRange(record, properties[field]);
 		for (auto &&number : numbers) {
-			bool isDefault = false;
-			contacts_record_get_bool(number, _contacts_number.is_default, &isDefault);
-
+			bool isDefault = getRecordBool(number, _contacts_number.is_default);
 			if (isDefault) {
 				contacts_record_get_str_p(number, _contacts_number.number, &value);
 				break;
@@ -171,10 +110,6 @@ const char *ContactRecordData::getValue(contacts_record_h record, Field field)
 void ContactRecordData::onUpdate(contacts_record_h record)
 {
 	int changes = getChanges(record);
-
-	m_Numbers.clear();//Todo: Here should be ContactNumberData update/delete
-	fillContactNumbers(m_Record);
 	updateRecord(record);
-
 	onUpdated(changes);
 }
