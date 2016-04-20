@@ -45,7 +45,7 @@ FavoritesProvider::~FavoritesProvider()
 {
 }
 
-ContactData *FavoritesProvider::createContactData(contacts_record_h record)
+Person *FavoritesProvider::createPerson(contacts_record_h record)
 {
 	Person *person = nullptr;
 	if (m_Mode == ModeOnly) {

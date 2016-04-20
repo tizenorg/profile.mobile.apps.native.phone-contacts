@@ -19,8 +19,7 @@
 #define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Contacts/Model/ContactRecordProvider.h"
-#include "Contacts/Model/DbChangeObserver.h"
+#include "Contacts/Model/ContactDataProvider.h"
 
 #include <contacts.h>
 
@@ -35,7 +34,7 @@ namespace Contacts
 			/**
 			 * @brief Provides list of person
 			 */
-			class PersonProvider : public Contacts::Model::ContactRecordProvider
+			class PersonProvider : public Contacts::Model::ContactDataProvider
 			{
 			public:
 				/**
@@ -51,16 +50,22 @@ namespace Contacts
 				 */
 				virtual const DataList &getDataList() override;
 
-			protected:
 				/**
-				 * @see ContactRecordProvider::createContactData
+				 * @see ContactDataProvider::clearDataList()
 				 */
-				virtual Contacts::Model::ContactData *createContactData(contacts_record_h record) override;
+				virtual void clearDataList() override;
 
 				/**
-				 * @see ContactRecordProvider::getRecord
+				 *
 				 */
-				virtual contacts_record_h getRecord(int id) override;
+				void setUpdateMode(bool isEnabled);
+
+			protected:
+				/**
+				 * @brief Create Person object
+				 * @param[in]   record  Person record
+				 */
+				virtual Person *createPerson(contacts_record_h record);
 
 				/**
 				 * @brief Fills the filter for query
@@ -75,11 +80,28 @@ namespace Contacts
 				virtual contacts_query_h getQuery() const;
 
 			private:
-				virtual bool shouldUpdateChangedCallback() override;
-				contacts_list_h getPersonList();
+				contacts_list_h getPersonList() const;
+				contacts_record_h getPersonRecord(int property, int value) const;
+
+				DataList::iterator findByPersonId(int personId);
+				DataList::iterator findByContactId(int contactId);
+
+				void insertPerson(int contactId);
+				void updatePerson(DataList::iterator personIt);
+				void deletePerson(DataList::iterator personIt);
+
+				void updatePersonList();
+
+				void onChanged(const char *uri);
 				void onNameFormatChanged(contacts_name_display_order_e order);
 
 				int m_FilterType;
+				int m_DbVersion;
+				DataList m_PersonList;
+
+				bool m_IsFilled;
+				bool m_IsUpdateEnabled;
+				bool m_IsUpdatePending;
 			};
 		}
 	}

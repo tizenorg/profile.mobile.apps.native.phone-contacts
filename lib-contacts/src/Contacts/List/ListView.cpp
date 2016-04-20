@@ -91,6 +91,7 @@ void ListView::onNavigation(bool isCurrent)
 {
 	m_IsCurrentView = isCurrent;
 	updateAddButton();
+	m_Provider.setUpdateMode(isCurrent);
 }
 
 void ListView::onCreated()
@@ -567,7 +568,7 @@ PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &pe
 void ListView::onItemPressed(SelectItem *item)
 {
 	PersonItem *personItem = static_cast<PersonItem *>(item);
-	int id = personItem->getPerson().getDisplayContactId();
+	int id = personItem->getPerson().getContactId();
 	getNavigator()->navigateTo(new Details::DetailsView(id));
 }
 
