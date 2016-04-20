@@ -16,7 +16,7 @@
  */
 
 #include "Contacts/List/ContactItem.h"
-#include "Contacts/Model/ContactRecordData.h"
+#include "Contacts/Model/ContactData.h"
 
 #include "Ui/Thumbnail.h"
 #include <app_i18n.h>
@@ -24,20 +24,33 @@
 using namespace Contacts::List;
 using namespace Contacts::Model;
 
-ContactItem::ContactItem(ContactRecordData &contact)
-	: m_Contact(contact)
+ContactItem::ContactItem(ContactData &contactData)
+	: m_ContactData(contactData)
 {
 }
 
-ContactRecordData &ContactItem::getContact()
+ContactData &ContactItem::getContactData() const
 {
-	return m_Contact;
+	return m_ContactData;
+}
+
+void ContactItem::update(int changes)
+{
+	if (changes & ContactData::ChangedName) {
+		elm_genlist_item_fields_update(getObjectItem(),
+			PART_CONTACT_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+	}
+
+	if (changes & ContactData::ChangedImage) {
+		elm_genlist_item_fields_update(getObjectItem(),
+			PART_CONTACT_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	}
 }
 
 char *ContactItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_CONTACT_NAME) == 0) {
-		const char *name = m_Contact.getName();
+		const char *name = m_ContactData.getName();
 		return strdup(name ? name : _("IDS_LOGS_MBODY_UNKNOWN"));
 	}
 
@@ -50,7 +63,7 @@ Evas_Object *ContactItem::getContent(Evas_Object *parent, const char *part)
 
 	if (strcmp(part, PART_CONTACT_THUMBNAIL) == 0) {
 		Thumbnail *thumbnail = Thumbnail::create(parent, Thumbnail::SizeSmall,
-				m_Contact.getImagePath());
+				m_ContactData.getImagePath());
 		thumbnail->setSizeHint(true);
 		return thumbnail->getEvasObject();
 	} else if (strcmp(part, PART_CONTACT_CHECK) == 0) {
@@ -62,5 +75,5 @@ Evas_Object *ContactItem::getContent(Evas_Object *parent, const char *part)
 
 Ux::SelectResult ContactItem::getDefaultResult() const
 {
-	return { 0, (void *) m_Contact.getContactRecord() };
+	return { 0, &m_ContactData };
 }

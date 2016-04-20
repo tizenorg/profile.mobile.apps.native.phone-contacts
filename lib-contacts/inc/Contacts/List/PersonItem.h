@@ -44,18 +44,10 @@ namespace Contacts
 			/**
 			 * @return Person object.
 			 */
-			Model::Person &getPerson();
-
-			/**
-			 * @brief Update item
-			 * @param[in]   changes     Changed info
-			 */
-			void update(int changes);
+			Model::Person &getPerson() const;
 
 		private:
 			virtual Ux::SelectResult getDefaultResult() const override;
-
-			Model::Person &m_Person;
 		};
 	}
 }

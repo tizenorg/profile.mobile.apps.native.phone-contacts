@@ -19,25 +19,19 @@
 #define CONTACTS_LIST_MY_PROFILE_ITEM_H
 
 #include "Contacts/List/Model/MyProfile.h"
-#include "Ui/GenlistItem.h"
+#include "Contacts/List/ContactItem.h"
 
 namespace Contacts
 {
 	namespace List
 	{
-		class MyProfileItem : public Ui::GenlistItem
+		class MyProfileItem : public ContactItem
 		{
 		public:
 			MyProfileItem();
 
-			/**
-			 * @return My profile object
-			 */
-			Model::MyProfile &getMyProfile();
-
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
-			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual void onSelected() override;
 			void onUpdated(int changes);
 

@@ -28,7 +28,7 @@ namespace Contacts
 {
 	namespace Model
 	{
-		class ContactRecordData;
+		class ContactData;
 	}
 
 	namespace List
@@ -41,21 +41,27 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Create contact item
-			 * @param[in]   contact     Contact object
+			 * @param[in]   contactData     Contact data
 			 */
-			explicit ContactItem(Contacts::Model::ContactRecordData &contact);
+			explicit ContactItem(Contacts::Model::ContactData &contactData);
 
 			/**
-			 * @return Contact object.
+			 * @return Contact data.
 			 */
-			Contacts::Model::ContactRecordData &getContact();
+			Contacts::Model::ContactData &getContactData() const;
+
+			/**
+			 * @brief Update item using ContactData values.
+			 * @param[in]   changes     Change info
+			 */
+			void update(int changes);
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual Ux::SelectResult getDefaultResult() const override;
 
-			Contacts::Model::ContactRecordData &m_Contact;
+			Contacts::Model::ContactData &m_ContactData;
 		};
 	}
 }

@@ -21,11 +21,7 @@
 
 #include "Ui/Genlist.h"
 #include "Ui/Navigator.h"
-#include "Ui/Thumbnail.h"
 #include <app_i18n.h>
-
-#define PART_MY_PROFILE_NAME        "elm.text"
-#define PART_MY_PROFILE_THUMBNAIL   "elm.swallow.icon"
 
 using namespace Contacts::Details;
 using namespace Contacts::Input;
@@ -34,38 +30,16 @@ using namespace Contacts::List::Model;
 using namespace std::placeholders;
 
 MyProfileItem::MyProfileItem()
+	: ContactItem(m_MyProfile)
 {
-	m_MyProfile.setUpdateCallback(std::bind(&MyProfileItem::onUpdated, this, _1));
-}
-
-MyProfile &MyProfileItem::getMyProfile()
-{
-	return m_MyProfile;
+	m_MyProfile.setUpdateCallback(std::bind(&MyProfileItem::update, this, _1));
 }
 
 char *MyProfileItem::getText(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, PART_MY_PROFILE_NAME) == 0) {
+	if (strcmp(part, PART_CONTACT_NAME) == 0) {
 		const char *name = m_MyProfile.getName();
-		if (!(name && *name)) {
-			name = _("IDS_PB_MBODY_SET_MY_PROFILE");
-		}
-
-		return strdup(name);
-	}
-
-	return nullptr;
-}
-
-Evas_Object *MyProfileItem::getContent(Evas_Object *parent, const char *part)
-{
-	using Ui::Thumbnail;
-
-	if (strcmp(part, PART_MY_PROFILE_THUMBNAIL) == 0) {
-		Thumbnail *thumbnail = Thumbnail::create(parent, Thumbnail::SizeSmall,
-				m_MyProfile.getImagePath());
-		thumbnail->setSizeHint(true);
-		return thumbnail->getEvasObject();
+		return strdup(name ? name : _("IDS_PB_MBODY_SET_MY_PROFILE"));
 	}
 
 	return nullptr;
@@ -83,18 +57,5 @@ void MyProfileItem::onSelected()
 		navigator->navigateTo(new DetailsView(id, DetailsView::TypeMyProfile));
 	} else {
 		navigator->navigateTo(new InputView(id, InputView::TypeMyProfile));
-	}
-}
-
-void MyProfileItem::onUpdated(int changes)
-{
-	if (changes & MyProfile::ChangedName) {
-		elm_genlist_item_fields_update(getObjectItem(),
-			PART_MY_PROFILE_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
-	}
-
-	if (changes & MyProfile::ChangedImage) {
-		elm_genlist_item_fields_update(getObjectItem(),
-			PART_MY_PROFILE_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
 	}
 }
