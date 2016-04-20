@@ -25,7 +25,7 @@ namespace Contacts
 {
 	namespace Model
 	{
-		class ContactNumberData : public ContactData
+		class EXPORT_API ContactNumberData : public ContactData
 		{
 		public:
 			/**
@@ -34,6 +34,7 @@ namespace Contacts
 			 * @param[in]   numberRecord    _contacts_number record
 			 */
 			ContactNumberData(ContactData &contact, contacts_record_h numberRecord);
+			virtual ~ContactNumberData() override;
 
 			/**
 			 * @see ContactData::getId()

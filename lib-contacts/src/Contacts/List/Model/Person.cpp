@@ -16,12 +16,12 @@
  */
 
 #include "Contacts/List/Model/Person.h"
+#include "Contacts/Model/ContactNumberData.h"
 #include "Common/Database/Queries.h"
 #include "Common/Database/RecordUtils.h"
 #include "Common/Database/RecordIterator.h"
-#include "Utils/String.h"
-
-#include <cstring>
+#include "Common/Database/ChildRecordIterator.h"
+#include "Utils/Logger.h"
 
 using namespace Common::Database;
 using namespace Contacts;
@@ -31,67 +31,86 @@ using namespace Utils;
 
 namespace
 {
-	unsigned getSortProperty(contacts_name_sorting_order_e order)
+	unsigned getSortProperty()
 	{
+		contacts_name_sorting_order_e order;
+		contacts_setting_get_name_sorting_order(&order);
 		return (order == CONTACTS_NAME_SORTING_ORDER_FIRSTLAST
 				? _contacts_name.first : _contacts_name.last);
 	}
 
-	Person::ContactIds getContactIds(int personId)
+	contacts_record_h getNameRecord(int contactId)
 	{
-		unsigned projection = _contacts_contact.id;
-		Person::ContactIds ids;
+		unsigned projection[] = {
+			_contacts_name.first,
+			_contacts_name.last
+		};
 
 		contacts_filter_h filter = nullptr;
-		contacts_filter_create(_contacts_contact._uri, &filter);
-		contacts_filter_add_int(filter, _contacts_contact.person_id, CONTACTS_MATCH_EQUAL, personId);
+		contacts_filter_create(_contacts_name._uri, &filter);
+		contacts_filter_add_int(filter, _contacts_name.contact_id, CONTACTS_MATCH_EQUAL, contactId);
 
 		contacts_query_h query = nullptr;
-		contacts_query_create(_contacts_contact._uri, &query);
+		contacts_query_create(_contacts_name._uri, &query);
 		contacts_query_set_filter(query, filter);
-		contacts_query_set_projection(query, &projection, 1);
+		contacts_query_set_projection(query, projection, Utils::count(projection));
 
 		contacts_list_h list = nullptr;
-		contacts_db_get_records_with_query(query, 0, 0, &list);
+		int err = contacts_db_get_records_with_query(query, 0, 1, &list);
+		WARN_IF_ERR(err, "contacts_db_get_records_with_query() failed.");
 
-		contacts_record_h tempRecord = nullptr;
-		CONTACTS_LIST_FOREACH(list, tempRecord) {
-			int id = 0;
-			contacts_record_get_int(tempRecord, projection, &id);
-			ids.push_back(id);
-		}
+		contacts_record_h record = nullptr;
+		contacts_list_get_current_record_p(list, &record);
 
-		contacts_list_destroy(list, true);
+		contacts_list_destroy(list, false);
 		contacts_query_destroy(query);
 		contacts_filter_destroy(filter);
 
-		return ids;
+		return record;
 	}
 }
 
 Person::Person(contacts_record_h record)
-	: ContactRecordData(TypePerson, getDisplayContact(record)), m_PersonRecord(nullptr)
+	: ContactData(TypePerson), m_Record(record)
 {
-	initialize(record);
+	m_NameRecord = getNameRecord(getContactId());
+	m_IndexLetter = getRecordStr(m_Record, _contacts_person.display_name_index);
 }
 
 Person::~Person()
 {
-	contacts_record_destroy(m_PersonRecord, true);
+	contacts_record_destroy(m_NameRecord, true);
+	contacts_record_destroy(m_Record, true);
 }
 
 int Person::getId() const
 {
-	int id = 0;
-	contacts_record_get_int(m_PersonRecord, _contacts_person.id, &id);
-	return id;
+	return getRecordInt(m_Record, _contacts_person.id);
 }
 
-void Person::update()
+const char *Person::getName() const
 {
-	contacts_record_h record = nullptr;
-	contacts_db_get_record(_contacts_person._uri, getId(), &record);
-	onUpdate(record);
+	return getRecordStr(m_Record, _contacts_person.display_name);
+}
+
+const char *Person::getNumber() const
+{
+	return nullptr;
+}
+
+const char *Person::getImagePath() const
+{
+	return getRecordStr(m_Record, _contacts_person.image_thumbnail_path);
+}
+
+contacts_record_h Person::getRecord() const
+{
+	return m_Record;
+}
+
+int Person::getContactId() const
+{
+	return getRecordInt(m_Record, _contacts_person.display_contact_id);
 }
 
 const Person::Numbers &Person::getNumbers()
@@ -100,29 +119,18 @@ const Person::Numbers &Person::getNumbers()
 		_contacts_contact.number
 	};
 
-	if (getContactNumbers().empty()) {
-		contacts_list_h list = getContacts(m_PersonRecord, projection);
-		auto contacts = makeRange(list);
-		for (auto &&contact : contacts) {
-			fillContactNumbers(contact);
+	if (m_Numbers.empty()) {
+		contacts_list_h list = getPersonContacts(getId(), projection);
+		for (auto &&contact : makeRange(list)) {
+			for (auto &&number : makeRange(contact, _contacts_contact.number)) {
+				m_Numbers.push_back(new ContactNumberData(*this, number));
+			}
+			contacts_record_destroy(contact, false);
 		}
-
 		contacts_list_destroy(list, false);
 	}
 
-	return getContactNumbers();
-}
-
-int Person::getDisplayContactId() const
-{
-	int id = 0;
-	contacts_record_get_int(m_PersonRecord, _contacts_person.display_contact_id, &id);
-	return id;
-}
-
-const Person::ContactIds &Person::getContactIds() const
-{
-	return m_ContactIds;
+	return m_Numbers;
 }
 
 const UniString &Person::getIndexLetter() const
@@ -130,84 +138,52 @@ const UniString &Person::getIndexLetter() const
 	return m_IndexLetter;
 }
 
-const contacts_record_h Person::getRecord() const
-{
-	return m_PersonRecord;
-}
-
 bool Person::operator<(const Person &that) const
 {
 	return getSortValue() < that.getSortValue();
 }
 
-void Person::setChangedCallback(Contacts::Model::DbChangeObserver::Callback callback)
-{
-	for (auto &&id : m_ContactIds) {
-		auto handle = DbChangeObserver::getInstance()->addCallback(id, callback);
-		addChangedHandle(handle);
-	}
-}
-
-void Person::unsetChangedCallback()
-{
-	for (size_t i = 0; i < m_ContactIds.size(); ++i) {
-		DbChangeObserver::getInstance()->removeCallback(m_ContactIds[i], getChangedHandle(i));
-	}
-	clearChangedHandles();
-}
-
-void Person::onUpdate(contacts_record_h personRecord)
-{
-	contacts_record_h contactRecord = getDisplayContact(personRecord);
-	auto changes = getChanges(contactRecord);
-	const char *newSortValue = getDbSortValue(contactRecord);
-	if (!Utils::safeCmp(getSortValue().getUtf8Str().c_str(), newSortValue)) {
-		changes |= ChangedSortValue;
-	}
-
-	contacts_record_destroy(m_PersonRecord, true);
-	m_SortValue.clear();
-
-	updateRecord(contactRecord);
-	initialize(personRecord);
-
-	onUpdated(changes);
-}
-
-void Person::initialize(contacts_record_h personRecord)
-{
-	m_PersonRecord = personRecord;
-	m_ContactIds = ::getContactIds(getId());
-
-	char *indexLetter = nullptr;
-	contacts_record_get_str_p(m_PersonRecord, _contacts_person.display_name_index, &indexLetter);
-	m_IndexLetter = indexLetter;
-}
-
 const UniString &Person::getSortValue() const
 {
 	if (m_SortValue.getI18nStr().empty()) {
-		m_SortValue = getDbSortValue(getContactRecord());
+		const char *value = getRecordStr(m_NameRecord, getSortProperty());
+		m_SortValue = (value && *value) ? value : getName();
 	}
 
 	return m_SortValue;
 }
 
-const char *Person::getDbSortValue(contacts_record_h contactRecord) const
+void Person::update(contacts_record_h record)
 {
-	contacts_name_sorting_order_e order;
-	contacts_setting_get_name_sorting_order(&order);
-	unsigned sortField = getSortProperty(order);
-
-	contacts_record_h nameRecord = nullptr;
-	contacts_record_get_child_record_at_p(contactRecord, _contacts_contact.name, 0, &nameRecord);
-
-	char *sortValue = nullptr;
-	contacts_record_get_str_p(nameRecord, sortField, &sortValue);
-
-	if (!(sortValue && *sortValue)) {
-		contacts_record_get_str_p(contactRecord, _contacts_contact.display_name, &sortValue);
+	int changes = ChangedNone;
+	if (!compareRecordsStr(m_Record, record, _contacts_person.display_name)) {
+		changes |= ChangedName;
+		changes |= updateName(record);
+	}
+	if (!compareRecordsStr(m_Record, record, _contacts_person.image_thumbnail_path)) {
+		changes |= ChangedImage;
 	}
 
-	return sortValue;
+	contacts_record_destroy(m_Record, true);
+	m_Record = record;
+
+	onUpdated(changes);
+}
+
+int Person::updateName(contacts_record_h record)
+{
+	int contactId = getRecordInt(record, _contacts_person.display_contact_id);
+	contacts_record_h nameRecord = getNameRecord(contactId);
+
+	int changes = ChangedNone;
+	if (!compareRecordsStr(m_NameRecord, nameRecord, getSortProperty())) {
+		changes |= ChangedSortValue;
+		m_SortValue.clear();
+		m_IndexLetter = getRecordStr(record, _contacts_person.display_name_index);
+	}
+
+	contacts_record_destroy(m_NameRecord, true);
+	m_NameRecord = nameRecord;
+
+	return changes;
 }
