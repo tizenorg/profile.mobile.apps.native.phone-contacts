@@ -16,26 +16,46 @@
  */
 
 #include "Common/Actions.h"
+#include "Utils/Range.h"
+
+#include <cstring>
 #include <string>
+
+#define ACTION_SCHEME_COUNT 2
+
+using namespace Utils;
 
 namespace
 {
 	struct {
 		const char *operation;
-		const char *scheme;
+		Range<const char *> schemes[ACTION_SCHEME_COUNT];
 	} actions[] = {
-		/* ActionCall    = */ { APP_CONTROL_OPERATION_CALL, "tel:" },
-		/* ActionMessage = */ { APP_CONTROL_OPERATION_COMPOSE, "sms:" },
-		/* ActionEmail   = */ { APP_CONTROL_OPERATION_COMPOSE, "mailto:" },
-		/* ActionUrl     = */ { APP_CONTROL_OPERATION_VIEW, "" }
+		/* ActionCall    = */ { APP_CONTROL_OPERATION_CALL,    makeRange("tel:"),    { } },
+		/* ActionMessage = */ { APP_CONTROL_OPERATION_COMPOSE, makeRange("sms:"),    makeRange("mmsto:") },
+		/* ActionEmail   = */ { APP_CONTROL_OPERATION_COMPOSE, makeRange("mailto:"), { } },
+		/* ActionUrl     = */ { APP_CONTROL_OPERATION_VIEW,    makeRange("http://"), makeRange("https://") }
 	};
 }
 
 App::AppControl Common::requestAction(ActionType actionType, const char *value)
 {
 	auto action = actions[actionType];
-	std::string uri = action.scheme;
+	std::string uri;
 	if (value) {
+
+		bool hasScheme = false;
+		for (auto &&scheme : action.schemes) {
+			if (scheme && strncmp(value, scheme.begin(), scheme.count() - 1) == 0) {
+				hasScheme = true;
+				break;
+			}
+		}
+
+		if (!hasScheme) {
+			uri.append(action.schemes[0].begin());
+		}
+
 		uri.append(value);
 	}
 
