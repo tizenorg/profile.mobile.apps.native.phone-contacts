@@ -60,6 +60,12 @@ namespace Contacts
 				 */
 				void setUpdateMode(bool isEnabled);
 
+				/**
+				 * @brief Enable or disable handling of certain update types.
+				 * @param[in]   changeTypes     Event types to handle
+				 */
+				void setUpdateMask(int changeTypes);
+
 			protected:
 				/**
 				 * @brief Create Person object
@@ -84,8 +90,8 @@ namespace Contacts
 				contacts_record_h getPersonRecord(int id, int idType) const;
 
 				DataList::iterator findPerson(int id, int idType);
-				void insertPerson(int id, int idType);
-				void updatePerson(DataList::iterator personIt);
+				bool insertPerson(int id, int idType);
+				bool updatePerson(DataList::iterator personIt);
 				void deletePerson(DataList::iterator personIt);
 
 				void updatePersonList();
@@ -100,6 +106,7 @@ namespace Contacts
 				bool m_IsFilled;
 				bool m_IsUpdateEnabled;
 				bool m_IsUpdatePending;
+				int m_UpdateMask;
 			};
 		}
 	}

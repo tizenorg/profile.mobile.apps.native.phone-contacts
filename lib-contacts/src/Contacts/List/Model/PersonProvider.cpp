@@ -32,7 +32,9 @@ using namespace Contacts::List::Model;
 using namespace std::placeholders;
 
 PersonProvider::PersonProvider(int filterType)
-	: m_FilterType(filterType), m_IsFilled(false), m_IsUpdateEnabled(true), m_IsUpdatePending(false)
+	: m_FilterType(filterType), m_IsFilled(false),
+	  m_IsUpdateEnabled(true), m_IsUpdatePending(false),
+	  m_UpdateMask(ChangeInsert | ChangeUpdate | ChangeDelete)
 {
 	contacts_db_get_current_version(&m_DbVersion);
 	contacts_db_add_changed_cb(_contacts_contact._uri,
@@ -82,6 +84,11 @@ void PersonProvider::setUpdateMode(bool isEnabled)
 		m_IsUpdatePending = false;
 		updatePersonList();
 	}
+}
+
+void PersonProvider::setUpdateMask(int changeTypes)
+{
+	m_UpdateMask = changeTypes;
 }
 
 Person *PersonProvider::createPerson(contacts_record_h record)
@@ -182,29 +189,45 @@ PersonProvider::DataList::iterator PersonProvider::findPerson(int id, int idType
 	);
 }
 
-void PersonProvider::insertPerson(int id, int idType)
+bool PersonProvider::insertPerson(int id, int idType)
 {
+	if (!(m_UpdateMask & ChangeInsert)) {
+		return true;
+	}
+
 	contacts_record_h record = getPersonRecord(id, idType);
 	if (record) {
 		m_PersonList.push_back(createPerson(record));
 		onInserted(*m_PersonList.back());
+		return true;
 	}
+
+	return false;
 }
 
-void PersonProvider::updatePerson(DataList::iterator personIt)
+bool PersonProvider::updatePerson(DataList::iterator personIt)
 {
+	if (!(m_UpdateMask & ChangeUpdate)) {
+		return true;
+	}
+
 	Person *person = static_cast<Person *>(*personIt);
 	contacts_record_h record = getPersonRecord(person->getId(), _contacts_person.id);
 
 	if (record) {
 		person->update(record);
-	} else {
-		deletePerson(personIt);
+		return true;
 	}
+
+	return false;
 }
 
 void PersonProvider::deletePerson(DataList::iterator personIt)
 {
+	if (!(m_UpdateMask & ChangeDelete)) {
+		return;
+	}
+
 	Person *person = static_cast<Person *>(*personIt);
 	m_PersonList.erase(personIt);
 	person->onDeleted();
@@ -232,7 +255,9 @@ void PersonProvider::updatePersonList()
 				int personId = getPersonId(contactId);
 				auto personIt = findPerson(personId, _contacts_person.id);
 				if (personIt != m_PersonList.end()) {
-					updatePerson(personIt);
+					if (!updatePerson(personIt)) {
+						deletePerson(personIt);
+					}
 				} else {
 					insertPerson(personId, _contacts_person.id);
 				}
