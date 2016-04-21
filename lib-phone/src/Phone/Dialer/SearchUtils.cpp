@@ -215,8 +215,10 @@ std::string Phone::Dialer::Utils::highlightTextByPos(std::string &text, size_t p
 
 Evas_Object *Phone::Dialer::Utils::createThumbnail(Evas_Object *parent, int contactId)
 {
-	Ui::Thumbnail *thumbnail = Ui::Thumbnail::create(parent,
-			Ui::Thumbnail::SizeSmall, getThumbnail(contactId).c_str());
+	using Ui::Thumbnail;
 
+	Thumbnail *thumbnail = Thumbnail::create(parent, Thumbnail::SizeSmall,
+			getThumbnail(contactId).c_str());
+	thumbnail->setSizeHint(true);
 	return thumbnail->getEvasObject();
 }
