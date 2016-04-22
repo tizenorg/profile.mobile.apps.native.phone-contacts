@@ -81,7 +81,9 @@ AppControl App::requestCameraImage()
 
 AppControl App::requestGalleryImage()
 {
-	return AppControl(APP_CONTROL_OPERATION_PICK, "image/*");
+	AppControl request(APP_CONTROL_OPERATION_PICK, "image/*");
+	app_control_set_app_id(request.getHandle(), "org.tizen.gallery");
+	return request;
 }
 
 AppControl App::requestShareContact(int personId)
