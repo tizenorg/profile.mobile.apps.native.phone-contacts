@@ -113,17 +113,17 @@ void TabView::navigateFromPage(NavigatorPage *page)
 
 void TabView::onTabSelected(Evas_Object *obj, Elm_Object_Item *selectedItem)
 {
-	TabPage *page = (TabPage *) elm_object_item_data_get(selectedItem);
 	if (!m_IsNavigating) {
+		TabPage *page = (TabPage *) elm_object_item_data_get(selectedItem);
 		navigateTo(page->getView());
 	}
 }
 
 void TabView::onPageChanged(Evas_Object *obj, void *eventInfo)
 {
-	int index = 0;
-	elm_scroller_current_page_get(m_Scroller, &index, nullptr);
 	if (!m_IsNavigating) {
+		int index = 0;
+		elm_scroller_current_page_get(m_Scroller, &index, nullptr);
 		navigateTo(m_Pages[index]->getView());
 	}
 }
@@ -139,7 +139,9 @@ void TabView::onResize(Evas *e, Evas_Object *obj, void *eventInfo)
 	ecore_job_add([](void *data) {
 		TabView *tabView = (TabView *) data;
 		if (tabView->m_CurrentPage) {
+			tabView->m_IsNavigating = true;
 			elm_scroller_page_show(tabView->m_Scroller, tabView->m_CurrentPage->m_Index, 0);
+			tabView->m_IsNavigating = false;
 		}
 	}, this);
 }
