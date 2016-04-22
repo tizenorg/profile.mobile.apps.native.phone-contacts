@@ -19,14 +19,32 @@
 #define CONTACTS_MODEL_SEARCH_DATA_H
 
 #include "Contacts/Model/ContactData.h"
+#include "Utils/Range.h"
+#include <tizen.h>
 
 namespace Contacts
 {
 	namespace Model
 	{
-		class SearchData : public ContactData
+		class EXPORT_API SearchData : public ContactData
 		{
 		public:
+			/**
+			 * @brief Determines range of chars, which are as substring
+			 */
+			typedef Utils::Range<const char *> Substring;
+
+			/**
+			 * @brief Determines which field conform to searchable string
+			 * @see compare()
+			 */
+			enum MatchedField
+			{
+				MatchedNone,  /**< Not matched */
+				MatchedName,  /**< Matched by name */
+				MatchedNumber /**< Matched by number */
+			};
+
 			/**
 			 * @brief Create SearchData object
 			 * @param[in]   contactData     Contact reference
@@ -53,10 +71,50 @@ namespace Contacts
 			 */
 			virtual const char *getImagePath() const override;
 
-		private:
-			friend class SearchProvider;
+			/**
+			 * @brief Compare @a str with SearchData field
+			 *
+			 * Compare searchable @a str string with one of
+			 * name/number SearchData field. Create found substring if found one.
+			 *
+			 * @param[in]   str     Searchable string
+			 * @return true if found something, false if not
+			 */
+			virtual bool compare(const char *str) = 0;
 
+			/**
+			 * @return Matched field
+			 * @see MatchedField
+			 */
+			MatchedField getMatchedField() const;
+
+			/**
+			 * @return Matched substring
+			 */
+			const Substring &getSubstring() const;
+
+		protected:
+			/**
+			 * @brief Set new MatchedField pattern
+			 * @see MatchedField
+			 */
+			void setMatchedField(MatchedField field);
+
+			/**
+			 * @brief Set substring, found by @ref compare() method
+			 * @see Substring
+			 */
+			void setSubstring(Substring substring);
+
+			/**
+			 * @return ContactData reference
+			 */
+			ContactData &getContactData();
+
+		private:
 			ContactData &m_ContactData;
+			Substring m_Substring;
+			MatchedField m_MatchedField;
 		};
 	}
 }
