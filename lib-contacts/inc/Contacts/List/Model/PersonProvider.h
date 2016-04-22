@@ -86,7 +86,7 @@ namespace Contacts
 				virtual contacts_query_h getQuery() const;
 
 			private:
-				contacts_list_h getPersonList() const;
+				virtual contacts_list_h getPersonList() const;
 				contacts_record_h getPersonRecord(int id, int idType) const;
 
 				DataList::iterator findPerson(int id, int idType);
