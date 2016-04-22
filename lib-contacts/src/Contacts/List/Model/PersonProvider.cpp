@@ -153,7 +153,7 @@ contacts_list_h PersonProvider::getPersonList() const
 	return list;
 }
 
-contacts_record_h PersonProvider::getPersonRecord(int id, int idType) const
+contacts_record_h PersonProvider::getPersonRecord(int id, IdType idType) const
 {
 	contacts_query_h query = getQuery();
 	contacts_filter_h filter = getFilter();
@@ -162,7 +162,7 @@ contacts_record_h PersonProvider::getPersonRecord(int id, int idType) const
 	} else {
 		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
 	}
-	contacts_filter_add_int(filter, idType, CONTACTS_MATCH_EQUAL, id);
+	contacts_filter_add_int(filter, getIdProperty(idType), CONTACTS_MATCH_EQUAL, id);
 	contacts_query_set_filter(query, filter);
 
 	contacts_list_h list = nullptr;
@@ -179,22 +179,19 @@ contacts_record_h PersonProvider::getPersonRecord(int id, int idType) const
 	return record;
 }
 
-PersonProvider::DataList::iterator PersonProvider::findPerson(int id, int idType)
+PersonProvider::DataList::const_iterator PersonProvider::findPerson(int id, IdType idType)
 {
+	int propId = getIdProperty(idType);
 	return std::find_if(m_PersonList.begin(), m_PersonList.end(),
-		[id, idType](ContactData *contactData) {
+		[id, propId](ContactData *contactData) {
 			Person *person = static_cast<Person *>(contactData);
-			return getRecordInt(person->getRecord(), idType) == id;
+			return getRecordInt(person->getRecord(), propId) == id;
 		}
 	);
 }
 
-bool PersonProvider::insertPerson(int id, int idType)
+bool PersonProvider::insertPerson(int id, IdType idType)
 {
-	if (!(m_UpdateMask & ChangeInsert)) {
-		return true;
-	}
-
 	contacts_record_h record = getPersonRecord(id, idType);
 	if (record) {
 		m_PersonList.push_back(createPerson(record));
@@ -205,14 +202,10 @@ bool PersonProvider::insertPerson(int id, int idType)
 	return false;
 }
 
-bool PersonProvider::updatePerson(DataList::iterator personIt)
+bool PersonProvider::updatePerson(DataList::const_iterator personIt)
 {
-	if (!(m_UpdateMask & ChangeUpdate)) {
-		return true;
-	}
-
 	Person *person = static_cast<Person *>(*personIt);
-	contacts_record_h record = getPersonRecord(person->getId(), _contacts_person.id);
+	contacts_record_h record = getPersonRecord(person->getId(), PersonId);
 
 	if (record) {
 		person->update(record);
@@ -222,16 +215,17 @@ bool PersonProvider::updatePerson(DataList::iterator personIt)
 	return false;
 }
 
-void PersonProvider::deletePerson(DataList::iterator personIt)
+void PersonProvider::deletePerson(DataList::const_iterator personIt)
 {
-	if (!(m_UpdateMask & ChangeDelete)) {
-		return;
-	}
-
 	Person *person = static_cast<Person *>(*personIt);
 	m_PersonList.erase(personIt);
 	person->onDeleted();
 	delete person;
+}
+
+int PersonProvider::getIdProperty(IdType idType)
+{
+	return idType == PersonId ? _contacts_person.id : _contacts_person.display_contact_id;
 }
 
 void PersonProvider::updatePersonList()
@@ -247,27 +241,37 @@ void PersonProvider::updatePersonList()
 		switch (changeType) {
 			case CONTACTS_CHANGE_INSERTED:
 			{
-				insertPerson(contactId, _contacts_person.display_contact_id);
+				if (m_UpdateMask & ChangeInsert) {
+					insertPerson(contactId, ContactId);
+				}
 				break;
 			}
 			case CONTACTS_CHANGE_UPDATED:
 			{
 				int personId = getPersonId(contactId);
-				auto personIt = findPerson(personId, _contacts_person.id);
+				auto personIt = findPerson(personId, PersonId);
 				if (personIt != m_PersonList.end()) {
-					if (!updatePerson(personIt)) {
-						deletePerson(personIt);
+					if (m_UpdateMask & ChangeUpdate) {
+						if (!updatePerson(personIt)) {
+							if (m_UpdateMask & ChangeDelete) {
+								deletePerson(personIt);
+							}
+						}
 					}
 				} else {
-					insertPerson(personId, _contacts_person.id);
+					if (m_UpdateMask & ChangeInsert) {
+						insertPerson(personId, PersonId);
+					}
 				}
 				break;
 			}
 			case CONTACTS_CHANGE_DELETED:
 			{
-				auto personIt = findPerson(contactId, _contacts_person.display_contact_id);
+				auto personIt = findPerson(contactId, ContactId);
 				if (personIt != m_PersonList.end()) {
-					deletePerson(personIt);
+					if (m_UpdateMask & ChangeDelete) {
+						deletePerson(personIt);
+					}
 				}
 				break;
 			}
