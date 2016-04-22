@@ -67,6 +67,12 @@ namespace Contacts
 				void setUpdateMask(int changeTypes);
 
 			protected:
+				enum IdType
+				{
+					PersonId,
+					ContactId
+				};
+
 				/**
 				 * @brief Create Person object
 				 * @param[in]   record  Person record
@@ -85,15 +91,51 @@ namespace Contacts
 				 */
 				virtual contacts_query_h getQuery() const;
 
-			private:
+				/**
+				 * @return Person record list fetched using filter and query.
+				 */
 				contacts_list_h getPersonList() const;
-				contacts_record_h getPersonRecord(int id, int idType) const;
 
-				DataList::iterator findPerson(int id, int idType);
-				bool insertPerson(int id, int idType);
+				/**
+				 * @brief Fetch person record from database by ID.
+				 * @param[in]   id      Person or display contact ID
+				 * @param[in]   idType  Type of ID
+				 * @return Person iterator if found, end iterator otherwise.
+				 */
+				contacts_record_h getPersonRecord(int id, IdType idType) const;
+
+				/**
+				 * @brief Find person by ID.
+				 * @param[in]   id      Person or display contact ID
+				 * @param[in]   idType  Type of ID
+				 * @return Person iterator if found, end iterator otherwise.
+				 */
+				DataList::iterator findPerson(int id, IdType idType);
+
+				/**
+				 * @brief Fetch person from database by ID and insert it into person list.
+				 * @param[in]   id      Person or display contact ID
+				 * @param[in]   idType  Type of ID
+				 * @return Whether insert was successful.
+				 */
+				bool insertPerson(int id, IdType idType);
+
+				/**
+				 * @brief Update person from database.
+				 * @param[in]   personIt    Person iterator
+				 * @return Whether update was successful.
+				 */
 				bool updatePerson(DataList::iterator personIt);
+
+				/**
+				 * @brief Delete person from person list.
+				 * @param[in]   personIt    Person iterator
+				 * @return Whether update was successful.
+				 */
 				void deletePerson(DataList::iterator personIt);
 
+			private:
+				static int getIdProperty(IdType idType);
 				void updatePersonList();
 
 				void onChanged(const char *uri);
