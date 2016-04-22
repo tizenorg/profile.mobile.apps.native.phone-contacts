@@ -15,31 +15,32 @@
  *
  */
 
-#include "Contacts/Model/SearchProvider.h"
-#include "Contacts/Model/SearchData.h"
+#include "Contacts/List/Model/ListSearchProvider.h"
+#include "Contacts/List/Model/PersonSearchData.h"
 #include "Utils/Range.h"
 
 using namespace Contacts::Model;
+using namespace Contacts::List::Model;
 using namespace Utils;
 using namespace std::placeholders;
 
-SearchProvider::SearchProvider()
+ListSearchProvider::ListSearchProvider()
 {
 }
 
-SearchProvider::~SearchProvider()
+ListSearchProvider::~ListSearchProvider()
 {
 	for (auto &&contact : m_ContactList) {
 		delete contact;
 	}
 }
 
-const SearchProvider::DataList &SearchProvider::getDataList()
+const ListSearchProvider::DataList &ListSearchProvider::getDataList()
 {
 	return m_ContactList;//Todo: Return filtered list by search engine instead of all contacts
 }
 
-void SearchProvider::addProvider(ContactDataProvider *provider)
+void ListSearchProvider::addProvider(ContactDataProvider *provider)
 {
 	const DataList &list = provider->getDataList();
 	for (auto it = list.begin(); it != list.end(); ++it) {
@@ -53,16 +54,16 @@ void SearchProvider::addProvider(ContactDataProvider *provider)
 		});
 }
 
-ContactData &SearchProvider::insertContact(DataList::const_iterator position, ContactData &contact,
+ContactData &ListSearchProvider::insertContact(DataList::const_iterator position, ContactData &contact,
 		ContactDataProvider *provider)
 {
-	auto searchData = new SearchData(contact);
+	auto searchData = new PersonSearchData(contact);
 	auto newDataIt = m_ContactList.insert(position, searchData);
 
 	DataList::iterator contactIt = --m_ContactList.end();
 
-	contact.setUpdateCallback(std::bind(&SearchProvider::onUpdated, this, std::ref(*searchData), _1));
-	contact.setDeleteCallback(std::bind(&SearchProvider::onDeleted, this, contactIt, provider));
+	contact.setUpdateCallback(std::bind(&ListSearchProvider::onUpdated, this, std::ref(*searchData), _1));
+	contact.setDeleteCallback(std::bind(&ListSearchProvider::onDeleted, this, contactIt, provider));
 
 	if (m_SubProviders.find(provider) != m_SubProviders.end()) {
 		m_SubProviders[provider] = newDataIt;
@@ -71,21 +72,21 @@ ContactData &SearchProvider::insertContact(DataList::const_iterator position, Co
 	return *searchData;
 }
 
-void SearchProvider::onInserted(ContactData &contactData, ContactDataProvider *provider)
+void ListSearchProvider::onInserted(ContactData &contactData, ContactDataProvider *provider)
 {
 	auto position = Utils::advance(m_SubProviders[provider], 1);
 	ContactData &searchData = insertContact(position, contactData, provider);
 	onInserted(searchData);
 }
 
-void SearchProvider::onUpdated(SearchData &searchData, int changes)
+void ListSearchProvider::onUpdated(PersonSearchData &searchData, int changes)
 {
 	searchData.onUpdated(changes);
 }
 
-void SearchProvider::onDeleted(DataList::iterator contactIt, ContactDataProvider *provider)
+void ListSearchProvider::onDeleted(DataList::iterator contactIt, ContactDataProvider *provider)
 {
-	SearchData *searchData = static_cast<SearchData *>(*contactIt);
+	PersonSearchData *searchData = static_cast<PersonSearchData *>(*contactIt);
 	searchData->onDeleted();
 
 	delete searchData;

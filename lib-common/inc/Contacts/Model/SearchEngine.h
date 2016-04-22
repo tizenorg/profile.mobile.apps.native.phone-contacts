@@ -26,8 +26,6 @@ namespace Contacts
 {
 	namespace Model
 	{
-		class SearchProvider;
-
 		/**
 		 * @brief This class provides incremental search logic
 		 */
@@ -36,7 +34,11 @@ namespace Contacts
 		public:
 			typedef ContactDataProvider::DataList DataList;
 
-			explicit SearchEngine(SearchProvider &searchProvider);
+			/**
+			 * @brief Create search engine
+			 * @param[in]   dataList  ContactData list
+			 */
+			explicit SearchEngine(DataList &dataList);
 
 			/**
 			 * @brief Perform incremental search
@@ -73,7 +75,7 @@ namespace Contacts
 			SearchHistory m_Cache;
 			int m_LastFoundIndex;
 
-			SearchProvider &m_SearchProvider;
+			DataList &m_DataList;
 		};
 	}
 }
