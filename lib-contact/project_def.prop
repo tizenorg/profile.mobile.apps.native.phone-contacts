@@ -1,0 +1,66 @@
+
+# Project Name
+APPNAME = contact
+
+# Project Type
+type = sharedLib
+
+# Project Profile
+profile = mobile-3.0
+
+# C Sources
+USER_SRCS = ct-detail/src/CtInputDataTypeCustomPopup.cpp ct-list/src/CtListUgMultiPickController.cpp ct-detail/src/CtDetailData.cpp ct-list/src/CtListUgSinglePickController.cpp ct-detail/src/CtInputView.cpp ct-list/src/CtListDataPerson.cpp ct-list/src/CtListView.cpp ct-detail/src/CtDetailView.cpp ct-detail/src/CtMyProfileInputView.cpp ct-setting/src/CtSettingView.cpp ct-vcard/src/CtVcardToContacts.cpp ct-detail/src/CtInputDataTypeCtxPopup.cpp ct-detail/src/CtDetailViewBasicInfoControl.cpp ct-list/src/CtListBasicController.cpp ct-detail/src/CtInputData.cpp ct-common/src/CtView.cpp ct-common/src/CtThemeMgr.cpp ct-detail/src/CtInputViewControl.cpp ct-detail/src/CtMyProfileDetailView.cpp ct-common/src/CtThread.cpp ct-common/src/CtProgressController.cpp ct-common/src/CtRegistryMgr.cpp ct-setting/src/CtSettingData.cpp ct-list/src/CtListUgVcardViewController.cpp ct-detail/src/CtMyProfileInputData.cpp ct-common/src/CtString.cpp ct-list/src/CtListModelFilter.cpp ct-list/src/CtListModelDb.cpp ct-detail/src/CtInputViewGenlistItem.cpp ct-detail/src/CtInputViewEventItem.cpp ct-common/src/CtCommon.cpp ct-tab/src/CtTabView.cpp ct-detail/src/CtMyProfileDetailData.cpp ct-vcard/src/CtContactsToVcard.cpp ct-setting/src/CtSettingRadioPopup.cpp ct-common/src/CtProgressBarPopup.cpp ct-list/src/CtListModelVcard.cpp ct-detail/src/CtInputViewBasicInfoItem.cpp ct-list/src/CtNumberPopup.cpp 
+USER_SRCS_ABS = 
+
+# EDC Sources
+USER_EDCS =  
+
+# PO Sources
+USER_POS = 
+
+# User Defines
+USER_DEFS = 
+USER_CPP_DEFS = 
+
+# User Undefines
+USER_UNDEFS = 
+USER_CPP_UNDEFS = 
+
+# User Libraries
+USER_LIBS = app-assist-efl phone common 
+
+# User Objects
+USER_OBJS = 
+USER_OBJS_ABS = 
+
+# User Includes
+## C Compiler
+USER_INC_DIRS = 
+USER_INC_DIRS_ABS = 
+USER_INC_FILES = 
+USER_INC_FILES_ABS = 
+## C++ Compiler
+USER_CPP_INC_DIRS = ct-common/inc ct-detail/inc ct-list/inc ct-setting/inc ct-tab/inc ct-vcard/inc 
+USER_CPP_INC_DIRS_ABS = $(workspace_loc)//app-assist-efl/inc $(workspace_loc)//lib-common/inc $(workspace_loc)//lib-phone/ph-dialer/inc $(workspace_loc)//lib-phone/ph-loglist/inc $(workspace_loc)//lib-phone/ph-common/inc $(workspace_loc)//lib-common/res/common/edje 
+USER_CPP_INC_FILES = 
+USER_CPP_INC_FILES_ABS = 
+
+# User Library Path
+USER_LIB_DIRS = 
+USER_LIB_DIRS_ABS = $(workspace_loc)//app-assist-efl/Debug $(workspace_loc)//lib-phone/Debug $(workspace_loc)//lib-common/Debug 
+
+# EDC Resource Path
+USER_EDCS_IMAGE_DIRS = 
+USER_EDCS_IMAGE_DIRS_ABS = 
+USER_EDCS_SOUND_DIRS = 
+USER_EDCS_SOUND_DIRS_ABS = 
+USER_EDCS_FONT_DIRS = 
+USER_EDCS_FONT_DIRS_ABS = 
+
+# EDC Flags
+USER_EXT_EDC_KEYS = 
+
+# Resource Filter
+USER_RES_INCLUDE = 
+USER_RES_EXCLUDE = 
+
