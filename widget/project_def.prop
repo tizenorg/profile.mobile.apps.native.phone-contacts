@@ -1,0 +1,74 @@
+
+# Project Name
+APPNAME = contacts-widget
+
+# Project Type
+type = app
+
+# Project Profile
+profile = mobile-3.0
+
+# C Sources
+USER_SRCS = src/Widget.cpp src/WidgetGengridItem.cpp src/WidgetApp.cpp src/WidgetDatabase.cpp src/main.cpp src/WidgetItems.cpp src/WidgetItem.cpp 
+USER_SRCS_ABS = 
+
+# EDC Sources
+USER_EDCS =  
+
+# PO Sources
+USER_POS = 
+
+# User Defines
+USER_DEFS = 
+USER_CPP_DEFS = 
+
+# User Undefines
+USER_UNDEFS = 
+USER_CPP_UNDEFS = 
+
+# User Libraries
+USER_LIBS = common app-assist-efl 
+
+# User Objects
+USER_OBJS = 
+USER_OBJS_ABS = 
+
+# User Includes
+## C Compiler
+USER_INC_DIRS = 
+USER_INC_DIRS_ABS = 
+USER_INC_FILES = 
+USER_INC_FILES_ABS = 
+## C++ Compiler
+USER_CPP_INC_DIRS = inc res/widget/edje 
+USER_CPP_INC_DIRS_ABS = $(workspace_loc)/app-assist-efl/inc $(workspace_loc)/lib-common/inc $(workspace_loc)/lib-common/res/common/edje 
+USER_CPP_INC_FILES = 
+USER_CPP_INC_FILES_ABS = 
+
+# User Library Path
+USER_LIB_DIRS = 
+USER_LIB_DIRS_ABS = $(workspace_loc)/app-assist-efl/Debug $(workspace_loc)/lib-common/Debug
+
+# EDC Resource Path
+USER_EDCS_IMAGE_DIRS = res 
+USER_EDCS_IMAGE_DIRS_ABS = 
+USER_EDCS_SOUND_DIRS = edje/sounds 
+USER_EDCS_SOUND_DIRS_ABS = 
+USER_EDCS_FONT_DIRS = edje/fonts 
+USER_EDCS_FONT_DIRS_ABS = 
+
+# EDC Flags
+USER_EXT_EDC_KEYS = EDC0 
+
+USER_EXT_EDC0_EDCS = res/widget/edje/widget-item-layout.edc res/widget/edje/widget-layout-4x4.edc res/widget/edje/widget-layout-4x2.edc 
+USER_EXT_EDC0_EDCS_IMAGE_DIRS = res 
+USER_EXT_EDC0_EDCS_IMAGE_DIRS_ABS = 
+USER_EXT_EDC0_EDCS_SOUND_DIRS = edje/sounds 
+USER_EXT_EDC0_EDCS_SOUND_DIRS_ABS = 
+USER_EXT_EDC0_EDCS_FONT_DIRS = edje/fonts 
+USER_EXT_EDC0_EDCS_FONT_DIRS_ABS = 
+
+# Resource Filter
+USER_RES_INCLUDE = 
+USER_RES_EXCLUDE = res/widget/CMakeLists.txt 
+
