@@ -94,7 +94,7 @@ namespace Contacts
 				/**
 				 * @return Person record list fetched using filter and query.
 				 */
-				contacts_list_h getPersonList() const;
+				virtual contacts_list_h getPersonList() const;
 
 				/**
 				 * @brief Fetch person record from database by ID.
