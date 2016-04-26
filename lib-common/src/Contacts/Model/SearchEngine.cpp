@@ -17,15 +17,16 @@
 
 #include "Contacts/Model/SearchEngine.h"
 #include "Contacts/Model/SearchData.h"
+#include "Utils/Logger.h"
 
 #include <utility>
 #include <algorithm>
 
 using namespace Contacts::Model;
 
-SearchEngine::SearchEngine(DataList &dataList)
+SearchEngine::SearchEngine()
 	: m_LastFoundIndex(-1),
-	  m_DataList(dataList)
+	  m_DataList(nullptr)
 {}
 
 void SearchEngine::search(const std::string &query)
@@ -83,9 +84,11 @@ bool SearchEngine::needSearch(const std::string &query)
 
 void SearchEngine::firstSearch(const std::string &query)
 {
+	RETM_IF(!m_DataList, "Initial data list is not assigned");
+
 	clear();
 
-	auto searchList = filter(m_DataList, query);
+	auto searchList = filter(*m_DataList, query);
 	if (!searchList.empty()) {
 		m_SearchHistory.resize(query.size());
 		m_SearchHistory.front() = std::move(searchList);

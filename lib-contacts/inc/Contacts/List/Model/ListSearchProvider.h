@@ -23,6 +23,12 @@
 
 namespace Contacts
 {
+	namespace Model
+	{
+		class ContactDataProvider;
+		class SearchEngine;
+	}
+
 	namespace List
 	{
 		namespace Model
@@ -32,11 +38,15 @@ namespace Contacts
 			class ListSearchProvider : public Contacts::Model::ContactDataProvider
 			{
 			public:
-				ListSearchProvider();
+				/**
+				 * @brief Create Contact list search provider
+				 * @param[in]   searchEngine    Object, that provides search on provider items
+				 */
+				explicit ListSearchProvider(Contacts::Model::SearchEngine &searchEngine);
 				virtual ~ListSearchProvider() override;
 
 				/**
-				 * @see ContactDataProvider::getDataList()
+				 * @return Found data items
 				 */
 				virtual const DataList &getDataList() override;
 
@@ -47,8 +57,8 @@ namespace Contacts
 				void addProvider(ContactDataProvider *provider);
 
 			private:
-				typedef std::unordered_map<ContactDataProvider *, DataList::const_iterator> SubProviders;
 				using ContactDataProvider::onInserted;
+				typedef std::unordered_map<ContactDataProvider *, DataList::const_iterator> SubProviders;
 
 				Contacts::Model::ContactData &insertContact(DataList::const_iterator position, Contacts::Model::ContactData &contact,
 						ContactDataProvider *provider);
@@ -59,6 +69,8 @@ namespace Contacts
 
 				DataList m_ContactList;
 				SubProviders m_SubProviders;
+
+				Contacts::Model::SearchEngine &m_SearchEngine;
 			};
 		}
 	}

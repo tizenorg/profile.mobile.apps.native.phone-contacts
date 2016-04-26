@@ -26,6 +26,8 @@ namespace Contacts
 {
 	namespace Model
 	{
+		class SearchProvider;
+
 		/**
 		 * @brief This class provides incremental search logic
 		 */
@@ -37,11 +39,7 @@ namespace Contacts
 			 */
 			typedef ContactDataProvider::DataList DataList;
 
-			/**
-			 * @brief Create search engine
-			 * @param[in]   dataList  ContactData list
-			 */
-			explicit SearchEngine(DataList &dataList);
+			SearchEngine();
 
 			/**
 			 * @brief Perform incremental search
@@ -59,6 +57,8 @@ namespace Contacts
 			 * @return true if there is no results, otherwise false
 			 */
 			bool empty() const;
+
+			void setDataList(DataList *dataList);
 
 		private:
 			typedef std::vector<DataList> SearchHistory;
@@ -79,7 +79,7 @@ namespace Contacts
 			SearchHistory m_SearchHistory;
 			int m_LastFoundIndex;
 
-			DataList &m_DataList;
+			DataList *m_DataList;
 		};
 	}
 }
