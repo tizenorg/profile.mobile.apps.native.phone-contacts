@@ -70,10 +70,9 @@ void Widget::onCreate(bundle *content, int w, int h)
 
 void Widget::onDestroy(widget_app_destroy_type reason)
 {
-//	TODO uncomment when WIDGET_APP_DESTROY_TYPE_PERMANENT will be declared
-//	if (reason == WIDGET_APP_DESTROY_TYPE_PERMANENT) {
+	if (reason == WIDGET_APP_DESTROY_TYPE_PERMANENT) {
 		m_Items.destroy();
-//	}
+	}
 }
 
 void Widget::initializeItems(bundle *content)
@@ -91,7 +90,7 @@ void Widget::initializeItems(bundle *content)
 
 	m_Items.initialize(id);
 
-	if (!content) {
+	if (id == 0) {
 		content = bundle_create();
 		bundle_add_str(content, WIDGET_ID_KEY, std::to_string(m_Items.getWidgetId()).c_str());
 		saveContent(content);
