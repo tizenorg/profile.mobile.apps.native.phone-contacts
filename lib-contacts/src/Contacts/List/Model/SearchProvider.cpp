@@ -18,6 +18,7 @@
 #include "Contacts/List/Model/SearchProvider.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/List/Model/PersonSearchData.h"
+#include "Contacts/Model/SearchEngine.h"
 #include "Utils/Range.h"
 
 using namespace Contacts::Model;
@@ -27,6 +28,7 @@ using namespace std::placeholders;
 
 SearchProvider::SearchProvider()
 {
+	m_SearchEngine.setDataList(&m_ContactList);
 }
 
 SearchProvider::~SearchProvider()
@@ -38,7 +40,7 @@ SearchProvider::~SearchProvider()
 
 const SearchProvider::DataList &SearchProvider::getDataList()
 {
-	return m_ContactList;//Todo: Return filtered list by search engine instead of all contacts
+	return m_SearchEngine.empty() ? m_ContactList : *m_SearchEngine.getSearchResult();
 }
 
 void SearchProvider::addProvider(ContactDataProvider *provider)

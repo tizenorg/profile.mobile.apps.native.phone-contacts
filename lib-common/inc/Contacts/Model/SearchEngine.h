@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef PHONE_DIALER_SEARCH_ENGINE_H
-#define PHONE_DIALER_SEARCH_ENGINE_H
+#ifndef CONTACTS_MODEL_SEARCH_ENGINE_H
+#define CONTACTS_MODEL_SEARCH_ENGINE_H
 
 #include "Contacts/Model/ContactDataProvider.h"
 #include <string>
@@ -37,11 +37,7 @@ namespace Contacts
 			 */
 			typedef ContactDataProvider::DataList DataList;
 
-			/**
-			 * @brief Create search engine
-			 * @param[in]   dataList  ContactData list
-			 */
-			explicit SearchEngine(DataList &dataList);
+			SearchEngine();
 
 			/**
 			 * @brief Perform incremental search
@@ -59,6 +55,8 @@ namespace Contacts
 			 * @return true if there is no results, otherwise false
 			 */
 			bool empty() const;
+
+			void setDataList(DataList *dataList);
 
 		private:
 			typedef std::vector<DataList> SearchHistory;
@@ -79,9 +77,9 @@ namespace Contacts
 			SearchHistory m_SearchHistory;
 			int m_LastFoundIndex;
 
-			DataList &m_DataList;
+			DataList *m_DataList;
 		};
 	}
 }
 
-#endif /* PHONE_DIALER_SEARCH_ENGINE_H */
+#endif /* CONTACTS_MODEL_SEARCH_ENGINE_H */
