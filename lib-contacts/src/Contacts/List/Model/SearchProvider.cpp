@@ -15,11 +15,13 @@
  *
  */
 
-#include "Contacts/Model/SearchProvider.h"
-#include "Contacts/Model/SearchData.h"
+#include "Contacts/List/Model/SearchProvider.h"
+#include "Contacts/List/Model/Person.h"
+#include "Contacts/List/Model/PersonSearchData.h"
 #include "Utils/Range.h"
 
 using namespace Contacts::Model;
+using namespace Contacts::List::Model;
 using namespace Utils;
 using namespace std::placeholders;
 
@@ -43,20 +45,21 @@ void SearchProvider::addProvider(ContactDataProvider *provider)
 {
 	const DataList &list = provider->getDataList();
 	for (auto it = list.begin(); it != list.end(); ++it) {
-		insertContact(m_ContactList.end(), **it, provider);
+		auto &person = static_cast<Person &>(**it);
+		insertContact(m_ContactList.end(), person, provider);
 	}
 
 	m_SubProviders.insert({ provider, --m_ContactList.end() });
 	provider->setInsertCallback(
 		[this, provider](ContactData &contactData) {
-			onInserted(contactData, provider);
+			onInserted(static_cast<Person &>(contactData), provider);
 		});
 }
 
-ContactData &SearchProvider::insertContact(DataList::const_iterator position, ContactData &contact,
+ContactData &SearchProvider::insertContact(DataList::const_iterator position, Person &contact,
 		ContactDataProvider *provider)
 {
-	auto searchData = new SearchData(contact);
+	auto searchData = new PersonSearchData(contact);
 	auto newDataIt = m_ContactList.insert(position, searchData);
 
 	DataList::iterator contactIt = --m_ContactList.end();
@@ -71,21 +74,21 @@ ContactData &SearchProvider::insertContact(DataList::const_iterator position, Co
 	return *searchData;
 }
 
-void SearchProvider::onInserted(ContactData &contactData, ContactDataProvider *provider)
+void SearchProvider::onInserted(Person &person, ContactDataProvider *provider)
 {
 	auto position = Utils::advance(m_SubProviders[provider], 1);
-	ContactData &searchData = insertContact(position, contactData, provider);
+	ContactData &searchData = insertContact(position, person, provider);
 	onInserted(searchData);
 }
 
-void SearchProvider::onUpdated(SearchData &searchData, int changes)
+void SearchProvider::onUpdated(PersonSearchData &searchData, int changes)
 {
 	searchData.onUpdated(changes);
 }
 
 void SearchProvider::onDeleted(DataList::iterator contactIt, ContactDataProvider *provider)
 {
-	SearchData *searchData = static_cast<SearchData *>(*contactIt);
+	PersonSearchData *searchData = static_cast<PersonSearchData *>(*contactIt);
 	searchData->onDeleted();
 
 	delete searchData;

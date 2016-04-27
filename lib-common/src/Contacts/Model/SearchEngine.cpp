@@ -16,16 +16,15 @@
  */
 
 #include "Contacts/Model/SearchEngine.h"
-#include "Contacts/Model/SearchProvider.h"
 
 #include <utility>
 #include <algorithm>
 
 using namespace Contacts::Model;
 
-SearchEngine::SearchEngine(SearchProvider &searchProvider)
+SearchEngine::SearchEngine(DataList &dataList)
 	: m_LastFoundIndex(-1),
-	  m_SearchProvider(searchProvider)
+	  m_DataList(dataList)
 {}
 
 void SearchEngine::search(const std::string &query)
@@ -57,7 +56,7 @@ void SearchEngine::firstSearch(const std::string &query)
 {
 	clear();
 
-	auto &searchList = m_SearchProvider.getDataList();
+	auto &searchList = m_DataList;
 	if (!searchList.empty()) {
 		m_Cache.resize(query.size());
 		m_Cache.front() = std::move(searchList);
