@@ -64,8 +64,9 @@ void Widget::onCreate(bundle *content)
 
 void Widget::onDestroy(widget_app_destroy_type reason)
 {
-	/* FIXME: use reason == WIDGET_APP_DESTROY_TYPE_PERMANENT once Tizen 3.0 API is updated */
-	m_Items.destroy();
+	if (reason == WIDGET_APP_DESTROY_TYPE_PERMANENT) {
+		m_Items.destroy();
+	}
 }
 
 void Widget::onResize(int width, int height)
@@ -88,7 +89,7 @@ void Widget::initializeItems(bundle *content)
 
 	m_Items.initialize(id);
 
-	if (!content) {
+	if (id == 0) {
 		content = bundle_create();
 		bundle_add_str(content, WIDGET_ID_KEY, std::to_string(m_Items.getWidgetId()).c_str());
 		saveContent(content);
