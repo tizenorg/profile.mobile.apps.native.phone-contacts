@@ -70,10 +70,9 @@ void Widget::onCreate(bundle *content, int w, int h)
 
 void Widget::onDestroy(widget_app_destroy_type reason)
 {
-//	TODO uncomment when WIDGET_APP_DESTROY_TYPE_PERMANENT will be declared
-//	if (reason == WIDGET_APP_DESTROY_TYPE_PERMANENT) {
+	if (reason == WIDGET_APP_DESTROY_TYPE_PERMANENT) {
 		m_Items.destroy();
-//	}
+	}
 }
 
 void Widget::initializeItems(bundle *content)
