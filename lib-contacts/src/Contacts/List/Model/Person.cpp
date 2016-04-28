@@ -79,6 +79,9 @@ Person::Person(contacts_record_h record)
 
 Person::~Person()
 {
+	for (auto &&number : m_Numbers) {
+		delete number;
+	}
 	contacts_record_destroy(m_NameRecord, true);
 	contacts_record_destroy(m_Record, true);
 }
