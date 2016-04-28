@@ -18,6 +18,7 @@
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
 #include "Contacts/List/Model/Person.h"
+#include "Contacts/List/MfcGroup.h"
 #include "Contacts/List/MyProfileGroup.h"
 #include "Contacts/List/PersonGroupItem.h"
 #include "Contacts/List/PersonItem.h"
@@ -226,7 +227,15 @@ void ListView::fillFavorites()
 
 void ListView::fillMfc()
 {
-	//Todo
+	if (!m_Sections[SectionMfc]) {
+		MfcGroup *group = new MfcGroup();
+		group->setUpdateCallback(std::bind(&ListView::onMfcGroupUpdated, this, _1));
+		m_Sections[SectionMfc] = group;
+
+		if (!m_Sections[SectionMfc]->empty()) {
+			onMfcGroupUpdated(false);
+		}
+	}
 }
 
 void ListView::fillPersonList()
@@ -348,7 +357,7 @@ void ListView::removeSection(SectionId sectionId)
 Ui::GenlistItem *ListView::getNextSectionItem(SectionId currentSection)
 {
 	for (size_t nextSection = currentSection + 1; nextSection < SectionMax; ++nextSection) {
-		if (m_Sections[nextSection]) {
+		if (m_Sections[nextSection] && m_Sections[nextSection]->isInserted()) {
 			return m_Sections[nextSection];
 		}
 	}
@@ -565,13 +574,6 @@ PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &pe
 	return nullptr;
 }
 
-void ListView::onItemPressed(SelectItem *item)
-{
-	PersonItem *personItem = static_cast<PersonItem *>(item);
-	int id = personItem->getPerson().getContactId();
-	getNavigator()->navigateTo(new Details::DetailsView(id));
-}
-
 void ListView::onAddPressed(Evas_Object *button, void *eventInfo)
 {
 	getNavigator()->navigateTo(new Input::InputView());
@@ -604,4 +606,16 @@ void ListView::onPersonUpdated(PersonItem *item, int changes)
 void ListView::onPersonDeleted(PersonItem *item)
 {
 	deletePersonItem(item);
+}
+
+void ListView::onMfcGroupUpdated(bool isEmpty)
+{
+	if (isEmpty) {
+		m_Sections[SectionMfc]->pop();
+
+	} else {
+		m_Genlist->insert(m_Sections[SectionMfc], nullptr, getNextSectionItem(SectionMfc));
+		elm_genlist_item_select_mode_set(m_Sections[SectionMfc]->getObjectItem(),
+				ELM_OBJECT_SELECT_MODE_NONE);
+	}
 }

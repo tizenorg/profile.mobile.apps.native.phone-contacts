@@ -48,6 +48,7 @@ namespace Contacts
 
 		private:
 			virtual Ux::SelectResult getDefaultResult() const override;
+			virtual void onSelected() override;
 		};
 	}
 }
