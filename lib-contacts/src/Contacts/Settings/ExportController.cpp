@@ -122,7 +122,7 @@ std::string ExportController::getVcardFilePath()
 
 void ExportController::onStart()
 {
-	FILE *file = fopen(m_VcardPath.c_str(), "a");
+	FILE *file = fopen(m_VcardPath.c_str(), "w");
 	RETM_IF(!file, "fopen failed: %s", strerror(errno));
 	contacts_connect_on_thread();
 	size_t currentCount = 0;
