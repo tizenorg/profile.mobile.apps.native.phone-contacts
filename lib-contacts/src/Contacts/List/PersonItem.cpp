@@ -18,6 +18,10 @@
 #include "Contacts/List/PersonItem.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/Common/ContactSelectTypes.h"
+#include "Contacts/Details/DetailsView.h"
+
+#include "Ui/Genlist.h"
+#include "Ui/Navigator.h"
 
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
@@ -35,4 +39,20 @@ Person &PersonItem::getPerson() const
 Ux::SelectResult PersonItem::getDefaultResult() const
 {
 	return { ResultPerson, getPerson().getId() };
+}
+
+void PersonItem::onSelected()
+{
+	if (getSelectMode() == Ux::SelectNone) {
+		Ui::Navigator *navigator = getParent()->findParent<Ui::Navigator>();
+		if (!navigator) {
+			return;
+		}
+
+		int id = getPerson().getContactId();
+		navigator->navigateTo(new Details::DetailsView(id));
+
+	} else {
+		SelectItem::onSelected();
+	}
 }
