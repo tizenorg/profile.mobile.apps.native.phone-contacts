@@ -24,7 +24,6 @@
 #include "Ux/SelectView.h"
 #include "Utils/UniString.h"
 
-
 #include <map>
 #include <contacts_setting.h>
 
