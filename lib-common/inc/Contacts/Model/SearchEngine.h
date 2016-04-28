@@ -32,6 +32,9 @@ namespace Contacts
 		class SearchEngine
 		{
 		public:
+			/**
+			 * @see ContactDataProvider::DataList
+			 */
 			typedef ContactDataProvider::DataList DataList;
 
 			/**
@@ -60,19 +63,20 @@ namespace Contacts
 		private:
 			typedef std::vector<DataList> SearchHistory;
 
-			void firstSearch(const std::string &query);
 			void chooseSearch(const std::string &query);
+			bool needSearch(const std::string &query);
 
-			bool searchInCache(SearchHistory::iterator from, const std::string &query);
-			SearchHistory::reverse_iterator firstMismatch(const std::string &query);
-			SearchHistory::reverse_iterator skipEmptyResults(size_t offset);
+			void firstSearch(const std::string &query);
+			bool incrementalSearch(SearchHistory::iterator from, const std::string &query);
+			DataList filter(const DataList &list, const std::string &query);
+
+			SearchHistory::iterator firstMismatch(const std::string &query);
+			SearchHistory::iterator skipEmptyResults(size_t offset);
 
 			void clear();
 
-			bool needSearch(const std::string &query);
-
 			std::string m_Query;
-			SearchHistory m_Cache;
+			SearchHistory m_History;
 			int m_LastFoundIndex;
 
 			DataList &m_DataList;
