@@ -45,7 +45,7 @@ GenlistIterator GenlistGroupItem::end()
 
 bool GenlistGroupItem::empty() const
 {
-	return m_FirstItem == nullptr;
+	return m_FirstItem == nullptr && m_ItemsCache.empty();
 }
 
 bool GenlistGroupItem::isExpanded() const
