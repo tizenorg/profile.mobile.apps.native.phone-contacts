@@ -118,7 +118,6 @@ namespace Contacts
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
 
-			virtual void onItemPressed(Ux::SelectItem *item) override;
 			void onAddPressed(Evas_Object *button, void *eventInfo);
 
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
@@ -127,6 +126,8 @@ namespace Contacts
 			void onPersonInserted(Contacts::Model::ContactData &person);
 			void onPersonUpdated(PersonItem *item, int changes);
 			void onPersonDeleted(PersonItem *item);
+
+			void onMfcGroupUpdated(bool isEmpty);
 
 			Evas_Object *m_Box;
 			Evas_Object *m_NoContent;
