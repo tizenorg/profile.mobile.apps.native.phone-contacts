@@ -20,7 +20,8 @@
 using namespace Contacts::Model;
 
 SearchData::SearchData(ContactData &contactData)
-	: ContactData(contactData.getType()), m_ContactData(contactData)
+	: ContactData(contactData.getType()),
+	  m_ContactData(contactData), m_MatchedField(MatchedNone)
 {
 }
 
@@ -42,4 +43,29 @@ const char *SearchData::getNumber() const
 const char *SearchData::getImagePath() const
 {
 	return m_ContactData.getImagePath();
+}
+
+SearchData::MatchedField SearchData::getMatchedField() const
+{
+	return m_MatchedField;
+}
+
+const SearchData::Substring &SearchData::getSubstring() const
+{
+	return m_Substring;
+}
+
+void SearchData::setMatchedField(MatchedField field)
+{
+	m_MatchedField = field;
+}
+
+void SearchData::setSubstring(Substring substring)
+{
+	m_Substring = std::move(substring);
+}
+
+ContactData &SearchData::getContactData()
+{
+	return m_ContactData;
 }
