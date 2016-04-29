@@ -37,6 +37,8 @@ SearchProvider::SearchProvider(PersonProvider &provider)
 	m_Provider.setInsertCallback([this](ContactData &contactData) {
 		onInserted(static_cast<Person &>(contactData));
 	});
+
+	m_SearchEngine.setDataList(&m_ContactList);
 }
 
 SearchProvider::~SearchProvider()
@@ -48,7 +50,7 @@ SearchProvider::~SearchProvider()
 
 const SearchProvider::DataList &SearchProvider::getDataList()
 {
-	return m_ContactList;//Todo: Return filtered list by search engine instead of all contacts
+	return m_SearchEngine.empty() ? m_ContactList : *m_SearchEngine.getSearchResult();
 }
 
 ContactData &SearchProvider::insertPerson(Person &person)

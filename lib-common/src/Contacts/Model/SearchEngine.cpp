@@ -17,15 +17,16 @@
 
 #include "Contacts/Model/SearchEngine.h"
 #include "Contacts/Model/SearchData.h"
+#include "Utils/Logger.h"
 
 #include <utility>
 #include <algorithm>
 
 using namespace Contacts::Model;
 
-SearchEngine::SearchEngine(DataList &dataList)
+SearchEngine::SearchEngine()
 	: m_LastFoundIndex(-1),
-	  m_DataList(dataList)
+	  m_DataList(nullptr)
 {}
 
 void SearchEngine::search(const std::string &query)

@@ -19,10 +19,16 @@
 #define CONTACTS_LIST_MODEL_SEARCH_PROVIDER_H
 
 #include "Contacts/Model/ContactDataProvider.h"
+#include "Contacts/Model/SearchEngine.h"
 #include <unordered_map>
 
 namespace Contacts
 {
+	namespace Model
+	{
+		class ContactDataProvider;
+	}
+
 	namespace List
 	{
 		namespace Model
@@ -42,12 +48,13 @@ namespace Contacts
 				virtual ~SearchProvider() override;
 
 				/**
-				 * @see ContactDataProvider::getDataList()
+				 * @return Found data items
 				 */
 				virtual const DataList &getDataList() override;
 
 			private:
 				using ContactDataProvider::onInserted;
+				typedef std::unordered_map<ContactDataProvider *, DataList::const_iterator> SubProviders;
 
 				Contacts::Model::ContactData &insertPerson(Person &person);
 
@@ -57,6 +64,7 @@ namespace Contacts
 
 				PersonProvider &m_Provider;
 				DataList m_ContactList;
+				Contacts::Model::SearchEngine m_SearchEngine;
 			};
 		}
 	}
