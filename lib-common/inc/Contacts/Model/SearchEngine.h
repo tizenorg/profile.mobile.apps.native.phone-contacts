@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef PHONE_DIALER_SEARCH_ENGINE_H
-#define PHONE_DIALER_SEARCH_ENGINE_H
+#ifndef CONTACTS_MODEL_SEARCH_ENGINE_H
+#define CONTACTS_MODEL_SEARCH_ENGINE_H
 
 #include "Contacts/Model/ContactDataProvider.h"
 #include <string>
@@ -81,4 +81,4 @@ namespace Contacts
 	}
 }
 
-#endif /* PHONE_DIALER_SEARCH_ENGINE_H */
+#endif /* CONTACTS_MODEL_SEARCH_ENGINE_H */

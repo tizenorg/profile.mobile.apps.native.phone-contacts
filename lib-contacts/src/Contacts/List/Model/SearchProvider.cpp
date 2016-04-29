@@ -48,7 +48,7 @@ SearchProvider::~SearchProvider()
 
 const SearchProvider::DataList &SearchProvider::getDataList()
 {
-	return m_ContactList;//Todo: Return filtered list by search engine instead of all contacts
+	return m_SearchEngine.empty() ? m_ContactList : *m_SearchEngine.getSearchResult();
 }
 
 ContactData &SearchProvider::insertPerson(Person &person)
