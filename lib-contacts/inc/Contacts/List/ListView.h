@@ -67,8 +67,10 @@ namespace Contacts
 			};
 
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
-			virtual void onNavigation(bool isCurrent) override;
 			virtual void onCreated() override;
+			virtual void onDestroy() override;
+
+			virtual void onNavigation(bool isCurrent) override;
 			virtual void onMenuPressed() override;
 
 			void onDeleteSelected();

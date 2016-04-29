@@ -17,6 +17,7 @@
 
 #include "Ui/Control.h"
 #include "Utils/Callback.h"
+#include "Utils/Logger.h"
 
 #define CONTROL_DATA_KEY "Ui::Control"
 
@@ -82,15 +83,19 @@ void Control::setEvasObject(Evas_Object *object)
 		evas_object_data_set(m_Object, CONTROL_DATA_KEY, this);
 	}
 
+	evas_object_event_callback_add(m_Object, EVAS_CALLBACK_DEL,
+			(Evas_Object_Event_Cb) makeCallback(&Control::onDestroy), this);
 	evas_object_event_callback_add(m_Object, EVAS_CALLBACK_FREE,
-			makeCallback(&Control::onDestroy), this);
+			makeCallback(&Control::onDestroyed), this);
 }
 
 Evas_Object *Control::resetEvasObject()
 {
 	Evas_Object *object = m_Object;
+	evas_object_event_callback_del_full(m_Object, EVAS_CALLBACK_DEL,
+			(Evas_Object_Event_Cb) makeCallback(&Control::onDestroy), this);
 	evas_object_event_callback_del_full(m_Object, EVAS_CALLBACK_FREE,
-			makeCallback(&Control::onDestroy), this);
+			makeCallback(&Control::onDestroyed), this);
 	m_Object = nullptr;
 	return object;
 }
@@ -98,11 +103,12 @@ Evas_Object *Control::resetEvasObject()
 void Control::destroyEvasObject()
 {
 	if (m_Object) {
+		onDestroy();
 		evas_object_del(resetEvasObject());
 	}
 }
 
-void Control::onDestroy(Evas *e, Evas_Object *obj, void *event_info)
+void Control::onDestroyed(Evas *e, Evas_Object *obj, void *event_info)
 {
 	resetEvasObject();
 	delete this;
