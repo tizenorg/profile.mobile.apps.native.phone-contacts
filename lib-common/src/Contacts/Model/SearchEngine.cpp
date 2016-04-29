@@ -16,6 +16,7 @@
  */
 
 #include "Contacts/Model/SearchEngine.h"
+#include "Contacts/Model/SearchData.h"
 
 #include <utility>
 #include <algorithm>
@@ -32,7 +33,23 @@ void SearchEngine::search(const std::string &query)
 	if (query.empty()) {
 		clear();
 	} else {
-		chooseSearch(query);
+		if (!needSearch(query)) {
+			return;
+		}
+
+		m_History.resize(query.size());
+
+		if (m_Query.empty()) {
+			initialSearch(query);
+		} else {
+			auto it = firstMismatch(query);
+			if (it == m_History.end()) {//Perform initial search
+				clear();
+				initialSearch(query);
+			} else {
+				incrementalSearch(*it, query);
+			}
+		}
 	}
 
 	m_Query = query;
@@ -40,8 +57,8 @@ void SearchEngine::search(const std::string &query)
 
 const SearchEngine::DataList *SearchEngine::getSearchResult() const
 {
-	if (!m_Cache.empty()) {
-		return &m_Cache.back();
+	if (!m_History.empty()) {
+		return &m_History.back();
 	}
 
 	return nullptr;
@@ -49,92 +66,73 @@ const SearchEngine::DataList *SearchEngine::getSearchResult() const
 
 bool SearchEngine::empty() const
 {
-	return m_Cache.empty() || m_Cache.back().empty();
+	return m_History.empty() || m_History.back().empty();
 }
 
-void SearchEngine::firstSearch(const std::string &query)
+void SearchEngine::setDataList(DataList *dataList)
 {
-	clear();
-
-	auto &searchList = m_DataList;
-	if (!searchList.empty()) {
-		m_Cache.resize(query.size());
-		m_Cache.front() = std::move(searchList);
-		m_LastFoundIndex = 0;
-
-		if (query.size() > 1) {
-			if (!searchInCache(m_Cache.begin(), query)) {
-				clear();
-			}
-		}
-	}
-}
-
-void SearchEngine::chooseSearch(const std::string &query)
-{
-	if (m_Query.empty()) {
-		firstSearch(query);
-	}
-
-	if (!needSearch(query)) {
-		return;
-	}
-
-	m_Cache.resize(query.size());
-	auto rIt = firstMismatch(query);
-	if (rIt == m_Cache.rend()) {//Perform initial search
-		firstSearch(query);
-	} else {
-		searchInCache(rIt.base() - 1, query);
-	}
-}
-
-bool SearchEngine::searchInCache(SearchHistory::iterator from, const std::string &query)
-{
-	DataList searchRes;
-	/* for (auto &&contactData : *from) {  Todo: Compare
-	} */
-
-	if (!searchRes.empty()) {
-		m_LastFoundIndex = m_Cache.size() - 1;
-		m_Cache.back() = std::move(searchRes);
-		return true;
-	} else {
-		return false;
-	}
-}
-
-SearchEngine::SearchHistory::reverse_iterator SearchEngine::firstMismatch(const std::string &query)
-{
-	size_t minSize = std::min(m_Query.size(), query.size());
-	auto itPair = std::mismatch(m_Query.begin(), m_Query.begin() + minSize, query.begin());
-
-	auto rIt = skipEmptyResults(itPair.first - m_Query.begin());
-	return rIt;
-}
-
-SearchEngine::SearchHistory::reverse_iterator SearchEngine::skipEmptyResults(size_t offset)
-{
-	auto rIt = std::reverse_iterator<SearchHistory::iterator>(m_Cache.begin() + offset);
-
-	while (rIt != m_Cache.rend() && rIt->empty()) {
-		++rIt;
-	}
-
-	return rIt;
-}
-
-void SearchEngine::clear()
-{
-	m_Cache.clear();
-	m_LastFoundIndex = -1;
+	m_DataList = dataList;
 }
 
 bool SearchEngine::needSearch(const std::string &query)
 {
 	if (query.size() >= m_Query.size()
-		&&(int)(m_Cache.size() - 1) > m_LastFoundIndex) {
+		&&(int)(m_History.size() - 1) > m_LastFoundIndex) {
 		return false;
 	}
 	return true;
+}
+
+void SearchEngine::initialSearch(const std::string &query)
+{
+	RETM_IF(!m_DataList, "Initial data list is not assigned");
+	incrementalSearch(*m_DataList, query);
+}
+
+void SearchEngine::incrementalSearch(const DataList &list, const std::string &query)
+{
+	DataList searchRes = search(list, query);
+
+	if (!searchRes.empty()) {
+		m_LastFoundIndex = m_History.size() - 1;
+		m_History.back() = std::move(searchRes);
+	}
+}
+
+SearchEngine::DataList SearchEngine::search(const DataList &list, const std::string &query)
+{
+	DataList searchRes;
+	for (auto &&data : list) {
+		auto searchData = static_cast<SearchData *>(data);
+		if (searchData->compare(query)) {
+			searchRes.push_back(searchData);
+		}
+	}
+
+	return searchRes;
+}
+
+SearchEngine::SearchHistory::iterator SearchEngine::firstMismatch(const std::string &query)
+{
+	size_t minSize = std::min(m_Query.size(), query.size());
+	auto itPair = std::mismatch(m_Query.begin(), m_Query.begin() + minSize, query.begin());
+
+	return skipEmptyResults(itPair.first - m_Query.begin());
+}
+
+SearchEngine::SearchHistory::iterator SearchEngine::skipEmptyResults(size_t offset)
+{
+	auto rIt = std::reverse_iterator<SearchHistory::iterator>(m_History.begin() + offset);
+
+	while (rIt != m_History.rend() && rIt->empty()) {
+		++rIt;
+	}
+
+	return rIt == m_History.rend() ? m_History.end() : rIt.base() - 1;
+}
+
+void SearchEngine::clear()
+{
+	m_History.clear();
+	m_LastFoundIndex = -1;
 }
