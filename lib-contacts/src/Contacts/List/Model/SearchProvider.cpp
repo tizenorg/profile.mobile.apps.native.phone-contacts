@@ -27,7 +27,7 @@ using namespace Utils;
 using namespace std::placeholders;
 
 SearchProvider::SearchProvider(PersonProvider &provider)
-	: m_Provider(provider)
+	: m_Provider(provider), m_SearchEngine(m_ContactList)
 {
 	for (auto &&data : m_Provider.getDataList()) {
 		auto &person = static_cast<Person &>(*data);
