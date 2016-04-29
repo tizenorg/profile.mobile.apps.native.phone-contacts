@@ -101,12 +101,17 @@ namespace Ui
 		 */
 		virtual void onCreated() { }
 
+		/**
+		 * @brief Called before Control is destroyed.
+		 */
+		virtual void onDestroy() { }
+
 	private:
 		void setEvasObject(Evas_Object *object);
 		Evas_Object *resetEvasObject();
 		void destroyEvasObject();
 
-		void onDestroy(Evas *e, Evas_Object *obj, void *event_info);
+		void onDestroyed(Evas *e, Evas_Object *obj, void *event_info);
 
 		int m_Type;
 		Evas_Object *m_Object;
