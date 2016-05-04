@@ -27,7 +27,7 @@ using namespace Utils;
 using namespace std::placeholders;
 
 SearchProvider::SearchProvider(PersonProvider &provider)
-	: m_Provider(provider)
+	: m_Provider(provider), m_SearchEngine(m_ContactList)
 {
 	for (auto &&data : m_Provider.getDataList()) {
 		auto &person = static_cast<Person &>(*data);
@@ -48,7 +48,7 @@ SearchProvider::~SearchProvider()
 
 const SearchProvider::DataList &SearchProvider::getDataList()
 {
-	return m_ContactList;//Todo: Return filtered list by search engine instead of all contacts
+	return m_SearchEngine.empty() ? m_ContactList : *m_SearchEngine.getSearchResult();
 }
 
 ContactData &SearchProvider::insertPerson(Person &person)
