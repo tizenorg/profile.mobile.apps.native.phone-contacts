@@ -70,6 +70,7 @@ void CtMyProfileInputView::__initialize()
 	__discard = false;
 	__changed = false;
 
+	__nameEntry = nullptr;
 	__basicInfoFullName = NULL;
 	__baseInfoExpanded = false;
 	__isCreate = __inputData->getContactId() > 0 ? false : true;

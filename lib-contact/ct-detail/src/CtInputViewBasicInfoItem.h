@@ -127,7 +127,6 @@ private:
 	static void __basicInfoCompanyChangedCb(void *data, Evas_Object *obj, void *event_info);
 	static void __basicInfoJobTitleChangedCb(void *data, Evas_Object *obj, void *event_info);
 	static void __activatedCb(void *data, Evas_Object *obj, void *event_info);
-	static void __basicInfoNameShowCb(void *data, Evas *e, Evas_Object *obj, void *event_info);
 	static void __basicInfoSuffixShowCb(void *data, Evas *e, Evas_Object *obj, void *event_info);
 	static void __phoneticNameDeleteCb(void *data, Evas_Object *obj, void *event_info);
 	static void __nicknameDeleteCb(void *data, Evas_Object *obj, void *event_info);
