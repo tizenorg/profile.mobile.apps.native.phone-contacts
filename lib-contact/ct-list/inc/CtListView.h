@@ -484,9 +484,6 @@ private:
 	Ecore_Timer *__loadImageTimer;
 	CtThread *__searchGetContactThread;
 
-	void* __detailDllHandle;
-	void* __cmDllHandle;
-
 	bool __background;
 	bool __isFirstGroupSync;
 	bool __isFirstGroupMemberSync;
