@@ -63,6 +63,7 @@ private:
 	{
 		WHIT();
 		CtInputViewRelationItem *item = (CtInputViewRelationItem*)data;
+		item->focus();
 		//
 		if (0 == strcmp(part, "elm.icon.entry")) {
 			WEditfield *editfield = item->createEditField(obj, V_("IDS_PB_OPT_RELATIONSHIP_ABB2"), false);
@@ -109,7 +110,6 @@ private:
 			evas_object_smart_callback_add(image, "clicked", __relationshipSelectContact, item);
 			return image;
 		}
-
 		return NULL;
 	}
 
