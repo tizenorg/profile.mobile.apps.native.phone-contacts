@@ -288,7 +288,6 @@ Evas_Object* CtInputViewBasicInfoItem::__createNameField(CtInputViewBasicInfoIte
 	evas_object_smart_callback_add(entry, "activated", __activatedCb, item);
 
 	elm_entry_input_panel_imdata_set(entry, (void*)"type=name&allowEmoji=true", 25);
-	evas_object_event_callback_add(entry, EVAS_CALLBACK_SHOW, __basicInfoNameShowCb, item);
 
 	setEntryText( entry, name.c_str());
 
@@ -1244,17 +1243,6 @@ void CtInputViewBasicInfoItem::__activatedCb(void *data, Evas_Object *obj, void 
 	}
 }
 
-void CtInputViewBasicInfoItem::__basicInfoNameShowCb(void *data, Evas *e, Evas_Object *obj, void *event_info)
-{
-	WHIT();
-	CtInputViewBasicInfoItem* item = (CtInputViewBasicInfoItem*)data;
-	evas_object_event_callback_del_full( obj, EVAS_CALLBACK_SHOW, __basicInfoNameShowCb, item );
-
-	if (item->__showCreateKeypadCb) {
-		item->__showCreateKeypadCb( obj );
-	}
-}
-
 void CtInputViewBasicInfoItem::__basicInfoSuffixShowCb(void *data, Evas *e, Evas_Object *obj, void *event_info)
 {
 	WHIT();
@@ -1474,6 +1462,12 @@ void CtInputViewBasicInfoItem::onRealized()
 		elm_object_focus_set(__focusEntry, EINA_TRUE);
 		__focusEntry = NULL;
 		__addedIndex = INPUT_ADDED_ITEM_INDEX_NONE;
+	}
+
+	// Set focus in the Name field in case of Create contact
+	if (__showCreateKeypadCb && *__nameEntry) {
+		__showCreateKeypadCb( *__nameEntry );
+		__showCreateKeypadCb = nullptr;
 	}
 }
 

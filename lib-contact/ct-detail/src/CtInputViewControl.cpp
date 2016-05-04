@@ -147,6 +147,7 @@ void CtInputViewControl::__initialize()
 
 	memset( __genlistItems, 0, sizeof(__genlistItems) );
 
+	__nameEntry = nullptr;
 	__genlist = NULL;
 	__conformant = NULL;
 	__birthdayEventExist = std::make_shared<bool> (false);
