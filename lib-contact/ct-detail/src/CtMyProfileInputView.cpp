@@ -1442,9 +1442,13 @@ void CtMyProfileInputView::__updateEntryReturnKeyType(Elm_Object_Item* deleteIte
 				EINA_LIST_FOREACH(list, cursor, tmp) {
 					layout = (Evas_Object*)tmp;
 					if (layout) {
-						entry = elm_object_part_content_get(layout, "elm.icon.1");
-						if (entry && elm_entry_single_line_get(entry)) {
-							elm_entry_input_panel_return_key_type_set(entry, ELM_INPUT_PANEL_RETURN_KEY_TYPE_NEXT);
+						WControl *control = WControl_getInstanceFromEvasObj(elm_object_part_content_get(layout, "elm.icon.1"));
+						WEditfield *editfield = static_cast<WEditfield *>(control);
+						if (editfield) {
+							entry = editfield->getEntry();
+							if (entry && elm_entry_single_line_get(entry)) {
+								elm_entry_input_panel_return_key_type_set(entry, ELM_INPUT_PANEL_RETURN_KEY_TYPE_NEXT);
+							}
 						}
 					}
 				}
