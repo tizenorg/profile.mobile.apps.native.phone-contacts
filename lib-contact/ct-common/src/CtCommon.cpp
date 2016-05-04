@@ -525,18 +525,7 @@ int ctCommonGetEasDefaultGroupId(int addressbook_id)
 
 void* ctGetDllHandle(const char* dllName)
 {
-	if (strcmp(dllName, "libct-detail.so") == 0) {
-		static void* detailDllHandle = NULL;
-		if (detailDllHandle == NULL) {
-			detailDllHandle = dlopen("libct-detail.so", RTLD_LAZY);
-			if (!detailDllHandle) {
-				WERROR("%s", dlerror());
-			}
-		}
-
-		return detailDllHandle;
-	}
-	else if (strcmp(dllName, "libct-setting.so") == 0) {
+	if (strcmp(dllName, "libct-setting.so") == 0) {
 		static void* settingDllHandle = NULL;
 		if (settingDllHandle == NULL) {
 			settingDllHandle = dlopen("libct-setting.so", RTLD_LAZY);

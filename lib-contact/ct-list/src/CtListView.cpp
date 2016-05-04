@@ -48,6 +48,9 @@
 #include "CtRegistryMgr.h"
 #include "CtThemeMgr.h"
 
+#include "CtMyProfileDetailView.h"
+#include "CtMyProfileInputView.h"
+
 #ifdef __cplusplus
 	extern "C" {
 #endif
@@ -925,9 +928,6 @@ void CtListView::__initialize(void)
 	__myProfileIdler = NULL;
 	__loadImageTimer = NULL;
 	__searchGetContactThread = NULL;
-
-	__detailDllHandle = NULL;
-	__cmDllHandle = NULL;
 
 	__background = false;
 	__isFirstGroupSync = false;
@@ -1807,25 +1807,12 @@ void CtListView::__onMyProfileSelectCb(void *data, Evas_Object *obj, void *event
 		err = contacts_list_destroy(myprofileList, true);
 		WPWARN(CONTACTS_ERROR_NONE != err, "contacts_list_get_count() Failed(%d)", err);
 
-		if (listView->__detailDllHandle == NULL) {
-			listView->__detailDllHandle = ctGetDllHandle("libct-detail.so");
-		}
-		WPRET_M(!listView->__detailDllHandle, "failed to load libct-detail.so");
-
 		if (count > 0 && !first) {
-			typedef WView* (*CreateMyProfileDetailView)();
-			CreateMyProfileDetailView createMyProfileDetailView = (CreateMyProfileDetailView)dlsym(listView->__detailDllHandle, "createMyProfileDetailView");
-			if (createMyProfileDetailView) {
-				WView* myProfileDetailView = createMyProfileDetailView();
-				listView->getWNaviframe()->push(myProfileDetailView, NULL, NULL);
-			}
+			WView* myProfileDetailView = new CtMyProfileDetailView();
+			listView->getWNaviframe()->push(myProfileDetailView, NULL, NULL);
 		} else {
-			typedef WView* (*CreateMyProfileInputView)(contacts_record_h);
-			CreateMyProfileInputView createMyProfileInputView = (CreateMyProfileInputView)dlsym(listView->__detailDllHandle, "createMyProfileInputView");
-			if (createMyProfileInputView) {
-				WView* myProfileInputView = createMyProfileInputView(NULL);
-				listView->getWNaviframe()->push(myProfileInputView, NULL, NULL);
-			}
+			WView* myProfileInputView = new CtMyProfileInputView(NULL);
+			listView->getWNaviframe()->push(myProfileInputView, NULL, NULL);
 		}
 	}
 }
