@@ -40,7 +40,7 @@ USER_INC_DIRS_ABS =
 USER_INC_FILES = 
 USER_INC_FILES_ABS = 
 ## C++ Compiler
-USER_CPP_INC_DIRS = ph-common/inc ph-dialer/inc ph-dialer/inc/predictive-number ph-loglist/inc ph-loglist/icu ph-speeddial/inc ph-dialer/res/dialer/edje ph-speeddial/res/speeddial/edje 
+USER_CPP_INC_DIRS = ph-common/inc ph-dialer/inc ph-dialer/inc/predictive-number ph-loglist/inc ph-loglist/icu ph-speeddial/inc ph-dialer/res/dialer/edje res/dialer/edje ph-speeddial/res/speeddial/edje res/speeddial/edje
 USER_CPP_INC_DIRS_ABS = $(workspace_loc)/app-assist-efl/inc $(workspace_loc)/lib-common/inc $(workspace_loc)/lib-common/res/common/edje 
 USER_CPP_INC_FILES = 
 USER_CPP_INC_FILES_ABS = 
