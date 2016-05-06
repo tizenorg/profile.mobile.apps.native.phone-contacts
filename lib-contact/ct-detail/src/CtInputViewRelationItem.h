@@ -207,11 +207,12 @@ private:
 			elm_genlist_item_fields_update(item->getElmObjectItem(), "elm.icon.entry", ELM_GENLIST_ITEM_FIELD_CONTENT);
 
 			contacts_record_destroy(record, true);
+
+			for (int i = 0; i < count; ++i) {
+				free(personIds[i]);
+			}
 		}
 
-		for (int i = 0; i < count; ++i) {
-			free(personIds[i]);
-		}
 		free(personIds);
 	}
 
