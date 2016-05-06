@@ -40,7 +40,7 @@ USER_INC_DIRS_ABS =
 USER_INC_FILES = 
 USER_INC_FILES_ABS = 
 ## C++ Compiler
-USER_CPP_INC_DIRS = ph-common/inc ph-dialer/inc ph-dialer/inc/predictive-number ph-loglist/inc ph-loglist/icu ph-speeddial/inc ph-dialer/res/dialer/edje res/dialer/edje ph-speeddial/res/speeddial/edje res/speeddial/edje
+USER_CPP_INC_DIRS = ph-common/inc ph-dialer/inc ph-dialer/inc/predictive-number ph-loglist/inc ph-loglist/icu ph-speeddial/inc ph-dialer/res/dialer/edje ph-speeddial/res/speeddial/edje
 USER_CPP_INC_DIRS_ABS = $(workspace_loc)/app-assist-efl/inc $(workspace_loc)/lib-common/inc $(workspace_loc)/lib-common/res/common/edje 
 USER_CPP_INC_FILES = 
 USER_CPP_INC_FILES_ABS = 
@@ -60,7 +60,7 @@ USER_EDCS_FONT_DIRS_ABS =
 # EDC Flags
 USER_EXT_EDC_KEYS = EDC0 
 
-USER_EXT_EDC0_EDCS = res/speeddial/edje/ph-speeddial-layout.edc res/dialer/edje/ph-dialer-keypad.edc res/dialer/edje/ph-dialer-predictive.edc res/dialer/edje/ph-dialer-layout.edc 
+USER_EXT_EDC0_EDCS = ph-speeddial/res/speeddial/edje/ph-speeddial-layout.edc ph-dialer/res/dialer/edje/ph-dialer-keypad.edc ph-dialer/res/dialer/edje/ph-dialer-predictive.edc ph-dialer/res/dialer/edje/ph-dialer-layout.edc 
 USER_EXT_EDC0_EDCS_IMAGE_DIRS = res 
 USER_EXT_EDC0_EDCS_IMAGE_DIRS_ABS = 
 USER_EXT_EDC0_EDCS_SOUND_DIRS = edje/sounds 
