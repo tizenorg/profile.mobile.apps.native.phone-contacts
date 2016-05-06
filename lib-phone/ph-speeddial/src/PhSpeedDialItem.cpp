@@ -142,11 +142,12 @@ void PhSpeedDialItem::onPickResult(app_control_h request, app_control_h reply,
 		} else {
 			notification_status_message_post(T_("IDS_PB_POP_ALREADY_EXISTS_LC"));
 		}
+
+		for (int i = 0; i < count; ++i) {
+			free(numberIds[i]);
+		}
 	}
 
-	for (int i = 0; i < count; ++i) {
-		free(numberIds[i]);
-	}
 	free(numberIds);
 }
 

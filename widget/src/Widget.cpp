@@ -236,12 +236,13 @@ void Widget::onPickReply(app_control_h request, app_control_h reply, app_control
 		} else if (strcmp(type, APP_CONTROL_DATA_TYPE_EMAIL) == 0) {
 			widget->onAddItem(WidgetItemEmail, atoi(ids[0]));
 		}
+
+		for (int i = 0; i < count; ++i) {
+			free(ids[i]);
+		}
 	}
 
 	free(type);
-	for (int i = 0; i < count; ++i) {
-		free(ids[i]);
-	}
 	free(ids);
 }
 

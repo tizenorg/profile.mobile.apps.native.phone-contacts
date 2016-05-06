@@ -341,11 +341,12 @@ void ctCommonGetProviderNameByAddressbookId(contacts_record_h recordAddressBook,
 	free(appId);
 
 	WDEBUG("providerName %s addressbookName %s", *providerName, addressbookName);
-	if(!strcmp(*providerName, CT_EAS_ADDRESSBOOK_NAME)) {
+	if(*providerName && !strcmp(*providerName, CT_EAS_ADDRESSBOOK_NAME)) {
+		free(*providerName);
 		*providerName = strdup(CT_EAS_ADDRESSBOOK_DISPLAY_NAME);
 		if(userName) {
+			free(*userName);
 			*userName = strdup(addressbookName);
-			free(addressbookUsername);
 		}
 	}
 	return;
