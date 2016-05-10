@@ -88,19 +88,28 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	return layout;
 }
 
-void ListView::onNavigation(bool isCurrent)
-{
-	m_IsCurrentView = isCurrent;
-	updateAddButton();
-	m_Provider.setUpdateMode(isCurrent);
-}
-
 void ListView::onCreated()
 {
 	updateSectionsMode();
 
 	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
 	contacts_setting_add_name_sorting_order_changed_cb(onNameSortingOrderChanged, this);
+}
+
+void ListView::onDestroy()
+{
+	for (auto &&section : m_Sections) {
+		if (section && !section->isInserted()) {
+			delete section;
+		}
+	}
+}
+
+void ListView::onNavigation(bool isCurrent)
+{
+	m_IsCurrentView = isCurrent;
+	updateAddButton();
+	m_Provider.setUpdateMode(isCurrent);
 }
 
 void ListView::onMenuPressed()
