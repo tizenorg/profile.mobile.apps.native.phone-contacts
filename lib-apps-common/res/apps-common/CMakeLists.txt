@@ -1,4 +1,4 @@
-set(EDCFILES apps-common-thumbnail.edc apps-common-buttons.edc)
+set(EDCFILES apps-common-thumbnail.edc apps-common-buttons.edc apps-common-progressbar-layout.edc)
 set(EDJDIR "${RES_DIR}/apps-common/edje")
 
 foreach(EDCFILE ${EDCFILES})
