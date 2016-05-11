@@ -111,12 +111,15 @@ void ListView::onMenuPressed()
 
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
-	menu->addItem("IDS_LOGS_OPT_DELETE", std::bind(&ListView::onDeleteSelected, this));
-	menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onShareSelected, this));
-	menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB", [this] {
-		auto manageFavPopup = new ManageFavoritesPopup(getNavigator());
-		manageFavPopup->create(getEvasObject());
-	});
+
+	if (!evas_object_visible_get(m_NoContent)) {
+		menu->addItem("IDS_LOGS_OPT_DELETE", std::bind(&ListView::onDeleteSelected, this));
+		menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onShareSelected, this));
+		menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB", [this] {
+			auto manageFavPopup = new ManageFavoritesPopup(getNavigator());
+			manageFavPopup->create(getEvasObject());
+		});
+	}
 
 	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
 		getNavigator()->navigateTo(new Settings::MainView());
