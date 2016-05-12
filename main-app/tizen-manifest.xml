@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="org.tizen.contacts" version="1.0.0">
     <profile name="mobile"/>
-    <ui-application appid="org.tizen.contacts" exec="contacts" hw-acceleration="on" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+    <ui-application appid="org.tizen.contacts" exec="contacts" hw-acceleration="on" process-pool="true" multiple="false" nodisplay="false" taskmanage="true" type="capp">
         <label>Contacts</label>
         <label xml:lang="as-in">সম্পর্কসমূহ</label>
         <label xml:lang="bn-in">পরিচিতিসমূহ</label>
@@ -33,7 +33,7 @@
         <label xml:lang="zh-cn">联系人</label>
         <icon>org.tizen.contacts.png</icon>
     </ui-application>
-    <ui-application appid="org.tizen.phone" exec="contacts" hw-acceleration="on" mainapp="false" multiple="false" taskmanage="true" type="capp">
+    <ui-application appid="org.tizen.phone" exec="contacts" hw-acceleration="on" process-pool="true" mainapp="false" multiple="false" taskmanage="true" type="capp">
         <label>Phone</label>
         <label xml:lang="as-in">ফোন</label>
         <label xml:lang="bn-in">ফোন</label>
@@ -69,7 +69,7 @@
             <uri name="tel"/>
         </app-control>
     </ui-application>
-    <ui-application appid="org.tizen.contacts.edit" exec="contacts" hw-acceleration="on" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+    <ui-application appid="org.tizen.contacts.edit" exec="contacts" hw-acceleration="on" process-pool="true" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
         <app-control>
             <operation name="http://tizen.org/appcontrol/operation/add"/>
             <mime name="application/vnd.tizen.contact"/>
@@ -79,7 +79,7 @@
             <mime name="application/vnd.tizen.contact"/>
         </app-control>
     </ui-application>
-    <ui-application appid="org.tizen.contacts.view" exec="contacts" hw-acceleration="on" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+    <ui-application appid="org.tizen.contacts.view" exec="contacts" hw-acceleration="on" process-pool="true" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
         <app-control>
             <operation name="http://tizen.org/appcontrol/operation/view"/>
             <mime name="application/vnd.tizen.contact"/>
@@ -87,7 +87,7 @@
             <mime name="text/x-vcard"/>
         </app-control>
     </ui-application>
-    <ui-application appid="org.tizen.contacts.pick" exec="contacts" hw-acceleration="on" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+    <ui-application appid="org.tizen.contacts.pick" exec="contacts" hw-acceleration="on" process-pool="true" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
         <app-control>
             <operation name="http://tizen.org/appcontrol/operation/pick"/>
             <mime name="application/vnd.tizen.contact"/>

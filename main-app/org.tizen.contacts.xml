@@ -2,7 +2,7 @@
 <manifest xmlns="http://tizen.org/ns/packages" api-version="2.4" package="org.tizen.contacts" version="0.1.189">
 	<author email="ps.jeong@samsung.com" href="www.samsung.com">Bongsoo Jeong</author>
 	<description>phone-contacts</description>
-	<ui-application appid="org.tizen.contacts" exec="/usr/apps/org.tizen.contacts/bin/contacts" multiple="false" taskmanage="true" type="capp" mainapp="true" process-pool="false" hw-acceleration="use-GL" launch_mode="single">
+	<ui-application appid="org.tizen.contacts" exec="/usr/apps/org.tizen.contacts/bin/contacts" multiple="false" taskmanage="true" type="capp" mainapp="true" process-pool="true" hw-acceleration="use-GL" launch_mode="single">
 		<icon>org.tizen.contacts.png</icon>
 		<label>Contacts</label>
 		<metadata key="http://developer.samsung.com/tizen/metadata/largememory"/>
@@ -57,7 +57,7 @@
 		<label xml:lang="zh-hk">聯絡人</label>
 		<label xml:lang="zh-tw">聯絡人</label>
 	</ui-application>
-	<ui-application appid="org.tizen.phone" exec="/usr/apps/org.tizen.contacts/bin/contacts" multiple="false" type="capp" taskmanage="true" mainapp="false" portrait-effectimage="/usr/apps/org.tizen.contacts/shared/res/portrait.edj" process-pool="false" hw-acceleration="use-GL" launch_mode="single">
+	<ui-application appid="org.tizen.phone" exec="/usr/apps/org.tizen.contacts/bin/contacts" multiple="false" type="capp" taskmanage="true" mainapp="false" portrait-effectimage="/usr/apps/org.tizen.contacts/shared/res/portrait.edj" process-pool="true" hw-acceleration="use-GL" launch_mode="single">
 		<icon>org.tizen.phone.png</icon>
 		<label>Phone</label>
 		<metadata key="http://developer.samsung.com/tizen/metadata/largememory"/>
@@ -117,7 +117,7 @@
 			<uri name="tel" />
 		</app-control>
 	</ui-application>
-	<ui-application appid="org.tizen.contacts.edit" exec="/usr/apps/org.tizen.contacts/bin/contacts" hw-acceleration="use-GL" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+	<ui-application appid="org.tizen.contacts.edit" exec="/usr/apps/org.tizen.contacts/bin/contacts" hw-acceleration="use-GL" process-pool="true" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
 		<app-control>
 			<operation name="http://tizen.org/appcontrol/operation/add"/>
 			<mime name="application/vnd.tizen.contact"/>
@@ -127,7 +127,7 @@
 			<mime name="application/vnd.tizen.contact"/>
 		</app-control>
 	</ui-application>
-	<ui-application appid="org.tizen.contacts.view" exec="/usr/apps/org.tizen.contacts/bin/contacts" hw-acceleration="use-GL" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+	<ui-application appid="org.tizen.contacts.view" exec="/usr/apps/org.tizen.contacts/bin/contacts" hw-acceleration="use-GL" process-pool="true" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
 		<app-control>
 			<operation name="http://tizen.org/appcontrol/operation/view"/>
 			<mime name="application/vnd.tizen.contact"/>
@@ -135,7 +135,7 @@
 			<mime name="text/x-vcard"/>
 		</app-control>
 	</ui-application>
-	<ui-application appid="org.tizen.contacts.pick" exec="/usr/apps/org.tizen.contacts/bin/contacts" hw-acceleration="use-GL" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+	<ui-application appid="org.tizen.contacts.pick" exec="/usr/apps/org.tizen.contacts/bin/contacts" hw-acceleration="use-GL" process-pool="true" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
 		<app-control>
 			<operation name="http://tizen.org/appcontrol/operation/pick"/>
 			<mime name="application/vnd.tizen.contact"/>
