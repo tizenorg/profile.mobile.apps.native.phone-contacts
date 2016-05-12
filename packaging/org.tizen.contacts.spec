@@ -1,6 +1,6 @@
 Name:       org.tizen.contacts
-#VCS_FROM:   profile/mobile/apps/native/phone-contacts#b4f9ffc3934b91af6b9a6b2b5cec2c1497323e29
-#RS_Ver:    20160511_2 
+#VCS_FROM:   profile/mobile/apps/native/phone-contacts#0a867bf071559e9f8a67ba1e5d9eac1653de0fe0
+#RS_Ver:    20160512_1 
 Summary:    Phone Application and gadgets
 Version:    1.0.0
 Release:    1
@@ -25,7 +25,7 @@ Requires(post):  /usr/bin/tpk-backend
 %endif
 
 %description
-profile/mobile/apps/native/phone-contacts#b4f9ffc3934b91af6b9a6b2b5cec2c1497323e29
+profile/mobile/apps/native/phone-contacts#0a867bf071559e9f8a67ba1e5d9eac1653de0fe0
 This is a container package which have preload TPK files
 
 %prep
