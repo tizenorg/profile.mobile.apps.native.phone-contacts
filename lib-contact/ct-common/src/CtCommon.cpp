@@ -22,7 +22,6 @@
 #include <metadata_extractor.h>
 #include <account.h>
 #include <telephony/telephony.h>
-#include <storage.h>
 #include <string>
 #include <fcntl.h>
 

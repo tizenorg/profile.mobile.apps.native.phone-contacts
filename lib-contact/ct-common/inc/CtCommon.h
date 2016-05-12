@@ -22,7 +22,7 @@
 #include <Elementary.h>
 #include <contacts.h>
 #include <string>
-#include <storage.h>
+#include <storage/storage.h>
 
 #include "CtString.h"
 
