@@ -33,8 +33,7 @@ using namespace std::placeholders;
 
 PersonProvider::PersonProvider(int filterType)
 	: m_FilterType(filterType), m_IsFilled(false),
-	  m_IsUpdateEnabled(true), m_IsUpdatePending(false),
-	  m_UpdateMask(ChangeInsert | ChangeUpdate | ChangeDelete)
+	  m_IsUpdateEnabled(true), m_IsUpdatePending(false)
 {
 	contacts_db_get_current_version(&m_DbVersion);
 	contacts_db_add_changed_cb(_contacts_contact._uri,
@@ -84,11 +83,6 @@ void PersonProvider::setUpdateMode(bool isEnabled)
 		m_IsUpdatePending = false;
 		updatePersonList();
 	}
-}
-
-void PersonProvider::setUpdateMask(int changeTypes)
-{
-	m_UpdateMask = changeTypes;
 }
 
 Person *PersonProvider::createPerson(contacts_record_h record)
@@ -179,17 +173,6 @@ contacts_record_h PersonProvider::getPersonRecord(int id, IdType idType) const
 	return record;
 }
 
-PersonProvider::DataList::const_iterator PersonProvider::findPerson(int id, IdType idType)
-{
-	int propId = getIdProperty(idType);
-	return std::find_if(m_PersonList.begin(), m_PersonList.end(),
-		[id, propId](ContactData *contactData) {
-			Person *person = static_cast<Person *>(contactData);
-			return getRecordInt(person->getRecord(), propId) == id;
-		}
-	);
-}
-
 bool PersonProvider::insertPerson(int id, IdType idType)
 {
 	contacts_record_h record = getPersonRecord(id, idType);
@@ -223,6 +206,17 @@ void PersonProvider::deletePerson(DataList::const_iterator personIt)
 	delete person;
 }
 
+PersonProvider::DataList::const_iterator PersonProvider::findPerson(int id, IdType idType)
+{
+	int propId = getIdProperty(idType);
+	return std::find_if(m_PersonList.begin(), m_PersonList.end(),
+		[id, propId](ContactData *contactData) {
+			Person *person = static_cast<Person *>(contactData);
+			return getRecordInt(person->getRecord(), propId) == id;
+		}
+	);
+}
+
 int PersonProvider::getIdProperty(IdType idType)
 {
 	return idType == PersonId ? _contacts_person.id : _contacts_person.display_contact_id;
@@ -241,9 +235,7 @@ void PersonProvider::updatePersonList()
 		switch (changeType) {
 			case CONTACTS_CHANGE_INSERTED:
 			{
-				if (m_UpdateMask & ChangeInsert) {
-					insertPerson(contactId, ContactId);
-				}
+				insertPerson(contactId, ContactId);
 				break;
 			}
 			case CONTACTS_CHANGE_UPDATED:
@@ -251,17 +243,11 @@ void PersonProvider::updatePersonList()
 				int personId = getPersonId(contactId);
 				auto personIt = findPerson(personId, PersonId);
 				if (personIt != m_PersonList.end()) {
-					if (m_UpdateMask & ChangeUpdate) {
-						if (!updatePerson(personIt)) {
-							if (m_UpdateMask & ChangeDelete) {
-								deletePerson(personIt);
-							}
-						}
+					if (!updatePerson(personIt)) {
+						deletePerson(personIt);
 					}
 				} else {
-					if (m_UpdateMask & ChangeInsert) {
-						insertPerson(personId, PersonId);
-					}
+					insertPerson(personId, PersonId);
 				}
 				break;
 			}
@@ -269,9 +255,7 @@ void PersonProvider::updatePersonList()
 			{
 				auto personIt = findPerson(contactId, ContactId);
 				if (personIt != m_PersonList.end()) {
-					if (m_UpdateMask & ChangeDelete) {
-						deletePerson(personIt);
-					}
+					deletePerson(personIt);
 				}
 				break;
 			}

@@ -60,12 +60,6 @@ namespace Contacts
 				 */
 				void setUpdateMode(bool isEnabled);
 
-				/**
-				 * @brief Enable or disable handling of certain update types.
-				 * @param[in]   changeTypes     Event types to handle
-				 */
-				void setUpdateMask(int changeTypes);
-
 			protected:
 				enum IdType
 				{
@@ -102,7 +96,29 @@ namespace Contacts
 				 * @param[in]   idType  Type of ID
 				 * @return Person iterator if found, end iterator otherwise.
 				 */
-				contacts_record_h getPersonRecord(int id, IdType idType) const;
+				virtual contacts_record_h getPersonRecord(int id, IdType idType) const;
+
+				/**
+				 * @brief Fetch person from database by ID and insert it into person list.
+				 * @param[in]   id      Person or display contact ID
+				 * @param[in]   idType  Type of ID
+				 * @return Whether insert was successful.
+				 */
+				virtual bool insertPerson(int id, IdType idType);
+
+				/**
+				 * @brief Update person from database.
+				 * @param[in]   personIt    Person iterator
+				 * @return Whether update was successful.
+				 */
+				virtual bool updatePerson(DataList::const_iterator personIt);
+
+				/**
+				 * @brief Delete person from person list.
+				 * @param[in]   personIt    Person iterator
+				 * @return Whether update was successful.
+				 */
+				virtual void deletePerson(DataList::const_iterator personIt);
 
 				/**
 				 * @brief Find person by ID.
@@ -111,28 +127,6 @@ namespace Contacts
 				 * @return Person iterator if found, end iterator otherwise.
 				 */
 				DataList::const_iterator findPerson(int id, IdType idType);
-
-				/**
-				 * @brief Fetch person from database by ID and insert it into person list.
-				 * @param[in]   id      Person or display contact ID
-				 * @param[in]   idType  Type of ID
-				 * @return Whether insert was successful.
-				 */
-				bool insertPerson(int id, IdType idType);
-
-				/**
-				 * @brief Update person from database.
-				 * @param[in]   personIt    Person iterator
-				 * @return Whether update was successful.
-				 */
-				bool updatePerson(DataList::const_iterator personIt);
-
-				/**
-				 * @brief Delete person from person list.
-				 * @param[in]   personIt    Person iterator
-				 * @return Whether update was successful.
-				 */
-				void deletePerson(DataList::const_iterator personIt);
 
 			private:
 				static int getIdProperty(IdType idType);
@@ -148,7 +142,6 @@ namespace Contacts
 				bool m_IsFilled;
 				bool m_IsUpdateEnabled;
 				bool m_IsUpdatePending;
-				int m_UpdateMask;
 			};
 		}
 	}
