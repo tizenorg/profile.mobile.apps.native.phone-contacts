@@ -3062,28 +3062,32 @@ void CtListView::__setDefaultItemClassStyle()
 
 char *CtListView::__getMyProfileNumber() const
 {
-	telephony_handle_list_s list;
-	int err = telephony_init(&list);
-	WPRET_VM(err != TELEPHONY_ERROR_NONE, nullptr, "telephony_init() failed(%d)", err);
+	static bool isInit = false;
+	static std::string number;
+	if (!isInit) {
+		isInit = true;
 
-	int sim_count = list.count;
-	char *ret = nullptr;
+		telephony_handle_list_s list;
+		int err = telephony_init(&list);
+		WPRET_VM(err != TELEPHONY_ERROR_NONE, nullptr, "telephony_init() failed(%d)", err);
 
-	for (int i=0; i < sim_count; ++i) {
-		char *number = nullptr;
+		for (unsigned i = 0; i < list.count; ++i) {
+			char *sim_number = nullptr;
 
-		err = telephony_sim_get_subscriber_number(list.handle[i], &number);
-		if (TELEPHONY_ERROR_NONE == err && number && *number) {
-			ret = number;
-			break;
+			err = telephony_sim_get_subscriber_number(list.handle[i], &sim_number);
+			if (TELEPHONY_ERROR_NONE == err && sim_number && *sim_number) {
+				number = sim_number;
+				free(sim_number);
+				break;
+			}
+			free(sim_number);
 		}
-		free(number);
+
+		err = telephony_deinit(&list);
+		WPWARN(err != TELEPHONY_ERROR_NONE, "telephony_deinit() failed(%d)", err);
 	}
 
-	err = telephony_deinit(&list);
-	WPWARN(err != TELEPHONY_ERROR_NONE, "telephony_deinit() failed(%d)", err);
-
-	return ret;
+	return strdup(number.c_str());
 }
 
 void CtListView::__setMyProfileItemClassStyle()
