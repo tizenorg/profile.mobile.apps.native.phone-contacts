@@ -47,6 +47,11 @@ void ContactItem::update(int changes)
 	}
 }
 
+ContactData &ContactItem::getContactData()
+{
+	return m_ContactData;
+}
+
 char *ContactItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_CONTACT_NAME) == 0) {

@@ -15,46 +15,33 @@
  *
  */
 
-#ifndef CONTACTS_LIST_PERSON_ITEM_H
-#define CONTACTS_LIST_PERSON_ITEM_H
+#ifndef CONTACTS_LIST_PERSON_SEARCH_ITEM_H
+#define CONTACTS_LIST_PERSON_SEARCH_ITEM_H
 
-#include "Contacts/List/ContactItem.h"
+#include "Contacts/List/PersonItem.h"
+#include "Contacts/List/Model/PersonSearchData.h"
+
+#include <functional>
+
+#define PART_SUBSTR     "elm.text.sub"
 
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactData;
-	}
 	namespace List
 	{
-		namespace Model
-		{
-			class Person;
-		}
-
-		/**
-		 * @brief Person genlist item
-		 */
-		class PersonItem : public ContactItem
+		class PersonSearchItem : public PersonItem
 		{
 		public:
-			/**
-			 * @brief Create person item
-			 * @param[in]   person      Person object
-			 */
-			explicit PersonItem(Contacts::Model::ContactData &person);
-
-			/**
-			 * @return Person object.
-			 */
-			Model::Person &getPerson() const;
+			explicit PersonSearchItem(Model::PersonSearchData &person);
 
 		private:
-			virtual Ux::SelectResult getDefaultResult() const override;
-			virtual void onSelected() override;
+			virtual char *getText(Evas_Object *parent, const char *part) override;
+
+			char *getStr(std::function<const char *()> getter,
+					Model::PersonSearchData::MatchedField matchedField) const;
+			char *getSubstr() const;
 		};
 	}
 }
 
-#endif /* CONTACTS_LIST_PERSON_ITEM_H */
+#endif /* CONTACTS_LIST_PERSON_SEARCH_ITEM_H */

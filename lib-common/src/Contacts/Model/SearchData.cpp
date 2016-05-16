@@ -18,10 +18,12 @@
 #include "Contacts/Model/SearchData.h"
 
 using namespace Contacts::Model;
+using namespace Common;
 
 SearchData::SearchData(ContactData &contactData)
 	: ContactData(contactData.getType()),
-	  m_ContactData(contactData), m_MatchedField(MatchedNone)
+	  m_ContactData(contactData),
+	  m_FoundSubField(nullptr), m_MatchedField(MatchedNone)
 {
 }
 
@@ -50,7 +52,12 @@ SearchData::MatchedField SearchData::getMatchedField() const
 	return m_MatchedField;
 }
 
-const SearchData::Substring &SearchData::getSubstring() const
+ContactData *SearchData::getFoundSubField() const
+{
+	return m_FoundSubField;
+}
+
+const Substring &SearchData::getSubstring() const
 {
 	return m_Substring;
 }
@@ -58,6 +65,11 @@ const SearchData::Substring &SearchData::getSubstring() const
 void SearchData::setMatchedField(MatchedField field)
 {
 	m_MatchedField = field;
+}
+
+void SearchData::setFoundSubField(ContactData *subField)
+{
+	m_FoundSubField = subField;
 }
 
 void SearchData::setSubstring(Substring substring)

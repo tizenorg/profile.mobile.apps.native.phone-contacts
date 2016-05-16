@@ -49,6 +49,7 @@ bool PersonSearchData::compare(const std::string &str)
 		if (pos) {
 			m_Number = number->getNumber();
 			setMatchedField(MatchedNumber);
+			setFoundSubField(number);
 			setSubstring({ pos, str.size() });
 
 			return true;

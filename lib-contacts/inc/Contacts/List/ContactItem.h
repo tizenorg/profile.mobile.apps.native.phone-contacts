@@ -56,6 +56,12 @@ namespace Contacts
 			 */
 			void update(int changes);
 
+		protected:
+			/**
+			 * @return Reference to contact
+			 */
+			Contacts::Model::ContactData &getContactData();
+
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;

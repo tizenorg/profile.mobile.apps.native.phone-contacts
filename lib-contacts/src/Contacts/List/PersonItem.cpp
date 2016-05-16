@@ -24,9 +24,10 @@
 #include "Ui/Navigator.h"
 
 using namespace Contacts::List;
+using namespace Contacts::Model;
 using namespace Contacts::List::Model;
 
-PersonItem::PersonItem(Person &person)
+PersonItem::PersonItem(ContactData &person)
 	: ContactItem(person)
 {
 }
