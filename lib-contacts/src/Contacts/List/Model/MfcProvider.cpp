@@ -15,6 +15,7 @@
  *
  */
 
+#include "Common/Database/Queries.h"
 #include "Common/Database/RecordIterator.h"
 #include "Common/Database/RecordUtils.h"
 #include "Contacts/List/Model/MfcProvider.h"
@@ -29,8 +30,6 @@ using namespace Contacts::List::Model;
 
 MfcProvider::MfcProvider()
 {
-	setUpdateMask(ChangeUpdate | ChangeDelete);
-
 	contacts_db_add_changed_cb(_contacts_phone_log._uri,
 			makeCallbackWithLastParam(&MfcProvider::onPersonUsageUpdate), this);
 }
@@ -56,6 +55,22 @@ contacts_list_h MfcProvider::getPersonList() const
 
 	contacts_list_destroy(usageList, true);
 	return personList;
+}
+
+bool MfcProvider::insertPerson(int id, IdType idType)
+{
+	if (idType == ContactId) {
+		return false;
+	}
+
+	return update();
+}
+
+void MfcProvider::deletePerson(DataList::const_iterator personIt)
+{
+	contacts_list_h mfcList = getPersonList();
+	updateMfcList(mfcList);
+	contacts_list_destroy(mfcList, true);
 }
 
 contacts_list_h MfcProvider::getPersonUsageList() const
@@ -91,6 +106,11 @@ contacts_list_h MfcProvider::getPersonUsageList() const
 
 void MfcProvider::onPersonUsageUpdate(const char *viewUri)
 {
+	update();
+}
+
+bool MfcProvider::update()
+{
 	contacts_list_h mfcList = getPersonList();
 	int count = 0;
 	contacts_list_get_count(mfcList, &count);
@@ -101,15 +121,18 @@ void MfcProvider::onPersonUsageUpdate(const char *viewUri)
 		bool isEqual = std::equal(dataList.begin(), dataList.end(), begin(mfcList), equalPredicate);
 		contacts_list_first(mfcList);
 
-		if (!isEqual) {
+		if (!isEqual && count) {
 			updateMfcList(mfcList);
+			return true;
 		}
 
 	} else {
 		updateMfcList(mfcList);
+		return true;
 	}
 
 	contacts_list_destroy(mfcList, true);
+	return false;
 }
 
 bool MfcProvider::equalPredicate(Contacts::Model::ContactData *data, contacts_record_h record)
@@ -120,10 +143,10 @@ bool MfcProvider::equalPredicate(Contacts::Model::ContactData *data, contacts_re
 void MfcProvider::updateMfcList(contacts_list_h list)
 {
 	while (!getDataList().empty()) {
-		deletePerson(getDataList().begin());
+		PersonProvider::deletePerson(getDataList().begin());
 	}
 
 	for (auto &&record : makeRange(list)) {
-		insertPerson(getRecordInt(record, _contacts_person.id), PersonId);
+		PersonProvider::insertPerson(getRecordInt(record, _contacts_person.id), PersonId);
 	}
 }
