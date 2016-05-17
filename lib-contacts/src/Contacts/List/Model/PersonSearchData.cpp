@@ -24,13 +24,17 @@ using namespace Contacts::List::Model;
 
 PersonSearchData::PersonSearchData(Person &person)
 	: SearchData(person),
-	  m_Number(nullptr)
+	  m_Substr(nullptr)
 {
 }
 
 const char *PersonSearchData::getNumber() const
 {
-	return m_Number ? m_Number : SearchData::getNumber();
+	if (getMatchedField() == MatchedNumber && m_Substr) {
+		return m_Substr;
+	}
+
+	return SearchData::getNumber();
 }
 
 bool PersonSearchData::compare(const std::string &str)
@@ -47,8 +51,9 @@ bool PersonSearchData::compare(const std::string &str)
 	for (auto &&number : person.getNumbers()) {
 		pos = strstr(number->getNumber(), str.c_str());
 		if (pos) {
-			m_Number = number->getNumber();
+			m_Substr = number->getNumber();
 			setMatchedField(MatchedNumber);
+			setFoundSubField(number);
 			setSubstring({ pos, str.size() });
 
 			return true;

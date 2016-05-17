@@ -49,7 +49,7 @@ namespace Contacts
 
 			private:
 				friend class SearchProvider;
-				const char *m_Number;
+				const char *m_Substr;
 			};
 		}
 	}
