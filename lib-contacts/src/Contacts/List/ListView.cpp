@@ -16,9 +16,11 @@
  */
 
 #include "Contacts/List/ListView.h"
+#include "Contacts/List/ListSection.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
+#include "Contacts/List/Model/FavoritesProvider.h"
+#include "Contacts/List/Model/MfcProvider.h"
 #include "Contacts/List/Model/Person.h"
-#include "Contacts/List/MfcGroup.h"
 #include "Contacts/List/MyProfileGroup.h"
 #include "Contacts/List/PersonGroupItem.h"
 #include "Contacts/List/PersonItem.h"
@@ -231,7 +233,15 @@ void ListView::fillMyProfile()
 void ListView::fillFavorites()
 {
 	if (!m_Sections[SectionFavorites]) {
-		//Todo Create here Favorite group
+		ListSection *favoritesSection = new ListSection("IDS_PB_HEADER_FAVOURITES",
+				(new FavoritesProvider()));
+		favoritesSection->setUpdateCallback(std::bind(&ListView::onSectionUpdated, this, _1, SectionFavorites));
+		m_Sections[SectionFavorites] = favoritesSection;
+
+		if (!favoritesSection->empty()) {
+			onSectionUpdated(false, SectionFavorites);
+		}
+
 	} else {
 		setFavouriteItemsMode(getSelectMode());
 	}
@@ -240,12 +250,13 @@ void ListView::fillFavorites()
 void ListView::fillMfc()
 {
 	if (!m_Sections[SectionMfc]) {
-		MfcGroup *group = new MfcGroup();
-		group->setUpdateCallback(std::bind(&ListView::onMfcGroupUpdated, this, _1));
-		m_Sections[SectionMfc] = group;
+		ListSection *mfcSection = new ListSection("IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2",
+				(new MfcProvider()));
+		mfcSection->setUpdateCallback(std::bind(&ListView::onSectionUpdated, this, _1, SectionMfc));
+		m_Sections[SectionMfc] = mfcSection;
 
-		if (!group->empty()) {
-			onMfcGroupUpdated(false);
+		if (!mfcSection->empty()) {
+			onSectionUpdated(false, SectionMfc);
 		}
 	}
 }
@@ -620,13 +631,13 @@ void ListView::onPersonDeleted(PersonItem *item)
 	deletePersonItem(item);
 }
 
-void ListView::onMfcGroupUpdated(bool isEmpty)
+void ListView::onSectionUpdated(bool isEmpty, SectionId sectionId)
 {
 	if (isEmpty) {
-		m_Sections[SectionMfc]->pop();
+		m_Sections[sectionId]->pop();
 	} else {
-		m_Genlist->insert(m_Sections[SectionMfc], nullptr, getNextSectionItem(SectionMfc));
-		elm_genlist_item_select_mode_set(m_Sections[SectionMfc]->getObjectItem(),
+		m_Genlist->insert(m_Sections[sectionId], nullptr, getNextSectionItem(sectionId));
+		elm_genlist_item_select_mode_set(m_Sections[sectionId]->getObjectItem(),
 				ELM_OBJECT_SELECT_MODE_NONE);
 	}
 }

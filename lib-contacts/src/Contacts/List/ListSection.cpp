@@ -15,9 +15,10 @@
  *
  */
 
-#include "Contacts/List/MfcGroup.h"
+#include "Contacts/List/ListSection.h"
 #include "Contacts/List/PersonItem.h"
 #include "Contacts/List/Model/Person.h"
+#include "Contacts/List/Model/PersonProvider.h"
 #include "Utils/Logger.h"
 
 #include <app_i18n.h>
@@ -25,42 +26,47 @@
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
-MfcGroup::MfcGroup()
+ListSection::ListSection(std::string title, PersonProvider *provider)
+	: m_Title(title), m_Provider(provider)
 {
-	m_Provider.setInsertCallback(std::bind(&MfcGroup::onInserted, this, std::placeholders::_1));
+	m_Provider->setInsertCallback(std::bind(&ListSection::onInserted, this, std::placeholders::_1));
 
-	for (auto &&contactData : m_Provider.getDataList()) {
+	for (auto &&contactData : m_Provider->getDataList()) {
 		insertSubItem(createItem(static_cast<Person &>(*contactData)));
 	}
 }
 
-void MfcGroup::setUpdateCallback(UpdateCallback callback)
+ListSection::~ListSection()
+{
+	delete m_Provider;
+}
+
+void ListSection::setUpdateCallback(UpdateCallback callback)
 {
 	m_OnUpdated = std::move(callback);
 }
 
-char *MfcGroup::getText(Evas_Object *parent, const char *part)
+char *ListSection::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text") == 0) {
-		return strdup(_("IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"));
+		return strdup(_(m_Title.c_str()));
 	}
 
 	return nullptr;
 }
 
-void MfcGroup::onInserted(Contacts::Model::ContactData &person)
+void ListSection::onInserted(Contacts::Model::ContactData &person)
 {
 	bool wasEmpty = empty();
 
-	PersonItem *item = createItem(static_cast<Person &>(person));
-	insertSubItem(item);
+	insertSubItem(createItem(static_cast<Person &>(person)));
 
 	if (m_OnUpdated && wasEmpty) {
 		m_OnUpdated(false);
 	}
 }
 
-void MfcGroup::onDeleted(PersonItem *item)
+void ListSection::onDeleted(PersonItem *item)
 {
 	delete item;
 
@@ -69,10 +75,10 @@ void MfcGroup::onDeleted(PersonItem *item)
 	}
 }
 
-PersonItem *MfcGroup::createItem(Person &person)
+PersonItem *ListSection::createItem(Person &person)
 {
 	PersonItem *item = new PersonItem(person);
 	person.setUpdateCallback(std::bind(&PersonItem::update, item, std::placeholders::_1));
-	person.setDeleteCallback(std::bind(&MfcGroup::onDeleted, this, item));
+	person.setDeleteCallback(std::bind(&ListSection::onDeleted, this, item));
 	return item;
 }
