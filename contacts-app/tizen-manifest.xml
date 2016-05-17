@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="2.4" package="org.tizen.contacts-2" version="1.0.0">
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="org.tizen.contacts" version="2.0">
     <profile name="mobile"/>
-    <ui-application appid="org.tizen.contacts-2" exec="contacts-app" hw-acceleration="on" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+    <ui-application appid="org.tizen.contacts" exec="contacts-app" hw-acceleration="on" process-pool="true" multiple="false" nodisplay="false" taskmanage="true" type="capp">
         <label>Contacts</label>
         <label xml:lang="ar-ae">الأسماء</label>
         <label xml:lang="az-az">Adlar</label>
@@ -13,7 +13,7 @@
         <label xml:lang="el-gr">Επαφές</label>
         <label xml:lang="en-gb">Contacts</label>
         <label xml:lang="en-ph">Contacts</label>
-        <label xml:lang="en-us">Contacts 2</label>
+        <label xml:lang="en-us">Contacts</label>
         <label xml:lang="es-es">Contactos</label>
         <label xml:lang="es-mx">Contactos</label>
         <label xml:lang="et-ee">Kontaktid</label>
@@ -55,7 +55,7 @@
         <label xml:lang="zh-tw">聯絡人</label>
         <icon>org.tizen.contacts.png</icon>
     </ui-application>
-    <ui-application appid="org.tizen.phone-2" exec="contacts-app" hw-acceleration="on" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+    <ui-application appid="org.tizen.phone" exec="contacts-app" hw-acceleration="on" process-pool="true" multiple="false" nodisplay="false" taskmanage="true" type="capp">
         <label>Phone</label>
         <label xml:lang="ar-ae">الهاتف</label>
         <label xml:lang="az-az">Telefon</label>
@@ -67,7 +67,7 @@
         <label xml:lang="el-gr">Τηλέφωνο</label>
         <label xml:lang="en-gb">Phone</label>
         <label xml:lang="en-ph">Phone</label>
-        <label xml:lang="en-us">Phone 2</label>
+        <label xml:lang="en-us">Phone</label>
         <label xml:lang="es-es">Teléfono</label>
         <label xml:lang="es-mx">Teléfono</label>
         <label xml:lang="et-ee">Telefon</label>
@@ -113,7 +113,7 @@
             <uri name="tel"/>
         </app-control>
     </ui-application>
-    <ui-application appid="org.tizen.contacts-2.app-control" exec="contacts-app" hw-acceleration="on" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
+    <ui-application appid="org.tizen.contacts.app-control" exec="contacts-app" hw-acceleration="on" process-pool="true" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
         <icon>org.tizen.contacts.png</icon>
         <label>Contacts</label>
         <label xml:lang="ar-ae">الأسماء</label>
