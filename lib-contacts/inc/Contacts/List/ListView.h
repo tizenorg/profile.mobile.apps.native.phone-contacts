@@ -128,7 +128,7 @@ namespace Contacts
 			void onPersonUpdated(PersonItem *item, int changes);
 			void onPersonDeleted(PersonItem *item);
 
-			void onMfcGroupUpdated(bool isEmpty);
+			void onSectionUpdated(bool isEmpty, SectionId sectionId);
 
 			Evas_Object *m_Box;
 			Evas_Object *m_NoContent;
