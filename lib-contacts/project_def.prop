@@ -1,0 +1,74 @@
+
+# Project Name
+APPNAME = contacts
+
+# Project Type
+type = sharedLib
+
+# Project Profile
+profile = mobile-3.0
+
+# C Sources
+USER_SRCS = src/Contacts/Input/ContactFieldSubItem.cpp src/Contacts/Input/ContactTypedFieldItem.cpp src/Contacts/Input/ContactTypedFieldControl.cpp src/Contacts/Settings/ExportItem.cpp src/Contacts/Model/ContactDateField.cpp src/Contacts/Input/ContactDateFieldControl.cpp src/Contacts/Model/Contact.cpp src/Contacts/List/MyProfileGroup.cpp src/Contacts/List/Model/FavoritesProvider.cpp src/Contacts/Common/Utils.cpp src/Contacts/Details/MultilineFieldItem.cpp src/Contacts/Input/ContactCompoundFieldControl.cpp src/Contacts/Details/TypedFieldItem.cpp src/Contacts/Model/ContactCompoundObject.cpp src/Contacts/Model/ContactFieldFactory.cpp src/Contacts/Model/ContactFieldContainer.cpp src/Contacts/Model/ContactObject.cpp src/Contacts/Model/ContactArray.cpp src/Contacts/Settings/MainView.cpp src/Contacts/List/Model/Person.cpp src/Contacts/Model/ContactFieldMetadata.cpp src/Contacts/Input/ContactFieldItem.cpp src/Contacts/Model/ContactName.cpp src/Contacts/Input/AddFieldsItem.cpp src/Contacts/Settings/SortByItem.cpp src/Contacts/Model/ContactPhoneticName.cpp src/Contacts/List/Model/MyProfile.cpp src/Contacts/Input/ContactCompoundFieldItem.cpp src/Contacts/Model/ContactTypedObject.cpp src/Contacts/Settings/ImportController.cpp src/Contacts/List/MyProfileItem.cpp src/Contacts/List/Model/PersonProvider.cpp src/Contacts/Details/BasicInfoItem.cpp src/Contacts/Input/InputView.cpp src/Contacts/Model/ContactBoolField.cpp src/Contacts/Input/ContactTypedFieldLabelPopup.cpp src/Contacts/Settings/ImportItem.cpp src/Contacts/Model/ContactTextField.cpp src/Contacts/Common/Strings.cpp src/Contacts/Details/ActionFieldItem.cpp src/Contacts/List/ContactItem.cpp src/Contacts/List/ListView.cpp src/Contacts/Settings/ExportController.cpp src/Contacts/List/Model/PersonSearchData.cpp src/Contacts/List/ManageFavoritesPopup.cpp src/Contacts/Settings/NameFormatItem.cpp src/Contacts/List/ListSection.cpp src/Contacts/List/SearchItem.cpp src/Contacts/Details/DetailsView.cpp src/Contacts/List/Model/VcardProvider.cpp src/Contacts/Model/ContactField.cpp src/Contacts/Common/Chooser.cpp src/Contacts/Input/ContactRelationshipFieldItem.cpp src/Contacts/List/PersonItem.cpp src/Contacts/List/PersonGroupItem.cpp src/Contacts/Model/ContactFieldIterator.cpp src/Contacts/List/Model/MfcProvider.cpp src/Contacts/Details/FieldItem.cpp src/Contacts/List/Model/SearchProvider.cpp src/Contacts/Input/ContactTextFieldControl.cpp src/Contacts/Input/ContactImageFieldItem.cpp src/Contacts/Input/ContactImageFieldControl.cpp src/Contacts/Model/ContactEnumField.cpp src/Contacts/List/VcardView.cpp
+USER_SRCS_ABS =
+
+# EDC Sources
+USER_EDCS =
+
+# PO Sources
+USER_POS =
+
+# User Defines
+USER_DEFS =
+USER_CPP_DEFS =
+
+# User Undefines
+USER_UNDEFS =
+USER_CPP_UNDEFS =
+
+# User Libraries
+USER_LIBS = apps-common common
+
+# User Objects
+USER_OBJS =
+USER_OBJS_ABS =
+
+# User Includes
+## C Compiler
+USER_INC_DIRS =
+USER_INC_DIRS_ABS =
+USER_INC_FILES =
+USER_INC_FILES_ABS =
+## C++ Compiler
+USER_CPP_INC_DIRS = inc res/details/edje res/input/edje res/list/edje
+USER_CPP_INC_DIRS_ABS = $(workspace_loc)/lib-apps-common/inc $(workspace_loc)/lib-apps-common/res/apps-common/edje $(workspace_loc)/lib-common/inc
+USER_CPP_INC_FILES =
+USER_CPP_INC_FILES_ABS =
+
+# User Library Path
+USER_LIB_DIRS =
+USER_LIB_DIRS_ABS = $(workspace_loc)/lib-apps-common/Debug $(workspace_loc)/lib-common/Debug
+
+# EDC Resource Path
+USER_EDCS_IMAGE_DIRS = res
+USER_EDCS_IMAGE_DIRS_ABS =
+USER_EDCS_SOUND_DIRS = edje/sounds
+USER_EDCS_SOUND_DIRS_ABS =
+USER_EDCS_FONT_DIRS = edje/fonts
+USER_EDCS_FONT_DIRS_ABS =
+
+# EDC Flags
+USER_EXT_EDC_KEYS = EDC0
+
+USER_EXT_EDC0_EDCS = res/details/edje/contacts-details-item-layout.edc res/input/edje/input-item-layout.edc
+USER_EXT_EDC0_EDCS_IMAGE_DIRS = res
+USER_EXT_EDC0_EDCS_IMAGE_DIRS_ABS =
+USER_EXT_EDC0_EDCS_SOUND_DIRS = edje/sounds
+USER_EXT_EDC0_EDCS_SOUND_DIRS_ABS =
+USER_EXT_EDC0_EDCS_FONT_DIRS = edje/fonts
+USER_EXT_EDC0_EDCS_FONT_DIRS_ABS =
+
+# Resource Filter
+USER_RES_INCLUDE =
+USER_RES_EXCLUDE = res/details/CMakeLists.txt res/input/CMakeLists.txt res/list/CMakeLists.txt res/CMakeLists.txt
+

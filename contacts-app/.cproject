@@ -212,7 +212,7 @@
 									<listOptionValue builtIn="false" value="_DEBUG"/>
 									<listOptionValue builtIn="false" value="&quot;TEXT_DOMAIN=\&quot;contacts\&quot;&quot;"/>
 								</option>
-								<option id="gnu.cpp.compiler.option.other.other.1537343829" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -Wno-unused-function" valueType="string"/>
+								<option id="gnu.cpp.compiler.option.other.other.1537343829" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -Wno-unused-function -Wno-extern-c-compat" valueType="string"/>
 								<option id="gnu.cpp.compiler.option.dialect.std.832293131" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" value="gnu.cpp.compiler.dialect.default" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.dialect.flags.2080308736" name="Other dialect flags" superClass="gnu.cpp.compiler.option.dialect.flags" value="-std=c++11" valueType="string"/>
 								<option id="sbi.gnu.cpp.compiler.option.misc.pic.core.421406969" name="-fPIC option" superClass="sbi.gnu.cpp.compiler.option.misc.pic.core" value="true" valueType="boolean"/>
