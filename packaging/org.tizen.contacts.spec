@@ -1,6 +1,6 @@
 Name:       org.tizen.contacts
 #VCS_FROM:   profile/mobile/apps/native/phone-contacts#447906959f385654bd9b3c043b19d24330651b72
-#RS_Ver:    20160516_2 
+#RS_Ver:    20160517_2 
 Summary:    Phone Application and gadgets
 Version:    1.0.0
 Release:    1
