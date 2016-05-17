@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="2.4" package="org.tizen.contacts-2" version="1.0.0">
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="org.tizen.contacts" version="2.0">
     <profile name="mobile"/>
-    <widget-application appid="org.tizen.contacts-2.widget" exec="contacts-widget" hw-acceleration="on" main="true" update-period="0">
+    <widget-application appid="org.tizen.contacts.widget" exec="contacts-widget" hw-acceleration="on" main="true" update-period="0">
         <label>Contacts</label>
         <label xml:lang="ar-ae">الأسماء</label>
         <label xml:lang="az-az">Adlar</label>
@@ -13,7 +13,7 @@
         <label xml:lang="el-gr">Επαφές</label>
         <label xml:lang="en-gb">Contacts</label>
         <label xml:lang="en-ph">Contacts</label>
-        <label xml:lang="en-us">Contacts 2</label>
+        <label xml:lang="en-us">Contacts</label>
         <label xml:lang="es-es">Contactos</label>
         <label xml:lang="es-mx">Contactos</label>
         <label xml:lang="et-ee">Kontaktid</label>

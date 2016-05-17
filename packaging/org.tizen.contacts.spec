@@ -1,6 +1,6 @@
 Name:          org.tizen.contacts
-Version:       0.1
-Release:       0
+Version:       2.0
+Release:       1
 License:       Apache-2.0
 Summary:       Contacts and Phone Applications
 Group:         Applications/Social
