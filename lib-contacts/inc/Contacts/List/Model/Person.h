@@ -131,6 +131,7 @@ namespace Contacts
 
 				contacts_record_h m_Record;
 				contacts_record_h m_NameRecord;
+				contacts_record_h m_NumberRecord;
 
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;
