@@ -1,5 +1,5 @@
 Name:          org.tizen.contacts
-Version:       2.0
+Version:       2.0.0
 Release:       1
 License:       Apache-2.0
 Summary:       Contacts and Phone Applications
@@ -36,7 +36,7 @@ Contacts and Phone Reference Applications.
 %define _res_dir                %{_pkg_dir}/res
 %define _locale_dir             %{_res_dir}/locale
 %define _manifest_dir           %{TZ_SYS_RO_PACKAGES}
-%define _icon_dir               %{TZ_SYS_RO_ICONS}/default/small
+%define _icon_dir               %{_pkg_dir}/shared/res
 
 %prep
 %setup -q

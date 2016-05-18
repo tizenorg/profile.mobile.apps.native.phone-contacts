@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="@PACKAGE@" version="2.0">
-	<ui-application appid="@PACKAGE@" exec="@BIN_DIR@/contacts-app" hw-acceleration="use-GL" process-pool="true" multiple="false" nodisplay="false" taskmanage="true" type="capp">
-		<icon>org.tizen.contacts.png</icon>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="@PACKAGE@" version="2.0.0">
+	<profile name="mobile"/>
+	<ui-application appid="@PACKAGE@" exec="contacts-app" hw-acceleration="on" multiple="false" nodisplay="false" process-pool="true" taskmanage="true" type="capp">
 		<label>Contacts</label>
 		<label xml:lang="ar-ae">الأسماء</label>
 		<label xml:lang="az-az">Adlar</label>
@@ -53,9 +53,9 @@
 		<label xml:lang="zh-cn">联系人</label>
 		<label xml:lang="zh-hk">聯絡人</label>
 		<label xml:lang="zh-tw">聯絡人</label>
+		<icon>org.tizen.contacts.png</icon>
 	</ui-application>
-	<ui-application appid="org.tizen.phone" exec="@BIN_DIR@/contacts-app" hw-acceleration="use-GL" process-pool="true" multiple="false" nodisplay="false" taskmanage="true" type="capp">
-		<icon>org.tizen.phone.png</icon>
+	<ui-application appid="org.tizen.phone" exec="contacts-app" hw-acceleration="on" multiple="false" nodisplay="false" process-pool="true" taskmanage="true" type="capp">
 		<label>Phone</label>
 		<label xml:lang="ar-ae">الهاتف</label>
 		<label xml:lang="az-az">Telefon</label>
@@ -107,13 +107,13 @@
 		<label xml:lang="zh-cn">电话</label>
 		<label xml:lang="zh-hk">電話</label>
 		<label xml:lang="zh-tw">電話</label>
+		<icon>org.tizen.phone.png</icon>
 		<app-control>
 			<operation name="http://tizen.org/appcontrol/operation/dial" />
 			<uri name="tel" />
 		</app-control>
 	</ui-application>
-	<ui-application appid="@PACKAGE@.app-control" exec="@BIN_DIR@/contacts-app" hw-acceleration="use-GL" process-pool="true" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
-		<icon>org.tizen.contacts.png</icon>
+	<ui-application appid="@PACKAGE@.app-control" exec="contacts-app" hw-acceleration="on" launch_mode="caller" multiple="true" nodisplay="true" process-pool="true" taskmanage="false" type="capp">
 		<label>Contacts</label>
 		<label xml:lang="ar-ae">الأسماء</label>
 		<label xml:lang="az-az">Adlar</label>
@@ -165,6 +165,7 @@
 		<label xml:lang="zh-cn">联系人</label>
 		<label xml:lang="zh-hk">聯絡人</label>
 		<label xml:lang="zh-tw">聯絡人</label>
+		<icon>org.tizen.contacts.png</icon>
 		<app-control>
 			<operation name="http://tizen.org/appcontrol/operation/add"/>
 			<mime name="application/vnd.tizen.contact"/>
@@ -184,7 +185,7 @@
 			<mime name="text/x-vcard"/>
 		</app-control>
 	</ui-application>
-	<widget-application appid="org.tizen.contacts.widget" exec="@BIN_DIR@/contacts-widget" main="true" update-period="0">
+	<widget-application appid="org.tizen.contacts.widget" exec="contacts-widget" hw-acceleration="on" main="true" update-period="0">
 		<label>Contacts</label>
 		<label xml:lang="ar-ae">الأسماء</label>
 		<label xml:lang="az-az">Adlar</label>
@@ -247,6 +248,7 @@
 		<privilege>http://tizen.org/privilege/callhistory.write</privilege>
 		<privilege>http://tizen.org/privilege/contact.read</privilege>
 		<privilege>http://tizen.org/privilege/contact.write</privilege>
+		<privilege>http://tizen.org/privilege/externalstorage</privilege>
 		<privilege>http://tizen.org/privilege/mediastorage</privilege>
 		<privilege>http://tizen.org/privilege/notification</privilege>
 	</privileges>

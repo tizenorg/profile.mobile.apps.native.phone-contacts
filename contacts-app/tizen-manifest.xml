@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="org.tizen.contacts" version="2.0">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="org.tizen.contacts" version="2.0.0">
     <profile name="mobile"/>
-    <ui-application appid="org.tizen.contacts" exec="contacts-app" hw-acceleration="on" process-pool="true" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+    <ui-application appid="org.tizen.contacts" exec="contacts-app" hw-acceleration="on" multiple="false" nodisplay="false" process-pool="true" taskmanage="true" type="capp">
         <label>Contacts</label>
         <label xml:lang="ar-ae">الأسماء</label>
         <label xml:lang="az-az">Adlar</label>
@@ -55,7 +55,7 @@
         <label xml:lang="zh-tw">聯絡人</label>
         <icon>org.tizen.contacts.png</icon>
     </ui-application>
-    <ui-application appid="org.tizen.phone" exec="contacts-app" hw-acceleration="on" process-pool="true" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+    <ui-application appid="org.tizen.phone" exec="contacts-app" hw-acceleration="on" multiple="false" nodisplay="false" process-pool="true" taskmanage="true" type="capp">
         <label>Phone</label>
         <label xml:lang="ar-ae">الهاتف</label>
         <label xml:lang="az-az">Telefon</label>
@@ -113,8 +113,7 @@
             <uri name="tel"/>
         </app-control>
     </ui-application>
-    <ui-application appid="org.tizen.contacts.app-control" exec="contacts-app" hw-acceleration="on" process-pool="true" launch_mode="caller" multiple="true" nodisplay="true" taskmanage="false" type="capp">
-        <icon>org.tizen.contacts.png</icon>
+    <ui-application appid="org.tizen.contacts.app-control" exec="contacts-app" hw-acceleration="on" launch_mode="caller" multiple="true" nodisplay="true" process-pool="true" taskmanage="false" type="capp">
         <label>Contacts</label>
         <label xml:lang="ar-ae">الأسماء</label>
         <label xml:lang="az-az">Adlar</label>
@@ -166,6 +165,7 @@
         <label xml:lang="zh-cn">联系人</label>
         <label xml:lang="zh-hk">聯絡人</label>
         <label xml:lang="zh-tw">聯絡人</label>
+        <icon>org.tizen.contacts.png</icon>
         <app-control>
             <operation name="http://tizen.org/appcontrol/operation/add"/>
             <mime name="application/vnd.tizen.contact"/>

@@ -17,5 +17,6 @@ target_link_libraries(${PROJECT_NAME} ${LIBRARIES} -pie
 )
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${BIN_DIR})
+install(DIRECTORY shared/res/ DESTINATION ${ICON_DIR})
 
 add_subdirectory(res/widget)
