@@ -78,7 +78,7 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	elm_layout_theme_set(layout, "layout", "application", "fastscroll");
 
 	m_Box = elm_box_add(layout);
-	m_NoContent = createNoContentLayout(m_Box);
+	m_NoContent = createEmptyLayout(m_Box);
 	m_Genlist = createGenlist(m_Box);
 	elm_box_pack_end(m_Box, m_Genlist->getEvasObject());
 
@@ -125,7 +125,7 @@ void ListView::onMenuPressed()
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
 
-	if (!evas_object_visible_get(m_NoContent)) {
+	if (!m_PersonGroups.empty()) {
 		menu->addItem("IDS_LOGS_OPT_DELETE", std::bind(&ListView::onDeleteSelected, this));
 		menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onShareSelected, this));
 		menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB", [this] {
@@ -275,14 +275,10 @@ void ListView::fillPersonList()
 			onItemInserted(item);
 		}
 
-		updateNoContentLayout();
+		if (m_PersonGroups.empty()) {
+			setEmptyState(true);
+		}
 	}
-}
-
-void ListView::setIndexState(Evas_Object *layout, bool state)
-{
-	const char *signal = state ? "elm,state,fastscroll,show" : "elm,state,fastscroll,hide";
-	elm_layout_signal_emit(layout, signal, "");
 }
 
 Ui::Genlist *ListView::createGenlist(Evas_Object *parent)
@@ -297,54 +293,49 @@ Ui::Genlist *ListView::createGenlist(Evas_Object *parent)
 	return genlist;
 }
 
-Evas_Object *ListView::createNoContentLayout(Evas_Object *parent)
+Evas_Object *ListView::createEmptyLayout(Evas_Object *parent)
 {
-	Evas_Object *noContent = elm_layout_add(parent);
-	elm_layout_theme_set(noContent, "layout", "nocontents", "default");
+	Evas_Object *layout = elm_layout_add(parent);
+	elm_layout_theme_set(layout, "layout", "nocontents", "default");
 
-	evas_object_size_hint_weight_set(noContent, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-	evas_object_size_hint_align_set(noContent, EVAS_HINT_FILL, EVAS_HINT_FILL);
+	evas_object_size_hint_weight_set(layout, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+	evas_object_size_hint_align_set(layout, EVAS_HINT_FILL, EVAS_HINT_FILL);
 
-	elm_object_translatable_part_text_set(noContent, "elm.text", "IDS_PB_NPBODY_NO_CONTACTS");
-	elm_object_translatable_part_text_set(noContent, "elm.help.text", "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE");
+	elm_object_translatable_part_text_set(layout, "elm.text", "IDS_PB_NPBODY_NO_CONTACTS");
+	elm_object_translatable_part_text_set(layout, "elm.help.text", "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE");
 
-	elm_layout_signal_emit(noContent, "text,disabled", "");
-	elm_layout_signal_emit(noContent, "align.center", "elm");
+	elm_layout_signal_emit(layout, "text,disabled", "");
+	elm_layout_signal_emit(layout, "align.center", "elm");
 
-	return noContent;
+	return layout;
 }
 
-void ListView::showNoContentLayout()
+void ListView::setEmptyState(bool isEmpty)
 {
-	if (!evas_object_visible_get(m_NoContent)) {
-		setIndexState(getEvasObject(), false);
+	setIndexState(!isEmpty);
 
-		elm_scroller_content_min_limit(m_Genlist->getEvasObject(), EINA_FALSE, EINA_TRUE);
-		evas_object_size_hint_weight_set(m_Genlist->getEvasObject(), EVAS_HINT_EXPAND, 0.0);
-		evas_object_size_hint_align_set(m_Genlist->getEvasObject(), EVAS_HINT_FILL, 0.0);
+	Evas_Object *genlist = m_Genlist->getEvasObject();
+	if (isEmpty) {
+		elm_scroller_content_min_limit(genlist, EINA_FALSE, EINA_TRUE);
+		evas_object_size_hint_weight_set(genlist, EVAS_HINT_EXPAND, 0.0);
+		evas_object_size_hint_align_set(genlist, EVAS_HINT_FILL, 0.0);
 
 		evas_object_show(m_NoContent);
 		elm_box_pack_end(m_Box, m_NoContent);
-	}
-}
-
-void ListView::hideNoContentLayout()
-{
-	if (evas_object_visible_get(m_NoContent)) {
-		setIndexState(getEvasObject(), true);
-
-		elm_scroller_content_min_limit(m_Genlist->getEvasObject(), EINA_FALSE, EINA_FALSE);
-		evas_object_size_hint_weight_set(m_Genlist->getEvasObject(), EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-		evas_object_size_hint_align_set(m_Genlist->getEvasObject(), EVAS_HINT_FILL, EVAS_HINT_FILL);
+	} else {
+		elm_scroller_content_min_limit(genlist, EINA_FALSE, EINA_FALSE);
+		evas_object_size_hint_weight_set(genlist, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+		evas_object_size_hint_align_set(genlist, EVAS_HINT_FILL, EVAS_HINT_FILL);
 
 		evas_object_hide(m_NoContent);
 		elm_box_unpack(m_Box, m_NoContent);
 	}
 }
 
-void ListView::updateNoContentLayout()
+void ListView::setIndexState(bool isVisible)
 {
-	m_Provider.getDataList().size() > 0 ? hideNoContentLayout() : showNoContentLayout();
+	const char *signal = isVisible ? "elm,state,fastscroll,show" : "elm,state,fastscroll,hide";
+	elm_layout_signal_emit(getEvasObject(), signal, "");
 }
 
 void ListView::addSection(SectionId sectionId)
@@ -533,12 +524,15 @@ PersonItem *ListView::createPersonItem(Person &person)
 
 void ListView::insertPersonItem(PersonItem *item)
 {
+	if (m_PersonGroups.empty()) {
+		setEmptyState(false);
+	}
+
 	Person &person = item->getPerson();
 	PersonGroupItem *groupItem = getPersonGroupItem(person.getIndexLetter());
 	PersonItem *nextItem = getNextPersonItem(groupItem, person);
 
 	m_Genlist->insert(item, groupItem, nextItem);
-	updateNoContentLayout();
 }
 
 void ListView::updatePersonItem(PersonItem *item, int changes)
@@ -566,7 +560,9 @@ void ListView::deletePersonItem(PersonItem *item)
 		deletePersonGroupItem(oldGroup);
 	}
 
-	updateNoContentLayout();
+	if (m_PersonGroups.empty()) {
+		setEmptyState(true);
+	}
 }
 
 PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &person)

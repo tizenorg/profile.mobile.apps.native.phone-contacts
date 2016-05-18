@@ -85,12 +85,11 @@ namespace Contacts
 			void fillMfc();
 			void fillPersonList();
 
-			void setIndexState(Evas_Object *layout, bool state);
 			Ui::Genlist *createGenlist(Evas_Object *parent);
-			Evas_Object *createNoContentLayout(Evas_Object *parent);
-			void showNoContentLayout();
-			void hideNoContentLayout();
-			void updateNoContentLayout();
+			Evas_Object *createEmptyLayout(Evas_Object *parent);
+
+			void setEmptyState(bool isEmpty);
+			void setIndexState(bool isVisible);
 
 			void addSection(SectionId sectionId);
 			void removeSection(SectionId sectionId);
