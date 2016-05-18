@@ -26,7 +26,7 @@ namespace Contacts
 {
 	namespace Model
 	{
-		class ContactTypedObjectMetadata;
+		struct ContactTypedObjectMetadata;
 
 		/**
 		 * @brief Adapter for an object that has a "type" represented by

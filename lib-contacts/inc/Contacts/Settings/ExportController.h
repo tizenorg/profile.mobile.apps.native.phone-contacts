@@ -78,7 +78,6 @@ namespace Contacts
 			virtual void onCanceled() override;
 
 		private:
-			Evas_Object *m_Parent;
 			std::vector<int> m_PersonIdList;
 			std::string m_VcardPath;
 			StorageType m_VcardStorage;

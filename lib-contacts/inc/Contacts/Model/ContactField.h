@@ -30,7 +30,7 @@ namespace Contacts
 {
 	namespace Model
 	{
-		class ContactFieldMetadata;
+		struct ContactFieldMetadata;
 		class ContactFieldContainer;
 
 		/**

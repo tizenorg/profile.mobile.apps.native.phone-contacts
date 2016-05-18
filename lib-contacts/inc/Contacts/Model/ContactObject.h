@@ -24,7 +24,7 @@ namespace Contacts
 {
 	namespace Model
 	{
-		class ContactObjectMetadata;
+		struct ContactObjectMetadata;
 
 		/**
 		 * @brief Adapter for contacts_record_h object which may itself be

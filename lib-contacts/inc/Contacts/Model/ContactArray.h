@@ -24,7 +24,7 @@ namespace Contacts
 {
 	namespace Model
 	{
-		class ContactArrayMetadata;
+		struct ContactArrayMetadata;
 
 		/**
 		 * @brief Adaptor for property containing multiple records.

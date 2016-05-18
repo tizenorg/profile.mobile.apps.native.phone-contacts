@@ -56,7 +56,7 @@ namespace Contacts
 			void setIndexItem(Elm_Object_Item *item);
 
 		private:
-			virtual char *getText(Evas_Object *parent, const char *part);
+			virtual char *getText(Evas_Object *parent, const char *part) override;
 
 			Utils::UniString m_Title;
 			Elm_Object_Item *m_IndexItem;

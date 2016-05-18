@@ -44,7 +44,7 @@ namespace
 
 ExportController::ExportController(Evas_Object *parent, const char *title,
 		std::vector<int> personIdList, StorageType vcardStorage)
-	: ProgressController(parent, title, personIdList.size()), m_Parent(parent),
+	: ProgressController(parent, title, personIdList.size()),
 	  m_PersonIdList(std::move(personIdList)), m_VcardStorage(vcardStorage)
 {
 	m_VcardPath = getVcardFilePath();

@@ -25,7 +25,7 @@ namespace Contacts
 {
 	namespace Model
 	{
-		class ContactEnumMetadata;
+		struct ContactEnumMetadata;
 
 		/**
 		 * @brief Adaptor for property containing one of the limited possible
