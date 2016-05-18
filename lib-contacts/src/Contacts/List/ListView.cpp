@@ -68,7 +68,8 @@ ListView::ListView(int filterType)
 
 ListView::~ListView()
 {
-	contacts_setting_remove_name_sorting_order_changed_cb(onNameSortingOrderChanged, this);
+	contacts_setting_remove_name_sorting_order_changed_cb(
+			makeCallbackWithLastParam(&ListView::onSortOrderChanged), this);
 }
 
 Evas_Object *ListView::onCreate(Evas_Object *parent)
@@ -95,7 +96,8 @@ void ListView::onCreated()
 	updateSectionsMode();
 
 	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
-	contacts_setting_add_name_sorting_order_changed_cb(onNameSortingOrderChanged, this);
+	contacts_setting_add_name_sorting_order_changed_cb(
+			makeCallbackWithLastParam(&ListView::onSortOrderChanged), this);
 }
 
 void ListView::onDestroy()
@@ -188,24 +190,21 @@ void ListView::onShareSelected()
 	getNavigator()->navigateTo(view);
 }
 
-void ListView::onNameSortingOrderChanged(contacts_name_sorting_order_e sortingOrder, void *data)
+void ListView::onSortOrderChanged(contacts_name_sorting_order_e order)
 {
-	RETM_IF(!data, "invalid data");
-	ListView *view = (ListView *)data;
-
-	if (view->m_Sections[SectionPerson]) {
-		for (auto &personGroup : view->m_PersonGroups) {
+	if (m_Sections[SectionPerson]) {
+		for (auto &personGroup : m_PersonGroups) {
 			delete personGroup.second;
 		}
-		view->m_PersonGroups.clear();
-		view->m_Provider.clearDataList();
+		m_PersonGroups.clear();
+		m_Provider.clearDataList();
 
-		elm_index_item_clear(view->m_Index);
-		elm_index_level_go(view->m_Index, 0);
+		elm_index_item_clear(m_Index);
+		elm_index_level_go(m_Index, 0);
 
-		view->m_Sections[SectionPerson] = nullptr;
+		m_Sections[SectionPerson] = nullptr;
 
-		view->fillPersonList();
+		fillPersonList();
 	}
 }
 
@@ -241,9 +240,6 @@ void ListView::fillFavorites()
 		if (!favoritesSection->empty()) {
 			onSectionUpdated(false, SectionFavorites);
 		}
-
-	} else {
-		setFavouriteItemsMode(getSelectMode());
 	}
 }
 
@@ -349,15 +345,6 @@ void ListView::hideNoContentLayout()
 void ListView::updateNoContentLayout()
 {
 	m_Provider.getDataList().size() > 0 ? hideNoContentLayout() : showNoContentLayout();
-}
-
-void ListView::setFavouriteItemsMode(SelectMode selectMode)
-{
-	if (m_Sections[SectionFavorites]) {
-		for (auto &&favoriteItem : *m_Sections[SectionFavorites]) {
-			static_cast<PersonItem *>(favoriteItem)->setSelectMode(selectMode);
-		}
-	}
 }
 
 void ListView::addSection(SectionId sectionId)
@@ -539,8 +526,8 @@ void ListView::deletePersonGroupItem(PersonGroupItem *group)
 PersonItem *ListView::createPersonItem(Person &person)
 {
 	PersonItem *item = new PersonItem(person);
-	person.setUpdateCallback(std::bind(&ListView::onPersonUpdated, this, item, _1));
-	person.setDeleteCallback(std::bind(&ListView::onPersonDeleted, this, item));
+	person.setUpdateCallback(std::bind(&ListView::updatePersonItem, this, item, _1));
+	person.setDeleteCallback(std::bind(&ListView::deletePersonItem, this, item));
 	return item;
 }
 
@@ -573,9 +560,6 @@ void ListView::updatePersonItem(PersonItem *item, int changes)
 void ListView::deletePersonItem(PersonItem *item)
 {
 	PersonGroupItem *oldGroup = static_cast<PersonGroupItem *>(item->getParentItem());
-
-	item->getPerson().unsetUpdateCallback();
-	item->getPerson().unsetDeleteCallback();
 	delete item;
 
 	if (oldGroup->empty()) {
@@ -619,16 +603,6 @@ void ListView::onPersonInserted(ContactData &person)
 	auto item = createPersonItem(static_cast<Person &>(person));
 	insertPersonItem(item);
 	onItemInserted(item);
-}
-
-void ListView::onPersonUpdated(PersonItem *item, int changes)
-{
-	updatePersonItem(item, changes);
-}
-
-void ListView::onPersonDeleted(PersonItem *item)
-{
-	deletePersonItem(item);
 }
 
 void ListView::onSectionUpdated(bool isEmpty, SectionId sectionId)

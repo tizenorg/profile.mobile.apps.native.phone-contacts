@@ -75,7 +75,7 @@ namespace Contacts
 			void onDeleteSelected();
 			void onShareSelected();
 
-			static void onNameSortingOrderChanged(contacts_name_sorting_order_e sortingOrder, void *data);
+			void onSortOrderChanged(contacts_name_sorting_order_e order);
 
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
@@ -91,8 +91,6 @@ namespace Contacts
 			void showNoContentLayout();
 			void hideNoContentLayout();
 			void updateNoContentLayout();
-
-			void setFavouriteItemsMode(Ux::SelectMode selectMode);
 
 			void addSection(SectionId sectionId);
 			void removeSection(SectionId sectionId);
@@ -125,9 +123,6 @@ namespace Contacts
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
 			void onPersonInserted(Contacts::Model::ContactData &person);
-			void onPersonUpdated(PersonItem *item, int changes);
-			void onPersonDeleted(PersonItem *item);
-
 			void onSectionUpdated(bool isEmpty, SectionId sectionId);
 
 			Evas_Object *m_Box;
