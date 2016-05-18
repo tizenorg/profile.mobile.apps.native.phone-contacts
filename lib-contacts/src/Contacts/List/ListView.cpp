@@ -94,6 +94,7 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 void ListView::onCreated()
 {
 	updateSectionsMode();
+	fillPersonList();
 
 	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
 	contacts_setting_add_name_sorting_order_changed_cb(
@@ -192,17 +193,16 @@ void ListView::onShareSelected()
 
 void ListView::onSortOrderChanged(contacts_name_sorting_order_e order)
 {
-	if (m_Sections[SectionPerson]) {
+	if (!m_PersonGroups.empty()) {
 		for (auto &personGroup : m_PersonGroups) {
 			delete personGroup.second;
 		}
+
 		m_PersonGroups.clear();
 		m_Provider.clearDataList();
 
 		elm_index_item_clear(m_Index);
 		elm_index_level_go(m_Index, 0);
-
-		m_Sections[SectionPerson] = nullptr;
 
 		fillPersonList();
 	}
@@ -219,42 +219,23 @@ void ListView::onSelectModeChanged(SelectMode selectMode)
 	updateSectionsMode();
 }
 
-void ListView::fillMyProfile()
+Ui::GenlistGroupItem *ListView::createMyProfileSection()
 {
-	if (!m_Sections[SectionMyProfile]) {
-		MyProfileGroup *group = new MyProfileGroup();
-		m_Genlist->insert(group, nullptr, getNextSectionItem(SectionMyProfile));
-		elm_genlist_item_select_mode_set(group->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
-		m_Sections[SectionMyProfile] = group;
-	}
+	return new MyProfileGroup();
 }
 
-void ListView::fillFavorites()
+Ui::GenlistGroupItem *ListView::createFavoritesSection()
 {
-	if (!m_Sections[SectionFavorites]) {
-		ListSection *favoritesSection = new ListSection("IDS_PB_HEADER_FAVOURITES",
-				new FavoritesProvider());
-		favoritesSection->setUpdateCallback(std::bind(&ListView::onSectionUpdated, this, _1, SectionFavorites));
-		m_Sections[SectionFavorites] = favoritesSection;
-
-		if (!favoritesSection->empty()) {
-			onSectionUpdated(false, SectionFavorites);
-		}
-	}
+	ListSection *favoritesSection = new ListSection("IDS_PB_HEADER_FAVOURITES", new FavoritesProvider());
+	favoritesSection->setUpdateCallback(std::bind(&ListView::onSectionUpdated, this, _1, SectionFavorites));
+	return favoritesSection;
 }
 
-void ListView::fillMfc()
+Ui::GenlistGroupItem *ListView::createMfcSection()
 {
-	if (!m_Sections[SectionMfc]) {
-		ListSection *mfcSection = new ListSection("IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2",
-				new MfcProvider());
-		mfcSection->setUpdateCallback(std::bind(&ListView::onSectionUpdated, this, _1, SectionMfc));
-		m_Sections[SectionMfc] = mfcSection;
-
-		if (!mfcSection->empty()) {
-			onSectionUpdated(false, SectionMfc);
-		}
-	}
+	ListSection *mfcSection = new ListSection("IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2", new MfcProvider());
+	mfcSection->setUpdateCallback(std::bind(&ListView::onSectionUpdated, this, _1, SectionMfc));
+	return mfcSection;
 }
 
 void ListView::fillPersonList()
@@ -340,30 +321,40 @@ void ListView::setIndexState(bool isVisible)
 
 void ListView::addSection(SectionId sectionId)
 {
-	switch (sectionId) {
-		case SectionMyProfile: fillMyProfile();     break;
-		case SectionFavorites: fillFavorites();     break;
-		case SectionMfc:       fillMfc();           break;
-		case SectionPerson:    fillPersonList();    break;
-		default: break;
+	Ui::GenlistGroupItem *group = m_Sections[sectionId];
+	if (!group) {
+		switch (sectionId) {
+			case SectionMyProfile: group = createMyProfileSection(); break;
+			case SectionFavorites: group = createFavoritesSection(); break;
+			case SectionMfc:       group = createMfcSection();       break;
+			default: break;
+		}
+
+		m_Sections[sectionId] = group;
+	}
+
+	if (group && !group->empty() && !group->isInserted()) {
+		m_Genlist->insert(group, nullptr, getNextSectionItem(sectionId));
+		elm_genlist_item_select_mode_set(group->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 	}
 }
 
 void ListView::removeSection(SectionId sectionId)
 {
-	delete m_Sections[sectionId];
-	m_Sections[sectionId] = nullptr;
+	if (m_Sections[sectionId]) {
+		m_Sections[sectionId]->pop();
+	}
 }
 
-Ui::GenlistItem *ListView::getNextSectionItem(SectionId currentSection)
+Ui::GenlistItem *ListView::getNextSectionItem(SectionId sectionId)
 {
-	for (size_t nextSection = currentSection + 1; nextSection < SectionMax; ++nextSection) {
-		if (m_Sections[nextSection] && m_Sections[nextSection]->isInserted()) {
-			return m_Sections[nextSection];
+	for (unsigned section = sectionId + 1; section < SectionMax; ++section) {
+		if (m_Sections[section] && m_Sections[section]->isInserted()) {
+			return m_Sections[section];
 		}
 	}
 
-	return nullptr;
+	return !m_PersonGroups.empty() ? m_PersonGroups.begin()->second : nullptr;
 }
 
 bool ListView::getSectionVisibility(SelectMode selectMode, SectionId sectionId)
@@ -372,20 +363,17 @@ bool ListView::getSectionVisibility(SelectMode selectMode, SectionId sectionId)
 		/* SelectNone   = */ {
 			/* SectionMyProfile = */ true,
 			/* SectionFavorites = */ true,
-			/* SectionMfc       = */ true,
-			/* SectionPerson    = */ true
+			/* SectionMfc       = */ true
 		},
 		/* SelectSingle = */ {
 			/* SectionMyProfile = */ false,
-			/* SectionFavorites = */ true,
-			/* SectionMfc       = */ false,
-			/* SectionPerson    = */ true
+			/* SectionFavorites = */ false, /* FIXME: Enable when sections will be supported in selection mode */
+			/* SectionMfc       = */ false
 		},
 		/* SelectMulti  = */ {
 			/* SectionMyProfile = */ false,
-			/* SectionFavorites = */ true,
-			/* SectionMfc       = */ false,
-			/* SectionPerson    = */ true
+			/* SectionFavorites = */ false, /* FIXME: Enable when sections will be supported in selection mode */
+			/* SectionMfc       = */ false
 		}
 	};
 
@@ -486,7 +474,6 @@ PersonGroupItem *ListView::getPersonGroupItem(const Utils::UniString &indexLette
 		}
 
 		groupIt->second = insertPersonGroupItem(indexLetter, nextGroupItem);
-		m_Sections[SectionPerson] = m_PersonGroups.begin()->second;
 	}
 
 	return groupIt->second;
@@ -511,7 +498,6 @@ void ListView::deletePersonGroupItem(PersonGroupItem *group)
 	m_PersonGroups.erase(group->getTitle());
 	delete group;
 	elm_index_level_go(m_Index, 0);
-	m_Sections[SectionPerson] = !m_PersonGroups.empty() ? m_PersonGroups.begin()->second : nullptr;
 }
 
 PersonItem *ListView::createPersonItem(Person &person)
@@ -603,11 +589,11 @@ void ListView::onPersonInserted(ContactData &person)
 
 void ListView::onSectionUpdated(bool isEmpty, SectionId sectionId)
 {
+	Ui::GenlistItem *section = m_Sections[sectionId];
 	if (isEmpty) {
-		m_Sections[sectionId]->pop();
+		section->pop();
 	} else {
-		m_Genlist->insert(m_Sections[sectionId], nullptr, getNextSectionItem(sectionId));
-		elm_genlist_item_select_mode_set(m_Sections[sectionId]->getObjectItem(),
-				ELM_OBJECT_SELECT_MODE_NONE);
+		m_Genlist->insert(section, nullptr, getNextSectionItem(sectionId));
+		elm_genlist_item_select_mode_set(section->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 	}
 }

@@ -61,7 +61,6 @@ namespace Contacts
 				SectionMyProfile = SectionFirst,
 				SectionFavorites,
 				SectionMfc,
-				SectionPerson,
 				SectionMax
 			};
 
@@ -80,9 +79,9 @@ namespace Contacts
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
-			void fillMyProfile();
-			void fillFavorites();
-			void fillMfc();
+			Ui::GenlistGroupItem *createMyProfileSection();
+			Ui::GenlistGroupItem *createFavoritesSection();
+			Ui::GenlistGroupItem *createMfcSection();
 			void fillPersonList();
 
 			Ui::Genlist *createGenlist(Evas_Object *parent);
@@ -93,7 +92,7 @@ namespace Contacts
 
 			void addSection(SectionId sectionId);
 			void removeSection(SectionId sectionId);
-			Ui::GenlistItem *getNextSectionItem(SectionId currentSection);
+			Ui::GenlistItem *getNextSectionItem(SectionId sectionId);
 			bool getSectionVisibility(Ux::SelectMode selectMode, SectionId sectionId);
 			void updateSectionsMode();
 
