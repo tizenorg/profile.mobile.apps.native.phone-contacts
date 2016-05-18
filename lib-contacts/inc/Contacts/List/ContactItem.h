@@ -56,7 +56,7 @@ namespace Contacts
 			 */
 			void update(int changes);
 
-		private:
+		protected:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual Ux::SelectResult getDefaultResult() const override;

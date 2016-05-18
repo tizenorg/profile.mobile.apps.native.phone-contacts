@@ -23,23 +23,24 @@
 using namespace Contacts::List::Model;
 
 PersonSearchData::PersonSearchData(Person &person)
-	: SearchData(person),
-	  m_Number(nullptr)
+	: SearchData(person)
 {
 }
 
 const char *PersonSearchData::getNumber() const
 {
-	return m_Number ? m_Number : SearchData::getNumber();
+	if (getMatchedField() == MatchedNumber && getMatchedString()) {
+		return getMatchedString();
+	}
+
+	return SearchData::getNumber();
 }
 
 bool PersonSearchData::compare(const std::string &str)
 {
 	const char *pos = strstr(getName(), str.c_str());
 	if (pos) {
-		setMatchedField(MatchedName);
-		setSubstring({ pos, str.size() });
-
+		setMatch(MatchedName, getName(), { pos, str.size() });
 		return true;
 	}
 
@@ -47,15 +48,11 @@ bool PersonSearchData::compare(const std::string &str)
 	for (auto &&number : person.getNumbers()) {
 		pos = strstr(number->getNumber(), str.c_str());
 		if (pos) {
-			m_Number = number->getNumber();
-			setMatchedField(MatchedNumber);
-			setSubstring({ pos, str.size() });
-
+			setMatch(MatchedNumber, number->getNumber(), { pos, str.size() });
 			return true;
 		}
 	}
 
-	setMatchedField(MatchedNone);
-	setSubstring({});
+	resetMatch();
 	return false;
 }
