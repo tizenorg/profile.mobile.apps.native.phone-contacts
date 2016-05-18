@@ -68,12 +68,23 @@ namespace
 
 		return record;
 	}
+
+	contacts_record_h getNumberRecord()
+	{
+		int id = 0;
+		contacts_record_h record = nullptr;
+		contacts_person_get_default_property(CONTACTS_PERSON_PROPERTY_NUMBER, getId(), &id);
+		contacts_db_get_record(_contacts_number._uri, id, &record);
+
+		return record;
+	}
 }
 
 Person::Person(contacts_record_h record)
 	: ContactData(TypePerson), m_Record(record)
 {
 	m_NameRecord = getNameRecord(getContactId());
+	m_NumberRecord = getNumberRecord();
 	m_IndexLetter = getRecordStr(m_Record, _contacts_person.display_name_index);
 }
 
@@ -83,6 +94,7 @@ Person::~Person()
 		delete number;
 	}
 	contacts_record_destroy(m_NameRecord, true);
+	contacts_record_destroy(m_NumberRecord, true);
 	contacts_record_destroy(m_Record, true);
 }
 
@@ -98,7 +110,7 @@ const char *Person::getName() const
 
 const char *Person::getNumber() const
 {
-	return nullptr;
+	return getRecordStr(m_NumberRecord, _contacts_number.number);
 }
 
 const char *Person::getImagePath() const
@@ -169,6 +181,8 @@ void Person::update(contacts_record_h record)
 
 	contacts_record_destroy(m_Record, true);
 	m_Record = record;
+	contacts_record_destroy(m_NumberRecord, true);
+	m_NumberRecord = getNumberRecord();
 
 	onUpdated(changes);
 }

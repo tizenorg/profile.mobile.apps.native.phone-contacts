@@ -19,6 +19,7 @@
 #define CONTACTS_MODEL_SEARCH_DATA_H
 
 #include "Contacts/Model/ContactData.h"
+#include "Common/Utils.h"
 #include "Utils/Range.h"
 
 #include <string>
@@ -30,11 +31,6 @@ namespace Contacts
 		class EXPORT_API SearchData : public ContactData
 		{
 		public:
-			/**
-			 * @brief Determines range of chars, which are as substring
-			 */
-			typedef Utils::Range<const char *> Substring;
-
 			/**
 			 * @brief Determines which field conform to searchable string
 			 * @see compare()
@@ -90,9 +86,19 @@ namespace Contacts
 			MatchedField getMatchedField() const;
 
 			/**
+			 * @return Matched string
+			 */
+			const char *getMatchedString() const;
+
+			/**
 			 * @return Matched substring
 			 */
-			const Substring &getSubstring() const;
+			const Common::Substring &getMatchedSubstring() const;
+
+			/**
+			 * @return ContactData reference
+			 */
+			ContactData &getContactData();
 
 		protected:
 			/**
@@ -102,20 +108,22 @@ namespace Contacts
 			void setMatchedField(MatchedField field);
 
 			/**
+			 * @brief Set matched string
+			 * @param[in]   str     Matched string
+			 */
+			void setMatchedString(const char *str);
+
+			/**
 			 * @brief Set substring, found by @ref compare() method
 			 * @see Substring
 			 */
-			void setSubstring(Substring substring);
-
-			/**
-			 * @return ContactData reference
-			 */
-			ContactData &getContactData();
+			void setMatchedSubstring(Common::Substring substring);
 
 		private:
 			ContactData &m_ContactData;
-			Substring m_Substring;
 			MatchedField m_MatchedField;
+			const char *m_MatchedString;
+			Common::Substring m_MatchedSubstring;
 		};
 	}
 }
