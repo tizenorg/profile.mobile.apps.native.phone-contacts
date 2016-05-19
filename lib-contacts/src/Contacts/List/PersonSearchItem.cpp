@@ -60,6 +60,15 @@ char *PersonSearchItem::getText(Evas_Object *parent, const char *part)
 	return PersonItem::getText(parent, part);
 }
 
+Eina_Bool PersonSearchItem::compare(Evas_Object *parent, void *filter)
+{
+	const char *str = filter ? (const char *) filter : "";
+	bool isEqual = m_SearchData->compare(str);
+
+	setSearchData(m_SearchData);
+	return isEqual;
+}
+
 std::string PersonSearchItem::getHighlightedStr() const
 {
 	return highlightStr(m_SearchData->getMatchedString(), m_SearchData->getMatchedSubstring());

@@ -158,13 +158,21 @@ namespace Ui
 
 		/**
 		 * @brief Called whenever any item's state part needs to be updated
-		 * @details Genlist will emit signal "elm,state,x,active" or
-		 *          "elm,state,x,passive" with part's name instead of 'x'.
+		 * @details Genlist will emit signal "elm,state,x,active" or "elm,state,x,passive"
+		 *          with part's name instead of 'x'.
 		 * @param[in]   parent  Parent genlist
 		 * @param[in]   part    Name of the part
 		 * @return EINA_TRUE for active, EINA_FALSE for passive
 		 */
 		virtual Eina_Bool getState(Evas_Object *parent, const char *part) { return EINA_FALSE; }
+
+		/**
+		 * @brief Called when genlist filter is set using elm_genlist_filter_set().
+		 * @param[in]   parent  Parent genlist
+		 * @param[in]   filter  Filter to compare with
+		 * @return Whether the item satisfies the filter.
+		 */
+		virtual Eina_Bool compare(Evas_Object *parent, void *filter) { return EINA_TRUE; }
 
 		/**
 		 * @brief Called after item was inserted into genlist.

@@ -46,6 +46,7 @@ namespace Contacts
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
+			virtual Eina_Bool compare(Evas_Object *parent, void *filter) override;
 
 			std::string getHighlightedStr() const;
 
