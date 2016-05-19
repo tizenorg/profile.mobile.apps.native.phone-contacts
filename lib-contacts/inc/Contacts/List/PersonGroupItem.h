@@ -57,6 +57,7 @@ namespace Contacts
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
+			virtual Eina_Bool compare(Evas_Object *parent, void *filter) override;
 
 			Utils::UniString m_Title;
 			Elm_Object_Item *m_IndexItem;

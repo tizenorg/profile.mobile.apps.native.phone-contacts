@@ -55,3 +55,8 @@ char *PersonGroupItem::getText(Evas_Object *parent, const char *part)
 
 	return nullptr;
 }
+
+Eina_Bool PersonGroupItem::compare(Evas_Object *parent, void *filter)
+{
+	return !(filter && *(const char *) filter);
+}
