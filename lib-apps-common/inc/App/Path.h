@@ -29,6 +29,11 @@ namespace App
 	EXPORT_API const std::string &getResourceDir();
 
 	/**
+	 * @return Data directory path
+	 */
+	EXPORT_API const std::string &getDataDir();
+
+	/**
 	 * @return Localization files directory path
 	 */
 	EXPORT_API const std::string &getLocaleDir();
