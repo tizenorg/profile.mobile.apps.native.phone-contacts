@@ -47,6 +47,11 @@ namespace Contacts
 				 */
 				virtual const DataList &getDataList() override;
 
+				/**
+				 * @see ContactDataProvider::clearDataList()
+				 */
+				virtual void clearDataList() override;
+
 			private:
 				using ContactDataProvider::onInserted;
 
