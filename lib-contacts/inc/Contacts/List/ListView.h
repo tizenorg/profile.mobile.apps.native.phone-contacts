@@ -19,7 +19,7 @@
 #define CONTACTS_LIST_LIST_VIEW_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Contacts/List/Model/PersonProvider.h"
+#include "Contacts/List/Model/SearchProvider.h"
 
 #include "Ux/SelectView.h"
 #include "Utils/UniString.h"
@@ -40,6 +40,7 @@ namespace Contacts
 		class SearchItem;
 		class PersonGroupItem;
 		class PersonItem;
+		class PersonSearchItem;
 
 		/**
 		 * @brief Contacts list view
@@ -48,7 +49,13 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @brief Create new person list view
+			 * @brief Create person list view
+			 * @param[in]   provider    Person provider
+			 */
+			explicit ListView(Model::PersonProvider *provider);
+
+			/**
+			 * @brief Create person list view
 			 * @param[in]   filterType  Defines how to filter person list
 			 */
 			explicit ListView(int filterType = FilterNone);
@@ -69,6 +76,7 @@ namespace Contacts
 			virtual void onDestroy() override;
 
 			virtual void onNavigation(bool isCurrent) override;
+			virtual bool onBackPressed() override;
 			virtual void onMenuPressed() override;
 
 			void onDeleteSelected();
@@ -109,7 +117,7 @@ namespace Contacts
 					PersonGroupItem *nextGroupItem = nullptr);
 			void deletePersonGroupItem(PersonGroupItem *group);
 
-			PersonItem *createPersonItem(Model::Person &person);
+			PersonSearchItem *createPersonItem(Model::PersonSearchData &searchData);
 			void insertPersonItem(PersonItem *item);
 			void updatePersonItem(PersonItem *item, int changes);
 			void deletePersonItem(PersonItem *item);
@@ -122,6 +130,7 @@ namespace Contacts
 
 			void onPersonInserted(Contacts::Model::ContactData &person);
 			void onSectionUpdated(bool isEmpty, SectionId sectionId);
+			void onSearchChanged(const char *str);
 
 			Evas_Object *m_Box;
 			Evas_Object *m_NoContent;
@@ -129,12 +138,14 @@ namespace Contacts
 			Evas_Object *m_Index;
 			Evas_Object *m_AddButton;
 			bool m_IsCurrentView;
+			bool m_IsSearching;
 
 			SearchItem *m_SearchItem;
 			Ui::GenlistGroupItem *m_Sections[SectionMax];
 
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
-			Model::PersonProvider m_Provider;
+			Model::PersonProvider *m_PersonProvider;
+			Model::SearchProvider m_SearchProvider;
 		};
 	}
 }

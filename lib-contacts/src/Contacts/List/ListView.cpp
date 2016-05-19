@@ -18,12 +18,16 @@
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/ListSection.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
+
 #include "Contacts/List/Model/FavoritesProvider.h"
 #include "Contacts/List/Model/MfcProvider.h"
 #include "Contacts/List/Model/Person.h"
+#include "Contacts/List/Model/PersonProvider.h"
+#include "Contacts/List/Model/PersonSearchData.h"
+
 #include "Contacts/List/MyProfileGroup.h"
 #include "Contacts/List/PersonGroupItem.h"
-#include "Contacts/List/PersonItem.h"
+#include "Contacts/List/PersonSearchItem.h"
 #include "Contacts/List/SearchItem.h"
 
 #include "Contacts/Details/DetailsView.h"
@@ -54,11 +58,11 @@ using namespace std::placeholders;
 
 #define SYMBOL_MAGNIFIER "\U0001f50d"
 
-ListView::ListView(int filterType)
+ListView::ListView(Model::PersonProvider *provider)
 	: m_Box(nullptr), m_NoContent(nullptr), m_Genlist(nullptr),
-	  m_Index(nullptr), m_AddButton(nullptr), m_IsCurrentView(false),
-	  m_SearchItem(nullptr),
-	  m_Sections{ nullptr }, m_Provider(filterType)
+	  m_Index(nullptr), m_AddButton(nullptr), m_IsCurrentView(false), m_IsSearching(false),
+	  m_SearchItem(nullptr), m_Sections{ nullptr },
+	  m_PersonProvider(provider), m_SearchProvider(*m_PersonProvider)
 {
 	auto strings = Common::getSelectViewStrings();
 	strings.titleDefault = "IDS_PB_TAB_CONTACTS";
@@ -66,10 +70,16 @@ ListView::ListView(int filterType)
 	setStrings(strings);
 }
 
+ListView::ListView(int filterType)
+	: ListView(new PersonProvider(filterType))
+{
+}
+
 ListView::~ListView()
 {
 	contacts_setting_remove_name_sorting_order_changed_cb(
 			makeCallbackWithLastParam(&ListView::onSortOrderChanged), this);
+	delete m_PersonProvider;
 }
 
 Evas_Object *ListView::onCreate(Evas_Object *parent)
@@ -96,7 +106,7 @@ void ListView::onCreated()
 	updateSectionsMode();
 	fillPersonList();
 
-	m_Provider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
+	m_SearchProvider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
 	contacts_setting_add_name_sorting_order_changed_cb(
 			makeCallbackWithLastParam(&ListView::onSortOrderChanged), this);
 }
@@ -114,7 +124,17 @@ void ListView::onNavigation(bool isCurrent)
 {
 	m_IsCurrentView = isCurrent;
 	updateAddButton();
-	m_Provider.setUpdateMode(isCurrent);
+	m_PersonProvider->setUpdateMode(isCurrent);
+}
+
+bool ListView::onBackPressed()
+{
+	if (m_IsSearching) {
+		m_SearchItem->clear();
+		return false;
+	}
+
+	return true;
 }
 
 void ListView::onMenuPressed()
@@ -199,7 +219,7 @@ void ListView::onSortOrderChanged(contacts_name_sorting_order_e order)
 		}
 
 		m_PersonGroups.clear();
-		m_Provider.clearDataList();
+		m_SearchProvider.clearDataList();
 
 		elm_index_item_clear(m_Index);
 		elm_index_level_go(m_Index, 0);
@@ -243,15 +263,16 @@ void ListView::fillPersonList()
 	if (m_PersonGroups.empty()) {
 		PersonGroupItem *group = nullptr;
 
-		for (auto &&contactData : m_Provider.getDataList()) {
-			Person &person = static_cast<Person &>(*contactData);
+		for (auto &&contactData : m_SearchProvider.getDataList()) {
+			PersonSearchData &searchData = static_cast<PersonSearchData &>(*contactData);
+			Person &person = searchData.getPerson();
 
 			const UniString &nextLetter = person.getIndexLetter();
 			if (!group || group->getTitle() != nextLetter) {
 				group = getPersonGroupItem(nextLetter);
 			}
 
-			PersonItem *item = createPersonItem(person);
+			PersonSearchItem *item = createPersonItem(searchData);
 			m_Genlist->insert(item, group);
 			onItemInserted(item);
 		}
@@ -377,7 +398,7 @@ bool ListView::getSectionVisibility(SelectMode selectMode, SectionId sectionId)
 		}
 	};
 
-	return sectionVisibility[selectMode][sectionId];
+	return !m_IsSearching ? sectionVisibility[selectMode][sectionId] : false;
 }
 
 void ListView::updateSectionsMode()
@@ -399,6 +420,8 @@ void ListView::updateSectionsMode()
 SearchItem *ListView::createSearchItem()
 {
 	SearchItem *item = new SearchItem();
+	item->setChangeCallback(std::bind(&ListView::onSearchChanged, this, _1));
+
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 
@@ -500,11 +523,12 @@ void ListView::deletePersonGroupItem(PersonGroupItem *group)
 	elm_index_level_go(m_Index, 0);
 }
 
-PersonItem *ListView::createPersonItem(Person &person)
+PersonSearchItem *ListView::createPersonItem(PersonSearchData &searchData)
 {
-	PersonItem *item = new PersonItem(person);
-	person.setUpdateCallback(std::bind(&ListView::updatePersonItem, this, item, _1));
-	person.setDeleteCallback(std::bind(&ListView::deletePersonItem, this, item));
+	PersonSearchItem *item = new PersonSearchItem(searchData.getPerson());
+	item->setSearchData(&searchData);
+	searchData.setUpdateCallback(std::bind(&ListView::updatePersonItem, this, item, _1));
+	searchData.setDeleteCallback(std::bind(&ListView::deletePersonItem, this, item));
 	return item;
 }
 
@@ -580,9 +604,9 @@ void ListView::onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem)
 	elm_index_item_selected_set(indexItem, EINA_FALSE);
 }
 
-void ListView::onPersonInserted(ContactData &person)
+void ListView::onPersonInserted(ContactData &contactData)
 {
-	auto item = createPersonItem(static_cast<Person &>(person));
+	auto item = createPersonItem(static_cast<PersonSearchData &>(contactData));
 	insertPersonItem(item);
 	onItemInserted(item);
 }
@@ -596,4 +620,15 @@ void ListView::onSectionUpdated(bool isEmpty, SectionId sectionId)
 		m_Genlist->insert(section, nullptr, getNextSectionItem(sectionId));
 		elm_genlist_item_select_mode_set(section->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 	}
+}
+
+void ListView::onSearchChanged(const char *str)
+{
+	bool isSearching = str && *str;
+	if (isSearching != m_IsSearching) {
+		m_IsSearching = isSearching;
+		updateSectionsMode();
+	}
+
+	elm_genlist_filter_set(m_Genlist->getEvasObject(), (void *) str);
 }
