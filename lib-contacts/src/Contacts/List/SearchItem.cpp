@@ -22,13 +22,32 @@
 
 using namespace Contacts::List;
 
+void SearchItem::setChangeCallback(ChangeCallback callback)
+{
+	m_OnChanged = std::move(callback);
+}
+
+void SearchItem::clear()
+{
+	Evas_Object *layout = elm_object_item_part_content_get(getObjectItem(), "elm.swallow.content");
+	Ui::Editfield *editfield = static_cast<Ui::Editfield *>(Ui::Control::getControl(layout));
+
+	if (editfield) {
+		elm_entry_entry_set(editfield->getEntry(), "");
+	} else {
+		m_Text.clear();
+		notifyChange();
+	}
+}
+
 Evas_Object *SearchItem::getContent(Evas_Object *parent, const char *part)
 {
 	Ui::Editfield *searchField = Ui::Editfield::create(parent, "IDS_PB_NPBODY_SEARCH");
 
 	Evas_Object *entry = searchField->getEntry();
+	elm_entry_entry_set(entry, m_Text.c_str());
 	elm_entry_input_panel_return_key_autoenabled_set(entry, EINA_TRUE);
-	elm_entry_input_panel_return_key_type_set(entry, ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE);
+	elm_entry_input_panel_return_key_type_set(entry, ELM_INPUT_PANEL_RETURN_KEY_TYPE_SEARCH);
 	evas_object_smart_callback_add(entry, "changed",
 			makeCallback(&SearchItem::onChanged), this);
 	evas_object_smart_callback_add(entry, "activated",
@@ -42,11 +61,6 @@ Elm_Genlist_Item_Class *SearchItem::getItemClass() const
 	return &itc;
 }
 
-void SearchItem::setChangeCallback(ChangeCallback callback)
-{
-	m_OnChanged = std::move(callback);
-}
-
 void SearchItem::onDonePressed(Evas_Object *entry, void *eventInfo)
 {
 	elm_object_focus_set(entry, EINA_FALSE);
@@ -54,7 +68,15 @@ void SearchItem::onDonePressed(Evas_Object *entry, void *eventInfo)
 
 void SearchItem::onChanged(Evas_Object *entry, void *eventInfo)
 {
+	m_Text = elm_entry_entry_get(entry);
+	notifyChange();
+}
+
+void SearchItem::notifyChange()
+{
 	if (m_OnChanged) {
-		m_OnChanged();
+		char *text = elm_entry_markup_to_utf8(m_Text.c_str());
+		m_OnChanged(text);
+		free(text);
 	}
 }
