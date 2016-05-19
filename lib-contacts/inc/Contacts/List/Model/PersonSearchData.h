@@ -38,6 +38,11 @@ namespace Contacts
 				PersonSearchData(Person &person);
 
 				/**
+				 * @return Related person.
+				 */
+				Person &getPerson();
+
+				/**
 				 * @see ContactData::getNumber()
 				 */
 				virtual const char *getNumber() const override;

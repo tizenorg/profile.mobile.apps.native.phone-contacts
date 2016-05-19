@@ -29,11 +29,6 @@ using namespace std::placeholders;
 SearchProvider::SearchProvider(PersonProvider &provider)
 	: m_Provider(provider), m_SearchEngine(m_ContactList)
 {
-	for (auto &&data : m_Provider.getDataList()) {
-		auto &person = static_cast<Person &>(*data);
-		insertPerson(person);
-	}
-
 	m_Provider.setInsertCallback([this](ContactData &contactData) {
 		onInserted(static_cast<Person &>(contactData));
 	});
@@ -48,7 +43,23 @@ SearchProvider::~SearchProvider()
 
 const SearchProvider::DataList &SearchProvider::getDataList()
 {
+	if (m_ContactList.empty()) {
+		for (auto &&data : m_Provider.getDataList()) {
+			auto &person = static_cast<Person &>(*data);
+			insertPerson(person);
+		}
+	}
+
 	return m_SearchEngine.empty() ? m_ContactList : *m_SearchEngine.getSearchResult();
+}
+
+void SearchProvider::clearDataList()
+{
+	for (auto &&contactData : m_ContactList) {
+		delete contactData;
+	}
+	m_ContactList.clear();
+	m_Provider.clearDataList();
 }
 
 ContactData &SearchProvider::insertPerson(Person &person)

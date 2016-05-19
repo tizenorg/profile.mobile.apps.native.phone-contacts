@@ -27,6 +27,11 @@ PersonSearchData::PersonSearchData(Person &person)
 {
 }
 
+Person &PersonSearchData::getPerson()
+{
+	return static_cast<Person &>(getContactData());
+}
+
 const char *PersonSearchData::getNumber() const
 {
 	if (getMatchedField() == MatchedNumber && getMatchedString()) {
@@ -38,6 +43,11 @@ const char *PersonSearchData::getNumber() const
 
 bool PersonSearchData::compare(const std::string &str)
 {
+	if (str.empty()) {
+		resetMatch();
+		return true;
+	}
+
 	const char *pos = strstr(getName(), str.c_str());
 	if (pos) {
 		setMatch(MatchedName, getName(), { pos, str.size() });
