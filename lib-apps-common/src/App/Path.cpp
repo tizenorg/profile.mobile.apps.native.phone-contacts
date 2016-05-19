@@ -33,6 +33,24 @@ const std::string &App::getLocaleDir()
 	return localeDir;
 }
 
+const std::string &getDataDir()
+{
+	static std::string dataDir;
+	if (dataDir.empty()) {
+		#ifdef DATA_DIR
+			dataDir = DATA_DIR;
+		#else
+			char *path = app_get_data_path();
+			if (path) {
+				dataDir = path;
+			}
+			free(path);
+		#endif
+	}
+
+	return dataDir;
+}
+
 const std::string &App::getResourceDir()
 {
 	static std::string resDir;
