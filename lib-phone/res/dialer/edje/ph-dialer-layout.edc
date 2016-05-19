@@ -18,7 +18,7 @@
 #include "PhDialerLayout.h"
 #include "PhDialerLayoutMetrics.h"
 #include "PhDialerLayoutColors.h"
-#include "../../../../../lib-common/res/common/edje/common-utils.edc"
+#include "../../../../lib-common/res/common/edje/common-utils.edc"
 
 
 collections {
