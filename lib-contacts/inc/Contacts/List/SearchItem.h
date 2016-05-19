@@ -19,6 +19,7 @@
 #define CONTACTS_LIST_CONTACT_SEARCH_ITEM_H
 
 #include "Ui/GenlistItem.h"
+#include <string>
 
 namespace Contacts
 {
@@ -33,12 +34,17 @@ namespace Contacts
 			/**
 			 * @brief Entry change callback.
 			 */
-			typedef std::function<void()> ChangeCallback;
+			typedef std::function<void(const char *)> ChangeCallback;
 
 			/**
 			 * @brief Set entry changed callback
 			 */
 			void setChangeCallback(ChangeCallback callback);
+
+			/**
+			 * @brief Clear search query.
+			 */
+			void clear();
 
 		private:
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
@@ -46,8 +52,10 @@ namespace Contacts
 
 			void onDonePressed(Evas_Object *entry, void *eventInfo);
 			void onChanged(Evas_Object *entry, void *eventInfo);
+			void notifyChange();
 
 			ChangeCallback m_OnChanged;
+			std::string m_Text;
 		};
 	}
 }
