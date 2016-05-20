@@ -25,6 +25,7 @@
 #include "Ui/ListPopup.h"
 #include "Ux/SelectItem.h"
 #include "Utils/Logger.h"
+#include "Utils/EcoreUtils.h"
 
 using namespace Common;
 using namespace Common::Database;
@@ -123,7 +124,7 @@ bool Chooser::onMultiPersonSelected(SelectResults results)
 
 bool Chooser::onSelectedForAction(SelectResults results)
 {
-	return selectSingleResult(*results.begin(), [this](SelectResults results) {
+	selectSingleResult(*results.begin(), [this](SelectResults results) {
 		SelectResult result = *results.begin();
 		if (result.type == ResultEmail) {
 			result.type = ActionEmail;
@@ -142,6 +143,8 @@ bool Chooser::onSelectedForAction(SelectResults results)
 
 		return false;
 	});
+
+	return false;
 }
 
 bool Chooser::onSelectedForVcard(SelectResults results)
@@ -178,7 +181,10 @@ bool Chooser::selectSingleResult(SelectResult person, SelectCallback callback)
 {
 	SelectResult result = getSingleResult(person.value.id);
 	if (result.value.id > 0) {
-		return callback({ &result, 1 });
+		Utils::createJob([callback, result]() mutable {
+			callback({ &result, 1 });
+		});
+		return true;
 	}
 
 	DetailsView *view = new DetailsView(getDisplayContactId(person.value.id),

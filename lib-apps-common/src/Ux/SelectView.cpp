@@ -95,8 +95,10 @@ void SelectView::setCheckCallback(CheckCallback callback)
 
 void SelectView::setCheckedItem(SelectItem *item, bool isChecked)
 {
-	item->setChecked(isChecked);
-	updateSelectCount(isChecked ? CountIncrement : CountDecrement);
+	if (item->isChecked() != isChecked) {
+		item->setChecked(isChecked);
+		updateSelectCount(isChecked ? CountIncrement : CountDecrement);
+	}
 }
 
 SelectMode SelectView::getSelectMode() const
