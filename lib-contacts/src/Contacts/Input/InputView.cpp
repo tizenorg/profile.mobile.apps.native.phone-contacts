@@ -35,6 +35,7 @@
 #include "Utils/Logger.h"
 #include "Utils/Range.h"
 
+#include "AppsCommonButtons.h"
 #include "InputPath.h"
 
 using namespace Contacts;
@@ -109,6 +110,7 @@ void InputView::setResultCallback(ResultCallback callback)
 
 Evas_Object *InputView::onCreate(Evas_Object *parent)
 {
+	elm_theme_extension_add(nullptr, App::getResourcePath(APPS_COMMON_BUTTONS_EDJ).c_str());
 	elm_theme_extension_add(nullptr, App::getResourcePath(INPUT_ITEM_LAYOUT_EDJ).c_str());
 
 	m_Genlist = new Ui::Genlist();
