@@ -39,7 +39,8 @@ char *MyProfileItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_CONTACT_NAME) == 0) {
 		const char *name = m_MyProfile.getName();
-		return strdup(name ? name : _("IDS_PB_MBODY_SET_MY_PROFILE"));
+		const char *text = name ? name : m_MyProfile.getNumber();
+		return strdup(text ? text : _("IDS_PB_MBODY_SET_MY_PROFILE"));
 	}
 
 	return nullptr;
@@ -56,6 +57,8 @@ void MyProfileItem::onSelected()
 	if (id > 0) {
 		navigator->navigateTo(new DetailsView(id, DetailsView::TypeMyProfile));
 	} else {
-		navigator->navigateTo(new InputView(id, InputView::TypeMyProfile));
+		InputView *view = new InputView(id, InputView::TypeMyProfile);
+		view->addField(Contacts::Model::FieldNumber, m_MyProfile.getNumber());
+		navigator->navigateTo(view);
 	}
 }
