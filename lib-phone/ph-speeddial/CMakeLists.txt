@@ -5,8 +5,8 @@ INCLUDE_DIRECTORIES(
 	${CMAKE_SOURCE_DIR}/lib-common/inc
 	${CMAKE_SOURCE_DIR}/app-assist-efl/inc
 	${CMAKE_SOURCE_DIR}/lib-phone/ph-common/inc
+	${CMAKE_SOURCE_DIR}/lib-phone/res/speeddial/edje
 	${CMAKE_CURRENT_SOURCE_DIR}/inc
-	${CMAKE_CURRENT_SOURCE_DIR}/res/speeddial/edje
 )
 
 FILE(GLOB SRCS "src/*.cpp")
@@ -19,5 +19,3 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${TIZEN_PKGS_LDFLAGS}
 ADD_DEPENDENCIES(${PROJECT_NAME} ph-speeddial.edj)
 
 INSTALL(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_APP_LIB_DIR})
-
-ADD_SUBDIRECTORY(res/speeddial)

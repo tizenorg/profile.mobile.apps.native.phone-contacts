@@ -8,5 +8,5 @@ ADD_CUSTOM_TARGET(ph-speeddial-layout.edj
 	${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-speeddial-layout.edc ph-speeddial-layout.edj
 	DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-speeddial-layout.edc
 )
-ADD_DEPENDENCIES(${PROJECT_NAME} ph-speeddial-layout.edj)
+ADD_DEPENDENCIES(ph-speeddial ph-speeddial-layout.edj)
 INSTALL(FILES ph-speeddial-layout.edj DESTINATION ${PH_SPEED_DIAL_EDJ_DIR})

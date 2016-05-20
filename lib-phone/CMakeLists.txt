@@ -4,3 +4,6 @@ ADD_SUBDIRECTORY(ph-common)
 ADD_SUBDIRECTORY(ph-dialer)
 ADD_SUBDIRECTORY(ph-loglist)
 ADD_SUBDIRECTORY(ph-speeddial)
+
+ADD_SUBDIRECTORY(res/dialer)
+ADD_SUBDIRECTORY(res/speeddial)

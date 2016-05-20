@@ -8,7 +8,7 @@ ADD_CUSTOM_TARGET(ph-dialer-layout.edj
 	${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-dialer-layout.edc ph-dialer-layout.edj
 	DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-dialer-layout.edc
 )
-ADD_DEPENDENCIES(${PROJECT_NAME} ph-dialer-layout.edj)
+ADD_DEPENDENCIES(ph-dialer ph-dialer-layout.edj)
 INSTALL(FILES ph-dialer-layout.edj DESTINATION ${PH_DIALER_EDJ_PATH})
 
 ADD_CUSTOM_TARGET(ph-dialer-keypad.edj
@@ -17,7 +17,7 @@ ADD_CUSTOM_TARGET(ph-dialer-keypad.edj
 	${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-dialer-keypad.edc ph-dialer-keypad.edj
 	DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-dialer-keypad.edc
 )
-ADD_DEPENDENCIES(${PROJECT_NAME} ph-dialer-keypad.edj)
+ADD_DEPENDENCIES(ph-dialer ph-dialer-keypad.edj)
 INSTALL(FILES ph-dialer-keypad.edj DESTINATION ${PH_DIALER_EDJ_PATH})
 
 ADD_CUSTOM_TARGET(ph-dialer-predictive.edj
@@ -26,5 +26,5 @@ ADD_CUSTOM_TARGET(ph-dialer-predictive.edj
 	${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-dialer-predictive.edc ph-dialer-predictive.edj
 	DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/edje/ph-dialer-predictive.edc
 )
-ADD_DEPENDENCIES(${PROJECT_NAME} ph-dialer-predictive.edj)
+ADD_DEPENDENCIES(ph-dialer ph-dialer-predictive.edj)
 INSTALL(FILES ph-dialer-predictive.edj DESTINATION ${PH_DIALER_EDJ_PATH})
