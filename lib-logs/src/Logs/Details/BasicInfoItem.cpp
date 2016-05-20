@@ -165,6 +165,7 @@ void BasicInfoItem::onGroupChanged(int type)
 {
 	if (type & LogGroup::ChangeRemoved) {
 		m_Group = nullptr;
+		delete this;
 	} else {
 		m_Log = m_Group->getLogList().back();
 		if (type & LogGroup::ChangePerson) {
