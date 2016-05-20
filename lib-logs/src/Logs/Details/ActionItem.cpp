@@ -151,6 +151,7 @@ void ActionItem::onGroupChanged(int type)
 {
 	if (type & LogGroup::ChangeRemoved) {
 		m_Group = nullptr;
+		delete this;
 	} else {
 		m_Log = m_Group->getLogList().back();
 		elm_genlist_item_fields_update(getObjectItem(), PART_NUMBER_TYPE, ELM_GENLIST_ITEM_FIELD_TEXT);
