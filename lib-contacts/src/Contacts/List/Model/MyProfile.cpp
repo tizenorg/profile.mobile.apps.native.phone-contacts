@@ -16,7 +16,12 @@
  */
 
 #include "Contacts/List/Model/MyProfile.h"
+#include "Common/Database/ChildRecordIterator.h"
 #include "Common/Database/RecordUtils.h"
+#include "Utils/Logger.h"
+
+#include <string>
+#include <telephony.h>
 
 using namespace Common::Database;
 using namespace Contacts::List::Model;
@@ -47,7 +52,13 @@ const char *MyProfile::getName() const
 
 const char *MyProfile::getNumber() const
 {
-	return nullptr;
+	for (auto &&record : makeRange(m_Record, _contacts_my_profile.number)) {
+		if (getRecordBool(record, _contacts_number.is_default)) {
+			return getRecordStr(record, _contacts_number.number);
+		}
+	}
+
+	return fetchNumber();
 }
 
 const char *MyProfile::getImagePath() const
@@ -70,6 +81,36 @@ void MyProfile::update()
 	contacts_record_destroy(m_Record, true);
 	m_Record = record;
 	onUpdated(changes);
+}
+
+const char *MyProfile::fetchNumber()
+{
+	static bool isInitialized = false;
+	static std::string number;
+
+	if (!isInitialized) {
+		isInitialized = true;
+
+		telephony_handle_list_s handles;
+		int err = telephony_init(&handles);
+		RETVM_IF_ERR(err, nullptr, "telephony_init() failed.", err);
+
+		for (size_t i = 0; i < handles.count; ++i) {
+			char *simNumber = nullptr;
+			err = telephony_sim_get_subscriber_number(handles.handle[i], &simNumber);
+			WARN_IF_ERR(err, "telephony_sim_get_subscriber_number() failed.");
+
+			if (simNumber && *simNumber) {
+				number = simNumber;
+				free(simNumber);
+				break;
+			}
+			free(simNumber);
+		}
+		telephony_deinit(&handles);
+	}
+
+	return !number.empty() ? number.c_str() : nullptr;
 }
 
 contacts_record_h MyProfile::fetchRecord()

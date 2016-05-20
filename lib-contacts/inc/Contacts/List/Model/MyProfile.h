@@ -66,6 +66,7 @@ namespace Contacts
 				void update();
 
 			private:
+				static const char *fetchNumber();
 				static contacts_record_h fetchRecord();
 				static void onChanged(const char *uri, void *data);
 				static void onNameFormatChanged(contacts_name_display_order_e order, void *data);

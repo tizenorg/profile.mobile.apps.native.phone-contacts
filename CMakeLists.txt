@@ -9,6 +9,7 @@ pkg_check_modules(TIZEN_PACKAGES REQUIRED
 	capi-appfw-widget-application
 	capi-base-utils-i18n
 	capi-system-system-settings
+	capi-telephony
 	contacts-service2
 	dlog
 	efl-extension
