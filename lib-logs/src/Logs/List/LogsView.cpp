@@ -309,7 +309,7 @@ void LogsView::onLogItemDelete(LogItem *item)
 	onItemRemove(item);
 	delete item;
 
-	if (groupItem->empty()) {
+	if (groupItem && groupItem->empty()) {
 		delete groupItem;
 	}
 

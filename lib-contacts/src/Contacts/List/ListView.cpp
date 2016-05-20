@@ -553,7 +553,7 @@ void ListView::updatePersonItem(PersonItem *item, int changes)
 		item->pop();
 		insertPersonItem(item);
 
-		if (oldGroup->empty()) {
+		if (oldGroup && oldGroup->empty()) {
 			deletePersonGroupItem(oldGroup);
 		}
 	} else {
@@ -566,7 +566,7 @@ void ListView::deletePersonItem(PersonItem *item)
 	PersonGroupItem *oldGroup = static_cast<PersonGroupItem *>(item->getParentItem());
 	delete item;
 
-	if (oldGroup->empty()) {
+	if (oldGroup && oldGroup->empty()) {
 		deletePersonGroupItem(oldGroup);
 	}
 

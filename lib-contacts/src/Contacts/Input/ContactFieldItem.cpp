@@ -53,7 +53,9 @@ void ContactFieldItem::update()
 	ContactFieldSubItem::update();
 	for (auto &&item : *this) {
 		auto subItem = dynamic_cast<ContactFieldSubItem *>(item);
-		subItem->update();
+		if (subItem) {
+			subItem->update();
+		}
 	}
 }
 
