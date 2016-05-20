@@ -39,19 +39,19 @@ void PersonSearchItem::setSearchData(Model::PersonSearchData *searchData)
 
 char *PersonSearchItem::getText(Evas_Object *parent, const char *part)
 {
-	SearchData::MatchedField matchedField = m_SearchData->getMatchedField();
+	SearchResult::MatchedField matchedField = m_SearchData->getSearchResult()->getMatchedField();
 
-	if (matchedField == SearchData::MatchedName) {
+	if (matchedField == SearchResult::MatchedName) {
 		if (strcmp(part, PART_CONTACT_NAME) == 0) {
 			return strdup(getHighlightedStr().c_str());
 		}
-	} else if (matchedField == SearchData::MatchedNumber) {
+	} else if (matchedField == SearchResult::MatchedNumber) {
 		if (strcmp(part, PART_SUBTEXT) == 0) {
 			return strdup(getHighlightedStr().c_str());
 		}
 	}
 
-	if (matchedField != SearchData::MatchedNone) {
+	if (matchedField != SearchResult::MatchedNone) {
 		if (strcmp(part, PART_SUBTEXT) == 0) {
 			return Utils::safeDup(m_SearchData->getNumber());
 		}
@@ -71,5 +71,6 @@ Eina_Bool PersonSearchItem::compare(Evas_Object *parent, void *filter)
 
 std::string PersonSearchItem::getHighlightedStr() const
 {
-	return highlightStr(m_SearchData->getMatchedString(), m_SearchData->getMatchedSubstring());
+	const SearchResult *searchResult = m_SearchData->getSearchResult();
+	return highlightStr(searchResult->getMatchedString(), searchResult->getMatchedSubstring());
 }
