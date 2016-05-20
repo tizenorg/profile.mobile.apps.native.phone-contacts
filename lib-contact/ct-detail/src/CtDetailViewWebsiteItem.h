@@ -52,6 +52,10 @@ public:
 
 		launchWebsite(m_DetailData, m_Record);
 	}
+
+protected:
+	using WGenlistItem::onSelect;
+
 private:
 	static char *getTextWebsite(void *data, Evas_Object *obj, const char *part)
 	{

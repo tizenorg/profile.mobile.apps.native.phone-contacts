@@ -60,6 +60,9 @@ public:
 		return m_Record;
 	}
 
+protected:
+	using WGenlistItem::onSelect;
+
 private:
 	static Evas_Object *getContentNumber(void *data, Evas_Object *obj, const char *part)
 	{

@@ -57,6 +57,9 @@ public:
 		WPWARN(err != APP_CONTROL_ERROR_NONE, "launchMessageComposer() failed(%d)", err);
 	}
 
+protected:
+	using WGenlistItem::onSelect;
+
 private:
 	static Evas_Object *getContentEmail(void *data, Evas_Object *obj, const char *part)
 	{

@@ -29,6 +29,7 @@ PhLogDbMgr::RecordInfo::RecordInfo()
 	imgPath = NULL;
 	number = NULL;
 	callDesc = NULL;
+	displayLogTime = NULL;
 
 	logId = 0;
 	personId = 0;
