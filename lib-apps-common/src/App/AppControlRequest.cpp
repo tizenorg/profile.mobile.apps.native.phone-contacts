@@ -114,7 +114,7 @@ AppControl App::requestPickVcard(const char *path)
 	request.addExtra("path", path);
 	request.addExtra("select_type", "IMPORT_PATH_SELECT");
 	request.addExtra("file_type", "vcf");
-	app_control_set_app_id(request.getHandle(), "ug-myfile-efl");
+	app_control_set_app_id(request.getHandle(), "org.tizen.ug-myfile-efl");
 
 	return request;
 }
