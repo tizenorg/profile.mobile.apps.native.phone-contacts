@@ -23,6 +23,8 @@
 
 namespace Ux
 {
+	class SelectView;
+
 	/**
 	 * @brief Genlist item for SelectView that supports selection mode switching.
 	 */
@@ -30,6 +32,17 @@ namespace Ux
 	{
 	public:
 		SelectItem();
+
+		/**
+		 * @return Whether item is excluded from multiple selection.
+		 */
+		bool isExcluded() const;
+
+		/**
+		 * @brief Set item exclusion.
+		 * @param[in]   isExcluded  Whether item is excluded from multiple selection
+		 */
+		void setExcluded(bool isExcluded);
 
 		/**
 		 * @return Item selection mode.
@@ -81,9 +94,11 @@ namespace Ux
 	private:
 		friend class SelectView;
 
+		SelectView *m_SelectView;
 		SelectMode m_SelectMode;
 		SelectResult m_CustomResult;
 		bool m_HasCustomResult;
+		bool m_IsExcluded;
 	};
 }
 

@@ -177,6 +177,8 @@ namespace Ux
 		virtual void onSelectLimitChanged(size_t selectLimit) { }
 
 	private:
+		friend class SelectItem;
+
 		enum CountChange
 		{
 			CountIncrement,
@@ -196,6 +198,7 @@ namespace Ux
 		void createPageButtons();
 		void destroyPageButtons();
 
+		void onItemExcluded(SelectItem *item);
 		void onItemSelected(SelectItem *item);
 		bool onItemChecked(SelectItem *item, bool isChecked);
 		bool onSelectAllChecked(bool isChecked);
@@ -210,6 +213,7 @@ namespace Ux
 		Evas_Object *m_DoneButton;
 		Evas_Object *m_CancelButton;
 
+		size_t m_TotalCount;
 		size_t m_SelectCount;
 		size_t m_SelectLimit;
 
