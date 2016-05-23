@@ -148,12 +148,6 @@ namespace Ux
 		void onItemRemove(SelectItem *item);
 
 		/**
-		 * @brief Called when selectable item is pressed it #SelectNone mode.
-		 * @param[in]   item    Pressed item
-		 */
-		virtual void onItemPressed(SelectItem *item) { }
-
-		/**
 		 * @brief Called when "Select All" item should be inserted.
 		 * @param[in]   item    "Select All" genlist item
 		 */

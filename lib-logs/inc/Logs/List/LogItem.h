@@ -57,12 +57,6 @@ namespace Logs
 			void setDeleteCallback(DeleteCallback callback);
 
 			/**
-			 * @brief Set log details callback
-			 * @param[in]   callback    Details callback
-			 */
-			void setDetailsCallback(DetailsCallback callback);
-
-			/**
 			 * @brief Get group
 			 */
 			Model::LogGroup *getGroup() const;
@@ -71,12 +65,13 @@ namespace Logs
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual Ux::SelectResult getDefaultResult() const override;
+			virtual void onSelected() override;
+			void onInfoIconPressed();
 
 			Evas_Object *createThumbnail(Evas_Object *parent);
 			Evas_Object *createLayout(Evas_Object *parent, const char *layoutName);
 			Evas_Object *createIcon(Evas_Object *parent, const char *path);
 			const char *getImagePath(int type);
-			void onInfoIconPressed();
 
 			void updateItem(int type);
 			void setUpdateCallback();

@@ -302,20 +302,11 @@ void SelectView::onItemExcluded(SelectItem *item)
 
 void SelectView::onItemSelected(SelectItem *item)
 {
-	switch (m_SelectMode) {
-		case SelectNone:
-			onItemPressed(item);
-			break;
-		case SelectSingle:
-		{
-			SelectResult result = item->getSelectResult();
-			if (m_OnSelected && m_OnSelected({ &result, 1 })) {
-				getPage()->close();
-			}
+	if  (m_SelectMode == SelectSingle) {
+		SelectResult result = item->getSelectResult();
+		if (m_OnSelected && m_OnSelected({ &result, 1 })) {
+			getPage()->close();
 		}
-			break;
-		default:
-			break;
 	}
 }
 
