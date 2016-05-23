@@ -16,12 +16,32 @@
  */
 
 #include "Ux/SelectItem.h"
+#include "Ux/SelectView.h"
 
 using namespace Ux;
 
 SelectItem::SelectItem()
-	: m_SelectMode(SelectNone), m_CustomResult{ 0, 0 }, m_HasCustomResult(false)
+	: m_SelectView(nullptr), m_SelectMode(SelectNone),
+	  m_CustomResult{ 0, 0 }, m_HasCustomResult(false),
+	  m_IsExcluded(false)
 {
+}
+
+bool SelectItem::isExcluded() const
+{
+	return m_IsExcluded;
+}
+
+void SelectItem::setExcluded(bool isExcluded)
+{
+	if (m_IsExcluded == isExcluded) {
+		return;
+	}
+
+	m_IsExcluded = isExcluded;
+	if (m_SelectView) {
+		m_SelectView->onItemExcluded(this);
+	}
 }
 
 SelectMode SelectItem::getSelectMode() const
