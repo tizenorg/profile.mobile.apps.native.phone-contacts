@@ -525,8 +525,7 @@ void ListView::deletePersonGroupItem(PersonGroupItem *group)
 
 PersonItem *ListView::createPersonItem(PersonSearchData &searchData)
 {
-	PersonSearchItem *item = new PersonSearchItem(searchData.getPerson());
-	item->setSearchData(&searchData);
+	PersonSearchItem *item = new PersonSearchItem(searchData.getPerson(), &searchData);
 	searchData.setUpdateCallback(std::bind(&ListView::updatePersonItem, this, item, _1));
 	searchData.setDeleteCallback(std::bind(&ListView::deletePersonItem, this, item));
 	return item;

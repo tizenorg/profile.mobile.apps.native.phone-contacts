@@ -20,6 +20,7 @@
 #include "Contacts/Model/ContactNumberData.h"
 #include <cstring>
 
+using namespace Contacts::Model;
 using namespace Contacts::List::Model;
 
 PersonSearchData::PersonSearchData(Person &person)
@@ -34,35 +35,34 @@ Person &PersonSearchData::getPerson()
 
 const char *PersonSearchData::getNumber() const
 {
-	if (getMatchedField() == MatchedNumber && getMatchedString()) {
-		return getMatchedString();
+	const SearchResult *searchResult = getSearchResult();
+	if (searchResult) {
+		if (searchResult->getMatchedField() == SearchResult::MatchedNumber && searchResult->getMatchedString()) {
+			return searchResult->getMatchedString();
+		}
 	}
 
 	return SearchData::getNumber();
 }
 
-bool PersonSearchData::compare(const std::string &str)
+SearchResultPtr PersonSearchData::compare(const std::string &str)
 {
 	if (str.empty()) {
-		resetMatch();
-		return true;
+		return SearchResultPtr(new SearchResult(SearchResult::MatchedNone, nullptr, { }));
 	}
 
-	const char *pos = strstr(getName(), str.c_str());
+	const char *pos = strcasestr(getName(), str.c_str());
 	if (pos) {
-		setMatch(MatchedName, getName(), { pos, str.size() });
-		return true;
-	}
-
-	auto &person = static_cast<Person &>(getContactData());
-	for (auto &&number : person.getNumbers()) {
-		pos = strstr(number->getNumber(), str.c_str());
-		if (pos) {
-			setMatch(MatchedNumber, number->getNumber(), { pos, str.size() });
-			return true;
+		return SearchResultPtr(new SearchResult(SearchResult::MatchedName, getName(), { pos, str.size() }));
+	} else {
+		auto &person = static_cast<Person &>(getContactData());
+		for (auto &&number : person.getNumbers()) {
+			pos = strcasestr(number->getNumber(), str.c_str());
+			if (pos) {
+				return SearchResultPtr(new SearchResult(SearchResult::MatchedNumber, number->getNumber(), { pos, str.size() }));
+			}
 		}
 	}
 
-	resetMatch();
-	return false;
+	return nullptr;
 }

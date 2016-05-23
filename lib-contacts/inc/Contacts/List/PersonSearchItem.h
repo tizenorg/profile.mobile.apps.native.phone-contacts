@@ -34,21 +34,17 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Create person search item
-			 * @param[in]   person  Person object
-			 */
-			explicit PersonSearchItem(Model::Person &person);
-
-			/**
-			 * @set Person search data
+			 * @param[in]   person      Person object
 			 * @param[in]   searchData  @ref PersonSearchData
 			 */
-			void setSearchData(Model::PersonSearchData *searchData);
+			PersonSearchItem(Model::Person &person, Model::PersonSearchData *searchData);
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Eina_Bool compare(Evas_Object *parent, void *filter) override;
 
 			std::string getHighlightedStr() const;
+			void onSearchDataChanged();
 
 		private:
 			Model::PersonSearchData *m_SearchData;

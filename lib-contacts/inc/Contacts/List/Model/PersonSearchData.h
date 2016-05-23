@@ -50,7 +50,7 @@ namespace Contacts
 				/**
 				 * @see SearchData::compare()
 				 */
-				virtual bool compare(const std::string &str) override;
+				virtual Contacts::Model::SearchResultPtr compare(const std::string &str) override;
 
 			private:
 				friend class SearchProvider;
