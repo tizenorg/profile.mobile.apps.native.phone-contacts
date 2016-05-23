@@ -45,7 +45,10 @@ Evas_Object *SearchItem::getContent(Evas_Object *parent, const char *part)
 	Ui::Editfield *searchField = Ui::Editfield::create(parent, "IDS_PB_NPBODY_SEARCH");
 
 	Evas_Object *entry = searchField->getEntry();
-	elm_entry_entry_set(entry, m_Text.c_str());
+	char *text = elm_entry_utf8_to_markup(m_Text.c_str());
+	elm_entry_entry_set(entry, text);
+	free(text);
+
 	elm_entry_input_panel_return_key_autoenabled_set(entry, EINA_TRUE);
 	elm_entry_input_panel_return_key_type_set(entry, ELM_INPUT_PANEL_RETURN_KEY_TYPE_SEARCH);
 	evas_object_smart_callback_add(entry, "changed",
@@ -68,15 +71,16 @@ void SearchItem::onDonePressed(Evas_Object *entry, void *eventInfo)
 
 void SearchItem::onChanged(Evas_Object *entry, void *eventInfo)
 {
-	m_Text = elm_entry_entry_get(entry);
+	char *text = elm_entry_markup_to_utf8(elm_entry_entry_get(entry));
+	m_Text = text ? text : "";
+	free(text);
+
 	notifyChange();
 }
 
 void SearchItem::notifyChange()
 {
 	if (m_OnChanged) {
-		char *text = elm_entry_markup_to_utf8(m_Text.c_str());
-		m_OnChanged(text);
-		free(text);
+		m_OnChanged(m_Text.c_str());
 	}
 }

@@ -628,6 +628,7 @@ void ListView::onSearchChanged(const char *str)
 	if (isSearching != m_IsSearching) {
 		m_IsSearching = isSearching;
 		updateSectionsMode();
+		setIndexState(!m_IsSearching);
 	}
 
 	elm_genlist_filter_set(m_Genlist->getEvasObject(), (void *) str);
