@@ -65,7 +65,9 @@ Eina_Bool PersonSearchItem::compare(Evas_Object *parent, void *filter)
 	const char *str = filter ? (const char *) filter : "";
 	bool isEqual = m_SearchData->compare(str);
 
+	setExcluded(!isEqual);
 	setSearchData(m_SearchData);
+
 	return isEqual;
 }
 
