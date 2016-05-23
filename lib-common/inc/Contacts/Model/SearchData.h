@@ -19,6 +19,7 @@
 #define CONTACTS_MODEL_SEARCH_DATA_H
 
 #include "Contacts/Model/ContactData.h"
+#include "Contacts/Model/SearchResult.h"
 #include "Common/Utils.h"
 #include "Utils/Range.h"
 
@@ -32,15 +33,9 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @brief Determines which field conform to searchable string
-			 * @see compare()
+			 * @brief Callback to be called when SearchResult is set
 			 */
-			enum MatchedField
-			{
-				MatchedNone,  /**< Not matched */
-				MatchedName,  /**< Matched by name */
-				MatchedNumber /**< Matched by number */
-			};
+			typedef std::function<void()> ChangeCallback;
 
 			/**
 			 * @brief Create SearchData object
@@ -75,50 +70,36 @@ namespace Contacts
 			 * name/number SearchData field. Create found substring if found one.
 			 *
 			 * @param[in]   str     Searchable string
-			 * @return true if found something, false if not
+			 * @return Search result if found something, nullptr if not
 			 */
-			virtual bool compare(const std::string &str) = 0;
-
-			/**
-			 * @return Matched field
-			 * @see MatchedField
-			 */
-			MatchedField getMatchedField() const;
-
-			/**
-			 * @return Matched string
-			 */
-			const char *getMatchedString() const;
-
-			/**
-			 * @return Matched substring
-			 */
-			const Common::Substring &getMatchedSubstring() const;
+			virtual SearchResultPtr compare(const std::string &str) = 0;
 
 			/**
 			 * @return ContactData reference
 			 */
 			ContactData &getContactData();
 
-		protected:
 			/**
-			 * @brief Set all match parameters at once
-			 * @param[in]   field   @see MatchedField
-			 * @param[in]   str     Matched string
-			 * @param[in]   substr  Matched substring
+			 * @return Search result
 			 */
-			void setMatch(MatchedField field, const char *str, Common::Substring substr);
+			const SearchResult *getSearchResult() const;
 
 			/**
-			 * @brief Reset all match parameters to their default values
+			 * @brief Set search result
+			 * @param[in]   searchResult    Search result
 			 */
-			void resetMatch();
+			void setSearchResult(SearchResultPtr searchResult);
+
+			/**
+			 * @brief Set changed callback
+			 * @param[in]   callback    @see ChangedCallback
+			 */
+			void setChangedCallback(ChangeCallback callback);
 
 		private:
 			ContactData &m_ContactData;
-			MatchedField m_MatchedField;
-			const char *m_MatchedString;
-			Common::Substring m_MatchedSubstring;
+			SearchResultPtr m_SearchResult;
+			ChangeCallback m_OnChanged;
 		};
 	}
 }
