@@ -40,7 +40,7 @@
 #include "CtSettingRadioPopup.h"
 #include "CtVcardToContacts.h"
 
-#define MYFILE_UG "ug-myfile-efl"
+#define MYFILE_UG "org.tizen.ug-myfile-efl"
 
 class __SortByItem: public WGenlistItem
 {
