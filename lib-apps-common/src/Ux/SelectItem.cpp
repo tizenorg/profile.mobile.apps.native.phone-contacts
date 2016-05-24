@@ -38,10 +38,10 @@ void SelectItem::setExcluded(bool isExcluded)
 		return;
 	}
 
-	m_IsExcluded = isExcluded;
 	if (m_SelectView) {
-		m_SelectView->onItemExcluded(this);
+		m_SelectView->onItemExcluded(this, isExcluded);
 	}
+	m_IsExcluded = isExcluded;
 }
 
 SelectMode SelectItem::getSelectMode() const
