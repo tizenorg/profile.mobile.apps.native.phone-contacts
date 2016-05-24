@@ -181,7 +181,7 @@ namespace Ux
 		void createPageButtons();
 		void destroyPageButtons();
 
-		void onItemExcluded(SelectItem *item);
+		void onItemExcluded(SelectItem *item, bool isExcluded);
 		void onItemSelected(SelectItem *item);
 		bool onItemChecked(SelectItem *item, bool isChecked);
 		bool onSelectAllChecked(bool isChecked);
