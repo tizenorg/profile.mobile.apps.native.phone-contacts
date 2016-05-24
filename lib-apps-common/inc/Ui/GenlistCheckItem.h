@@ -46,7 +46,7 @@ namespace Ui
 		 * @brief Set item check state.
 		 * @param[in]   isChecked   Whether item is checked
 		 */
-		void setChecked(bool isChecked);
+		bool setChecked(bool isChecked);
 
 		/**
 		 * @brief Set item check callback.
@@ -84,6 +84,7 @@ namespace Ui
 
 		std::string m_CheckPart;
 		Eina_Bool m_IsChecked;
+		bool m_IsChecking;
 		CheckCallback m_OnChecked;
 	};
 }

@@ -21,7 +21,7 @@
 using namespace Ui;
 
 GenlistCheckItem::GenlistCheckItem()
-	: m_CheckPart("*"), m_IsChecked(false)
+	: m_CheckPart("*"), m_IsChecked(false), m_IsChecking(false)
 { }
 
 bool GenlistCheckItem::isChecked() const
@@ -29,14 +29,20 @@ bool GenlistCheckItem::isChecked() const
 	return m_IsChecked;
 }
 
-void GenlistCheckItem::setChecked(bool isChecked)
+bool GenlistCheckItem::setChecked(bool isChecked)
 {
+	if (isChecked == m_IsChecked || !notifyCheck(isChecked)) {
+		return false;
+	}
+
 	Evas_Object *check = elm_object_item_part_content_get(getObjectItem(), m_CheckPart.c_str());
 	if (check) {
 		elm_check_state_set(check, isChecked);
 	} else {
 		m_IsChecked = isChecked;
 	}
+
+	return true;
 }
 
 void GenlistCheckItem::setCheckCallback(CheckCallback callback)
@@ -65,9 +71,7 @@ Evas_Object *GenlistCheckItem::getContent(Evas_Object *parent, const char *part)
 
 void GenlistCheckItem::onSelected()
 {
-	if (notifyCheck(!m_IsChecked)) {
-		setChecked(!m_IsChecked);
-	}
+	setChecked(!m_IsChecked);
 }
 
 void GenlistCheckItem::onCheckChanged(Evas_Object *check, void *eventInfo)
@@ -79,13 +83,19 @@ void GenlistCheckItem::onCheckChanged(Evas_Object *check, void *eventInfo)
 
 bool GenlistCheckItem::notifyCheck(bool isChecked)
 {
-	if (!onChecked(isChecked)) {
+	if (m_IsChecking) {
 		return false;
 	}
 
-	if (m_OnChecked && !m_OnChecked(isChecked)) {
-		return false;
+	bool isAllowed = false;
+	m_IsChecking = true;
+
+	if (onChecked(isChecked)) {
+		if (!m_OnChecked || m_OnChecked(isChecked)) {
+			isAllowed = true;
+		}
 	}
 
-	return true;
+	m_IsChecking = false;
+	return isAllowed;
 }
