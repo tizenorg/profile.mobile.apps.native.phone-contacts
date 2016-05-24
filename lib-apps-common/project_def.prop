@@ -9,7 +9,7 @@ type = sharedLib
 profile = mobile-3.0
 
 # C Sources
-USER_SRCS = src/App/AppControl.cpp src/Ui/Thumbnail.cpp src/Ui/Button.cpp src/Utils/UniString.cpp src/Ux/SelectItem.cpp src/App/WidgetWindow.cpp src/Ux/SelectAllItem.cpp src/App/Application.cpp src/Ui/TabView.cpp src/Ui/Menu.cpp src/Ui/ListPopup.cpp src/Ui/GenlistCheckItem.cpp src/Ui/NaviframePage.cpp src/App/Widget.cpp src/Ui/RadioPopup.cpp src/App/AppControlRequest.cpp src/Ui/ProgressPopup.cpp src/Ui/TabPage.cpp src/Ui/GenlistItem.cpp src/Ui/Genlist.cpp src/Ui/Control.cpp src/Utils/Tracer.cpp src/Ui/Navigator.cpp src/Ui/Naviframe.cpp src/Ui/GenlistIterator.cpp src/Ui/GenlistGroupItem.cpp src/Ui/Editfield.cpp src/App/Path.cpp src/Ui/Popup.cpp src/Utils/Logger.cpp src/Ux/SelectView.cpp src/Ui/Scale.cpp src/Ui/NavigatorPage.cpp src/App/WidgetApplication.cpp src/Ui/Hoversel.cpp src/Ui/Window.cpp src/Ui/DatePopup.cpp src/Ui/View.cpp src/Ui/ProgressController.cpp
+USER_SRCS = src/*.cpp
 USER_SRCS_ABS =
 
 # EDC Sources

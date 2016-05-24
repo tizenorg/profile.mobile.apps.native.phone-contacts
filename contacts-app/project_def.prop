@@ -9,7 +9,7 @@ type = app
 profile = mobile-3.0
 
 # C Sources
-USER_SRCS = src/MainApp.cpp src/OperationPickController.cpp src/main.cpp src/OperationDefaultController.cpp src/OperationViewController.cpp src/OperationEditController.cpp src/OperationController.cpp
+USER_SRCS = src/*.cpp
 USER_SRCS_ABS =
 
 # EDC Sources

@@ -9,7 +9,7 @@ type = sharedLib
 profile = mobile-3.0
 
 # C Sources
-USER_SRCS = src/Logs/Details/ActionItem.cpp src/Logs/List/LogGroupItem.cpp src/Logs/List/LogsView.cpp src/Logs/Details/DetailsView.cpp src/Logs/Details/LogDetailItem.cpp src/Logs/List/LogItem.cpp src/Logs/Model/Log.cpp src/Logs/Common/Utils.cpp src/Logs/Model/LogProvider.cpp src/Logs/Model/LogGroup.cpp src/Logs/Details/BasicInfoItem.cpp
+USER_SRCS = src/*.cpp
 USER_SRCS_ABS =
 
 # EDC Sources
