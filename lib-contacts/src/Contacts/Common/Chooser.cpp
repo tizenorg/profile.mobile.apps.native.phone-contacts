@@ -89,9 +89,13 @@ void Chooser::onPageAttached(Ui::NavigatorPage *page)
 bool Chooser::onPersonChecked(SelectItem *item, bool isChecked)
 {
 	if (isChecked) {
-		return selectSingleResult(item->getSelectResult(), [this, item](SelectResults results) {
+		if (item->hasCustomResult()) {
+			return true;
+		}
+
+		return selectSingleResult(item->getSelectResult(), [item](SelectResults results) {
 			item->setCustomResult(*results.begin());
-			m_ListView->setCheckedItem(item, true);
+			item->setChecked(true);
 			return true;
 		});
 	}

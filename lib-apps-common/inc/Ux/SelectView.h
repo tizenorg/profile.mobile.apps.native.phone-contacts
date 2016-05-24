@@ -58,8 +58,6 @@ namespace Ux
 
 		/**
 		 * @brief Called when item's "checked" state changed in #SelectMulti mode.
-		 * @remark Use SelectView::setCheckCallback() to properly change item's state
-		 *         if necessary.
 		 * @param[in]   Changed item
 		 * @param[in]   Whether item is checked
 		 */
@@ -103,15 +101,6 @@ namespace Ux
 		 * @param[in]   callback    Check callback
 		 */
 		void setCheckCallback(CheckCallback callback);
-
-		/**
-		 * @brief Set item's "checked" state.
-		 * @remark Item "checked" state should always be changed via this function,
-		 *         otherwise SelectView wouldn't know to update the select count.
-		 * @param[in]   item       Item to change state for
-		 * @param[in]   isChecked  Whether item should be checked
-		 */
-		void setCheckedItem(SelectItem *item, bool isChecked);
 
 	protected:
 		/**
@@ -207,6 +196,7 @@ namespace Ux
 		Evas_Object *m_DoneButton;
 		Evas_Object *m_CancelButton;
 
+		bool m_IsChecking;
 		size_t m_TotalCount;
 		size_t m_SelectCount;
 		size_t m_SelectLimit;
