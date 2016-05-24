@@ -30,7 +30,7 @@ using namespace Ux;
 using namespace std::placeholders;
 
 SelectView::SelectView()
-	: m_DoneButton(nullptr), m_CancelButton(nullptr),
+	: m_DoneButton(nullptr), m_CancelButton(nullptr), m_IsChecking(false),
 	  m_TotalCount(0), m_SelectCount(0), m_SelectLimit(0), m_SelectMode(SelectNone),
 	  m_Strings{ nullptr }
 {
@@ -67,13 +67,10 @@ void SelectView::setSelectLimit(size_t selectLimit)
 			for (size_t i = m_Items.size() - 1; m_SelectCount > m_SelectLimit; --i) {
 				if (!m_Items[i]->isExcluded() && m_Items[i]->isChecked()) {
 					m_Items[i]->setChecked(false);
-					--m_SelectCount;
 				}
 			}
 		}
 
-		updatePageTitle();
-		updateSelectAllItem();
 		onSelectLimitChanged(m_SelectLimit);
 	}
 }
@@ -91,14 +88,6 @@ void SelectView::setCancelCallback(CancelCallback callback)
 void SelectView::setCheckCallback(CheckCallback callback)
 {
 	m_OnChecked = std::move(callback);
-}
-
-void SelectView::setCheckedItem(SelectItem *item, bool isChecked)
-{
-	if (item->isChecked() != isChecked) {
-		item->setChecked(isChecked);
-		updateSelectCount(isChecked ? CountIncrement : CountDecrement);
-	}
 }
 
 SelectMode SelectView::getSelectMode() const
@@ -312,7 +301,7 @@ void SelectView::onItemSelected(SelectItem *item)
 
 bool SelectView::onItemChecked(SelectItem *item, bool isChecked)
 {
-	if (item->isExcluded()) {
+	if (m_IsChecking || item->isExcluded()) {
 		return true;
 	}
 
@@ -330,16 +319,21 @@ bool SelectView::onItemChecked(SelectItem *item, bool isChecked)
 
 bool SelectView::onSelectAllChecked(bool isChecked)
 {
+	if (isChecked == (m_SelectCount == m_TotalCount)) {
+		return true;
+	}
+
+	m_IsChecking = true;
 	for (auto &&item : m_Items) {
 		if (!item->isExcluded()) {
 			item->setChecked(isChecked);
 		}
 	}
 
+	m_IsChecking = false;
 	m_SelectCount = isChecked ? m_TotalCount : 0;
 	updatePageTitle();
 	updateDoneButtonState();
-
 	return true;
 }
 
