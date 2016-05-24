@@ -9,7 +9,7 @@ type = app
 profile = mobile-3.0
 
 # C Sources
-USER_SRCS = src/main.cpp src/WidgetGengridItem.cpp src/Widget.cpp src/WidgetItem.cpp src/WidgetItems.cpp src/WidgetApp.cpp src/WidgetDatabase.cpp
+USER_SRCS = src/*.cpp
 USER_SRCS_ABS =
 
 # EDC Sources

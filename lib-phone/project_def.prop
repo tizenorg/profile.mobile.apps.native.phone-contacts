@@ -9,7 +9,7 @@ type = sharedLib
 profile = mobile-3.0
 
 # C Sources
-USER_SRCS = src/Phone/SpeedDial/SettingsItem.cpp src/Phone/Dialer/SearchResultsControl.cpp src/Phone/Dialer/KeypadButton.cpp src/Phone/Dialer/SearchUtils.cpp src/Phone/Dialer/KeypadEntry.cpp src/Phone/Dialer/SpeedDialPopup.cpp src/Phone/Utils.cpp src/Phone/Dialer/DialerView.cpp src/Phone/SpeedDial/SettingsView.cpp src/Phone/Dialer/SearchEngine.cpp src/Phone/Dialer/SearchResultsPopup.cpp src/Phone/Dialer/SearchResult.cpp
+USER_SRCS = src/*.cpp
 USER_SRCS_ABS =
 
 # EDC Sources
