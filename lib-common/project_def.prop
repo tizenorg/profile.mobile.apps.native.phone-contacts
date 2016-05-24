@@ -9,7 +9,7 @@ type = sharedLib
 profile = mobile-3.0
 
 # C Sources
-USER_SRCS = src/Contacts/Model/ContactData.cpp src/Common/Database/Queries.cpp src/Contacts/Model/ContactRecordData.cpp src/Contacts/Model/ContactNumberData.cpp src/Common/Strings.cpp src/Contacts/Model/SearchEngine.cpp src/Contacts/Model/SearchData.cpp src/Common/Actions.cpp src/Contacts/Model/ContactDataProvider.cpp src/Common/Utils.cpp
+USER_SRCS = src/*.cpp
 USER_SRCS_ABS =
 
 # EDC Sources

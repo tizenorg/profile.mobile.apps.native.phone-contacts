@@ -71,7 +71,7 @@ M_OPT = -MMD -MP -MF"$(@:%.o=%.d)"
 FUNC_C2O = $(patsubst %.c,$(OBJ_OUTPUT)/%.o,$(1))
 FUNC_CPP2O = $(patsubst %.cpp,$(OBJ_OUTPUT)/%.o,$(1))
 FUNC_EDC2EDJ = $(patsubst %.edc,$(OUTPUT_DIR)/%.edj,$(1))
-FUNC_PO2MO = $(patsubst %.po,$(OUTPUT_DIR)/res/locale/%/LC_MESSAGES/$(LOWER_APPNAME).mo,$(notdir $(1)))
+FUNC_PO2MO = $(patsubst %.po,$(OUTPUT_DIR)/res/locale/%/LC_MESSAGES/$(subst $(basename $(APPID)).,,$(APPID)).mo,$(notdir $(1)))
 
 
 C_OBJS := $(call FUNC_C2O,$(C_SRCS)) 
