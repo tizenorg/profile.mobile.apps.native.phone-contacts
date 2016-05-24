@@ -22,9 +22,7 @@ using namespace Common;
 
 SearchData::SearchData(ContactData &contactData)
 	: ContactData(contactData.getType()),
-	  m_ContactData(contactData),
-	  m_MatchedField(MatchedNone),
-	  m_MatchedString(nullptr)
+	  m_ContactData(contactData)
 {
 }
 
@@ -48,34 +46,26 @@ const char *SearchData::getImagePath() const
 	return m_ContactData.getImagePath();
 }
 
-SearchData::MatchedField SearchData::getMatchedField() const
-{
-	return m_MatchedField;
-}
-
-const char *SearchData::getMatchedString() const
-{
-	return m_MatchedString;
-}
-
-const Substring &SearchData::getMatchedSubstring() const
-{
-	return m_MatchedSubstring;
-}
-
 ContactData &SearchData::getContactData()
 {
 	return m_ContactData;
 }
 
-void SearchData::setMatch(MatchedField field, const char *str, Common::Substring substr)
+const SearchResult *SearchData::getSearchResult() const
 {
-	m_MatchedField = field;
-	m_MatchedString = str;
-	m_MatchedSubstring = std::move(substr);
+	return m_SearchResult.get();
 }
 
-void SearchData::resetMatch()
+void SearchData::setSearchResult(SearchResultPtr searchResult)
 {
-	setMatch(MatchedNone, nullptr, {});
+	m_SearchResult = std::move(searchResult);
+
+	if (m_OnChanged) {
+		m_OnChanged();
+	}
+}
+
+void SearchData::setChangeCallback(ChangeCallback callback)
+{
+	m_OnChanged = std::move(callback);
 }

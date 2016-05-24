@@ -25,35 +25,32 @@ using namespace Contacts::List::Model;
 using Ux::SelectResult;
 using Common::highlightStr;
 
-PersonSearchItem::PersonSearchItem(Person &person)
-	: PersonItem(person), m_SearchData(nullptr)
+PersonSearchItem::PersonSearchItem(Model::PersonSearchData &searchData)
+	: PersonItem(searchData.getPerson()), m_SearchData(searchData)
 {
-}
-
-void PersonSearchItem::setSearchData(Model::PersonSearchData *searchData)
-{
-	m_SearchData = searchData;
-	elm_genlist_item_fields_update(getObjectItem(), PART_CONTACT_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
-	elm_genlist_item_fields_update(getObjectItem(), PART_SUBTEXT, ELM_GENLIST_ITEM_FIELD_TEXT);
+	m_SearchData.setChangeCallback(std::bind(&PersonSearchItem::onSearchDataChanged, this));
 }
 
 char *PersonSearchItem::getText(Evas_Object *parent, const char *part)
 {
-	SearchData::MatchedField matchedField = m_SearchData->getMatchedField();
+	const SearchResult *searchResult = m_SearchData.getSearchResult();
+	if (searchResult) {
+		SearchResult::MatchedField matchedField = searchResult->getMatchedField();
 
-	if (matchedField == SearchData::MatchedName) {
-		if (strcmp(part, PART_CONTACT_NAME) == 0) {
-			return strdup(getHighlightedStr().c_str());
+		if (matchedField == SearchResult::MatchedName) {
+			if (strcmp(part, PART_CONTACT_NAME) == 0) {
+				return strdup(getHighlightedStr().c_str());
+			}
+		} else if (matchedField == SearchResult::MatchedNumber) {
+			if (strcmp(part, PART_SUBTEXT) == 0) {
+				return strdup(getHighlightedStr().c_str());
+			}
 		}
-	} else if (matchedField == SearchData::MatchedNumber) {
-		if (strcmp(part, PART_SUBTEXT) == 0) {
-			return strdup(getHighlightedStr().c_str());
-		}
-	}
 
-	if (matchedField != SearchData::MatchedNone) {
-		if (strcmp(part, PART_SUBTEXT) == 0) {
-			return Utils::safeDup(m_SearchData->getNumber());
+		if (matchedField != SearchResult::MatchedNone) {
+			if (strcmp(part, PART_SUBTEXT) == 0) {
+				return Utils::safeDup(m_SearchData.getNumber());
+			}
 		}
 	}
 
@@ -63,15 +60,25 @@ char *PersonSearchItem::getText(Evas_Object *parent, const char *part)
 Eina_Bool PersonSearchItem::compare(Evas_Object *parent, void *filter)
 {
 	const char *str = filter ? (const char *) filter : "";
-	bool isEqual = m_SearchData->compare(str);
+
+	SearchResultPtr searchResult = m_SearchData.compare(str);
+	bool isEqual = (bool)searchResult;
+	m_SearchData.setSearchResult(std::move(searchResult));
 
 	setExcluded(!isEqual);
-	setSearchData(m_SearchData);
 
 	return isEqual;
 }
 
 std::string PersonSearchItem::getHighlightedStr() const
 {
-	return highlightStr(m_SearchData->getMatchedString(), m_SearchData->getMatchedSubstring());
+	const SearchResult *searchResult = m_SearchData.getSearchResult();
+	return searchResult
+			? highlightStr(searchResult->getMatchedString(), searchResult->getMatchedSubstring()) : "";
+}
+
+void PersonSearchItem::onSearchDataChanged()
+{
+	elm_genlist_item_fields_update(getObjectItem(), PART_CONTACT_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+	elm_genlist_item_fields_update(getObjectItem(), PART_SUBTEXT, ELM_GENLIST_ITEM_FIELD_TEXT);
 }
