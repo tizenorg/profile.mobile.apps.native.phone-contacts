@@ -18,7 +18,6 @@
 #include "Logs/List/LogsView.h"
 #include "Logs/List/LogGroupItem.h"
 #include "Logs/List/LogItem.h"
-#include "Logs/Details/DetailsView.h"
 #include "Common/Strings.h"
 
 #include "Ui/Genlist.h"
@@ -32,7 +31,6 @@
 using namespace Ux;
 using namespace Logs::Model;
 using namespace Logs::List;
-using namespace Logs::Details;
 using namespace std::placeholders;
 
 LogsView::LogsView(FilterType filterType)
@@ -117,19 +115,6 @@ void LogsView::onSelectAllInsert(Ui::GenlistItem *item)
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 }
 
-void LogsView::onItemPressed(Ux::SelectItem *item)
-{
-	LogItem *logItem = (LogItem *) item;
-	LogGroup *group = logItem->getGroup();
-
-	const char *number = group->getLogList().back()->getNumber();
-	if (number) {
-		App::AppControl appControl = App::requestTelephonyCall(number);
-		appControl.launch(nullptr, nullptr, false);
-		appControl.detach();
-	}
-}
-
 void LogsView::fillLayout()
 {
 	if (m_Genlist) {
@@ -205,10 +190,6 @@ LogItem *LogsView::createLogItem(LogGroup *group)
 {
 	LogItem *item = new LogItem(group);
 	item->setDeleteCallback(std::bind(&LogsView::onLogItemDelete, this, _1));
-	item->setDetailsCallback([this](LogItem *item) {
-		getNavigator()->navigateTo(new DetailsView(item->getGroup()));
-	});
-
 	return item;
 }
 

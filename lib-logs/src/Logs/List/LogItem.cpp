@@ -19,8 +19,12 @@
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
 #include "Logs/Common/Utils.h"
+#include "Logs/Details/DetailsView.h"
 
+#include "App/AppControlRequest.h"
 #include "App/Path.h"
+#include "Ui/Genlist.h"
+#include "Ui/Navigator.h"
 #include "Ui/Scale.h"
 #include "Ui/Thumbnail.h"
 #include "Utils/Callback.h"
@@ -45,6 +49,7 @@
 #define PART_END                "elm.swallow.end"
 
 using namespace Ui;
+using namespace Logs::Details;
 using namespace Logs::List;
 using namespace Logs::Model;
 
@@ -62,18 +67,6 @@ LogItem::LogItem(LogGroup *group)
 void LogItem::setDeleteCallback(DeleteCallback callback)
 {
 	m_OnDelete = std::move(callback);
-}
-
-void LogItem::setDetailsCallback(DetailsCallback callback)
-{
-	m_OnDetails = std::move(callback);
-}
-
-void LogItem::onInfoIconPressed()
-{
-	if (m_OnDetails) {
-		m_OnDetails(this);
-	}
 }
 
 LogGroup *LogItem::getGroup() const
@@ -136,6 +129,29 @@ Evas_Object *LogItem::getContent(Evas_Object *parent, const char *part)
 Ux::SelectResult LogItem::getDefaultResult() const
 {
 	return { 0, m_Group };
+}
+
+void LogItem::onSelected()
+{
+	if (getSelectMode() != Ux::SelectNone) {
+		SelectItem::onSelected();
+		return;
+	}
+
+	const Log *log = m_Group->getLogList().back();
+	App::AppControl appControl = App::requestTelephonyCall(log->getNumber());
+	appControl.launch(nullptr, nullptr, false);
+	appControl.detach();
+}
+
+void LogItem::onInfoIconPressed()
+{
+	Ui::Navigator *navigator = getParent()->findParent<Ui::Navigator>();
+	if (!navigator) {
+		return;
+	}
+
+	navigator->navigateTo(new DetailsView(getGroup()));
 }
 
 Evas_Object *LogItem::createThumbnail(Evas_Object *parent)
