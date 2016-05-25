@@ -36,6 +36,7 @@ namespace Ui
 		typedef std::function<bool(bool)> CheckCallback;
 
 		GenlistCheckItem();
+		virtual ~GenlistCheckItem() override;
 
 		/**
 		 * @return Whether the item is checked.
@@ -54,6 +55,12 @@ namespace Ui
 		 * @param[in]   callback    Callback to be called when item is checked/unchecked
 		 */
 		void setCheckCallback(CheckCallback callback);
+
+		/**
+		 * @brief Set item which "checked" state should be synchronized with this item.
+		 * @param[in]   item    Item to link with
+		 */
+		void setLinkedItem(GenlistCheckItem *item);
 
 	protected:
 		/**
@@ -87,6 +94,7 @@ namespace Ui
 		Eina_Bool m_IsChecked;
 		bool m_IsChecking;
 		CheckCallback m_OnChecked;
+		GenlistCheckItem *m_LinkedItem;
 	};
 }
 
