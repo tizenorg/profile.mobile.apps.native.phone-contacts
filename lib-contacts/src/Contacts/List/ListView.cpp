@@ -629,5 +629,9 @@ void ListView::onSearchChanged(const char *str)
 		updateSectionsMode();
 	}
 
+	if (str) {
+		m_SearchProvider.search(str);
+	}
+
 	elm_genlist_filter_set(m_Genlist->getEvasObject(), (void *) str);
 }

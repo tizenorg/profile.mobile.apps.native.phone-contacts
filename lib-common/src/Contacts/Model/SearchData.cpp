@@ -22,7 +22,8 @@ using namespace Common;
 
 SearchData::SearchData(ContactData &contactData)
 	: ContactData(contactData.getType()),
-	  m_ContactData(contactData)
+	  m_ContactData(contactData),
+	  m_SearchResult(nullptr)
 {
 }
 
@@ -53,12 +54,12 @@ ContactData &SearchData::getContactData()
 
 const SearchResult *SearchData::getSearchResult() const
 {
-	return m_SearchResult.get();
+	return m_SearchResult;
 }
 
-void SearchData::setSearchResult(SearchResultPtr searchResult)
+void SearchData::setSearchResult(SearchResult *searchResult)
 {
-	m_SearchResult = std::move(searchResult);
+	m_SearchResult = searchResult;
 
 	if (m_OnChanged) {
 		m_OnChanged();
