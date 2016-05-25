@@ -255,7 +255,11 @@ void SelectView::updateSelectCount(CountChange change)
 void SelectView::updateItemCount(CountChange change, SelectItem *item)
 {
 	if (item->isChecked()) {
-		updateSelectCount(change);
+		if (change == CountIncrement && m_SelectLimit && m_SelectCount == m_SelectLimit) {
+			item->setChecked(false);
+		} else {
+			updateSelectCount(change);
+		}
 	}
 
 	/* PREVIOUS count if incremented, CURRENT count otherwise */
@@ -295,9 +299,9 @@ void SelectView::destroyPageButtons()
 	m_CancelButton = nullptr;
 }
 
-void SelectView::onItemExcluded(SelectItem *item)
+void SelectView::onItemExcluded(SelectItem *item, bool isExcluded)
 {
-	updateItemCount(item->isExcluded() ? CountDecrement : CountIncrement, item);
+	updateItemCount(isExcluded ? CountDecrement : CountIncrement, item);
 }
 
 void SelectView::onItemSelected(SelectItem *item)
