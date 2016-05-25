@@ -26,12 +26,16 @@ using namespace Contacts::Model;
 SearchEngine::SearchEngine(DataList &dataList)
 	: m_LastFoundIndex(-1),
 	  m_DataList(dataList)
-{}
+{
+}
 
-void SearchEngine::search(const std::string &query)
+void SearchEngine::search(std::string query)
 {
 	if (query.empty()) {
 		clear();
+		if (!m_PrevQuery.empty()) {
+			resetSearchResult();
+		}
 	} else {
 		if (!needSearch(query)) {
 			return;
@@ -39,29 +43,24 @@ void SearchEngine::search(const std::string &query)
 
 		m_History.resize(query.size());
 
-		if (m_Query.empty()) {
+		if (m_PrevQuery.empty()) {                      //Perform initial search
 			incrementalSearch(m_DataList, query);
 		} else {
 			auto it = firstMismatch(query);
-			if (it == m_History.end()) {//Perform initial search
+			if (it == m_History.end()) {                //Perform initial search
 				clear();
 				incrementalSearch(m_DataList, query);
 			} else {
-				incrementalSearch(*it, query);
+				if (it == m_History.end() - 1) {        //No need to search, just rolling back to existed results
+					updateSearchResult(*it);
+				} else {
+					incrementalSearch(*it, query);
+				}
 			}
 		}
 	}
 
-	m_Query = query;
-}
-
-const SearchEngine::DataList *SearchEngine::getSearchResult() const
-{
-	if (!m_History.empty()) {
-		return &m_History.back();
-	}
-
-	return nullptr;
+	m_PrevQuery = std::move(query);
 }
 
 bool SearchEngine::empty() const
@@ -71,16 +70,30 @@ bool SearchEngine::empty() const
 
 bool SearchEngine::needSearch(const std::string &query)
 {
-	if (query.size() >= m_Query.size()
+	if (query.size() >= m_PrevQuery.size()
 		&&(int)(m_History.size() - 1) > m_LastFoundIndex) {
 		return false;
 	}
+
 	return true;
 }
 
-void SearchEngine::incrementalSearch(const DataList &list, const std::string &query)
+template <typename List>
+void SearchEngine::incrementalSearch(const List &list, const std::string &query)
 {
-	DataList searchRes = search(list, query);
+	SearchList searchRes;
+	for (auto &&data : list) {
+		SearchData *searchData = getSearchData(data);
+		SearchResultPtr searchResult = searchData->compare(query);
+
+		if (searchResult) {
+			SearchListItem *item = new SearchListItem(searchData, std::move(searchResult));
+			searchRes.push_back(SearchListItemPtr(item));
+			searchData->setSearchResult(item->second.get());
+		} else {
+			searchData->setSearchResult(nullptr);
+		}
+	}
 
 	if (!searchRes.empty()) {
 		m_LastFoundIndex = m_History.size() - 1;
@@ -88,25 +101,37 @@ void SearchEngine::incrementalSearch(const DataList &list, const std::string &qu
 	}
 }
 
-SearchEngine::DataList SearchEngine::search(const DataList &list, const std::string &query)
+SearchData *SearchEngine::getSearchData(ContactData *contactData)
 {
-	DataList searchRes;
-	for (auto &&data : list) {
-		auto searchData = static_cast<SearchData *>(data);
-		if (searchData->compare(query)) {
-			searchRes.push_back(searchData);
-		}
-	}
+	return static_cast<SearchData *>(contactData);
+}
 
-	return searchRes;
+SearchData *SearchEngine::getSearchData(const SearchListItemPtr &searchItem)
+{
+	return searchItem->first;
+}
+
+void SearchEngine::updateSearchResult(SearchList &list)
+{
+	for (auto &&searchItem : list) {
+		searchItem->first->setSearchResult(searchItem->second.get());
+	}
+}
+
+void SearchEngine::resetSearchResult()
+{
+	for (auto &&data : m_DataList) {
+		SearchData *searchData = static_cast<SearchData *>(data);
+		searchData->setSearchResult(nullptr);
+	}
 }
 
 SearchEngine::SearchHistory::iterator SearchEngine::firstMismatch(const std::string &query)
 {
-	size_t minSize = std::min(m_Query.size(), query.size());
-	auto itPair = std::mismatch(m_Query.begin(), m_Query.begin() + minSize, query.begin());
+	size_t minSize = std::min(m_PrevQuery.size(), query.size());
+	auto itPair = std::mismatch(m_PrevQuery.begin(), m_PrevQuery.begin() + minSize, query.begin());
 
-	return skipEmptyResults(itPair.first - m_Query.begin());
+	return skipEmptyResults(itPair.first - m_PrevQuery.begin());
 }
 
 SearchEngine::SearchHistory::iterator SearchEngine::skipEmptyResults(size_t offset)

@@ -59,15 +59,16 @@ char *PersonSearchItem::getText(Evas_Object *parent, const char *part)
 
 Eina_Bool PersonSearchItem::compare(Evas_Object *parent, void *filter)
 {
-	const char *str = filter ? (const char *) filter : "";
+	const char *str = (const char *) filter;
+	bool isSearching = str && *str;
 
-	SearchResultPtr searchResult = m_SearchData.compare(str);
-	bool isEqual = (bool)searchResult;
-	m_SearchData.setSearchResult(std::move(searchResult));
+	if (isSearching) {
+		bool isEqual = (bool) m_SearchData.getSearchResult();
+		setExcluded(!isEqual);
+		return isEqual;
+	}
 
-	setExcluded(!isEqual);
-
-	return isEqual;
+	return true;
 }
 
 std::string PersonSearchItem::getHighlightedStr() const
