@@ -18,6 +18,7 @@
 #include "Phone/Dialer/SearchEngine.h"
 #include "Phone/Dialer/SearchUtils.h"
 #include "Common/Database/RecordUtils.h"
+
 #include <utility>
 #include <algorithm>
 
@@ -43,7 +44,7 @@ SearchEngine::SearchEngine()
 void SearchEngine::search(const std::string &number)
 {
 	if (number.empty()) {
-		clear();
+		resetSearchInfo();
 	} else {
 		chooseSearch(number);
 	}
@@ -92,7 +93,7 @@ void SearchEngine::distinctLogs(SearchResults &searchList)
 
 void SearchEngine::firstSearch(const std::string &number)
 {
-	clear();
+	resetSearchInfo();
 
 	SearchResults searchList = searchInDB(number);
 
@@ -105,7 +106,7 @@ void SearchEngine::firstSearch(const std::string &number)
 
 		if (number.size() > 1) {
 			if (!searchInCache(m_Cache.begin(), number)) {
-				clear();
+				resetSearchInfo();
 			}
 		}
 	}
@@ -195,7 +196,7 @@ SearchHistory::reverse_iterator SearchEngine::skipEmptyResults(size_t offset)
 	return rIt;
 }
 
-void SearchEngine::clear()
+void SearchEngine::resetSearchInfo()
 {
 	m_Cache.clear();
 	m_LastFoundIndex = -1;
@@ -210,10 +211,16 @@ bool SearchEngine::needSearch(const std::string &number)
 	return true;
 }
 
+void SearchEngine::clear()
+{
+	m_Number.clear();
+	resetSearchInfo();
+}
+
 void SearchEngine::searchFromScratch(const std::string &number)
 {
 	if (number.empty()) {
-		clear();
+		resetSearchInfo();
 	} else {
 		firstSearch(number);
 	}
