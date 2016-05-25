@@ -52,6 +52,11 @@ namespace Phone
 			bool empty() const;
 
 			/**
+			 * @brief Clear all SearchEngine data
+			 */
+			void clear();
+
+			/**
 			 * @brief make search like a first time
 			 * @param[in] number value to find
 			 */
@@ -67,7 +72,7 @@ namespace Phone
 			SearchHistory::reverse_iterator firstMismatch(const std::string &number);
 			SearchHistory::reverse_iterator skipEmptyResults(size_t offset);
 
-			void clear();
+			void resetSearchInfo();
 
 			bool needSearch(const std::string &number);
 
