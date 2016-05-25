@@ -60,6 +60,11 @@ namespace Ux
 		SelectResult getSelectResult() const;
 
 		/**
+		 * @return Whether item has custom selection result.
+		 */
+		bool hasCustomResult() const;
+
+		/**
 		 * @brief Set custom selection result to override the default result.
 		 */
 		void setCustomResult(SelectResult result);

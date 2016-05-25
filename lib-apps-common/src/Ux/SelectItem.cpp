@@ -62,6 +62,11 @@ SelectResult SelectItem::getSelectResult() const
 	return m_HasCustomResult ? m_CustomResult : getDefaultResult();
 }
 
+bool SelectItem::hasCustomResult() const
+{
+	return m_HasCustomResult;
+}
+
 void SelectItem::setCustomResult(SelectResult result)
 {
 	m_CustomResult = result;
