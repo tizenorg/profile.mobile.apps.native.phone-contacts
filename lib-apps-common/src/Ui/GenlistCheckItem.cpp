@@ -21,8 +21,17 @@
 using namespace Ui;
 
 GenlistCheckItem::GenlistCheckItem()
-	: m_CheckPart("*"), m_IsChecked(false), m_IsChecking(false)
-{ }
+	: m_CheckPart("*"), m_IsChecked(false), m_IsChecking(false),
+	  m_LinkedItem(nullptr)
+{
+}
+
+GenlistCheckItem::~GenlistCheckItem()
+{
+	if (m_LinkedItem && m_LinkedItem->m_LinkedItem == this) {
+		m_LinkedItem->m_LinkedItem = nullptr;
+	}
+}
 
 bool GenlistCheckItem::isChecked() const
 {
@@ -52,6 +61,17 @@ bool GenlistCheckItem::setChecked(bool isChecked)
 void GenlistCheckItem::setCheckCallback(CheckCallback callback)
 {
 	m_OnChecked = std::move(callback);
+}
+
+void GenlistCheckItem::setLinkedItem(GenlistCheckItem *item)
+{
+	if (!item || m_LinkedItem) {
+		return;
+	}
+
+	item->setChecked(m_IsChecked);
+	item->m_LinkedItem = this;
+	m_LinkedItem = item;
 }
 
 void GenlistCheckItem::updateCheckPart()
@@ -96,7 +116,9 @@ bool GenlistCheckItem::notifyCheck()
 
 	if (onChecked(m_IsChecked)) {
 		if (!m_OnChecked || m_OnChecked(m_IsChecked)) {
-			isAllowed = true;
+			if (!m_LinkedItem || m_LinkedItem->setChecked(m_IsChecked)) {
+				isAllowed = true;
+			}
 		}
 	}
 
