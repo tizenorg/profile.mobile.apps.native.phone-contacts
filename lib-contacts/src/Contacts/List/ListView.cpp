@@ -354,7 +354,7 @@ void ListView::addSection(SectionId sectionId)
 		m_Sections[sectionId] = group;
 	}
 
-	if (group && !group->empty() && !group->isInserted()) {
+	if (group && !group->isEmpty() && !group->isInserted()) {
 		m_Genlist->insert(group, nullptr, getNextSectionItem(sectionId));
 		elm_genlist_item_select_mode_set(group->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 	}
@@ -552,7 +552,7 @@ void ListView::updatePersonItem(PersonItem *item, int changes)
 		item->pop();
 		insertPersonItem(item);
 
-		if (oldGroup && oldGroup->empty()) {
+		if (oldGroup && oldGroup->isEmpty()) {
 			deletePersonGroupItem(oldGroup);
 		}
 	} else {
@@ -565,7 +565,7 @@ void ListView::deletePersonItem(PersonItem *item)
 	PersonGroupItem *oldGroup = static_cast<PersonGroupItem *>(item->getParentItem());
 	delete item;
 
-	if (oldGroup && oldGroup->empty()) {
+	if (oldGroup && oldGroup->isEmpty()) {
 		deletePersonGroupItem(oldGroup);
 	}
 

@@ -57,7 +57,7 @@ char *ListSection::getText(Evas_Object *parent, const char *part)
 
 void ListSection::onInserted(Contacts::Model::ContactData &person)
 {
-	bool wasEmpty = empty();
+	bool wasEmpty = isEmpty();
 
 	insertSubItem(createItem(static_cast<Person &>(person)));
 
@@ -70,7 +70,7 @@ void ListSection::onDeleted(PersonItem *item)
 {
 	delete item;
 
-	if (m_OnUpdated && empty()) {
+	if (m_OnUpdated && isEmpty()) {
 		m_OnUpdated(true);
 	}
 }

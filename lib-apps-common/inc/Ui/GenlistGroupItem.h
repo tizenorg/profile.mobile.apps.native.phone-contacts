@@ -28,8 +28,17 @@ namespace Ui
 	class EXPORT_API GenlistGroupItem : virtual public GenlistItem
 	{
 	public:
-		GenlistGroupItem();
 		virtual ~GenlistGroupItem() override;
+
+		/**
+		 * @return Group first child Item.
+		 */
+		GenlistItem *getFirstItem() const;
+
+		/**
+		 * @return Group last child Item.
+		 */
+		GenlistItem *getLastItem() const;
 
 		/**
 		 * @return Group begin iterator.
@@ -42,9 +51,14 @@ namespace Ui
 		GenlistIterator end();
 
 		/**
+		 * @return Child items count.
+		 */
+		size_t getItemCount() const;
+
+		/**
 		 * @return Whether the group has no items (i.e. GroupItem has no subitems).
 		 */
-		bool empty() const;
+		bool isEmpty() const;
 
 		/**
 		 * @return Whether subitems are shown.
@@ -104,16 +118,10 @@ namespace Ui
 
 	private:
 		friend class Genlist;
-		friend class GenlistItem;
 
 		void insertSubItems();
 		void popSubItems();
 
-		void onSubItemInserted(GenlistItem *item);
-		void onSubItemDestroy(GenlistItem *item);
-
-		GenlistItem *m_FirstItem;
-		GenlistItem *m_LastItem;
 		std::vector<GenlistItem *> m_ItemsCache;
 	};
 }
