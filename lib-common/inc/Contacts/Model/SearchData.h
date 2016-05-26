@@ -88,7 +88,7 @@ namespace Contacts
 			 * @brief Set search result
 			 * @param[in]   searchResult    Search result
 			 */
-			void setSearchResult(SearchResultPtr searchResult);
+			void setSearchResult(SearchResult *searchResult);
 
 			/**
 			 * @brief Set change callback
@@ -98,7 +98,7 @@ namespace Contacts
 
 		private:
 			ContactData &m_ContactData;
-			SearchResultPtr m_SearchResult;
+			SearchResult *m_SearchResult;
 			ChangeCallback m_OnChanged;
 		};
 	}

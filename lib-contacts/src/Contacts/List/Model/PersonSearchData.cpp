@@ -51,13 +51,12 @@ SearchResultPtr PersonSearchData::compare(const std::string &str)
 		return SearchResultPtr(new SearchResult());
 	}
 
-	const char *pos = strcasestr(getName(), str.c_str());
-	if (pos) {
-		return SearchResultPtr(new SearchResult(SearchResult::MatchedName, getName(), { pos, str.size() }));
+	if (strncasecmp(getName(), str.c_str(), str.size()) == 0) {
+		return SearchResultPtr(new SearchResult(SearchResult::MatchedName, getName(), { getName(), str.size() }));
 	} else {
 		auto &person = static_cast<Person &>(getContactData());
 		for (auto &&number : person.getNumbers()) {
-			pos = strstr(number->getNumber(), str.c_str());
+			const char *pos = strstr(number->getNumber(), str.c_str());
 			if (pos) {
 				return SearchResultPtr(new SearchResult(SearchResult::MatchedNumber, number->getNumber(), { pos, str.size() }));
 			}

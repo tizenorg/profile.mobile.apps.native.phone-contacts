@@ -19,6 +19,8 @@
 #define CONTACTS_MODEL_SEARCH_ENGINE_H
 
 #include "Contacts/Model/ContactDataProvider.h"
+#include "Contacts/Model/SearchResult.h"
+
 #include <string>
 #include <vector>
 
@@ -26,6 +28,8 @@ namespace Contacts
 {
 	namespace Model
 	{
+		class SearchData;
+
 		/**
 		 * @brief This class provides incremental search logic
 		 */
@@ -47,13 +51,7 @@ namespace Contacts
 			 * @brief Perform incremental search
 			 * @param[in]   query   Value to find
 			 */
-			void search(const std::string &query);
-
-			/**
-			 * @brief Retrieves result list
-			 * @return Result list or nullptr on empty list
-			 */
-			const DataList *getSearchResult() const;
+			void search(std::string query);
 
 			/**
 			 * @return true if there is no results, otherwise false
@@ -61,18 +59,26 @@ namespace Contacts
 			bool empty() const;
 
 		private:
-			typedef std::vector<DataList> SearchHistory;
+			typedef std::pair<SearchData *, SearchResultPtr> SearchResultItem;
+			typedef std::list<SearchResultItem> ResultList;
+			typedef std::vector<ResultList> SearchHistory;
 
 			bool needSearch(const std::string &query);
-			void incrementalSearch(const DataList &list, const std::string &query);
-			DataList search(const DataList &list, const std::string &query);
+			template <typename List>
+			void incrementalSearch(const List &list, const std::string &query);
+
+			SearchData *getSearchData(ContactData *contactData);
+			SearchData *getSearchData(const SearchResultItem &searchItem);
+
+			void updateSearchResult(ResultList &list);
+			void resetSearchResult();
 
 			SearchHistory::iterator firstMismatch(const std::string &query);
 			SearchHistory::iterator skipEmptyResults(size_t offset);
 
 			void clear();
 
-			std::string m_Query;
+			std::string m_PrevQuery;
 			SearchHistory m_History;
 			int m_LastFoundIndex;
 
