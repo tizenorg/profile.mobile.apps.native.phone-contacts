@@ -98,7 +98,9 @@ namespace Contacts
 
 			void onDonePressed(Evas_Object *button, void *eventInfo);
 			void onCancelPressed(Evas_Object *button, void *eventInfo);
+
 			bool onCancel();
+			void onSave();
 
 			Model::Contact m_Contact;
 			ResultCallback m_OnResult;
