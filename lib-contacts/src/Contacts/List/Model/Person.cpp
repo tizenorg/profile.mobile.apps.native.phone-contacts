@@ -81,10 +81,10 @@ namespace
 }
 
 Person::Person(contacts_record_h record)
-	: ContactData(TypePerson), m_Record(record), m_SortProperty(getSortProperty())
+	: ContactData(TypePerson),
+	  m_Record(record), m_NameRecord(nullptr), m_NumberRecord(nullptr),
+	  m_SortProperty(getSortProperty())
 {
-	m_NameRecord = getNameRecord(getContactId());
-	m_NumberRecord = getNumberRecord(getId());
 	m_IndexLetter = getRecordStr(m_Record, _contacts_person.display_name_index);
 }
 
@@ -110,6 +110,9 @@ const char *Person::getName() const
 
 const char *Person::getNumber() const
 {
+	if (!m_NumberRecord) {
+		m_NumberRecord = getNumberRecord(getId());
+	}
 	return getRecordStr(m_NumberRecord, _contacts_number.number);
 }
 
@@ -161,6 +164,10 @@ bool Person::operator<(const Person &that) const
 const UniString &Person::getSortValue() const
 {
 	if (m_SortValue.getI18nStr().empty()) {
+		if (!m_NameRecord) {
+			m_NameRecord = getNameRecord(getContactId());
+		}
+
 		const char *value = getRecordStr(m_NameRecord, m_SortProperty);
 		m_SortValue = (value && *value) ? value : getName();
 	}
@@ -182,8 +189,9 @@ void Person::update(contacts_record_h record)
 	if ((changes & ChangedName) || m_SortProperty != sortProperty) {
 		changes |= updateName(record, sortProperty);
 	}
-
-	changes |= updateNumber(getId());
+	if (m_NumberRecord) {
+		changes |= updateNumber(getId());
+	}
 
 	contacts_record_destroy(m_Record, true);
 	m_Record = record;
