@@ -65,7 +65,11 @@ DialerView::~DialerView()
 void DialerView::onCreated()
 {
 	feedback_initialize();
+	contacts_db_add_changed_cb(_contacts_speeddial._uri,
+			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
 	contacts_db_add_changed_cb(_contacts_contact._uri,
+			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
+	contacts_db_add_changed_cb(_contacts_phone_log._uri,
 			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
 }
 
@@ -290,6 +294,7 @@ void DialerView::onCallPressed(Evas_Object *obj, void *event_info)
 	if (!number.empty()) {
 		launchCall(number);
 		m_Entry->clear();
+		m_SearchEngine.search("");
 	} else {
 		m_Entry->setNumber(Phone::getLastCallNumber());
 	}
