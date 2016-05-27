@@ -299,18 +299,29 @@ void InputView::onContactFilled(bool isFilled)
 
 void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 {
-	int id = m_Contact.save();
-	if (m_OnResult) {
-		m_OnResult(id);
+	if (m_Contact.isUnique()) {
+		onSave();
+		return;
 	}
 
-	if (m_Contact.isNew()) {
-		using Details::DetailsView;
-		DetailsView *view = new DetailsView(id, DetailsView::Type(m_Contact.getSubType()));
-		getNavigator()->navigateTo(view);
-	}
+	/* FIXME: Replace with translatable strings */
+	Ui::Popup *popup = new Ui::Popup();
+	popup->create(getEvasObject());
+	popup->setTitle("Name already in use");
+	popup->setText("A contact with the same name "
+			"already exists. Tap Save anyway "
+			"to save it anyway or tap Rename "
+			"to save this contact with a "
+			"different name.");
 
-	getPage()->close();
+	popup->addButton("Save anyway", [this] {
+		onSave();
+		return true;
+	});
+	popup->addButton("Rename", [this] {
+		m_Items[Model::FieldName]->focus();
+		return true;
+	});
 }
 
 void InputView::onCancelPressed(Evas_Object *button, void *eventInfo)
@@ -338,4 +349,20 @@ bool InputView::onCancel()
 	});
 
 	return false;
+}
+
+void InputView::onSave()
+{
+	int id = m_Contact.save();
+	if (m_OnResult) {
+		m_OnResult(id);
+	}
+
+	if (m_Contact.isNew()) {
+		using Details::DetailsView;
+		DetailsView *view = new DetailsView(id, DetailsView::Type(m_Contact.getSubType()));
+		getNavigator()->navigateTo(view);
+	}
+
+	getPage()->close();
 }
