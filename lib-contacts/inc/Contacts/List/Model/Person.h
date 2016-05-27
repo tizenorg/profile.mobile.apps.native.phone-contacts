@@ -127,7 +127,7 @@ namespace Contacts
 
 				const Utils::UniString &getSortValue() const;
 				void update(contacts_record_h record);
-				int updateName(contacts_record_h record);
+				int updateName(contacts_record_h record, unsigned sortProperty);
 				int updateNumber(int personId);
 
 				contacts_record_h m_Record;
@@ -136,6 +136,7 @@ namespace Contacts
 
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;
+				unsigned m_SortProperty;
 				Numbers m_Numbers;
 			};
 		}

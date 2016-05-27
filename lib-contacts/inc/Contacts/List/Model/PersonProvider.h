@@ -133,7 +133,9 @@ namespace Contacts
 				void updatePersonList();
 
 				void onChanged(const char *uri);
-				void onNameFormatChanged(contacts_name_display_order_e order);
+				void onSettingsChanged();
+				static void onNameFormatChanged(contacts_name_display_order_e order, void *data);
+				static void onSortOrderChanged(contacts_name_sorting_order_e order, void *data);
 
 				int m_FilterType;
 				int m_DbVersion;
