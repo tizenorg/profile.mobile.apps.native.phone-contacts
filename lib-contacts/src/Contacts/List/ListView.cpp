@@ -103,6 +103,7 @@ void ListView::onCreated()
 {
 	fillPersonList();
 	updateSections();
+	elm_index_level_go(m_Index, 0);
 
 	m_SearchProvider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
 }
@@ -491,7 +492,6 @@ Elm_Object_Item *ListView::insertIndexItem(const char *indexLetter, Elm_Object_I
 	Elm_Object_Item *indexItem = nextItem
 			? elm_index_item_insert_before(m_Index, nextItem, indexLetter, nullptr, nullptr)
 			: elm_index_item_append(m_Index, indexLetter, nullptr, nullptr);
-	elm_index_level_go(m_Index, 0);
 	return indexItem;
 }
 
@@ -532,7 +532,6 @@ void ListView::deletePersonGroupItem(PersonGroupItem *group)
 {
 	m_PersonGroups.erase(group->getTitle());
 	delete group;
-	elm_index_level_go(m_Index, 0);
 }
 
 PersonItem *ListView::createPersonItem(PersonSearchData &searchData)
@@ -570,6 +569,8 @@ void ListView::updatePersonItem(PersonItem *item, int changes)
 	if (oldGroup && oldGroup->isEmpty()) {
 		deletePersonGroupItem(oldGroup);
 	}
+
+	elm_index_level_go(m_Index, 0);
 }
 
 void ListView::deletePersonItem(PersonItem *item)
@@ -585,6 +586,8 @@ void ListView::deletePersonItem(PersonItem *item)
 	if (m_PersonGroups.empty()) {
 		setEmptyState(true);
 	}
+
+	elm_index_level_go(m_Index, 0);
 }
 
 PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &person)
@@ -636,6 +639,8 @@ void ListView::onPersonInserted(ContactData &contactData)
 	auto item = createPersonItem(static_cast<PersonSearchData &>(contactData));
 	insertPersonItem(item);
 	onItemInserted(item);
+
+	elm_index_level_go(m_Index, 0);
 }
 
 void ListView::onSectionUpdated(PersonItem *item, ::Common::ChangeType change, SectionId sectionId)

@@ -131,8 +131,8 @@ namespace Contacts
 				int updateNumber(int personId);
 
 				contacts_record_h m_Record;
-				contacts_record_h m_NameRecord;
-				contacts_record_h m_NumberRecord;
+				mutable contacts_record_h m_NameRecord;
+				mutable contacts_record_h m_NumberRecord;
 
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;
