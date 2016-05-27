@@ -87,8 +87,7 @@ namespace Contacts
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
 			Ui::GenlistGroupItem *createMyProfileSection();
-			Ui::GenlistGroupItem *createFavoritesSection();
-			Ui::GenlistGroupItem *createMfcSection();
+			Ui::GenlistGroupItem *createListSection(SectionId sectionId);
 			void fillPersonList();
 
 			Ui::Genlist *createGenlist(Evas_Object *parent);
@@ -97,11 +96,13 @@ namespace Contacts
 			void setEmptyState(bool isEmpty);
 			void setIndexState(bool isVisible);
 
-			void addSection(SectionId sectionId);
-			void removeSection(SectionId sectionId);
+			Ui::GenlistGroupItem *createSection(SectionId sectionId);
+			void insertSection(Ui::GenlistGroupItem *section, SectionId sectionId);
+			void updateSection(SectionId sectionId);
+			void updateSections();
+
 			Ui::GenlistItem *getNextSectionItem(SectionId sectionId);
-			bool getSectionVisibility(Ux::SelectMode selectMode, SectionId sectionId);
-			void updateSectionsMode();
+			bool getSectionVisibility(SectionId sectionId);
 
 			SearchItem *createSearchItem();
 			Evas_Object *createAddButton(Evas_Object *parent);
@@ -128,7 +129,7 @@ namespace Contacts
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
 			void onPersonInserted(Contacts::Model::ContactData &person);
-			void onSectionUpdated(bool isEmpty, SectionId sectionId);
+			void onSectionUpdated(SectionId sectionId);
 			void onSearchChanged(const char *str);
 
 			Evas_Object *m_Box;

@@ -44,9 +44,8 @@ namespace Contacts
 		public:
 			/**
 			 * @brief Update group item callback.
-			 * @param[in]   isEmpty If it is true group item should be hidden, otherwise - shown
 			 */
-			typedef std::function<void(bool isEmpty)> UpdateCallback;
+			typedef std::function<void()> UpdateCallback;
 
 			/**
 			 * @brief Create list section

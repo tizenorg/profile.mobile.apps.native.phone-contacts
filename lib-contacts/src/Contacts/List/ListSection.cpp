@@ -62,7 +62,7 @@ void ListSection::onInserted(Contacts::Model::ContactData &person)
 	insertSubItem(createItem(static_cast<Person &>(person)));
 
 	if (m_OnUpdated && wasEmpty) {
-		m_OnUpdated(false);
+		m_OnUpdated();
 	}
 }
 
@@ -71,7 +71,7 @@ void ListSection::onDeleted(PersonItem *item)
 	delete item;
 
 	if (m_OnUpdated && isEmpty()) {
-		m_OnUpdated(true);
+		m_OnUpdated();
 	}
 }
 
