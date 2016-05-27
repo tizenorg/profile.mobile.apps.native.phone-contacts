@@ -81,7 +81,7 @@ namespace
 }
 
 Person::Person(contacts_record_h record)
-	: ContactData(TypePerson), m_Record(record)
+	: ContactData(TypePerson), m_Record(record), m_SortProperty(getSortProperty())
 {
 	m_NameRecord = getNameRecord(getContactId());
 	m_NumberRecord = getNumberRecord(getId());
@@ -161,7 +161,7 @@ bool Person::operator<(const Person &that) const
 const UniString &Person::getSortValue() const
 {
 	if (m_SortValue.getI18nStr().empty()) {
-		const char *value = getRecordStr(m_NameRecord, getSortProperty());
+		const char *value = getRecordStr(m_NameRecord, m_SortProperty);
 		m_SortValue = (value && *value) ? value : getName();
 	}
 
@@ -173,11 +173,16 @@ void Person::update(contacts_record_h record)
 	int changes = ChangedNone;
 	if (!compareRecordsStr(m_Record, record, _contacts_person.display_name)) {
 		changes |= ChangedName;
-		changes |= updateName(record);
 	}
 	if (!compareRecordsStr(m_Record, record, _contacts_person.image_thumbnail_path)) {
 		changes |= ChangedImage;
 	}
+
+	unsigned sortProperty = getSortProperty();
+	if ((changes & ChangedName) || m_SortProperty != sortProperty) {
+		changes |= updateName(record, sortProperty);
+	}
+
 	changes |= updateNumber(getId());
 
 	contacts_record_destroy(m_Record, true);
@@ -186,14 +191,17 @@ void Person::update(contacts_record_h record)
 	onUpdated(changes);
 }
 
-int Person::updateName(contacts_record_h record)
+int Person::updateName(contacts_record_h record, unsigned sortProperty)
 {
 	int contactId = getRecordInt(record, _contacts_person.display_contact_id);
 	contacts_record_h nameRecord = getNameRecord(contactId);
 
 	int changes = ChangedNone;
-	if (!compareRecordsStr(m_NameRecord, nameRecord, getSortProperty())) {
+	if (!Utils::safeCmp(
+			getRecordStr(m_NameRecord, m_SortProperty),
+			getRecordStr(nameRecord, sortProperty))) {
 		changes |= ChangedSortValue;
+		m_SortProperty = sortProperty;
 		m_SortValue.clear();
 		m_IndexLetter = getRecordStr(record, _contacts_person.display_name_index);
 	}
@@ -203,7 +211,6 @@ int Person::updateName(contacts_record_h record)
 
 	return changes;
 }
-
 
 int Person::updateNumber(int personId)
 {

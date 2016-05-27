@@ -25,7 +25,6 @@
 #include "Utils/UniString.h"
 
 #include <map>
-#include <contacts_setting.h>
 
 namespace Ui
 {
@@ -80,8 +79,6 @@ namespace Contacts
 
 			void onDeleteSelected();
 			void onShareSelected();
-
-			void onSortOrderChanged(contacts_name_sorting_order_e order);
 
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;

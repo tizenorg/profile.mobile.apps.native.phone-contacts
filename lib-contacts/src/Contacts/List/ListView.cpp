@@ -77,8 +77,6 @@ ListView::ListView(int filterType)
 
 ListView::~ListView()
 {
-	contacts_setting_remove_name_sorting_order_changed_cb(
-			makeCallbackWithLastParam(&ListView::onSortOrderChanged), this);
 	delete m_PersonProvider;
 }
 
@@ -107,8 +105,6 @@ void ListView::onCreated()
 	updateSections();
 
 	m_SearchProvider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
-	contacts_setting_add_name_sorting_order_changed_cb(
-			makeCallbackWithLastParam(&ListView::onSortOrderChanged), this);
 }
 
 void ListView::onDestroy()
@@ -209,20 +205,6 @@ void ListView::onShareSelected()
 		return true;
 	});
 	getNavigator()->navigateTo(view);
-}
-
-void ListView::onSortOrderChanged(contacts_name_sorting_order_e order)
-{
-	if (!m_PersonGroups.empty()) {
-		for (auto &personGroup : m_PersonGroups) {
-			delete personGroup.second;
-		}
-
-		m_PersonGroups.clear();
-		m_SearchProvider.clearDataList();
-
-		fillPersonList();
-	}
 }
 
 void ListView::onSelectAllInsert(Ui::GenlistItem *item)
