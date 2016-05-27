@@ -41,6 +41,11 @@ SearchProvider::~SearchProvider()
 	}
 }
 
+void SearchProvider::search(const char *query)
+{
+	m_SearchEngine.search(query ? query : "");
+}
+
 const SearchProvider::DataList &SearchProvider::getDataList()
 {
 	if (m_ContactList.empty()) {
@@ -50,7 +55,7 @@ const SearchProvider::DataList &SearchProvider::getDataList()
 		}
 	}
 
-	return m_SearchEngine.empty() ? m_ContactList : *m_SearchEngine.getSearchResult();
+	return m_ContactList;
 }
 
 void SearchProvider::clearDataList()
