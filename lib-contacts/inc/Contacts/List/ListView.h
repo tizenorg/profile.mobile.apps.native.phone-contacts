@@ -122,6 +122,7 @@ namespace Contacts
 			void updatePersonItem(PersonItem *item, int changes);
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
+			void linkPersonItems(PersonItem *sectionItem);
 
 			void onAddPressed(Evas_Object *button, void *eventInfo);
 
@@ -129,7 +130,7 @@ namespace Contacts
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
 			void onPersonInserted(Contacts::Model::ContactData &person);
-			void onSectionUpdated(SectionId sectionId);
+			void onSectionUpdated(PersonItem *item, ::Common::ChangeType change, SectionId sectionId);
 			void onSearchChanged(const char *str);
 
 			Evas_Object *m_Box;

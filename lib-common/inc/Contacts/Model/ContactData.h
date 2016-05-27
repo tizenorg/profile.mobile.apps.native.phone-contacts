@@ -21,6 +21,7 @@
 #include <memory>
 #include <tizen.h>
 #include <list>
+#include "Common/DataTypes.h"
 
 namespace Contacts
 {

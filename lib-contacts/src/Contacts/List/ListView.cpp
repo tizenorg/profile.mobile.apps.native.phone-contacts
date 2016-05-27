@@ -103,8 +103,8 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 
 void ListView::onCreated()
 {
-	updateSections();
 	fillPersonList();
+	updateSections();
 
 	m_SearchProvider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
 	contacts_setting_add_name_sorting_order_changed_cb(
@@ -261,10 +261,15 @@ Ui::GenlistGroupItem *ListView::createListSection(SectionId sectionId)
 	}
 
 	ListSection *section = new ListSection(title, provider);
-	section->setUpdateCallback(std::bind(&ListView::onSectionUpdated, this, sectionId));
+	section->setUpdateCallback(std::bind(&ListView::onSectionUpdated, this, _1, _2, sectionId));
 
 	if (!section->isEmpty()) {
 		insertSection(section, sectionId);
+		for (auto &&item : *section) {
+			PersonItem *personItem = static_cast<PersonItem *>(item);
+			linkPersonItems(personItem);
+			onItemInserted(personItem);
+		}
 	}
 
 	return section;
@@ -429,12 +434,12 @@ bool ListView::getSectionVisibility(SectionId sectionId)
 		},
 		/* SelectSingle = */ {
 			/* SectionMyProfile = */ false,
-			/* SectionFavorites = */ false, /* FIXME: Enable when sections will be supported in selection mode */
+			/* SectionFavorites = */ true,
 			/* SectionMfc       = */ false
 		},
 		/* SelectMulti  = */ {
 			/* SectionMyProfile = */ false,
-			/* SectionFavorites = */ false, /* FIXME: Enable when sections will be supported in selection mode */
+			/* SectionFavorites = */ true,
 			/* SectionMfc       = */ false
 		}
 	};
@@ -612,6 +617,21 @@ PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &pe
 	return nullptr;
 }
 
+void ListView::linkPersonItems(PersonItem *sectionItem)
+{
+	Person &person = sectionItem->getPerson();
+	PersonGroupItem *groupItem = getPersonGroupItem(person.getIndexLetter());
+
+	for (auto &&item : *groupItem) {
+		PersonItem *personItem = static_cast<PersonItem *>(item);
+		if (person.getId() == personItem->getPerson().getId()) {
+			sectionItem->setExcluded(true);
+			personItem->setLinkedItem(sectionItem);
+			break;
+		}
+	}
+}
+
 void ListView::onAddPressed(Evas_Object *button, void *eventInfo)
 {
 	getNavigator()->navigateTo(new Input::InputView());
@@ -636,8 +656,15 @@ void ListView::onPersonInserted(ContactData &contactData)
 	onItemInserted(item);
 }
 
-void ListView::onSectionUpdated(SectionId sectionId)
+void ListView::onSectionUpdated(PersonItem *item, ::Common::ChangeType change, SectionId sectionId)
 {
+	if (change == Common::ChangeInsert) {
+		linkPersonItems(item);
+		onItemInserted(item);
+	} else if (change == Common::ChangeDelete) {
+		onItemRemove(item);
+	}
+
 	updateSection(sectionId);
 }
 

@@ -57,22 +57,22 @@ char *ListSection::getText(Evas_Object *parent, const char *part)
 
 void ListSection::onInserted(Contacts::Model::ContactData &person)
 {
-	bool wasEmpty = isEmpty();
+	PersonItem *item = createItem(static_cast<Person &>(person));
+	insertSubItem(item);
 
-	insertSubItem(createItem(static_cast<Person &>(person)));
-
-	if (m_OnUpdated && wasEmpty) {
-		m_OnUpdated();
+	if (m_OnUpdated) {
+		m_OnUpdated(item, Common::ChangeInsert);
 	}
 }
 
 void ListSection::onDeleted(PersonItem *item)
 {
-	delete item;
-
-	if (m_OnUpdated && isEmpty()) {
-		m_OnUpdated();
+	item->pop();
+	if (m_OnUpdated) {
+		m_OnUpdated(item, Common::ChangeDelete);
 	}
+
+	delete item;
 }
 
 PersonItem *ListSection::createItem(Person &person)

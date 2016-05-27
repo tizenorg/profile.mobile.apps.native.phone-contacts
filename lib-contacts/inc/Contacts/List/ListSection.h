@@ -19,6 +19,7 @@
 #define CONTACTS_LIST_LIST_SECTION_H
 
 #include "Ui/GenlistGroupItem.h"
+#include "Common/DataTypes.h"
 
 namespace Contacts
 {
@@ -45,7 +46,7 @@ namespace Contacts
 			/**
 			 * @brief Update group item callback.
 			 */
-			typedef std::function<void()> UpdateCallback;
+			typedef std::function<void(PersonItem *item, Common::ChangeType changeType)> UpdateCallback;
 
 			/**
 			 * @brief Create list section

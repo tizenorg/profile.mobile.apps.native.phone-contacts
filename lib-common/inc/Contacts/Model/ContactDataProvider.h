@@ -33,16 +33,6 @@ namespace Contacts
 			typedef std::list<ContactData *> DataList;
 
 			/**
-			 * @brief Change event types.
-			 */
-			enum ChangeType
-			{
-				ChangeInsert = 1 << 0,
-				ChangeUpdate = 1 << 1,
-				ChangeDelete = 1 << 2
-			};
-
-			/**
 			 * @brief Insert callback
 			 * @param[in] Contact data
 			 */
