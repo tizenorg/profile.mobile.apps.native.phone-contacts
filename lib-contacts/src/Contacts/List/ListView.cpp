@@ -164,11 +164,7 @@ void ListView::onMenuPressed()
 
 void ListView::onDeleteSelected()
 {
-	auto strings = Common::getSelectViewStrings();
-	strings.buttonDone = "IDS_LOGS_OPT_DELETE";
-
 	ListView *view = new ListView();
-	view->setStrings(strings);
 	view->setSelectMode(SelectMulti);
 	view->setSelectCallback([](SelectResults results) {
 		std::vector<int> ids;
@@ -186,11 +182,7 @@ void ListView::onDeleteSelected()
 
 void ListView::onShareSelected()
 {
-	auto strings = Common::getSelectViewStrings();
-	strings.buttonDone = "IDS_PB_OPT_SHARE";
-
 	ListView *view = new ListView();
-	view->setStrings(strings);
 	view->setSelectMode(SelectMulti);
 	view->setSelectCallback([](SelectResults results) {
 		size_t count = results.count();
