@@ -65,7 +65,11 @@ DialerView::~DialerView()
 void DialerView::onCreated()
 {
 	feedback_initialize();
+	contacts_db_add_changed_cb(_contacts_speeddial._uri,
+			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
 	contacts_db_add_changed_cb(_contacts_contact._uri,
+			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
+	contacts_db_add_changed_cb(_contacts_phone_log._uri,
 			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
 }
 
@@ -221,6 +225,7 @@ void DialerView::onEntryChanged()
 		m_SearchEngine.search(number);
 		m_SearchControl->setResults(m_SearchEngine.getSearchResult());
 	} else {
+		m_SearchEngine.search("");
 		m_SearchControl->clearResults();
 	}
 }
