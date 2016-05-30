@@ -38,7 +38,6 @@ VcardView::VcardView(std::string vcardPath)
 	: m_Genlist(nullptr), m_VcardPath(std::move(vcardPath)), m_Provider(m_VcardPath)
 {
 	auto strings = Common::getSelectViewStrings();
-	strings.buttonDone = "IDS_PB_HEADER_IMPORT";
 
 	setStrings(strings);
 	setSelectMode(Ux::SelectMulti);
