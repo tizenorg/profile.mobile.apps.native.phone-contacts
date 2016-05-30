@@ -15,12 +15,16 @@
  *
  */
 
+#include "Common/Database/RecordIterator.h"
+#include "Common/Database/RecordUtils.h"
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
-
+#include "Contacts/List/Model/FavoritesProvider.h"
 #include "Ui/Navigator.h"
 
+using namespace Common::Database;
 using namespace Contacts::List;
+using namespace Contacts::List::Model;
 using namespace Ui;
 
 ManageFavoritesPopup::ManageFavoritesPopup(Navigator *navigator)
@@ -34,17 +38,39 @@ void ManageFavoritesPopup::onCreated()
 
 	setTitle("IDS_PB_HEADER_MANAGE_FAVOURITES_ABB");
 
+	// todo Implement get list's size without retrieve of all fav persons from database
+	FavoritesProvider provider;
+	int count = provider.getDataList().size();
+
 	addItem("IDS_PB_OPT_ADD", std::bind(&ManageFavoritesPopup::onAdd, this));
-	addItem("IDS_PB_OPT_REORDER", std::bind(&ManageFavoritesPopup::onReorder, this));
-	addItem("IDS_PB_OPT_REMOVE", std::bind(&ManageFavoritesPopup::onRemove, this));
+
+	if (count > 0) {
+		addItem("IDS_PB_OPT_REMOVE", std::bind(&ManageFavoritesPopup::onRemove, this));
+
+		if (count > 1) {
+			addItem("IDS_PB_OPT_REORDER", std::bind(&ManageFavoritesPopup::onReorder, this));
+		}
+	}
 }
 
 void ManageFavoritesPopup::onAdd()
 {
-	ListView *view = new ListView();
+	ListView *view = new ListView(new FavoritesProvider(FavoritesProvider::ModeExclude));
 	view->setSelectMode(Ux::SelectMulti);
 	view->setSelectCallback([](Ux::SelectResults results) {
-		//todo
+
+		contacts_list_h list = nullptr;
+		contacts_list_create(&list);
+		for (auto &&result : results) {
+			contacts_record_h record = nullptr;
+			contacts_db_get_record(_contacts_person._uri, result.value.id, &record);
+			contacts_record_set_bool(record, _contacts_person.is_favorite, true);
+			contacts_list_add(list, record);
+		}
+
+		contacts_db_update_records(list);
+		contacts_list_destroy(list, true);
+
 		return true;
 	});
 	m_Navigator->navigateTo(view);
@@ -57,5 +83,31 @@ void ManageFavoritesPopup::onReorder()
 
 void ManageFavoritesPopup::onRemove()
 {
-	//todo
+	//todo Should be created ListView with Favorites and MFC sections only
+	ListView *view = new ListView();
+	view->setSelectMode(Ux::SelectMulti);
+	view->setSelectCallback([](Ux::SelectResults results) {
+
+		contacts_list_h list = nullptr;
+		contacts_list_create(&list);
+		for (auto &&result : results) {
+			contacts_record_h record = nullptr;
+			int recordId = result.value.id;
+
+			contacts_db_get_record(_contacts_person._uri, recordId, &record);
+			if (getRecordBool(record, _contacts_person.is_favorite)) {
+				contacts_record_set_bool(record, _contacts_person.is_favorite, false);
+			} else {
+				contacts_person_reset_usage(recordId, CONTACTS_USAGE_STAT_TYPE_OUTGOING_CALL);
+			}
+
+			contacts_list_add(list, record);
+		}
+
+		contacts_db_update_records(list);
+		contacts_list_destroy(list, true);
+
+		return true;
+	});
+	m_Navigator->navigateTo(view);
 }
