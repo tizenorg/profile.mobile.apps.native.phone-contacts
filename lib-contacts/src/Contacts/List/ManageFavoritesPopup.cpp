@@ -17,6 +17,7 @@
 
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
+#include "Contacts/List/ReorderView.h"
 
 #include "Ui/Navigator.h"
 
@@ -52,7 +53,8 @@ void ManageFavoritesPopup::onAdd()
 
 void ManageFavoritesPopup::onReorder()
 {
-	//todo
+	ReorderView *view = new ReorderView();
+	m_Navigator->navigateTo(view);
 }
 
 void ManageFavoritesPopup::onRemove()

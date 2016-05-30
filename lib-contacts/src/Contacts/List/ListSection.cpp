@@ -17,6 +17,7 @@
 
 #include "Contacts/List/ListSection.h"
 #include "Contacts/List/PersonItem.h"
+#include "Contacts/List/ReorderItem.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/List/Model/PersonProvider.h"
 #include "Utils/Logger.h"
@@ -26,8 +27,8 @@
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
-ListSection::ListSection(std::string title, PersonProvider *provider)
-	: m_Title(title), m_Provider(provider)
+ListSection::ListSection(std::string title, PersonProvider *provider, SectionMode mode)
+	: m_Title(title), m_Provider(provider), m_Mode(mode)
 {
 	m_Provider->setInsertCallback(std::bind(&ListSection::onInserted, this, std::placeholders::_1));
 
@@ -66,7 +67,7 @@ void ListSection::onInserted(Contacts::Model::ContactData &person)
 	}
 }
 
-void ListSection::onDeleted(PersonItem *item)
+void ListSection::onDeleted(ContactItem *item)
 {
 	delete item;
 
@@ -75,10 +76,15 @@ void ListSection::onDeleted(PersonItem *item)
 	}
 }
 
-PersonItem *ListSection::createItem(Person &person)
+ContactItem *ListSection::createItem(Person &person)
 {
-	PersonItem *item = new PersonItem(person);
-	person.setUpdateCallback(std::bind(&PersonItem::update, item, std::placeholders::_1));
+	ContactItem *item = nullptr;
+	if (m_Mode == ReorderMode) {
+		item = new ReorderItem(person);
+	} else {
+		item = new PersonItem(person);
+	}
+	person.setUpdateCallback(std::bind(&ContactItem::update, item, std::placeholders::_1));
 	person.setDeleteCallback(std::bind(&ListSection::onDeleted, this, item));
 	return item;
 }
