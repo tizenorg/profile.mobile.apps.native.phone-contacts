@@ -65,7 +65,11 @@ DialerView::~DialerView()
 void DialerView::onCreated()
 {
 	feedback_initialize();
+	contacts_db_add_changed_cb(_contacts_speeddial._uri,
+			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
 	contacts_db_add_changed_cb(_contacts_contact._uri,
+			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
+	contacts_db_add_changed_cb(_contacts_phone_log._uri,
 			makeCallbackWithLastParam(&DialerView::onDbChanged), this);
 }
 
@@ -217,8 +221,8 @@ Evas_Object *DialerView::createBackspaceButton(Evas_Object *parent)
 void DialerView::onEntryChanged()
 {
 	std::string number = m_Entry->getNumber();
+	m_SearchEngine.search(number);
 	if (!number.empty()) {
-		m_SearchEngine.search(number);
 		m_SearchControl->setResults(m_SearchEngine.getSearchResult());
 	} else {
 		m_SearchControl->clearResults();
