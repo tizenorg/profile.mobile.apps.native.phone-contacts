@@ -63,8 +63,8 @@ void Chooser::onCreated()
 			if (m_SelectMode == SelectSingle) {
 				m_ListView->setSelectCallback(std::bind(&Chooser::onSinglePersonSelected, this, _1));
 			} else {
-				m_ListView->setCheckCallback(std::bind(&Chooser::onPersonChecked, this, _1, _2));
-				m_ListView->setSelectCallback(std::bind(&Chooser::onMultiPersonSelected, this, _1));
+				m_ListView->setCheckCallback(std::bind(&Chooser::onPersonChecked, this, _1, _2, _3));
+				m_ListView->setSelectCallback(std::bind(&Chooser::onSelected, this, _1));
 			}
 			break;
 		case ResultVcard:
@@ -86,10 +86,20 @@ void Chooser::onPageAttached(Ui::NavigatorPage *page)
 	page->setTitle(nullptr);
 }
 
-bool Chooser::onPersonChecked(SelectItem *item, bool isChecked)
+bool Chooser::onPersonChecked(SelectItem *item, bool isChecked, bool isSelectAll)
 {
 	if (isChecked) {
 		if (item->hasCustomResult()) {
+			return true;
+		}
+
+		if (isSelectAll) {
+			int id = 0;
+			contacts_person_property_e property = (m_ResultType == ResultNumber)
+					? CONTACTS_PERSON_PROPERTY_NUMBER
+					: CONTACTS_PERSON_PROPERTY_EMAIL;
+			contacts_person_get_default_property(property, item->getSelectResult().value.id, &id);
+			item->setCustomResult({ m_ResultType, id });
 			return true;
 		}
 
@@ -107,23 +117,6 @@ bool Chooser::onPersonChecked(SelectItem *item, bool isChecked)
 bool Chooser::onSinglePersonSelected(SelectResults results)
 {
 	return selectSingleResult(*results.begin(), std::bind(&Chooser::onSelected, this, _1));
-}
-
-bool Chooser::onMultiPersonSelected(SelectResults results)
-{
-	contacts_person_property_e property = (m_ResultType == ResultNumber)
-			? CONTACTS_PERSON_PROPERTY_NUMBER
-			: CONTACTS_PERSON_PROPERTY_EMAIL;
-
-	for (auto &&result : results) {
-		if (result.type != m_ResultType) {
-			int id = 0;
-			contacts_person_get_default_property(property, result.value.id, &id);
-			result = { m_ResultType, id };
-		}
-	}
-
-	return onSelected(results);
 }
 
 bool Chooser::onSelectedForAction(SelectResults results)
