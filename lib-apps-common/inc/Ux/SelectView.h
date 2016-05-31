@@ -58,10 +58,11 @@ namespace Ux
 
 		/**
 		 * @brief Called when item's "checked" state changed in #SelectMulti mode.
-		 * @param[in]   Changed item
-		 * @param[in]   Whether item is checked
+		 * @param[in]   item        Changed item
+		 * @param[in]   isChecked   Whether item is checked
+		 * @param[in]   isSelectAll Whether item is being checked via "Select All"
 		 */
-		typedef std::function<bool(SelectItem *, bool)> CheckCallback;
+		typedef std::function<bool(SelectItem *item, bool isChecked, bool isSelectAll)> CheckCallback;
 
 		SelectView();
 
@@ -112,6 +113,11 @@ namespace Ux
 		 * @return Current selection limit.
 		 */
 		size_t getSelectLimit() const;
+
+		/**
+		 * @return Maximum allowed number of selected items.
+		 */
+		size_t getSelectMax() const;
 
 		/**
 		 * @return Current selected items count.
