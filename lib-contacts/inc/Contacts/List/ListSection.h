@@ -35,7 +35,7 @@ namespace Contacts
 			class Person;
 			class PersonProvider;
 		}
-		class PersonItem;
+		class ContactItem;
 
 		/**
 		 * @brief Represents list section containing genlist items.
@@ -43,10 +43,15 @@ namespace Contacts
 		class ListSection : public Ui::GenlistGroupItem
 		{
 		public:
+			enum SectionMode {
+				DefaultMode,
+				ReorderMode
+			};
+
 			/**
 			 * @brief Update group item callback.
 			 */
-			typedef std::function<void(PersonItem *item, Common::ChangeType changeType)> UpdateCallback;
+			typedef std::function<void(ContactItem *item, Common::ChangeType changeType)> UpdateCallback;
 
 			/**
 			 * @brief Create list section
@@ -54,7 +59,8 @@ namespace Contacts
 			 * @param[in]   provider    Section provider
 			 *
 			 */
-			ListSection(std::string title, Model::PersonProvider *provider);
+			ListSection(std::string title, Model::PersonProvider *provider,
+					SectionMode mode = DefaultMode);
 			virtual ~ListSection() override;
 
 			/**
@@ -65,16 +71,17 @@ namespace Contacts
 
 		protected:
 			void onInserted(Contacts::Model::ContactData &person);
-			PersonItem *createItem(Model::Person &person);
+			ContactItem *createItem(Model::Person &person);
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 
-			void onDeleted(PersonItem *item);
+			void onDeleted(ContactItem *item);
 
 			std::string m_Title;
 			UpdateCallback m_OnUpdated;
 			Model::PersonProvider *m_Provider;
+			SectionMode m_Mode;
 		};
 	}
 }

@@ -643,10 +643,10 @@ void ListView::onPersonInserted(ContactData &contactData)
 	elm_index_level_go(m_Index, 0);
 }
 
-void ListView::onSectionUpdated(PersonItem *item, ::Common::ChangeType change, SectionId sectionId)
+void ListView::onSectionUpdated(ContactItem *item, ::Common::ChangeType change, SectionId sectionId)
 {
 	if (change == Common::ChangeInsert) {
-		linkPersonItems(item);
+		linkPersonItems((PersonItem *)item);
 		onItemInserted(item);
 	} else if (change == Common::ChangeDelete) {
 		onItemRemove(item);

@@ -39,6 +39,7 @@ namespace Contacts
 		class SearchItem;
 		class PersonGroupItem;
 		class PersonItem;
+		class ContactItem;
 
 		/**
 		 * @brief Contacts list view
@@ -127,7 +128,7 @@ namespace Contacts
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
 			void onPersonInserted(Contacts::Model::ContactData &person);
-			void onSectionUpdated(PersonItem *item, ::Common::ChangeType change, SectionId sectionId);
+			void onSectionUpdated(ContactItem *item, ::Common::ChangeType change, SectionId sectionId);
 			void onSearchChanged(const char *str);
 
 			Evas_Object *m_Box;
