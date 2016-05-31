@@ -58,6 +58,11 @@ PersonProvider::~PersonProvider()
 			&PersonProvider::onSortOrderChanged, this);
 }
 
+int PersonProvider::getFilterType() const
+{
+	return m_FilterType;
+}
+
 const PersonProvider::DataList &PersonProvider::getDataList()
 {
 	if (!m_IsFilled) {

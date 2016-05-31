@@ -45,6 +45,11 @@ namespace Contacts
 				virtual ~PersonProvider() override;
 
 				/**
+				 * @return Filter type.
+				 */
+				int getFilterType() const;
+
+				/**
 				 * @brief Get person list
 				 * @return List of contact objects
 				 */

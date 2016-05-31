@@ -225,7 +225,7 @@ Ui::GenlistGroupItem *ListView::createListSection(SectionId sectionId)
 	switch (sectionId) {
 		case SectionFavorites:
 			title = "IDS_PB_HEADER_FAVOURITES";
-			provider = new FavoritesProvider();
+			provider = new FavoritesProvider(FavoritesProvider::ModeOnly, m_PersonProvider->getFilterType());
 			break;
 		case SectionMfc:
 			title = "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2";
