@@ -16,6 +16,7 @@
  */
 
 #include "Ui/TabPage.h"
+#include "Ui/TabView.h"
 #include "Utils/Callback.h"
 
 #define BUFFER_SIZE 64
@@ -53,6 +54,12 @@ Evas_Object *TabPage::onCreate(Evas_Object *parent)
 void TabPage::setTitle(const char *title)
 {
 	elm_object_item_translatable_text_set(m_TabItem, title);
+	elm_object_translatable_part_text_set(m_Page, "elm.text.title", title);
+}
+
+void TabPage::setTitleVisibility(bool isVisible)
+{
+	elm_layout_signal_emit(m_Page, isVisible ? "elm,state,title,show" : "elm,state,title,hide", "elm");
 }
 
 void TabPage::setStyle(const char *style)
@@ -68,6 +75,13 @@ void TabPage::setContent(const char *part, Evas_Object *content)
 	snprintf(buffer, sizeof(buffer), "elm,state,%s,%s", part, content ? "show" : "hide");
 	elm_layout_signal_emit(m_Page, buffer, "elm");
 	elm_object_part_content_set(m_Page, part, content);
+}
+
+void TabPage::setExpanded(bool isExpanded)
+{
+	auto navigator = static_cast<TabView *>(getNavigator());
+	navigator->setNavigationEnabled(!isExpanded);
+	NavigatorPage::setExpanded(isExpanded);
 }
 
 void TabPage::onTabAttached(Elm_Object_Item *tabItem)

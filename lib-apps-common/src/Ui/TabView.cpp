@@ -25,13 +25,27 @@ using namespace Ui;
 TabView::TabView()
 	: Navigator(TabNavigator),
 	  m_Tabbar(nullptr), m_Scroller(nullptr), m_Box(nullptr),
-	  m_Width(0), m_Height(0), m_IsNavigating(false), m_CurrentPage(nullptr)
+	  m_Width(0), m_Height(0),
+	  m_IsNavigating(false), m_IsNavigationEnabled(true),
+	  m_CurrentPage(nullptr)
 {
 }
 
 TabPage *TabView::getCurrentPage() const
 {
 	return m_CurrentPage;
+}
+
+void TabView::setNavigationEnabled(bool isEnabled)
+{
+	m_IsNavigationEnabled = isEnabled;
+	if (isEnabled) {
+		elm_toolbar_select_mode_set(m_Tabbar, ELM_OBJECT_SELECT_MODE_ALWAYS);
+		elm_scroller_movement_block_set(getEvasObject(), ELM_SCROLLER_MOVEMENT_NO_BLOCK);
+	} else {
+		elm_toolbar_select_mode_set(m_Tabbar, ELM_OBJECT_SELECT_MODE_NONE);
+		elm_scroller_movement_block_set(getEvasObject(), ELM_SCROLLER_MOVEMENT_BLOCK_HORIZONTAL);
+	}
 }
 
 Evas_Object *TabView::onCreate(Evas_Object *parent)
@@ -87,6 +101,10 @@ TabPage *TabView::attachView(View *view)
 
 void TabView::navigateToPage(NavigatorPage *page)
 {
+	if (!m_IsNavigationEnabled) {
+		return;
+	}
+
 	m_IsNavigating = true;
 	notifyNavigation(getCurrentPage(), false);
 

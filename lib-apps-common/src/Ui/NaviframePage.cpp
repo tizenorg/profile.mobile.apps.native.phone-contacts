@@ -31,7 +31,12 @@ void NaviframePage::setTitle(const char *title)
 {
 	bool isEnabled = title && *title;
 	elm_object_item_translatable_part_text_set(m_NaviItem, "elm.text.title", title);
-	elm_naviframe_item_title_enabled_set(m_NaviItem, isEnabled, EINA_TRUE);
+	setTitleVisibility(isEnabled);
+}
+
+void NaviframePage::setTitleVisibility(bool isVisible)
+{
+	elm_naviframe_item_title_enabled_set(m_NaviItem, isVisible, EINA_TRUE);
 }
 
 void NaviframePage::setStyle(const char *style)

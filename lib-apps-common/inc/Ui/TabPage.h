@@ -35,6 +35,11 @@ namespace Ui
 		virtual void setTitle(const char *title) override;
 
 		/**
+		 * @see NavigatorPage::setTitleVisibility()
+		 */
+		virtual void setTitleVisibility(bool isVisible) override;
+
+		/**
 		 * @see NavigatorPage::setStyle()
 		 */
 		virtual void setStyle(const char *style) override;
@@ -43,6 +48,11 @@ namespace Ui
 		 * @see NavigatorPage::setContent()
 		 */
 		virtual void setContent(const char *part, Evas_Object *content) override;
+
+		/**
+		 * @see NavigatorPage::setExpanded()
+		 */
+		virtual void setExpanded(bool isExpanded) override;
 
 	private:
 		friend class TabView;
