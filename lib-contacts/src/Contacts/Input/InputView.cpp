@@ -171,13 +171,13 @@ void InputView::onPageAttached(Ui::NavigatorPage *page)
 	m_DoneButton = elm_button_add(getEvasObject());
 	elm_object_disabled_set(m_DoneButton, !m_Contact.isFilled());
 	elm_object_style_set(m_DoneButton, "naviframe/title_right");
-	elm_object_translatable_text_set(m_DoneButton, "IDS_PB_BUTTON_DONE_ABB3");
+	elm_object_translatable_text_set(m_DoneButton, "IDS_TPLATFORM_ACBUTTON_DONE_ABB");
 	evas_object_smart_callback_add(m_DoneButton, "clicked",
 			makeCallback(&InputView::onDonePressed), this);
 
 	Evas_Object *cancelButton = elm_button_add(getEvasObject());
 	elm_object_style_set(cancelButton, "naviframe/title_left");
-	elm_object_translatable_text_set(cancelButton, "IDS_PB_BUTTON_CANCEL");
+	elm_object_translatable_text_set(cancelButton, "IDS_TPLATFORM_ACBUTTON_CANCEL_ABB");
 	evas_object_smart_callback_add(cancelButton, "clicked",
 			makeCallback(&InputView::onCancelPressed), this);
 

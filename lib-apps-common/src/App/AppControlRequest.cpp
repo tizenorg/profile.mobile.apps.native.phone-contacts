@@ -82,7 +82,7 @@ AppControl App::requestCameraImage()
 AppControl App::requestGalleryImage()
 {
 	AppControl request(APP_CONTROL_OPERATION_PICK, "image/*");
-	app_control_set_app_id(request.getHandle(), "org.tizen.gallery");
+	app_control_set_app_id(request.getHandle(), "org.tizen.ug-gallery-efl");
 	return request;
 }
 

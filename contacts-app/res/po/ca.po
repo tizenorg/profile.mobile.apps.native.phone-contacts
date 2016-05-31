@@ -950,7 +950,7 @@ msgid "IDS_PB_BUTTON_CHANGE_ABB"
 msgstr "Canviar"
 
 msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Cancel"
+msgstr "Cancel·lar"
 
 msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
 msgstr "Afeg compte"
