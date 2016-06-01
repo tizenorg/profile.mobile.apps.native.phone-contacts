@@ -55,6 +55,8 @@ namespace Ux
 											 Can contain one integer format specifier. */
 			const char *titleWithLimit; /**< Title for #SelectMulti mode with limit.
 											 Can contain two integer format specifiers. */
+			const char *popupLimit;     /**< Selection limit reached popup text.
+											 Can contain one integer format specifiers. */
 		};
 
 		/**

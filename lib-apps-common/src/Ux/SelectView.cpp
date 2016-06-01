@@ -23,8 +23,10 @@
 
 #include <app_i18n.h>
 #include <algorithm>
+#include <notification.h>
 
 #define TITLE_BUFFER_SIZE 32
+#define POPUP_BUFFER_SIZE 256
 
 using namespace Ux;
 using namespace std::placeholders;
@@ -331,6 +333,9 @@ bool SelectView::onItemChecked(SelectItem *item, bool isChecked)
 	}
 
 	if (m_SelectLimit && m_SelectCount == m_SelectLimit && isChecked) {
+		char buffer[POPUP_BUFFER_SIZE];
+		snprintf(buffer, sizeof(buffer), _(m_Strings.popupLimit), m_SelectLimit);
+		notification_status_message_post(buffer);
 		return false;
 	}
 
