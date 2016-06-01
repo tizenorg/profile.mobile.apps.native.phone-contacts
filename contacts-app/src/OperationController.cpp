@@ -127,18 +127,15 @@ std::string OperationController::getUrn(const char *scheme) const
 		return "";
 	}
 
-	std::string path;
+	const char *urn = nullptr;
 	if (scheme) {
 		size_t length = strlen(scheme);
 		if (strncmp(uri, scheme, length) == 0) {
-			path = uri + length;
+			urn = uri + length;
 		}
 	}
 
-	if (path.empty()) {
-		path = uri;
-	}
-
+	std::string path = urn ? urn : uri;
 	free(uri);
 	return path;
 }
