@@ -62,14 +62,21 @@ bool Contact::isNew() const
 
 bool Contact::isUnique() const
 {
+	if (getSubType() == ObjectTypeMyProfile) {
+		return true;
+	}
+
 	std::string name = getFieldById<ContactCompoundObject>(FieldName)->getValue();
 
 	contacts_filter_h filter = nullptr;
-	contacts_filter_create(_contacts_contact._uri, &filter);
-	contacts_filter_add_str(filter, _contacts_contact.display_name, CONTACTS_MATCH_EXACTLY, name.c_str());
+	contacts_filter_create(getObjectMetadata().uri, &filter);
+	contacts_filter_add_str(filter, getFieldById(FieldDisplayName)->getPropertyId(),
+			CONTACTS_MATCH_EXACTLY, name.c_str());
+	contacts_filter_add_int(filter, getObjectMetadata().idPropId,
+			CONTACTS_MATCH_NOT_EQUAL, getRecordId());
 
 	contacts_query_h query = nullptr;
-	contacts_query_create(_contacts_contact._uri, &query);
+	contacts_query_create(getObjectMetadata().uri, &query);
 	contacts_query_set_filter(query, filter);
 
 	int count = 0;

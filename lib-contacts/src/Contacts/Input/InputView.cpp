@@ -299,29 +299,30 @@ void InputView::onContactFilled(bool isFilled)
 
 void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 {
-	if (m_Contact.isUnique()) {
-		onSave();
+	if (m_Contact.isNew() && !m_Contact.isUnique()) {
+		/* FIXME: Replace with translatable strings */
+		Ui::Popup *popup = new Ui::Popup();
+		popup->create(getEvasObject());
+		popup->setTitle("Name already in use");
+		popup->setText("A contact with the same name "
+				"already exists. Tap Save anyway "
+				"to save it anyway or tap Rename "
+				"to save this contact with a "
+				"different name.");
+
+		popup->addButton("Save anyway", [this] {
+			onSave();
+			return true;
+		});
+		popup->addButton("Rename", [this] {
+			m_Items[Model::FieldName]->focus();
+			return true;
+		});
+
 		return;
 	}
 
-	/* FIXME: Replace with translatable strings */
-	Ui::Popup *popup = new Ui::Popup();
-	popup->create(getEvasObject());
-	popup->setTitle("Name already in use");
-	popup->setText("A contact with the same name "
-			"already exists. Tap Save anyway "
-			"to save it anyway or tap Rename "
-			"to save this contact with a "
-			"different name.");
-
-	popup->addButton("Save anyway", [this] {
-		onSave();
-		return true;
-	});
-	popup->addButton("Rename", [this] {
-		m_Items[Model::FieldName]->focus();
-		return true;
-	});
+	onSave();
 }
 
 void InputView::onCancelPressed(Evas_Object *button, void *eventInfo)
