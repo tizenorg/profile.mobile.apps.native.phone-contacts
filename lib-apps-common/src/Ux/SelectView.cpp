@@ -172,7 +172,7 @@ void SelectView::updatePageTitle()
 			if (m_SelectLimit) {
 				title = m_Strings.titleWithLimit;
 			} else {
-				title = m_Strings.titleMulti;
+				title = m_SelectCount ? m_Strings.titleMulti : m_Strings.titleSingle;
 			}
 			break;
 	}
