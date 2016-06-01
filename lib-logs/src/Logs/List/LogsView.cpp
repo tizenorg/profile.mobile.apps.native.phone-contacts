@@ -85,7 +85,8 @@ void LogsView::onMenuPressed()
 	if (m_Genlist && elm_genlist_items_count(m_Genlist->getEvasObject())) {
 		menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
 			auto strings = Common::getSelectViewStrings();
-			strings.buttonDone = "IDS_LOGS_OPT_DELETE";
+			strings.buttonDone = "IDS_TPLATFORM_ACBUTTON_DELETE_ABB";
+			strings.titleMulti = "IDS_CLOG_HEADER_SELECT_LOGS";
 
 			LogsView *view = new LogsView(m_FilterType);
 			view->setStrings(strings);

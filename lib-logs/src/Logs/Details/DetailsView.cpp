@@ -42,7 +42,8 @@ DetailsView::DetailsView(LogGroup *group)
 	  m_GroupItem(nullptr)
 {
 	auto strings = Common::getSelectViewStrings();
-	strings.buttonDone = "IDS_LOGS_OPT_DELETE";
+	strings.buttonDone = "IDS_TPLATFORM_ACBUTTON_DELETE_ABB";
+	strings.titleMulti = "IDS_CLOG_HEADER_SELECT_LOGS";
 	setStrings(strings);
 
 	setSelectCallback(std::bind(&DetailsView::onSelected, this, _1));

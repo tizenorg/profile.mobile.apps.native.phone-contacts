@@ -50,7 +50,8 @@ namespace Ux
 			const char *buttonCancel;   /**< "Cancel" button text. */
 			const char *titleDefault;   /**< Title for #SelectNone mode. */
 			const char *titleSingle;    /**< Title for #SelectSingle mode */
-			const char *titleMulti;     /**< Title for #SelectMulti mode.
+			const char *titleMulti;     /**< Title for #SelectMulti mode */
+			const char *titleWithCount; /**< Title for #SelectMulti mode with selection count.
 											 Can contain one integer format specifier. */
 			const char *titleWithLimit; /**< Title for #SelectMulti mode with limit.
 											 Can contain two integer format specifiers. */

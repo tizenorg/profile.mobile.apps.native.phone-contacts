@@ -67,6 +67,8 @@ ListView::ListView(Model::PersonProvider *provider)
 	auto strings = Common::getSelectViewStrings();
 	strings.titleDefault = "IDS_PB_TAB_CONTACTS";
 	strings.titleSingle = "IDS_PB_HEADER_SELECT_CONTACT_ABB2";
+	/* FIXME: Use different title for multi mode */
+	strings.titleMulti = "IDS_PB_HEADER_SELECT_CONTACT_ABB2";
 	setStrings(strings);
 }
 
