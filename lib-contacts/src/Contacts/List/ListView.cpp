@@ -598,15 +598,14 @@ PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &pe
 
 void ListView::linkPersonItems(PersonItem *sectionItem)
 {
-	Person &person = sectionItem->getPerson();
-	PersonGroupItem *groupItem = getPersonGroupItem(person.getIndexLetter());
-
-	for (auto &&item : *groupItem) {
-		PersonItem *personItem = static_cast<PersonItem *>(item);
-		if (person.getId() == personItem->getPerson().getId()) {
-			sectionItem->setExcluded(true);
-			personItem->setLinkedItem(sectionItem);
-			break;
+	for (auto &&group : m_PersonGroups) {
+		for (auto &&item : *group.second) {
+			PersonItem *personItem = static_cast<PersonItem *>(item);
+			if (sectionItem->getPerson().getId() == personItem->getPerson().getId()) {
+				sectionItem->setExcluded(true);
+				personItem->setLinkedItem(sectionItem);
+				break;
+			}
 		}
 	}
 }
