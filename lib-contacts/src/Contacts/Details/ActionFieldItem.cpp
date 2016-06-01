@@ -40,7 +40,7 @@ namespace
 }
 
 ActionFieldItem::ActionFieldItem(Model::ContactObject &object, ActionType actionType)
-	: TypedFieldItem(object), m_ActionType(actionType)
+	: FieldItem(object), m_ActionType(actionType)
 {
 }
 
@@ -54,7 +54,7 @@ Evas_Object *ActionFieldItem::getContent(Evas_Object *parent, const char *part)
 		}
 	}
 
-	return TypedFieldItem::getContent(parent, part);
+	return FieldItem::getContent(parent, part);
 }
 
 void ActionFieldItem::onSelected()
@@ -62,7 +62,7 @@ void ActionFieldItem::onSelected()
 	if (getSelectMode() == Ux::SelectNone) {
 		executeAction(m_ActionType);
 	} else {
-		TypedFieldItem::onSelected();
+		FieldItem::onSelected();
 	}
 }
 

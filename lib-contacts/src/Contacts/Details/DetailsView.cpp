@@ -16,9 +16,9 @@
  */
 
 #include "Contacts/Details/DetailsView.h"
-#include "Contacts/Details/ActionFieldItem.h"
 #include "Contacts/Details/BasicInfoItem.h"
 #include "Contacts/Details/MultilineFieldItem.h"
+#include "Contacts/Details/TypedActionFieldItem.h"
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Model/ContactArray.h"
 #include "Common/Strings.h"
@@ -181,9 +181,9 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 	ContactFieldId fieldId = ContactFieldId(field.getId());
 
 	if (fieldId == FieldNumber) {
-		item = new ActionFieldItem(field, Common::ActionCall);
+		item = new TypedActionFieldItem(field, Common::ActionCall);
 	} else if (fieldId == FieldEmail) {
-		item = new ActionFieldItem(field, Common::ActionEmail);
+		item = new TypedActionFieldItem(field, Common::ActionEmail);
 	} else if (fieldId == FieldUrl) {
 		item = new ActionFieldItem(field, Common::ActionUrl);
 	} else if (fieldId == FieldNote) {
