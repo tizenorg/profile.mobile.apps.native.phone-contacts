@@ -51,15 +51,40 @@ SearchResultPtr PersonSearchData::compare(const std::string &str)
 		return SearchResultPtr(new SearchResult());
 	}
 
-	if (strncasecmp(getName(), str.c_str(), str.size()) == 0) {
-		return SearchResultPtr(new SearchResult(SearchResult::MatchedName, getName(), { getName(), str.size() }));
-	} else {
-		auto &person = static_cast<Person &>(getContactData());
-		for (auto &&number : person.getNumbers()) {
-			const char *pos = strstr(number->getNumber(), str.c_str());
-			if (pos) {
-				return SearchResultPtr(new SearchResult(SearchResult::MatchedNumber, number->getNumber(), { pos, str.size() }));
-			}
+	SearchResultPtr nameResult = compareName(str);
+	return nameResult ? std::move(nameResult) : std::move(compareNumber(str));
+}
+
+SearchResultPtr PersonSearchData::compareName(const std::string &str)
+{
+	const char *name = getName();
+	while (name && *name) {
+		const char *delim = strchr(name, ' ');
+		if (!delim) {
+			delim = name + strlen(name);
+		}
+
+		if (strncasecmp(name, str.c_str(), str.size()) == 0) {
+			return SearchResultPtr(new SearchResult(SearchResult::MatchedName, getName(), { name, str.size() }));
+		}
+
+		if (*delim) {
+			name = delim + 1;
+		} else {
+			return nullptr;
+		}
+	}
+
+	return nullptr;
+}
+
+SearchResultPtr PersonSearchData::compareNumber(const std::string &str)
+{
+	auto &person = static_cast<Person &>(getContactData());
+	for (auto &&number : person.getNumbers()) {
+		const char *pos = strstr(number->getNumber(), str.c_str());
+		if (pos) {
+			return SearchResultPtr(new SearchResult(SearchResult::MatchedNumber, number->getNumber(), { pos, str.size() }));
 		}
 	}
 
