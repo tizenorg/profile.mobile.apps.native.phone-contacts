@@ -54,6 +54,9 @@ namespace Contacts
 
 			private:
 				friend class SearchProvider;
+
+				Contacts::Model::SearchResultPtr compareName(const std::string &str);
+				Contacts::Model::SearchResultPtr compareNumber(const std::string &str);
 			};
 		}
 	}
