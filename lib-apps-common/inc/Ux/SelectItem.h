@@ -91,6 +91,11 @@ namespace Ux
 		virtual void onSelected() override;
 
 		/**
+		 * @see GenlistCheckItem::onChecked()
+		 */
+		virtual bool onChecked(bool isChecked) override;
+
+		/**
 		 * @brief Called when selection mode was changed.
 		 * @param[in]   selectMode  New selection mode
 		 */

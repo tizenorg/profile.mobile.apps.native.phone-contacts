@@ -184,7 +184,7 @@ namespace Ux
 		void updateDoneButtonState();
 		void updateSelectAllState();
 
-		void updateSelectCount(CountChange change);
+		void updateSelectCount(CountChange change, SelectItem *item);
 		void updateItemCount(CountChange change, SelectItem *item);
 
 		void createPageButtons();

@@ -131,15 +131,13 @@ void SelectView::onPageAttached(Ui::NavigatorPage *page)
 
 void SelectView::onItemInserted(SelectItem *item)
 {
+	item->m_SelectView = this;
 	item->setSelectMode(m_SelectMode);
-	item->setSelectCallback(std::bind(&SelectView::onItemSelected, this, item));
-	item->setCheckCallback(std::bind(&SelectView::onItemChecked, this, item, _1));
 	m_Items.push_back(item);
 
 	if (!item->isExcluded()) {
 		updateItemCount(CountIncrement, item);
 	}
-	item->m_SelectView = this;
 }
 
 void SelectView::onItemRemove(SelectItem *item)
@@ -242,10 +240,15 @@ void SelectView::updateSelectAllState()
 	}
 }
 
-void SelectView::updateSelectCount(CountChange change)
+void SelectView::updateSelectCount(CountChange change, SelectItem *item)
 {
 	/* CURRENT count if incremented, PREVIOUS count otherwise */
 	size_t checkCount = (change == CountIncrement) ? ++m_SelectCount : m_SelectCount--;
+
+	if (m_SelectLimit && m_SelectCount > m_SelectLimit) {
+		item->setChecked(false);
+		return;
+	}
 
 	/* Prevent updating if multiple checking is in progress */
 	if (m_IsChecking) {
@@ -266,16 +269,12 @@ void SelectView::updateSelectCount(CountChange change)
 
 void SelectView::updateItemCount(CountChange change, SelectItem *item)
 {
-	if (item->isChecked()) {
-		if (change == CountIncrement && m_SelectLimit && m_SelectCount == m_SelectLimit) {
-			item->setChecked(false);
-		} else {
-			updateSelectCount(change);
-		}
-	}
-
 	/* PREVIOUS count if incremented, CURRENT count otherwise */
 	size_t checkCount = (change == CountIncrement) ? m_TotalCount++ : --m_TotalCount;
+
+	if (item->isChecked()) {
+		updateSelectCount(change, item);
+	}
 
 	/* (all checked -> unchecked inserted) or (one unchecked -> unchecked removed) */
 	if (checkCount == m_SelectCount) {
@@ -328,10 +327,6 @@ void SelectView::onItemSelected(SelectItem *item)
 
 bool SelectView::onItemChecked(SelectItem *item, bool isChecked)
 {
-	if (item->isExcluded()) {
-		return true;
-	}
-
 	if (m_SelectLimit && m_SelectCount == m_SelectLimit && isChecked) {
 		char buffer[POPUP_BUFFER_SIZE];
 		snprintf(buffer, sizeof(buffer), _(m_Strings.popupLimit), m_SelectLimit);
@@ -343,7 +338,7 @@ bool SelectView::onItemChecked(SelectItem *item, bool isChecked)
 		return false;
 	}
 
-	updateSelectCount(isChecked ? CountIncrement : CountDecrement);
+	updateSelectCount(isChecked ? CountIncrement : CountDecrement, item);
 	return true;
 }
 
