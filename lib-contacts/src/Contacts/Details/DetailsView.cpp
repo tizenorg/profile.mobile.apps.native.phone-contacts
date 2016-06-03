@@ -187,7 +187,8 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 	} else if (fieldId == FieldUrl) {
 		item = new ActionFieldItem(field, Common::ActionUrl);
 	} else if (fieldId == FieldNote) {
-		item = new MultilineFieldItem(field);
+		/* FIXME: Use MultilineFieldItem when style will be available */
+		item = new FieldItem(field);
 	} else if (field.getInterfaces() & InterfaceTypedObject) {
 		item = new TypedFieldItem(field);
 	} else {
