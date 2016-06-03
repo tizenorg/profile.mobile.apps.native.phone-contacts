@@ -188,6 +188,8 @@ void InputView::onPageAttached(Ui::NavigatorPage *page)
 
 bool InputView::onBackPressed()
 {
+	Evas_Object *obj = elm_object_focused_object_get(getEvasObject());
+	elm_object_focus_set(obj, EINA_FALSE);
 	return onCancel();
 }
 
