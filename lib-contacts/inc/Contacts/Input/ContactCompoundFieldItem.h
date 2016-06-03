@@ -54,7 +54,7 @@ namespace Contacts
 
 		private:
 			Evas_Object *createExpandButton(Evas_Object *parent);
-			Evas_Object *getExpandIcon() const;
+			void updateExpandIcon(bool isExpanded) const;
 			void onExpandPressed(Evas_Object *button, void *eventInfo);
 		};
 	}
