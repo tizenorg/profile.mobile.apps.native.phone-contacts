@@ -20,15 +20,19 @@
 using namespace Contacts::Details;
 using namespace Contacts::Model;
 
+/* FIXME: Use multiline part when style will be available */
+#define PART_FIELD_VALUE "elm.text"
+
 Elm_Genlist_Item_Class *MultilineFieldItem::getItemClass() const
 {
-	static Elm_Genlist_Item_Class itc = createItemClass("multiline_main.sub");
+	/* FIXME: Request multiline style with sub text */
+	static Elm_Genlist_Item_Class itc = createItemClass("type2");
 	return &itc;
 }
 
 char *MultilineFieldItem::getText(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, "elm.text.multiline") == 0) {
+	if (strcmp(part, PART_FIELD_VALUE) == 0) {
 		return FieldItem::getText(parent, "elm.text");
 	}
 
@@ -38,7 +42,7 @@ char *MultilineFieldItem::getText(Evas_Object *parent, const char *part)
 void MultilineFieldItem::onFieldUpdated(ContactField &field, contacts_changed_e change)
 {
 	if (&field == &getField()) {
-		elm_genlist_item_fields_update(getObjectItem(), "elm.text.multiline", ELM_GENLIST_ITEM_FIELD_TEXT);
+		elm_genlist_item_fields_update(getObjectItem(), PART_FIELD_VALUE, ELM_GENLIST_ITEM_FIELD_TEXT);
 	} else {
 		FieldItem::onFieldUpdated(field, change);
 	}
