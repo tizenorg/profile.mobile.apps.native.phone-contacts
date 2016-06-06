@@ -25,7 +25,6 @@
 #include "Utils/UniString.h"
 
 #include <map>
-#include <contacts_setting.h>
 
 namespace Ui
 {
@@ -40,6 +39,7 @@ namespace Contacts
 		class SearchItem;
 		class PersonGroupItem;
 		class PersonItem;
+		class ContactItem;
 
 		/**
 		 * @brief Contacts list view
@@ -81,14 +81,11 @@ namespace Contacts
 			void onDeleteSelected();
 			void onShareSelected();
 
-			void onSortOrderChanged(contacts_name_sorting_order_e order);
-
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
 			Ui::GenlistGroupItem *createMyProfileSection();
-			Ui::GenlistGroupItem *createFavoritesSection();
-			Ui::GenlistGroupItem *createMfcSection();
+			Ui::GenlistGroupItem *createListSection(SectionId sectionId);
 			void fillPersonList();
 
 			Ui::Genlist *createGenlist(Evas_Object *parent);
@@ -97,11 +94,13 @@ namespace Contacts
 			void setEmptyState(bool isEmpty);
 			void setIndexState(bool isVisible);
 
-			void addSection(SectionId sectionId);
-			void removeSection(SectionId sectionId);
+			Ui::GenlistGroupItem *createSection(SectionId sectionId);
+			void insertSection(Ui::GenlistGroupItem *section, SectionId sectionId);
+			void updateSection(SectionId sectionId);
+			void updateSections();
+
 			Ui::GenlistItem *getNextSectionItem(SectionId sectionId);
-			bool getSectionVisibility(Ux::SelectMode selectMode, SectionId sectionId);
-			void updateSectionsMode();
+			bool getSectionVisibility(SectionId sectionId);
 
 			SearchItem *createSearchItem();
 			Evas_Object *createAddButton(Evas_Object *parent);
@@ -121,6 +120,7 @@ namespace Contacts
 			void updatePersonItem(PersonItem *item, int changes);
 			void deletePersonItem(PersonItem *item);
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
+			void linkPersonItems(PersonItem *sectionItem);
 
 			void onAddPressed(Evas_Object *button, void *eventInfo);
 
@@ -128,7 +128,7 @@ namespace Contacts
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
 			void onPersonInserted(Contacts::Model::ContactData &person);
-			void onSectionUpdated(bool isEmpty, SectionId sectionId);
+			void onSectionUpdated(ContactItem *item, ::Common::ChangeType change, SectionId sectionId);
 			void onSearchChanged(const char *str);
 
 			Evas_Object *m_Box;

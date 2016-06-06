@@ -21,11 +21,6 @@
 
 using namespace Ui;
 
-GenlistGroupItem::GenlistGroupItem()
-	: m_FirstItem(nullptr), m_LastItem(nullptr)
-{
-}
-
 GenlistGroupItem::~GenlistGroupItem()
 {
 	for (auto &&item : m_ItemsCache) {
@@ -33,19 +28,41 @@ GenlistGroupItem::~GenlistGroupItem()
 	}
 }
 
+GenlistItem *GenlistGroupItem::getFirstItem() const
+{
+	const Eina_List *subitems = elm_genlist_item_subitems_get(getObjectItem());
+	Elm_Object_Item *item = (Elm_Object_Item *) eina_list_data_get(subitems);
+	return (GenlistItem *) elm_object_item_data_get(item);
+}
+
+GenlistItem *GenlistGroupItem::getLastItem() const
+{
+	const Eina_List *subitems = elm_genlist_item_subitems_get(getObjectItem());
+	Elm_Object_Item *item = (Elm_Object_Item *) eina_list_last_data_get(subitems);
+	return (GenlistItem *) elm_object_item_data_get(item);
+}
+
 GenlistIterator GenlistGroupItem::begin()
 {
-	return m_FirstItem;
+	return getFirstItem();
 }
 
 GenlistIterator GenlistGroupItem::end()
 {
-	return m_LastItem ? m_LastItem->getNextItem() : nullptr;
+	GenlistItem *lastItem = getLastItem();
+	return lastItem ? lastItem->getNextItem() : nullptr;
 }
 
-bool GenlistGroupItem::empty() const
+size_t GenlistGroupItem::getItemCount() const
 {
-	return m_FirstItem == nullptr && m_ItemsCache.empty();
+	const Eina_List *subitems = elm_genlist_item_subitems_get(getObjectItem());
+	return subitems ? eina_list_count(subitems) : m_ItemsCache.size();
+}
+
+bool GenlistGroupItem::isEmpty() const
+{
+	const Eina_List *subitems = elm_genlist_item_subitems_get(getObjectItem());
+	return subitems ? eina_list_count(subitems) == 0 : m_ItemsCache.empty();
 }
 
 bool GenlistGroupItem::isExpanded() const
@@ -64,7 +81,8 @@ bool GenlistGroupItem::isExpanded() const
 
 GenlistGroupItem *GenlistGroupItem::getNextGroupItem() const
 {
-	GenlistItem *item = m_LastItem ? m_LastItem->getNextItem() : getNextItem();
+	GenlistItem *lastItem = getLastItem();
+	GenlistItem *item = lastItem ? lastItem->getNextItem() : getNextItem();
 	if (item && item->isGroupItem()) {
 		return dynamic_cast<GenlistGroupItem *>(item);
 	}
@@ -160,33 +178,5 @@ void GenlistGroupItem::popSubItems()
 		GenlistItem *item = *it++;
 		item->pop();
 		m_ItemsCache.push_back(item);
-	}
-}
-
-void GenlistGroupItem::onSubItemInserted(GenlistItem *item)
-{
-	if (!m_FirstItem) {
-		m_FirstItem = m_LastItem = item;
-		return;
-	}
-
-	if (item->getNextItem() == m_FirstItem) {
-		m_FirstItem = item;
-	} else if (item->getPrevItem() == m_LastItem) {
-		m_LastItem = item;
-	}
-}
-
-void GenlistGroupItem::onSubItemDestroy(GenlistItem *item)
-{
-	if (m_FirstItem == m_LastItem) {
-		m_FirstItem = m_LastItem = nullptr;
-		return;
-	}
-
-	if (item == m_FirstItem) {
-		m_FirstItem = item->getNextItem();
-	} else if (item == m_LastItem) {
-		m_LastItem = item->getPrevItem();
 	}
 }

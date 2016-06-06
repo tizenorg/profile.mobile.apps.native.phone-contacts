@@ -17,6 +17,7 @@
 
 #include "Contacts/Model/Contact.h"
 #include "Contacts/Model/ContactFieldMetadata.h"
+#include "Contacts/Model/ContactCompoundObject.h"
 #include "Common/Database/RecordUtils.h"
 
 #include "Utils/Callback.h"
@@ -57,6 +58,35 @@ int Contact::initialize(int recordId)
 bool Contact::isNew() const
 {
 	return m_IsNew;
+}
+
+bool Contact::isUnique() const
+{
+	if (getSubType() == ObjectTypeMyProfile) {
+		return true;
+	}
+
+	std::string name = getFieldById<ContactCompoundObject>(FieldName)->getValue();
+
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(getObjectMetadata().uri, &filter);
+	contacts_filter_add_str(filter, getFieldById(FieldDisplayName)->getPropertyId(),
+			CONTACTS_MATCH_EXACTLY, name.c_str());
+	contacts_filter_add_int(filter, getObjectMetadata().idPropId,
+			CONTACTS_MATCH_NOT_EQUAL, getRecordId());
+
+	contacts_query_h query = nullptr;
+	contacts_query_create(getObjectMetadata().uri, &query);
+	contacts_query_set_filter(query, filter);
+
+	int count = 0;
+	int err = contacts_db_get_count_with_query(query, &count);
+	WARN_IF_ERR(err, "contacts_db_get_count_with_query() failed.");
+
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+
+	return count == 0;
 }
 
 int Contact::save()

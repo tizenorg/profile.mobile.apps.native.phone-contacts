@@ -18,7 +18,6 @@
 #include "Logs/List/LogsView.h"
 #include "Logs/List/LogGroupItem.h"
 #include "Logs/List/LogItem.h"
-#include "Logs/Details/DetailsView.h"
 #include "Common/Strings.h"
 
 #include "Ui/Genlist.h"
@@ -32,7 +31,6 @@
 using namespace Ux;
 using namespace Logs::Model;
 using namespace Logs::List;
-using namespace Logs::Details;
 using namespace std::placeholders;
 
 LogsView::LogsView(FilterType filterType)
@@ -87,7 +85,8 @@ void LogsView::onMenuPressed()
 	if (m_Genlist && elm_genlist_items_count(m_Genlist->getEvasObject())) {
 		menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
 			auto strings = Common::getSelectViewStrings();
-			strings.buttonDone = "IDS_LOGS_OPT_DELETE";
+			strings.buttonDone = "IDS_TPLATFORM_ACBUTTON_DELETE_ABB";
+			strings.titleMulti = "IDS_CLOG_HEADER_SELECT_LOGS";
 
 			LogsView *view = new LogsView(m_FilterType);
 			view->setStrings(strings);
@@ -115,19 +114,6 @@ void LogsView::onMenuPressed()
 void LogsView::onSelectAllInsert(Ui::GenlistItem *item)
 {
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
-}
-
-void LogsView::onItemPressed(Ux::SelectItem *item)
-{
-	LogItem *logItem = (LogItem *) item;
-	LogGroup *group = logItem->getGroup();
-
-	const char *number = group->getLogList().back()->getNumber();
-	if (number) {
-		App::AppControl appControl = App::requestTelephonyCall(number);
-		appControl.launch(nullptr, nullptr, false);
-		appControl.detach();
-	}
 }
 
 void LogsView::fillLayout()
@@ -205,10 +191,6 @@ LogItem *LogsView::createLogItem(LogGroup *group)
 {
 	LogItem *item = new LogItem(group);
 	item->setDeleteCallback(std::bind(&LogsView::onLogItemDelete, this, _1));
-	item->setDetailsCallback([this](LogItem *item) {
-		getNavigator()->navigateTo(new DetailsView(item->getGroup()));
-	});
-
 	return item;
 }
 
@@ -309,7 +291,7 @@ void LogsView::onLogItemDelete(LogItem *item)
 	onItemRemove(item);
 	delete item;
 
-	if (groupItem && groupItem->empty()) {
+	if (groupItem && groupItem->isEmpty()) {
 		delete groupItem;
 	}
 

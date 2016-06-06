@@ -51,6 +51,11 @@ namespace Contacts
 			bool isNew() const;
 
 			/**
+			 * @return Whether the contact has unique name.
+			 */
+			bool isUnique() const;
+
+			/**
 			 * @brief Save contact to the database.
 			 * @return Contact ID on success, Contacts API error code otherwise.
 			 */

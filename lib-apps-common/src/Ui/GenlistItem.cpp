@@ -109,11 +109,6 @@ void GenlistItem::pop()
 {
 	onPop();
 
-	GenlistGroupItem *parent = getParentItem();
-	if (parent) {
-		parent->onSubItemDestroy(this);
-	}
-
 	m_Preserve = true;
 	elm_object_item_del(m_Item);
 	m_Preserve = false;
@@ -144,10 +139,6 @@ Elm_Genlist_Item_Class *GenlistItem::getItemClass() const
 void GenlistItem::onInserted(Elm_Object_Item *item)
 {
 	m_Item = item;
-	GenlistGroupItem *parent = getParentItem();
-	if (parent) {
-		parent->onSubItemInserted(this);
-	}
 	onInserted();
 }
 

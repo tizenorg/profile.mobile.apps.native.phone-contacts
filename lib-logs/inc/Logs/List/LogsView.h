@@ -63,9 +63,7 @@ namespace Logs
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
 			virtual void onMenuPressed() override;
-
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
-			virtual void onItemPressed(Ux::SelectItem *item) override;
 
 			void fillLayout();
 			void updateLayout(bool isEmpty);
@@ -79,7 +77,6 @@ namespace Logs
 			LogGroupItem *insertGroupItem(tm date);
 			LogGroupItem *getLastGroupItem();
 			void setLastGroupItem(LogGroupItem *groupItem);
-
 
 			void onSettingsChanged(system_settings_key_e key);
 			void onSelectViewBy();

@@ -18,6 +18,7 @@
 #ifndef CONTACTS_INPUT_CONTACT_TEXT_FIELD_CONTROL_H
 #define CONTACTS_INPUT_CONTACT_TEXT_FIELD_CONTROL_H
 
+#include "Contacts/Model/ContactTextField.h"
 #include "Ui/Editfield.h"
 #include <string>
 
@@ -28,11 +29,6 @@ namespace Ui
 
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactTextField;
-	}
-
 	namespace Input
 	{
 		/**

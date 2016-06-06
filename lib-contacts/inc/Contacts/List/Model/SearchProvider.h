@@ -43,6 +43,12 @@ namespace Contacts
 				virtual ~SearchProvider() override;
 
 				/**
+				 * @brief Invoke search
+				 * @param[in]   query   Passed search string
+				 */
+				void search(const char *query);
+
+				/**
 				 * @return Found data items
 				 */
 				virtual const DataList &getDataList() override;

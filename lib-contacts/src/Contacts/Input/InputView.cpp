@@ -84,9 +84,9 @@ void InputView::addField(Model::ContactFieldId fieldId, const char *value)
 	if (field.getInterfaces() & InterfaceCompoundObject) {
 		field.cast<ContactCompoundObject>().setValue(value);
 	} else {
-		ContactField *subField = field.getField(0);
+		ContactTextField *subField = field.getField<ContactTextField>(0);
 		if (subField && subField->getType() == TypeText) {
-			subField->cast<ContactTextField>().setValue(value);
+			subField->setValue(value);
 		} else {
 			removeField(field);
 			return;
@@ -188,6 +188,8 @@ void InputView::onPageAttached(Ui::NavigatorPage *page)
 
 bool InputView::onBackPressed()
 {
+	Evas_Object *obj = elm_object_focused_object_get(getEvasObject());
+	elm_object_focus_set(obj, EINA_FALSE);
 	return onCancel();
 }
 
@@ -299,18 +301,30 @@ void InputView::onContactFilled(bool isFilled)
 
 void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 {
-	int id = m_Contact.save();
-	if (m_OnResult) {
-		m_OnResult(id);
+	if (m_Contact.isNew() && !m_Contact.isUnique()) {
+		/* FIXME: Replace with translatable strings */
+		Ui::Popup *popup = new Ui::Popup();
+		popup->create(getEvasObject());
+		popup->setTitle("Name already in use");
+		popup->setText("A contact with the same name "
+				"already exists. Tap Save anyway "
+				"to save it anyway or tap Rename "
+				"to save this contact with a "
+				"different name.");
+
+		popup->addButton("Save anyway", [this] {
+			onSave();
+			return true;
+		});
+		popup->addButton("Rename", [this] {
+			m_Items[Model::FieldName]->focus();
+			return true;
+		});
+
+		return;
 	}
 
-	if (m_Contact.isNew()) {
-		using Details::DetailsView;
-		DetailsView *view = new DetailsView(id, DetailsView::Type(m_Contact.getSubType()));
-		getNavigator()->navigateTo(view);
-	}
-
-	getPage()->close();
+	onSave();
 }
 
 void InputView::onCancelPressed(Evas_Object *button, void *eventInfo)
@@ -338,4 +352,20 @@ bool InputView::onCancel()
 	});
 
 	return false;
+}
+
+void InputView::onSave()
+{
+	int id = m_Contact.save();
+	if (m_OnResult) {
+		m_OnResult(id);
+	}
+
+	if (m_Contact.isNew()) {
+		using Details::DetailsView;
+		DetailsView *view = new DetailsView(id, DetailsView::Type(m_Contact.getSubType()));
+		getNavigator()->navigateTo(view);
+	}
+
+	getPage()->close();
 }

@@ -135,13 +135,9 @@ void TabView::onResize(Evas *e, Evas_Object *obj, void *eventInfo)
 		evas_object_size_hint_min_set(page->m_Sizer, m_Width, m_Height);
 	}
 
-	/* FIXME: elm_scroller_page_show() changes page to 0 regardless what index was passed */
-	ecore_job_add([](void *data) {
-		TabView *tabView = (TabView *) data;
-		if (tabView->m_CurrentPage) {
-			tabView->m_IsNavigating = true;
-			elm_scroller_page_show(tabView->m_Scroller, tabView->m_CurrentPage->m_Index, 0);
-			tabView->m_IsNavigating = false;
-		}
-	}, this);
+	if (m_CurrentPage) {
+		m_IsNavigating = true;
+		elm_scroller_page_show(m_Scroller, m_CurrentPage->m_Index, 0);
+		m_IsNavigating = false;
+	}
 }

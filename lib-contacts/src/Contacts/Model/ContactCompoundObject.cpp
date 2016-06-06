@@ -32,8 +32,8 @@ std::string ContactCompoundObject::getValues(Utils::Range<const unsigned *> fiel
 {
 	std::vector<const char *> values;
 	for (auto &&fieldId : fieldIds) {
-		auto field = getFieldById(fieldId);
-		const char *value = field->cast<ContactTextField>().getValue();
+		auto field = getFieldById<ContactTextField>(fieldId);
+		const char *value = field->getValue();
 		values.push_back(value);
 	}
 
@@ -43,9 +43,9 @@ std::string ContactCompoundObject::getValues(Utils::Range<const unsigned *> fiel
 void ContactCompoundObject::setValues(Utils::Range<const char **> values)
 {
 	for (size_t i = 0; i < values.count(); ++i) {
-		auto field = getField(i);
+		ContactTextField *field = getField<ContactTextField>(i);
 		if (values[i]) {
-			field->cast<ContactTextField>().setValue(values[i]);
+			field->setValue(values[i]);
 		} else {
 			field->reset();
 		}

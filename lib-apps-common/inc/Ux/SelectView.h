@@ -50,20 +50,22 @@ namespace Ux
 			const char *buttonCancel;   /**< "Cancel" button text. */
 			const char *titleDefault;   /**< Title for #SelectNone mode. */
 			const char *titleSingle;    /**< Title for #SelectSingle mode */
-			const char *titleMulti;     /**< Title for #SelectMulti mode.
+			const char *titleMulti;     /**< Title for #SelectMulti mode */
+			const char *titleWithCount; /**< Title for #SelectMulti mode with selection count.
 											 Can contain one integer format specifier. */
 			const char *titleWithLimit; /**< Title for #SelectMulti mode with limit.
 											 Can contain two integer format specifiers. */
+			const char *popupLimit;     /**< Selection limit reached popup text.
+											 Can contain one integer format specifiers. */
 		};
 
 		/**
 		 * @brief Called when item's "checked" state changed in #SelectMulti mode.
-		 * @remark Use SelectView::setCheckCallback() to properly change item's state
-		 *         if necessary.
-		 * @param[in]   Changed item
-		 * @param[in]   Whether item is checked
+		 * @param[in]   item        Changed item
+		 * @param[in]   isChecked   Whether item is checked
+		 * @param[in]   isSelectAll Whether item is being checked via "Select All"
 		 */
-		typedef std::function<bool(SelectItem *, bool)> CheckCallback;
+		typedef std::function<bool(SelectItem *item, bool isChecked, bool isSelectAll)> CheckCallback;
 
 		SelectView();
 
@@ -104,15 +106,6 @@ namespace Ux
 		 */
 		void setCheckCallback(CheckCallback callback);
 
-		/**
-		 * @brief Set item's "checked" state.
-		 * @remark Item "checked" state should always be changed via this function,
-		 *         otherwise SelectView wouldn't know to update the select count.
-		 * @param[in]   item       Item to change state for
-		 * @param[in]   isChecked  Whether item should be checked
-		 */
-		void setCheckedItem(SelectItem *item, bool isChecked);
-
 	protected:
 		/**
 		 * @return View selection mode.
@@ -123,6 +116,11 @@ namespace Ux
 		 * @return Current selection limit.
 		 */
 		size_t getSelectLimit() const;
+
+		/**
+		 * @return Maximum allowed number of selected items.
+		 */
+		size_t getSelectMax() const;
 
 		/**
 		 * @return Current selected items count.
@@ -146,12 +144,6 @@ namespace Ux
 		 * @param[in]   item    Item being removed
 		 */
 		void onItemRemove(SelectItem *item);
-
-		/**
-		 * @brief Called when selectable item is pressed it #SelectNone mode.
-		 * @param[in]   item    Pressed item
-		 */
-		virtual void onItemPressed(SelectItem *item) { }
 
 		/**
 		 * @brief Called when "Select All" item should be inserted.
@@ -192,13 +184,13 @@ namespace Ux
 		void updateDoneButtonState();
 		void updateSelectAllState();
 
-		void updateSelectCount(CountChange change);
+		void updateSelectCount(CountChange change, SelectItem *item);
 		void updateItemCount(CountChange change, SelectItem *item);
 
 		void createPageButtons();
 		void destroyPageButtons();
 
-		void onItemExcluded(SelectItem *item);
+		void onItemExcluded(SelectItem *item, bool isExcluded);
 		void onItemSelected(SelectItem *item);
 		bool onItemChecked(SelectItem *item, bool isChecked);
 		bool onSelectAllChecked(bool isChecked);
@@ -213,6 +205,7 @@ namespace Ux
 		Evas_Object *m_DoneButton;
 		Evas_Object *m_CancelButton;
 
+		bool m_IsChecking;
 		size_t m_TotalCount;
 		size_t m_SelectCount;
 		size_t m_SelectLimit;

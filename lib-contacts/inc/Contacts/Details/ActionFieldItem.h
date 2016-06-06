@@ -29,7 +29,7 @@ namespace Contacts
 		 * @brief Genlist item representing a field which value can be used to
 		 *        initiate some external action.
 		 */
-		class ActionFieldItem : public TypedFieldItem
+		class ActionFieldItem : virtual public FieldItem
 		{
 		public:
 			/**

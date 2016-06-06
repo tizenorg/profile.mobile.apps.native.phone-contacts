@@ -21,27 +21,66 @@
 using namespace Ui;
 
 GenlistCheckItem::GenlistCheckItem()
-	: m_CheckPart("*"), m_IsChecked(false)
-{ }
+	: m_CheckPart("*"), m_IsChecked(false), m_IsChecking(false),
+	  m_LinkedItem(nullptr)
+{
+}
+
+GenlistCheckItem::~GenlistCheckItem()
+{
+	unsetLinkedItem();
+}
 
 bool GenlistCheckItem::isChecked() const
 {
 	return m_IsChecked;
 }
 
-void GenlistCheckItem::setChecked(bool isChecked)
+bool GenlistCheckItem::setChecked(bool isChecked)
 {
+	if (isChecked == m_IsChecked) {
+		return true;
+	}
+
+	m_IsChecked = isChecked;
+	if (!notifyCheck()) {
+		m_IsChecked = !m_IsChecked;
+		return false;
+	}
+
 	Evas_Object *check = elm_object_item_part_content_get(getObjectItem(), m_CheckPart.c_str());
 	if (check) {
-		elm_check_state_set(check, isChecked);
-	} else {
-		m_IsChecked = isChecked;
+		elm_check_state_set(check, m_IsChecked);
 	}
+
+	return true;
 }
 
 void GenlistCheckItem::setCheckCallback(CheckCallback callback)
 {
 	m_OnChecked = std::move(callback);
+}
+
+void GenlistCheckItem::setLinkedItem(GenlistCheckItem *item)
+{
+	if (!item) {
+		return;
+	}
+
+	unsetLinkedItem();
+	item->unsetLinkedItem();
+
+	item->setChecked(m_IsChecked);
+	item->m_LinkedItem = this;
+	m_LinkedItem = item;
+}
+
+void GenlistCheckItem::unsetLinkedItem()
+{
+	if (m_LinkedItem) {
+		m_LinkedItem->m_LinkedItem = nullptr;
+		m_LinkedItem = nullptr;
+	}
 }
 
 void GenlistCheckItem::updateCheckPart()
@@ -65,27 +104,33 @@ Evas_Object *GenlistCheckItem::getContent(Evas_Object *parent, const char *part)
 
 void GenlistCheckItem::onSelected()
 {
-	if (notifyCheck(!m_IsChecked)) {
-		setChecked(!m_IsChecked);
-	}
+	setChecked(!m_IsChecked);
 }
 
 void GenlistCheckItem::onCheckChanged(Evas_Object *check, void *eventInfo)
 {
-	if (!notifyCheck(m_IsChecked)) {
+	if (!notifyCheck()) {
 		elm_check_state_set(check, !m_IsChecked);
 	}
 }
 
-bool GenlistCheckItem::notifyCheck(bool isChecked)
+bool GenlistCheckItem::notifyCheck()
 {
-	if (!onChecked(isChecked)) {
+	if (m_IsChecking) {
 		return false;
 	}
 
-	if (m_OnChecked && !m_OnChecked(isChecked)) {
-		return false;
+	bool isAllowed = false;
+	m_IsChecking = true;
+
+	if (onChecked(m_IsChecked)) {
+		if (!m_OnChecked || m_OnChecked(m_IsChecked)) {
+			if (!m_LinkedItem || m_LinkedItem->setChecked(m_IsChecked)) {
+				isAllowed = true;
+			}
+		}
 	}
 
-	return true;
+	m_IsChecking = false;
+	return isAllowed;
 }

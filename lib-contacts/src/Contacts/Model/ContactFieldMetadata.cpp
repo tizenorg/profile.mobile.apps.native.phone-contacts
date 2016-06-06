@@ -228,24 +228,12 @@ const ContactTypedObjectMetadata contactRel = {
 };
 
 /******************************** Url Object **********************************/
-const int contactUrlTypeValues[] = {
-	CONTACTS_URL_TYPE_HOME,
-	CONTACTS_URL_TYPE_WORK,
-	CONTACTS_URL_TYPE_OTHER,
-	CONTACTS_URL_TYPE_CUSTOM
-};
-const ContactEnumMetadata contactUrlType = {
-	{ TypeEnum, EnumUrlType }, makeRange(contactUrlTypeValues),
-	CONTACTS_URL_TYPE_HOME, CONTACTS_URL_TYPE_CUSTOM
-};
 const ContactFieldMetadata contactUrlFields[] = {
 	{ FieldUrl, _contacts_url.url, false, &contactUrlText }
 };
-const ContactTypedObjectMetadata contactUrl = {
-	{ { TypeObject, ObjectTypeUrl }, InterfaceTypedObject,
-	_contacts_url._uri, _contacts_url.id, makeRange(contactUrlFields) },
-	{ FieldUrl, _contacts_url.type, false, UPCAST(&contactUrlType) },
-	{ FieldUrl, _contacts_url.type, false, &contactRegularText }
+const ContactObjectMetadata contactUrl = {
+	{ TypeObject, ObjectTypeUrl }, InterfaceNone,
+	_contacts_url._uri, _contacts_url.id, makeRange(contactUrlFields)
 };
 
 /***************************** Messenger Object *******************************/

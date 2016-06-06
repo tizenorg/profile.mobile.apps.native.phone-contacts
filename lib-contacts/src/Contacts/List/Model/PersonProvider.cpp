@@ -39,7 +39,9 @@ PersonProvider::PersonProvider(int filterType)
 	contacts_db_add_changed_cb(_contacts_contact._uri,
 			makeCallbackWithLastParam(&PersonProvider::onChanged), this);
 	contacts_setting_add_name_display_order_changed_cb(
-			makeCallbackWithLastParam(&PersonProvider::onNameFormatChanged), this);
+			&PersonProvider::onNameFormatChanged, this);
+	contacts_setting_add_name_sorting_order_changed_cb(
+			&PersonProvider::onSortOrderChanged, this);
 }
 
 PersonProvider::~PersonProvider()
@@ -51,7 +53,14 @@ PersonProvider::~PersonProvider()
 	contacts_db_remove_changed_cb(_contacts_contact._uri,
 			makeCallbackWithLastParam(&PersonProvider::onChanged), this);
 	contacts_setting_remove_name_display_order_changed_cb(
-			makeCallbackWithLastParam(&PersonProvider::onNameFormatChanged), this);
+			&PersonProvider::onNameFormatChanged, this);
+	contacts_setting_remove_name_sorting_order_changed_cb(
+			&PersonProvider::onSortOrderChanged, this);
+}
+
+int PersonProvider::getFilterType() const
+{
+	return m_FilterType;
 }
 
 const PersonProvider::DataList &PersonProvider::getDataList()
@@ -274,7 +283,7 @@ void PersonProvider::onChanged(const char *uri)
 	}
 }
 
-void PersonProvider::onNameFormatChanged(contacts_name_display_order_e order)
+void PersonProvider::onSettingsChanged()
 {
 	for (auto &&contactData : m_PersonList) {
 		Person *person = static_cast<Person *>(contactData);
@@ -283,4 +292,16 @@ void PersonProvider::onNameFormatChanged(contacts_name_display_order_e order)
 		contacts_db_get_record(_contacts_person._uri, person->getId(), &record);
 		person->update(record);
 	}
+}
+
+void PersonProvider::onNameFormatChanged(contacts_name_display_order_e order, void *data)
+{
+	PersonProvider *provider = (PersonProvider *) data;
+	provider->onSettingsChanged();
+}
+
+void PersonProvider::onSortOrderChanged(contacts_name_sorting_order_e order, void *data)
+{
+	PersonProvider *provider = (PersonProvider *) data;
+	provider->onSettingsChanged();
 }

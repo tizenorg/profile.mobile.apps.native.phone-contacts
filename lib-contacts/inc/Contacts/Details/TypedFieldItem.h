@@ -35,7 +35,7 @@ namespace Contacts
 		 * @brief Genlist item representing ContactTypedObject and its first field,
 		 *        type field and label field.
 		 */
-		class TypedFieldItem : public FieldItem
+		class TypedFieldItem : virtual public FieldItem
 		{
 		public:
 			/**

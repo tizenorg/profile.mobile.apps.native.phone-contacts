@@ -60,6 +60,11 @@ namespace Ux
 		SelectResult getSelectResult() const;
 
 		/**
+		 * @return Whether item has custom selection result.
+		 */
+		bool hasCustomResult() const;
+
+		/**
 		 * @brief Set custom selection result to override the default result.
 		 */
 		void setCustomResult(SelectResult result);
@@ -84,6 +89,11 @@ namespace Ux
 		 * @see GenlistItem::onSelected()
 		 */
 		virtual void onSelected() override;
+
+		/**
+		 * @see GenlistCheckItem::onChecked()
+		 */
+		virtual bool onChecked(bool isChecked) override;
 
 		/**
 		 * @brief Called when selection mode was changed.

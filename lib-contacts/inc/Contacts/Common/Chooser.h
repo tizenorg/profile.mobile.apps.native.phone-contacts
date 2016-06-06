@@ -56,9 +56,8 @@ namespace Contacts
 			virtual void onCreated() override;
 			virtual void onPageAttached(Ui::NavigatorPage *page) override;
 
-			bool onPersonChecked(Ux::SelectItem *item, bool isChecked);
+			bool onPersonChecked(Ux::SelectItem *item, bool isChecked, bool isSelectAll);
 			bool onSinglePersonSelected(Ux::SelectResults results);
-			bool onMultiPersonSelected(Ux::SelectResults results);
 
 			bool onSelectedForAction(Ux::SelectResults results);
 			bool onSelectedForVcard(Ux::SelectResults results);

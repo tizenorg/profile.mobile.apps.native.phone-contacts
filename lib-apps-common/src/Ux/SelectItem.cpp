@@ -40,7 +40,7 @@ void SelectItem::setExcluded(bool isExcluded)
 
 	m_IsExcluded = isExcluded;
 	if (m_SelectView) {
-		m_SelectView->onItemExcluded(this);
+		m_SelectView->onItemExcluded(this, m_IsExcluded);
 	}
 }
 
@@ -60,6 +60,11 @@ void SelectItem::setSelectMode(SelectMode selectMode)
 SelectResult SelectItem::getSelectResult() const
 {
 	return m_HasCustomResult ? m_CustomResult : getDefaultResult();
+}
+
+bool SelectItem::hasCustomResult() const
+{
+	return m_HasCustomResult;
 }
 
 void SelectItem::setCustomResult(SelectResult result)
@@ -84,7 +89,20 @@ Evas_Object *SelectItem::getContent(Evas_Object *parent, const char *part)
 
 void SelectItem::onSelected()
 {
-	if (m_SelectMode == SelectMulti) {
+	if (m_SelectMode == SelectSingle) {
+		if (m_SelectView) {
+			m_SelectView->onItemSelected(this);
+		}
+	} else if (m_SelectMode == SelectMulti) {
 		GenlistCheckItem::onSelected();
 	}
+}
+
+bool SelectItem::onChecked(bool isChecked)
+{
+	if (m_SelectView && !m_IsExcluded) {
+		return m_SelectView->onItemChecked(this, isChecked);
+	}
+
+	return true;
 }
