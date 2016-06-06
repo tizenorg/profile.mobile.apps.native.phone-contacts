@@ -90,13 +90,15 @@ char *LogItem::getText(Evas_Object *parent, const char *part)
 	if (name == nullptr) {
 		name = number;
 		number = _("IDS_LOGS_SBODY_UNSAVED_M_STATUS");
+	} else {
+		number = _("IDS_LOGS_SBODY_SAVED_M_STATUS");
 	}
 
 	if (strcmp(part, PART_LOG_NAME) == 0) {
 		return strdup(name);
 	} else if (strcmp(part, PART_LOG_NUMBER) == 0) {
 		return strdup(number);
-	}  else if (strcmp(part, PART_LOG_COUNT) == 0) {
+	} else if (strcmp(part, PART_LOG_COUNT) == 0) {
 		if (m_Group->getLogList().size() == 1) {
 			return nullptr;
 		}
