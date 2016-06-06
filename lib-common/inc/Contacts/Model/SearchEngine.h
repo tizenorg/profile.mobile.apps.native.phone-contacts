@@ -19,6 +19,7 @@
 #define CONTACTS_MODEL_SEARCH_ENGINE_H
 
 #include "Contacts/Model/ContactDataProvider.h"
+#include "Contacts/Model/SearchProvider.h"
 #include "Contacts/Model/SearchResult.h"
 
 #include <string>
@@ -28,6 +29,7 @@ namespace Contacts
 {
 	namespace Model
 	{
+		class SearchProvider;
 		class SearchData;
 
 		/**
@@ -43,9 +45,9 @@ namespace Contacts
 
 			/**
 			 * @brief Create search engine
-			 * @param[in]   dataList  ContactData list
+			 * @param[in]   provider    Search provider
 			 */
-			explicit SearchEngine(DataList &dataList);
+			explicit SearchEngine(SearchProvider &provider);
 
 			/**
 			 * @brief Perform incremental search
@@ -78,11 +80,14 @@ namespace Contacts
 
 			void clear();
 
-			std::string m_PrevQuery;
+			void onProviderNotify(contacts_changed_e changed, SearchData *searchData);
+			void onInserted(SearchData *searchData);
+
+			std::string m_Query;
 			SearchHistory m_History;
 			int m_LastFoundIndex;
 
-			DataList &m_DataList;
+			SearchProvider &m_SearchProvider;
 		};
 	}
 }

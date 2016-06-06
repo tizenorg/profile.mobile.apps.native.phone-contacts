@@ -22,18 +22,20 @@
 #include <algorithm>
 
 using namespace Contacts::Model;
+using namespace std::placeholders;
 
-SearchEngine::SearchEngine(DataList &dataList)
+SearchEngine::SearchEngine(SearchProvider &provider)
 	: m_LastFoundIndex(-1),
-	  m_DataList(dataList)
+	  m_SearchProvider(provider)
 {
+	m_SearchProvider.setSearchNotifyCallback(std::bind(&SearchEngine::onProviderNotify, this, _1, _2));
 }
 
 void SearchEngine::search(std::string query)
 {
 	if (query.empty()) {
 		clear();
-		if (!m_PrevQuery.empty()) {
+		if (!m_Query.empty()) {
 			resetSearchResult();
 		}
 	} else {
@@ -48,8 +50,8 @@ void SearchEngine::search(std::string query)
 		m_History.erase(nothingFound ? m_History.begin() : (matchIt + 1), m_History.end());
 		m_History.resize(query.size());
 
-		if (m_PrevQuery.empty() || nothingFound) {
-			incrementalSearch(m_DataList, query);
+		if (m_Query.empty() || nothingFound) {
+			incrementalSearch(m_SearchProvider.getDataList(), query);
 		} else if (matchPos == m_History.size()) {
 			updateSearchResult(m_History.back());
 		} else {
@@ -57,7 +59,7 @@ void SearchEngine::search(std::string query)
 		}
 	}
 
-	m_PrevQuery = std::move(query);
+	m_Query = std::move(query);
 }
 
 bool SearchEngine::empty() const
@@ -67,7 +69,7 @@ bool SearchEngine::empty() const
 
 bool SearchEngine::needSearch(const std::string &query)
 {
-	if (query.size() >= m_PrevQuery.size()
+	if (query.size() >= m_Query.size()
 		&&(int)(m_History.size() - 1) > m_LastFoundIndex) {
 		return false;
 	}
@@ -114,7 +116,7 @@ void SearchEngine::updateSearchResult(ResultList &list)
 
 void SearchEngine::resetSearchResult()
 {
-	for (auto &&data : m_DataList) {
+	for (auto &&data : m_SearchProvider.getDataList()) {
 		SearchData *searchData = static_cast<SearchData *>(data);
 		searchData->setSearchResult(nullptr);
 	}
@@ -122,10 +124,10 @@ void SearchEngine::resetSearchResult()
 
 SearchEngine::SearchHistory::iterator SearchEngine::getMatch(const std::string &query)
 {
-	size_t minSize = std::min(m_PrevQuery.size(), query.size());
-	auto itPair = std::mismatch(m_PrevQuery.begin(), m_PrevQuery.begin() + minSize, query.begin());
+	size_t minSize = std::min(m_Query.size(), query.size());
+	auto itPair = std::mismatch(m_Query.begin(), m_Query.begin() + minSize, query.begin());
 
-	return skipEmptyResults(itPair.first - m_PrevQuery.begin());
+	return skipEmptyResults(itPair.first - m_Query.begin());
 }
 
 SearchEngine::SearchHistory::iterator SearchEngine::skipEmptyResults(size_t offset)
@@ -143,4 +145,35 @@ void SearchEngine::clear()
 {
 	m_History.clear();
 	m_LastFoundIndex = -1;
+}
+
+void SearchEngine::onProviderNotify(contacts_changed_e changed, SearchData *searchData)
+{
+	if (changed == CONTACTS_CHANGE_INSERTED) {
+		onInserted(searchData);
+	}
+}
+
+void SearchEngine::onInserted(SearchData *searchData)
+{
+	SearchResult *lastResult = nullptr;
+	std::string query;
+	query.reserve(m_Query.size());
+
+	for (size_t i = 0; i < m_History.size(); ++i) {
+		if (i < (size_t)m_LastFoundIndex && m_History[i].empty()) {
+			continue;
+		}
+
+		query.append(1, m_Query[i]);
+		SearchResultPtr searchResult = searchData->compare(query);
+
+		if (searchResult) {
+			m_History[i].emplace_back(searchData, std::move(searchResult));
+			if (i == m_History.size() - 1) {
+				lastResult = m_History[i].back().second.get();
+			}
+		}
+	}
+	searchData->setSearchResult(lastResult);
 }
