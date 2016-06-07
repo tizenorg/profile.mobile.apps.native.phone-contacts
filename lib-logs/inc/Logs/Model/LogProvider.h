@@ -22,7 +22,7 @@
 #include <time.h>
 #include <memory>
 
-#include "Contacts/Model/ContactDataProvider.h"
+#include "Model/DataProvider.h"
 #include "Logs/Model/Log.h"
 #include "Logs/Model/LogGroup.h"
 
@@ -33,7 +33,7 @@ namespace Logs
 		/**
 		 * @brief Provides list of logs
 		 */
-		class LogProvider : public Contacts::Model::ContactDataProvider
+		class LogProvider : public ::Model::DataProvider
 		{
 		public:
 			/**

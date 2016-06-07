@@ -21,13 +21,13 @@
 #include "Ui/GenlistGroupItem.h"
 #include "Common/DataTypes.h"
 
+namespace Model
+{
+	class DataItem;
+}
+
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactData;
-	}
-
 	namespace List
 	{
 		namespace Model
@@ -70,7 +70,7 @@ namespace Contacts
 			void setUpdateCallback(UpdateCallback callback);
 
 		protected:
-			void onInserted(Contacts::Model::ContactData &person);
+			void onInserted(::Model::DataItem &person);
 			ContactItem *createItem(Model::Person &person);
 
 		private:

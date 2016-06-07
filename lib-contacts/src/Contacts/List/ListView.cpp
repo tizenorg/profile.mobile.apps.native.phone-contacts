@@ -627,9 +627,9 @@ void ListView::onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem)
 	elm_index_item_selected_set(indexItem, EINA_FALSE);
 }
 
-void ListView::onPersonInserted(ContactData &contactData)
+void ListView::onPersonInserted(::Model::DataItem &data)
 {
-	auto item = createPersonItem(static_cast<PersonSearchData &>(contactData));
+	auto item = createPersonItem(static_cast<PersonSearchData &>(data));
 	insertPersonItem(item);
 	onItemInserted(item);
 

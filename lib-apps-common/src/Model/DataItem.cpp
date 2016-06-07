@@ -15,23 +15,40 @@
  *
  */
 
-#include "Contacts/Model/ContactDataProvider.h"
+#include "Model/DataItem.h"
 
-using namespace Contacts::Model;
+using namespace Model;
 
-void ContactDataProvider::setInsertCallback(InsertCallback callback)
+void DataItem::setUpdateCallback(UpdateCallback callback)
 {
-	m_OnInserted = std::move(callback);
+	m_OnUpdated = std::move(callback);
 }
 
-void ContactDataProvider::unsetInsertCallback()
+void DataItem::unsetUpdateCallback()
 {
-	m_OnInserted = nullptr;
+	m_OnUpdated = nullptr;
 }
 
-void ContactDataProvider::onInserted(ContactData &contactData)
+void DataItem::setDeleteCallback(DeleteCallback callback)
 {
-	if (m_OnInserted) {
-		m_OnInserted(contactData);
+	m_OnDeleted = std::move(callback);
+}
+
+void DataItem::unsetDeleteCallback()
+{
+	m_OnDeleted = nullptr;
+}
+
+void DataItem::onUpdated(int changes)
+{
+	if (m_OnUpdated) {
+		m_OnUpdated(changes);
+	}
+}
+
+void DataItem::onDeleted()
+{
+	if (m_OnDeleted) {
+		m_OnDeleted();
 	}
 }

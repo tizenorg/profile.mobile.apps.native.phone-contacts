@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_MODEL_VCARD_PROVIDER_H
 #define CONTACTS_LIST_MODEL_VCARD_PROVIDER_H
 
-#include "Contacts/Model/ContactDataProvider.h"
+#include "Model/DataProvider.h"
 #include <string>
 
 namespace Contacts
@@ -30,7 +30,7 @@ namespace Contacts
 			/**
 			 * @brief Provides list of contacts from vcard
 			 */
-			class VcardProvider : public Contacts::Model::ContactDataProvider
+			class VcardProvider : public ::Model::DataProvider
 			{
 			public:
 				/**
@@ -44,7 +44,7 @@ namespace Contacts
 				VcardProvider &operator=(const VcardProvider &contact) = delete;
 
 				/**
-				 * @see ContactDataProvider::getDataList()
+				 * @see DataProvider::getDataList()
 				 * @return Contact data list
 				 */
 				virtual const DataList &getDataList() override;

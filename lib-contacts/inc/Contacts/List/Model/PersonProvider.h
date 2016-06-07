@@ -19,7 +19,7 @@
 #define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Contacts/Model/ContactDataProvider.h"
+#include "Model/DataProvider.h"
 
 #include <contacts.h>
 
@@ -34,7 +34,7 @@ namespace Contacts
 			/**
 			 * @brief Provides list of person
 			 */
-			class PersonProvider : public Contacts::Model::ContactDataProvider
+			class PersonProvider : public ::Model::DataProvider
 			{
 			public:
 				/**
@@ -56,7 +56,7 @@ namespace Contacts
 				virtual const DataList &getDataList() override;
 
 				/**
-				 * @see ContactDataProvider::clearDataList()
+				 * @see DataProvider::clearDataList()
 				 */
 				virtual void clearDataList() override;
 

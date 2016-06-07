@@ -15,17 +15,23 @@
  *
  */
 
-#include "Contacts/Model/ContactData.h"
+#include "Model/DataProvider.h"
 
-using namespace Contacts::Model;
 using namespace Model;
 
-ContactData::ContactData(Type type)
-	: m_Type(type)
+void DataProvider::setInsertCallback(InsertCallback callback)
 {
+	m_OnInserted = std::move(callback);
 }
 
-ContactData::Type ContactData::getType() const
+void DataProvider::unsetInsertCallback()
 {
-	return m_Type;
+	m_OnInserted = nullptr;
+}
+
+void DataProvider::onInserted(DataItem &dataItem)
+{
+	if (m_OnInserted) {
+		m_OnInserted(dataItem);
+	}
 }
