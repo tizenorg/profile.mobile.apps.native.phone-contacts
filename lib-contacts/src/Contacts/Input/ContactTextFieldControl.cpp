@@ -78,8 +78,9 @@ void ContactTextFieldControl::updateReturnKey()
 {
 	unsetNextItem();
 	for (auto item = m_ParentItem->getNextItem(); item; item = item->getNextItem()) {
-		if (item->isFocusable()) {
-			setNextItem(item);
+		auto genlistItem = static_cast<Ui::GenlistItem *>(item);
+		if (genlistItem->isFocusable()) {
+			setNextItem(genlistItem);
 			break;
 		}
 	}

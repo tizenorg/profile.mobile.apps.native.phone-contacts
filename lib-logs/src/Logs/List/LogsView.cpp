@@ -222,8 +222,9 @@ LogGroupItem *LogsView::getLastGroupItem()
 {
 	if (!m_LastGroupItem) {
 		for (auto &&item : *m_Genlist) {
-			if (item->isGroupItem()) {
-				setLastGroupItem(dynamic_cast<LogGroupItem *>(item));
+			auto genlistItem = static_cast<Ui::GenlistItem *>(item);
+			if (genlistItem->isGroupItem()) {
+				setLastGroupItem(dynamic_cast<LogGroupItem *>(genlistItem));
 				break;
 			}
 		}

@@ -20,7 +20,6 @@
 
 #include "Ui/Genlist.h"
 #include "Ui/GenlistItem.h"
-#include "Ui/GenlistIterator.h"
 #include <vector>
 
 namespace Ui
@@ -43,12 +42,12 @@ namespace Ui
 		/**
 		 * @return Group begin iterator.
 		 */
-		GenlistIterator begin();
+		GenIterator begin();
 
 		/**
 		 * @return Group end iterator.
 		 */
-		GenlistIterator end();
+		GenIterator end();
 
 		/**
 		 * @return Child items count.
