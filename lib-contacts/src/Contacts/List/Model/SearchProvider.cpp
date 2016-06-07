@@ -29,8 +29,8 @@ using namespace std::placeholders;
 SearchProvider::SearchProvider(PersonProvider &provider)
 	: m_Provider(provider), m_SearchEngine(m_ContactList)
 {
-	m_Provider.setInsertCallback([this](ContactData &contactData) {
-		onInserted(static_cast<Person &>(contactData));
+	m_Provider.setInsertCallback([this](::Model::DataItem &data) {
+		onInserted(static_cast<Person &>(data));
 	});
 }
 

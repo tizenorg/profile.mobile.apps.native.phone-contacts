@@ -219,8 +219,8 @@ PersonProvider::DataList::const_iterator PersonProvider::findPerson(int id, IdTy
 {
 	int propId = getIdProperty(idType);
 	return std::find_if(m_PersonList.begin(), m_PersonList.end(),
-		[id, propId](ContactData *contactData) {
-			Person *person = static_cast<Person *>(contactData);
+		[id, propId](::Model::DataItem *data) {
+			Person *person = static_cast<Person *>(data);
 			return getRecordInt(person->getRecord(), propId) == id;
 		}
 	);

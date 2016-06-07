@@ -15,17 +15,40 @@
  *
  */
 
-#include "Contacts/Model/ContactData.h"
+#include "Model/DataItem.h"
 
-using namespace Contacts::Model;
 using namespace Model;
 
-ContactData::ContactData(Type type)
-	: m_Type(type)
+void DataItem::setUpdateCallback(UpdateCallback callback)
 {
+	m_OnUpdated = std::move(callback);
 }
 
-ContactData::Type ContactData::getType() const
+void DataItem::unsetUpdateCallback()
 {
-	return m_Type;
+	m_OnUpdated = nullptr;
+}
+
+void DataItem::setDeleteCallback(DeleteCallback callback)
+{
+	m_OnDeleted = std::move(callback);
+}
+
+void DataItem::unsetDeleteCallback()
+{
+	m_OnDeleted = nullptr;
+}
+
+void DataItem::onUpdated(int changes)
+{
+	if (m_OnUpdated) {
+		m_OnUpdated(changes);
+	}
+}
+
+void DataItem::onDeleted()
+{
+	if (m_OnDeleted) {
+		m_OnDeleted();
+	}
 }

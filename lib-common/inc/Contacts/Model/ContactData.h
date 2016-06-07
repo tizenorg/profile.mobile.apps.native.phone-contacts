@@ -22,12 +22,13 @@
 #include <tizen.h>
 #include <list>
 #include "Common/DataTypes.h"
+#include "Model/DataItem.h"
 
 namespace Contacts
 {
 	namespace Model
 	{
-		class EXPORT_API ContactData
+		class EXPORT_API ContactData : public ::Model::DataItem
 		{
 		public:
 			/**
@@ -66,17 +67,6 @@ namespace Contacts
 			};
 
 			/**
-			 * @brief Change callback
-			 * @param[in] Changed info
-			 */
-			typedef std::function<void(int)> UpdateCallback;
-
-			/**
-			 * @brief Delete callback
-			 */
-			typedef std::function<void()> DeleteCallback;
-
-			/**
 			 * @brief Create ContactData object
 			 * @param[in]   type    ContactData type
 			 */
@@ -85,11 +75,6 @@ namespace Contacts
 			virtual ~ContactData() { }
 
 			ContactData &operator=(const ContactData &that) = delete;
-
-			/**
-			 * @return ID
-			 */
-			virtual int getId() const = 0;
 
 			/**
 			 * @return Name
@@ -111,44 +96,8 @@ namespace Contacts
 			 */
 			Type getType() const;
 
-			/**
-			 * @brief Set update callback
-			 * @param[in]   callback    Update callback
-			 */
-			void setUpdateCallback(UpdateCallback callback);
-
-			/**
-			 * @brief Unset update callback
-			 */
-			void unsetUpdateCallback();
-
-			/**
-			 * @brief Set delete callback
-			 * @param[in]   callback    Delete callback
-			 */
-			void setDeleteCallback(DeleteCallback callback);
-
-			/**
-			 * @brief Unset delete callback
-			 */
-			void unsetDeleteCallback();
-
-		protected:
-			/**
-			 * @brief ContactData updated callback
-			 * @param[in]   changes     Changed info
-			 */
-			void onUpdated(int changes);
-
-			/**
-			 * @brief ContactData deleted callback
-			 */
-			void onDeleted();
-
 		private:
 			Type m_Type;
-			UpdateCallback m_OnUpdated;
-			DeleteCallback m_OnDeleted;
 		};
 	}
 }

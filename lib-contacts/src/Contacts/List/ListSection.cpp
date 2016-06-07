@@ -56,7 +56,7 @@ char *ListSection::getText(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-void ListSection::onInserted(Contacts::Model::ContactData &person)
+void ListSection::onInserted(::Model::DataItem &person)
 {
 	ContactItem *item = createItem(static_cast<Person &>(person));
 	insertSubItem(item);

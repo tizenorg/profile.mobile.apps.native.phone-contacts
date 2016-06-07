@@ -18,12 +18,16 @@
 #ifndef CONTACTS_LIST_MODEL_SEARCH_PROVIDER_H
 #define CONTACTS_LIST_MODEL_SEARCH_PROVIDER_H
 
-#include "Contacts/Model/ContactDataProvider.h"
 #include "Contacts/Model/SearchEngine.h"
 #include <unordered_map>
 
 namespace Contacts
 {
+	namespace Model
+	{
+		class ContactData;
+	}
+
 	namespace List
 	{
 		namespace Model
@@ -32,7 +36,7 @@ namespace Contacts
 			class PersonSearchData;
 			class PersonProvider;
 
-			class SearchProvider : public Contacts::Model::ContactDataProvider
+			class SearchProvider : public ::Model::DataProvider
 			{
 			public:
 				/**
@@ -54,12 +58,12 @@ namespace Contacts
 				virtual const DataList &getDataList() override;
 
 				/**
-				 * @see ContactDataProvider::clearDataList()
+				 * @see DataProvider::clearDataList()
 				 */
 				virtual void clearDataList() override;
 
 			private:
-				using ContactDataProvider::onInserted;
+				using DataProvider::onInserted;
 
 				Contacts::Model::ContactData &insertPerson(Person &person);
 

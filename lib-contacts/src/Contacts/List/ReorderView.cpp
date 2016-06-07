@@ -78,18 +78,18 @@ void ReorderView::onReorder(Evas_Object *obj, void *event_info)
 
 	ReorderItem *item = (ReorderItem *)elm_object_item_data_get((Elm_Object_Item *)event_info);
 	RETM_IF(!item, "item is invalid");
-	int itemId = item->getContactData().getId();
+	int itemId = ((::Model::DataItem *)&item->getContactData())->getId();
 
 	ReorderItem *prevItem = (ReorderItem *)item->getPrevItem();
 	int prevItemId = 0;
 	if (prevItem && prevItem != m_Section) {
-		prevItemId = prevItem->getContactData().getId();
+		prevItemId = ((::Model::DataItem *)&prevItem->getContactData())->getId();
 	}
 
 	ReorderItem *nextItem = (ReorderItem *)item->getNextItem();
 	int nextItemId = 0;
 	if (nextItem) {
-		nextItemId = nextItem->getContactData().getId();
+		nextItemId = ((::Model::DataItem *)&nextItem->getContactData())->getId();
 	}
 
 	ReorderData data;

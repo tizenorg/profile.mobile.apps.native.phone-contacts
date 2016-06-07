@@ -152,7 +152,7 @@ bool MfcProvider::update()
 	return false;
 }
 
-bool MfcProvider::equalPredicate(Contacts::Model::ContactData *data, contacts_record_h record)
+bool MfcProvider::equalPredicate(::Model::DataItem *data, contacts_record_h record)
 {
 	return data->getId() == getRecordInt(record, _contacts_person.id);
 }
