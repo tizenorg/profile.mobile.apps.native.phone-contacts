@@ -25,6 +25,12 @@
 #include "App/Widget.h"
 #include "WidgetItems.h"
 
+namespace Ui
+{
+	class Gengrid;
+	class GengridItem;
+}
+
 class WidgetGengridItem;
 
 /**
@@ -45,7 +51,6 @@ private:
 	Evas_Object *createLayout(Evas_Object *parent);
 	Evas_Object *createGengrid(Evas_Object *parent);
 	Evas_Object *createEditButton(Evas_Object *parent);
-	Elm_Gengrid_Item_Class *getAddButtonItemClass();
 
 	void setEmptyMode(bool isEmpty);
 	void setEditMode(bool isEnabled);
@@ -68,8 +73,8 @@ private:
 
 	Evas_Object *m_Layout;
 	Evas_Object *m_EditButton;
-	Evas_Object *m_Gengrid;
-	Elm_Object_Item *m_AddButton;
+	Ui::Gengrid *m_Gengrid;
+	Ui::GengridItem *m_AddButton;
 };
 
 #endif /* WIDGET_H */
