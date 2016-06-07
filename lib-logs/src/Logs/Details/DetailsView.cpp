@@ -37,9 +37,13 @@ using namespace Logs::List;
 using namespace Ux;
 using namespace std::placeholders;
 
-DetailsView::DetailsView(LogGroup *group)
-	: m_Group(group), m_Genlist(nullptr), m_BasicInfoItem(nullptr), m_ActionItem(nullptr),
-	  m_GroupItem(nullptr)
+DetailsView::DetailsView(const char *number)
+	: m_Group(nullptr)
+	, m_LogProvider(number)
+	, m_Genlist(nullptr)
+	, m_BasicInfoItem(nullptr)
+	, m_ActionItem(nullptr)
+	, m_LastGroupItem(nullptr)
 {
 	auto strings = Common::getSelectViewStrings();
 	strings.buttonDone = "IDS_TPLATFORM_ACBUTTON_DELETE_ABB";
@@ -48,19 +52,6 @@ DetailsView::DetailsView(LogGroup *group)
 
 	setSelectCallback(std::bind(&DetailsView::onSelected, this, _1));
 	setCancelCallback(std::bind(&DetailsView::onCanceled, this));
-	m_Group->setLogAddCallback(std::bind(&DetailsView::onLogAdded, this, _1));
-	m_GroupChangeCbHandle = m_Group->addChangeCallback(std::bind(&DetailsView::onGroupChanged, this, _1));
-}
-
-DetailsView::~DetailsView()
-{
-	if (m_Group) {
-		for (auto &log : m_Group->getLogList()) {
-			log->unsetRemoveCallback();
-		}
-		m_Group->unsetLogAddCallback();
-		m_Group->removeChangeCallback(m_GroupChangeCbHandle);
-	}
 }
 
 Evas_Object *DetailsView::onCreate(Evas_Object *parent)
@@ -73,6 +64,8 @@ Evas_Object *DetailsView::onCreate(Evas_Object *parent)
 
 void DetailsView::onCreated()
 {
+	m_LogProvider.setInsertCallback(std::bind(&DetailsView::onLogGroupInserted, this, _1));
+	m_Group = m_LogProvider.getLogGroupList().back().get();
 	fillGenList();
 }
 
@@ -127,8 +120,7 @@ void DetailsView::fillGenList()
 		insertBasicInfoItem();
 		insertActionItem();
 	}
-	insertLogGroupItem();
-	insertLogDetailItems();
+	insertLogGroupList();
 }
 
 void DetailsView::insertBasicInfoItem()
@@ -147,27 +139,64 @@ void DetailsView::insertActionItem()
 	elm_genlist_item_select_mode_set(m_ActionItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 }
 
-void DetailsView::insertLogGroupItem()
+void DetailsView::insertLogGroupList()
 {
-	Log *log = m_Group->getLogList().back();
-	m_GroupItem = new LogGroupItem(log->getTime());
-	m_Genlist->insert(m_GroupItem);
-	elm_genlist_item_select_mode_set(m_GroupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+	for (auto &&group : m_LogProvider.getLogGroupList()) {
+		insertLogGroupItem(group.get());
+		insertLogDetailItems(group.get());
+	}
+}
+
+void DetailsView::insertLogGroupItem(LogGroup *group)
+{
+	Log *log = group->getLogList().back();
+	LogGroupItem *groupItem = new LogGroupItem(log->getTime());
+	m_Genlist->insert(groupItem, nullptr, getLastGroupItem());
+	elm_genlist_item_select_mode_set(groupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+	setLastGroupItem(groupItem);
+	group->setLogAddCallback(std::bind(&DetailsView::onLogAdded, this, _1));
+	group->addChangeCallback(std::bind(&DetailsView::onGroupChanged, this, group, groupItem, _1));
+}
+
+void DetailsView::insertLogDetailItems(LogGroup *group)
+{
+	for (auto &log : group->getLogList()) {
+		insertLogDetailItem(log);
+	}
 }
 
 void DetailsView::insertLogDetailItem(Log *log)
 {
 	LogDetailItem *logItem = new LogDetailItem(log);
-	m_Genlist->insert(logItem, m_GroupItem, m_GroupItem, Ui::Genlist::After);
+	m_Genlist->insert(logItem, getLastGroupItem(), *getLastGroupItem()->begin());
 	log->setRemoveCallback(std::bind(&DetailsView::onLogRemoved, this, logItem));
 	onItemInserted(logItem);
 }
 
-void DetailsView::insertLogDetailItems()
+LogGroupItem *DetailsView::getLastGroupItem()
 {
-	for (auto &log : m_Group->getLogList()) {
-		insertLogDetailItem(log);
+	if (!m_LastGroupItem) {
+		for (auto &&item : *m_Genlist) {
+			if (item->isGroupItem()) {
+				setLastGroupItem(dynamic_cast<LogGroupItem *>(item));
+				break;
+			}
+		}
 	}
+
+	return m_LastGroupItem;
+}
+
+void DetailsView::setLastGroupItem(LogGroupItem *groupItem)
+{
+	if (m_LastGroupItem) {
+		m_LastGroupItem->setDestroyCallback(nullptr);
+	}
+
+	m_LastGroupItem = groupItem;
+	m_LastGroupItem->setDestroyCallback([this] {
+		m_LastGroupItem = nullptr;
+	});
 }
 
 bool DetailsView::onSelected(SelectResults results)
@@ -186,11 +215,30 @@ bool DetailsView::onCanceled()
 	return false;
 }
 
-void DetailsView::onGroupChanged(int type)
+void DetailsView::onLogGroupInserted(LogGroup *group)
+{
+	if (m_Genlist) {
+		insertLogGroupItem(group);
+		insertLogDetailItems(group);
+	}
+}
+
+void DetailsView::onGroupChanged(LogGroup *group, LogGroupItem *groupItem, int type)
 {
 	if (type & LogGroup::ChangeRemoved) {
-		getPage()->close();
-		m_Group = nullptr;
+		if (m_LogProvider.getLogGroupList().empty()) {
+			m_BasicInfoItem->updateGroup(nullptr);
+			m_ActionItem->updateGroup(nullptr);
+			getPage()->close();
+			return;
+		}
+		delete groupItem;
+		LogGroup *oldGroup = m_Group;
+		m_Group = m_LogProvider.getLogGroupList().back().get();
+		if (oldGroup == group) {
+			m_BasicInfoItem->updateGroup(m_Group);
+			m_ActionItem->updateGroup(m_Group);
+		}
 	}
 }
 
@@ -201,6 +249,8 @@ void DetailsView::onLogAdded(Log *log)
 
 void DetailsView::onLogRemoved(LogDetailItem *logItem)
 {
-	onItemRemove(logItem);
-	delete logItem;
+	if (logItem) {
+		onItemRemove(logItem);
+		delete logItem;
+	}
 }

@@ -139,9 +139,13 @@ namespace Logs
 			 */
 			void updateContactRecord();
 			/**
-			 * @return Remove log from database
+			 * @brief Remove log from database
 			 */
 			void remove();
+			/**
+			 * @brief Called when Log is destroyed
+			 */
+			void onDestroy();
 
 		private:
 			contacts_record_h getContactRecord();

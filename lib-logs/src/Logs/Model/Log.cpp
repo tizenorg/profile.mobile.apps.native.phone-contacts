@@ -34,9 +34,7 @@ Log::~Log()
 	if (m_Group) {
 		m_Group->removeLog(this);
 	}
-	if (m_OnRemoved) {
-		m_OnRemoved();
-	}
+
 	contacts_record_destroy(m_LogRecord, true);
 	if (m_ContactRecord) {
 		contacts_record_destroy(m_ContactRecord, true);
@@ -217,4 +215,11 @@ void Log::updateContactRecord()
 void Log::remove()
 {
 	contacts_db_delete_record(_contacts_phone_log._uri, getId());
+}
+
+void Log::onDestroy()
+{
+	if (m_OnRemoved) {
+		m_OnRemoved();
+	}
 }
