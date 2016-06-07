@@ -118,16 +118,18 @@ namespace Logs
 			 */
 			static bool compareDate(const tm &firstDate, const tm &secondDate);
 
+		protected:
+			virtual bool shouldGroupLogs(Log &log, Log &prevLog);
+			virtual contacts_filter_h getFilter();
+
 		private:
 			void fillList();
 			size_t fillGroupList(LogIterator begin, LogIterator end);
-			bool shouldGroupLogs(Log &log, Log &prevLog);
 			bool mergeGroup(GroupIterator group);
 
 			LogIterator updateLogs();
 			void updateGroups(LogIterator newBegin, LogIterator newEnd);
 
-			contacts_filter_h getFilter();
 			contacts_list_h fetchLogList();
 
 			void onLogsChanged(const char *viewUri);

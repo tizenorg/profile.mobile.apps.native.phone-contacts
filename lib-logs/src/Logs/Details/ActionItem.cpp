@@ -40,7 +40,7 @@ namespace
 }
 
 ActionItem::ActionItem(LogGroup *group)
-		: m_Group(group)
+	: m_Group(group)
 {
 	m_Log = m_Group->getLogList().back();
 	m_GroupChangeCbHandle = m_Group->addChangeCallback(std::bind(&ActionItem::onGroupChanged, this, _1));
@@ -50,6 +50,16 @@ ActionItem::~ActionItem()
 {
 	if (m_Group) {
 		m_Group->removeChangeCallback(m_GroupChangeCbHandle);
+	}
+}
+
+void ActionItem::updateGroup(LogGroup *group)
+{
+	m_Group = group;
+	if (m_Group) {
+		m_Log = m_Group->getLogList().back();
+		m_GroupChangeCbHandle = m_Group->addChangeCallback(std::bind(&ActionItem::onGroupChanged, this, _1));
+		elm_genlist_item_fields_update(getObjectItem(), PART_NUMBER_TYPE, ELM_GENLIST_ITEM_FIELD_TEXT);
 	}
 }
 
@@ -149,10 +159,7 @@ void ActionItem::onButtonPressed(Evas_Object *button, void *eventInfo)
 
 void ActionItem::onGroupChanged(int type)
 {
-	if (type & LogGroup::ChangeRemoved) {
-		m_Group = nullptr;
-		delete this;
-	} else {
+	if (!(type & LogGroup::ChangeRemoved)) {
 		m_Log = m_Group->getLogList().back();
 		elm_genlist_item_fields_update(getObjectItem(), PART_NUMBER_TYPE, ELM_GENLIST_ITEM_FIELD_TEXT);
 	}

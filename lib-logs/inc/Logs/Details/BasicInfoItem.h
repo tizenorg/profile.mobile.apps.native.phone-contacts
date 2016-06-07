@@ -47,11 +47,7 @@ namespace Logs
 			 * @brief Create basic info item.
 			 * @param[in]   group    Log group for display
 			 */
-			BasicInfoItem(Model::LogGroup *group);
-
-			/**
-			 * @brief Destroy basic info item.
-			 */
+			explicit BasicInfoItem(Model::LogGroup *group);
 			virtual ~BasicInfoItem() override;
 
 			/**
@@ -59,6 +55,12 @@ namespace Logs
 			 * @param[in]   callback    "back" button callback
 			 */
 			void setBackCallback(BackCallback callback);
+
+			/**
+			 * @brief Update log and item fields.
+			 * @param[in]   group   Log group for display
+			 */
+			void updateGroup(Model::LogGroup *group);
 
 		protected:
 			/**

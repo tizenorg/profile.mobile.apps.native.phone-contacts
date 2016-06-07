@@ -81,6 +81,38 @@ void LogProvider::unsetInsertCallback()
 	m_InsertCallback = nullptr;
 }
 
+bool LogProvider::compareDate(const tm &firstDate, const tm &secondDate)
+{
+	if (firstDate.tm_year == secondDate.tm_year &&
+		firstDate.tm_mon == secondDate.tm_mon &&
+		firstDate.tm_mday == secondDate.tm_mday) {
+		return true;
+	}
+	return false;
+}
+
+bool LogProvider::shouldGroupLogs(Log &log, Log &prevLog)
+{
+	int type = log.getType();
+	return (type == prevLog.getType()
+			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN
+			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN
+			&& strcmp(log.getNumber(), prevLog.getNumber()) == 0
+			&& compareDate(log.getTime(), prevLog.getTime()));
+}
+
+contacts_filter_h LogProvider::getFilter()
+{
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_phone_log._uri, &filter);
+
+	contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING);
+	contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+	contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_BLOCKED);
+
+	return filter;
+}
+
 void LogProvider::fillList()
 {
 	contacts_list_h list = fetchLogList();
@@ -120,26 +152,6 @@ size_t LogProvider::fillGroupList(LogIterator begin, LogIterator end)
 	return newGroupsCount;
 }
 
-bool LogProvider::shouldGroupLogs(Log &log, Log &prevLog)
-{
-	int type = log.getType();
-	return (type == prevLog.getType()
-			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN
-			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN
-			&& strcmp(log.getNumber(), prevLog.getNumber()) == 0
-			&& compareDate(log.getTime(), prevLog.getTime()));
-}
-
-bool LogProvider::compareDate(const tm &firstDate, const tm &secondDate)
-{
-	if (firstDate.tm_year == secondDate.tm_year &&
-		firstDate.tm_mon == secondDate.tm_mon &&
-		firstDate.tm_mday == secondDate.tm_mday) {
-		return true;
-	}
-	return false;
-}
-
 bool LogProvider::mergeGroup(GroupIterator group)
 {
 	if (group == m_Groups.begin()) {
@@ -156,41 +168,6 @@ bool LogProvider::mergeGroup(GroupIterator group)
 	return false;
 }
 
-contacts_filter_h LogProvider::getFilter()
-{
-	contacts_filter_h filter = nullptr;
-	contacts_filter_create(_contacts_phone_log._uri, &filter);
-
-	contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_GREATER_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING);
-	contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-	contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_LESS_THAN_OR_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_BLOCKED);
-
-	return filter;
-}
-
-contacts_list_h LogProvider::fetchLogList()
-{
-	contacts_list_h list = nullptr;
-	contacts_query_h query = nullptr;
-	contacts_filter_h filter = getFilter();
-
-	contacts_query_create(_contacts_phone_log._uri, &query);
-	contacts_query_set_filter(query, filter);
-	contacts_query_set_sort(query, _contacts_phone_log.log_time, true);
-	contacts_db_get_records_with_query(query, 0, 0, &list);
-
-	contacts_filter_destroy(filter);
-	contacts_query_destroy(query);
-
-	return list;
-}
-
-void LogProvider::onLogsChanged(const char *viewUri)
-{
-	LogIterator newBegin = updateLogs();
-	updateGroups(newBegin, m_Logs.end());
-}
-
 LogProvider::LogIterator LogProvider::updateLogs()
 {
 	contacts_list_h list = fetchLogList();
@@ -204,6 +181,7 @@ LogProvider::LogIterator LogProvider::updateLogs()
 
 		Log *log = (Log *)(*oldIt);
 		if (id != log->getId()) {
+			log->onDestroy();
 			delete *oldIt;
 			oldIt = m_Logs.erase(oldIt);
 		} else {
@@ -214,6 +192,7 @@ LogProvider::LogIterator LogProvider::updateLogs()
 	}
 
 	while (oldIt != m_Logs.end()) {
+		((Log *)*oldIt)->onDestroy();
 		delete *oldIt;
 		oldIt = m_Logs.erase(oldIt);
 	}
@@ -251,8 +230,16 @@ void LogProvider::updateGroups(LogIterator newBegin, LogIterator newEnd)
 			wasDeleted = false;
 		}
 
-		(*updateIt)->onChange();
-		updateIt = isEmpty ? m_Groups.erase(updateIt) : ++updateIt;
+		if (isEmpty) {
+			LogGroup *group = updateIt->release();
+			updateIt = m_Groups.erase(updateIt);
+			group->onChange();
+			delete group;
+		} else {
+			(*updateIt)->onChange();
+			++updateIt;
+		}
+
 		--updateCount;
 	}
 
@@ -262,6 +249,29 @@ void LogProvider::updateGroups(LogIterator newBegin, LogIterator newEnd)
 			++updateIt;
 		}
 	}
+}
+
+contacts_list_h LogProvider::fetchLogList()
+{
+	contacts_list_h list = nullptr;
+	contacts_query_h query = nullptr;
+	contacts_filter_h filter = getFilter();
+
+	contacts_query_create(_contacts_phone_log._uri, &query);
+	contacts_query_set_filter(query, filter);
+	contacts_query_set_sort(query, _contacts_phone_log.log_time, true);
+	contacts_db_get_records_with_query(query, 0, 0, &list);
+
+	contacts_filter_destroy(filter);
+	contacts_query_destroy(query);
+
+	return list;
+}
+
+void LogProvider::onLogsChanged(const char *viewUri)
+{
+	LogIterator newBegin = updateLogs();
+	updateGroups(newBegin, m_Logs.end());
 }
 
 void LogProvider::onContactChanged(const char *viewUri)
@@ -309,4 +319,3 @@ void LogProvider::onContactChanged(const char *viewUri)
 
 	contacts_list_destroy(list, true);
 }
-
