@@ -20,6 +20,7 @@
 
 #include "Logs/Model/LogGroup.h"
 #include "Ux/SelectView.h"
+#include "Logs/Model/NumberLogProvider.h"
 
 namespace Ui
 {
@@ -52,9 +53,9 @@ namespace Logs
 		public:
 			/**
 			 * @brief Create log details view.
-			 * @param[in]   group   Log group
+			 * @param[in]   log   Log
 			 */
-			DetailsView(Model::LogGroup *group);
+			DetailsView(Model::Log *log);
 
 		private:
 			virtual ~DetailsView() override;
@@ -69,22 +70,29 @@ namespace Logs
 			void fillGenList();
 			void insertBasicInfoItem();
 			void insertActionItem();
-			void insertLogGroupItem();
+			void insertGroupAndLogDetailItems();
+			void insertGroupItems(Model::LogGroup *group);
+			void insertLogGroupItem(tm date);
+			void insertLogDetailItems(Model::LogGroup *group);
 			void insertLogDetailItem(Model::Log *log);
-			void insertLogDetailItems();
+
+			List::LogGroupItem *getLastGroupItem();
+			void setLastGroupItem(List::LogGroupItem *groupItem);
 
 			bool onSelected(Ux::SelectResults results);
 			bool onCanceled();
+
+			void onLogGroupInserted(Model::LogGroup *group);
 			void onGroupChanged(int type);
 			void onLogAdded(Model::Log *log);
 			void onLogRemoved(LogDetailItem *logItem);
 
-			Model::LogGroup *m_Group;
+			Model::Log *m_Log;
+			Model::NumberLogProvider *m_LogProvider;
 			Ui::Genlist *m_Genlist;
 			BasicInfoItem *m_BasicInfoItem;
 			ActionItem *m_ActionItem;
-			List::LogGroupItem *m_GroupItem;
-			Model::LogGroup::ChangeCbHandle m_GroupChangeCbHandle;
+			List::LogGroupItem *m_LastGroupItem;
 		};
 	}
 }

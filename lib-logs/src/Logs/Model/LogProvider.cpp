@@ -250,8 +250,16 @@ void LogProvider::updateGroups(LogIterator newBegin, LogIterator newEnd)
 			wasDeleted = false;
 		}
 
-		(*updateIt)->onChange();
-		updateIt = isEmpty ? m_Groups.erase(updateIt) : ++updateIt;
+		if (isEmpty) {
+			LogGroup *group = (*updateIt).release();
+			updateIt = m_Groups.erase(updateIt);
+			group->onChange();
+			delete group;
+		} else {
+			(*updateIt)->onChange();
+			++updateIt;
+		}
+
 		--updateCount;
 	}
 
