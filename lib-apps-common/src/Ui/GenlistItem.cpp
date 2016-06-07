@@ -17,47 +17,12 @@
 
 #include "Ui/GenlistItem.h"
 #include "Ui/GenlistGroupItem.h"
-#include "Ui/Genlist.h"
-#include "Utils/Callback.h"
 
 using namespace Ui;
 
 GenlistItem::GenlistItem()
-	: m_Item(nullptr), m_Preserve(false),
-	  m_IsRealized(false), m_IsFocusPending(false)
+	: GenItem(GenContainer::TypeGenlist), m_IsFocusPending(false)
 {
-}
-
-GenlistItem::~GenlistItem()
-{
-	if (m_OnDestroy) {
-		m_OnDestroy();
-	}
-
-	if (m_Item) {
-		pop();
-	}
-}
-
-bool GenlistItem::isRealized() const
-{
-	return m_IsRealized;
-}
-
-bool GenlistItem::isInserted() const
-{
-	return m_Item != nullptr;
-}
-
-Elm_Object_Item *GenlistItem::getObjectItem() const
-{
-	return m_Item;
-}
-
-Genlist *GenlistItem::getParent() const
-{
-	Evas_Object *genlist = elm_object_item_widget_get(getObjectItem());
-	return static_cast<Genlist *>(Control::getControl(genlist));
 }
 
 GenlistGroupItem *GenlistItem::getParentItem() const
@@ -67,116 +32,20 @@ GenlistGroupItem *GenlistItem::getParentItem() const
 	return dynamic_cast<GenlistGroupItem *>(item);
 }
 
-GenlistItem *GenlistItem::getNextItem() const
-{
-	Elm_Object_Item *item = elm_genlist_item_next_get(getObjectItem());
-	return (GenlistItem *) elm_object_item_data_get(item);
-}
-
-GenlistItem *GenlistItem::getPrevItem() const
-{
-	Elm_Object_Item *item = elm_genlist_item_prev_get(getObjectItem());
-	return (GenlistItem *) elm_object_item_data_get(item);
-}
-
-void GenlistItem::setSelectCallback(SelectCallback callback)
-{
-	m_OnSelected = std::move(callback);
-}
-
-void GenlistItem::setDestroyCallback(DestroyCallback callback)
-{
-	m_OnDestroy = std::move(callback);
-}
-
-void GenlistItem::scrollTo(Elm_Genlist_Item_Scrollto_Type position, bool isAnimated)
-{
-	auto scroll = isAnimated ? elm_genlist_item_bring_in : elm_genlist_item_show;
-	scroll(getObjectItem(), position);
-}
-
 void GenlistItem::focus(Elm_Genlist_Item_Scrollto_Type position, bool isAnimated)
 {
 	scrollTo(position, isAnimated);
-	if (m_IsRealized) {
+	if (isRealized()) {
 		onFocused();
 	} else {
 		m_IsFocusPending = true;
 	}
 }
 
-void GenlistItem::pop()
+void GenlistItem::onRealized()
 {
-	onPop();
-
-	m_Preserve = true;
-	elm_object_item_del(m_Item);
-	m_Preserve = false;
-}
-
-Elm_Genlist_Item_Class GenlistItem::createItemClass(const char *style,
-		const char *decorateStyle, const char *editStyle)
-{
-	Elm_Genlist_Item_Class itc = { ELM_GEN_ITEM_CLASS_HEADER, 0 };
-	itc.item_style = style;
-	itc.decorate_item_style = decorateStyle;
-	itc.decorate_all_item_style = editStyle;
-	itc.func.text_get = makeCallback(&GenlistItem::getText);
-	itc.func.content_get = makeCallback(&GenlistItem::getContent);
-	itc.func.state_get = makeCallback(&GenlistItem::getState);
-	itc.func.filter_get = makeCallback(&GenlistItem::compare);
-	itc.func.del = makeCallback(&GenlistItem::onDestroy);
-
-	return itc;
-}
-
-Elm_Genlist_Item_Class *GenlistItem::getItemClass() const
-{
-	static Elm_Genlist_Item_Class itc = createItemClass("type1");
-	return &itc;
-}
-
-void GenlistItem::onInserted(Elm_Object_Item *item)
-{
-	m_Item = item;
-	onInserted();
-}
-
-void GenlistItem::onDestroy(Evas_Object *genlist)
-{
-	m_Item = nullptr;
-	if (!m_Preserve) {
-		delete this;
-	}
-}
-
-void GenlistItem::onSelected(Elm_Object_Item *item)
-{
-	elm_genlist_item_selected_set(item, EINA_FALSE);
-	onSelected();
-
-	if (m_OnSelected) {
-		m_OnSelected();
-	}
-}
-
-void GenlistItem::onRealized(Elm_Object_Item *item)
-{
-	if (!m_Item) {
-		m_Item = item;
-	}
-
-	m_IsRealized = true;
-	onRealized();
-
 	if (m_IsFocusPending) {
 		onFocused();
 		m_IsFocusPending = false;
 	}
-}
-
-void GenlistItem::onUnrealized(Elm_Object_Item *item)
-{
-	m_IsRealized = false;
-	onUnrealized();
 }

@@ -15,17 +15,17 @@
  *
  */
 
-#include "Ui/GenlistIterator.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenIterator.h"
+#include "Ui/GenItem.h"
 
 using namespace Ui;
 
-GenlistIterator::GenlistIterator(GenlistItem *item)
+GenIterator::GenIterator(GenItem *item)
 	: m_Item(item)
 {
 }
 
-GenlistIterator &GenlistIterator::operator++()
+GenIterator &GenIterator::operator++()
 {
 	if (m_Item) {
 		m_Item = m_Item->getNextItem();
@@ -33,14 +33,14 @@ GenlistIterator &GenlistIterator::operator++()
 	return *this;
 }
 
-GenlistIterator GenlistIterator::operator++(int)
+GenIterator GenIterator::operator++(int)
 {
 	auto it(*this);
 	++*this;
 	return it;
 }
 
-GenlistIterator &GenlistIterator::operator--()
+GenIterator &GenIterator::operator--()
 {
 	if (m_Item) {
 		m_Item = m_Item->getPrevItem();
@@ -48,19 +48,19 @@ GenlistIterator &GenlistIterator::operator--()
 	return *this;
 }
 
-GenlistIterator GenlistIterator::operator--(int)
+GenIterator GenIterator::operator--(int)
 {
 	auto it(*this);
 	--*this;
 	return it;
 }
 
-GenlistItem *GenlistIterator::operator*() const
+GenItem *GenIterator::operator*() const
 {
 	return m_Item;
 }
 
-bool GenlistIterator::operator!=(const GenlistIterator &that) const
+bool GenIterator::operator!=(const GenIterator &that) const
 {
 	return m_Item != that.m_Item;
 }

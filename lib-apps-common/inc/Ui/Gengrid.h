@@ -15,25 +15,23 @@
  *
  */
 
-#ifndef UI_GENLIST_H
-#define UI_GENLIST_H
+#ifndef UI_GENGRID_H
+#define UI_GENGRID_H
 
 #include "Ui/GenContainer.h"
 
 namespace Ui
 {
-	class EXPORT_API Genlist : public GenContainer
+	class EXPORT_API Gengrid : public GenContainer
 	{
 	public:
-		Genlist();
+		Gengrid();
 
-	protected:
-		virtual void onCreated() override;
-
-	private:
-		static void onItemExpanded(void *data, Evas_Object *obj, Elm_Object_Item *objectItem);
-		static void onItemContracted(void *data, Evas_Object *obj, Elm_Object_Item *objectItem);
+		/**
+		 * @see GenContainer::insert()
+		 */
+		void insert(GenItem *item, GenItem *sibling = nullptr, Position position = Before);
 	};
 }
 
-#endif /* UI_GENLIST_H */
+#endif /* UI_GENGRID_H */
