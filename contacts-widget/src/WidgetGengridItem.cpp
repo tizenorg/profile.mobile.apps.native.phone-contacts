@@ -33,26 +33,15 @@ namespace
 }
 
 WidgetGengridItem::WidgetGengridItem(WidgetItem &item)
-	: m_Item(item),  m_EditMode(false), m_ObjectItem(nullptr)
+	: m_Item(item),  m_EditMode(false)
 {
 	m_Item.setChangeCallback(std::bind(&WidgetGengridItem::onItemChanged, this, _1));
-}
-
-void WidgetGengridItem::insert(Evas_Object *gengrid, Elm_Object_Item *nextItem)
-{
-	if (nextItem) {
-		m_ObjectItem = elm_gengrid_item_insert_before(gengrid, getItemClass(), this, nextItem,
-				makeCallback(&WidgetGengridItem::onSelected), this);
-	} else {
-		m_ObjectItem = elm_gengrid_item_append(gengrid, getItemClass(), this,
-				makeCallback(&WidgetGengridItem::onSelected), this);
-	}
 }
 
 void WidgetGengridItem::setEditMode(bool isEnabled)
 {
 	m_EditMode = isEnabled;
-	elm_gengrid_item_fields_update(m_ObjectItem, PART_ICON_DELETE, ELM_GENGRID_ITEM_FIELD_CONTENT);
+	elm_gengrid_item_fields_update(getObjectItem(), PART_ICON_DELETE, ELM_GENGRID_ITEM_FIELD_CONTENT);
 }
 
 void WidgetGengridItem::setDeleteCallback(DeleteCallback callback)
@@ -65,22 +54,9 @@ WidgetItem &WidgetGengridItem::getItem() const
 	return m_Item;
 }
 
-Elm_Object_Item *WidgetGengridItem::getObjectItem() const
+Elm_Gengrid_Item_Class *WidgetGengridItem::getItemClass() const
 {
-	return m_ObjectItem;
-}
-
-Elm_Gengrid_Item_Class *WidgetGengridItem::getItemClass()
-{
-	static Elm_Gengrid_Item_Class itc = { 0 };
-	itc.version = ELM_GENGRID_ITEM_CLASS_VERSION,
-	itc.item_style = WIDGET_ITEM_STYLE,
-	itc.func.text_get = makeCallback(&WidgetGengridItem::getText),
-	itc.func.content_get = makeCallback(&WidgetGengridItem::getContent),
-	itc.func.del = [](void *data, Evas_Object *obj) {
-		delete (WidgetGengridItem *) data;
-	};
-
+	static Elm_Gengrid_Item_Class itc = createItemClass(WIDGET_ITEM_STYLE);
 	return &itc;
 }
 
@@ -145,9 +121,8 @@ Evas_Object *WidgetGengridItem::createDeleteButton(Evas_Object *parent)
 	return button;
 }
 
-void WidgetGengridItem::onSelected(Evas_Object *obj, void *eventInfo)
+void WidgetGengridItem::onSelected()
 {
-	elm_gengrid_item_selected_set((Elm_Object_Item *) eventInfo, EINA_FALSE);
 	if (m_EditMode) {
 		return;
 	}
@@ -167,9 +142,9 @@ void WidgetGengridItem::onDeletePressed(Evas_Object *obj, void *eventInfo)
 void WidgetGengridItem::onItemChanged(int changes)
 {
 	if (changes & WidgetItem::ChangeName) {
-		elm_gengrid_item_fields_update(m_ObjectItem, PART_NAME, ELM_GENGRID_ITEM_FIELD_TEXT);
+		elm_gengrid_item_fields_update(getObjectItem(), PART_NAME, ELM_GENGRID_ITEM_FIELD_TEXT);
 	}
 	if (changes & WidgetItem::ChangeImage) {
-		elm_gengrid_item_fields_update(m_ObjectItem, PART_THUMBNAIL, ELM_GENGRID_ITEM_FIELD_CONTENT);
+		elm_gengrid_item_fields_update(getObjectItem(), PART_THUMBNAIL, ELM_GENGRID_ITEM_FIELD_CONTENT);
 	}
 }
