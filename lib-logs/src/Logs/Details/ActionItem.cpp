@@ -39,18 +39,15 @@ namespace
 	const std::string layoutPath = App::getResourcePath(LOGS_DETAILS_ITEM_LAYOUT_EDJ);
 }
 
-ActionItem::ActionItem(LogGroup *group)
-		: m_Group(group)
+ActionItem::ActionItem(Log *log)
+		: m_Log(log)
 {
-	m_Log = m_Group->getLogList().back();
-	m_GroupChangeCbHandle = m_Group->addChangeCallback(std::bind(&ActionItem::onGroupChanged, this, _1));
 }
 
-ActionItem::~ActionItem()
+void ActionItem::updateLog(Model::Log *log)
 {
-	if (m_Group) {
-		m_Group->removeChangeCallback(m_GroupChangeCbHandle);
-	}
+	m_Log = log;
+	elm_genlist_item_fields_update(getObjectItem(), PART_NUMBER_TYPE, ELM_GENLIST_ITEM_FIELD_TEXT);
 }
 
 Elm_Genlist_Item_Class *ActionItem::getItemClass() const
@@ -145,15 +142,4 @@ void ActionItem::executeAction(ActionType actionType)
 void ActionItem::onButtonPressed(Evas_Object *button, void *eventInfo)
 {
 	executeAction((ActionType) (long) evas_object_smart_data_get(button));
-}
-
-void ActionItem::onGroupChanged(int type)
-{
-	if (type & LogGroup::ChangeRemoved) {
-		m_Group = nullptr;
-		delete this;
-	} else {
-		m_Log = m_Group->getLogList().back();
-		elm_genlist_item_fields_update(getObjectItem(), PART_NUMBER_TYPE, ELM_GENLIST_ITEM_FIELD_TEXT);
-	}
 }

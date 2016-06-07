@@ -45,20 +45,22 @@ namespace Logs
 
 			/**
 			 * @brief Create basic info item.
-			 * @param[in]   group    Log group for display
+			 * @param[in]   log   Log for display
 			 */
-			BasicInfoItem(Model::LogGroup *group);
-
-			/**
-			 * @brief Destroy basic info item.
-			 */
-			virtual ~BasicInfoItem() override;
+			BasicInfoItem(Model::Log *log);
 
 			/**
 			 * @brief Set "back" button callback.
 			 * @param[in]   callback    "back" button callback
 			 */
 			void setBackCallback(BackCallback callback);
+
+			/**
+			 * @brief Update log and item fields.
+			 * @param[in]   log    Log for display
+			 * @param[in]   type   Change type
+			 */
+			void updateLog(Model::Log *log, int type);
 
 		protected:
 			/**
@@ -95,13 +97,10 @@ namespace Logs
 			void onBackPressed(Evas_Object *button, void *eventInfo);
 			void onCreatePressed();
 			void onUpdatePressed();
-			void onGroupChanged(int type);
 
-			Model::LogGroup *m_Group;
 			Model::Log *m_Log;
 			App::AppControl m_AppControl;
 			BackCallback m_OnBackPressed;
-			Model::LogGroup::ChangeCbHandle m_GroupChangeCbHandle;
 		};
 	}
 }

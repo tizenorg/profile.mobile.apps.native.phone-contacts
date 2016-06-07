@@ -152,8 +152,7 @@ void LogItem::onInfoIconPressed()
 	if (!navigator) {
 		return;
 	}
-
-	navigator->navigateTo(new DetailsView(getGroup()));
+	navigator->navigateTo(new DetailsView(getGroup()->getLogList().back()));
 }
 
 Evas_Object *LogItem::createThumbnail(Evas_Object *parent)
