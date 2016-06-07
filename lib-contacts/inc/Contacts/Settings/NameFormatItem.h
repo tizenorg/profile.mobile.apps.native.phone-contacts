@@ -31,16 +31,15 @@ namespace Contacts
 		class NameFormatItem : public Ui::GenlistItem
 		{
 		public:
-			/**
-			* @brief Create name format item.
-			*/
 			NameFormatItem();
 			virtual ~NameFormatItem() override;
 
 		private:
-			virtual void onSelected() override;
 			virtual char *getText(Evas_Object *parent, const char *part) override;
-			static void onNameOrderChanged(contacts_name_display_order_e name_sorting_order, void *user_data);
+			virtual void onSelected() override;
+			void onNameOrderChanged(contacts_name_display_order_e order);
+
+			contacts_name_display_order_e m_Order;
 		};
 	}
 }
