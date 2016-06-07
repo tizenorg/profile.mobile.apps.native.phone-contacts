@@ -16,34 +16,41 @@
  */
 
 #include "Contacts/Settings/SortByItem.h"
+
+#include "Ui/Genlist.h"
 #include "Ui/RadioPopup.h"
-#include "Utils/Logger.h"
+#include "Utils/Callback.h"
+
 #include <app_i18n.h>
+
+#define PART_SETTING_NAME "elm.text"
+#define PART_SETTING_VALUE "elm.text.sub"
 
 using namespace Contacts::Settings;
 
 SortByItem::SortByItem()
 {
-	contacts_setting_add_name_sorting_order_changed_cb(onSortingOrderChanged, this);
+	contacts_setting_get_name_sorting_order(&m_Order);
+	contacts_setting_add_name_sorting_order_changed_cb(
+			makeCallbackWithLastParam(&SortByItem::onSortOrderChanged), this);
 }
 
 SortByItem::~SortByItem()
 {
-	contacts_setting_remove_name_sorting_order_changed_cb(onSortingOrderChanged, this);
+	contacts_setting_remove_name_sorting_order_changed_cb(
+			makeCallbackWithLastParam(&SortByItem::onSortOrderChanged), this);
 }
 
 char *SortByItem::getText(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, "elm.text") == 0) {
+	if (strcmp(part, PART_SETTING_NAME) == 0) {
 		return strdup(_("IDS_PB_MBODY_SORT_BY"));
-	} else if (strcmp(part, "elm.text.sub") == 0) {
-		contacts_name_sorting_order_e type = CONTACTS_NAME_SORTING_ORDER_FIRSTLAST;
-		contacts_setting_get_name_sorting_order(&type);
-
-		if (CONTACTS_NAME_SORTING_ORDER_FIRSTLAST == type) {
-			return strdup(_("IDS_PB_OPT_FIRST_NAME"));
-		} else if (CONTACTS_NAME_SORTING_ORDER_LASTFIRST == type) {
-			return strdup(_("IDS_PB_OPT_LAST_NAME"));
+	} else if (strcmp(part, PART_SETTING_VALUE) == 0) {
+		switch (m_Order) {
+			case CONTACTS_NAME_SORTING_ORDER_FIRSTLAST:
+				return strdup(_("IDS_PB_OPT_FIRST_NAME"));
+			case CONTACTS_NAME_SORTING_ORDER_LASTFIRST:
+				return strdup(_("IDS_PB_OPT_LAST_NAME"));
 		}
 	}
 
@@ -52,15 +59,12 @@ char *SortByItem::getText(Evas_Object *parent, const char *part)
 
 void SortByItem::onSelected()
 {
-	contacts_name_sorting_order_e type = CONTACTS_NAME_SORTING_ORDER_FIRSTLAST;
-	contacts_setting_get_name_sorting_order(&type);
-
 	Ui::RadioPopup *popup = new Ui::RadioPopup();
-	popup->create(elm_object_item_widget_get(getObjectItem()));
+	popup->create(getParent()->getEvasObject());
 	popup->setTitle("IDS_PB_MBODY_SORT_BY");
-	popup->setSelectedItem(type);
 	popup->addItem("IDS_PB_OPT_FIRST_NAME", (void *) CONTACTS_NAME_SORTING_ORDER_FIRSTLAST);
 	popup->addItem("IDS_PB_OPT_LAST_NAME", (void *) CONTACTS_NAME_SORTING_ORDER_LASTFIRST);
+	popup->setSelectedItem(m_Order);
 	popup->setSelectedCallback([](void *data) {
 		contacts_setting_set_name_sorting_order((contacts_name_sorting_order_e) (long) data);
 	});
@@ -68,8 +72,8 @@ void SortByItem::onSelected()
 	elm_popup_orient_set(popup->getEvasObject(), ELM_POPUP_ORIENT_CENTER);
 }
 
-void SortByItem::onSortingOrderChanged(contacts_name_sorting_order_e name_sorting_order, void *user_data)
+void SortByItem::onSortOrderChanged(contacts_name_sorting_order_e order)
 {
-	SortByItem *item = (SortByItem *)user_data;
-	elm_genlist_item_update(item->getObjectItem());
+	m_Order = order;
+	elm_genlist_item_fields_update(getObjectItem(), PART_SETTING_VALUE, ELM_GENLIST_ITEM_FIELD_TEXT);
 }

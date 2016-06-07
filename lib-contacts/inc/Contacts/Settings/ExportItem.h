@@ -21,8 +21,6 @@
 #include "App/AppControl.h"
 #include "Ui/GenlistItem.h"
 
-using namespace Ui;
-
 namespace Contacts
 {
 	namespace Settings
@@ -37,12 +35,10 @@ namespace Contacts
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual void onSelected() override;
-
 			void onPickResult(app_control_h request, app_control_h reply,
 					app_control_result_e result);
 			void onExportFinish(ExportController *exporter);
 
-		private:
 			App::AppControl m_AppControl;
 		};
 	}

@@ -15,9 +15,10 @@
  *
  */
 
-#include "App/AppControlRequest.h"
 #include "Contacts/Settings/ExportItem.h"
 #include "Contacts/Settings/ExportController.h"
+
+#include "App/AppControlRequest.h"
 #include "Ui/Genlist.h"
 #include "Ui/Popup.h"
 #include "Utils/Callback.h"
@@ -25,9 +26,9 @@
 
 #include <app_i18n.h>
 
-using namespace Contacts::Settings;
+#define BUFFER_SIZE 1024
 
-#define BUFFER_SIZE        1024
+using namespace Contacts::Settings;
 
 char *ExportItem::getText(Evas_Object *parent, const char *part)
 {
@@ -47,12 +48,12 @@ void ExportItem::onSelected()
 void ExportItem::onPickResult(app_control_h request, app_control_h reply,
 		app_control_result_e result)
 {
-	std::vector<int> personIdList = App::getIntExtraDataArray(reply, APP_CONTROL_DATA_SELECTED);
-	RETM_IF(personIdList.empty(), "Person id list is empty.");
+	std::vector<int> ids = App::getIntExtraDataArray(reply, APP_CONTROL_DATA_SELECTED);
+	RETM_IF(ids.empty(), "Person id list is empty.");
 
 	ExportController *exporter = new ExportController(
 			getParent()->getEvasObject(), "IDS_PB_HEADER_EXPORT_CONTACTS_ABB",
-			std::move(personIdList), StorageDevice);
+			std::move(ids), StorageDevice);
 	exporter->setFinishCallback(std::bind(&ExportItem::onExportFinish, this, exporter));
 	exporter->run();
 }
