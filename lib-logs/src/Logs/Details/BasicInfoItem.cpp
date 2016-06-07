@@ -33,23 +33,29 @@ using namespace Logs::Details;
 using namespace Logs::Model;
 using namespace std::placeholders;
 
-BasicInfoItem::BasicInfoItem(LogGroup *group)
-	: m_Group(group)
+BasicInfoItem::BasicInfoItem(Log *log)
+	: m_Log(log)
 {
-	m_Log = m_Group->getLogList().back();
-	m_GroupChangeCbHandle = m_Group->addChangeCallback(std::bind(&BasicInfoItem::onGroupChanged, this, _1));
-}
-
-BasicInfoItem::~BasicInfoItem()
-{
-	if (m_Group) {
-		m_Group->removeChangeCallback(m_GroupChangeCbHandle);
-	}
 }
 
 void BasicInfoItem::setBackCallback(BackCallback callback)
 {
 	m_OnBackPressed = std::move(callback);
+}
+
+void BasicInfoItem::updateLog(Log *log, int type)
+{
+	m_Log = log;
+	if (type & LogGroup::ChangePerson) {
+		elm_genlist_item_fields_update(getObjectItem(), STATE_SAVED, ELM_GENLIST_ITEM_FIELD_STATE);
+		elm_genlist_item_fields_update(getObjectItem(), PART_UNSAVED_BTNS, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	}
+	if (type & LogGroup::ChangeName) {
+		elm_genlist_item_fields_update(getObjectItem(), PART_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
+	}
+	if (type & LogGroup::ChangeImage) {
+		elm_genlist_item_fields_update(getObjectItem(), PART_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
+	}
 }
 
 Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
@@ -159,24 +165,4 @@ void BasicInfoItem::onUpdatePressed()
 {
 	m_AppControl = App::requestContactEdit(0, m_Log->getNumber());
 	m_AppControl.launch();
-}
-
-void BasicInfoItem::onGroupChanged(int type)
-{
-	if (type & LogGroup::ChangeRemoved) {
-		m_Group = nullptr;
-		delete this;
-	} else {
-		m_Log = m_Group->getLogList().back();
-		if (type & LogGroup::ChangePerson) {
-			elm_genlist_item_fields_update(getObjectItem(), STATE_SAVED, ELM_GENLIST_ITEM_FIELD_STATE);
-			elm_genlist_item_fields_update(getObjectItem(), PART_UNSAVED_BTNS, ELM_GENLIST_ITEM_FIELD_CONTENT);
-		}
-		if (type & LogGroup::ChangeName) {
-			elm_genlist_item_fields_update(getObjectItem(), PART_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
-		}
-		if (type & LogGroup::ChangeImage) {
-			elm_genlist_item_fields_update(getObjectItem(), PART_THUMBNAIL, ELM_GENLIST_ITEM_FIELD_CONTENT);
-		}
-	}
 }

@@ -40,10 +40,16 @@ namespace Logs
 		public:
 			/**
 			 * @brief Create action item.
-			 * @param[in]   group    Log group for display
+			 * @param[in]   log   Log for display
 			 */
-			ActionItem(Model::LogGroup *group);
-			virtual ~ActionItem();
+			ActionItem(Model::Log *log);
+
+			/**
+			 * @brief Update log and item fields.
+			 * @param[in]   log    Log for display
+			 * @param[in]   type   Change type
+			 */
+			void updateLog(Model::Log *log, int type);
 
 		protected:
 			/**
@@ -73,12 +79,9 @@ namespace Logs
 			Evas_Object *createActionButton(Evas_Object *parent, Common::ActionType actionType);
 			void executeAction(Common::ActionType actionType);
 			void onButtonPressed(Evas_Object *button, void *eventInfo);
-			void onGroupChanged(int type);
 
-			Model::LogGroup *m_Group;
 			Model::Log *m_Log;
 			App::AppControl m_AppControl;
-			Model::LogGroup::ChangeCbHandle m_GroupChangeCbHandle;
 		};
 	}
 }
