@@ -202,7 +202,8 @@ LogProvider::LogIterator LogProvider::updateLogs()
 		int id = 0;
 		contacts_record_get_int(*newIt, _contacts_phone_log.id, &id);
 
-		if (id != (*oldIt)->getId()) {
+		Log *log = (Log *)(*oldIt);
+		if (id != log->getId()) {
 			delete *oldIt;
 			oldIt = m_Logs.erase(oldIt);
 		} else {

@@ -95,9 +95,9 @@ void SearchEngine::incrementalSearch(const List &list, const std::string &query)
 	}
 }
 
-SearchData *SearchEngine::getSearchData(ContactData *contactData)
+SearchData *SearchEngine::getSearchData(::Model::DataItem *data)
 {
-	return static_cast<SearchData *>(contactData);
+	return static_cast<SearchData *>(data);
 }
 
 SearchData *SearchEngine::getSearchData(const SearchResultItem &resultItem)

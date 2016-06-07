@@ -19,6 +19,7 @@
 #include "Contacts/List/ListSection.h"
 #include "Contacts/List/ReorderItem.h"
 #include "Contacts/List/ReorderView.h"
+#include "Contacts/Model/ContactData.h"
 
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"

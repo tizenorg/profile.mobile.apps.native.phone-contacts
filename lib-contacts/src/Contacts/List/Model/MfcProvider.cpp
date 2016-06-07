@@ -19,6 +19,7 @@
 #include "Common/Database/RecordIterator.h"
 #include "Common/Database/RecordUtils.h"
 #include "Contacts/List/Model/MfcProvider.h"
+#include "Contacts/List/Model/Person.h"
 
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
@@ -152,9 +153,10 @@ bool MfcProvider::update()
 	return false;
 }
 
-bool MfcProvider::equalPredicate(Contacts::Model::ContactData *data, contacts_record_h record)
+bool MfcProvider::equalPredicate(::Model::DataItem *data, contacts_record_h record)
 {
-	return data->getId() == getRecordInt(record, _contacts_person.id);
+	Person *person = (Person *)data;
+	return person->getId() == getRecordInt(record, _contacts_person.id);
 }
 
 void MfcProvider::updateMfcList(contacts_list_h list)

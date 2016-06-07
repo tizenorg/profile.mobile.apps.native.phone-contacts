@@ -18,8 +18,8 @@
 #ifndef CONTACTS_MODEL_SEARCH_ENGINE_H
 #define CONTACTS_MODEL_SEARCH_ENGINE_H
 
-#include "Contacts/Model/ContactDataProvider.h"
 #include "Contacts/Model/SearchResult.h"
+#include "Model/DataProvider.h"
 
 #include <string>
 #include <vector>
@@ -37,9 +37,9 @@ namespace Contacts
 		{
 		public:
 			/**
-			 * @see ContactDataProvider::DataList
+			 * @see DataProvider::DataList
 			 */
-			typedef ContactDataProvider::DataList DataList;
+			typedef ::Model::DataProvider::DataList DataList;
 
 			/**
 			 * @brief Create search engine
@@ -67,7 +67,7 @@ namespace Contacts
 			template <typename List>
 			void incrementalSearch(const List &list, const std::string &query);
 
-			SearchData *getSearchData(ContactData *contactData);
+			SearchData *getSearchData(::Model::DataItem *data);
 			SearchData *getSearchData(const SearchResultItem &searchItem);
 
 			void updateSearchResult(ResultList &list);
