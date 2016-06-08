@@ -58,6 +58,12 @@ namespace Contacts
 			 */
 			bool empty() const;
 
+			/**
+			 * @brief Notify engine that new SearchData insertion was performed
+			 * @param[in]   searchData  SearchData object
+			 */
+			void onInserted(SearchData *searchData);
+
 		private:
 			typedef std::pair<SearchData *, SearchResultPtr> SearchResultItem;
 			typedef std::list<SearchResultItem> ResultList;
@@ -78,7 +84,7 @@ namespace Contacts
 
 			void clear();
 
-			std::string m_PrevQuery;
+			std::string m_Query;
 			SearchHistory m_History;
 			int m_LastFoundIndex;
 

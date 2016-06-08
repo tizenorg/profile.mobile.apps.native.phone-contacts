@@ -19,7 +19,7 @@
 #define CONTACTS_LIST_LIST_VIEW_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Contacts/List/Model/SearchProvider.h"
+#include "Contacts/List/Model/PersonSearchProvider.h"
 
 #include "Ux/SelectView.h"
 #include "Utils/UniString.h"
@@ -144,7 +144,7 @@ namespace Contacts
 
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
 			Model::PersonProvider *m_PersonProvider;
-			Model::SearchProvider m_SearchProvider;
+			Model::PersonSearchProvider m_SearchProvider;
 		};
 	}
 }
