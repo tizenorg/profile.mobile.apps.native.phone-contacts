@@ -101,6 +101,7 @@ void ManageFavoritesPopup::onRemove()
 				contacts_list_add(list, record);
 			} else {
 				contacts_person_reset_usage(recordId, CONTACTS_USAGE_STAT_TYPE_OUTGOING_CALL);
+				contacts_person_reset_usage(recordId, CONTACTS_USAGE_STAT_TYPE_INCOMING_CALL);
 				contacts_record_destroy(record, true);
 			}
 		}

@@ -106,9 +106,19 @@ contacts_list_h MfcProvider::getPersonUsageList() const
 		if (filter) {
 			contacts_filter_add_int(filter, _contacts_person_usage.times_used, CONTACTS_MATCH_GREATER_THAN, 0);
 			contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-			contacts_filter_add_int(filter, _contacts_person_usage.usage_type, CONTACTS_MATCH_EQUAL, CONTACTS_USAGE_STAT_TYPE_OUTGOING_CALL);
-			contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
 			contacts_filter_add_bool(filter, _contacts_person_usage.is_favorite, false);
+
+			contacts_filter_h usageTypeFilter = nullptr;
+			contacts_filter_create(_contacts_person_usage._uri, &usageTypeFilter);
+			if (usageTypeFilter) {
+				contacts_filter_add_int(usageTypeFilter, _contacts_person_usage.usage_type, CONTACTS_MATCH_EQUAL, CONTACTS_USAGE_STAT_TYPE_OUTGOING_CALL);
+				contacts_filter_add_operator(usageTypeFilter, CONTACTS_FILTER_OPERATOR_OR);
+				contacts_filter_add_int(usageTypeFilter, _contacts_person_usage.usage_type, CONTACTS_MATCH_EQUAL, CONTACTS_USAGE_STAT_TYPE_INCOMING_CALL);
+
+				contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+				contacts_filter_add_filter(filter, usageTypeFilter);
+				contacts_filter_destroy(usageTypeFilter);
+			}
 
 			contacts_query_set_filter(query, filter);
 		}
