@@ -33,6 +33,11 @@ ManageFavoritesPopup::ManageFavoritesPopup(Navigator *navigator)
 {
 }
 
+void ManageFavoritesPopup::setMfcUpdateCallback(MfcUpdateCallback callback)
+{
+	m_OnMfcUpdated = std::move(callback);
+}
+
 void ManageFavoritesPopup::onCreated()
 {
 	ListPopup::onCreated();
@@ -87,8 +92,12 @@ void ManageFavoritesPopup::onRemove()
 	//todo Should be created ListView with Favorites and MFC sections only
 	ListView *view = new ListView();
 	view->setSelectMode(Ux::SelectMulti);
-	view->setSelectCallback([](Ux::SelectResults results) {
 
+	//todo Implement separate controller to handle callback, because object is destroyed after popup close.
+	auto &onMfcUpdated = m_OnMfcUpdated;
+	view->setSelectCallback([onMfcUpdated](Ux::SelectResults results) {
+
+		bool isMcfUpdate = false;
 		contacts_list_h list = nullptr;
 		contacts_list_create(&list);
 		for (auto &&result : results) {
@@ -100,6 +109,7 @@ void ManageFavoritesPopup::onRemove()
 				contacts_record_set_bool(record, _contacts_person.is_favorite, false);
 				contacts_list_add(list, record);
 			} else {
+				isMcfUpdate = true;
 				contacts_person_reset_usage(recordId, CONTACTS_USAGE_STAT_TYPE_OUTGOING_CALL);
 				contacts_person_reset_usage(recordId, CONTACTS_USAGE_STAT_TYPE_INCOMING_CALL);
 				contacts_record_destroy(record, true);
@@ -108,6 +118,10 @@ void ManageFavoritesPopup::onRemove()
 
 		contacts_db_update_records(list);
 		contacts_list_destroy(list, true);
+
+		if (isMcfUpdate && onMfcUpdated) {
+			onMfcUpdated();
+		}
 
 		return true;
 	});

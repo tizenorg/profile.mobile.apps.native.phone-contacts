@@ -37,10 +37,21 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Notifies that Mfc contacts were updated
+			 */
+			typedef std::function<void()> MfcUpdateCallback;
+
+			/**
 			 * @brief Creates new popup
 			 * @param[in]   navigator   Current navigator. Is needed to move to the next view.
 			 */
 			ManageFavoritesPopup(Ui::Navigator *navigator);
+
+			/**
+			 * @brief Set Mfc update callback
+			 * @param[in]   callback    Mfc update callback
+			 */
+			void setMfcUpdateCallback(MfcUpdateCallback callback);
 
 		protected:
 			/**
@@ -57,6 +68,7 @@ namespace Contacts
 			void onRemove();
 
 			Ui::Navigator *m_Navigator;
+			MfcUpdateCallback m_OnMfcUpdated;
 		};
 	}
 }

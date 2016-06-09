@@ -20,7 +20,6 @@
 #include "Contacts/List/ReorderItem.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/List/Model/PersonProvider.h"
-#include "Utils/Logger.h"
 
 #include <app_i18n.h>
 
@@ -45,6 +44,11 @@ ListSection::~ListSection()
 void ListSection::setUpdateCallback(UpdateCallback callback)
 {
 	m_OnUpdated = std::move(callback);
+}
+
+void ListSection::update()
+{
+	m_Provider->reload();
 }
 
 char *ListSection::getText(Evas_Object *parent, const char *part)
