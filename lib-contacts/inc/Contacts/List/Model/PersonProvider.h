@@ -53,12 +53,19 @@ namespace Contacts
 				 * @brief Get person list
 				 * @return List of contact objects
 				 */
-				virtual const DataList &getDataList() override;
+				virtual const DataList &getDataList() override final;
 
 				/**
 				 * @see DataProvider::clearDataList()
 				 */
-				virtual void clearDataList() override;
+				virtual void clearDataList() override final;
+
+				/**
+				 * @brief Reload the person list.
+				 * Delete all persons, get new list from db and insert every person.
+				 * Delete and Insert callbacks will be invoked.
+				 */
+				void reload();
 
 				/**
 				 * @brief Enable or disable updates from database.
@@ -136,6 +143,10 @@ namespace Contacts
 			private:
 				static int getIdProperty(IdType idType);
 				void updatePersonList();
+
+				void subscribe();
+				void unsubscribe();
+				void resetDbVersion();
 
 				void onChanged(const char *uri);
 				void onSettingsChanged();
