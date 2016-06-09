@@ -32,30 +32,18 @@ using namespace Contacts::List::Model;
 using namespace std::placeholders;
 
 PersonProvider::PersonProvider(int filterType)
-	: m_FilterType(filterType), m_IsFilled(false),
+	: m_FilterType(filterType), m_DbVersion(-1), m_IsFilled(false),
 	  m_IsUpdateEnabled(true), m_IsUpdatePending(false)
 {
-	contacts_db_get_current_version(&m_DbVersion);
-	contacts_db_add_changed_cb(_contacts_contact._uri,
-			makeCallbackWithLastParam(&PersonProvider::onChanged), this);
-	contacts_setting_add_name_display_order_changed_cb(
-			&PersonProvider::onNameFormatChanged, this);
-	contacts_setting_add_name_sorting_order_changed_cb(
-			&PersonProvider::onSortOrderChanged, this);
 }
 
 PersonProvider::~PersonProvider()
 {
+	unsubscribe();
+
 	for (auto &&contactData : m_PersonList) {
 		delete contactData;
 	}
-
-	contacts_db_remove_changed_cb(_contacts_contact._uri,
-			makeCallbackWithLastParam(&PersonProvider::onChanged), this);
-	contacts_setting_remove_name_display_order_changed_cb(
-			&PersonProvider::onNameFormatChanged, this);
-	contacts_setting_remove_name_sorting_order_changed_cb(
-			&PersonProvider::onSortOrderChanged, this);
 }
 
 int PersonProvider::getFilterType() const
@@ -71,6 +59,8 @@ const PersonProvider::DataList &PersonProvider::getDataList()
 			m_PersonList.push_back(createPerson(record));
 		}
 		contacts_list_destroy(list, false);
+
+		subscribe();
 		m_IsFilled = true;
 	}
 	return m_PersonList;
@@ -82,7 +72,32 @@ void PersonProvider::clearDataList()
 		delete contactData;
 	}
 	m_PersonList.clear();
+
+	unsubscribe();
 	m_IsFilled = false;
+}
+
+void PersonProvider::reload()
+{
+	/*
+	 * This is a crunch to support update functionality of Mfc.
+	 * The PersonProvider's methods are used because list is fully cleared and
+	 * the new list is get using overrided getPersonList method.
+	 *
+	 * If some of inherited classes will keep own person list, this code should be updated.
+	 */
+	while (!getDataList().empty()) {
+		PersonProvider::deletePerson(getDataList().begin());
+	}
+
+	resetDbVersion();
+
+	contacts_list_h list = getPersonList();
+	for (auto &&record : makeRange(list)) {
+		PersonProvider::insertPerson(getRecordInt(record, _contacts_person.id), PersonId);
+	}
+
+	contacts_list_destroy(list, true);
 }
 
 void PersonProvider::setUpdateMode(bool isEnabled)
@@ -272,6 +287,33 @@ void PersonProvider::updatePersonList()
 	}
 
 	contacts_list_destroy(changes, true);
+}
+
+void PersonProvider::subscribe()
+{
+	resetDbVersion();
+
+	contacts_db_add_changed_cb(_contacts_contact._uri,
+			makeCallbackWithLastParam(&PersonProvider::onChanged), this);
+	contacts_setting_add_name_display_order_changed_cb(
+			&PersonProvider::onNameFormatChanged, this);
+	contacts_setting_add_name_sorting_order_changed_cb(
+			&PersonProvider::onSortOrderChanged, this);
+}
+
+void PersonProvider::unsubscribe()
+{
+	contacts_db_remove_changed_cb(_contacts_contact._uri,
+			makeCallbackWithLastParam(&PersonProvider::onChanged), this);
+	contacts_setting_remove_name_display_order_changed_cb(
+			&PersonProvider::onNameFormatChanged, this);
+	contacts_setting_remove_name_sorting_order_changed_cb(
+			&PersonProvider::onSortOrderChanged, this);
+}
+
+void PersonProvider::resetDbVersion()
+{
+	contacts_db_get_current_version(&m_DbVersion);
 }
 
 void PersonProvider::onChanged(const char *uri)
