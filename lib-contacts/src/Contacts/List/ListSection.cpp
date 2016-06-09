@@ -20,7 +20,6 @@
 #include "Contacts/List/ReorderItem.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/List/Model/PersonProvider.h"
-#include "Utils/Logger.h"
 
 #include <app_i18n.h>
 
@@ -31,7 +30,6 @@ ListSection::ListSection(std::string title, PersonProvider *provider, SectionMod
 	: m_Title(title), m_Provider(provider), m_Mode(mode)
 {
 	m_Provider->setInsertCallback(std::bind(&ListSection::onInserted, this, std::placeholders::_1));
-
 	for (auto &&contactData : m_Provider->getDataList()) {
 		insertSubItem(createItem(static_cast<Person &>(*contactData)));
 	}
@@ -45,6 +43,11 @@ ListSection::~ListSection()
 void ListSection::setUpdateCallback(UpdateCallback callback)
 {
 	m_OnUpdated = std::move(callback);
+}
+
+void ListSection::update()
+{
+	m_Provider->reload();
 }
 
 char *ListSection::getText(Evas_Object *parent, const char *part)

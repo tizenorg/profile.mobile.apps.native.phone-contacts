@@ -69,6 +69,11 @@ namespace Contacts
 			 */
 			void setUpdateCallback(UpdateCallback callback);
 
+			/**
+			 * @brief Update section content manually
+			 */
+			void update();
+
 		protected:
 			void onInserted(::Model::DataItem &person);
 			ContactItem *createItem(Model::Person &person);

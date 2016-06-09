@@ -150,6 +150,15 @@ void ListView::onMenuPressed()
 		menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onShareSelected, this));
 		menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB", [this] {
 			auto manageFavPopup = new ManageFavoritesPopup(getNavigator());
+			manageFavPopup->setMfcUpdateCallback([this] {
+
+				if (m_Sections[SectionMfc]) {
+					static_cast<ListSection *>(m_Sections[SectionMfc])->update();
+				} else {
+					createSection(SectionMfc);
+				}
+			});
+
 			manageFavPopup->create(getEvasObject());
 		});
 	}
