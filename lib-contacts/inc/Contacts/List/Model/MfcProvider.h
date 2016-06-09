@@ -46,8 +46,6 @@ namespace Contacts
 				void onPersonUsageUpdate(const char *viewUri);
 				bool update();
 				static bool equalPredicate(::Model::DataItem *data, contacts_record_h record);
-
-				void updateMfcList(contacts_list_h list);
 			};
 		}
 	}

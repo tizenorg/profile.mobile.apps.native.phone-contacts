@@ -86,9 +86,7 @@ bool MfcProvider::insertPerson(int id, IdType idType)
 
 void MfcProvider::deletePerson(DataList::const_iterator personIt)
 {
-	contacts_list_h mfcList = getPersonList();
-	updateMfcList(mfcList);
-	contacts_list_destroy(mfcList, true);
+	reload();
 }
 
 contacts_list_h MfcProvider::getPersonUsageList() const
@@ -150,12 +148,12 @@ bool MfcProvider::update()
 		contacts_list_first(mfcList);
 
 		if (!isEqual && count) {
-			updateMfcList(mfcList);
+			reload();
 			return true;
 		}
 
 	} else {
-		updateMfcList(mfcList);
+		reload();
 		return true;
 	}
 
@@ -169,13 +167,3 @@ bool MfcProvider::equalPredicate(::Model::DataItem *data, contacts_record_h reco
 	return person->getId() == getRecordInt(record, _contacts_person.id);
 }
 
-void MfcProvider::updateMfcList(contacts_list_h list)
-{
-	while (!getDataList().empty()) {
-		PersonProvider::deletePerson(getDataList().begin());
-	}
-
-	for (auto &&record : makeRange(list)) {
-		PersonProvider::insertPerson(getRecordInt(record, _contacts_person.id), PersonId);
-	}
-}
