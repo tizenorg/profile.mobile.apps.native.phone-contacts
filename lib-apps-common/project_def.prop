@@ -60,7 +60,7 @@ USER_EDCS_FONT_DIRS_ABS =
 # EDC Flags
 USER_EXT_EDC_KEYS = EDC0
 
-USER_EXT_EDC0_EDCS = res/apps-common/edje/apps-common-thumbnail.edc res/apps-common/edje/apps-common-progressbar-layout.edc res/apps-common/edje/apps-common-buttons.edc
+USER_EXT_EDC0_EDCS = res/apps-common/edje/apps-common-thumbnail.edc res/apps-common/edje/apps-common-progressbar-layout.edc res/apps-common/edje/apps-common-popup.edc res/apps-common/edje/apps-common-buttons.edc
 USER_EXT_EDC0_EDCS_IMAGE_DIRS = res
 USER_EXT_EDC0_EDCS_IMAGE_DIRS_ABS =
 USER_EXT_EDC0_EDCS_SOUND_DIRS = edje/sounds
