@@ -29,7 +29,7 @@ using namespace Contacts::List::Model;
 ListSection::ListSection(std::string title, PersonProvider *provider, SectionMode mode)
 	: m_Title(title), m_Provider(provider), m_Mode(mode)
 {
-	m_Provider->setInsertCallback(std::bind(&ListSection::onInserted, this, std::placeholders::_1));
+	m_Provider->setInsertCallback(std::bind(&ListSection::onPersonInserted, this, std::placeholders::_1));
 
 	for (auto &&contactData : m_Provider->getDataList()) {
 		insertSubItem(createItem(static_cast<Person &>(*contactData)));
@@ -60,7 +60,7 @@ char *ListSection::getText(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-void ListSection::onInserted(::Model::DataItem &person)
+void ListSection::onPersonInserted(::Model::DataItem &person)
 {
 	ContactItem *item = createItem(static_cast<Person &>(person));
 	insertSubItem(item);
@@ -70,7 +70,7 @@ void ListSection::onInserted(::Model::DataItem &person)
 	}
 }
 
-void ListSection::onDeleted(ContactItem *item)
+void ListSection::onPersonDeleted(ContactItem *item)
 {
 	item->pop();
 	if (m_OnUpdated) {
@@ -89,6 +89,6 @@ ContactItem *ListSection::createItem(Person &person)
 		item = new PersonItem(person);
 	}
 	person.setUpdateCallback(std::bind(&ContactItem::update, item, std::placeholders::_1));
-	person.setDeleteCallback(std::bind(&ListSection::onDeleted, this, item));
+	person.setDeleteCallback(std::bind(&ListSection::onPersonDeleted, this, item));
 	return item;
 }

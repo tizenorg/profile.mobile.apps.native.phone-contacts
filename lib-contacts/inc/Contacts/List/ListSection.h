@@ -75,13 +75,13 @@ namespace Contacts
 			void update();
 
 		protected:
-			void onInserted(::Model::DataItem &person);
+			void onPersonInserted(::Model::DataItem &person);
 			ContactItem *createItem(Model::Person &person);
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 
-			void onDeleted(ContactItem *item);
+			void onPersonDeleted(ContactItem *item);
 
 			std::string m_Title;
 			UpdateCallback m_OnUpdated;
