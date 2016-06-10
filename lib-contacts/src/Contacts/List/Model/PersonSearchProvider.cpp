@@ -90,6 +90,7 @@ void PersonSearchProvider::onInserted(Person &person)
 
 void PersonSearchProvider::onUpdated(PersonSearchData &searchData, int changes)
 {
+	m_SearchEngine.updateSearchData(&searchData);
 	searchData.onUpdated(changes);
 }
 
@@ -100,4 +101,5 @@ void PersonSearchProvider::onDeleted(DataList::iterator personIt)
 
 	delete searchData;
 	m_ContactList.erase(personIt);
+	m_SearchEngine.deleteSearchData(searchData);
 }
