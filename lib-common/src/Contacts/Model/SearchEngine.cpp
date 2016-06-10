@@ -68,24 +68,45 @@ bool SearchEngine::empty() const
 
 void SearchEngine::insertSearchData(SearchData *searchData)
 {
-	std::string query;
-	query.reserve(m_Query.size());
-
-	for (size_t i = 0; i < m_History.size(); ++i) {
-		query.append(1, m_Query[i]);
-
-		if (i < (size_t)m_LastFoundIndex && m_History[i].empty()) {
-			continue;
-		}
-
+	historyFor([searchData](const std::string &query, ResultList &list) {
 		SearchResultPtr searchResult = searchData->compare(query);
 		searchData->setSearchResult(searchResult.get());
 
-		if (!searchResult) {
-			break;
+		if (searchResult) {
+			list.emplace_back(searchData, std::move(searchResult));
+			return true;
 		}
 
-		m_History[i].emplace_back(searchData, std::move(searchResult));
+		return false;
+	});
+}
+
+void SearchEngine::updateSearchData(SearchData *searchData)
+{
+	historyFor([searchData](const std::string &query, ResultList &list) {
+		auto it = findSearchData(list, searchData);
+		if (it != list.end()) {
+			SearchResultPtr searchResult = searchData->compare(query);
+			searchData->setSearchResult(searchResult.get());
+
+			if (searchResult) {
+				it->second = std::move(searchResult);
+			} else {
+				list.erase(it);
+			}
+		}
+
+		return true;
+	});
+}
+
+void SearchEngine::deleteSearchData(SearchData *searchData)
+{
+	for (auto &&list : m_History) {
+		auto it = findSearchData(list, searchData);
+		if (it != list.end()) {
+			list.erase(it);
+		}
 	}
 }
 
@@ -144,6 +165,12 @@ void SearchEngine::resetSearchResult()
 	}
 }
 
+void SearchEngine::clear()
+{
+	m_History.clear();
+	m_LastFoundIndex = -1;
+}
+
 SearchEngine::SearchHistory::iterator SearchEngine::getMatch(const std::string &query)
 {
 	size_t minSize = std::min(m_Query.size(), query.size());
@@ -163,8 +190,29 @@ SearchEngine::SearchHistory::iterator SearchEngine::skipEmptyResults(size_t offs
 	return rIt == m_History.rend() ? m_History.end() : rIt.base() - 1;
 }
 
-void SearchEngine::clear()
+void SearchEngine::historyFor(HistoryForFn function)
 {
-	m_History.clear();
-	m_LastFoundIndex = -1;
+	std::string query;
+	query.reserve(m_Query.size());
+
+	for (size_t i = 0; i < m_History.size(); ++i) {
+		auto &list = m_History[i];
+		query.append(1, m_Query[i]);
+
+		if (i < (size_t)m_LastFoundIndex && list.empty()) {
+			continue;
+		}
+
+		if (!function(query, list)) {
+			break;
+		}
+	}
+}
+
+SearchEngine::ResultList::iterator SearchEngine::findSearchData(ResultList &list, SearchData *searchData)
+{
+	return std::find_if(list.begin(), list.end(),
+			[searchData](const SearchResultItem &item) {
+				return item.first == searchData;
+			});
 }
