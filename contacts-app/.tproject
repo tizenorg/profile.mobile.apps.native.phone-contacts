@@ -7,14 +7,14 @@
     </platforms>
     <package>
         <blacklist/>
+        <referencedProject project="lib-apps-common" path="lib"/>
+        <referencedProject project="lib-common" path="lib"/>
+        <referencedProject project="lib-contacts" path="lib"/>
+        <referencedProject project="lib-logs" path="lib"/>
+        <referencedProject project="lib-phone" path="lib"/>
         <resFallback autoGen="true"/>
         <subProjects>
             <tizenProject project="contacts-widget"/>
-            <tizenProject project="lib-apps-common"/>
-            <tizenProject project="lib-common"/>
-            <tizenProject project="lib-contacts"/>
-            <tizenProject project="lib-phone"/>
-            <tizenProject project="lib-logs"/>
         </subProjects>
     </package>
 </tproject>

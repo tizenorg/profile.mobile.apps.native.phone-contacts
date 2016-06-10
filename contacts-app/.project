@@ -3,12 +3,7 @@
 	<name>contacts-app</name>
 	<comment></comment>
 	<projects>
-		<project>lib-phone</project>
-		<project>lib-logs</project>
-		<project>lib-apps-common</project>
-		<project>lib-common</project>
 		<project>contacts-widget</project>
-		<project>lib-contacts</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
