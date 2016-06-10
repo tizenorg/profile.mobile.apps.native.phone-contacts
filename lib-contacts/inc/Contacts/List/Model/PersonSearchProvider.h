@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CONTACTS_LIST_MODEL_SEARCH_PROVIDER_H
-#define CONTACTS_LIST_MODEL_SEARCH_PROVIDER_H
+#ifndef CONTACTS_LIST_MODEL_PERSON_SEARCH_PROVIDER_H
+#define CONTACTS_LIST_MODEL_PERSON_SEARCH_PROVIDER_H
 
 #include "Contacts/Model/SearchEngine.h"
 #include <unordered_map>
@@ -36,15 +36,15 @@ namespace Contacts
 			class PersonSearchData;
 			class PersonProvider;
 
-			class SearchProvider : public ::Model::DataProvider
+			class PersonSearchProvider : public ::Model::DataProvider
 			{
 			public:
 				/**
-				 * @brief Create SearchProvider
+				 * @brief Create PersonSearchProvider
 				 * @param[in]   provider    PersonProvider
 				 */
-				explicit SearchProvider(PersonProvider &provider);
-				virtual ~SearchProvider() override;
+				explicit PersonSearchProvider(PersonProvider &provider);
+				virtual ~PersonSearchProvider() override;
 
 				/**
 				 * @brief Invoke search
@@ -65,7 +65,7 @@ namespace Contacts
 			private:
 				using DataProvider::onInserted;
 
-				Contacts::Model::ContactData &insertPerson(Person &person);
+				Contacts::Model::SearchData &insertPerson(Person &person);
 
 				void onInserted(Person &person);
 				void onUpdated(PersonSearchData &searchData, int changes);
@@ -79,4 +79,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_LIST_MODEL_SEARCH_PROVIDER_H */
+#endif /* CONTACTS_LIST_MODEL_PERSON_SEARCH_PROVIDER_H */
