@@ -29,9 +29,26 @@ void DataProvider::unsetInsertCallback()
 	m_OnInserted = nullptr;
 }
 
+void DataProvider::setUpdateFinishedCallback(UpdateFinishedCallback callback)
+{
+	m_OnUpdateFinished = std::move(callback);
+}
+
+void DataProvider::unsetUpdateFinishedCallback()
+{
+	m_OnUpdateFinished = nullptr;
+}
+
 void DataProvider::onInserted(DataItem &dataItem)
 {
 	if (m_OnInserted) {
 		m_OnInserted(dataItem);
+	}
+}
+
+void DataProvider::onUpdateFinished()
+{
+	if (m_OnUpdateFinished) {
+		m_OnUpdateFinished();
 	}
 }

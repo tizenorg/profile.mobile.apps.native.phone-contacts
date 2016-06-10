@@ -35,6 +35,11 @@ namespace Model
 		 */
 		typedef std::function<void(DataItem &)> InsertCallback;
 
+		/**
+		 * @brief Called when provider has finished updating its items.
+		 */
+		typedef std::function<void()> UpdateFinishedCallback;
+
 		virtual ~DataProvider() { }
 
 		/**
@@ -58,6 +63,17 @@ namespace Model
 		 */
 		void unsetInsertCallback();
 
+		/**
+		 * @brief Set update finished callback
+		 * @param[in]   callback    Update finished callback
+		 */
+		void setUpdateFinishedCallback(UpdateFinishedCallback callback);
+
+		/**
+		 * @brief Unset update finished callback
+		 */
+		void unsetUpdateFinishedCallback();
+
 	protected:
 		/**
 		 * @brief DataItem inserted callback
@@ -65,8 +81,14 @@ namespace Model
 		 */
 		void onInserted(DataItem &dataItem);
 
+		/**
+		 * @brief Should be called to notify that update is finished.
+		 */
+		void onUpdateFinished();
+
 	private:
 		InsertCallback m_OnInserted;
+		UpdateFinishedCallback m_OnUpdateFinished;
 	};
 }
 

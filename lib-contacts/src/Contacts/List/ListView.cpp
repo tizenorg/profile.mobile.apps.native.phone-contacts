@@ -108,6 +108,9 @@ void ListView::onCreated()
 	elm_index_level_go(m_Index, 0);
 
 	m_SearchProvider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
+	m_PersonProvider->setUpdateFinishedCallback([this] {
+		elm_index_level_go(m_Index, 0);
+	});
 }
 
 void ListView::onDestroy()
@@ -572,8 +575,6 @@ void ListView::updatePersonItem(PersonItem *item, int changes)
 	if (oldGroup && oldGroup->isEmpty()) {
 		deletePersonGroupItem(oldGroup);
 	}
-
-	elm_index_level_go(m_Index, 0);
 }
 
 void ListView::deletePersonItem(PersonItem *item)
@@ -589,8 +590,6 @@ void ListView::deletePersonItem(PersonItem *item)
 	if (m_PersonGroups.empty()) {
 		setEmptyState(true);
 	}
-
-	elm_index_level_go(m_Index, 0);
 }
 
 PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &person)
@@ -641,8 +640,6 @@ void ListView::onPersonInserted(::Model::DataItem &data)
 	auto item = createPersonItem(static_cast<PersonSearchData &>(data));
 	insertPersonItem(item);
 	addSelectItem(item);
-
-	elm_index_level_go(m_Index, 0);
 }
 
 void ListView::onSectionUpdated(ContactItem *item, ::Common::ChangeType change, SectionId sectionId)
