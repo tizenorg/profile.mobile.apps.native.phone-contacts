@@ -272,6 +272,7 @@ void PersonProvider::updatePersonList()
 	}
 
 	contacts_list_destroy(changes, true);
+	onUpdateFinished();
 }
 
 void PersonProvider::onChanged(const char *uri)
