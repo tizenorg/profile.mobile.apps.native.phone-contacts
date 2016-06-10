@@ -58,16 +58,21 @@ namespace Contacts
 			 */
 			bool empty() const;
 
+			/**@{*/
 			/**
-			 * @brief Notify engine that new SearchData was inserted
+			 * @brief Notify engine that SearchData was Inserted/Updated/Deleted
 			 * @param[in]   searchData  SearchData object
 			 */
 			void insertSearchData(SearchData *searchData);
+			void updateSearchData(SearchData *searchData);
+			void deleteSearchData(SearchData *searchData);
+			/**@}*/
 
 		private:
 			typedef std::pair<SearchData *, SearchResultPtr> SearchResultItem;
 			typedef std::list<SearchResultItem> ResultList;
 			typedef std::vector<ResultList> SearchHistory;
+			typedef std::function<bool(const std::string &, ResultList &)> HistoryForFn;
 
 			bool needSearch(const std::string &query);
 			template <typename List>
@@ -78,11 +83,13 @@ namespace Contacts
 
 			void updateSearchResult(ResultList &list);
 			void resetSearchResult();
+			void clear();
 
 			SearchHistory::iterator getMatch(const std::string &query);
 			SearchHistory::iterator skipEmptyResults(size_t offset);
 
-			void clear();
+			void historyFor(HistoryForFn function);
+			static ResultList::iterator findSearchData(ResultList &list, SearchData *searchData);
 
 			std::string m_Query;
 			SearchHistory m_History;
