@@ -53,9 +53,9 @@ void OperationPickController::onRequest(Operation operation, app_control_h reque
 bool OperationPickController::onSelected(SelectResults results)
 {
 	if (m_ResultType == ResultVcard) {
-		replyPath(results);
+		replyPath(std::move(results));
 	} else {
-		replyIds(results);
+		replyIds(std::move(results));
 	}
 
 	return true;
@@ -63,7 +63,7 @@ bool OperationPickController::onSelected(SelectResults results)
 
 void OperationPickController::replyIds(SelectResults results)
 {
-	size_t count = results.count();
+	size_t count = results.size();
 	std::vector<char[ID_BUFFER_SIZE]> buffers(count);
 	std::vector<const char *> ids(count);
 
@@ -81,7 +81,7 @@ void OperationPickController::replyIds(SelectResults results)
 void OperationPickController::replyPath(SelectResults results)
 {
 	const char *type = getResultTypeString(m_ResultType);
-	const char *result = (const char *) results.begin()->value.data;
+	const char *result = (const char *) results.front().value.data;
 	replyResults(type, &result, 1);
 }
 

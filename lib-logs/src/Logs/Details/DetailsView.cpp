@@ -76,15 +76,6 @@ void DetailsView::onCreated()
 	fillGenList();
 }
 
-bool DetailsView::onBackPressed()
-{
-	if (getSelectMode() != SelectNone) {
-		setSelectMode(SelectNone);
-		return false;
-	}
-	return true;
-}
-
 void DetailsView::onMenuPressed()
 {
 	if (getSelectMode() != SelectNone) {
@@ -160,7 +151,7 @@ void DetailsView::insertLogDetailItem(Log *log)
 	LogDetailItem *logItem = new LogDetailItem(log);
 	m_Genlist->insert(logItem, m_GroupItem, m_GroupItem, Ui::Genlist::After);
 	log->setRemoveCallback(std::bind(&DetailsView::onLogRemoved, this, logItem));
-	onItemInserted(logItem);
+	addSelectItem(logItem);
 }
 
 void DetailsView::insertLogDetailItems()
@@ -201,6 +192,6 @@ void DetailsView::onLogAdded(Log *log)
 
 void DetailsView::onLogRemoved(LogDetailItem *logItem)
 {
-	onItemRemove(logItem);
+	removeSelectItem(logItem);
 	delete logItem;
 }

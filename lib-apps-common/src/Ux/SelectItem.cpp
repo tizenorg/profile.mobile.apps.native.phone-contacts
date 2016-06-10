@@ -52,8 +52,9 @@ SelectMode SelectItem::getSelectMode() const
 void SelectItem::setSelectMode(SelectMode selectMode)
 {
 	m_SelectMode = selectMode;
-	updateCheckPart();
 
+	setChecked(false);
+	updateCheckPart();
 	onSelectModeChanged(m_SelectMode);
 }
 

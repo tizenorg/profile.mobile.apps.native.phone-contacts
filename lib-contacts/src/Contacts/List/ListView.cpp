@@ -167,7 +167,7 @@ void ListView::onDeleteSelected()
 	view->setSelectMode(SelectMulti);
 	view->setSelectCallback([](SelectResults results) {
 		std::vector<int> ids;
-		ids.reserve(results.count());
+		ids.reserve(results.size());
 
 		for (auto &&result : results) {
 			ids.push_back(result.value.id);
@@ -184,7 +184,7 @@ void ListView::onShareSelected()
 	ListView *view = new ListView();
 	view->setSelectMode(SelectMulti);
 	view->setSelectCallback([](SelectResults results) {
-		size_t count = results.count();
+		size_t count = results.size();
 		std::vector<std::string> idString(count);
 		std::vector<const char *> ids(count);
 
@@ -245,7 +245,7 @@ Ui::GenlistGroupItem *ListView::createListSection(SectionId sectionId)
 		for (auto &&item : *section) {
 			PersonItem *personItem = static_cast<PersonItem *>(item);
 			linkPersonItems(personItem);
-			onItemInserted(personItem);
+			addSelectItem(personItem);
 		}
 	}
 
@@ -268,7 +268,7 @@ void ListView::fillPersonList()
 
 			PersonItem *item = createPersonItem(searchData);
 			m_Genlist->insert(item, group);
-			onItemInserted(item);
+			addSelectItem(item);
 		}
 
 		if (m_PersonGroups.empty()) {
@@ -570,7 +570,7 @@ void ListView::updatePersonItem(PersonItem *item, int changes)
 void ListView::deletePersonItem(PersonItem *item)
 {
 	PersonGroupItem *oldGroup = static_cast<PersonGroupItem *>(item->getParentItem());
-	onItemRemove(item);
+	removeSelectItem(item);
 	delete item;
 
 	if (oldGroup && oldGroup->isEmpty()) {
@@ -631,7 +631,7 @@ void ListView::onPersonInserted(::Model::DataItem &data)
 {
 	auto item = createPersonItem(static_cast<PersonSearchData &>(data));
 	insertPersonItem(item);
-	onItemInserted(item);
+	addSelectItem(item);
 
 	elm_index_level_go(m_Index, 0);
 }
@@ -640,9 +640,9 @@ void ListView::onSectionUpdated(ContactItem *item, ::Common::ChangeType change, 
 {
 	if (change == Common::ChangeInsert) {
 		linkPersonItems((PersonItem *)item);
-		onItemInserted(item);
+		addSelectItem(item);
 	} else if (change == Common::ChangeDelete) {
-		onItemRemove(item);
+		removeSelectItem(item);
 	}
 
 	updateSection(sectionId);
