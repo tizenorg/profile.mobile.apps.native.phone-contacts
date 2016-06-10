@@ -104,7 +104,7 @@ bool Chooser::onPersonChecked(SelectItem *item, bool isChecked, bool isSelectAll
 		}
 
 		return selectSingleResult(item->getSelectResult(), [item](SelectResults results) {
-			item->setCustomResult(*results.begin());
+			item->setCustomResult(results.front());
 			item->setChecked(true);
 			return true;
 		});
@@ -116,16 +116,16 @@ bool Chooser::onPersonChecked(SelectItem *item, bool isChecked, bool isSelectAll
 
 bool Chooser::onSinglePersonSelected(SelectResults results)
 {
-	return selectSingleResult(*results.begin(), std::bind(&Chooser::onSelected, this, _1));
+	return selectSingleResult(results.front(), std::bind(&Chooser::onSelected, this, _1));
 }
 
 bool Chooser::onSelectedForAction(SelectResults results)
 {
-	selectSingleResult(*results.begin(), [this](SelectResults results) {
-		SelectResult result = *results.begin();
+	selectSingleResult(results.front(), [this](SelectResults results) {
+		SelectResult result = results.front();
 		if (result.type == ResultEmail) {
 			result.type = ActionEmail;
-			return onSelected({ &result, 1 });
+			return onSelected({ result });
 		}
 
 		Ui::ListPopup *popup = new Ui::ListPopup();
@@ -135,7 +135,7 @@ bool Chooser::onSelectedForAction(SelectResults results)
 		popup->addItem("IDS_PB_OPT_MESSAGE", (void *) ActionMessage);
 		popup->setSelectedCallback([this, result] (void *data) mutable {
 			result.type = (long) data;
-			onSelected({ &result, 1 });
+			onSelected({ result });
 		});
 
 		return false;
@@ -149,7 +149,7 @@ bool Chooser::onSelectedForVcard(SelectResults results)
 	using namespace Settings;
 
 	std::vector<int> ids;
-	ids.reserve(results.count());
+	ids.reserve(results.size());
 	for (auto &&result : results) {
 		ids.push_back(result.value.id);
 	}
@@ -158,7 +158,7 @@ bool Chooser::onSelectedForVcard(SelectResults results)
 			std::move(ids), StorageInternalOther);
 	exporter->setFinishCallback([this, exporter] {
 		SelectResult result = { ResultVcard, (void *) exporter->getVcardPath().c_str() };
-		onSelected({ &result, 1 });
+		onSelected({ result });
 	});
 	exporter->run();
 
@@ -167,7 +167,7 @@ bool Chooser::onSelectedForVcard(SelectResults results)
 
 bool Chooser::onSelected(SelectResults results)
 {
-	if (!m_OnSelected || m_OnSelected(results)) {
+	if (!m_OnSelected || m_OnSelected(std::move(results))) {
 		getPage()->close();
 	}
 
@@ -179,7 +179,7 @@ bool Chooser::selectSingleResult(SelectResult person, SelectCallback callback)
 	SelectResult result = getSingleResult(person.value.id);
 	if (result.value.id > 0) {
 		Utils::createJob([callback, result]() mutable {
-			callback({ &result, 1 });
+			callback({ result });
 		});
 		return true;
 	}

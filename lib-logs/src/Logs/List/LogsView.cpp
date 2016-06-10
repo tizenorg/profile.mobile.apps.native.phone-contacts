@@ -204,7 +204,7 @@ LogItem *LogsView::insertLogItem(LogGroup *group)
 
 	LogItem *item = createLogItem(group);
 	m_Genlist->insert(item, groupItem, *groupItem->begin());
-	onItemInserted(item);
+	addSelectItem(item);
 	return item;
 }
 
@@ -289,7 +289,7 @@ void LogsView::onLogInserted(LogGroup *group)
 void LogsView::onLogItemDelete(LogItem *item)
 {
 	Ui::GenlistGroupItem *groupItem = item->getParentItem();
-	onItemRemove(item);
+	removeSelectItem(item);
 	delete item;
 
 	if (groupItem && groupItem->isEmpty()) {

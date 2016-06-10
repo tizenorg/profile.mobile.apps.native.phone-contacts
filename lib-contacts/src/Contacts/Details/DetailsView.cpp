@@ -215,7 +215,7 @@ FieldItem *DetailsView::addFieldItem(ContactObject &field)
 
 	FieldItem *item = createFieldItem(field);
 	m_Genlist->insert(item, nullptr, getNextFieldItem(fieldId));
-	onItemInserted(item);
+	addSelectItem(item);
 
 	if (!m_Items[fieldId]) {
 		m_Items[fieldId] = item;
@@ -230,7 +230,7 @@ FieldItem *DetailsView::addFieldItem(ContactObject &field)
 void DetailsView::removeFieldItem(FieldItem *item)
 {
 	ContactFieldId fieldId = ContactFieldId(item->getObject().getId());
-	onItemRemove(item);
+	removeSelectItem(item);
 
 	if (item == m_Items[fieldId]) {
 		FieldItem *nextItem = static_cast<FieldItem *>(item->getNextItem());

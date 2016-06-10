@@ -18,8 +18,8 @@
 #ifndef UX_SELECT_TYPES_H
 #define UX_SELECT_TYPES_H
 
-#include "Utils/Range.h"
 #include <functional>
+#include <vector>
 
 namespace Ux
 {
@@ -51,7 +51,7 @@ namespace Ux
 	/**
 	 * @brief Range of consecutive selection results.
 	 */
-	typedef Utils::Range<SelectResult *> SelectResults;
+	typedef std::vector<SelectResult> SelectResults;
 
 	/**
 	 * @brief Callback to be called when selection is done.

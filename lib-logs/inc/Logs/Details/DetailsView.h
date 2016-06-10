@@ -60,7 +60,6 @@ namespace Logs
 			virtual ~DetailsView() override;
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
-			virtual bool onBackPressed() override;
 			virtual void onMenuPressed() override;
 
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;

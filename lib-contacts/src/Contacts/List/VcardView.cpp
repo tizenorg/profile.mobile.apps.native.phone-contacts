@@ -52,7 +52,7 @@ Evas_Object *VcardView::onCreate(Evas_Object *parent)
 	for (auto &&contact : m_Provider.getDataList()) {
 		ContactItem *item = new ContactItem(static_cast<ContactRecordData &>(*contact));
 		m_Genlist->insert(item);
-		onItemInserted(item);
+		addSelectItem(item);
 	}
 
 	return m_Genlist->getEvasObject();

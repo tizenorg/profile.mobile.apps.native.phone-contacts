@@ -128,22 +128,28 @@ namespace Ux
 		size_t getSelectCount() const;
 
 		/**
+		 * @brief Add selectable item to be managed by the view.
+		 * @param[in]   item    Item to add
+		 */
+		void addSelectItem(SelectItem *item);
+
+		/**
+		 * @brief Remove selectable item.
+		 * @param[in]   item    Item to remove
+		 */
+		void removeSelectItem(SelectItem *item);
+
+		/**
 		 * @brief Creates "Done" and "Cancel" buttons in #SelectMulti mode.
 		 * @see View::onPageAttached()
 		 */
 		virtual void onPageAttached(Ui::NavigatorPage *page) override;
 
 		/**
-		 * @brief Should be called when selectable item is inserted.
-		 * @param[in]   item    Inserted item
+		 * @brief Calls cancel callback if it exists.
+		 * @see View::onBackPressed()
 		 */
-		void onItemInserted(SelectItem *item);
-
-		/**
-		 * @brief Should be called when selectable item is about to be removed.
-		 * @param[in]   item    Item being removed
-		 */
-		void onItemRemove(SelectItem *item);
+		virtual bool onBackPressed() override;
 
 		/**
 		 * @brief Called when "Select All" item should be inserted.
