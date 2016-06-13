@@ -68,6 +68,7 @@ void Group::update(contacts_record_h record)
 {
 	int changes = ChangedNone;
 	if (!compareRecordsStr(m_Record, record, _contacts_group.name)) {
+		m_SortValue.clear();
 		changes |= ChangedName;
 	}
 
