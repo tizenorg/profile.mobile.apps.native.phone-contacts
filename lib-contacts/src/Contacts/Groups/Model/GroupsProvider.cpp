@@ -39,7 +39,7 @@ GroupsProvider::~GroupsProvider()
 
 const DataProvider::DataList &GroupsProvider::getDataList()
 {
-	if (m_IsFilled) {
+	if (!m_IsFilled) {
 		contacts_db_get_current_version(&m_DbVersion);
 		contacts_db_add_changed_cb(_contacts_group._uri,
 				makeCallbackWithLastParam(&GroupsProvider::onChanged), this);
@@ -118,7 +118,6 @@ void GroupsProvider::updateGroup(DataList::const_iterator groupIt)
 	Group *group = static_cast<Group *>(*groupIt);
 	contacts_record_h record = nullptr;
 	contacts_db_get_record(_contacts_group._uri, group->getId(), &record);
-
 	group->update(record);
 }
 
