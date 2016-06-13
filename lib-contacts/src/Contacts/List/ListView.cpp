@@ -32,6 +32,7 @@
 
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/Input/InputView.h"
+#include "Contacts/Groups/GroupsView.h"
 #include "Contacts/Settings/MainView.h"
 #include "Common/Strings.h"
 
@@ -151,6 +152,10 @@ void ListView::onMenuPressed()
 	menu->create(getEvasObject());
 
 	if (!m_PersonGroups.empty()) {
+		menu->addItem("Groups", [this] {
+			Groups::GroupsView *groupsView = new Groups::GroupsView();
+			getNavigator()->navigateTo(groupsView);
+		});
 		menu->addItem("IDS_LOGS_OPT_DELETE", std::bind(&ListView::onDeleteSelected, this));
 		menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onShareSelected, this));
 		menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB", [this] {
