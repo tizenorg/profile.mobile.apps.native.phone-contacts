@@ -63,9 +63,12 @@ namespace Contacts
 			ManageFavoritesPopup(const ManageFavoritesPopup &that) = delete;
 			ManageFavoritesPopup & operator=(const ManageFavoritesPopup &that) = delete;
 
-			void onAdd();
-			void onReorder();
-			void onRemove();
+			void onAddSelected();
+			void onReorderSelected();
+			void onRemoveSelected();
+
+			static void addFavorites(Ux::SelectResults results);
+			static void removeFavorites(Ux::SelectResults results, MfcUpdateCallback callback);
 
 			Ui::Navigator *m_Navigator;
 			MfcUpdateCallback m_OnMfcUpdated;

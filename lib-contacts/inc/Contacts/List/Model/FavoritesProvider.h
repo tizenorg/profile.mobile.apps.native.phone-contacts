@@ -47,6 +47,7 @@ namespace Contacts
 				 * @param[in]    filterType    The filter
 				 */
 				explicit FavoritesProvider(Mode mode = ModeOnly, int filterType = FilterNone);
+				virtual const char *getName() { return "FavoritesProvider"; }
 
 				/**
 				 * @brief Destructor
