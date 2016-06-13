@@ -40,9 +40,11 @@
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
+#include "Ui/ProcessPopup.h"
 #include "Ui/Window.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
+#include "Utils/Thread.h"
 
 #include "ListPath.h"
 #include <efl_extension.h>
@@ -177,16 +179,27 @@ void ListView::onDeleteSelected()
 {
 	ListView *view = new ListView();
 	view->setSelectMode(SelectMulti);
-	view->setSelectCallback([](SelectResults results) {
-		std::vector<int> ids;
-		ids.reserve(results.size());
+	view->setSelectCallback([view](SelectResults results) {
+		auto task = [](SelectResults results) {
+			std::vector<int> ids;
+			ids.reserve(results.size());
 
-		for (auto &&result : results) {
-			ids.push_back(result.value.id);
-		}
+			for (auto &&result : results) {
+				ids.push_back(result.value.id);
+			}
 
-		contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
-		return true;
+			contacts_connect_on_thread();
+			contacts_db_delete_records(_contacts_person._uri, ids.data(), ids.size());
+			contacts_disconnect_on_thread();
+		};
+
+		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_POP_DELETING_CONTACTS_ING");
+		new Thread(std::bind(task, std::move(results)), [view, popup] {
+			delete popup;
+			view->getPage()->close();
+		});
+
+		return false;
 	});
 	getNavigator()->navigateTo(view);
 }
