@@ -93,6 +93,11 @@ Eina_Bool ContactFieldSubItem::getState(Evas_Object *parent, const char *part)
 	return parentItem ? parentItem->getState(parent, part) : EINA_FALSE;
 }
 
+void ContactFieldSubItem::onInserted()
+{
+	elm_genlist_item_select_mode_set(getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+}
+
 void ContactFieldSubItem::onFocused()
 {
 	Ui::Control *control = getFieldControl();

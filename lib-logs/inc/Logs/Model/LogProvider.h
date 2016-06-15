@@ -123,6 +123,7 @@ namespace Logs
 			size_t fillGroupList(LogIterator begin, LogIterator end);
 			bool shouldGroupLogs(Log &log, Log &prevLog);
 			bool mergeGroup(GroupIterator group);
+			static bool compareNumber(const char *firstNumber, const char *secondNumber);
 
 			LogIterator updateLogs();
 			void updateGroups(LogIterator newBegin, LogIterator newEnd);

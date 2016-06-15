@@ -24,6 +24,8 @@
 
 #include <algorithm>
 
+#define PHONE_INFORMATION_COUNT 7
+
 using namespace Common::Database;
 using namespace Contacts;
 using namespace Logs::Model;
@@ -126,7 +128,7 @@ bool LogProvider::shouldGroupLogs(Log &log, Log &prevLog)
 	return (type == prevLog.getType()
 			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN
 			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN
-			&& strcmp(log.getNumber(), prevLog.getNumber()) == 0
+			&& compareNumber(log.getNumber(), prevLog.getNumber())
 			&& compareDate(log.getTime(), prevLog.getTime()));
 }
 
@@ -150,6 +152,27 @@ bool LogProvider::mergeGroup(GroupIterator group)
 	if (shouldGroupLogs((*group)->getFirstLog(), (*prevGroup)->getFirstLog())) {
 		(*prevGroup)->mergeLogGroup(*(group->get()));
 		(*prevGroup)->onChange();
+		return true;
+	}
+
+	return false;
+}
+
+bool LogProvider::compareNumber(const char *firstNumber, const char *secondNumber)
+{
+	int firstCount = strlen(firstNumber);
+	int secondCount = strlen(secondNumber);
+
+	if (firstCount == secondCount) {
+		return !strcmp(firstNumber, secondNumber);
+	} else if (firstCount < PHONE_INFORMATION_COUNT || secondCount < PHONE_INFORMATION_COUNT){
+		return false;
+	} else if (firstCount >= PHONE_INFORMATION_COUNT && secondCount >= PHONE_INFORMATION_COUNT){
+		for (int i = 0; i < PHONE_INFORMATION_COUNT; ++i) {
+			if (firstNumber[firstCount - i] != secondNumber[secondCount - i]) {
+				return false;
+			}
+		}
 		return true;
 	}
 
