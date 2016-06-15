@@ -247,6 +247,10 @@ void LogsView::setLastGroupItem(LogGroupItem *groupItem)
 
 void LogsView::onSettingsChanged(system_settings_key_e key)
 {
+	if (!m_Genlist) {
+		return;
+	}
+
 	if (key == SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY ||
 			key == SYSTEM_SETTINGS_KEY_TIME_CHANGED) {
 		elm_genlist_clear(m_Genlist->getEvasObject());
