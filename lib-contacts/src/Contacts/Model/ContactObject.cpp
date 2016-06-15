@@ -82,5 +82,5 @@ contacts_record_h ContactObject::getChildRecord(contacts_record_h record,
 		contacts_record_add_child_record(record, metadata.propId, childRecord);
 	}
 
-	return childRecord;
+	return childRecord ? childRecord : record;
 }
