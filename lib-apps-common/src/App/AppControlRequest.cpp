@@ -61,7 +61,7 @@ AppControl App::requestTelephonyCall(const char *number)
 
 AppControl App::requestCallSettings()
 {
-	return AppControl(APP_CONTROL_OPERATION_SETTING_CALL);
+	return AppControl(APP_CONTROL_OPERATION_SETTING_CALL, nullptr);
 }
 
 AppControl App::requestMessageComposer(const char *scheme, const char *to,
@@ -109,13 +109,20 @@ AppControl App::requestMultiShareContacts(const char **personIds, int count)
 
 AppControl App::requestPickVcard(const char *path)
 {
-	//TODO: Replace it with AppControl which will not use application id.
-	AppControl request(nullptr);
+	/* FIXME: Replace with indirect request */
+	AppControl request("org.tizen.ug-myfile-efl");
 	request.addExtra("path", path);
 	request.addExtra("select_type", "IMPORT_PATH_SELECT");
 	request.addExtra("file_type", "vcf");
-	app_control_set_app_id(request.getHandle(), "org.tizen.ug-myfile-efl");
+	return request;
+}
 
+AppControl App::requestPickRingtone(const char *selectedPath)
+{
+	/* FIXME: Replace with indirect request */
+	AppControl request("setting-ringtone-efl");
+	request.addExtra("marked_mode", selectedPath);
+	request.addExtra("path", "/opt/share/settings/Ringtones");
 	return request;
 }
 
