@@ -83,6 +83,11 @@ namespace Contacts
 			virtual Eina_Bool getState(Evas_Object *parent, const char *part) override;
 
 			/**
+			 * @see GenlistItem::onInserted()
+			 */
+			virtual void onInserted() override;
+
+			/**
 			 * @see GenlistItem::onFocused()
 			 */
 			virtual void onFocused() override;

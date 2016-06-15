@@ -60,7 +60,8 @@ namespace
 		/* [FieldEvent]        = */ true,
 		/* [FieldNote]         = */ true,
 		/* [FieldNickname]     = */ true,
-		/* [FieldRelationship] = */ true
+		/* [FieldRelationship] = */ true,
+		/* [FieldRingtone]     = */ true
 	};
 }
 

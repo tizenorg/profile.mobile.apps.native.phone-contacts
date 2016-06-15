@@ -64,7 +64,8 @@ namespace Contacts
 			ObjectTypeMessenger,
 			ObjectTypeNickname,
 			ObjectTypeCompany,
-			ObjectTypePhoneticName
+			ObjectTypePhoneticName,
+			ObjectTypeRingtone
 		};
 
 		/**
