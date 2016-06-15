@@ -46,6 +46,7 @@ bool MainApp::onCreate()
 	ui_app_add_event_handler(&handle, APP_EVENT_LANGUAGE_CHANGED,
 			&MainApp::onLanguageChanged, this);
 
+	elm_config_focus_autoscroll_mode_set(ELM_FOCUS_AUTOSCROLL_MODE_NONE);
 	elm_app_base_scale_set(UI_BASE_SCALE);
 
 	m_Window = new Ui::Window();
