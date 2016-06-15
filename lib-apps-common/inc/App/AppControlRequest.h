@@ -135,6 +135,13 @@ namespace App
 	AppControl EXPORT_API requestPickVcard(const char *path);
 
 	/**
+	 * @brief Request pick ringtone from Settings
+	 * @param[in]   selectedPath    Path of currently selected ringtone
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestPickRingtone(const char *selectedPath);
+
+	/**
 	 * @brief Get single first string from App Control array extra data.
 	 * @param[in]   appControl  App Control handle
 	 * @param[in]   key         Extra data array key

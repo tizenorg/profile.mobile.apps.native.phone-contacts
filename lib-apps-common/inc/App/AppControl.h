@@ -32,6 +32,13 @@ namespace App
 		AppControl();
 
 		/**
+		 * @brief Create a direct app control request
+		 *
+		 * @see app_control_set_app_id()
+		 */
+		explicit AppControl(const char *appId);
+
+		/**
 		 * @brief Create app control request
 		 *
 		 * @see app_control_set_operation()
@@ -39,7 +46,7 @@ namespace App
 		 * @see app_control_set_uri()
 		 */
 		AppControl(const char *operation,
-				const char *mime = nullptr,
+				const char *mime,
 				const char *uri = nullptr);
 
 		AppControl(const AppControl&) = delete;
