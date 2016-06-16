@@ -67,6 +67,11 @@ bool ProgressController::onProgress(size_t value)
 	return !ecore_thread_check(m_Thread);
 }
 
+ProgressPopup *ProgressController::getProgressPopup()
+{
+	return m_ProgressPopup;
+}
+
 void ProgressController::createProgressPopup(Evas_Object *parent, const char *title, int maxValue)
 {
 	m_ProgressPopup = new Ui::ProgressPopup(maxValue);

@@ -17,7 +17,7 @@
 
 #include "Contacts/Common/Utils.h"
 #include "Contacts/Settings/ExportController.h"
-#include "Ui/Popup.h"
+#include "Ui/ProgressPopup.h"
 #include "Utils/Logger.h"
 
 #include <contacts.h>
@@ -48,6 +48,7 @@ ExportController::ExportController(Evas_Object *parent, const char *title,
 	  m_PersonIdList(std::move(personIdList)), m_VcardStorage(vcardStorage)
 {
 	m_VcardPath = getVcardFilePath();
+	evas_object_hide(getProgressPopup()->getEvasObject());
 }
 
 const char *ExportController::getVcardRelativePath() const
@@ -128,6 +129,11 @@ void ExportController::onStart()
 	size_t currentCount = 0;
 
 	for (auto &&personId : m_PersonIdList) {
+		Evas_Object *progressPopup = getProgressPopup()->getEvasObject();
+		if (currentCount > 40 && !evas_object_visible_get(progressPopup)) {
+			evas_object_show(progressPopup);
+		}
+
 		contacts_record_h personRecord = nullptr;
 		int err = contacts_db_get_record(_contacts_person._uri, personId, &personRecord);
 		LOG_IF_ERR(err, continue, "contacts_db_get_record() failed.");

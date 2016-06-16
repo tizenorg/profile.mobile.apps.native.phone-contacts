@@ -69,6 +69,8 @@ namespace Ui
 		void cancel();
 		bool onProgress(size_t value);
 
+		ProgressPopup *getProgressPopup();
+
 	private:
 		void createProgressPopup(Evas_Object *parent, const char *title, int maxValue);
 
