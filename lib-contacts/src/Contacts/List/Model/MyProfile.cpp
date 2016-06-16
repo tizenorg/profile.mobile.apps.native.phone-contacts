@@ -93,7 +93,7 @@ const char *MyProfile::fetchNumber()
 
 		telephony_handle_list_s handles;
 		int err = telephony_init(&handles);
-		RETVM_IF_ERR(err, nullptr, "telephony_init() failed.", err);
+		RETVM_IF_ERR(err, nullptr, "telephony_init() failed.");
 
 		for (size_t i = 0; i < handles.count; ++i) {
 			char *simNumber = nullptr;
