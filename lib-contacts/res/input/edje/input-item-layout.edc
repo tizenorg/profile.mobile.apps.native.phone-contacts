@@ -37,52 +37,70 @@ collections
 		alias: "elm/genlist/tree_compress/"INPUT_ITEM_STYLE"/default";
 
 		data.item: "banded_bg_area" "swallow.bg";
-		data.item: "contents" PART_LEFT" "PART_MIDDLE" "PART_RIGHT;
-		data.item: "states" PART_LEFT;
+		data.item: "contents" PART_TYPE" "PART_VALUE" "PART_BUTTON;
+		data.item: "states" PART_TYPE;
 
 		parts {
 			swallow { "swallow.bg"; }
-			swallow { PART_LEFT;
+			spacer { "spacer.left"; scale;
 				desc { "default";
+					align: 0.0 0.5;
 					rel1.relative: 0.0 0.0;
-					rel2.relative: 0.0 0.0;
+					rel2.relative: 0.0 1.0;
 				}
 				desc { "visible";
-					rel1.relative: (ITEM_LEFT_X1/ITEM_W) (ITEM_PADDING_Y/ITEM_H);
-					rel2.relative: ((ITEM_LEFT_X1+ITEM_LEFT_W+ITEM_LEFT_X2)/ITEM_W) (1.0-ITEM_PADDING_Y/ITEM_H);
+					inherit: "default";
+					min: TYPE_L 0;
 				}
 			}
-			swallow { PART_MIDDLE;
+			swallow { PART_TYPE; scale;
 				desc { "default";
-					rel1 {
-						relative: 1.0 0.0;
-						to_x: PART_LEFT;
-					}
-					rel2 {
-						relative: 0.0 1.0;
-						to_x: PART_RIGHT;
-					}
+					align: 0.0 0.5;
+					rel1 { relative: 1.0 0.5; to_x: "spacer.left"; }
+					rel2 { relative: 1.0 0.5; to_x: "spacer.left"; }
+				}
+				desc { "visible";
+					inherit: "default";
+					min: TYPE_W 0;
 				}
 			}
-			swallow { PART_RIGHT;
+			swallow { PART_VALUE; scale;
 				desc { "default";
-					rel1.relative: (1.0-(ITEM_RIGHT_W+ITEM_RIGHT_X2)/ITEM_W) (ITEM_PADDING_Y/ITEM_H);
-					rel2.relative: (1.0-ITEM_RIGHT_X2/ITEM_W) (1.0-ITEM_PADDING_Y/ITEM_H);
+					align: 0.0 0.5;
+					rel1 { relative: 1.0 0.0; to_x: PART_TYPE; }
+					rel2 { relative: 0.0 1.0; to_x: PART_BUTTON; }
+				}
+			}
+			swallow { PART_BUTTON; scale;
+				desc { "default";
+					align: 1.0 0.5;
+					rel1 { relative: 0.0 0.5; to_x: "spacer.right"; }
+					rel2 { relative: 0.0 0.5; to_x: "spacer.right"; }
+				}
+			}
+			spacer { "spacer.right"; scale;
+				desc { "default";
+					align: 1.0 0.5;
+					min: BUTTON_R 0;
+					rel1.relative: 1.0 0.0;
+					rel2.relative: 1.0 1.0;
 				}
 			}
 		}
 		programs {
 			program {
-				signal: "elm,state,"PART_LEFT",active";
+				signal: "elm,state,"PART_TYPE",active";
 				source: "elm";
 				action: STATE_SET "visible" 0.0;
-				target: PART_LEFT;
+				target: PART_TYPE;
+				target: "spacer.left";
 			}
 			program {
-				signal: "elm,state,"PART_LEFT",passive";
+				signal: "elm,state,"PART_TYPE",passive";
 				source: "elm";
 				action: STATE_SET "default" 0.0;
-				target: PART_LEFT;
+				target: PART_TYPE;
+				target: "spacer.left";
 			}
 		}
 	}
@@ -94,26 +112,20 @@ collections
 		alias: "elm/genlist/tree_compress/"INPUT_REL_ITEM_STYLE"/default";
 		inherit: "elm/genlist/item/"INPUT_ITEM_STYLE"/default";
 
-		data.item: "contents" PART_LEFT" "PART_MIDDLE" "PART_RIGHT" "PART_REL_ICON;
+		data.item: "contents" PART_TYPE" "PART_VALUE" "PART_BUTTON" "PART_REL_ICON;
 
 		parts {
-			swallow { PART_MIDDLE;
+			swallow { PART_VALUE; scale;
 				desc { "default";
-					rel2 {
-						relative: 0.0 1.0;
-						to_x: PART_REL_ICON;
-					}
+					rel2 { relative: 0.0 1.0; to_x: PART_REL_ICON; }
 				}
 			}
 			swallow { PART_REL_ICON; scale;
 				desc { "default";
-					min: RELATIONSHIP_ICON_SIZE;
-					max: RELATIONSHIP_ICON_SIZE;
 					align: 1.0 0.5;
-					rel2 {
-						relative: 0.0 1.0;
-						to_x: PART_RIGHT;
-					}
+					min: BUTTON_WH BUTTON_WH;
+					rel1 { relative: 0.0 0.5; to_x: PART_BUTTON; }
+					rel2 { relative: 0.0 0.5; to_x: PART_BUTTON; }
 				}
 			}
 		}
@@ -128,7 +140,7 @@ collections
 		data.item: "contents" "swallow.content";
 
 		parts {
-			rect { "rect.bg";
+			rect { "rect.bg"; scale;
 				desc { "default";
 					color_class: "title_bg";
 				}
@@ -140,7 +152,9 @@ collections
 			}
 			swallow { "swallow.content"; scale;
 				desc { "default";
-					max: IMAGE_SIZE IMAGE_SIZE;
+					min: IMAGE_WH IMAGE_WH;
+					rel1.relative: 0.5 0.5;
+					rel2.relative: 0.5 0.5;
 				}
 			}
 		}
@@ -160,9 +174,26 @@ collections
 					min: 0 BUTTONS_ITEM_H;
 				}
 			}
-			swallow { "swallow.content";
+			spacer { "spacer.top"; scale;
 				desc { "default";
-					rel1.relative: 0.0 BUTTONS_ITEM_PADDING_Y/BUTTONS_ITEM_H;
+					align: 0.5 0.0;
+					min: 0 BUTTONS_ITEM_T;
+					rel1.relative: 0.0 0.0;
+					rel2.relative: 1.0 0.0;
+				}
+			}
+			spacer { "spacer.content"; scale;
+				desc { "default";
+					align: 0.0 0.0;
+					rel1 { relative: 0.0 1.0; to_y: "spacer.top"; }
+					rel2 { relative: 1.0 1.0; }
+				}
+			}
+			swallow { "swallow.content"; scale;
+				desc { "default";
+					align: 0.5 0.5;
+					rel1 { relative: 0.0 0.5; to: "spacer.content"; }
+					rel2 { relative: 1.0 0.5; to: "spacer.content"; }
 				}
 			}
 		}

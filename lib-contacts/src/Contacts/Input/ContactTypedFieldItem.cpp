@@ -38,7 +38,7 @@ const ContactTypedObject &ContactTypedFieldItem::getTypedObject() const
 
 Evas_Object *ContactTypedFieldItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, PART_LEFT) == 0) {
+	if (strcmp(part, PART_TYPE) == 0) {
 		Ui::Control *control = new ContactTypedFieldControl(m_TypeField, m_LabelField);
 		return control->create(parent);
 	} else {
@@ -48,7 +48,7 @@ Evas_Object *ContactTypedFieldItem::getContent(Evas_Object *parent, const char *
 
 Eina_Bool ContactTypedFieldItem::getState(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, PART_LEFT) == 0) {
+	if (strcmp(part, PART_TYPE) == 0) {
 		return EINA_TRUE;
 	}
 

@@ -40,9 +40,9 @@ ContactCompoundFieldItem::ContactCompoundFieldItem(Model::ContactObject &object)
 
 Evas_Object *ContactCompoundFieldItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, PART_RIGHT) == 0) {
+	if (strcmp(part, PART_BUTTON) == 0) {
 		return createExpandButton(parent);
-	} else if (strcmp(part, PART_MIDDLE) == 0) {
+	} else if (strcmp(part, PART_VALUE) == 0) {
 		auto control = new ContactCompoundFieldControl(this, getObject().cast<ContactCompoundObject>());
 		control->create(parent);
 		control->setCompoundMode(!isExpanded());
@@ -87,7 +87,7 @@ Evas_Object *ContactCompoundFieldItem::createExpandButton(Evas_Object *parent)
 
 void ContactCompoundFieldItem::updateExpandIcon(bool isExpanded) const
 {
-	Evas_Object *button = elm_object_item_part_content_get(getObjectItem(), PART_RIGHT);
+	Evas_Object *button = elm_object_item_part_content_get(getObjectItem(), PART_BUTTON);
 	Evas_Object *icon = elm_object_part_content_get(button, "elm.swallow.content");
 	elm_image_file_set(icon, layoutPath.c_str(),
 			isExpanded ? GROUP_ICON_CONTRACT : GROUP_ICON_EXPAND);

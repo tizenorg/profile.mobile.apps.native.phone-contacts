@@ -25,9 +25,9 @@
 #define INPUT_REL_ITEM_STYLE     "input_rel_item"
 #define INPUT_BUTTONS_ITEM_STYLE "input_buttons_item"
 
-#define PART_LEFT                "swallow.left"
-#define PART_MIDDLE              "swallow.middle"
-#define PART_RIGHT               "swallow.right"
+#define PART_TYPE                "swallow.type"
+#define PART_VALUE               "swallow.value"
+#define PART_BUTTON              "swallow.button"
 #define PART_REL_ICON            "swallow.rel_icon"
 
 #define GROUP_ICON_EXPAND        "icon_expand"

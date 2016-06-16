@@ -67,7 +67,7 @@ Elm_Genlist_Item_Class *ContactFieldItem::getItemClass() const
 
 Evas_Object *ContactFieldItem::getContent(Evas_Object *parent, const char *part)
 {
-	if (strcmp(part, PART_RIGHT) == 0) {
+	if (strcmp(part, PART_BUTTON) == 0) {
 		return createRemoveButton(parent);
 	} else {
 		return ContactFieldSubItem::getContent(parent, part);

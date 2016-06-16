@@ -39,7 +39,7 @@ ContactField &ContactFieldSubItem::getField() const
 
 Ui::Control *ContactFieldSubItem::getFieldControl() const
 {
-	Evas_Object *content = elm_object_item_part_content_get(getObjectItem(), PART_MIDDLE);
+	Evas_Object *content = elm_object_item_part_content_get(getObjectItem(), PART_VALUE);
 	return Ui::Control::getControl(content);
 }
 
@@ -71,7 +71,7 @@ Elm_Genlist_Item_Class *ContactFieldSubItem::getItemClass() const
 Evas_Object *ContactFieldSubItem::getContent(Evas_Object *parent, const char *part)
 {
 	Ui::Control *control = nullptr;
-	if (strcmp(part, PART_MIDDLE) == 0) {
+	if (strcmp(part, PART_VALUE) == 0) {
 		switch (m_Field.getType()) {
 			case TypeText:
 				control = new ContactTextFieldControl(this, m_Field.cast<ContactTextField>());
