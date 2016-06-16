@@ -61,7 +61,7 @@ char *ContactRingtoneFieldItem::getText(Evas_Object *parent, const char *part)
 Evas_Object *ContactRingtoneFieldItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.swallow.end") == 0) {
-		return ContactFieldItem::getContent(parent, PART_RIGHT);
+		return ContactFieldItem::getContent(parent, PART_BUTTON);
 	}
 
 	return nullptr;
