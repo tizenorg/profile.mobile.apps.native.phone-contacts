@@ -85,6 +85,7 @@ void ProgressController::createProgressPopup(Evas_Object *parent, const char *ti
 	m_ProgressPopup->setBackCallback(cancelFunction);
 
 	elm_popup_orient_set(m_ProgressPopup->getEvasObject(), ELM_POPUP_ORIENT_BOTTOM);
+	evas_object_hide(m_ProgressPopup->getEvasObject());
 }
 
 void ProgressController::onStart(void *data, Ecore_Thread *thread)
@@ -101,7 +102,13 @@ void ProgressController::onNotify(void *data, Ecore_Thread *thread, void *msgDat
 	RETM_IF(!data || !msgData, "invalid data");
 	ProgressController *controller = (ProgressController *)data;
 
-	controller->m_ProgressPopup->setProgress((size_t)msgData);
+	const int progressLimit = 40;
+	size_t currentCount = (size_t)msgData;
+	Evas_Object *progressPopup = controller->m_ProgressPopup->getEvasObject();
+	if (currentCount > progressLimit && !evas_object_visible_get(progressPopup)) {
+		evas_object_show(progressPopup);
+	}
+	controller->m_ProgressPopup->setProgress(currentCount);
 
 	controller->m_IsPopupUpdating = false;
 	controller->m_ContinueCondition.notify_one();
