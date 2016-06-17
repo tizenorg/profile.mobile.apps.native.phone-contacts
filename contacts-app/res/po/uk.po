@@ -1,83 +1,218 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "Вихідні виклики"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "Немає журналів"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "Останній виклик"
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "OK"
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "Вхідні виклики"
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "Надіслати повідомлення"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "Фільтрувати за"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "Немає номера"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "Створити"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "Скопійовано до буфера обміну."
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "Персональний Email"
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "Телефон"
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "Створити групу"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "Перейменув."
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "Упорядкувати"
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "Збер. все одно"
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "Установити зображення"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "Надіслати"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "Сп. доступ до профілю"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "Додавання поля"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "Додавання учасників"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "Створення профілю"
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "Видалення контактів"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "Видалення груп"
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "Групи"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "Імпорт"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "Імпорт/експорт"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "Керув. та рез. копіювання контактів"
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "Інші налаштування"
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "Ім’я вже використовується"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "Збереження контакту"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "Вибір контактів"
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "Вибір груп"
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "Вибір зображення"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "Додати учасників"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "Назва групи"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "Фонетичне ім’я"
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "Фонет. прізв."
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "Фон. серед. ім’я"
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "Станд. стиль фотографії контакту"
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "Подія (напр., день народження)"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "Групи та учасники"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "Лише групи"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "Домаш."
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "Обл. запис IM"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "Веб-адреса"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "Номер мобільного телефону контакту було змінено з %1$s на %2$s. Контактні відомості було оновлено."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "Контакт з таким іменем вже існує. Торкніться «Все одно зберегти», щоб зберегти контакт, незважаючи на це попередження, або «Перейменувати», щоб зберегти його під іншим іменем."
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "Пам'ять прист. та всі обл. зап."
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "Адреса (користувацька)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "Адреса (домашня)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "Адреса (інша)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "Адреса (робоча)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "Як 1 файл"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "Відобразити"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "Ел. пошта (користувацька)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "Ел. пошта (інша)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "Ел. пошта (робоча)"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "Імпорт/експорт"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "Перемістити контакти пристрою"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "Експортовано 1 контакт."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "Видалення..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "Експорт скасовано."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "Не вдалося видалити контакти. Спробуйте ще раз."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "Назва групи вже використовується."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "Імпорт скасовано."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Досягнуто максимальної кількості символів."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "Не введено ім’я групи."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "Експортовано контактів: %d."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "Обробка..."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Вибір журналів"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "Вигляд"
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "Фонетичне ім’я"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "Домашній 2"
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "Телефон"
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "Переміщення завершено."
-
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "Переміщення..."
-
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 перевірено."
-
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 перевірено."
-
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "PIN розблоковано."
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2 розблоковано."
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2 змінено."
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "PIN2 заблоковано."
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "Код PIN1 змінено."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "Код PIN1 заблоковано."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "Хибний PIN2."
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "Новий PIN2-код і PIN2-код для підтвердження не збігаються"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "Хибний код PUK1."
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "Хибний PUK1. Залишилося %d спроб."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "Хибний PUK2. Залишилося %d спроб."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN-код змінено."
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "Оберіть дату"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Контакти"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "Додати обліковий запис"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "Досягнуто максимальної кількості символів."
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "Сканування пристроїв..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "Хибний PIN-код"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "ГОТОВО"
@@ -88,77 +223,20 @@ msgstr "СКАСУВАТИ"
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
 msgstr "ВИДАЛИТИ"
 
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "Проблема з’єднання, або хибний код MMI."
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "Приватний номер"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "НАДІСЛАТИ"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2 заблоковано. Зверніться до оператора (потрібен код PUK2)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "Записи відсутні"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "Щоразу після здійснення/отримання виклику або надсилання/отримання повідомлення відображається вікно журналу."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "SIM-картка зайнята. Спробуйте пізніше"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "SIM/RUIM-картку заблоковано."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "SIM-карту не знайдено. Вставте SIM-карту в телефон."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "Помилка мережі або SIM-картки."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "Вібраційний зворотний зв’язок увімкнено."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "Вібраційний зворотний зв’язок вимкнено."
-
-msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
-msgstr "Неможливо здійснити виклик за набраним номером. %d не є номером екстреного виклику."
-
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
 msgstr "Номер швидкого набору %d видалено."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "Номер швидкого набору призначено."
 
-msgid "IDS_KPD_TPOP_ENTER_NUMBER"
-msgstr "Введення номера."
-
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "PIN-код має містити від %1$d до %2$d цифр. Cпробуйте ще раз."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "PIN2 має містити від %1$d до %2$d цифр. Cпробуйте ще раз."
-
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
 msgstr "Номер швидкого набору не призначено жодному контакту. Торкніться «OK», щоб призначити його."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "PIN вимкнено. Увімкніть PIN перед зміненням."
-
-msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
-msgstr "Гол.пошта"
 
 msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
 msgstr "Оновити контакт"
 
 msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
 msgstr "Налашт. швид. набору"
-
-msgid "IDS_KPD_OPT_REMOVE"
-msgstr "Видалити"
 
 msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
 msgstr "Створ. контакт"
@@ -175,41 +253,14 @@ msgstr "Додати 2-секунду паузу"
 msgid "IDS_KPD_ITAB3_KEYPAD"
 msgstr "Клавіатура"
 
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "Неможл. підключитися до мережі"
-
-msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Вибір SIM-карти для виклику"
-
 msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
 msgstr "Результати пошуку (%d)"
-
-msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
-msgstr "Екстрений виклик"
 
 msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
 msgstr "Признач. як номер швид. набору"
 
-msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
-msgstr "Установ. номер"
-
-msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
-msgstr "Надісл. пов."
-
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "Скасувати"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "Додати до контактів"
-
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "Пароль не співпадає."
-
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "PIN заблоковано. Введіть PUK."
-
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "SIM-картку заблоковано."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "Незбережені"
@@ -226,122 +277,29 @@ msgstr "Збій"
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "Скасовано"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "%d об’єктів журналу буде видалено."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Усі об’єкти журналу буде видалено."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "1 об’єкт журналу буде видалено."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "Переглянути контактні дані"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "Надіслати номер"
-
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "Пропущені виклики"
-
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "Видалити"
-
-msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
-msgstr "Тривалість викликів"
-
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "Пропущені виклики"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "Більше не показувати"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "Невідомий номер"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "Невідомо"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "Вибрати всі"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "Журнали"
-
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "Вчора"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "Сьогодні"
 
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "Вибрано: %d"
 
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "Видалення журналів: %d"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "Видалити об’єкти журналу"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "Видалення журналу"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "Видалити"
-
 msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
 msgstr "Оновити контакт"
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "Видалити"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "Новий контакт"
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "Скасувати"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "Голосові виклики"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "Відеовиклики"
-
-msgid "IDS_LOGS_BODY_SIM_CARD"
-msgstr "SIM-картка"
-
-msgid "IDS_LOGS_BODY_ALL_CALLS"
-msgstr "Всі виклики"
 
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
 msgstr "Після здійснення або отримання викликів їх буде записано до цього журналу."
 
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "Після здійснення або отримання викликів об’єкти журналу буде відображено тут."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "ЗМІНИТИ"
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "Введіть текст"
-
-msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
-msgstr "Деякі з ваших контактів повторюються."
-
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "Імпортовано контактів: %d."
 
-msgid "IDS_PB_TPOP_CONTACTS_LINKED"
-msgstr "Зв’язані контакти."
-
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "1 номер видалено зі списку автовідхилення."
-
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "Імпортовано 1 контакт."
-
-msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
-msgstr "Сервісні номери"
 
 msgid "IDS_PB_TMBODY_NAME_FORMAT"
 msgstr "Формат відображення ім’я"
@@ -351,15 +309,6 @@ msgstr "Зв’язати контакти"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
 msgstr "Контакти для відображення"
-
-msgid "IDS_PB_SK_SET"
-msgstr "Установити"
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "Створити"
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "Додати поля"
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "Імпорт контактів..."
@@ -379,98 +328,14 @@ msgstr "Контакти імпортовано"
 msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
 msgstr "Контакти експортовано"
 
-msgid "IDS_PB_SBODY_ALL_CONTACTS"
-msgstr "Усі контакти"
-
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "Не можна видалити контакти з облікових записів лише для читання, але їх можна приховати у списку контактів."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
-msgstr "У разі ввімкнення синхронізації цей контакт буде видалено з усіх синхронізованих облікових записів, у яких його збережено."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
-msgstr "У разі ввімкнення синхронізації цей контакт та всі зв’язані з ним контакти в інших синхронізованих облікових записах буде видалено або приховано, якщо інформацію отримано з облікового запису, що має право лише на читання."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
-msgstr "У разі ввімкнення синхронізації цей контакт і всі зв’язані з ним контакти в інших синхронізованих облікових записах буде видалено."
-
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "Оновлення відомостей оператора зв’язку..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Неможливо додати контакт. Досягнуто максимальної кількості контактів, які можна зв’язати (%d)."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Неможливо додати контакти. Досягнуто максимальної кількості контактів, які можна зв’язати (%d)."
-
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Цей контакт буде видалено."
-
-msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Цей контакт і всі зв’язані з ним контакти буде видалено."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "Перевищено максимальну кількість об’єктів, які можна вибрати (%d)."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
-msgstr "Перевищено максимальну кількість контактів, до яких можна одночасно надати спільний доступ (%1$d). Спільний доступ буде надано лише до перших %2$d."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "Функцію Chamada Certa можна використати для визначення операторів зв’язку контактів та їх відображення у списку контактів. Це також можна зробити пізніше, натиснувши клавішу меню та вибравши пункт «Оновити відомості про оператора зв’язку». Натисніть «OK», щоб визначити операторів зв’язку контактів зараз"
-
-msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
-msgstr "Натисніть «OK», щоб зупинити імпорт контактів із SIM-карти."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Торкніться «OK», щоб зупинити експорт контактів на %s."
 
-msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Торкніться опції «Експорт» для вибору контактів, які потрібно експортувати. Деякі контактні дані можуть бути втрачені."
-
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "Можливо, деякі або всі контакти не оновлено."
-
-msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Деякі контактні дані можуть бути втрачені."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "Пам'ять SIM заповнено."
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "Видалення..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "%d номерів телефону оновлено."
-
-msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
-msgstr "%d контактів буде видалено."
-
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "%1$d контактів експортовано до %2$s."
-
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d контактів експортовано до Device/Contacts/Imported/%2$s.vcf."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "Недостатньо пам'яті."
-
-msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
-msgstr "Нові контакти буде збережено у розділі «Контакти» на пристрої."
-
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "Режим FDN активовано."
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "Збій."
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "Скасувати зміни?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "Видалення контактів..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "Видалення контактів скасовано. Можливо, деякі контакти вже видалено."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "Імпорт контактів з %s буде зупинено."
@@ -478,53 +343,14 @@ msgstr "Імпорт контактів з %s буде зупинено."
 msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
 msgstr "Вже існує."
 
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Усі зв’язані контакти буде видалено."
-
-msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
-msgstr "Усі контакти буде видалено."
-
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "Усі зміни буде скасовано."
-
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "Додавання..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "Оновлено 1 номер телефону."
-
-msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
-msgstr "1 контакт буде видалено."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "1 контакт видалено."
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "Робота"
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "Голосовий виклик"
 
-msgid "IDS_PB_OPT_VIDEO_CALL"
-msgstr "Відеовиклик"
-
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "Оновіть відомості про оператора зв’язку"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "Скас. зв’язок контактів"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "Скасувати зв’язування контактів"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
 msgstr "Зробити знімок"
-
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
-msgstr "Зробити фото"
 
 msgid "IDS_PB_OPT_SPOUSE"
 msgstr "Подружжя"
@@ -535,26 +361,11 @@ msgstr "Skype"
 msgid "IDS_PB_OPT_SISTER"
 msgstr "Сестра"
 
-msgid "IDS_PB_OPT_SIM_CARD"
-msgstr "SIM-картка"
-
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "Надіслати через"
-
 msgid "IDS_PB_OPT_SHARE"
 msgstr "Поділитися"
 
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "Налаштування"
-
-msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
-msgstr "Вибрати з контактів"
-
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "SD-карта"
-
-msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
-msgstr "Зберегти контакт до"
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "Звук дзвінка"
 
 msgid "IDS_PB_OPT_REORDER"
 msgstr "Упорядкувати"
@@ -580,23 +391,11 @@ msgstr "Партнер"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "Батьки"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "Пейджер"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "Інша"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
 msgstr "Організація"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "Мати"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "Мобільний"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "Повідом."
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Керування обраним"
@@ -610,20 +409,11 @@ msgstr "Основна"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "Спочатку прізвище"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "Прізвище"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "Домашній"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "Домашня сторінка"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangouts"
@@ -637,12 +427,6 @@ msgstr "Друг"
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "Спочатку ім’я"
 
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "Ім'я"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "Контакт FDN"
-
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "Факс (робочий)"
 
@@ -655,14 +439,8 @@ msgstr "Батько"
 msgid "IDS_PB_OPT_EDIT"
 msgstr "Редагувати"
 
-msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
-msgstr "Більше не показувати"
-
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "Локальний партнер"
-
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "Пристрій"
 
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "Свій список"
@@ -676,9 +454,6 @@ msgstr "Дитина"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "Брат"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "День народження"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "Помічник"
 
@@ -688,56 +463,23 @@ msgstr "Річниця"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "Додати поле"
-
 msgid "IDS_PB_OPT_ADD"
 msgstr "Додати"
-
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "Обліковий запис"
 
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "Пошук"
 
-msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
-msgstr "Немає сервісних номерів"
-
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "Результів не знайдено"
-
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "Немає екстрених контактів"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "Немає контактів"
 
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "Сортувати за"
 
-msgid "IDS_PB_MBODY_SET_PROFILE"
-msgstr "Установити профіль"
-
 msgid "IDS_PB_MBODY_SET_MY_PROFILE"
 msgstr "Мої контактні дані"
 
-msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
-msgstr "Надіслати всі разом"
-
-msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
-msgstr "Надіслати по одному"
-
-msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Надіслати контактні дані"
-
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "Вибрати всі"
-
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "Контактів: %d"
-
-msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
-msgstr "Лише з номерами"
 
 msgid "IDS_PB_MBODY_IMPORT"
 msgstr "Імпорт"
@@ -748,82 +490,22 @@ msgstr "Експорт"
 msgid "IDS_PB_MBODY_EVENT"
 msgstr "Подія"
 
-msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
-msgstr "Відображати контакти з номерами"
-
 msgid "IDS_PB_MBODY_1_CONTACT_ABB"
 msgstr "1 контакт"
 
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "Контакти"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "Внутрішня пам’ять недоступна"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "Неможливо додати"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "Неможливо додати"
-
-msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
-msgstr "Запропоновані контакти"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "Надіслати через"
-
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "Установка фотографії контакту"
-
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "Налаштування"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "Постачальник послуг"
-
-msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Надіслати контактні дані"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "Вибрати SIM-карту для здійснення виклику"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "Виберіть SIM-карту для здійснення виклику"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Вибір SIM-карти для виклику"
 
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "Вибір контакту"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "Вибрати"
-
-msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
-msgstr "Збереження контактів на"
-
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "Упорядкування"
 
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "Видалити"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
-msgstr "Основні контакти (%d)"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
-msgstr "Основ.контакти (%1$d/%2$d)"
-
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "Телефон"
-
-msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
-msgstr "Особисті контакти"
-
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
-msgstr "Вибрано: %d"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
 msgstr "Вибрано: %d"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
@@ -832,29 +514,14 @@ msgstr "Формат відображення ім’я"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "Найчастіше використовувані контакти"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "Я"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "Керування улюбленими"
-
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "Список контактів"
-
-msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
-msgstr "Зв’язані контакти"
 
 msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
 msgstr "Імпорт контактів"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "Імпорт"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "Улюблені"
-
-msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
-msgstr "Експорт контактів на SIM-карту"
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
 msgstr "Експорт контактів"
@@ -865,17 +532,8 @@ msgstr "Експорт"
 msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
 msgstr "Введення власного надпису"
 
-msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
-msgstr "Екстрені служби"
-
-msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
-msgstr "Екстрені контакти"
-
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "Ред."
-
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "Відображення імен за"
 
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "Відображення"
@@ -883,38 +541,14 @@ msgstr "Відображення"
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
 msgstr "Скасувати внесені зміни"
 
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "Видалити об’єкт"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "Створити"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "Зображення контакту"
-
-msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
-msgstr "Контакти для відображення"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "Контакти"
-
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "Контакти експортовано"
-
-msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
-msgstr "Змінення місця збереження"
 
 msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
 msgstr "Скасування імпорту"
 
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "Скасування експорту"
-
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "Спробуйте ще раз"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "Зберегти"
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "Телефон"
@@ -924,9 +558,6 @@ msgstr "OK"
 
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "Примітки"
-
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "Додатково"
 
 msgid "IDS_PB_BUTTON_EXPORT"
 msgstr "Експортувати"
@@ -946,68 +577,11 @@ msgstr "Видалити"
 msgid "IDS_PB_BUTTON_CREATE_ABB2"
 msgstr "Створити"
 
-msgid "IDS_PB_BUTTON_CHANGE_ABB"
-msgstr "Змінити"
-
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Скасувати"
-
-msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
-msgstr "Дод.обл.зап."
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "Windows Live"
-
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "Веб-сайт"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "Оновлення списку контактів..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "Неможливо зберегти через помилку SIM."
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "Назва"
-
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Цей контакт буде видалено."
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "Відомості про операторів зв'язку вибраних контактів буде оновлено. Для використання цієї функції потрібне підключення до мережі, що може призвести до додаткових витрат. Кількість часу на завершення процесу буде залежати від стану підключення до мережі"
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "Телефон"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "Skype"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "Ініціалізація SIM-картки..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "Сервісний номер"
-
-msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
-msgstr "Надсилання візитівок по одній може тривати довше, оскільки пристрій-приймач має приймати їх відповідно."
-
-msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
-msgstr "У разі передавання одночасно декількох контактів час передачі зменшується. Однак, якщо ця функція не підтримується на іншому пристрої, буде надіслано лише один контакт."
-
-msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
-msgstr "Виберіть спосіб надсилання контактних даних."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "Вибране"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "Видалити з улюблених"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "Фото"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "Номер телефону"
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "Фонетичне ім’я"
@@ -1021,32 +595,14 @@ msgstr "Фонетика по батькові"
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "Фонетика імені"
 
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "Інші адреси Email"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "Немає результату"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "Немає груп"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "Примітки"
-
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "Псевдонім"
 
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "Суфікс імені"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "Префікс імені"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "Iм'я"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "Мої контакти"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "Друге ім’я"
@@ -1057,77 +613,14 @@ msgstr "Прізвище"
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
 msgstr "Посада"
 
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "Імпортувати із SIM-карти"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "Імпортувати з SIM2-картки"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "Імпортування..."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "Зображення"
-
 msgid "IDS_PB_BODY_IM"
 msgstr "IM"
-
-msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Оператор зв’язку попередньо завантажив на SIM-карту сервісні номери, які буде відображено тут."
-
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "Галерея"
 
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "Ім’я"
 
-msgid "IDS_PB_BODY_FAX"
-msgstr "Факс"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "Експортувати на SIM-карту"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "Експортувати на SIM2-картку"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "Експортувати на карту пам’яті"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "Email"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "Скасувати зміни"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "Друзі"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "Сім'я"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "Дата"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "Співробітники"
-
-msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
-msgstr "Контакти, які визначено як повторювані, буде автоматично запропоновано."
-
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "Контакти"
-
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "Компанія"
-
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "Кнопка розгорнення списку"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "Пристрій автоматично вибере фрагмент музичного файлу, який найкраще підходить для вибраної дії."
 
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Після створення контактів їх буде відображено тут."
@@ -1135,87 +628,132 @@ msgstr "Після створення контактів їх буде відо�
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Після додавання контактів їх буде відображено тут."
 
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "Додати до улюбленого"
-
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "Адреса"
 
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "Облікові записи"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Скасувати"
 
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "АB"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Видалити"
 
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "PIN блоковано."
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Вибрати всі"
 
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "Хибний код PUK2."
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Вчора"
 
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "Хибний код PIN1."
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Сьогодні"
 
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "Додати існуючий контакт"
+msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
+msgstr "Новий контакт"
 
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "Немає основних контактів"
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
 
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "Основні контакти"
+msgid "IDS_PB_OPT_WORK"
+msgstr "Робота"
 
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "Створення основного контакту"
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Налаштування"
 
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "Додавання основних контактів"
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Пейджер"
 
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "Установити дату"
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Інша"
 
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "Новий PIN-код і PIN-код підтвердження не збігаються."
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Мобільний"
 
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Після створення основних контактів їх буде відображено тут."
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Повідомлення"
 
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "Неможливо вибрати інші дані"
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Прізвище"
 
-msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
-msgstr "Вставте SIM-карту."
+msgid "IDS_PB_OPT_HOME"
+msgstr "Домашня сторінка"
 
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "Оператором зв’язку контакту, якому ви телефонуєте, є %1$s. Торкніться «ОК», щоб здійснити цей виклик за допомогою SIM-карти %2$s."
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Ім'я"
 
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "Використання SIM-карти %s"
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Пристрій"
 
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "Поточна SIM"
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "День народження"
 
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "Таксофон"
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Немає контактів"
 
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "Некоректний символ."
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Вибрати всі"
 
-msgid "IDS_HS_BUTTON_PHONE_M_CALL"
-msgstr "Телефон"
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Налаштування"
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "Вихідний виклик"
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "Вибрати"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "Вхідний виклик"
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Видалити"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "Я"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Улюблені"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Створити"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Зберегти"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Додатково"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Скасувати"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Номер телефону"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Примітки"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "Email"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Дата"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Контакти"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
 msgstr "Відображаються лише перші %d контактів."
 
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "Мій профіль"
-
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
 msgstr "Торкніться тут, щоб додати ярлик"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "РЕДАГУВАТИ"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "Настроюваний тип"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "Групи"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "Установити"
+
+msgid "IDS_LOGS_HEADER_FILTER_BY"
+msgstr "Фільтрувати за"
+
+msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
+msgstr "Усі виклики"
 

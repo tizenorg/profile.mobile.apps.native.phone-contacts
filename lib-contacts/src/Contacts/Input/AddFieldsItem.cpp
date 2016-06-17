@@ -117,7 +117,7 @@ void AddFieldsItem::onMoreButtonPressed(Evas_Object *button, void *eventInfo)
 {
 	Ui::ListPopup *popup = new Ui::ListPopup();
 	popup->create(button);
-	popup->setTitle("IDS_PB_SK_ADD_FIELDS");
+	popup->setTitle("IDS_PB_HEADER_ADD_FIELD");
 	popup->setSelectedCallback([this](void *data) {
 		onAddField((ContactFieldId) (long) data);
 	});

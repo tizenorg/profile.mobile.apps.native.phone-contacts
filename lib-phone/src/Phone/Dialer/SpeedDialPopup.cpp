@@ -35,8 +35,8 @@ void SpeedDialPopup::onCreated()
 	setTitle("IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB");
 	setText("IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW");
 
-	addButton("IDS_LOGS_BUTTON_CANCEL_ABB3");
-	addButton("IDS_PB_BUTTON_OK_ABB2", std::bind(&SpeedDialPopup::onOkPressed, this));
+	addButton("IDS_KPD_BUTTON_CANCEL_ABB");
+	addButton("IDS_KPD_BUTTON_OK_ABB2", std::bind(&SpeedDialPopup::onOkPressed, this));
 }
 
 bool SpeedDialPopup::onOkPressed()

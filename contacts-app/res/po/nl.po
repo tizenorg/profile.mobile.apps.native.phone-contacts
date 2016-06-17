@@ -1,83 +1,218 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "Uitgaande oproepen"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "Geen logbestanden"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "Laatste gesprek"
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "OK"
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "Ontvangen oproepen"
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "Bericht verzenden"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "Filteren op"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "Geen nummer"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "Maken"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "Gekopieerd naar klembord."
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "E-mail (privé)"
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "Telefoon"
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "Groep maken"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "Naam wijz."
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "Andere indel."
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "Toch opslaan"
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "Foto instellen"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "Delen"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "Profiel delen"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "Veld toevoegen"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "Leden toevoegen"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "Profiel maken"
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "Contacten verwijderen"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "Groepen verwijd."
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "Groepen"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "Importeren"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "Importeren/exporteren"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "Contacten beheren en back-up maken"
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "Meer instellingen"
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "Naam al in gebruik"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "Contact opslaan"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "Contacten sel."
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "Groepen select."
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "Afbeelding selecteren"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "Leden toevoegen"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "Groepsnaam"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "Voornaam fonet."
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "Achternaam fonet."
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "Tweede naam fon."
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "Standaardstijl contactfoto"
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "Gebeurtenis (bijv. verjaardag)"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "Groepen en leden"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "Alleen groepen"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "Thuis"
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "IM-account"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "Webadres"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "Het mobiele telefoonnummer van een contact is gewijzigd van %1$s in %2$s. De contactgegevens zijn bijgewerkt."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "Een contact met dezelfde naam bestaat al. Tik op Toch opslaan om het contact op te slaan of op Naam wijzigen om dit contact onder een andere naam op te slaan."
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "Apparaatopslag en alle accounts"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "Adres (aangepast)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "Adres (thuis)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "Adres (overig)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "Adres (werk)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "Als 1 bestand"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "Weergeven"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "E-mail (aangepast)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "E-mail (overig)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "E-mail (werk)"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "Importeren/exporteren"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "Contacten apparaat verplaatsen"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "1 contact geëxporteerd."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "Verwijderen..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "Exporteren geannuleerd."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "Contacten verwijderen mislukt. Probeer het opnieuw."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "Groepsnaam al in gebruik."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "Importeren geannuleerd."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Maximumaantal tekens bereikt."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "Geen groepsnaam ingevoerd."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "%d contacten geëxporteerd."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "Verwerken..."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Logbestanden selecteren"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "Weergave"
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "Naam fonetisch"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "Privé 2"
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "Telefoon"
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "Verplaatsen voltooid."
-
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "Verplaatsen..."
-
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 geverifieerd."
-
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 geverifieerd."
-
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "PIN gedeblokkeerd."
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2 gedeblokkeerd."
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2 gewijzigd."
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "PIN2 geblokkeerd."
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "PIN1-code gewijzigd."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "PIN1-code vergrendeld."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "Onjuiste PIN2."
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "Nieuwe pincode2 en pincode2 voor bevestiging komen niet overeen"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "Onjuiste PUK1-code."
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "Ongeldige PUK1. %d pogingen over."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "Ongeldige PUK2. %d pogingen over."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN gewijzigd."
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "Datum instellen"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Contacten"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "Account toevoegen"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "Maximumaantal tekens bereikt."
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "Apparaten scannen..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "Onjuiste pincode"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "GEREED"
@@ -88,77 +223,20 @@ msgstr "ANNULEREN"
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
 msgstr "VERWIJDEREN"
 
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "Verbindingsprobleem of ongeldige MMI-code."
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "Privé-nummer"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "VERZENDEN"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2 geblokkeerd. Neem contact op met provider (SIM PUK2 vereist)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "Geen logbestanden"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "Nadat u belt/wordt gebeld of een bericht verzendt/ontvangt, worden logbestanden weergegeven."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "SIM-kaart bezet. Probeer het later"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "SIM-kaart vergrendeld."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "Geen SIM-kaart gevonden. Plaats een SIM-kaart in de telefoon."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "Netwerk- of SIM-kaartfout."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "Trilfeedback ingeschakeld."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "Trilfeedback uitgeschakeld."
-
-msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
-msgstr "Kan nummer niet bellen. %d is geen alarmnummer."
-
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
 msgstr "Snelkiesnummer %d verwijderd."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "Snelkiesnummer toegewezen."
 
-msgid "IDS_KPD_TPOP_ENTER_NUMBER"
-msgstr "Voer getal in."
-
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "Uw pincode moet tussen %1$d en %2$d cijfers lang zijn. Probeer het opnieuw."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "Uw PIN2 moet bestaan uit %1$d tot %2$d cijfers. Probeer het opnieuw."
-
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
 msgstr "Er is geen contact toegewezen aan dit snelkiesnummer. Tik op OK om dit nu toe te wijzen."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "Pincode is uitgeschakeld. Schakel pincode in vóór wijzigen."
-
-msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
-msgstr "Voicemail"
 
 msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
 msgstr "Contact bijw."
 
 msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
 msgstr "Instell. snelkiesnr"
-
-msgid "IDS_KPD_OPT_REMOVE"
-msgstr "Wissen"
 
 msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
 msgstr "Contact maken"
@@ -175,41 +253,14 @@ msgstr "Pauze 2 seconden toevoegen"
 msgid "IDS_KPD_ITAB3_KEYPAD"
 msgstr "Toetsen"
 
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "Kan niet verbinden met netwerk"
-
-msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "SIM-krt voor bellen selecteren"
-
 msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
 msgstr "Zoekresultaten (%d)"
-
-msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
-msgstr "Noodoproep"
 
 msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
 msgstr "Als snelkiesnummer toewijzen"
 
-msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
-msgstr "Nr. instellen"
-
-msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
-msgstr "Bericht verz"
-
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "Annuleren"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "Toevoegen aan contacten"
-
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "Wachtwoorden komen niet overeen."
-
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "PIN geblokkeerd. Voer PUK-code in."
-
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "SIM geblokkeerd."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "Niet opgeslagen"
@@ -226,122 +277,29 @@ msgstr "Mislukt"
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "Geannuleerd"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "%d logbestanditems worden verwijderd."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Alle logbestanditems worden verwijderd."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "1 logbestanditem wordt verwijderd."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "Contactdetails weergeven"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "Nummer verzenden"
-
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "Gemiste oproepen"
-
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "Wissen"
-
-msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
-msgstr "Oproepduur"
-
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "Gemiste oproepen"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "Niet meer tonen"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "Onbekend nummer"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "Onbekend"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "Alles selecteren"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "Logbest."
-
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "Gisteren"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "Vandaag"
 
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "%d geselecteerd"
 
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "%d logbestanden verwijderen"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "Logbestanditems verwijderen"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "Logbestand verwijderen"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "Verwijderen"
-
 msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
 msgstr "Cont. bijwerken"
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "Verwijderen"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "Contact maken"
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "Annuleren"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "Spraakoproepen"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "Video-oproepen"
-
-msgid "IDS_LOGS_BODY_SIM_CARD"
-msgstr "SIM-kaart"
-
-msgid "IDS_LOGS_BODY_ALL_CALLS"
-msgstr "Alle oproepen"
 
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
 msgstr "Nadat u oproepen tot stand hebt gebracht of hebt ontvangen, worden ze hier gelogd."
 
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "Als u belt of wordt gebeld, worden hier logbestanditems weergegeven."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "BEWERKEN"
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "Tekst invoeren"
-
-msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
-msgstr "Van sommige contacten lijken dubbele gegevens te bestaan."
-
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "%d contacten geïmporteerd."
 
-msgid "IDS_PB_TPOP_CONTACTS_LINKED"
-msgstr "Contacten gekoppeld."
-
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "1 nummer verwijderd uit Automatische blokkeerlijst."
-
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "1 contact geïmporteerd."
-
-msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
-msgstr "Servicenummers"
 
 msgid "IDS_PB_TMBODY_NAME_FORMAT"
 msgstr "Naamindeling"
@@ -351,15 +309,6 @@ msgstr "Contacten koppelen"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
 msgstr "Contacten voor weergeven"
-
-msgid "IDS_PB_SK_SET"
-msgstr "Instellen"
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "Nieuw"
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "Vld toev"
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "Contacten importeren..."
@@ -379,98 +328,14 @@ msgstr "Geïmporteerde contacten"
 msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
 msgstr "Geëxporteerde contacten"
 
-msgid "IDS_PB_SBODY_ALL_CONTACTS"
-msgstr "Alle contacten"
-
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "U kunt geen contacten verwijderen uit alleen-lezen accounts, maar u kunt ze verbergen in contacten."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
-msgstr "Als Synchroniseren is ingeschakeld, wordt dit contact verwijderd uit alle gesynchroniseerde accounts waarin het is opgeslagen."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
-msgstr "Als Synchroniseren is ingeschakeld, worden dit contact en alle gekoppelde contacten in andere gesynchroniseerde accounts verwijderd, of verborgen als de gegevens bij een alleen lezen-account horen."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
-msgstr "Als Synchroniseren is ingeschakeld, worden dit contact en alle gekoppelde contacten in andere gesynchroniseerde accounts verwijderd."
-
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "Info serviceprovider bijwerken..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Kan geen contact toevoegen. Maximumaantal koppelbare contacten (%d) bereikt."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Kan geen contacten toevoegen. Maximumaantal koppelbare contacten (%d) bereikt."
-
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Deze contactpersoon wordt verwijderd."
-
-msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Dit contact en alle gekoppelde contacten worden verwijderd."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "Het maximumaantal items dat kan worden geselecteerd (%d), is overschreden."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
-msgstr "Het maximumaantal contacten dat in één keer kan worden gedeeld (%1$d), is overschreden. Alleen de eerste %2$d worden gedeeld."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "De Chamada Certa-functie kan worden gebruikt voor het identificeren van de serviceproviders van uw contacten en voor het weergeven ervan in uw contactlijst. U kunt dit later doen door op de menutoets te drukken en Info serviceprovider bijwerken te selecteren. Tik op OK om de serviceproviders van uw contacten nu te identificeren."
-
-msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
-msgstr "Tik op OK om het importeren van contacten van SIM-kaart te stoppen."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Tik op OK om het exporteren van contacten naar %s te stoppen."
 
-msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Tik op Exporteren om te selecteren welke contacten u wilt exporteren. Bepaalde contactgegevens kunnen verloren gaan."
-
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "Sommige of alle contacten zijn mogelijk niet bijgewerkt."
-
-msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Er kunnen contactgegevens verloren gaan."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "SIM-geheugen vol."
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "Verwijderen..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "%d telefoonnummers zijn bijgewerkt."
-
-msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
-msgstr "%d contacten worden verwijderd."
-
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "%1$d contacten zijn geëxporteerd naar %2$s."
-
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d contacten zijn geëxporteerd naar Apparaat/Contacten/Geïmporteerd/%2$s.vcf."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "Onvoldoende geheugen."
-
-msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
-msgstr "Nieuwe contacten worden opgeslagen in Contacten op uw apparaat."
-
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "FDN-modus ingeschakeld."
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "Mislukt."
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "Wilt u de wijzigingen negeren?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "Contacten verwijderen..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "Verwijderen van contacten geannuleerd. Sommige contacten zijn mogelijk al verwijderd."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "Het importeren van contacten van %s wordt gestopt."
@@ -478,52 +343,13 @@ msgstr "Het importeren van contacten van %s wordt gestopt."
 msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
 msgstr "Bestaat al."
 
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Alle gekoppelde contacten worden verwijderd."
-
-msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
-msgstr "Alle contacten worden verwijderd."
-
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "Alle wijzigingen worden verwijderd."
-
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "Toevoegen..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "1 telefoonnummer is bijgewerkt."
-
-msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
-msgstr "1 contact wordt verwijderd."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "1 contact verwijderd."
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "Zakelijk"
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "Spraakoproep"
 
-msgid "IDS_PB_OPT_VIDEO_CALL"
-msgstr "Video-oproep"
-
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "Info serviceprovider bijwerken"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "Koppel. contact verbreken"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "Koppeling met contacten verbreken"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
-msgstr "Foto maken"
-
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
 msgstr "Foto maken"
 
 msgid "IDS_PB_OPT_SPOUSE"
@@ -535,26 +361,11 @@ msgstr "Skype"
 msgid "IDS_PB_OPT_SISTER"
 msgstr "Zus"
 
-msgid "IDS_PB_OPT_SIM_CARD"
-msgstr "SIM-kaart"
-
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "Delen via"
-
 msgid "IDS_PB_OPT_SHARE"
 msgstr "Delen"
 
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "Instellingen"
-
-msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
-msgstr "Selecteren uit contactpersonen"
-
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "SD-kaart"
-
-msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
-msgstr "Contact opslaan in"
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "Beltoon"
 
 msgid "IDS_PB_OPT_REORDER"
 msgstr "Indeling wijzigen"
@@ -580,23 +391,11 @@ msgstr "Partner"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "Ouder"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "Pieper"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "Overig"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
 msgstr "Organisatie"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "Moeder"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "Mobiel"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "Bericht"
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Favorieten beheren"
@@ -610,20 +409,11 @@ msgstr "Hoofd"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "Achternaam eerst"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "Achternaam"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "Privé"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "Start"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangouts"
@@ -637,12 +427,6 @@ msgstr "Vriend"
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "Voornaam eerst"
 
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "Voornaam"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "FDN-contact"
-
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "Fax (werk)"
 
@@ -655,14 +439,8 @@ msgstr "Vader"
 msgid "IDS_PB_OPT_EDIT"
 msgstr "Bewerk"
 
-msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
-msgstr "Niet meer tonen"
-
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "Huisgenoot"
-
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "Apparaat"
 
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "Aangepast"
@@ -676,9 +454,6 @@ msgstr "Kind"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "Broer"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "Verjaardag"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "Assistent"
 
@@ -688,56 +463,23 @@ msgstr "Jubileum"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "Veld toevoegen"
-
 msgid "IDS_PB_OPT_ADD"
 msgstr "Toevoegen"
-
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "Account"
 
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "Zoeken"
 
-msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
-msgstr "Geen servicenummers"
-
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "Geen resultaten gevonden"
-
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "Geen contacten voor noodgeval"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "Geen contacten"
 
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "Sorteren op"
 
-msgid "IDS_PB_MBODY_SET_PROFILE"
-msgstr "Profiel instellen"
-
 msgid "IDS_PB_MBODY_SET_MY_PROFILE"
 msgstr "Mijn profiel instellen"
 
-msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
-msgstr "Tegelijk verzenden"
-
-msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
-msgstr "Afzonderlijk verzenden"
-
-msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Contactgegevens verzenden"
-
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "Alles selecteren"
-
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "%d contacten"
-
-msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
-msgstr "Alleen contacten met telefoonnummers"
 
 msgid "IDS_PB_MBODY_IMPORT"
 msgstr "Importeren"
@@ -748,82 +490,22 @@ msgstr "Exporteren"
 msgid "IDS_PB_MBODY_EVENT"
 msgstr "Gebeurtenis"
 
-msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
-msgstr "Contacten met nummers weergeven"
-
 msgid "IDS_PB_MBODY_1_CONTACT_ABB"
 msgstr "1 contact"
 
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "Contacten"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "USB-opslag niet beschikbaar"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "Kan niet toevoegen"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "Kan niet toevoegen"
-
-msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
-msgstr "Gesuggereerde contacten"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "Delen via"
-
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "Contactfoto instellen"
-
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "Instellingen"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "Serviceprovider"
-
-msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Contactgegevens verzenden"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "SIM voor oproep selecteren"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "SIM-kaart voor bellen selecteren"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "SIM-krt voor bellen selecteren"
 
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "Contact selecteren"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "Selecteren"
-
-msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
-msgstr "Contacten opslaan in"
-
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "Indeling wijzigen"
 
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "Verwijderen"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
-msgstr "Contacten noodgevallen (%d)"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
-msgstr "Contact noodgev. (%1$d/%2$d)"
-
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "Telefoon"
-
-msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
-msgstr "Persoonlijke contacten"
-
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
-msgstr "%d geselecteerd"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
 msgstr "%d geselecteerd"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
@@ -832,29 +514,14 @@ msgstr "Naamindeling"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "Meest frequente contacten"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "Ik"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "Favorieten beheren"
-
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "Lijst met contacten"
-
-msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
-msgstr "Gekopp. contacten"
 
 msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
 msgstr "Contacten importeren"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "Importeren"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "Favorieten"
-
-msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
-msgstr "Contacten exp. naar SIM-kaart"
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
 msgstr "Contacten exporteren"
@@ -865,17 +532,8 @@ msgstr "Exporteren"
 msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
 msgstr "Aangepast label invoeren"
 
-msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
-msgstr "Noodservices"
-
-msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
-msgstr "Contacten noodgeval"
-
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "Bewerken"
-
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "Namen weergeven op"
 
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "Weergeven"
@@ -883,38 +541,14 @@ msgstr "Weergeven"
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
 msgstr "Wijzigingen negeren"
 
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "Item verwijderen"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "Nieuw"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "Afbeelding contactpersoon"
-
-msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
-msgstr "Contacten voor weergeven"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "Contacten"
-
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "Geëxporteerde contacten"
-
-msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
-msgstr "Opslaglocatie wijzigen"
 
 msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
 msgstr "Importeren annuleren"
 
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "Exporteren annuleren"
-
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "Opnieuw proberen"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "Opslaan"
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "Telefoon"
@@ -924,9 +558,6 @@ msgstr "OK"
 
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "Notities"
-
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "Meer"
 
 msgid "IDS_PB_BUTTON_EXPORT"
 msgstr "Exporteren"
@@ -946,68 +577,11 @@ msgstr "Verwijderen"
 msgid "IDS_PB_BUTTON_CREATE_ABB2"
 msgstr "Maken"
 
-msgid "IDS_PB_BUTTON_CHANGE_ABB"
-msgstr "Wijzigen"
-
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Annuleer"
-
-msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
-msgstr "Account toev"
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "Windows Live"
-
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "Website"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "Lijst met contactpersonen bijwerken..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "Kan niet opslaan vanwege SIM-fout."
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "Titel"
-
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Deze contactpersoon wordt verwijderd."
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "De gegevens van de serviceprovider van de geselecteerde contacten worden bijgewerkt. Deze functie vereist een netwerkverbinding en kan extra kosten met zich mee brengen. De benodigde tijd om het proces te voltooien is afhankelijk van de status van uw netwerkverbinding."
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "Telefoon"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "Skype"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "SIM-kaart initialiseren..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "Servicenummer"
-
-msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
-msgstr "Als u visitekaartjes afzonderlijk verzendt, kan het langer duren omdat het ontvangende apparaat ze één voor één moet accepteren."
-
-msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
-msgstr "Als u een aantal contacten tegelijk verzendt, wordt de overdrachttijd verkort. Als het andere apparaat dit echter niet ondersteunt, wordt slechts één contact verzonden."
-
-msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
-msgstr "Selecteer hoe contactgegevens worden verzonden."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "Geselecteerd"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "Verwijderen uit favorieten"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "Foto"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "Telefoonnr."
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "Naam fonetisch"
@@ -1021,32 +595,14 @@ msgstr "Achternaam fonetisch"
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "Voornaam fonetisch"
 
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "Overige e-mails"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "Geen zoekresultaten"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "Geen groepen"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "Notities"
-
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "Bijnaam"
 
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "Achtervoegsel naam"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "Voorvoegsel"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "Naam"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "Mijn contactpersonen"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "Tweede naam"
@@ -1057,77 +613,14 @@ msgstr "Achternaam"
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
 msgstr "Functietitel"
 
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "Importeren van SIM-kaart"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "Importeren van SIM2-kaart"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "Importeren..."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "Afbeelding"
-
 msgid "IDS_PB_BODY_IM"
 msgstr "IM"
-
-msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Als uw serviceprovider vooraf servicenummers op uw SIM-kaart heeft geladen, worden ze hier weergegeven."
-
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "Galerij"
 
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "Voornaam"
 
-msgid "IDS_PB_BODY_FAX"
-msgstr "Fax"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "Exporteren naar SIM-kaart"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "Exporteren naar SIM2-kaart"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "Exporteren naar SD-kaart"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "E-mail"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "Wijzigingen negeren"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "Vrienden"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "Familie"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "Datum"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "Collega's"
-
-msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
-msgstr "Contacten waarvan dubbele gegevens zijn gevonden, worden automatisch voorgesteld."
-
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "Contacten"
-
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "Bedrijf"
-
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "Knop voor het uitvouwen van de lijst"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "Met automatische aanbevelingen haalt u de hoogtepunten uit geluidsbestanden."
 
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Nadat u contacten hebt gemaakt, worden ze hier weergegeven."
@@ -1135,87 +628,132 @@ msgstr "Nadat u contacten hebt gemaakt, worden ze hier weergegeven."
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Nadat u contacten hebt toegevoegd, worden ze hier weergegeven."
 
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "Toevoegen aan favorieten"
-
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "Adres"
 
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "Accounts"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Annuleren"
 
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "AB"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Wissen"
 
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "PIN geblokkeerd."
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Alles selecteren"
 
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "PUK2 onjuist."
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Gisteren"
 
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "Onjuiste PIN1-code."
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Vandaag"
 
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "Bestaand contact toevoegen"
+msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
+msgstr "Contact maken"
 
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "Geen contacten voor noodgevallen"
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
 
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "Contacten noodgevallen"
+msgid "IDS_PB_OPT_WORK"
+msgstr "Zakelijk"
 
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "Noodcontact toevoegen"
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Instellingen"
 
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "Contact noodgevallen toevoegen"
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Pieper"
 
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "Datum instellen"
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Overig"
 
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "Nieuwe pincode en pincode voor bevestiging komen niet overeen."
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Mobiel"
 
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Nadat u contacten voor noodgevallen hebt gemaakt, worden ze hier weergegeven."
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Bericht"
 
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "Kan niet meer items selecteren"
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Achternaam"
 
-msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
-msgstr "Plaats SIM-kaart."
+msgid "IDS_PB_OPT_HOME"
+msgstr "Start"
 
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "De serviceprovider van het contact dat u belt, is %1$s. Tik op OK als u dit nummer wilt bellen met uw SIM-kaart voor %2$s."
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Voornaam"
 
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "SIM-kaart %s gebruiken"
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Apparaat"
 
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "Huidige SIM"
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Verjaardag"
 
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "Oproep uit telefooncel"
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Geen contacten"
 
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "Ongeldig teken."
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Alles selecteren"
 
-msgid "IDS_HS_BUTTON_PHONE_M_CALL"
-msgstr "Telef."
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Instellingen"
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "Uitgaande oproep"
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "Selecteren"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "Inkomende oproep"
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Verwijderen"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "Ik"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Favorieten"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Nieuw"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Opslaan"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Meer"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Annuleer"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Telefoonnr."
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Notities"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "E-mail"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Datum"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Contacten"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
 msgstr "Alleen eerste %d contacten weergegeven."
 
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "Mijn profiel"
-
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
 msgstr "Tik hier om een sneltoets toe te voegen"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "BEWERKEN"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "Aangepast type"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "Groepen"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "Instellen"
+
+msgid "IDS_LOGS_HEADER_FILTER_BY"
+msgstr "Filteren op"
+
+msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
+msgstr "Alle oproepen"
 

@@ -1,83 +1,218 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "Rinkti numeriai"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "Žurnalų nėra"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "Paskutinis skambutis"
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "Gerai"
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "Priimti skambučiai"
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "Siųsti žinutę"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "Filtruoti pagal"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "Numerio nėra"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "Kurti"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "Nukopijuota į iškarpinę."
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "El. paštas (namų)"
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "Telef."
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "Kurti grupę"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "Pervardyti"
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "Pertvarkyti"
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "Saugoti vėl"
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "Nustatyti paveikslėlį"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "Bendrinti"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "Bendrinti profilį"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "Pridėti lauką"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "Pridėti narių"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "Kurti profilį"
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "Trinti adresatus"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "Trinti grupes"
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "Grupės"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "Importuoti"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "Importuoti / eksportuoti"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "Adresatų tvark. ir atsrg. kopijav."
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "Daugiau nustat."
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "Vardas jau naudojamas"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "Išsaugoti adresatą"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "Rinkt. adresat."
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "Rinktis grupes"
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "Rinktis vaizdą"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "Pridėti narių"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "Grupės pavadinimas"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "Fon. vardas"
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "Fon. pavardė"
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "Fon. antras vardas"
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "Numat. adresato nuotr. stilius"
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "Įvykis (pvz., gimtadienis)"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "Grupės ir nariai"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "Tik grupės"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "Pradž."
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "IM paskyra"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "Žiniatinklio adresas"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "Adresato mobiliojo telefono numeris pakeistas iš %1$s į %2$s. Adresato informacija atnaujinta."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "Jau yra adresatas su tokiu vardu. Jei norite jį vis tiek išsaugoti, bakstelėkite „Vis tiek išsaugoti“ arba bakstelėkite „Pervardyti“ ir išsaugokite šį adresatą kitu vardu."
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "Įreng. atmint. ir visos paskyr."
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "Adresas (pasirinktinis)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "Adresas (namų)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "Adresas (kitas)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "Adresas (darbo)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "Kaip 1 failą"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "Ekranas"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "El. paštas (pasirinktinis)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "El. paštas (kitas)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "El. paštas (darbo)"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "Importuoti / eksportuoti"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "Perkelti įrenginio adresatus"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "Eksportuotas 1 adresatas."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "Trinama..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "Eksportavimas atšauktas."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "Adresatų nepavyko ištrinti. Bandykite dar kartą."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "Toks grupės pavadinimas jau naudojamas."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "Importavimas atšauktas."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Pasiektas didžiausias simbolių skaičius."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "Neįvestas grupės pavadinimas."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "Eksportuota adresatų: %d."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "Apdorojama..."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Pasirinkite žurnalus"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "Rodyti pagal"
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "Fonetinis pavadinimas"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "Namų 2"
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "Telef."
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "Perkėlimas baigtas."
-
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "Perkeliama..."
-
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 patvirtintas."
-
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 patvirtintas."
-
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "PIN kodas atblokuotas."
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2 kodas atblokuotas."
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2 kodas pakeistas."
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "PIN2 kodas užblokuotas."
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "Pakeistas PIN1 kodas."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "Blokuojamas PIN1 kodas."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "Netinkamas PIN2 kodas."
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "Naujas PIN2 ir patvirtintas PIN2 kodai nesutampa"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "Neteisingas PUK1 kodas."
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "Neteisingas PUK1. Liko %d bandymų."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "Neteisingas PUK2. Liko %d bandymų."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN kodas pakeistas."
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "Nustatykite datą"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Adresatai"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "Pridėti paskyrą"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "Pasiektas didžiausias simbolių skaičius."
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "Nuskaitomi įrenginiai..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "Neteisingas PIN"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "ATLIKTA"
@@ -88,77 +223,20 @@ msgstr "ATŠAUKTI"
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
 msgstr "IŠTRINTI"
 
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "Įvyko ryšio klaida arba neteisingas MMI kodas"
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "Privatus numeris"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "SIŲSTI"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2 užblokuotas. Kreipkitės į paslaugų teikėją (reikalingas SIM PUK2)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "Žurnalų nėra"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "Kai skambinate / skambina jums arba siunčiate / priimate žinutę, rodomi žurnalai."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "SIM kortelė naudojama. Bandykite vėliau"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "SIM/RUIM kortelė užrakinta."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "Nėra SIM kortelės. Prašome įdėti į telefoną SIM kortelę."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "Tinklo ar SIM kortelės klaida."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "Vibravimo atsakas įjungtas."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "Vibravimo atsakas išjungtas."
-
-msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
-msgstr "Neįmanoma paskambinti numeriu. %d nėra pagalbos numeris."
-
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
 msgstr "%d sparčiojo rinkimo numeris pašalintas."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "Sparčiojo rinkimo numeris priskirtas."
 
-msgid "IDS_KPD_TPOP_ENTER_NUMBER"
-msgstr "Įveskite numerį."
-
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "Jūsų PIN turi sudaryti nuo %1$d iki %2$d skaitmenų. Bandykite dar kartą."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "Jūsų PIN2 turi sudaryti %1$d–%2$d skaitmenys (-ų). Bandykite dar kartą."
-
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
 msgstr "Šiam sparčiojo rinkimo numeriui nėra priskirto adresato. Bakstelėkite „Gerai“ ir priskirkite."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "PIN kodas išjungtas. Prieš keisdami įjunkite PIN kodą."
-
-msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
-msgstr "Bals.paš."
 
 msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
 msgstr "Atnauj.adresatą"
 
 msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
 msgstr "Sparč.rinkimo nust."
-
-msgid "IDS_KPD_OPT_REMOVE"
-msgstr "Šalinti"
 
 msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
 msgstr "Kurti adresatą"
@@ -175,41 +253,14 @@ msgstr "Pridėti 2 sek. pauzę"
 msgid "IDS_KPD_ITAB3_KEYPAD"
 msgstr "Klaviatūra"
 
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "Neįm. prisijungti prie tinklo"
-
-msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Pasirinkite SIM ir skambinkite"
-
 msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
 msgstr "Paieškos rezultatai (%d)"
-
-msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
-msgstr "Pagalbos skambutis"
 
 msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
 msgstr "Priskirti sparč. rinkimo nr."
 
-msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
-msgstr "Nustat. numerį"
-
-msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
-msgstr "Siųst žinutę"
-
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "Atšaukti"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "Pridėti prie adresatų"
-
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "Slaptažodžiai nesutampa."
-
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "PIN blokuotas. Įveskite PUK kodą."
-
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "SIM užblokuota."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "Neišsaugota"
@@ -226,122 +277,29 @@ msgstr "Nepavyko"
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "Atšaukta"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "%d žurnalo elementai bus ištrinti."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Visi žurnalo elementai bus ištrinti."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "1 žurnalo elementas bus ištrintas."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "Peržiūrėt adresato informaciją"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "Siųsti numerį"
-
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "Praleisti skambučiai"
-
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "Trinti"
-
-msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
-msgstr "Skambučių trukmės"
-
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "Praleisti skambučiai"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "Neberodyti"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "Nežin. numeris"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "Nežinomas"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "Rinktis viską"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "Žurnalai"
-
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "Vakar"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "Šiandien"
 
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "Pasirinkta: %d"
 
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "Trinti %d žurnalus"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "Trinti žurnalo elementus"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "Trinti žurnalą"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "Trinti"
-
 msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
 msgstr "Atnauj.adresatą"
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "Trinti"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "Kurti adresatą"
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "Atšaukti"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "Balso skambučiai"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "Vaizdo skambučiai"
-
-msgid "IDS_LOGS_BODY_SIM_CARD"
-msgstr "SIM kortelė"
-
-msgid "IDS_LOGS_BODY_ALL_CALLS"
-msgstr "Visi skambučiai"
 
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
 msgstr "Atlikti ir priimti skambučiai bus registruojami čia."
 
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "Atlikus ir priėmus skambučius, žurnalo elementai bus rodomi čia."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "REDAG."
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "Įvesti tekstą"
-
-msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
-msgstr "Kai kurie jūsų adresatai kartojasi."
-
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "Importuota adresatų: %d."
 
-msgid "IDS_PB_TPOP_CONTACTS_LINKED"
-msgstr "Adresatai susieti."
-
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "1 numeris pašalintas iš automatinio atmetimo sąrašo."
-
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "Importuotas 1 adresatas."
-
-msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
-msgstr "Paslaugų numeriai"
 
 msgid "IDS_PB_TMBODY_NAME_FORMAT"
 msgstr "Vardų formatas"
@@ -351,15 +309,6 @@ msgstr "Susieti adresatus"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
 msgstr "Rodytini adresatai"
-
-msgid "IDS_PB_SK_SET"
-msgstr "Nustatyti"
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "Kurti"
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "Pridėti laukelius"
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "Importuojami adresatai..."
@@ -379,98 +328,14 @@ msgstr "Adresatai importuoti"
 msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
 msgstr "Adresatai eksportuoti"
 
-msgid "IDS_PB_SBODY_ALL_CONTACTS"
-msgstr "Visi adresatai"
-
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "Negalite ištrinti adresatų iš tik skaityti skirtos paskyros, tačiau galite juos paslėpti ir nerodyti adresatuose."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
-msgstr "Kai įjungtas sinchronizavimas, šis adresatas bus ištrintas iš visų sinchronizuotų paskyrų, kuriose jis išsaugotas."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
-msgstr "Jei sinchronizavimas įjungtas, šis adresatas ir visi su juo susieti adresatai, esantys kitose sinchronizuojamose paskyrose, bus ištrinti arba paslėpti, jei duomenys yra gauti iš tik skaitomos paskyros."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
-msgstr "Kai įjungtas sinchronizavimas, šis adresatas ir su juo susieti adresatai, esantys kitose sinchronizuotose paskyrose, bus ištrinti."
-
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "Atnaujinama paslaugos teikėjo informacija..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Neįmanoma pridėti adresato. Pasiektas didžiausias sietinų adresatų skaičius (%d)."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Neįmanoma pridėti adresatų. Pasiektas didžiausias sietinų adresatų skaičius (%d)."
-
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Šis adresatas bus panaikintas."
-
-msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Šis adresatas ir su juo susieti adresatai bus ištrinti."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "Viršytas didžiausias elementų, kuriuos galite pasirinkti, skaičius (%d)."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
-msgstr "Viršytas didžiausias vienu metu bendrintinų adresatų skaičius (%1$d). Bus bendrinami tik pirmieji %2$d."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "Norint nustatyti savo adresatų paslaugų teikėjus ir rodyti juos adresatų sąraše, galima naudoti funkciją „Chamada Certa“. Galite padaryti tai vėliau, paspaudę meniu mygtuką ir pasirinkę parinktį „Atnaujinti paslaugos teikėjo informaciją“. Bakstelėkite „Gerai“, jei norite dabar nustatyti savo adresatų paslaugų teikėjus."
-
-msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
-msgstr "Bakstelėkite „Gerai“, kad sustabdytumėte adresatų importavimą iš SIM kortelės."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Bakstelėkite „Gerai“, kad sustabdytumėte adresatų eksportavimą į %s."
 
-msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Bakstelėkite „Eksportuoti“ ir pasirinkite eksportuotinus adresatus. Dalis adresato informacijos gali būti prarasta."
-
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "Kai kurie arba visi adresatai galėjo būti neatnaujinti."
-
-msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Kai kurių adresatų informacija gali būti prarasta."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "SIM kortelės atmintis pilna."
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "Šalinama..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "Atnaujinta telefono numerių: %d."
-
-msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
-msgstr "Bus ištrinta adresatų: %d."
-
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "Į %2$s eksportuota adresatų: %1$d."
-
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d adresatai eksportuoti į Device/Contacts/Imported/%2$s.vcf."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "Nepakanka atminties."
-
-msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
-msgstr "Nauji adresatai įrenginyje bus išsaugoti aplanke „Adresatai“."
-
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "FDN režimas įjungtas."
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "Nepavyko."
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "Naikinti pakeitimus?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "Trinami adresatai..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "Adresatų trynimas atšauktas. Kai kurie adresatai jau ištrinti."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "Adresatų importavimas bus sustabdytas nuo %s."
@@ -478,52 +343,13 @@ msgstr "Adresatų importavimas bus sustabdytas nuo %s."
 msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
 msgstr "Jau yra."
 
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Visi susieti adresatai bus ištrinti."
-
-msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
-msgstr "Bus ištrinti visi adresatai."
-
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "Visi pokyčiai bus panaikinti."
-
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "Pridedama..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "Atnaujintas 1 telefono numeris."
-
-msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
-msgstr "Bus ištrintas 1 adresatas."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "1 adresatas pašalintas."
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "Darbo"
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "Balso skambutis"
 
-msgid "IDS_PB_OPT_VIDEO_CALL"
-msgstr "Vaizdo skambutis"
-
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "Atnaujinkite paslaugos teikėjo informaciją"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "Atsieti adresatą"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "Atsieti adresatus"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
-msgstr "Fotografuoti"
-
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
 msgstr "Fotografuoti"
 
 msgid "IDS_PB_OPT_SPOUSE"
@@ -535,26 +361,11 @@ msgstr "„Skype“"
 msgid "IDS_PB_OPT_SISTER"
 msgstr "Sesuo"
 
-msgid "IDS_PB_OPT_SIM_CARD"
-msgstr "SIM kortelė"
-
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "Bendrinti per"
-
 msgid "IDS_PB_OPT_SHARE"
 msgstr "Dalytis"
 
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "Nustatymai"
-
-msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
-msgstr "Rinktis iš adresatų"
-
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "SD kortelė"
-
-msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
-msgstr "Išsaugoti adresatą"
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "Skambėjimo tonas"
 
 msgid "IDS_PB_OPT_REORDER"
 msgstr "Pertvarkyti"
@@ -580,23 +391,11 @@ msgstr "Partneris"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "Tėvai"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "Pranešimų gaviklis"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "Kiti"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
 msgstr "Organizacija"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "Motina"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "Mobilusis"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "Žinutė"
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Tvarkyti mėgstamus"
@@ -610,20 +409,11 @@ msgstr "Pagrindinis"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "Pirmiausia pavardė"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "Pavardė"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "Namų"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "Namų"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangout"
@@ -637,12 +427,6 @@ msgstr "Draugas"
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "Pirmiausia vardas"
 
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "Vardas"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "FDN adresatas"
-
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "Faksas (darbo)"
 
@@ -655,14 +439,8 @@ msgstr "Tėvas"
 msgid "IDS_PB_OPT_EDIT"
 msgstr "Redaguoti"
 
-msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
-msgstr "Neberodyti"
-
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "Civilinis partneris"
-
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "Įrenginys"
 
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "Pasirinktinis"
@@ -676,9 +454,6 @@ msgstr "Vaikas"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "Brolis"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "Gimtadienis"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "Asistentas"
 
@@ -688,56 +463,23 @@ msgstr "Sukaktis"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "Pridėti lauką"
-
 msgid "IDS_PB_OPT_ADD"
 msgstr "Pridėti"
-
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "Paskyra"
 
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "Ieškoti"
 
-msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
-msgstr "Nėra paslaugų numerių"
-
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "Rezultatų nerasta"
-
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "Nėra pagalbos adresatų"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "Nėra adresatų"
 
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "Rūšiuoti pagal"
 
-msgid "IDS_PB_MBODY_SET_PROFILE"
-msgstr "Nustatyti profilį"
-
 msgid "IDS_PB_MBODY_SET_MY_PROFILE"
 msgstr "Nustatyti mano profilį"
 
-msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
-msgstr "Siųsti kartu"
-
-msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
-msgstr "Siųsti atskirai"
-
-msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Siųsti adresato informaciją"
-
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "Rinktis viską"
-
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "Adresatai: %d"
-
-msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
-msgstr "Tik adresatai su telef."
 
 msgid "IDS_PB_MBODY_IMPORT"
 msgstr "Importuoti"
@@ -748,82 +490,22 @@ msgstr "Eksportuoti"
 msgid "IDS_PB_MBODY_EVENT"
 msgstr "Įvykis"
 
-msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
-msgstr "Rodyti adresatus su numeriais"
-
 msgid "IDS_PB_MBODY_1_CONTACT_ABB"
 msgstr "1 adresatas"
 
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "Adresatai"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "Vidinė telefono atmintis nepasiekiama"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "Neįmanoma pridėti"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "Negalima pridėti"
-
-msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
-msgstr "Siūlomi adresatai"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "Bendrinti per"
-
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "Nustatyti adresato nuotrauką"
-
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "Nustatymai"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "Paslaugų teikėjas"
-
-msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Siųsti adresato informac."
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "Rinktis SIM kortelę, skirtą skambinti"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "Pasirinkite SIM kortelę ir skambinkite"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Pasirinkite SIM ir skambinkite"
 
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "Pasirinkti adresatą"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "Rinktis"
-
-msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
-msgstr "Įrašyti adresatus į"
-
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "Pertvarkyti"
 
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "Šalinti"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
-msgstr "Pagrindiniai adresatai(%d)"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
-msgstr "Pagr.adresatai (%1$d/%2$d)"
-
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "Telefonas"
-
-msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
-msgstr "Asmeniniai adresatai"
-
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
-msgstr "Pasirinkta: %d"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
 msgstr "Pasirinkta: %d"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
@@ -832,29 +514,14 @@ msgstr "Vardų formatas"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "Dažniausiai naudojami adresatai"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "Aš"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "Tvarkyti mėgstamus"
-
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "Adresatų sąrašas"
-
-msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
-msgstr "Susieti adresatai"
 
 msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
 msgstr "Importuot adresatus"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "Importuoti"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "Mėgstamiausieji"
-
-msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
-msgstr "Eksport. adresatus į SIM kort."
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
 msgstr "Eksportuoti adresatus"
@@ -865,17 +532,8 @@ msgstr "Eksportuoti"
 msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
 msgstr "Įveskite pasirinktinę etiketę"
 
-msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
-msgstr "Pagalbos tarnybos"
-
-msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
-msgstr "Pagalbos tarnybų numeriai"
-
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "Redaguoti"
-
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "Rodyti vardus pagal"
 
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "Ekranas"
@@ -883,38 +541,14 @@ msgstr "Ekranas"
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
 msgstr "Atmesti pakeitimus"
 
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "Ištrinti elementą"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "Kurti"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "Adresato vaizdas"
-
-msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
-msgstr "Rodytini adresatai"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "Adresatai"
-
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "Adresatai eksportuoti"
-
-msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
-msgstr "Pakeisti išsaugojimo vietą"
 
 msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
 msgstr "Atšaukti importavimą"
 
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "Atšaukti eksportavimą"
-
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "Bandyti vėl"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "Išsaugoti"
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "Telef."
@@ -924,9 +558,6 @@ msgstr "Gerai"
 
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "Pastabos"
-
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "Daug."
 
 msgid "IDS_PB_BUTTON_EXPORT"
 msgstr "Eksportuoti"
@@ -946,68 +577,11 @@ msgstr "Trinti"
 msgid "IDS_PB_BUTTON_CREATE_ABB2"
 msgstr "Kurti"
 
-msgid "IDS_PB_BUTTON_CHANGE_ABB"
-msgstr "Keisti"
-
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Atšaukti"
-
-msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
-msgstr "Prid.paskyrą"
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "„Windows Live“"
-
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "Svetainė"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "Atnaujinamas adresatų sąrašas..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "Neįmanoma išsaugoti dėl SIM klaidos."
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "Pavadinimas"
-
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Šis adresatas bus panaikintas."
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "Pasirinktų adresatų paslaugos teikėjo informacija bus atnaujinta. Norint naudotis šia funkcija reikalingas tinklo ryšys, už naudojimąsi ja gali būti taikomi papildomi mokesčiai. Laikas, kurio reikia procesui užbaigti, priklausys nuo tinklo ryšio būsenos."
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "Telefonas"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "„Skype“"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "Inicijuojama SIM kortelė..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "Paslaugos numeris"
-
-msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
-msgstr "Siunčiant vardo korteles atskirai gali prireikti daugiau laiko, nes priimantis įrenginys jas priima po vieną."
-
-msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
-msgstr "Siunčiant kelis adresatus vienu metu sutrumpėja siuntimo laikas. Tačiau jei kitas įrenginys šios funkcijos nepalaiko, bus siunčiamas tik vienas adresatas."
-
-msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
-msgstr "Pasirinkite adresato informacijos siuntimo būdą."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "Pasirinkta"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "Pašalinti iš parankinių"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "Nuotrauka"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "Tel. numeris"
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "Fonetinis pavad."
@@ -1021,32 +595,14 @@ msgstr "Fonetinė pavardė"
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "Fonetinis vardas"
 
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "Kiti el. laiškai"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "Rezultatų nerasta"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "Nėra grupių"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "Pastabos"
-
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "Slapyvardis"
 
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "Vardo povardis"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "Vardo prefiksas"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "Vardas"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "Mano adresatai"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "Antras vardas"
@@ -1057,77 +613,14 @@ msgstr "Pavardė"
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
 msgstr "Pareigos"
 
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "Importuoti iš SIM kortelės"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "Importuoti iš SIM2 kortelės"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "Importuojama..."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "Vaizdas"
-
 msgid "IDS_PB_BODY_IM"
 msgstr "IM"
-
-msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Jei paslaugų teikėjas iš anksto įkėlė paslaugų numerius į jūsų SIM kortelę, jie bus rodomi čia."
-
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "Galerija"
 
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "Vardas"
 
-msgid "IDS_PB_BODY_FAX"
-msgstr "Faksas"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "Eksportuoti į SIM kortelę"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "Eksportuoti į SIM2 kortelę"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "Eksportuoti į SD kortelę"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "El. paštas"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "Naikinti pakeitimus"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "Draugai"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "Šeima"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "Data"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "Bendradarbiai"
-
-msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
-msgstr "Pasikartojantys adresatai bus siūlomi automatiškai."
-
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "Adresatai"
-
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "Įmonė"
-
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "Sąrašo išplėtimo mygtukas"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "Naudojant automatines rekomendacijas iš garso failų galima išskirti fragmentus."
 
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Kai sukursite adresatų, jie bus rodomi čia."
@@ -1135,87 +628,132 @@ msgstr "Kai sukursite adresatų, jie bus rodomi čia."
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Kai pridėsite adresatų, jie bus rodomi čia."
 
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "Įtraukti į Parankinius"
-
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "Adresas"
 
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "Paskyros"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Atšaukti"
 
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "AB"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Trinti"
 
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "PIN kodas užblokuotas."
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Rinktis viską"
 
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "Neteisingas PUK2 kodas."
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Vakar"
 
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "Neteisingas PIN1 kodas."
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Šiandien"
 
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "Pridėti esamą adresatą"
+msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
+msgstr "Kurti adresatą"
 
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "Pagrindinių adresatų nėra"
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
 
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "Pagrindiniai adresatai"
+msgid "IDS_PB_OPT_WORK"
+msgstr "Darbo"
 
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "Kurti pagrindinį adresatą"
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Nustatymai"
 
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "Pridėti pagrindinių adresatų"
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Pranešimų gaviklis"
 
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "Nustatyti datą"
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Kiti"
 
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "Naujas ir patvirtintas PIN kodai nesutampa."
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Mobilusis"
 
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Kai sukursite pagrindinių adresatų, jie bus rodomi čia."
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Žinutė"
 
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "Negalima rinktis daugiau elem."
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Pavardė"
 
-msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
-msgstr "Įdėkite SIM kortelę."
+msgid "IDS_PB_OPT_HOME"
+msgstr "Namų"
 
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "Adresato, kuriam skambinate, paslaugos teikėjas yra %1$s. Bakstelėkite „Gerai“ ir skambinkite naudodami „%2$s“ SIM kortelę."
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Vardas"
 
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "Naudoti %s SIM kortelę"
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Įrenginys"
 
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "Esama SIM"
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Gimtadienis"
 
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "Taksofonas"
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Nėra adresatų"
 
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "Netinkamas simbolis."
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Rinktis viską"
 
-msgid "IDS_HS_BUTTON_PHONE_M_CALL"
-msgstr "Telef."
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Nustatymai"
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "Išeinantis skambutis"
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "Rinktis"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "Įeinantis skambutis"
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Šalinti"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "Aš"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Mėgstamiausieji"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Kurti"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Išsaugoti"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Daug."
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Atšaukti"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Tel. numeris"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Pastabos"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "El. paštas"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Data"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Adresatai"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
 msgstr "Rodomi tik pirmieji %d adresatai (-ų)."
 
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "Mano profilis"
-
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
 msgstr "Bakstelėkite čia ir pridėkite trumpinį"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "REDAGUOTI"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "Pasirinktinis tipas"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "Grupės"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "Nustatyti"
+
+msgid "IDS_LOGS_HEADER_FILTER_BY"
+msgstr "Filtruoti pagal"
+
+msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
+msgstr "Visi skambučiai"
 

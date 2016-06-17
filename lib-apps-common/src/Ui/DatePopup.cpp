@@ -31,9 +31,9 @@ void DatePopup::setResultCallback(ResultCallback callback)
 
 void DatePopup::onCreated()
 {
-	setTitle("IDS_ST_BODY_SET_DATE");
+	setTitle("IDS_TPLATFORM_HEADER_SET_DATE");
 	addButton("IDS_PB_BUTTON_CANCEL");
-	addButton("IDS_PB_SK_SET", [this] {
+	addButton("IDS_ST_BUTTON_SET", [this] {
 		onSetPressed();
 		return true;
 	});
