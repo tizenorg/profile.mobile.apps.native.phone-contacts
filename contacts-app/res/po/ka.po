@@ -1,83 +1,554 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "აკრეფილი ზარები"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "ჟურნალები არ არის"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "ბოლო ზარი"
+msgid "IDS_CLOG_HEADER_SELECT_ITEMS_ABB3"
+msgstr "აირჩიე ელემენტ."
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "შემოსული ზარები"
+msgid "IDS_CLOG_OPT_DONT_SHOW_AGAIN_ABB"
+msgstr "აღარ მაჩვენო"
+
+msgid "IDS_CST_OPT_DELETE"
+msgstr "წაშლა"
+
+msgid "IDS_KPD_BODY_QUICK_ENQUIRY_ABB"
+msgstr "სწრაფი ინფო"
+
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "OK"
+
+msgid "IDS_KPD_HEADER_SELECT_ITEMS_ABB3"
+msgstr "აირჩიე ელემენტ."
+
+msgid "IDS_KPD_OPT_MAKE_VIDEO_CALL_ABB2"
+msgstr "ვიდეოზარის განხორციელება"
+
+msgid "IDS_KPD_OPT_QUICK_ENQUIRY_ABB"
+msgstr "სწრაფი ინფორმაცია"
+
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "შეტყობინების გაგზავნა"
+
+msgid "IDS_LOGS_MBODY_PAYPHONE"
+msgstr "ტაქსოფონი"
+
+msgid "IDS_LOGS_MBODY_WITHHELD_NUMBER"
+msgstr "ნომრის უარყოფა"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "გაფილტვრა"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "ნომერი არაა"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "შექმნა"
+
+msgid "IDS_ST_BUTTON_UPDATE_ABB4"
+msgstr "განახლება"
+
+msgid "IDS_PB_BUTTON_HIDE_ABB"
+msgstr "დამალვა"
+
+msgid "IDS_HINTS_BODY_GET_MORE_OUT_OF_SHARING_YOUR_PROFILE_AND_PROMOTE_YOUR_BUSINESS_USING_A_BUSINESS_PROFILE_MSG"
+msgstr "მიიღეთ უფრო მეტი, თქვენი პროფილის გაზიარებითა და თქვენი საქმიანების რეკლამირებით, ბიზნესის პროფილის გამოყენებით.\n\nგახსენით %1$sკონტაქტები%2$s და შეეხეთ ნაჩვენებ ადგილს, საკუთარი პროფილის დასაყენებლად."
+
+msgid "IDS_HINTS_TMBODY_PROMOTE_YOURSELF"
+msgstr "წარმოაჩინეთ საკუთარი თავი"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "ასლი შენახულია ბუფერში."
+
+msgid "IDS_LOGS_NPBODY_NO_LOG_ITEMS_ABB"
+msgstr "ჟურნალის ჩანაწერები არ არის"
+
+msgid "IDS_PB_ACBUTTON_CHANGE_PICTURE_ABB"
+msgstr "სურათის შეცვლა"
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "ელ.ფოსტა (პირადი)"
+
+msgid "IDS_PB_BODY_GET_MORE_OUT_OF_SHARING_YOUR_PROFILE_AND_PROMOTE_YOUR_BUSINESS_USING_A_BUSINESS_PROFILE_CONTACTS_MSG"
+msgstr "მიიღეთ უფრო მეტი, თქვენი პროფილის გაზიარებითა და თქვენი საქმიანების რეკლამირებით, ბიზნესის პროფილის გამოყენებით.\n\nშეეხეთ ნაჩვენებ ადგილს, „კონტაქტებში“ საკუთარი პროფილის დასაყენებლად."
+
+msgid "IDS_PB_BODY_LOADING_MORE_ING_ABB2"
+msgstr "კიდევ იტვირთება..."
+
+msgid "IDS_PB_BODY_OFF_M_NOT_USED"
+msgstr "გამორთ."
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "ტელ."
+
+msgid "IDS_PB_BODY_SELECT_A_PROFILE_TYPE"
+msgstr "აირჩიეთ პროფილის ტიპი."
+
+msgid "IDS_PB_BODY_SHARE_YOUR_BUSINESS_PROFILE_WITH_EVERYONE"
+msgstr "ყველას გაუზიარეთ თქვენი სამსახურის პროფილი."
+
+msgid "IDS_PB_BODY_SHARE_YOUR_PROFILE_INFO_MSG"
+msgstr "გააზიარეთ თქვენი პროფილის ინფორმაცია. აირჩიეთ „პერსონალური პროფილი“, რომ გააზიაროთ იგი შერჩეულ კონტაქტებთან, ან აირჩიეთ „სამსახურის პროფილი“, რომ გააზიაროთ ყველასთან, ვინც იყენებს „პროფილის გაზიარება“-ს."
+
+msgid "IDS_PB_BODY_SHARE_YOUR_PROFILE_PICTURE_AND_STATUS_MSG"
+msgstr "გაუზიარეთ თქვენი პროფილის სურათი და სტატუსი სხვებს, კონტაქტებისა და ტელეფონის აპლიკაციებით."
+
+msgid "IDS_PB_BODY_TO_ADD_PERSONAL_EMERGENCY_CONTACTS_GO_TO_MSG"
+msgstr "პერსონალური საგანგებო კონტაქტების დასამატებლად, გახსენით „კონტაქტები“ > „სხვა მენიუ“ > „ჯგუფები“ > „საგანგებო კონტაქტები“ > „სხვა მენიუ“, შემდეგ კი შეეხეთ „დამატება“-ს."
+
+msgid "IDS_PB_BODY_YOUR_NAME_STATUS_AND_PROFILE_PICTURE_WILL_BE_SHARED_WITH_YOUR_CONTACTS_YOU_CAN_SELECT_ADDITIONAL_INFO_YOU_WANT_TO_SHARE_FROM_THE_OPTIONS_BELOW"
+msgstr "თქვენი სახელი, სტატუსი და პროფილის სურათი გაზიარდება თქვენს კონტაქტებთან. თქვენ შეგიძლიათ, ქვემოთ მოცემული ვარიანტებიდან აირჩიოთ გასაზიარებელი დამატებითი ინფორმაცია."
+
+msgid "IDS_PB_BODY_YOU_CAN_ADD_A_PROFILE_PICTURE_AND_STATUS_MESSAGES_TO_SHARE_WITH_THE_CONTACTS_YOU_HAVE_SELECTED_MSG"
+msgstr "შეგიძლიათ, დაამატოთ პროფილის სურათი და სტატუსი, რომ გაუზიაროთ თქვენ მიერ შერჩეულ კონტაქტებს. თქვენ ასევე შეგიძლიათ ნახოთ მათი პროფილები და პროფილის სურათები, რომლებიც ავტომატურად განახლდება მათი შეცვლის შემთხვევაში. გადადით „კონტაქტებში“ და შეეხეთ მითითებულ ადგილდ, საკუთარი პროფილის დასაყენებლად."
+
+msgid "IDS_PB_BUTTON_CHANGE_PICTURE_ABB"
+msgstr "სურათის შეცვლა"
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "ჯგუფის შექმნა"
+
+msgid "IDS_PB_BUTTON_LINK_ANOTHER_CONTACT_ABB"
+msgstr "სხვა კონტაქტის მიბმა"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "გადარქმევა"
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "გადალაგება"
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "შეინახოს"
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "სურათის დაყენება"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "გაზიარება"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "პროფილის გაზიარება"
+
+msgid "IDS_PB_BUTTON_UPDATE_ABB9"
+msgstr "განახლება"
+
+msgid "IDS_PB_HEADER_ADDITIONAL_INFO_TO_SHARE_ABB"
+msgstr "დამატებითი გასაზიარებელი"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "ველის დამატება"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "წევრების დამატება"
+
+msgid "IDS_PB_HEADER_BUSINESS_PROFILE_ABB"
+msgstr "სამსახურის პროფილი"
+
+msgid "IDS_PB_HEADER_CHANGE_PICTURE_ABB2"
+msgstr "სურათის შეცვლა"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "პროფილის შექმნა"
+
+msgid "IDS_PB_HEADER_DEF_CONTACT_PIC_STYLE_ABB"
+msgstr "სურათის საწყისი სტილი"
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "კონტაქტების წაშლა"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "ჯგუფების წაშლა"
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "ჯგუფები"
+
+msgid "IDS_PB_HEADER_HIDE"
+msgstr "დამალვა"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "გადმოტანა"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "გადმოტანა/გადატანა"
+
+msgid "IDS_PB_HEADER_LINKED_M_CONTACTS_ABB"
+msgstr "მიბმული"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "კონტაქტების მართვა და დამარქაფება"
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "სხვა პარამეტრები"
+
+msgid "IDS_PB_HEADER_MOVE_DEVICE_CONTACTS_ABB"
+msgstr "აპარატის კონტაქტთა გადატანა"
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "სახელი უკვე არის"
+
+msgid "IDS_PB_HEADER_PERSONAL_PROFILE_ABB"
+msgstr "პერსონალური პროფილი"
+
+msgid "IDS_PB_HEADER_PROFILE_SHARING_ABB2"
+msgstr "პროფილის გაზიარება"
+
+msgid "IDS_PB_HEADER_PROFILE_TYPE_ABB"
+msgstr "პროფილის ტიპი"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "კონტაქტის შენახვა"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "კონტაქტები"
+
+msgid "IDS_PB_HEADER_SELECT_EMERGENCY_CONTACT_ABB"
+msgstr "აირჩიეთ საგანგებო კონტაქტი"
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "ჯგუფები"
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "სურათის შერჩევა"
+
+msgid "IDS_PB_HEADER_SELF_PROMOTION_MADE_EASY"
+msgstr "თვით-რეკლამირება მარტივად სრულდება"
+
+msgid "IDS_PB_HEADER_SET_AS_DEFAULT_ABB2"
+msgstr "საწყისად დაყენ."
+
+msgid "IDS_PB_HEADER_SHARE_MULTIPLE_CONTACTS_ABB"
+msgstr "რამდენიმე კონტაქტის გაზიარება"
+
+msgid "IDS_PB_HEADER_SHARE_WITH"
+msgstr "გაზიარება აბონენტთან"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_MOVE_CONTACTS_ABB"
+msgstr "კონტაქტები ვერ გადაადგილდება"
+
+msgid "IDS_PB_HEADER_UPDATE_CONTACT_DETAILS_ABB"
+msgstr "კონტაქტის ინფოს განახლება"
+
+msgid "IDS_PB_HEADER_USING_PROFILE_SHARING_ABB2"
+msgstr "პროფილის გაზიარება"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "წევრების დამატება"
+
+msgid "IDS_PB_MBODY_DATE_OF_BIRTH"
+msgstr "დაბადების თარიღი"
+
+msgid "IDS_PB_MBODY_ENHANCED_FEATURES"
+msgstr "გაუმჯობესებული ფუნქციები"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "ჯგუფის სახელი"
+
+msgid "IDS_PB_MBODY_HELLO_E_ABB"
+msgstr "გამარჯობა!"
+
+msgid "IDS_PB_MBODY_LOAD_MORE"
+msgstr "ჩატვირთეთ მეტი"
+
+msgid "IDS_PB_MBODY_PROFILE_SHARING_MODE_ABB"
+msgstr "გაზიარების რეჟიმი"
+
+msgid "IDS_PB_MBODY_SHARE_NEW_NUMBER_ABB"
+msgstr "ახალი ნომრის გაზიარება"
+
+msgid "IDS_PB_MBODY_STATUS"
+msgstr "სტატუსი"
+
+msgid "IDS_PB_MBODY_VIEW_FACEBOOK_PROFILE"
+msgstr "Facebook პროფილის ნახვა"
+
+msgid "IDS_PB_NPBODY_ADD_PICTURES_TO_EXPRESS_YOURSELF"
+msgstr "სურათების დამატება თვენი თავის გამოსახატად"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS_USING_ENHANCED_MESSAGING"
+msgstr "არცერთი კონტაქტი არ იყენებს გაუმჯობესებული შეტყობინებების ფუნქციას"
+
+msgid "IDS_PB_NPBODY_NO_DUPLICATE_CONTACTS_ABB"
+msgstr "დუბლირებული კონტაქტები არ არის"
+
+msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS_ABB"
+msgstr "საგანგებო კონტაქტები არ არის"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "ფონეტიკური სახელი"
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "ფონეტიკური გვარი"
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "ფონეტიკური მამის სახელი"
+
+msgid "IDS_PB_NPBODY_SELECT_CONTACT_PICTURE"
+msgstr "აირჩიეთ კონტაქტის სურათი"
+
+msgid "IDS_PB_NPBODY_SELECT_DEFAULT_CONTACT_PICTURE"
+msgstr "აირჩიეთ ნაგულისხმევი კონტაქტის სურათი"
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "კონტაქტის სურათის საწყისი სტილი"
+
+msgid "IDS_PB_OPT_ENHANCED_MESSAGING_CONTACTS_ABB"
+msgstr "დახვეწილ შეტყობინებათა კონტაქტ."
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "ღონისძიება (მაგ., დაბადების დღე)"
+
+msgid "IDS_PB_OPT_FROM_DEVICE_ABB"
+msgstr "მოწყობილობიდან"
+
+msgid "IDS_PB_OPT_FROM_PRELOADED_IMAGES_ABB"
+msgstr "წინასწარ ჩატვირთულებიდან"
+
+msgid "IDS_PB_OPT_FROM_PRESET_STYLES_ABB"
+msgstr "წინასწარ მომზადებული სტილებიდან"
+
+msgid "IDS_PB_OPT_FROM_SD_CARD_ABB"
+msgstr "SD ბარათიდან"
+
+msgid "IDS_PB_OPT_FROM_SIM_CARD_ABB"
+msgstr "SIM ბარათიდან"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "ჯგუფები და წევრები"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "მხოლოდ ჯგუფები"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "სახლი"
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "IM ანგარიში"
+
+msgid "IDS_PB_OPT_MANAGE_LINKED_CONTACTS_ABB2"
+msgstr "გადაბმულ კონტაქტთა მართვა"
+
+msgid "IDS_PB_OPT_PROFILE_SHARING_ABB"
+msgstr "პროფილის გაზიარება"
+
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "შეტყობინების გაგზავნა"
+
+msgid "IDS_PB_OPT_SET_DEFAULT_CONTACT_INFO_ABB"
+msgstr "ნაგულისხმევი კონტაქტის დაყენება"
+
+msgid "IDS_PB_OPT_TO_DEVICE"
+msgstr "აპარატზე"
+
+msgid "IDS_PB_OPT_TO_SD_CARD"
+msgstr "SD ბარათზე"
+
+msgid "IDS_PB_OPT_TO_SIM_CARD_ABB"
+msgstr "SIM ბარათზე"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "ვებ-მისამართი"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "კონტაქტის მობილური ტელეფონის ნომერი %1$s შეიცვალა და გახდა %2$s. მისი საკონტაქტო ინფორმაცია განახლდა."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "იმავე სახელის მქონე კონტაქტი უკვე არსებობს. შეხებით აირჩიეთ „მაინც შეინახოს“, ან შეეხეთ „გადარქმევა“-ს და სხვა სახელით შეინახეთ ეს კონტაქტი."
+
+msgid "IDS_PB_POP_CONTACTS_SAVED_ON_YOUR_DEVICE_WILL_BE_MOVED_TO_YOUR_SAMSUNG_ACCOUNT"
+msgstr "მოწყობილობაში შენახული კონტაქტები გადავა Samsung ანგარიშზე."
+
+msgid "IDS_PB_POP_MOVING_DEVICE_CONTACTS_TO_SAMSUNG_ACCOUNT_ING"
+msgstr "მოწყობილობაში შენახული კონტაქტები გადადის Samsung ანგარიშზე..."
+
+msgid "IDS_PB_POP_NO_SIM_CARD_HAS_BEEN_INSERTED_INSERT_A_SIM_CARD_AND_TRY_AGAIN"
+msgstr "SIM ბარათი არ დევს. ჩადეთ SIM ბარათი და ისევ მოსინჯეთ"
+
+msgid "IDS_PB_POP_SHARE_CONTACTS_INDIVIDUALLY_THIS_MAY_TAKE_LONGER_MSG"
+msgstr "ცალ-ცალკე გააზიარეთ კონტაქტები. შესაძლოა, ამას უფრო მეტი დრო დასჭირდეს, რადგან მიმღებმა მოწყობილობამ ერთ ჯერზე 1 უნდა მიიღოს."
+
+msgid "IDS_PB_POP_SHARE_MULTIPLE_CONTACTS_AS_1_FILE_TO_REDUCE_TRANSMISSION_TIME_MSG"
+msgstr "გადაცემის დროის შესამცირებლად, რამდენიმე კონტაქტი გააზიარეთ ერთად, 1 ფაილად. თუ მოწყობილობას არ აქვს ამის მხარდაჭერა, გაზიარდება მხოლოდ 1 კონტაქტი."
+
+msgid "IDS_PB_POP_TAP_UPDATE_TO_EDIT_THE_EXISTING_INFO_FOR_THIS_CONTACT"
+msgstr "ამ კონტაქტის არსებული ინფორმაციის შესასწორებლად, შეეხეთ „განახლება“-ს."
+
+msgid "IDS_PB_POP_THIS_ACCOUNT_IS_READ_ONLY_THE_CONTACT_WILL_BE_HIDDEN_FROM_CONTACTS"
+msgstr "ეს ანგარიში მხოლოდ წაკითხვის უფლებით არის. ეს კონტაქტი დაიმალება კონტაქტებში."
+
+msgid "IDS_PB_POP_THIS_CONTACT_IS_READ_ONLY_THE_CONTACT_WILL_BE_HIDDEN_FROM_CONTACTS_FACEBOOK"
+msgstr "ამ კონტაქტის მხოლოდ წაკითხვა შეიძლება. ეს კონტაქტი დაიმალება კონტაქტებში."
+
+msgid "IDS_PB_POP_TO_MOVE_YOUR_DEVICE_CONTACTS_TO_YOUR_SAMSUNG_ACCOUNT_ENABLE_SYNC_CONTACTS"
+msgstr "მოწყობილობაში შენახული კონტაქტების Samsung ანგარიშზე გადასატანად, ჩართეთ კონტაქტების სინქრონიზაცია."
+
+msgid "IDS_PB_SBODY_AS_1_FILE"
+msgstr "როგორც 1 ფაილი"
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "მოწყობილობის საცავი, ანგარიშები"
+
+msgid "IDS_PB_SBODY_INDIVIDUALLY"
+msgstr "ცალ-ცალკე"
+
+msgid "IDS_PB_SBODY_MOVE_CONTACTS_SAVED_ON_YOUR_DEVICE_TO_YOUR_SAMSUNG_ACCOUNT"
+msgstr "თქვენს მოწყობილობაში შენახული კონტაქტები გადაიტანეთ Samsung ანგარიშზე."
+
+msgid "IDS_PB_SBODY_SHARE_YOUR_PROFILE_WITH_SELECTED_CONTACTS"
+msgstr "გაუზიარეთ თქვენი პროფილი შერჩეულ კონტაქტებს."
+
+msgid "IDS_PB_SBODY_TAP_HERE_TO_SET_UP_YOUR_PROFILE_ABB"
+msgstr "პროფილის დასაყენებლად, შეეხეთ აქ."
+
+msgid "IDS_PB_SBODY_TAP_HERE_TO_SHARE_PHONE_NUMBER_ABB"
+msgstr "ნომრის გასაზიარებლად, შეეხეთ აქ."
+
+msgid "IDS_PB_SBODY_TAP_HERE_TO_UPDATE_CONTACT_INFO_ABB"
+msgstr "კონტაქტის გასაახლებლად შეეხეთ აქ."
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "მისამართი (შერჩეული)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "მისამართი (სახლის)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "მისამართი (სხვა)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "მისამართი (სამსახურის)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "როგორც 1 ფაილი"
+
+msgid "IDS_PB_TMBODY_CREATE_GROUP_IN_ABB"
+msgstr "ჯგუფის შექმნა"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "ჩვენება"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "ელფოსტა (შერჩეული)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "ელფოსტა (სხვა)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "ელფოსტა (სამსახურის)"
+
+msgid "IDS_PB_TMBODY_HELLO_PS_E"
+msgstr "გამარჯობა, %s!"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "გადმოტანა/გადატანა"
+
+msgid "IDS_PB_TMBODY_INDIVIDUALLY"
+msgstr "ცალ-ცალკე"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "მოწყობილობის კონტაქტთა გადატანა"
+
+msgid "IDS_PB_TMBODY_SHARE_MULTIPLE_CONTACTS"
+msgstr "რამდენიმე კონტაქტის გაზიარება"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "გადატანილია 1 კონტაქტი."
+
+msgid "IDS_PB_TPOP_CANT_LINK_MORE_THAN_PD_CONTACTS"
+msgstr "%d-ზე მეტი კონტაქტის გადაბმა შეუძლებელია."
+
+msgid "IDS_PB_TPOP_CANT_SELECT_MORE_THAN_PD_CONTACTS"
+msgstr "%d-ზე მეტი კონტაქტის არჩევა შეუძლებელია."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "წაშლა..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "გადატანა გაუქმდა."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "კონტაქტები ვერ წაიშალა. ისევ სცადეთ."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "ჯგუფის სახელი უკვე გამოყენებულია."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "გადმოტანა გაუქმდა."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "მიღწეულია სიმბოლოების მაქსიმალური რაოდენობა."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_LINKED_HPD_REACHED"
+msgstr "მიღწეულია მისაბმელი კონტაქტების მაქსიმალური რაოდენობა (%d)."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_PRIMARY_CONTACTS_HPD_REACHED"
+msgstr "მიღწეულია ძირითადი კონტაქტების მაქსიმალური რაოდენობა (%d)."
+
+msgid "IDS_PB_TPOP_MOVING_DEVICE_CONTACTS_TO_SAMSUNG_ACCOUNT_ING"
+msgstr "მოწყობილობაში შენახული კონტაქტები გადადის Samsung ანგარიშზე..."
+
+msgid "IDS_PB_TPOP_NEW_PHONE_NUMBER_SHARED_WITH_1_CONTACT"
+msgstr "ახალი ტელეფონის ნომერი გაზიარდა 1 კონტაქტთან."
+
+msgid "IDS_PB_TPOP_NEW_PHONE_NUMBER_SHARED_WITH_PD_CONTACTS"
+msgstr "ახალი ტელეფონის ნომერი გაზიარდა %d კონტაქტთან."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "ჯგუფის სახელი არ არის შეყვანილი."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "გადატანილია %d კონტაქტი."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "მუშავდება..."
+
+msgid "IDS_PB_TPOP_SELECT_2_OR_MORE_CONTACTS_TO_MERGE_THEM"
+msgstr "აირჩიეთ 2 ან მეტი კონტაქტი, რომელთა გაერთიანებაც გსურთ."
+
+msgid "IDS_PB_TPOP_SOME_CONTACTS_APPEAR_TO_BE_DUPLICATES_GO_TO_LINK_CONTACTS_TO_MANAGE_THEM"
+msgstr "როგორც ჩანს, ზოგიერთი კონტაქტი დუბლირებულია. მათ სამართავად გახსენით „კონტაქტების გადაბმა“."
+
+msgid "IDS_PB_TPOP_SOME_CONTACTS_IN_THIS_GROUP_SAVED_IN_P1SS_GROUP_MUST_BE_SAVED_IN_P2SS"
+msgstr "ამ ჯგუფში ზოგიერთი კონტაქტის შენახვის ადგილია %1$s. ჯგუფი უნდა შეინახოს ადგილზე %2$s."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_CHANGE_STATUS_CHECK_NETWORK_CONNECTION_AND_TRY_AGAIN"
+msgstr "სტატუსის შეცვლა შეუძლებელია. შეამოწმეთ ქსელთან კავშირი და ისევ სცადეთ."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_DISABLE_PROFILE_SHARING_CHECK_NETWORK_CONNECTION_AND_TRY_AGAIN"
+msgstr "პროფილის გაზიარების გამორთვა შეუძლებელია. შეამოწმეთ ქსელთან კავშირი და ისევ სცადეთ."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_ENABLE_PROFILE_SHARING_CHECK_NETWORK_CONNECTION_AND_TRY_AGAIN"
+msgstr "პროფილის გაზიარების ჩართვა შეუძლებელია. შეამოწმეთ ქსელთან კავშირი და ისევ სცადეთ."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_PASTE_TEXT_THAT_INCLUDES_EMOTICONS"
+msgstr "ვერ ჩასვამთ სიცილაკების შემცველ ტექსტს."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_SAVE_CONTACT_AS_EMERGENCY_CONTACT_NO_PHONE_NUMBER_ENTERED"
+msgstr "კონტაქტი ვერ შეინახება, როგორც საგანგებო კონტაქტი. ტელეფონის ნომერი არ არის შეყვანილი."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "აირჩიეთ ჩანაწერთა ჟურნალები"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "დათვალიერება პარამეტრით"
+msgid "IDS_CLOG_OPT_ALL_CALLS_ABB"
+msgstr "ყველა ზარი"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "სახლი 2"
+msgid "IDS_KPD_OPT_ADD_WAIT"
+msgstr "მოცდის დამატება"
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "გადატანა დასრულდა."
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "ფონეტიკური სახელი"
 
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "გადატანა..."
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "ტელეფონი"
 
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 დადასტურდა."
+msgid "IDS_PB_OPT_GRID_VIEW"
+msgstr "ბადის ჩვენება"
 
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 დადასტურდა."
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "ელ. წერილის გაგზავნა"
 
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "PIN დებლოკირებულია."
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2 განიბლოკა."
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2 შეიცვალა."
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "დაბლოკილია PIN2-ით."
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "PIN1 კოდი შეიცვალა."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "PIN1 კოდი დაიბლოკა."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "არასწორი PIN2."
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "ახალი PIN2 და დასადასტურებლად ჩაწერილი PIN2 არ თანხვდება"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "PUK1 კოდი არასწორია."
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "PUK1 არასწორია. დარჩენილია %d ცდა."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "PUK2 არასწორია. დარჩენილია %d ცდა."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN შეცვლილია."
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "თარიღის დაყენება"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "კონტაქტები"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "ანგარიშის დამატება"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "მიღწეულია სიმბოლოების მაქსიმალური რაოდენობა."
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "მოწყობილობების ძებნა..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "PIN არასწორია"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "მზადაა"
@@ -88,47 +559,8 @@ msgstr "გაუქმება"
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
 msgstr "წაშლა"
 
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "დაკავშირების პრობლემაა, ან MMI კოდი არასწორია."
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "პირადი ნომერი"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "გაგზავნა"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2 დაიბლოკა. დაუკავშირდით პროვაიდერს (საჭიროა SIM PUK2)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "ჟურნალები არ არის"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "მას შემდეგ რაც განახორციელებთ/მიიღებთ ზარს ან გაგზავნით/მიიღებთ წერილს, გამოჩნდება ჟურნალები."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "SIM ბარათი დაკავებულია. მოგვიანებით ცადეთ"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "SIM/RUIM ბარათი დაბლოკილია."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "SIM ბარათი ვერ მოიძებნა. გთხოვთ, ჩადოთ SIM ბარათი ტელეფონში."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "ქსელის ან SIM ბარათის შეცდომა."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "ვიბრაციით რეაგირება ჩართულია."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "ვიბრაციით რეაგირება გამორთულია."
-
 msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
 msgstr "ნომერზე ვერ ირეკება. %d არ არის საგანგებო ნომერი."
-
-msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
-msgstr "ღილაკზე მინიჭებულია ნომერი %d წაიშალა."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "ღილაკზე მინიჭებულია ნომერი."
@@ -136,17 +568,11 @@ msgstr "ღილაკზე მინიჭებულია ნომერ�
 msgid "IDS_KPD_TPOP_ENTER_NUMBER"
 msgstr "შეიყვანეთ ნომერი."
 
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "PIN უნდა შეიცავდეს %1$d-%2$d ციფრს. კიდევ მოსინჯეთ."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "PIN2 უნდა შეიცავდეს %1$d-%2$d ციფრს. კიდევ მოსინჯეთ."
+msgid "IDS_KPD_POP_TO_SET_YOUR_VOICEMAIL_NUMBER_TAP_SET_NUMBER_OR_GO_TO_CALL_SETTINGS_MORE_VOICEMAIL_NUMBER"
+msgstr "ხმოვანი ფოსტის ნომრის დასაყენებლად, შეეხეთ „ნომრის შერჩევა“-ს, ან გახსენით „ზარის პარამეტრები“ > „სხვა“ > „ხმოვანი ფოსტის ნომერი“."
 
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
 msgstr "კონტაქტი არ არის მინიჭებული სწრაფი დარეკვის ამ ღილაკისთვის. შეეხეთ OK-ს, რომ მიანიჭოთ ახლა."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "PIN გამოირთო. გაააქტიურეთ PIN, სანამ შეცვლით."
 
 msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
 msgstr "ხმ. ფოსტა"
@@ -166,17 +592,14 @@ msgstr "ახალი კონტაქტი"
 msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
 msgstr "ზარის პარამეტრები"
 
-msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
-msgstr "მოცდის დამატება"
-
 msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
 msgstr "2-წამიანი პაუზის დამატება"
 
 msgid "IDS_KPD_ITAB3_KEYPAD"
 msgstr "კლავიატურა"
 
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "ქსელს ვერ უკავშირდება"
+msgid "IDS_KPD_HEADER_SET_VOICEMAIL_NUMBER_ABB"
+msgstr "ხმოვანი ფოსტის ნომრის დაყენება"
 
 msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
 msgstr "დასარეკად აირჩიეთ SIM ბარათი"
@@ -193,23 +616,20 @@ msgstr "მიანიჭეთ ნომერი ღილაკს"
 msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
 msgstr "ნომრის შერჩევა"
 
-msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
-msgstr "წერილ. გაგზ."
-
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "გაუქმება"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "კონტაქტებში დამატება"
 
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "პაროლები არ ემთხვევა."
+msgid "IDS_LOGS_TPOP_NUMBER_REMOVED_FROM_CALL_BLOCK_LIST"
+msgstr "ნომერი წაიშალა დაბლოკილი ზარების სიაში."
 
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "PIN დაბლოკილი. ჩაწერეთ PUK კოდი."
+msgid "IDS_LOGS_TPOP_NUMBER_REMOVED_FROM_CALL_AND_MESSAGE_BLOCK_LISTS"
+msgstr "ნომერი წაიშალა დაბლოკილი ზარებისა და შეტყობინებების სიებში."
 
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "SIM დაიბლოკა."
+msgid "IDS_LOGS_TPOP_NUMBER_ADDED_TO_CALL_BLOCK_LIST"
+msgstr "ნომერი დაემატა დაბლოკილი ზარების სიაში."
+
+msgid "IDS_LOGS_TPOP_NUMBER_ADDED_TO_CALL_AND_MESSAGE_BLOCK_LISTS"
+msgstr "ნომერი დაემატა დაბლოკილი ზარებისა და შეტყობინებების სიებში."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "შეუნახავი"
@@ -226,86 +646,26 @@ msgstr "არ შესრულდა"
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "გაუქმდა"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "ჟურნალის %d ჩანაწერი წაიშლება."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "ჟურნალის ყველა ელემენტი წაიშლება."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "ჟურნალის 1 ჩანაწერი წაიშლება."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "იხილეთ საკონტაქტო მონაცემები"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "ნომრის გაგზავნა"
+msgid "IDS_LOGS_OPT_REMOVE_FROM_BLOCK_LIST_ABB"
+msgstr "დაბლოკილთა სიიდან ამოშლა"
 
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "გამოტოვებული ზარები"
 
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "წაშლა"
-
 msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
 msgstr "ზარის ხანგრძლივობა"
 
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "გამოტოვებული ზარები"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "აღარ მაჩვენო"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "უცნობი ნომერი"
+msgid "IDS_LOGS_OPT_ADD_TO_BLOCK_LIST_ABB"
+msgstr "დაბლოკილთა სიაში დამატება"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "უცნობი"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "ყველას არჩევა"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "ჟურნალი"
 
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "გუშინ"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "დღეს"
-
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "%d არჩეულია"
-
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "%d ჟურნალის წაშლა"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "ჟურნალის ელემენტების წაშლა"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "ჟურნალის წაშლა"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "წაშლა"
-
-msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
-msgstr "განახლება"
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "წაშლა"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "ახალი კონტაქტი"
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "გაუქმება"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "ხმოვანი ზარები"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "ვიდეოზარები"
 
 msgid "IDS_LOGS_BODY_SIM_CARD"
 msgstr "SIM ბარათი"
@@ -316,17 +676,14 @@ msgstr "ყველა ზარი"
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
 msgstr "ზარების გაგზავნის ან მიღების შემდეგ, შესაბამისი ჩანაწერი გამოჩნდება აქ."
 
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "ზარების გაგზავნის ან მიღების შემდეგ, ჟურნალის ჩანაწერები გამოჩნდება აქ."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "შეცვლა"
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "შეყვანილი ტექსტი"
-
 msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
 msgstr "როგორც ჩანს, ზოგიერთი თქვენი კონტაქტი დუბლირებულია."
+
+msgid "IDS_PB_TPOP_REMOVED_FROM_CALL_BLOCK_LIST"
+msgstr "ამოღებულია ზარის დაბლოკვის სიიდან."
+
+msgid "IDS_PB_TPOP_REMOVED_FROM_CALL_AND_MESSAGE_BLOCK_LIST"
+msgstr "ამოღებულია ზარისა და შეტყობინებების დაბლოკვის სიიდან."
 
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "გადმოტანილია %d კონტაქტი."
@@ -334,8 +691,11 @@ msgstr "გადმოტანილია %d კონტაქტი."
 msgid "IDS_PB_TPOP_CONTACTS_LINKED"
 msgstr "კონტაქტები მიება."
 
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "ავტომატურად უარყოფითა სიიდან ამოღებულია 1 ნომერი."
+msgid "IDS_PB_TPOP_ADDED_TO_CALL_BLOCK_LIST"
+msgstr "დამატებულია ზარის დაბლოკვის სიაში."
+
+msgid "IDS_PB_TPOP_ADDED_TO_CALL_AND_MESSAGE_BLOCK_LIST"
+msgstr "დამატებულია ზარისა შეტყობინების დაბლოკვის სიაში."
 
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "გადმოტანილია 1 კონტაქტი."
@@ -351,15 +711,6 @@ msgstr "კონტაქტების გადაბმა"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
 msgstr "საჩვენებელი კონტაქტები"
-
-msgid "IDS_PB_SK_SET"
-msgstr "დაყენება"
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "შექმნა"
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "ველ. დამ."
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "კონტაქტების გადმოტანა..."
@@ -382,9 +733,6 @@ msgstr "კონტაქტები გადატანილია"
 msgid "IDS_PB_SBODY_ALL_CONTACTS"
 msgstr "ყველა კონტაქტი"
 
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "იმ ანგარიშებიდან, რომელთა მხოლოდ წაკითხვა შეიძლება, ვერ წაშლით კონტაქტებს, მაგრამ შეგიძლიათ დამალოთ ისინი კონტაქტებში."
-
 msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
 msgstr "როდესაც გააქტიურდება სინქრონიზაცია, ეს კონტაქტი წაიშლება ყველა დასინქრონებული ანგარიშიდან, რომელშიც შენახულია იგი."
 
@@ -394,29 +742,14 @@ msgstr "როდესაც გააქტიურდება სინქ�
 msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
 msgstr "როდესაც გააქტიურდება სინქრონიზაცია, წაიშლება ეს კონტაქტი და მასზე მიბმული დასინქრონებული მეორე ანგარიშის ყველა კონტაქტი."
 
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "მიმდინარეობს მომსახურების მომწოდებლის ინფორმაციის განახლება..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "კონტაქტის დამატება შეუძლებელია. მიღწეულია მიბმადი კონტაქტების მაქსიმალური რაოდენობა (%d)."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "კონტაქტები ვერ ემატება. მიღწეულია მიბმადი კონტაქტების მაქსიმალური რაოდენობა (%d)."
-
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "ეს კონტაქტები წაიშლება."
 
 msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
 msgstr "ეს კონტაქტი და მასზე მიბმული ყველა კონტაქტი წაიშლება."
 
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "გადაჭარბებულია შესარჩევი ელემენტების შესაძლო მაქსიმალური რაოდენობა (%d)."
-
 msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
 msgstr "გადაჭარბებულია ერთდროულად გასაზიარებელი კონტაქტების მაქსიმალური რაოდენობა (%1$d). მხოლოდ პირველი %2$d გაზიარდება."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "Chamada Certa ფუნქციის გამოყენებით შეგიძლიათ გაიგოთ თქვენი კონტაქტების მომსახურების მომწოდებლები და გამოაჩინოთ კონტაქტების სიაში. ამის გასაკეთებლად, შეგიძლიათ მოგვიანებით დააჭიროთ მენიუს ღილაკს და აირჩიოთ მომსახურების მომწოდებლის ინფორმაციის მიღება. შეეხეთ OK-ს და გაიგეთ თქვენი კონტაქტების მომსახურების მომწოდებლები ახლა"
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
 msgstr "შეეხეთ OK-ს, რომ შეწყვიტოთ კონტაქტების გადმოტანა SIM ბარათიდან."
@@ -425,22 +758,10 @@ msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "შეეხეთ OK-ს, რომ გადაიტანოთ ტელეფონი ადგილზე: %s."
 
 msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "შეეხეთ „გადატანა“-ს და აირჩიეთ გადასატანი კონტაქტები. ზოგიერთი საკონტაქტო ინფორმაცია შეიძლება დაიკარგოს."
-
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "ზოგიერთი ან ყველა კონტაქტი არ განახლდა."
+msgstr "შეეხეთ „ექსპორტს“ და აირჩიეთ გადასატანი კონტაქტები. ზოგიერთი საკონტაქტო ინფორმაცია შეიძლება დაიკარგოს."
 
 msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
 msgstr "ზოგიერთი საკონტაქტო ინფორმაცია შეიძლება დაიკარგოს."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "SIM მეხსიერება გაივსო."
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "იშლება..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "განახლდა %d ტელეფონის ნომერი."
 
 msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
 msgstr "%d კონტაქტი წაიშლება."
@@ -448,38 +769,14 @@ msgstr "%d კონტაქტი წაიშლება."
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "%1$d კონტაქტი გაიგზავნა ადგილზე: %2$s."
 
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d კონტაქტი გაიგზავნა ადგილზე: Device/Contacts/Imported/%2$s.vcf."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "მეხსიერება არ არის საკმარისი."
-
 msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
 msgstr "ახალი კონტაქტები შეინახება მოწყობილობის კონტაქტებში."
 
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "FDN რეჟიმი აქტივირებულია."
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "ვერ შესრულდა."
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "უარყოფთ ცვლილებებს?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "სრულდება კონტაქტების წაშლა..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "კონტაქტების წაშლა გაუქმდა. შესაძლოა, ზოგიერთი კონტაქტი უკვე წაიშალა."
+msgid "IDS_PB_POP_MANAGE_BLOCK_LIST_IN_CALL_SETTINGS"
+msgstr "დაბლოკილთა სია მართეთ ზარის პარამეტრებში."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "შეწყდება კონტაქტების გადმოტანა ადგილიდან: %s."
-
-msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
-msgstr "უკვე არის."
-
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "ყველა დაკავშირებული კონტაქტი წაიშლება."
 
 msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
 msgstr "ყველა კონტაქტი წაიშლება."
@@ -487,23 +784,8 @@ msgstr "ყველა კონტაქტი წაიშლება."
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "ყველა ცვლილება გაუქმდება."
 
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "ემატება..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "განახლდა 1 ტელეფონის ნომერი."
-
 msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
 msgstr "1 კონტაქტი წაიშლება."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "წაიშალა 1 კონტაქტი."
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "სამსახური"
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "ხმოვანი ზარი"
@@ -511,20 +793,8 @@ msgstr "ხმოვანი ზარი"
 msgid "IDS_PB_OPT_VIDEO_CALL"
 msgstr "ვიდეოზარი"
 
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "მომსახურების მომწოდებლის ინფორმაციის მიღება"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "ბმულის მოხსნა კონტაქტზე"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "ბმულის მოხსნა კონტაქტებზე"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
 msgstr "სურათის გადაღება"
-
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
-msgstr "ფოტოს გადაღება"
 
 msgid "IDS_PB_OPT_SPOUSE"
 msgstr "მეუღლე"
@@ -538,26 +808,23 @@ msgstr "და"
 msgid "IDS_PB_OPT_SIM_CARD"
 msgstr "SIM ბარათი"
 
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "გაზიარება მეთოდით"
-
 msgid "IDS_PB_OPT_SHARE"
 msgstr "გაზიარება"
-
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "პარამეტრები"
 
 msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
 msgstr "აირჩიე კონტაქტებიდან"
 
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "SDბარათი"
-
 msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
 msgstr "კონტაქტის შენახვა ადგილზე:"
 
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "ზარის მელოდია"
+
 msgid "IDS_PB_OPT_REORDER"
 msgstr "გადალაგება"
+
+msgid "IDS_PB_OPT_REMOVE_FROM_BLOCK_LIST_ABB"
+msgstr "დაბლოკილთა სიიდან ამოშლა"
 
 msgid "IDS_PB_OPT_REMOVE"
 msgstr "წაშლა"
@@ -580,23 +847,11 @@ msgstr "პარტნიორი"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "მშობელი"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "პეიჯერი"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "სხვა"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
 msgstr "ორგანიზაცია"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "დედა"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "მობილური"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "შეტყობინება"
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "ფავორიტების მართვა"
@@ -610,20 +865,11 @@ msgstr "მთავარი"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "ჯერ გვარი"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "გვარი"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "საწყისი გვერდი"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "საწყისი გვერდი"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangouts"
@@ -636,12 +882,6 @@ msgstr "მეგობარი"
 
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "ჯერ სახელი"
-
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "სახელი"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "FDN კონტაქტი"
 
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "ფაქსი (სამსახურის)"
@@ -661,9 +901,6 @@ msgstr "აღარ მაჩვენო"
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "საშინაო პარტნიორი"
 
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "მოწყობილობა"
-
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "შერჩეული"
 
@@ -676,9 +913,6 @@ msgstr "ბავშვი"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "ძმა"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "დაბადების დღე"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "დამხმარე"
 
@@ -688,14 +922,14 @@ msgstr "იუბილე"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "ველის დამატება"
+msgid "IDS_PB_OPT_ADD_TO_BLOCK_LIST_ABB"
+msgstr "დაბლოკილთა სიაში დამატება"
 
 msgid "IDS_PB_OPT_ADD"
 msgstr "დამატება"
 
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "ანგარიში"
+msgid "IDS_PB_NPBODY_TAP_TO_ADD_SHORTCUT"
+msgstr "შეეხეთ და დაამატეთ ღილაკი"
 
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "ძებნა"
@@ -705,12 +939,6 @@ msgstr "მომსახურების ნომრები არ არ
 
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "შედეგები არ მოიძებნა"
-
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "საგანგებო კონტაქტები არ არის"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "კონტაქტები არ არის"
 
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "დალაგება"
@@ -730,8 +958,8 @@ msgstr "გაგზავნეთ ცალ-ცალკე"
 msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
 msgstr "კონტაქტის ინფორმაციის გაგზავნა"
 
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "ყველას არჩევა"
+msgid "IDS_PB_MBODY_PROFILE_SHARING"
+msgstr "პროფილის გაზიარება"
 
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "%d კონტაქტი"
@@ -757,38 +985,14 @@ msgstr "1 კონტაქტი"
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "კონტაქტები"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "აპარატის შიდა მეხსიერება მიუწვდომელია"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "ვერ დაამატებთ"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "ვერ ვამატებ"
-
 msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
 msgstr "შემოთავაზებული კონტაქტები"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "გაზიარება"
 
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "კონტაქტის სურათის დაყენება"
 
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "პარამეტრები"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "სერვისის პროვაიდერი"
-
 msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
 msgstr "კონტაქტის ინფოს გაგზავნა"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "დასარეკად აირჩიეთ SIM"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "დასარეკად აირჩიეთ SIM ბარათი"
 
 msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
 msgstr "დასარეკად აირჩიეთ SIM ბარათი"
@@ -796,17 +1000,11 @@ msgstr "დასარეკად აირჩიეთ SIM ბარათი
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "აირჩიეთ კონტაქტი"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "არჩევა"
-
 msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
 msgstr "კონტაქტების შენახვა ადგილზე"
 
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "გადალაგება"
-
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "წაშლა"
 
 msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
 msgstr "ძირითადი კონტაქტები (%d)"
@@ -814,16 +1012,10 @@ msgstr "ძირითადი კონტაქტები (%d)"
 msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
 msgstr "ძირითადი კონტ. (%1$d/%2$d)"
 
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "ტელეფონი"
-
 msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
 msgstr "პერსონალური კონტაქტები"
 
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
-msgstr "%d არჩეულია"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
 msgstr "%d არჩეულია"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
@@ -832,14 +1024,11 @@ msgstr "სახელის ფორმატი"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "ყველაზე ხშირი კონტაქტები"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "მე"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "ფავორიტების მართვა"
 
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "კონტაქტების სია"
+msgid "IDS_PB_HEADER_LINK_CONTACTS_ABB"
+msgstr "ბმული კონტაქტები"
 
 msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
 msgstr "მიბმული კონტაქტები"
@@ -849,9 +1038,6 @@ msgstr "კონტაქტების იმპორტი"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "იმპორტი"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "ფავორიტები"
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
 msgstr "კონტაქტების გადატანა SIM-ზე"
@@ -874,29 +1060,14 @@ msgstr "საგანგებო კონტაქტები"
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "შესწორება"
 
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "სახელების ჩვენება"
-
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "ჩვენება"
 
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
 msgstr "ცვლილებების გაუქმება"
 
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "ელემენტის წაშლა"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "შექმნა"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "კონტაქტის სურათი"
-
 msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
 msgstr "საჩვენებელი კონტაქტები"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "კონტაქტები"
 
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "კონტაქტები გადატანილია"
@@ -910,11 +1081,8 @@ msgstr "გადმოტანის გაუქმება"
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "გადატანის გაუქმება"
 
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "ისევ ცადეთ"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "შენახვა"
+msgid "IDS_PB_HEADER_ADD_TO_BLOCK_LIST_ABB"
+msgstr "დაბლოკილთა სიაში დამატება"
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "ტელეფონი"
@@ -924,9 +1092,6 @@ msgstr "OK"
 
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "შენიშვნა"
-
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "სხვა"
 
 msgid "IDS_PB_BUTTON_EXPORT"
 msgstr "ექსპორტი"
@@ -949,44 +1114,14 @@ msgstr "შექმნა"
 msgid "IDS_PB_BUTTON_CHANGE_ABB"
 msgstr "შეცვლა"
 
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "გაუქმება"
-
 msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
 msgstr "დამატება"
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "Windows Live"
 
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "ვებსაიტი"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "კონტაქტების სიის განახლება..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "ვერ შეინახება SIM-ის შეცდომის გამო."
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "სახელი"
-
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "ეს კონტაქტები წაიშლება."
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "განახლდება შერჩეული კონტაქტების მომსახურების მომწოდებელთა ინფორმაცია. ეს ფუნქცია იყენებს ქსელთან კავშირს და შეიძლება დაგერიცხოთ დამატებითი გადასახადი. ამ პროცესის შესრულების დრო დამოკიდებულია ქსელთან კავშირის სტატუსზე"
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "ტელეფონი"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "Skype"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "SIM ბარათის ინიციალიზაცია..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "მომსახურების ნომერი"
 
 msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
 msgstr "სავიზიტო ბარათების ცალ-ცალკე გაგზავნას შეიძლება უფრო მეტი დრო დასჭირდეს, რადგან მიმღებმა მოწყობილობამ ისინი ცალ-ცალკე უნდა მიიღოს."
@@ -996,18 +1131,6 @@ msgstr "რამდენიმე კონტაქტის ერთდრ�
 
 msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
 msgstr "აირჩიეთ კონტაქტის ინფორმაციის გაგზავნის მეთოდი."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "შერჩეული"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "ფავორიტებიდან ამოშლა"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "ფოტო"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "ტელეფ. ნომ."
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "ფონეტიკური სახელი"
@@ -1021,32 +1144,14 @@ msgstr "ფონეტიკური გვარი"
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "ფონეტიკური სახელი"
 
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "სხვა ელ.წერილები"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "ძიების შედეგი არ არის"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "ჯგუფები არ არის"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "შენიშვნები"
-
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "მეტსახელი"
 
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "სახელის სუფიქსი"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "სახელის პრეფიქსი"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "სახელი"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "ჩემი კონტაქტები"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "მამის სახელი"
@@ -1057,77 +1162,20 @@ msgstr "გვარი"
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
 msgstr "თანამდებობა"
 
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "მიღება SIM ბარათიდან"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "იმპორტი SIM2 ბარათიდან"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "ჩამოდის..."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "სურათი"
-
 msgid "IDS_PB_BODY_IM"
 msgstr "IM"
 
 msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
 msgstr "თუ თქვენს პროვაიდერს აქვს წინასწარ ჩატვირთული ნომრები თქვენს SIM ბარათზე, ისინი გამოჩნდება აქ."
 
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "გალერეა"
-
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "სახელი"
-
-msgid "IDS_PB_BODY_FAX"
-msgstr "ფაქსი"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "SIM ბარათზე ექსპორტირება"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "ექსპორტი SIM2 ბარათზე"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "SD ბარათზე გადატანა"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "ელ-ფოსტა"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "ცვლილებების უარყოფა"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "მეგობრები"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "ოჯახი"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "თარიღი"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "თანამშრომლები"
 
 msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
 msgstr "ავტომატურად მოხდება იმ კონტაქტების შემოთავაზება, რომლებიც ამოცნობილი იქნება დუბლირებულად."
 
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "კონტაქტები"
-
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "კომპანია"
-
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "სიის ჩამოსაშლელი სია"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "ავტომატური რეკომენდაციებით შეიძლება მოხდეს ამორჩევა ხმოვანი ფაილებიდან."
 
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "როდესაც კონტაქტებს შექმნით, ისინი გამოჩნდება აქ."
@@ -1135,87 +1183,132 @@ msgstr "როდესაც კონტაქტებს შექმნი�
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "კონტაქტების დამატების შემდეგ ისინი გამოჩნდება აქ."
 
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "ფავორიტებში დამატება"
-
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "მისამართი"
-
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "ანგარიშები"
-
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "AB"
-
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "დაბლოკილია PIN-ით."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "PUK2 კოდი არასწორია."
-
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "PIN1 კოდი არასწორია."
-
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "არსებული კონტაქტის დამატება"
-
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "ძირითადი კონტაქტები არ არის"
-
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "ძირითადი კონტაქტები"
-
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "შექმენით ძირითადი კონტაქტები"
-
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "ძირითადი კონტაქტების დამატება"
-
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "თარიღის დაყენება"
-
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "ახალი PIN და დასადასტურებლად ჩაწერილი PIN არ თანხვდება."
-
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "როდესაც ძირითად კონტაქტებს შექმნით, ისინი გამოჩნდება აქ."
-
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "მეტს ვეღარ აირჩევთ"
 
 msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
 msgstr "ჩადეთ SIM ბარათი."
 
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "კონტაქტის პროვაიდერი, რომელსაც ურეკავთ, არის %1$s. შეეხეთ OK-ს, თუ გსურთ ეს ზარი განხორციელდეს თქვენი %2$s-ის SIM ბარათით."
-
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "გამოიყენეთ %s SIM ბარათი"
-
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "მიმდინარე SIM"
-
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "ტაქსოფონი"
-
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "სიმბოლო არასწორია."
-
 msgid "IDS_HS_BUTTON_PHONE_M_CALL"
 msgstr "ტელ."
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "გამავალი ზარი"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "გაუქმება"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "შემოსული ზარი"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "წაშლა"
+
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "ყველას არჩევა"
+
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "გუშინ"
+
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "დღეს"
+
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
+
+msgid "IDS_PB_OPT_WORK"
+msgstr "სამსახური"
+
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "პარამეტრები"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SDბარათი"
+
+msgid "IDS_PB_OPT_PAGER"
+msgstr "პეიჯერი"
+
+msgid "IDS_PB_OPT_OTHER"
+msgstr "სხვა"
+
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "მობილური"
+
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "შეტყობინება"
+
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "გვარი"
+
+msgid "IDS_PB_OPT_HOME"
+msgstr "საწყისი გვერდი"
+
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "სახელი"
+
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "მოწყობილობა"
+
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "დაბადების დღე"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "კონტაქტები არ არის"
+
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "ყველას არჩევა"
+
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "პარამეტრები"
+
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "წაშლა"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "მე"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "ფავორიტები"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "შექმნა"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "შენახვა"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "სხვა"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "გაუქმება"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "ტელეფ. ნომ."
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "შენიშვნები"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "ელ-ფოსტა"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "თარიღი"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "კონტაქტები"
+
+msgid "IDS_PB_BODY_ACCOUNTS"
+msgstr "ანგარიშები"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
 msgstr "ნაჩვენებია მხოლოდ პირველი %d კონტაქტი."
 
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "ჩემი პროფილი,"
-
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
 msgstr "შეეხეთ აქ და დაამატეთ ღილაკი"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "შესწორება"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "შერჩეული ტიპი"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "ჯგუფები"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "დაყენება"
 

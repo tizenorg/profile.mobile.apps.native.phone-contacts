@@ -77,7 +77,7 @@ void LogsView::onMenuPressed()
 	menu->create(getEvasObject());
 
 	if (!m_LogProvider.getLogGroupList().empty()) {
-		menu->addItem("IDS_CLOG_OPT_VIEW_BY", [this] {
+		menu->addItem("IDS_LOGS_OPT_FILTER_BY_ABB", [this] {
 			onSelectViewBy();
 		});
 	}
@@ -150,7 +150,7 @@ Evas_Object *LogsView::createNoContentsLayout(Evas_Object *parent)
 {
 	Evas_Object *layout = elm_layout_add(parent);
 	elm_layout_theme_set(layout, "layout", "nocontents", "default");
-	elm_object_translatable_part_text_set(layout, "elm.text", "IDS_CLOG_BODY_NO_LOGS");
+	elm_object_translatable_part_text_set(layout, "elm.text", "IDS_CALL_NPBODY_NO_LOGS");
 	elm_object_translatable_part_text_set(layout, "elm.help.text", "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE");
 
 	elm_layout_signal_emit(layout, "align.center", "elm");

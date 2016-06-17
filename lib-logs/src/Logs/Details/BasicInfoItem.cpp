@@ -124,10 +124,10 @@ Evas_Object *BasicInfoItem::createUnsavedButtons(Evas_Object *parent)
 	elm_box_padding_set(box, UNSAVED_BTN_PAD_BETWEEN, 0);
 	elm_box_horizontal_set(box, EINA_TRUE);
 
-	createUnsavedButton(box, "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB",
+	createUnsavedButton(box, "IDS_KPD_OPT_CREATE_CONTACT_ABB2",
 			(Evas_Smart_Cb) makeCallback(&BasicInfoItem::onCreatePressed));
 
-	createUnsavedButton(box, "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2",
+	createUnsavedButton(box, "IDS_KPD_OPT_UPDATE_CONTACT_ABB",
 			(Evas_Smart_Cb) makeCallback(&BasicInfoItem::onUpdatePressed));
 
 	return box;

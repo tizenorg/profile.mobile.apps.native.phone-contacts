@@ -35,10 +35,10 @@ void ContactTypedFieldLabelPopup::onCreated()
 {
 	setTitle("IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB");
 
-	m_Editfield = Ui::Editfield::create(getEvasObject(), "IDS_MF_POP_INPUT_TEXT");
+	m_Editfield = Ui::Editfield::create(getEvasObject(), "IDS_PB_NPBODY_CUSTOM_TYPE_ABB");
 	setContent(m_Editfield->getEvasObject());
 	addButton("IDS_PB_BUTTON_CANCEL");
-	Evas_Object *button = addButton("IDS_PB_SK_CREATE_ABB", [this] {
+	Evas_Object *button = addButton("IDS_PB_BUTTON_CREATE_ABB2", [this] {
 		onCreatePressed();
 		return true;
 	});

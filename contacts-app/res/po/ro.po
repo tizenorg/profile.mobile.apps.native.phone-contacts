@@ -1,83 +1,554 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "Apeluri efectuate"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "Niciun jurnal"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "Ultimul apel"
+msgid "IDS_CLOG_HEADER_SELECT_ITEMS_ABB3"
+msgstr "Selectare elem."
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "Apeluri primite"
+msgid "IDS_CLOG_OPT_DONT_SHOW_AGAIN_ABB"
+msgstr "Nu se mai afișează"
+
+msgid "IDS_CST_OPT_DELETE"
+msgstr "Ștergere"
+
+msgid "IDS_KPD_BODY_QUICK_ENQUIRY_ABB"
+msgstr "Solic. rapidă"
+
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "OK"
+
+msgid "IDS_KPD_HEADER_SELECT_ITEMS_ABB3"
+msgstr "Selectare elem."
+
+msgid "IDS_KPD_OPT_MAKE_VIDEO_CALL_ABB2"
+msgstr "Efectuare apel video"
+
+msgid "IDS_KPD_OPT_QUICK_ENQUIRY_ABB"
+msgstr "Solicitare rapidă"
+
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "Trimitere mesaj"
+
+msgid "IDS_LOGS_MBODY_PAYPHONE"
+msgstr "Telefon public"
+
+msgid "IDS_LOGS_MBODY_WITHHELD_NUMBER"
+msgstr "Număr ascuns"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "Filtrare după"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "Niciun număr"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "Creare"
+
+msgid "IDS_ST_BUTTON_UPDATE_ABB4"
+msgstr "Actualizare"
+
+msgid "IDS_PB_BUTTON_HIDE_ABB"
+msgstr "Ascundeți"
+
+msgid "IDS_HINTS_BODY_GET_MORE_OUT_OF_SHARING_YOUR_PROFILE_AND_PROMOTE_YOUR_BUSINESS_USING_A_BUSINESS_PROFILE_MSG"
+msgstr "Obțineți mai mult cu partajarea profilului și promovați-vă afacerea utilizând un profil al companiei.\n\nAccesați meniul %1$sContacte%2$s, apoi atingeți zona indicată pentru a vă configura propriul profil."
+
+msgid "IDS_HINTS_TMBODY_PROMOTE_YOURSELF"
+msgstr "Promovați-vă afacerea"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "Copiat în clipboard."
+
+msgid "IDS_LOGS_NPBODY_NO_LOG_ITEMS_ABB"
+msgstr "Niciun element de jurnal"
+
+msgid "IDS_PB_ACBUTTON_CHANGE_PICTURE_ABB"
+msgstr "SCHIMBARE IMAGINE"
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "Email (Domiciliu)"
+
+msgid "IDS_PB_BODY_GET_MORE_OUT_OF_SHARING_YOUR_PROFILE_AND_PROMOTE_YOUR_BUSINESS_USING_A_BUSINESS_PROFILE_CONTACTS_MSG"
+msgstr "Obțineți mai mult din partajarea profilului și promovați-vă afacerea utilizând un profil al companiei.\n\nAtingeți zona indicată pentru a vă configura propriul profil în Contacte."
+
+msgid "IDS_PB_BODY_LOADING_MORE_ING_ABB2"
+msgstr "Se încarcă mai multe..."
+
+msgid "IDS_PB_BODY_OFF_M_NOT_USED"
+msgstr "Oprit"
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "Telefon"
+
+msgid "IDS_PB_BODY_SELECT_A_PROFILE_TYPE"
+msgstr "Selectați un tip de profil."
+
+msgid "IDS_PB_BODY_SHARE_YOUR_BUSINESS_PROFILE_WITH_EVERYONE"
+msgstr "Partajați profilul de serviciu cu toată lumea."
+
+msgid "IDS_PB_BODY_SHARE_YOUR_PROFILE_INFO_MSG"
+msgstr "Partajați-vă informațiile de profil. Selectați Profil personal pentru a-l partaja cu contactele selectate sau selectați Profil de serviciu pentru a-l partaja cu oricine utilizează Partajare profil."
+
+msgid "IDS_PB_BODY_SHARE_YOUR_PROFILE_PICTURE_AND_STATUS_MSG"
+msgstr "Partajați imaginea de profil și starea cu alte persoane prin intermediul aplicațiilor Contacte și Telefon."
+
+msgid "IDS_PB_BODY_TO_ADD_PERSONAL_EMERGENCY_CONTACTS_GO_TO_MSG"
+msgstr "Pentru a adăuga contacte de urgență personale, accesați meniul Contacte > Meniul Mai multe > Grupuri > Contacte de urgență > Meniul Mai multe, apoi atingeți Adăugare."
+
+msgid "IDS_PB_BODY_YOUR_NAME_STATUS_AND_PROFILE_PICTURE_WILL_BE_SHARED_WITH_YOUR_CONTACTS_YOU_CAN_SELECT_ADDITIONAL_INFO_YOU_WANT_TO_SHARE_FROM_THE_OPTIONS_BELOW"
+msgstr "Numele, starea și imaginea de profil vor fi partajate cu contactele dvs. Puteți selecta din opțiunile de mai jos informațiile suplimentare pe care doriți să le partajați."
+
+msgid "IDS_PB_BODY_YOU_CAN_ADD_A_PROFILE_PICTURE_AND_STATUS_MESSAGES_TO_SHARE_WITH_THE_CONTACTS_YOU_HAVE_SELECTED_MSG"
+msgstr "Puteți adăuga o imagine de profil și un mesaj de stare pentru a le partaja cu contactele pe care le-ați selectat. De asemenea, le puteți vizualiza profilurile și imaginile de profil, care vor fi actualizate automat în momentul în care se modifică. Accesați meniul Contacte și atingeți zona indicată pentru a vă configura propriul profil."
+
+msgid "IDS_PB_BUTTON_CHANGE_PICTURE_ABB"
+msgstr "Schimbare imagine"
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "Creare grup"
+
+msgid "IDS_PB_BUTTON_LINK_ANOTHER_CONTACT_ABB"
+msgstr "Asociați alt contact"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "Redenumire"
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "Reordonare"
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "Salv. oricum"
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "Setare imagine"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "Partajare"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "Partajare profil"
+
+msgid "IDS_PB_BUTTON_UPDATE_ABB9"
+msgstr "Actualizare"
+
+msgid "IDS_PB_HEADER_ADDITIONAL_INFO_TO_SHARE_ABB"
+msgstr "Inform. supl. de partajat"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "Adăugare câmp"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "Adăugare membri"
+
+msgid "IDS_PB_HEADER_BUSINESS_PROFILE_ABB"
+msgstr "Profil de serviciu"
+
+msgid "IDS_PB_HEADER_CHANGE_PICTURE_ABB2"
+msgstr "Schimbare imagine"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "Creare profil"
+
+msgid "IDS_PB_HEADER_DEF_CONTACT_PIC_STYLE_ABB"
+msgstr "Stil impl. imag. cont."
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "Ștergere contacte"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "Șterg. grupuri"
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "Grupuri"
+
+msgid "IDS_PB_HEADER_HIDE"
+msgstr "Ascundere"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "Import"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "Import/export"
+
+msgid "IDS_PB_HEADER_LINKED_M_CONTACTS_ABB"
+msgstr "Asociate"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "Gestionare și backup contacte"
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "Mai multe setări"
+
+msgid "IDS_PB_HEADER_MOVE_DEVICE_CONTACTS_ABB"
+msgstr "Mutare contacte dispozitiv"
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "Nume deja utilizat"
+
+msgid "IDS_PB_HEADER_PERSONAL_PROFILE_ABB"
+msgstr "Profil personal"
+
+msgid "IDS_PB_HEADER_PROFILE_SHARING_ABB2"
+msgstr "Partajare profil"
+
+msgid "IDS_PB_HEADER_PROFILE_TYPE_ABB"
+msgstr "Tip de profil"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "Salvare contact"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "Sel. contacte"
+
+msgid "IDS_PB_HEADER_SELECT_EMERGENCY_CONTACT_ABB"
+msgstr "Selectați contactul de urgență"
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "Select. grupuri"
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "Selectare imagine"
+
+msgid "IDS_PB_HEADER_SELF_PROMOTION_MADE_EASY"
+msgstr "Autopromovarea a devenit mai ușoară"
+
+msgid "IDS_PB_HEADER_SET_AS_DEFAULT_ABB2"
+msgstr "Setare ca impl."
+
+msgid "IDS_PB_HEADER_SHARE_MULTIPLE_CONTACTS_ABB"
+msgstr "Partajare contacte multiple"
+
+msgid "IDS_PB_HEADER_SHARE_WITH"
+msgstr "Partajare cu"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_MOVE_CONTACTS_ABB"
+msgstr "Nu se pot muta contactele"
+
+msgid "IDS_PB_HEADER_UPDATE_CONTACT_DETAILS_ABB"
+msgstr "Actualizare detalii de contact"
+
+msgid "IDS_PB_HEADER_USING_PROFILE_SHARING_ABB2"
+msgstr "Util. opț. Part. profil"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "Adăugare membri"
+
+msgid "IDS_PB_MBODY_DATE_OF_BIRTH"
+msgstr "Data nașterii"
+
+msgid "IDS_PB_MBODY_ENHANCED_FEATURES"
+msgstr "Caract. îmbunătățite"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "Nume grup"
+
+msgid "IDS_PB_MBODY_HELLO_E_ABB"
+msgstr "Bună ziua!"
+
+msgid "IDS_PB_MBODY_LOAD_MORE"
+msgstr "Încărcați mai multe"
+
+msgid "IDS_PB_MBODY_PROFILE_SHARING_MODE_ABB"
+msgstr "Mod Partajare profil"
+
+msgid "IDS_PB_MBODY_SHARE_NEW_NUMBER_ABB"
+msgstr "Partajare număr nou"
+
+msgid "IDS_PB_MBODY_STATUS"
+msgstr "Stare"
+
+msgid "IDS_PB_MBODY_VIEW_FACEBOOK_PROFILE"
+msgstr "Vizualiz. profil Facebook"
+
+msgid "IDS_PB_NPBODY_ADD_PICTURES_TO_EXPRESS_YOURSELF"
+msgstr "Adăugați imagini pentru a vă exprima personalitatea"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS_USING_ENHANCED_MESSAGING"
+msgstr "Niciun contact nu utilizează Mesageria îmbunătățită"
+
+msgid "IDS_PB_NPBODY_NO_DUPLICATE_CONTACTS_ABB"
+msgstr "Nu există contacte duplicate"
+
+msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS_ABB"
+msgstr "Niciun Contact de urgență"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "Prenume fonetic"
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "Nume fonetic"
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "Pren. 2 fonetic"
+
+msgid "IDS_PB_NPBODY_SELECT_CONTACT_PICTURE"
+msgstr "Selectare imagine contact"
+
+msgid "IDS_PB_NPBODY_SELECT_DEFAULT_CONTACT_PICTURE"
+msgstr "Selectare imagine contact implicită"
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "Stil implicit imagine contact"
+
+msgid "IDS_PB_OPT_ENHANCED_MESSAGING_CONTACTS_ABB"
+msgstr "Contacte Mesagerie îmbunătățită"
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "Even. (de ex., ziua de naștere)"
+
+msgid "IDS_PB_OPT_FROM_DEVICE_ABB"
+msgstr "De pe dispozitiv"
+
+msgid "IDS_PB_OPT_FROM_PRELOADED_IMAGES_ABB"
+msgstr "Din imaginile preîncărcate"
+
+msgid "IDS_PB_OPT_FROM_PRESET_STYLES_ABB"
+msgstr "Din stilurile presetate"
+
+msgid "IDS_PB_OPT_FROM_SD_CARD_ABB"
+msgstr "De pe cardul SD"
+
+msgid "IDS_PB_OPT_FROM_SIM_CARD_ABB"
+msgstr "De pe cartela SIM"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "Grupuri și membri"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "Numai grupurile"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "Acasă"
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "Cont Mes. inst."
+
+msgid "IDS_PB_OPT_MANAGE_LINKED_CONTACTS_ABB2"
+msgstr "Gestionare contacte asociate"
+
+msgid "IDS_PB_OPT_PROFILE_SHARING_ABB"
+msgstr "Partajare profil"
+
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Trimitere mesaj"
+
+msgid "IDS_PB_OPT_SET_DEFAULT_CONTACT_INFO_ABB"
+msgstr "Stare inf. implicite contact"
+
+msgid "IDS_PB_OPT_TO_DEVICE"
+msgstr "Pe dispozitiv"
+
+msgid "IDS_PB_OPT_TO_SD_CARD"
+msgstr "Pe cardul SD"
+
+msgid "IDS_PB_OPT_TO_SIM_CARD_ABB"
+msgstr "Pe cartela SIM"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "Adresă web"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "Numărul de telefon mobil al unui contact s-a schimbat de la %1$s la %2$s. Detaliile acestuia au fost actualizate."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "Există deja un contact cu acest nume. Atingeți Salvați oricum pentru a-l salva oricum sau Redenumire pentru a-l salva cu un nume diferit."
+
+msgid "IDS_PB_POP_CONTACTS_SAVED_ON_YOUR_DEVICE_WILL_BE_MOVED_TO_YOUR_SAMSUNG_ACCOUNT"
+msgstr "Contactele salvate pe dispozitiv vor fi mutate în contul Samsung."
+
+msgid "IDS_PB_POP_MOVING_DEVICE_CONTACTS_TO_SAMSUNG_ACCOUNT_ING"
+msgstr "Se mută contactele de pe dispozitiv în contul Samsung..."
+
+msgid "IDS_PB_POP_NO_SIM_CARD_HAS_BEEN_INSERTED_INSERT_A_SIM_CARD_AND_TRY_AGAIN"
+msgstr "Nu a fost introdusă nicio cartelă SIM. Introduceți o cartelă SIM și încercați din nou."
+
+msgid "IDS_PB_POP_SHARE_CONTACTS_INDIVIDUALLY_THIS_MAY_TAKE_LONGER_MSG"
+msgstr "Partajați contacte individual. Acest lucru poate necesita mai mult timp, deoarece dispozitivul de destinație trebuie să le accepte câte 1, pe rând."
+
+msgid "IDS_PB_POP_SHARE_MULTIPLE_CONTACTS_AS_1_FILE_TO_REDUCE_TRANSMISSION_TIME_MSG"
+msgstr "Partajați mai multe contacte ca 1 singur fișier, pentru a reduce timpul de transfer. Dacă dispozitivul de destinație nu acceptă această funcție, va fi partajat doar 1 contact."
+
+msgid "IDS_PB_POP_TAP_UPDATE_TO_EDIT_THE_EXISTING_INFO_FOR_THIS_CONTACT"
+msgstr "Atingeți Actualizare pentru a edita informațiile despre acest contact."
+
+msgid "IDS_PB_POP_THIS_ACCOUNT_IS_READ_ONLY_THE_CONTACT_WILL_BE_HIDDEN_FROM_CONTACTS"
+msgstr "Acest cont are drept numai de citire. Contactul va fi ascuns din Contacte."
+
+msgid "IDS_PB_POP_THIS_CONTACT_IS_READ_ONLY_THE_CONTACT_WILL_BE_HIDDEN_FROM_CONTACTS_FACEBOOK"
+msgstr "Contactul este numai în citire. Acesta va fi ascuns din Contacte."
+
+msgid "IDS_PB_POP_TO_MOVE_YOUR_DEVICE_CONTACTS_TO_YOUR_SAMSUNG_ACCOUNT_ENABLE_SYNC_CONTACTS"
+msgstr "Pentru a muta contactele de pe dispozitiv în contul Samsung, activați opțiunea Sincronizare contacte."
+
+msgid "IDS_PB_SBODY_AS_1_FILE"
+msgstr "Ca 1 singur fișier"
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "Sp. stoc. disp./toate conturile"
+
+msgid "IDS_PB_SBODY_INDIVIDUALLY"
+msgstr "Individual"
+
+msgid "IDS_PB_SBODY_MOVE_CONTACTS_SAVED_ON_YOUR_DEVICE_TO_YOUR_SAMSUNG_ACCOUNT"
+msgstr "Mutați contactele salvate pe dispozitiv în contul Samsung."
+
+msgid "IDS_PB_SBODY_SHARE_YOUR_PROFILE_WITH_SELECTED_CONTACTS"
+msgstr "Partajați-vă profilul cu contactele selectate."
+
+msgid "IDS_PB_SBODY_TAP_HERE_TO_SET_UP_YOUR_PROFILE_ABB"
+msgstr "Atingeți aici pt. a vă config. profilul."
+
+msgid "IDS_PB_SBODY_TAP_HERE_TO_SHARE_PHONE_NUMBER_ABB"
+msgstr "Ating. aici pt. a partaja nr. tel."
+
+msgid "IDS_PB_SBODY_TAP_HERE_TO_UPDATE_CONTACT_INFO_ABB"
+msgstr "Ating. pt. a actualiz. inf. contact"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "Adresă (personalizată)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "Adresă (domiciliu)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "Adresă (altele)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "Adresă (serviciu)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "Ca 1 singur fișier"
+
+msgid "IDS_PB_TMBODY_CREATE_GROUP_IN_ABB"
+msgstr "Creare grup în"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "Afișare"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "E-mail (personalizat)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "E-mail (altele)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "E-mail (serviciu)"
+
+msgid "IDS_PB_TMBODY_HELLO_PS_E"
+msgstr "Bună ziua, %s!"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "Import/export"
+
+msgid "IDS_PB_TMBODY_INDIVIDUALLY"
+msgstr "Individual"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "Mutare contacte dispozitiv"
+
+msgid "IDS_PB_TMBODY_SHARE_MULTIPLE_CONTACTS"
+msgstr "Partajare contacte multiple"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "1 contact a fost exportat."
+
+msgid "IDS_PB_TPOP_CANT_LINK_MORE_THAN_PD_CONTACTS"
+msgstr "Nu se pot asocia mai mult de %d contacte."
+
+msgid "IDS_PB_TPOP_CANT_SELECT_MORE_THAN_PD_CONTACTS"
+msgstr "Nu se pot selecta mai mult de %d contacte."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "Se șterge..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "Exportul a fost anulat."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "Ștergerea contactelor nu a reușit. Încercați din nou."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "Numele grupului este deja utilizat."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "Importul a fost anulat."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "A fost atins numărul maxim de caractere."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_LINKED_HPD_REACHED"
+msgstr "S-a atins numărul maxim de contacte care pot fi asociate (%d)."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_PRIMARY_CONTACTS_HPD_REACHED"
+msgstr "S-a atins numărul maxim de contacte principale (%d)."
+
+msgid "IDS_PB_TPOP_MOVING_DEVICE_CONTACTS_TO_SAMSUNG_ACCOUNT_ING"
+msgstr "Se mută contactele de pe dispozitiv în contul Samsung..."
+
+msgid "IDS_PB_TPOP_NEW_PHONE_NUMBER_SHARED_WITH_1_CONTACT"
+msgstr "Noul număr de telefon partajat cu 1 contact."
+
+msgid "IDS_PB_TPOP_NEW_PHONE_NUMBER_SHARED_WITH_PD_CONTACTS"
+msgstr "Noul număr de telefon partajat cu %d contacte."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "Nu a fost introdus niciun nume de grup."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "%d contacte au fost exportate."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "Se procesează..."
+
+msgid "IDS_PB_TPOP_SELECT_2_OR_MORE_CONTACTS_TO_MERGE_THEM"
+msgstr "Selectați 2 sau mai multe contacte pentru a le îmbina."
+
+msgid "IDS_PB_TPOP_SOME_CONTACTS_APPEAR_TO_BE_DUPLICATES_GO_TO_LINK_CONTACTS_TO_MANAGE_THEM"
+msgstr "Anumite contacte par să fie dubluri. Deschideți secțiunea Asociere contacte pentru a le gestiona."
+
+msgid "IDS_PB_TPOP_SOME_CONTACTS_IN_THIS_GROUP_SAVED_IN_P1SS_GROUP_MUST_BE_SAVED_IN_P2SS"
+msgstr "Anumite contacte din grup au fost salvate în %1$s. Grupul trebuie salvat în %2$s."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_CHANGE_STATUS_CHECK_NETWORK_CONNECTION_AND_TRY_AGAIN"
+msgstr "Nu se poate schimba starea. Verificați conexiunea la rețea și încercați din nou."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_DISABLE_PROFILE_SHARING_CHECK_NETWORK_CONNECTION_AND_TRY_AGAIN"
+msgstr "Nu se poate dezactiva opțiunea Partajare profil. Verificați conexiunea la rețea și încercați din nou."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_ENABLE_PROFILE_SHARING_CHECK_NETWORK_CONNECTION_AND_TRY_AGAIN"
+msgstr "Nu se poate activa opțiunea Partajare profil. Verificați conexiunea la rețea și încercați din nou."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_PASTE_TEXT_THAT_INCLUDES_EMOTICONS"
+msgstr "Nu se poate insera text care include emoticoane."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_SAVE_CONTACT_AS_EMERGENCY_CONTACT_NO_PHONE_NUMBER_ENTERED"
+msgstr "Contactul nu se poate salva drept contact de urgență. Nu s-a introdus niciun număr de telefon."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Selectare jurnale"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "Vizualizare după"
+msgid "IDS_CLOG_OPT_ALL_CALLS_ABB"
+msgstr "Toate apelurile"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "Acasă 2"
+msgid "IDS_KPD_OPT_ADD_WAIT"
+msgstr "Adăugare așteptare"
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "Mutare finalizată"
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "Nume fonetic"
 
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "Mutare"
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "Telefon"
 
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 verificat"
+msgid "IDS_PB_OPT_GRID_VIEW"
+msgstr "Vizualizare tip grilă"
 
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 verificat"
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Trimitere email"
 
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "PIN deblocat"
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2 deblocat"
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2 schimbat"
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "PIN2 blocat"
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "Codul PIN1 a fost modificat."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "Codul PIN1 a fost blocat."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "PIN2 incorect"
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "Codul PIN2 nou şi confirmarea codului PIN2 nu se potrivesc"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "Codul PUK1 este incorect"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "Cod PUK1 incorect. Au mai rămas %d încercări."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "Cod PUK2 incorect. Au mai rămas %d încercări."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN schimbat"
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "Setați data"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Contacte"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "Adăugare cont"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "Adăugare la marcaje"
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "Se caută dispozitive..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "PIN greşit"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "EFECTUAT"
@@ -86,67 +557,22 @@ msgid "IDS_TPLATFORM_ACBUTTON_CANCEL_ABB"
 msgstr "ANULARE"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
-msgstr "ŞTERGERE"
-
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "Problemă de conexiune sau cod MMI nevalid"
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "Număr privat"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "TRIMITERE"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2 blocat. Contactaţi furnizorul (PUK2 SIM necesar)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "Nu există jurnale"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "După ce efectuaţi/primiţi un apel sau trimiteţi/primiţi un mesaj, vor fi afişate jurnalele."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "Cartelă SIM ocupată. Încercaţi mai târziu"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "Cartela SIM/RUIM este blocată."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "Nu s-a găsit nicio cartelă SIM. Introduceţi o cartelă SIM în telefon."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "Eroare de reţea sau de cartelă SIM"
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "Feedbackul prin vibraţie a fost activat."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "Feedbackul prin vibraţie a fost dezactivat."
+msgstr "ȘTERGERE"
 
 msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
-msgstr "Numărul nu poate fi apelat. %d nu este un număr de urgenţă."
-
-msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
-msgstr "Numărul de apelare rapidă %d a fost eliminat."
+msgstr "Numărul nu poate fi apelat. %d nu este un număr de urgență."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "Număr de apelare rapidă atribuit."
 
 msgid "IDS_KPD_TPOP_ENTER_NUMBER"
-msgstr "Introduceţi un număr."
+msgstr "Introduceți un număr."
 
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "Codul PIN trebuie să includă între %1$d şi %2$d cifre. Încercaţi din nou."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "Codul PIN2 trebuie să includă între %1$d şi %2$d cifre. Încercaţi din nou."
+msgid "IDS_KPD_POP_TO_SET_YOUR_VOICEMAIL_NUMBER_TAP_SET_NUMBER_OR_GO_TO_CALL_SETTINGS_MORE_VOICEMAIL_NUMBER"
+msgstr "Pentru a seta numărul mesageriei vocale, atingeți Setare număr sau deschideți meniul Setări apeluri > Mai multe >Număr de mesagerie vocală."
 
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
-msgstr "Acest număr de apelare rapidă nu are niciun contact asociat. Atingeţi OK pentru a-i asocia unul acum."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "Codul PIN a fost dezactivat. Înainte de modificare, activaţi codul PIN."
+msgstr "Acest număr de apelare rapidă nu are niciun contact asociat. Atingeți OK pentru a-i asocia unul acum."
 
 msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
 msgstr "Msg voc."
@@ -166,17 +592,14 @@ msgstr "Creare contact"
 msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
 msgstr "Setări apeluri"
 
-msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
-msgstr "Adăugare aşteptare"
-
 msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
 msgstr "Adăugare pauză de 2 secunde"
 
 msgid "IDS_KPD_ITAB3_KEYPAD"
 msgstr "Tastatură"
 
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "Nu se poate con. la reţea"
+msgid "IDS_KPD_HEADER_SET_VOICEMAIL_NUMBER_ABB"
+msgstr "Setați nr. de mesagerie vocală"
 
 msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
 msgstr "Selectare cartelă SIM pt. apel"
@@ -185,7 +608,7 @@ msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
 msgstr "Rezultatele căutării (%d)"
 
 msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
-msgstr "Apel de urgenţă"
+msgstr "Apel de urgență"
 
 msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
 msgstr "Alocare ca nr. de apelare rap."
@@ -193,23 +616,20 @@ msgstr "Alocare ca nr. de apelare rap."
 msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
 msgstr "Setare număr"
 
-msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
-msgstr "Trimit. mes."
-
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "Anulare"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "Adăugare la Contacte"
 
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "Parolele nu se potrivesc."
+msgid "IDS_LOGS_TPOP_NUMBER_REMOVED_FROM_CALL_BLOCK_LIST"
+msgstr "Numărul a fost eliminat de pe lista de blocare a apelurilor."
 
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "PIN blocat. Introduceţi codul PUK."
+msgid "IDS_LOGS_TPOP_NUMBER_REMOVED_FROM_CALL_AND_MESSAGE_BLOCK_LISTS"
+msgstr "Numărul a fost eliminat de pe listele de blocare a apelurilor și a mesajelor."
 
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "Cartelă SIM blocată"
+msgid "IDS_LOGS_TPOP_NUMBER_ADDED_TO_CALL_BLOCK_LIST"
+msgstr "Numărul a fost adăugat pe lista de blocare a apelurilor."
+
+msgid "IDS_LOGS_TPOP_NUMBER_ADDED_TO_CALL_AND_MESSAGE_BLOCK_LISTS"
+msgstr "Numărul a fost adăugat pe listele de blocare a apelurilor și a mesajelor."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "Nesalvat"
@@ -221,91 +641,31 @@ msgid "IDS_LOGS_SBODY_MISSEDM_CALL_STATUS"
 msgstr "Pierdut"
 
 msgid "IDS_LOGS_SBODY_FAILED_M_STATUS"
-msgstr "Nereuşit"
+msgstr "Nereușit"
 
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "Anulat"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Vor fi şterse %d elemente de jurnal."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Vor fi şterse toate elementele din jurnal."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "1 element din jurnal va fi şters."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "Vizualizare detalii contact"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "Trimitere număr"
+msgid "IDS_LOGS_OPT_REMOVE_FROM_BLOCK_LIST_ABB"
+msgstr "Elim. de pe lista de blocare"
 
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "Apeluri pierdute"
 
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "Ştergere"
-
 msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
 msgstr "Durate apeluri"
 
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "Apeluri pierdute"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "Nu mai afişa"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "Nr. necunoscut"
+msgid "IDS_LOGS_OPT_ADD_TO_BLOCK_LIST_ABB"
+msgstr "Adăugare pe lista de blocare"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "Necunoscut"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "Select. totală"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "Jurnale"
 
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "Ieri"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "Azi"
-
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "%d selectate"
-
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "Ştergere %d jurnale"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "Ştergeţi elementele de jurnal"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "Ştergere jurnal"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "Ştergeţi"
-
-msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
-msgstr "Actual. contact"
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "Ştergere"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "Creare contact"
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "Anulare"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "Apeluri vocale"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "Apeluri video"
 
 msgid "IDS_LOGS_BODY_SIM_CARD"
 msgstr "Card SIM"
@@ -314,19 +674,16 @@ msgid "IDS_LOGS_BODY_ALL_CALLS"
 msgstr "Toate apelurile"
 
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
-msgstr "După ce efectuaţi sau primiţi apeluri, acestea vor fi afişate aici."
-
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "După ce efectuaţi sau primiţi apeluri, elementele de jurnal vor fi afişate aici."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "EDITARE"
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "Introducere text"
+msgstr "După ce efectuați sau primiți apeluri, acestea vor fi afișate aici."
 
 msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
 msgstr "Anumite contacte par să fie dubluri."
+
+msgid "IDS_PB_TPOP_REMOVED_FROM_CALL_BLOCK_LIST"
+msgstr "S-a eliminat de pe lista de blocare a apelurilor."
+
+msgid "IDS_PB_TPOP_REMOVED_FROM_CALL_AND_MESSAGE_BLOCK_LIST"
+msgstr "S-a eliminat de pe lista de blocare a apelurilor și a mesajelor."
 
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "%d contacte au fost importate."
@@ -334,8 +691,11 @@ msgstr "%d contacte au fost importate."
 msgid "IDS_PB_TPOP_CONTACTS_LINKED"
 msgstr "Contactele au fost asociate."
 
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "1 număr a fost eliminat de pe Lista de respingere automată."
+msgid "IDS_PB_TPOP_ADDED_TO_CALL_BLOCK_LIST"
+msgstr "S-a adăugat pe lista de blocare a apelurilor."
+
+msgid "IDS_PB_TPOP_ADDED_TO_CALL_AND_MESSAGE_BLOCK_LIST"
+msgstr "S-a adăugat pe lista de blocare a apelurilor și a mesajelor."
 
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "1 contact a fost importat."
@@ -350,16 +710,7 @@ msgid "IDS_PB_TMBODY_LINK_CONTACTS"
 msgstr "Asociere contacte"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
-msgstr "Contacte de afişat"
-
-msgid "IDS_PB_SK_SET"
-msgstr "Afiş."
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "Creare"
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "Ad. câmp."
+msgstr "Contacte de afișat"
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "Se importă contactele..."
@@ -382,128 +733,59 @@ msgstr "Contacte exportate"
 msgid "IDS_PB_SBODY_ALL_CONTACTS"
 msgstr "Toate contactele"
 
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "Nu puteţi şterge contactele din conturile doar în citire, dar le puteţi ascunde în contacte."
-
 msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
-msgstr "La activarea opţiunii Sincronizare, acest contact va fi şters din toate conturile sincronizate în care este salvat."
+msgstr "La activarea opțiunii Sincronizare, acest contact va fi șters din toate conturile sincronizate în care este salvat."
 
 msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
-msgstr "La activarea opţiunii Sincronizare, acest contact şi toate contactele asociate acestuia vor fi şterse sau ascunse dacă informaţiile provin dintr-un cont cu drept numai de citire."
+msgstr "La activarea opțiunii Sincronizare, acest contact și toate contactele asociate acestuia vor fi șterse sau ascunse dacă informațiile provin dintr-un cont cu drept numai de citire."
 
 msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
-msgstr "La activarea opţiunii Sincronizare, acest contact şi toate contactele asociate acestuia din alte conturi sincronizate vor fi şterse."
-
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "Se actualizează informaţiile despre furnizorul de servicii..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Contactul nu poate fi adăugat. A fost atins numărul maxim de contacte (%d) care se pot asocia."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Nu se pot adăuga contacte. A fost atins numărul maxim de contacte (%d) care se pot asocia."
+msgstr "La activarea opțiunii Sincronizare, acest contact și toate contactele asociate acestuia din alte conturi sincronizate vor fi șterse."
 
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Acest contact va fi şters."
+msgstr "Acest contact va fi șters."
 
 msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Acest contact şi toate contactele asociate acestuia vor fi şterse."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "S-a depăşit numărul maxim de elemente care pot fi selectate (%d)."
+msgstr "Acest contact și toate contactele asociate acestuia vor fi șterse."
 
 msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
-msgstr "S-a depăşit numărul maxim de contacte care pot fi partajate simultan (%1$d). Vor fi partajate doar primele %2$d."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "Caracteristica Chamada Certa poate fi utilizată pentru a identifica furnizorii de servicii ai persoanelor de contact şi a-i afişa în lista de contacte. Puteţi face acest lucru ulterior apăsând butonul meniu şi selectând Actualizare informaţii furnizor de servicii. Atingeţi OK pentru a identifica acum furnizorii de servicii ai contactelor."
+msgstr "S-a depășit numărul maxim de contacte care pot fi partajate simultan (%1$d). Vor fi partajate doar primele %2$d."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
-msgstr "Atingeţi OK pentru a nu mai importa contactele de pe cartela SIM."
+msgstr "Atingeți OK pentru a nu mai importa contactele de pe cartela SIM."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
-msgstr "Atingeţi OK pentru a nu mai exporta contactele în %s."
+msgstr "Atingeți OK pentru a nu mai exporta contactele în %s."
 
 msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Atingeţi Export pentru a selecta contactele pe care doriţi să le exportaţi. Este posibil ca unele informaţii de contact să se piardă."
-
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "Este posibil ca o parte din sau toate contactele să nu se fi actualizat."
+msgstr "Atingeți Export pentru a selecta contactele pe care doriți să le exportați. Este posibil ca unele informații de contact să se piardă."
 
 msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Este posibil ca unele informaţii de contact să se piardă."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "Memorie SIM plină"
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "Eliminare..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "%d numere de telefon au fost actualizate."
+msgstr "Este posibil ca unele informații de contact să se piardă."
 
 msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
-msgstr "%d contacte vor fi şterse."
+msgstr "%d contacte vor fi șterse."
 
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "%1$d contacte au fost exportate în %2$s."
 
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d contacte au fost exportate în Dispozitiv/Contacte/Importate/%2$s.vcf."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "Memorie plină"
-
 msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
 msgstr "Contactele noi vor fi salvate în Contacte pe dispozitiv."
 
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "Mod FDN activat"
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "Nereuşit"
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "Renunţare la modificări?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "Se şterg contactele..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "Ştergerea contactelor a fost anulată. Este posibil ca anumite contacte să fi fost deja şterse."
+msgid "IDS_PB_POP_MANAGE_BLOCK_LIST_IN_CALL_SETTINGS"
+msgstr "Gestionați lista de blocare în setările pentru apeluri."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "Contactele nu vor mai fi importate din %s."
 
-msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
-msgstr "Există deja."
-
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Toate contactele conectate vor fi şterse."
-
 msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
-msgstr "Toate contactele vor fi şterse."
+msgstr "Toate contactele vor fi șterse."
 
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "Toate modificările vor fi eliminate."
 
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "Se adaugă..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "A fost actualizat 1 număr de telefon."
-
 msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
-msgstr "1 contact va fi şters."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "1 contact eliminat"
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "Serviciu"
+msgstr "1 contact va fi șters."
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "Apel"
@@ -511,23 +793,11 @@ msgstr "Apel"
 msgid "IDS_PB_OPT_VIDEO_CALL"
 msgstr "Apel video"
 
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "Actualizare informaţii furnizor de servicii"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "Deconectare contact"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "Anulare asociere contacte"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
 msgstr "Fotografiere"
 
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
-msgstr "Fotografiere"
-
 msgid "IDS_PB_OPT_SPOUSE"
-msgstr "Soţ/Soţie"
+msgstr "Soț/Soție"
 
 msgid "IDS_PB_OPT_SKYPE"
 msgstr "Skype"
@@ -538,26 +808,23 @@ msgstr "Soră"
 msgid "IDS_PB_OPT_SIM_CARD"
 msgstr "Card SIM"
 
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "Partajare prin"
-
 msgid "IDS_PB_OPT_SHARE"
-msgstr "Partajaţi"
-
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "Setări"
+msgstr "Partajați"
 
 msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
 msgstr "Selectare din contacte"
 
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "Cartelă SD"
-
 msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
 msgstr "Salvare contact în"
 
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "Ton sonerie"
+
 msgid "IDS_PB_OPT_REORDER"
 msgstr "Reordonare"
+
+msgid "IDS_PB_OPT_REMOVE_FROM_BLOCK_LIST_ABB"
+msgstr "Elim. de pe lista de blocare"
 
 msgid "IDS_PB_OPT_REMOVE"
 msgstr "Eliminare"
@@ -566,7 +833,7 @@ msgid "IDS_PB_OPT_RELATIVE"
 msgstr "Rudă"
 
 msgid "IDS_PB_OPT_RELATIONSHIP_ABB2"
-msgstr "Relaţie"
+msgstr "Relație"
 
 msgid "IDS_PB_OPT_REFERRED_BY_ABB"
 msgstr "Trimis de"
@@ -580,23 +847,11 @@ msgstr "Partener"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "Părinte"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "Pager"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "Alte"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
-msgstr "Organizaţie"
+msgstr "Organizație"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "Mamă"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "Mobil"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "Mesaj"
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Gestionare preferate"
@@ -610,20 +865,11 @@ msgstr "Principal"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "Mai întâi numele"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "Prenume"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "Acasă"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "Ecran de pornire"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangouts"
@@ -636,12 +882,6 @@ msgstr "Prieten"
 
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "Mai întâi prenumele"
-
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "Nume"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "Contact FDN"
 
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "Fax (birou)"
@@ -656,13 +896,10 @@ msgid "IDS_PB_OPT_EDIT"
 msgstr "Editare"
 
 msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
-msgstr "Nu mai afişa"
+msgstr "Nu mai afișa"
 
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "Partener intern"
-
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "Dispozitiv"
 
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "Particularizat"
@@ -676,9 +913,6 @@ msgstr "Copil"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "Frate"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "Zi de naştere"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "Asistent"
 
@@ -688,14 +922,14 @@ msgstr "Aniversare"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "Adăugare câmp"
+msgid "IDS_PB_OPT_ADD_TO_BLOCK_LIST_ABB"
+msgstr "Adăugare pe lista de blocare"
 
 msgid "IDS_PB_OPT_ADD"
 msgstr "Adăugare"
 
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "Cont"
+msgid "IDS_PB_NPBODY_TAP_TO_ADD_SHORTCUT"
+msgstr "Atingeți pentru a adăuga comanda rapidă"
 
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "Căutare"
@@ -706,12 +940,6 @@ msgstr "Niciun număr de serviciu"
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "Nu au fost găsite rezultate"
 
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "Nu există niciun contact de urgenţă"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "Niciun contact"
-
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "Sortare după"
 
@@ -719,19 +947,19 @@ msgid "IDS_PB_MBODY_SET_PROFILE"
 msgstr "Setare profil"
 
 msgid "IDS_PB_MBODY_SET_MY_PROFILE"
-msgstr "Configuraţi profilul meu"
+msgstr "Configurați profilul meu"
 
 msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
 msgstr "Trimitere împreună"
 
 msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
-msgstr "Trimiteţi individual"
+msgstr "Trimiteți individual"
 
 msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Trimitere informaţii de contact"
+msgstr "Trimitere informații de contact"
 
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "Select. totală"
+msgid "IDS_PB_MBODY_PROFILE_SHARING"
+msgstr "Partajare profil"
 
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "%d contacte"
@@ -749,7 +977,7 @@ msgid "IDS_PB_MBODY_EVENT"
 msgstr "Eveniment"
 
 msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
-msgstr "Afişare contacte cu numere"
+msgstr "Afișare contacte cu numere"
 
 msgid "IDS_PB_MBODY_1_CONTACT_ABB"
 msgstr "1 contact"
@@ -757,38 +985,14 @@ msgstr "1 contact"
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "Contacte"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "Spaţiu stocare USB indisponibil"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "Nu se poate adăuga"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "Imposibil de adăugat"
-
 msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
 msgstr "Contacte sugerate"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "Partajaţi prin"
 
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "Setare imagine contact"
 
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "Setări"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "Furnizor de servicii"
-
 msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
 msgstr "Trimitere inform. contact"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "Selectaţi cartela SIM pentru apel"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "Selectare cartelă SIM de apelat"
 
 msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
 msgstr "Selectare cartelă SIM pt. apel"
@@ -796,17 +1000,11 @@ msgstr "Selectare cartelă SIM pt. apel"
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "Selectare contact"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "Selectare"
-
 msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
-msgstr "Salvaţi contactele în"
+msgstr "Salvați contactele în"
 
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "Reordonare"
-
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "Eliminare"
 
 msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
 msgstr "Contacte principale (%d)"
@@ -814,16 +1012,10 @@ msgstr "Contacte principale (%d)"
 msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
 msgstr "Contacte princ. (%1$d/%2$d)"
 
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "Telefon"
-
 msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
 msgstr "Contacte personale"
 
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
-msgstr "%d selectate"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
 msgstr "%d selectate"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
@@ -832,14 +1024,11 @@ msgstr "Format nume"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "Cele mai frecvente contacte"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "Eu"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "Gestionare preferate"
 
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "Listă contacte"
+msgid "IDS_PB_HEADER_LINK_CONTACTS_ABB"
+msgstr "Asociere contacte"
 
 msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
 msgstr "Contacte asociate"
@@ -849,9 +1038,6 @@ msgstr "Import contacte"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "Import"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "Favorite"
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
 msgstr "Export contacte pe cartela SIM"
@@ -866,43 +1052,28 @@ msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
 msgstr "Introd. etichetă personaliz."
 
 msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
-msgstr "Servicii de urgenţă"
+msgstr "Servicii de urgență"
 
 msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
-msgstr "Contacte de urgenţă"
+msgstr "Contacte de urgență"
 
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "Editare"
-
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "Afişare nume după"
 
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "Ecran"
 
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
-msgstr "Anulaţi modificările"
-
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "Ştergeţi elementul"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "Creare"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "Imagine contact"
+msgstr "Anulați modificările"
 
 msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
-msgstr "Contacte de afişat"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "Contacte"
+msgstr "Contacte de afișat"
 
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "Contacte exportate"
 
 msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
-msgstr "Schimbaţi locaţia de salvare"
+msgstr "Schimbați locația de salvare"
 
 msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
 msgstr "Anulare import"
@@ -910,11 +1081,8 @@ msgstr "Anulare import"
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "Anulare export"
 
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "Reîncercare"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "Salvare"
+msgid "IDS_PB_HEADER_ADD_TO_BLOCK_LIST_ABB"
+msgstr "Adăug. pe lista de blocare"
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "Telefon"
@@ -925,11 +1093,8 @@ msgstr "OK"
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "Note"
 
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "Mai multe"
-
 msgid "IDS_PB_BUTTON_EXPORT"
-msgstr "Exportaţi"
+msgstr "Exportați"
 
 msgid "IDS_PB_BUTTON_EMAIL_ABB3"
 msgstr "Email"
@@ -938,10 +1103,10 @@ msgid "IDS_PB_BUTTON_DONE_ABB3"
 msgstr "Efectuat"
 
 msgid "IDS_PB_BUTTON_DISCARD_ABB"
-msgstr "Renunţare"
+msgstr "Renunțare"
 
 msgid "IDS_PB_BUTTON_DELETE_ABB4"
-msgstr "Ştergere"
+msgstr "Ștergere"
 
 msgid "IDS_PB_BUTTON_CREATE_ABB2"
 msgstr "Creare"
@@ -949,65 +1114,23 @@ msgstr "Creare"
 msgid "IDS_PB_BUTTON_CHANGE_ABB"
 msgstr "Schimbare"
 
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Anulare"
-
 msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
 msgstr "Adăug. cont"
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "Windows Live"
 
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "Site web"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "Se actualizează lista de contacte..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "Imposibil de salvat din cauza unei erori de SIM"
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "Titlu"
 
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Acest contact va fi şters."
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "Informaţiile despre furnizorul de servicii pentru contactele selectate vor fi actualizate. Această funcţie necesită o conexiune la reţea şi poate genera costuri suplimentare. Intervalul de timp necesar pentru finalizarea procesului depinde de starea conexiunii la reţea."
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "Telefon"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "Skype"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "Se iniţializează cartela SIM..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "Număr serviciu"
-
 msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
-msgstr "Trimiterea individuală a cărţilor de vizită poate necesita mai mult timp, deoarece dispozitivul de destinaţie trebuie să accepte fiecare carte de vizită în parte."
+msgstr "Trimiterea individuală a cărților de vizită poate necesita mai mult timp, deoarece dispozitivul de destinație trebuie să accepte fiecare carte de vizită în parte."
 
 msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
-msgstr "Trimiterea simultană a unui număr de contacte reduce timpul de transmitere. Totuşi, dacă celălalt dispozitiv nu acceptă această funcţie, se va trimite numai un singur contact."
+msgstr "Trimiterea simultană a unui număr de contacte reduce timpul de transmitere. Totuși, dacă celălalt dispozitiv nu acceptă această funcție, se va trimite numai un singur contact."
 
 msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
-msgstr "Selectaţi modul de trimitere a informaţiilor despre contact."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "Selectat"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "Eliminare din Favorite"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "Fotografie"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "Nr. telefon"
+msgstr "Selectați modul de trimitere a informațiilor despre contact."
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "Nume fonetic"
@@ -1016,22 +1139,10 @@ msgid "IDS_PB_BODY_PHONETIC_MIDDLE_NAME_ABB"
 msgstr "Al doilea nume fonetic"
 
 msgid "IDS_PB_BODY_PHONETIC_LAST_NAME_ABB"
-msgstr "Nume familie fonetic"
+msgstr "Nume fonetic"
 
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "Prenume fonetic"
-
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "Alte e-mailuri"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "Nici un rezultat al căutării"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "Nu există grupuri"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "Note"
 
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "Pseudonim"
@@ -1039,183 +1150,165 @@ msgstr "Pseudonim"
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "Sufix nume"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "Prefix nume"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "Nume"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "Contactele mele"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "Al doilea prenume"
 
 msgid "IDS_PB_BODY_LAST_NAME_ABB"
-msgstr "Nume de familie"
+msgstr "Nume"
 
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
-msgstr "Funcţie"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "Import de pe cartela SIM"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "Import de pe cartela SIM2"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "Se importă..."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "Imagine"
+msgstr "Funcție"
 
 msgid "IDS_PB_BODY_IM"
 msgstr "IM"
 
 msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Dacă furnizorul de servicii a preîncărcat numere pentru servicii pe cartela SIM, acestea vor fi afişate aici."
-
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "Galerie"
+msgstr "Dacă furnizorul de servicii a preîncărcat numere pentru servicii pe cartela SIM, acestea vor fi afișate aici."
 
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "Prenume"
 
-msgid "IDS_PB_BODY_FAX"
-msgstr "Fax"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "Export pe cartela SIM"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "Export pe cartela SIM2"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "Export pe cartela SD"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "Email"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "Ignorare modificări"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "Prieteni"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "Familie"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "Dată"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "Colegi de muncă"
-
 msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
 msgstr "Contactele care au fost identificate ca dubluri vor fi sugerate automat."
-
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "Contacte"
 
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "Firmă"
 
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "Buton pentru extinderea listei"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "Recomandările automate pot extrage evidenţierile din fişierele de sunete."
-
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "După ce creaţi contacte, acestea se vor afişa aici."
+msgstr "După ce creați contacte, acestea se vor afișa aici."
 
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "După ce adăugaţi contacte, acestea se vor afişa aici."
-
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "Adăugare la Favorite"
+msgstr "După ce adăugați contacte, acestea se vor afișa aici."
 
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "Adresă"
 
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "Conturi"
-
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "AB"
-
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "Cod PIN blocat"
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "Cod PUK2 incorect"
-
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "Codul PIN1 este incorect"
-
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "Adăugare contact existent"
-
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "Niciun contact principal"
-
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "Contacte principale"
-
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "Creaţi un contact principal"
-
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "Adăugare contacte principale"
-
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "Setare dată"
-
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "Codul PIN nou şi confirmarea codului PIN nu se potrivesc."
-
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "După ce creaţi contacte principale, acestea vor fi afişate aici."
-
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "Nu se pot sel. mai multe elem."
-
 msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
-msgstr "Introduceţi cartela SIM."
-
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "Furnizorul de servicii sau contactul pe care îl apelaţi este %1$s. Atingeţi OK pentru a efectua acest apel utilizând cartela SIM %2$s."
-
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "Utilizare cartelă SIM %s"
-
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "SIM actual"
-
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "Telefon public"
-
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "Caracter incorect"
+msgstr "Introduceți cartela SIM."
 
 msgid "IDS_HS_BUTTON_PHONE_M_CALL"
 msgstr "Telefon"
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "Apel de ieşire"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Anulare"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "Apel de intrare"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Ștergere"
+
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Select. totală"
+
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Ieri"
+
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Azi"
+
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
+
+msgid "IDS_PB_OPT_WORK"
+msgstr "Serviciu"
+
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Setări"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Cartelă SD"
+
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Pager"
+
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Alte"
+
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Mobil"
+
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Mesaj"
+
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Nume"
+
+msgid "IDS_PB_OPT_HOME"
+msgstr "Ecran de pornire"
+
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Prenume"
+
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Dispozitiv"
+
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Zi de naștere"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Niciun contact"
+
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Select. totală"
+
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Setări"
+
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Eliminare"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "Eu"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Favorite"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Creare"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Salvare"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Mai multe"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Anulare"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Nr. telefon"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Note"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "Email"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Dată"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Contacte"
+
+msgid "IDS_PB_BODY_ACCOUNTS"
+msgstr "Conturi"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
-msgstr "Sunt afişate numai primele %d contacte."
-
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "Profilul meu"
+msgstr "Sunt afișate numai primele %d contacte."
 
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
-msgstr "Atingeţi aici pentru a adăuga comanda rapidă"
+msgstr "Atingeți aici pentru a adăuga comanda rapidă"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "EDITARE"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "Tip personalizat"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "Grupuri"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "Afișare"
 

@@ -1,83 +1,554 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "Odchozí hovory"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "Žádné protokoly"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "Poslední hovor"
+msgid "IDS_CLOG_HEADER_SELECT_ITEMS_ABB3"
+msgstr "Vyberte položky"
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "Přijaté hovory"
+msgid "IDS_CLOG_OPT_DONT_SHOW_AGAIN_ABB"
+msgstr "Znovu nezobrazovat"
+
+msgid "IDS_CST_OPT_DELETE"
+msgstr "Odstranit"
+
+msgid "IDS_KPD_BODY_QUICK_ENQUIRY_ABB"
+msgstr "Rychlý dotaz"
+
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "OK"
+
+msgid "IDS_KPD_HEADER_SELECT_ITEMS_ABB3"
+msgstr "Vyberte položky"
+
+msgid "IDS_KPD_OPT_MAKE_VIDEO_CALL_ABB2"
+msgstr "Uskutečnit videohovor"
+
+msgid "IDS_KPD_OPT_QUICK_ENQUIRY_ABB"
+msgstr "Rychlý dotaz"
+
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "Odeslat zprávu"
+
+msgid "IDS_LOGS_MBODY_PAYPHONE"
+msgstr "Telefonní automat"
+
+msgid "IDS_LOGS_MBODY_WITHHELD_NUMBER"
+msgstr "Skryté číslo"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "Filtrovat podle"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "Žádné číslo"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "Vytvořit"
+
+msgid "IDS_ST_BUTTON_UPDATE_ABB4"
+msgstr "Aktualizovat"
+
+msgid "IDS_PB_BUTTON_HIDE_ABB"
+msgstr "Skrýt"
+
+msgid "IDS_HINTS_BODY_GET_MORE_OUT_OF_SHARING_YOUR_PROFILE_AND_PROMOTE_YOUR_BUSINESS_USING_A_BUSINESS_PROFILE_MSG"
+msgstr "Využijte lépe sdílení vašeho profilu a podporujte své podnikání pomocí obchodního profilu.\n\nPřejděte na %1$sKontakty%2$s a potom klepněte na vyznačenou oblast a nastavte svůj profil."
+
+msgid "IDS_HINTS_TMBODY_PROMOTE_YOURSELF"
+msgstr "Propagujte sami sebe"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "Zkopírováno do schránky."
+
+msgid "IDS_LOGS_NPBODY_NO_LOG_ITEMS_ABB"
+msgstr "Žádné položky protokolu"
+
+msgid "IDS_PB_ACBUTTON_CHANGE_PICTURE_ABB"
+msgstr "ZMĚNIT OBRÁZEK"
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "E-mail (domů)"
+
+msgid "IDS_PB_BODY_GET_MORE_OUT_OF_SHARING_YOUR_PROFILE_AND_PROMOTE_YOUR_BUSINESS_USING_A_BUSINESS_PROFILE_CONTACTS_MSG"
+msgstr "Využijte lépe sdílení vašeho profilu a podporujte své podnikání pomocí obchodního profilu.\n\nKlepněte na vyznačenou oblast a nastavte svůj profil v Kontaktech."
+
+msgid "IDS_PB_BODY_LOADING_MORE_ING_ABB2"
+msgstr "Načítání dalších..."
+
+msgid "IDS_PB_BODY_OFF_M_NOT_USED"
+msgstr "Vypnout"
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "Telefon"
+
+msgid "IDS_PB_BODY_SELECT_A_PROFILE_TYPE"
+msgstr "Vyberte typ profilu."
+
+msgid "IDS_PB_BODY_SHARE_YOUR_BUSINESS_PROFILE_WITH_EVERYONE"
+msgstr "Sdílejte svůj obchodní profil se všemi."
+
+msgid "IDS_PB_BODY_SHARE_YOUR_PROFILE_INFO_MSG"
+msgstr "Můžete sdílet informace z profilu. Vyberte Osobní profil, pokud je chcete sdílet s vybranými kontakty, nebo vyberte Obchodní profil a sdílejte je se všemi uživateli funkce Sdílení profilu."
+
+msgid "IDS_PB_BODY_SHARE_YOUR_PROFILE_PICTURE_AND_STATUS_MSG"
+msgstr "Umožňuje sdílet obrázek v profilu a stav s ostatními uživateli pomocí aplikací Kontakty a Telefon."
+
+msgid "IDS_PB_BODY_TO_ADD_PERSONAL_EMERGENCY_CONTACTS_GO_TO_MSG"
+msgstr "Chcete-li přidat osobní nouzové kontakty, přejděte na Kontakty > menu Další > Skupiny > Nouzové kontakty > menu Další, a potom klepněte na tlačítko Přidat."
+
+msgid "IDS_PB_BODY_YOUR_NAME_STATUS_AND_PROFILE_PICTURE_WILL_BE_SHARED_WITH_YOUR_CONTACTS_YOU_CAN_SELECT_ADDITIONAL_INFO_YOU_WANT_TO_SHARE_FROM_THE_OPTIONS_BELOW"
+msgstr "Budete sdílet své jméno, stav a obrázek v profilu se svými kontakty. Níže můžete také vybrat další informace, které chcete sdílet."
+
+msgid "IDS_PB_BODY_YOU_CAN_ADD_A_PROFILE_PICTURE_AND_STATUS_MESSAGES_TO_SHARE_WITH_THE_CONTACTS_YOU_HAVE_SELECTED_MSG"
+msgstr "Přidejte obrázek v profilu a stavové zprávy, které budete moci sdílet s vybranými kontakty. Také uvidíte jejich profily a obrázky v profilu, které budou při změně automaticky aktualizovány. Přejděte na Kontakty a klepněte na vyznačenou oblast, abyste mohli nastavit vlastní profil."
+
+msgid "IDS_PB_BUTTON_CHANGE_PICTURE_ABB"
+msgstr "Změnit obrázek"
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "Vytvořit skupinu"
+
+msgid "IDS_PB_BUTTON_LINK_ANOTHER_CONTACT_ABB"
+msgstr "Přip. další kontakt"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "Přejmenovat"
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "Změnit usp."
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "Uložit"
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "Nastavit obrázek"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "Sdílet"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "Sdílet profil"
+
+msgid "IDS_PB_BUTTON_UPDATE_ABB9"
+msgstr "Aktual."
+
+msgid "IDS_PB_HEADER_ADDITIONAL_INFO_TO_SHARE_ABB"
+msgstr "Další info ke sdílení"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "Přidat pole"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "Přidat členy"
+
+msgid "IDS_PB_HEADER_BUSINESS_PROFILE_ABB"
+msgstr "Obchodní profil"
+
+msgid "IDS_PB_HEADER_CHANGE_PICTURE_ABB2"
+msgstr "Změnit obrázek"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "Vytvořit profil"
+
+msgid "IDS_PB_HEADER_DEF_CONTACT_PIC_STYLE_ABB"
+msgstr "Vých. styl obr. kont."
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "Odstranit kontakty"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "Odstr. skupiny"
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "Skupiny"
+
+msgid "IDS_PB_HEADER_HIDE"
+msgstr "Skrýt"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "Import"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "Import/export"
+
+msgid "IDS_PB_HEADER_LINKED_M_CONTACTS_ABB"
+msgstr "Připojen"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "Správa a zálohování kontaktů"
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "Další nastavení"
+
+msgid "IDS_PB_HEADER_MOVE_DEVICE_CONTACTS_ABB"
+msgstr "Přesun. kontakty v zařízení"
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "Jméno je již použito"
+
+msgid "IDS_PB_HEADER_PERSONAL_PROFILE_ABB"
+msgstr "Osobní profil"
+
+msgid "IDS_PB_HEADER_PROFILE_SHARING_ABB2"
+msgstr "Sdílení profilu"
+
+msgid "IDS_PB_HEADER_PROFILE_TYPE_ABB"
+msgstr "Typ profilu"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "Uložit kontakt"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "Vyb. kontakty"
+
+msgid "IDS_PB_HEADER_SELECT_EMERGENCY_CONTACT_ABB"
+msgstr "Vybrat tísňový kontakt"
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "Vyberte skupiny"
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "Vybrat obrázek"
+
+msgid "IDS_PB_HEADER_SELF_PROMOTION_MADE_EASY"
+msgstr "Snadná vlastní propagace"
+
+msgid "IDS_PB_HEADER_SET_AS_DEFAULT_ABB2"
+msgstr "Nas. jako vých."
+
+msgid "IDS_PB_HEADER_SHARE_MULTIPLE_CONTACTS_ABB"
+msgstr "Sdílet více kontaktů"
+
+msgid "IDS_PB_HEADER_SHARE_WITH"
+msgstr "Sdílet s"
+
+msgid "IDS_PB_HEADER_UNABLE_TO_MOVE_CONTACTS_ABB"
+msgstr "Kontakty nelze přesunout"
+
+msgid "IDS_PB_HEADER_UPDATE_CONTACT_DETAILS_ABB"
+msgstr "Aktual. detaily kontaktu"
+
+msgid "IDS_PB_HEADER_USING_PROFILE_SHARING_ABB2"
+msgstr "Použití Sdílení profilu"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "Přidat členy"
+
+msgid "IDS_PB_MBODY_DATE_OF_BIRTH"
+msgstr "Datum narození"
+
+msgid "IDS_PB_MBODY_ENHANCED_FEATURES"
+msgstr "Vylepšené funkce"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "Název skupiny"
+
+msgid "IDS_PB_MBODY_HELLO_E_ABB"
+msgstr "Ahoj!"
+
+msgid "IDS_PB_MBODY_LOAD_MORE"
+msgstr "Načíst další"
+
+msgid "IDS_PB_MBODY_PROFILE_SHARING_MODE_ABB"
+msgstr "Režim Sdílení profilu"
+
+msgid "IDS_PB_MBODY_SHARE_NEW_NUMBER_ABB"
+msgstr "Sdílet nové číslo"
+
+msgid "IDS_PB_MBODY_STATUS"
+msgstr "Stav"
+
+msgid "IDS_PB_MBODY_VIEW_FACEBOOK_PROFILE"
+msgstr "Zobr. profil na Facebooku"
+
+msgid "IDS_PB_NPBODY_ADD_PICTURES_TO_EXPRESS_YOURSELF"
+msgstr "Přidejte obrázky, abyste se vyjádřili"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS_USING_ENHANCED_MESSAGING"
+msgstr "Žádné kontakty nepoužívají Vylepšené zprávy"
+
+msgid "IDS_PB_NPBODY_NO_DUPLICATE_CONTACTS_ABB"
+msgstr "Žádné duplicitní kontakty"
+
+msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS_ABB"
+msgstr "Žádné Nouzové kontakty"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "Kř. jm. fonet."
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "Příjmení fonet."
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "Dr. jm. fonet."
+
+msgid "IDS_PB_NPBODY_SELECT_CONTACT_PICTURE"
+msgstr "Vyberte obrázek kontaktu"
+
+msgid "IDS_PB_NPBODY_SELECT_DEFAULT_CONTACT_PICTURE"
+msgstr "Vyberte výchozí obrázek kontaktu"
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "Výchozí styl obrázku kontaktu"
+
+msgid "IDS_PB_OPT_ENHANCED_MESSAGING_CONTACTS_ABB"
+msgstr "Kontakty pro Vylepšené zprávy"
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "Událost (např. narozeniny)"
+
+msgid "IDS_PB_OPT_FROM_DEVICE_ABB"
+msgstr "Ze zařízení"
+
+msgid "IDS_PB_OPT_FROM_PRELOADED_IMAGES_ABB"
+msgstr "Z předinstalovaných obrázků"
+
+msgid "IDS_PB_OPT_FROM_PRESET_STYLES_ABB"
+msgstr "Z předvolených stylů"
+
+msgid "IDS_PB_OPT_FROM_SD_CARD_ABB"
+msgstr "Z SD karty"
+
+msgid "IDS_PB_OPT_FROM_SIM_CARD_ABB"
+msgstr "Ze SIM karty"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "Skupiny a členové"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "Pouze skupiny"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "Domů"
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "Účet chatu"
+
+msgid "IDS_PB_OPT_MANAGE_LINKED_CONTACTS_ABB2"
+msgstr "Správa připojených kontaktů"
+
+msgid "IDS_PB_OPT_PROFILE_SHARING_ABB"
+msgstr "Sdílení profilu"
+
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Odeslat zprávu"
+
+msgid "IDS_PB_OPT_SET_DEFAULT_CONTACT_INFO_ABB"
+msgstr "Nast. výchozí informace kontaktu"
+
+msgid "IDS_PB_OPT_TO_DEVICE"
+msgstr "Do zařízení"
+
+msgid "IDS_PB_OPT_TO_SD_CARD"
+msgstr "Na SD kartu"
+
+msgid "IDS_PB_OPT_TO_SIM_CARD_ABB"
+msgstr "Na SIM kartu"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "Webová adresa"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "Číslo mobilního telefonu kontaktu bylo změněno z %1$s na %2$s. Detaily kontaktu byly aktualizovány."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "Kontakt se stejným jménem již existuje. Pokud ho chcete přesto uložit, klepněte na tlačítko Uložit, nebo klepněte na tlačítko Přejmenovat a uložte kontakt pod jiným jménem."
+
+msgid "IDS_PB_POP_CONTACTS_SAVED_ON_YOUR_DEVICE_WILL_BE_MOVED_TO_YOUR_SAMSUNG_ACCOUNT"
+msgstr "Kontakty uložené v zařízení budou přesunuty do Samsung účtu."
+
+msgid "IDS_PB_POP_MOVING_DEVICE_CONTACTS_TO_SAMSUNG_ACCOUNT_ING"
+msgstr "Přesouvání kontaktů v zařízení do Samsung účtu..."
+
+msgid "IDS_PB_POP_NO_SIM_CARD_HAS_BEEN_INSERTED_INSERT_A_SIM_CARD_AND_TRY_AGAIN"
+msgstr "Nebyla vložena žádná SIM karta. Vložte SIM kartu a opakujte akci."
+
+msgid "IDS_PB_POP_SHARE_CONTACTS_INDIVIDUALLY_THIS_MAY_TAKE_LONGER_MSG"
+msgstr "Umožňuje sdílet kontakty jednotlivě. Tato akce může trvat déle, protože je přijímací zařízení přijímá jednotlivě."
+
+msgid "IDS_PB_POP_SHARE_MULTIPLE_CONTACTS_AS_1_FILE_TO_REDUCE_TRANSMISSION_TIME_MSG"
+msgstr "Umožňuje sdílet více kontaktů jako 1 soubor, aby se zkrátila doba přenosu. Pokud druhé zařízení tento způsob nepodporuje, bude sdílen pouze 1 kontakt."
+
+msgid "IDS_PB_POP_TAP_UPDATE_TO_EDIT_THE_EXISTING_INFO_FOR_THIS_CONTACT"
+msgstr "Pokud chcete upravit stávající informace o tomto kontaktu, klepněte na tlačítko Aktualizovat."
+
+msgid "IDS_PB_POP_THIS_ACCOUNT_IS_READ_ONLY_THE_CONTACT_WILL_BE_HIDDEN_FROM_CONTACTS"
+msgstr "Tento účet je jen pro čtení. Kontakt bude v Kontaktech skryt."
+
+msgid "IDS_PB_POP_THIS_CONTACT_IS_READ_ONLY_THE_CONTACT_WILL_BE_HIDDEN_FROM_CONTACTS_FACEBOOK"
+msgstr "Tento kontakt je jen pro čtení. Kontakt bude v Kontaktech skryt."
+
+msgid "IDS_PB_POP_TO_MOVE_YOUR_DEVICE_CONTACTS_TO_YOUR_SAMSUNG_ACCOUNT_ENABLE_SYNC_CONTACTS"
+msgstr "Pokud chcete přesunout kontakty ze zařízení na Samsung účet, zapněte možnost Synchronizovat kontakty."
+
+msgid "IDS_PB_SBODY_AS_1_FILE"
+msgstr "Jako 1 soubor"
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "Paměť zařízení a všechny účty"
+
+msgid "IDS_PB_SBODY_INDIVIDUALLY"
+msgstr "Jednotlivě"
+
+msgid "IDS_PB_SBODY_MOVE_CONTACTS_SAVED_ON_YOUR_DEVICE_TO_YOUR_SAMSUNG_ACCOUNT"
+msgstr "Umožňuje přesunout kontakty uložené v zařízení na Samsung účet."
+
+msgid "IDS_PB_SBODY_SHARE_YOUR_PROFILE_WITH_SELECTED_CONTACTS"
+msgstr "Sdílejte svůj profil s vybranými kontakty."
+
+msgid "IDS_PB_SBODY_TAP_HERE_TO_SET_UP_YOUR_PROFILE_ABB"
+msgstr "Klepněte sem, chcete-li nastavit profil."
+
+msgid "IDS_PB_SBODY_TAP_HERE_TO_SHARE_PHONE_NUMBER_ABB"
+msgstr "Klepnutím sdílejte tel. číslo."
+
+msgid "IDS_PB_SBODY_TAP_HERE_TO_UPDATE_CONTACT_INFO_ABB"
+msgstr "Kl. aktualizujte info o kontaktu."
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "Adresa (vlastní)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "Adresa (domů)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "Adresa (jiná)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "Adresa (práce)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "Jako 1 soubor"
+
+msgid "IDS_PB_TMBODY_CREATE_GROUP_IN_ABB"
+msgstr "Vytvořit skupinu v"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "Zobrazení"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "E-mail (vlastní)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "E-mail (jiný)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "E-mail (práce)"
+
+msgid "IDS_PB_TMBODY_HELLO_PS_E"
+msgstr "Ahoj, %s!"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "Import/export"
+
+msgid "IDS_PB_TMBODY_INDIVIDUALLY"
+msgstr "Jednotlivě"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "Přesunout kontakty v zařízení"
+
+msgid "IDS_PB_TMBODY_SHARE_MULTIPLE_CONTACTS"
+msgstr "Sdílet více kontaktů"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "Byl exportován 1 kontakt."
+
+msgid "IDS_PB_TPOP_CANT_LINK_MORE_THAN_PD_CONTACTS"
+msgstr "Nelze spojit více než %d kontaktů."
+
+msgid "IDS_PB_TPOP_CANT_SELECT_MORE_THAN_PD_CONTACTS"
+msgstr "Nelze vybrat více než %d kontaktů."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "Odstraňování..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "Export byl zrušen."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "Kontakty nelze odstranit. Opakujte akci."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "Název skupiny je již použit."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "Import byl zrušen."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Bylo dosaženo maximálního počtu znaků."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_LINKED_HPD_REACHED"
+msgstr "Bylo dosaženo maximálního počtu kontaktů, které lze propojit (%d)."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_PRIMARY_CONTACTS_HPD_REACHED"
+msgstr "Bylo dosaženo maximálního počtu primárních kontaktů (%d)."
+
+msgid "IDS_PB_TPOP_MOVING_DEVICE_CONTACTS_TO_SAMSUNG_ACCOUNT_ING"
+msgstr "Přesouvání kontaktů v zařízení na Samsung účet..."
+
+msgid "IDS_PB_TPOP_NEW_PHONE_NUMBER_SHARED_WITH_1_CONTACT"
+msgstr "Nové telefonní číslo bylo sdíleno s 1 kontaktem."
+
+msgid "IDS_PB_TPOP_NEW_PHONE_NUMBER_SHARED_WITH_PD_CONTACTS"
+msgstr "Nové telefonní číslo bylo sdíleno s %d kontakty."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "Nebyl zadán název skupiny."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "Bylo exportováno %d kontaktů."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "Zpracování..."
+
+msgid "IDS_PB_TPOP_SELECT_2_OR_MORE_CONTACTS_TO_MERGE_THEM"
+msgstr "Vyberte 2 nebo více kontaktů, které chcete sloučit."
+
+msgid "IDS_PB_TPOP_SOME_CONTACTS_APPEAR_TO_BE_DUPLICATES_GO_TO_LINK_CONTACTS_TO_MANAGE_THEM"
+msgstr "Některé kontakty se zdají být duplicitní. Přejděte na Spojit kontakty, abyste je mohli spravovat."
+
+msgid "IDS_PB_TPOP_SOME_CONTACTS_IN_THIS_GROUP_SAVED_IN_P1SS_GROUP_MUST_BE_SAVED_IN_P2SS"
+msgstr "Některé kontakty z této skupiny byly uloženy do %1$s. Skupinu je nutné uložit do %2$s."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_CHANGE_STATUS_CHECK_NETWORK_CONNECTION_AND_TRY_AGAIN"
+msgstr "Nelze změnit stav. Zkontrolujte připojení k síti a opakujte akci."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_DISABLE_PROFILE_SHARING_CHECK_NETWORK_CONNECTION_AND_TRY_AGAIN"
+msgstr "Sdílení profilu se nepodařilo vypnout. Zkontrolujte připojení k síti a opakujte akci."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_ENABLE_PROFILE_SHARING_CHECK_NETWORK_CONNECTION_AND_TRY_AGAIN"
+msgstr "Sdílení profilu se nepodařilo zapnout. Zkontrolujte připojení k síti a opakujte akci."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_PASTE_TEXT_THAT_INCLUDES_EMOTICONS"
+msgstr "Nelze vložit text, který obsahuje emotikony."
+
+msgid "IDS_PB_TPOP_UNABLE_TO_SAVE_CONTACT_AS_EMERGENCY_CONTACT_NO_PHONE_NUMBER_ENTERED"
+msgstr "Kontakt nelze uložit jako tísňový kontakt. Nebylo zadáno žádné telefonní číslo."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Vybrat protokoly"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "Zobrazit podle"
+msgid "IDS_CLOG_OPT_ALL_CALLS_ABB"
+msgstr "Všechny hovory"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "Domů 2"
+msgid "IDS_KPD_OPT_ADD_WAIT"
+msgstr "Přidat čekání"
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "Přesunutí dokončeno."
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "Fonetické jméno"
 
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "Probíhá přesouvání"
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "Telefon"
 
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 kód byl ověřen."
+msgid "IDS_PB_OPT_GRID_VIEW"
+msgstr "Tabulka"
 
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 kód byl ověřen."
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Odeslat e-mail"
 
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "PIN odblokován."
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2 odblokován."
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2 byl změněn."
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "PIN2 zablokován."
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "PIN1 kód byl změněn."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "PIN1 kód byl zablokován."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "Chybný PIN2."
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "Nový PIN2 kód a potvrzení PIN2 kódu se neshodují"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "Chybný PUK1 kód."
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "Chybný PUK1 kód. Zbývá pokusů: %d."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "Chybný PUK2 kód. Zbývá pokusů: %d."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN byl změněn."
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "Nastavit datum"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Kontakty"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "Přidat účet"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "Bylo dosaženo maximálního počtu znaků."
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "Vyhledávání zařízení..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "Nesprávný PIN kód"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "HOTOVO"
@@ -88,47 +559,8 @@ msgstr "ZRUŠIT"
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
 msgstr "ODSTRANIT"
 
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "Potíže s připojením nebo neplatný kód MMI."
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "Soukromé číslo"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "ODESLAT"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2 kód byl zablokován. Obraťte se na poskytovatele (je zapotřebí PUK2 kód SIM karty)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "Žádné protokoly"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "Pokud zavoláte nebo přijmete hovor, nebo odešlete či přijmete zprávu, protokoly se objeví."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "SIM karta je zaneprázdněna. Opakujte akci později"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "SIM/RUIM karta je uzamknuta."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "SIM karta nebyla nalezena. Vložte SIM kartu do telefonu."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "Chyba sítě nebo SIM karty."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "Vibrační zpětná vazba je zapnutá."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "Vibrační zpětná vazba je vypnutá."
-
 msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
 msgstr "Číslo nelze volat. %d není číslo tísňové linky."
-
-msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
-msgstr "Číslo rychlé volby %d je odebráno."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "Číslo rychlé volby je přiřazeno."
@@ -136,17 +568,11 @@ msgstr "Číslo rychlé volby je přiřazeno."
 msgid "IDS_KPD_TPOP_ENTER_NUMBER"
 msgstr "Zadejte číslo."
 
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "PIN kód musí obsahovat %1$d až %2$d číslic. Opakujte akci."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "PIN2 kód musí obsahovat %1$d až %2$d číslic. Opakujte akci."
+msgid "IDS_KPD_POP_TO_SET_YOUR_VOICEMAIL_NUMBER_TAP_SET_NUMBER_OR_GO_TO_CALL_SETTINGS_MORE_VOICEMAIL_NUMBER"
+msgstr "Chcete-li nastavit číslo hlasové schránky, klepněte na tlačítko Nastavit číslo nebo přejděte na Nastavení hovorů > Další > Číslo hlasové schránky."
 
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
 msgstr "Tomuto číslu rychlé volby není přiřazen žádný kontakt. Chcete-li ho přiřadit, klepněte na OK."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "PIN kód byl vypnut. Před provedením změny zapněte PIN kód,"
 
 msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
 msgstr "Hl. sch."
@@ -166,17 +592,14 @@ msgstr "Vytvoř. kontakt"
 msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
 msgstr "Nastavení hovorů"
 
-msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
-msgstr "Přidat čekání"
-
 msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
 msgstr "Přidat 2sekundovou pauzu"
 
 msgid "IDS_KPD_ITAB3_KEYPAD"
 msgstr "Klávesnice"
 
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "Připojení k síti se nezdařilo"
+msgid "IDS_KPD_HEADER_SET_VOICEMAIL_NUMBER_ABB"
+msgstr "Nastavte číslo hl. schránky"
 
 msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
 msgstr "Vybrat SIM kartu pro volání"
@@ -193,23 +616,20 @@ msgstr "Přiřadit jako č. rychlé volby"
 msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
 msgstr "Nastavit číslo"
 
-msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
-msgstr "Odes. zprávu"
-
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "Storno"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "Přidat do Kontaktů"
 
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "Hesla se neshodují."
+msgid "IDS_LOGS_TPOP_NUMBER_REMOVED_FROM_CALL_BLOCK_LIST"
+msgstr "Číslo bylo odebráno ze seznamu blokovaných hovorů."
 
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "PIN kód byl zablokován. Zadejte PUK kód."
+msgid "IDS_LOGS_TPOP_NUMBER_REMOVED_FROM_CALL_AND_MESSAGE_BLOCK_LISTS"
+msgstr "Číslo bylo odebráno ze seznamů blokovaných hovorů a zpráv."
 
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "SIM karta blokována."
+msgid "IDS_LOGS_TPOP_NUMBER_ADDED_TO_CALL_BLOCK_LIST"
+msgstr "Číslo bylo přidáno do seznamu blokovaných hovorů."
+
+msgid "IDS_LOGS_TPOP_NUMBER_ADDED_TO_CALL_AND_MESSAGE_BLOCK_LISTS"
+msgstr "Číslo bylo přidáno do seznamů blokovaných hovorů a zpráv."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "Neuloženo"
@@ -226,86 +646,26 @@ msgstr "Chyba"
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "Zrušeno"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Bude odstraněno %d položek protokolu."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Všechny položky protokolu budou odstraněny."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "Bude odstraněna 1 položka protokolu."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "Zobrazit detaily kontaktu"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "Odeslat číslo"
+msgid "IDS_LOGS_OPT_REMOVE_FROM_BLOCK_LIST_ABB"
+msgstr "Odebrat ze seznamu blokovaných"
 
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "Nepřijaté hovory"
 
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "Odstranit"
-
 msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
 msgstr "Doby trvání hovorů"
 
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "Nepřijaté hovory"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "Již nezobrazovat"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "Neznámé číslo"
+msgid "IDS_LOGS_OPT_ADD_TO_BLOCK_LIST_ABB"
+msgstr "Přidat do seznamu blokovaných"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "Neznámý"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "Vybrat vše"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "Protokoly"
 
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "Včera"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "Dnes"
-
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "Vybráno %d"
-
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "Odstranit %d protokolů"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "Odstranit položky protokolu"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "Odstranit protokol"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "Odstranit"
-
-msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
-msgstr "Aktual. kontakt"
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "Odstranit"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "Vytv. kontakt"
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "Zrušit"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "Hlasové hovory"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "Videohovory"
 
 msgid "IDS_LOGS_BODY_SIM_CARD"
 msgstr "SIM karta"
@@ -316,17 +676,14 @@ msgstr "Všechny hovory"
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
 msgstr "Až zavoláte nebo přijmete hovory, protokoly se zobrazí zde."
 
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "Po volání nebo přijetí hovorů se položky protokolu zobrazí zde."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "UPRAVIT"
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "Zadat text"
-
 msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
 msgstr "Některé kontakty se zdají být duplicitní."
+
+msgid "IDS_PB_TPOP_REMOVED_FROM_CALL_BLOCK_LIST"
+msgstr "Odebrán ze seznamu blokovaných hovorů."
+
+msgid "IDS_PB_TPOP_REMOVED_FROM_CALL_AND_MESSAGE_BLOCK_LIST"
+msgstr "Odebrán ze seznamu blokovaných hovorů a zpráv."
 
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "Bylo importováno %d kontaktů."
@@ -334,8 +691,11 @@ msgstr "Bylo importováno %d kontaktů."
 msgid "IDS_PB_TPOP_CONTACTS_LINKED"
 msgstr "Kontakty byly spojeny."
 
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "1 číslo bylo odebráno ze seznamu automaticky odmítaných čísel."
+msgid "IDS_PB_TPOP_ADDED_TO_CALL_BLOCK_LIST"
+msgstr "Přidán do seznamu blokovaných hovorů."
+
+msgid "IDS_PB_TPOP_ADDED_TO_CALL_AND_MESSAGE_BLOCK_LIST"
+msgstr "Přidán do seznamu blokovaných hovorů a zpráv."
 
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "Byl importován 1 kontakt."
@@ -351,15 +711,6 @@ msgstr "Spojit kontakty"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
 msgstr "Dostupné kontakty"
-
-msgid "IDS_PB_SK_SET"
-msgstr "Nastavit"
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "Vytv."
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "Př. pole"
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "Importování kontaktů..."
@@ -382,9 +733,6 @@ msgstr "Kontakty byly exportovány"
 msgid "IDS_PB_SBODY_ALL_CONTACTS"
 msgstr "Všechny kontakty"
 
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "Z účtů určených jen pro čtení nemůžete odstranit kontakty, ale můžete je v kontaktech skrýt."
-
 msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
 msgstr "Když je zapnutá Synchronizace, tento kontakt bude odstraněn ze všech synchronizovaných účtů, ve kterých je uložen."
 
@@ -394,29 +742,14 @@ msgstr "Když je zapnutá Synchronizace, tento kontakt a všechny jeho propojen�
 msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
 msgstr "Když je zapnutá Synchronizace, tento kontakt a všechny jeho propojené kontakty v ostatních synchronizovaných účtech budou odstraněny."
 
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "Probíhá aktualizace informací o poskytovateli služby..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Kontakt nelze přidat. Bylo dosaženo maximálního počtu propojitelných kontaktů (%d)."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Kontakty nelze přidat. Bylo dosaženo maximálního počtu propojitelných kontaktů (%d)."
-
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Kontakt bude odstraněn."
 
 msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
 msgstr "Tento kontakt a všechny jeho propojené kontakty budou odstraněny."
 
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "Byl překročen maximální počet položek, který je možné vybrat (%d)."
-
 msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
 msgstr "Byl překročen maximální počet kontaktů, které lze najednou sdílet (%1$d). Bude sdíleno pouze prvních %2$d kontaktů."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "Funkci Chamada Certa je možné použít k identifikaci poskytovatelů služby kontaktů a jejich zobrazení v seznamu kontaktů. Později můžete tuto funkci vyvolat stisknutím tlačítka menu a zvolením položky Aktualizovat informace o poskytovateli služeb. Klepnutím na tlačítko OK identifikujete poskytovatele služby kontaktů."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
 msgstr "Klepnutím na tlačítko OK zastavíte import kontaktů ze SIM karty."
@@ -427,20 +760,8 @@ msgstr "Klepnutím na tlačítko OK zastavíte export kontaktů do %s."
 msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
 msgstr "Klepněte na tlačítko Export a vyberte kontakty, které chcete exportovat. Může dojít ke ztrátě některých informací o kontaktech."
 
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "Některé nebo všechny kontakty se nepodařilo aktualizovat."
-
 msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
 msgstr "Může dojít ke ztrátě některých informací o kontaktu."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "Paměť karty SIM je plná."
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "Odebírání..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "Bylo aktualizováno %d telefonních čísel."
 
 msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
 msgstr "Bude odstraněno %d kontaktů."
@@ -448,38 +769,14 @@ msgstr "Bude odstraněno %d kontaktů."
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "%1$d kontaktů bylo exportováno do %2$s."
 
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d kontaktů bylo exportováno do Zařízení/Kontakty/Importované/%2$s.vcf."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "Nedostatek paměti."
-
 msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
 msgstr "Nové kontakty budou ukládány do Kontaktů v tomto zařízení."
 
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "Režim FDN aktivován."
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "Nezdařilo se."
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "Zrušit změny?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "Odstraňování kontaktů..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "Odstraňování kontaktů bylo zrušeno. Některé kontakty již byly pravděpodobně odstraněny."
+msgid "IDS_PB_POP_MANAGE_BLOCK_LIST_IN_CALL_SETTINGS"
+msgstr "Seznam blokovaných čísel lze spravovat v Nastavení hovorů."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "Import kontaktů z %s bude zastaven."
-
-msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
-msgstr "Již existuje."
-
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Všechny připojené kontakty budou odstraněny."
 
 msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
 msgstr "Všechny kontakty budou odstraněny."
@@ -487,23 +784,8 @@ msgstr "Všechny kontakty budou odstraněny."
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "Všechny změny budou zrušeny."
 
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "Přidávání..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "Bylo aktualizováno 1 telefonní číslo."
-
 msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
 msgstr "1 kontakt bude odstraněn."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "Byl odebrán 1 kontakt."
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "Práce"
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "Hlasový hovor"
@@ -511,19 +793,7 @@ msgstr "Hlasový hovor"
 msgid "IDS_PB_OPT_VIDEO_CALL"
 msgstr "Videohovor"
 
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "Aktualizovat informace o poskytovateli služeb"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "Rozpojit kontakt"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "Rozpojit kontakty"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
-msgstr "Fotografovat"
-
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
 msgstr "Fotografovat"
 
 msgid "IDS_PB_OPT_SPOUSE"
@@ -538,26 +808,23 @@ msgstr "Sestra"
 msgid "IDS_PB_OPT_SIM_CARD"
 msgstr "SIM karta"
 
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "Sdílet přes"
-
 msgid "IDS_PB_OPT_SHARE"
 msgstr "Sdílet"
-
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "Nastavení"
 
 msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
 msgstr "Vybrat z kontaktů"
 
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "SD karta"
-
 msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
 msgstr "Uložit kontakt do"
 
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "Zvonění"
+
 msgid "IDS_PB_OPT_REORDER"
 msgstr "Změnit uspořádání"
+
+msgid "IDS_PB_OPT_REMOVE_FROM_BLOCK_LIST_ABB"
+msgstr "Odebrat ze seznamu blokovaných"
 
 msgid "IDS_PB_OPT_REMOVE"
 msgstr "Odebrat"
@@ -580,23 +847,11 @@ msgstr "Pracovní partner"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "Rodič"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "Pager"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "Jiné"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
 msgstr "Organizace"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "Matka"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "Mobil"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "Zpráva"
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Správa oblíbených položek"
@@ -610,20 +865,11 @@ msgstr "Hlavní"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "Napřed příjmení"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "Příjmení"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "Domů"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "Domů"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangouts"
@@ -636,12 +882,6 @@ msgstr "Přítel"
 
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "Napřed křestní jméno"
-
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "Jméno"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "Kontakt pevné volby"
 
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "Fax (do práce)"
@@ -661,9 +901,6 @@ msgstr "Již nezobrazovat"
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "Partner(ka)"
 
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "Zařízení"
-
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "Vlastní"
 
@@ -676,9 +913,6 @@ msgstr "Dítě"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "Bratr"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "Narozeniny"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "Asistent"
 
@@ -688,14 +922,14 @@ msgstr "Výročí"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "Přidat pole"
+msgid "IDS_PB_OPT_ADD_TO_BLOCK_LIST_ABB"
+msgstr "Přidat do seznamu blokovaných"
 
 msgid "IDS_PB_OPT_ADD"
 msgstr "Přidat"
 
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "Účet"
+msgid "IDS_PB_NPBODY_TAP_TO_ADD_SHORTCUT"
+msgstr "Klepnutím přidejte zástupce"
 
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "Hledat"
@@ -705,12 +939,6 @@ msgstr "Žádná čísla služeb"
 
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "Nebylo nic nalezeno"
-
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "Žádné tísňové kontakty"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "Žádné kontakty"
 
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "Seřadit podle"
@@ -730,8 +958,8 @@ msgstr "Odeslat jednotlivě"
 msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
 msgstr "Odeslat informace o kontaktu"
 
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "Vybrat vše"
+msgid "IDS_PB_MBODY_PROFILE_SHARING"
+msgstr "Sdílení profilu"
 
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "%d kontaktů"
@@ -757,38 +985,14 @@ msgstr "1 kontakt"
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "Kontakty"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "Paměť USB není k dispozici"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "Nelze přidat"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "Nelze přidat"
-
 msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
 msgstr "Navrhované kontakty"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "Sdílet přes"
 
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "Nastavit obrázek kontaktu"
 
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "Nastavení"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "Poskytovatel služeb"
-
 msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
 msgstr "Odeslat info o kontaktu"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "Vyberte SIM kartu pro volání"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "Vybrat SIM kartu pro volání"
 
 msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
 msgstr "Vybrat SIM kartu pro volání"
@@ -796,17 +1000,11 @@ msgstr "Vybrat SIM kartu pro volání"
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "Vyberte kontakt"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "Vybrat"
-
 msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
 msgstr "Uložit kontakty do"
 
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "Změnit uspořádání"
-
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "Odstranit"
 
 msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
 msgstr "Primární kontakty (%d)"
@@ -814,16 +1012,10 @@ msgstr "Primární kontakty (%d)"
 msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
 msgstr "Prim. kontakty (%1$d/%2$d)"
 
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "Telefon"
-
 msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
 msgstr "Osobní kontakty"
 
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
-msgstr "Vybráno %d"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
 msgstr "Vybráno %d"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
@@ -832,14 +1024,11 @@ msgstr "Formát jména"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "Nejčastěji používané kontakty"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "Já"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "Správa oblíbených položek"
 
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "Seznam kontaktů"
+msgid "IDS_PB_HEADER_LINK_CONTACTS_ABB"
+msgstr "Spojit kontakty"
 
 msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
 msgstr "Připojené kontakty"
@@ -849,9 +1038,6 @@ msgstr "Import kontaktů"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "Import"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "Oblíbené"
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
 msgstr "Export kontaktů na SIM kartu"
@@ -874,29 +1060,14 @@ msgstr "Nouzové kontakty"
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "Upravit"
 
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "Zobrazit jména podle"
-
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "Zobrazení"
 
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
 msgstr "Zrušit změny"
 
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "Odstranit položku"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "Vytvořit"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "Obrázek kontaktu"
-
 msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
 msgstr "Dostupné kontakty"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "Kontakty"
 
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "Kontakty byly exportovány"
@@ -910,11 +1081,8 @@ msgstr "Zrušit import"
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "Zrušit export"
 
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "Opakujte akci"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "Uložit"
+msgid "IDS_PB_HEADER_ADD_TO_BLOCK_LIST_ABB"
+msgstr "Přidat do seznamu blok."
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "Telefon"
@@ -924,9 +1092,6 @@ msgstr "OK"
 
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "Poznámky"
-
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "Další"
 
 msgid "IDS_PB_BUTTON_EXPORT"
 msgstr "Export"
@@ -938,7 +1103,7 @@ msgid "IDS_PB_BUTTON_DONE_ABB3"
 msgstr "Hotovo"
 
 msgid "IDS_PB_BUTTON_DISCARD_ABB"
-msgstr "Zrušit"
+msgstr "Smazat"
 
 msgid "IDS_PB_BUTTON_DELETE_ABB4"
 msgstr "Odstranit"
@@ -949,44 +1114,14 @@ msgstr "Vytvořit"
 msgid "IDS_PB_BUTTON_CHANGE_ABB"
 msgstr "Změnit"
 
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Storno"
-
 msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
 msgstr "Přidat účet"
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "Windows Live"
 
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "Webové stránky"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "Probíhá aktualizace seznamu kontaktů..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "Nelze uložit z důvodu chyby SIM karty."
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "Titul"
-
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Kontakt bude odstraněn."
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "Informace o poskytovateli služeb u vybraných kontaktů budou aktualizovány. Tato funkce vyžaduje připojení k síti a může mít za následek další poplatky. Doba potřebná k dokončení procesu bude záviset na stavu připojení k síti."
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "Telefon"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "Skype"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "Probíhá inicializace SIM karty..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "Číslo služby"
 
 msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
 msgstr "Jednotlivé odesílání vizitek může trvat déle, protože je přijímací zařízení přijímá jednotlivě."
@@ -996,18 +1131,6 @@ msgstr "Odesláním řady kontaktů společně se zkrátí doba přenosu. Pokud 
 
 msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
 msgstr "Vyberte způsob odeslání informací o kontaktu."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "Vybráno"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "Odebrat z oblíbených položek"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "Fotografie"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "Tel. číslo"
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "Fonetické jméno"
@@ -1021,32 +1144,14 @@ msgstr "Příjmení foneticky"
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "Křestní jméno foneticky"
 
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "Další e-maily"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "Žádný výsledek hledání"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "Žádné skupiny"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "Poznámky"
-
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "Přezdívka"
 
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "Za jménem"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "Titul"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "Jméno"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "Moje kontakty"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "Druhé jméno"
@@ -1057,77 +1162,20 @@ msgstr "Příjmení"
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
 msgstr "Prac. zařazení"
 
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "Import ze SIM karty"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "Import ze SIM2 karty"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "Probíhá import.."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "Obrázek"
-
 msgid "IDS_PB_BODY_IM"
 msgstr "IM"
 
 msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Pokud poskytovatel služeb přednastavil na SIM kartě čísla služeb, zobrazí se zde."
 
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "Galerie"
-
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "Křestní jméno"
-
-msgid "IDS_PB_BODY_FAX"
-msgstr "Fax"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "Export na SIM kartu"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "Export na SIM2 kartu"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "Export na SD kartu"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "E-mail"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "Zrušit změny"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "Přátelé"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "Rodina"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "Datum"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "Spolupracovníci"
 
 msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
 msgstr "Kontakty, které byly identifikovány jako duplicitní, budou navrženy automaticky."
 
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "Kontakty"
-
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "Společnost"
-
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "Tlačítko pro rozbalení seznamu"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "Automatická doporučení mohou extrahovat nejzajímavější části ze zvukových souborů."
 
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Až vytvoříte kontakty, zobrazí se zde."
@@ -1135,87 +1183,132 @@ msgstr "Až vytvoříte kontakty, zobrazí se zde."
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Až přidáte kontakty, zobrazí se zde."
 
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "Přidat k oblíbeným položkám"
-
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "Adresa"
-
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "Účty"
-
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "AB"
-
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "PIN zablokován."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "Chybný PUK2."
-
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "Chybný PIN1 kód."
-
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "Přidat existující kontakt"
-
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "Žádné primární kontakty"
-
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "Primární kontakty"
-
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "Vytvořit primární kontakt"
-
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "Přidat primární kontakty"
-
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "Nastavit datum"
-
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "Nový PIN kód a potvrzení PIN kódu se neshodují."
-
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Až vytvoříte primární kontakty, zobrazí se zde."
-
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "Nelze vybrat více položek"
 
 msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
 msgstr "Vložte SIM kartu."
 
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "Poskytovatelem služeb kontaktu, který voláte, je %1$s. Klepnutím na OK uskutečníte hovor pomocí SIM karty %2$s."
-
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "Použít SIM kartu %s"
-
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "Aktuální SIM"
-
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "Telefonní automat"
-
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "Chybný znak."
-
 msgid "IDS_HS_BUTTON_PHONE_M_CALL"
 msgstr "Telefon"
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "Odchozí hovor"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Storno"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "Příchozí hovor"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Odstranit"
+
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Vybrat vše"
+
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Včera"
+
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Dnes"
+
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
+
+msgid "IDS_PB_OPT_WORK"
+msgstr "Práce"
+
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Nastavení"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD karta"
+
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Pager"
+
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Jiné"
+
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Mobil"
+
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Zpráva"
+
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Příjmení"
+
+msgid "IDS_PB_OPT_HOME"
+msgstr "Domů"
+
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Jméno"
+
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Zařízení"
+
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Narozeniny"
+
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Žádné kontakty"
+
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Vybrat vše"
+
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Nastavení"
+
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Odstranit"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "Já"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Oblíbené"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Vytvořit"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Uložit"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Další"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Storno"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Tel. číslo"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Poznámky"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "E-mail"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Datum"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Kontakty"
+
+msgid "IDS_PB_BODY_ACCOUNTS"
+msgstr "Účty"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
 msgstr "Zobrazí se pouze prvních %d kontaktů."
 
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "Můj profil"
-
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
 msgstr "Klepnutím sem přidejte zástupce"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "UPRAVIT"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "Vlastní typ"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "Skupiny"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "Nastavit"
 
