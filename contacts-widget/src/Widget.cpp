@@ -107,7 +107,7 @@ Evas_Object *Widget::createEmptyLayout(Evas_Object *parent)
 			(Edje_Signal_Cb) makeCallback(&Widget::onAddPressed), this);
 
 	elm_object_translatable_part_text_set(layout, PART_TITLE,
-			"IDS_PB_HEADER_CONTACTS_M_APPLICATION");
+			"IDS_PB_BODY_CONTACTS");
 	elm_object_translatable_part_text_set(layout, PART_HELP,
 			"IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT");
 
@@ -138,7 +138,7 @@ Evas_Object *Widget::createEditButton(Evas_Object *parent)
 {
 	m_EditButton = elm_button_add(parent);
 	elm_object_style_set(m_EditButton, BUTTON_STYLE_CUSTOM_SMALL);
-	elm_object_translatable_text_set(m_EditButton, "IDS_QP_ACBUTTON_EDIT_ABB");
+	elm_object_translatable_text_set(m_EditButton, "IDS_HS_ACBUTTON_EDIT");
 	evas_object_smart_callback_add(m_EditButton, "clicked",
 			makeCallback(&Widget::onEditPressed), this);
 
@@ -178,7 +178,7 @@ void Widget::setEditMode(bool isEnabled)
 	m_EditMode = isEnabled;
 	elm_object_translatable_text_set(m_EditButton, m_EditMode
 			? "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
-			: "IDS_QP_ACBUTTON_EDIT_ABB");
+			: "IDS_HS_ACBUTTON_EDIT");
 
 	for (auto &&item : *m_Gengrid) {
 		if (item != m_AddButton) {

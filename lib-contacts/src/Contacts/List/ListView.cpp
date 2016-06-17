@@ -70,8 +70,7 @@ ListView::ListView(Model::PersonProvider *provider)
 	auto strings = Common::getSelectViewStrings();
 	strings.titleDefault = "IDS_PB_TAB_CONTACTS";
 	strings.titleSingle = "IDS_PB_HEADER_SELECT_CONTACT_ABB2";
-	/* FIXME: Use different title for multi mode */
-	strings.titleMulti = "IDS_PB_HEADER_SELECT_CONTACT_ABB2";
+	strings.titleMulti = "IDS_PB_HEADER_SELECT_CONTACTS_ABB";
 	setStrings(strings);
 }
 
@@ -152,7 +151,7 @@ void ListView::onMenuPressed()
 	menu->create(getEvasObject());
 
 	if (!m_PersonGroups.empty()) {
-		menu->addItem("Groups", [this] {
+		menu->addItem("IDS_PB_OPT_GROUPS", [this] {
 			Groups::GroupsView *groupsView = new Groups::GroupsView();
 			getNavigator()->navigateTo(groupsView);
 		});
