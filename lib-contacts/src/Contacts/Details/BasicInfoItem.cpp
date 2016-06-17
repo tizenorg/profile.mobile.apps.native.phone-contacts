@@ -71,7 +71,7 @@ Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
 char *BasicInfoItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_NAME) == 0) {
-		return strdup(m_Name.getValue());
+		return Utils::safeDup(m_Name.getValue());
 	} else if (strcmp(part, PART_PHONETIC_NAME) == 0) {
 		return strdup(m_PhoneticName.getValue().c_str());
 	} else if (strcmp(part, PART_COMPANY) == 0) {
