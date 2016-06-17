@@ -91,9 +91,7 @@ namespace Contacts
 
 			Ui::Genlist *createGenlist(Evas_Object *parent);
 			Evas_Object *createEmptyLayout(Evas_Object *parent);
-
 			void setEmptyState(bool isEmpty);
-			void setIndexState(bool isVisible);
 
 			Ui::GenlistGroupItem *createSection(SectionId sectionId);
 			void insertSection(Ui::GenlistGroupItem *section, SectionId sectionId);
@@ -108,6 +106,7 @@ namespace Contacts
 			void updateAddButton();
 
 			Evas_Object *createIndex(Evas_Object *parent);
+			void updateIndex();
 			Elm_Index_Item *insertIndexItem(const char *indexLetter,
 					Elm_Index_Item *nextItem = nullptr);
 

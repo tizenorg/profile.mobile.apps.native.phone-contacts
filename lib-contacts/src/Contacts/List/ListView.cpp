@@ -338,7 +338,7 @@ Evas_Object *ListView::createEmptyLayout(Evas_Object *parent)
 
 void ListView::setEmptyState(bool isEmpty)
 {
-	setIndexState(!isEmpty);
+	updateIndex();
 
 	Evas_Object *genlist = m_Genlist->getEvasObject();
 	if (isEmpty) {
@@ -356,12 +356,6 @@ void ListView::setEmptyState(bool isEmpty)
 		evas_object_hide(m_NoContent);
 		elm_box_unpack(m_Box, m_NoContent);
 	}
-}
-
-void ListView::setIndexState(bool isVisible)
-{
-	const char *signal = isVisible ? "elm,state,fastscroll,show" : "elm,state,fastscroll,hide";
-	elm_layout_signal_emit(getEvasObject(), signal, "");
 }
 
 Ui::GenlistGroupItem *ListView::createSection(SectionId sectionId)
@@ -509,6 +503,13 @@ Evas_Object *ListView::createIndex(Evas_Object *parent)
 			(Evas_Smart_Cb) makeCallback(&ListView::onIndexSelected), this);
 
 	return m_Index;
+}
+
+void ListView::updateIndex()
+{
+	bool isVisible = !m_PersonGroups.empty() && !m_IsSearching;
+	const char *signal = isVisible ? "elm,state,fastscroll,show" : "elm,state,fastscroll,hide";
+	elm_layout_signal_emit(getEvasObject(), signal, "");
 }
 
 Elm_Object_Item *ListView::insertIndexItem(const char *indexLetter, Elm_Object_Item *nextItem)
@@ -677,6 +678,7 @@ void ListView::onSearchChanged(const char *str)
 	bool isSearching = str && *str;
 	if (isSearching != m_IsSearching) {
 		m_IsSearching = isSearching;
+		updateIndex();
 		updateSections();
 	}
 
