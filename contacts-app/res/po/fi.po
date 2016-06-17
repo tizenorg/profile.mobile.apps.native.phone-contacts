@@ -1,83 +1,230 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "Soitetut puhelut"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "Ei lokeja"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "Edellinen puhelu"
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "OK"
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "Vastatut puhelut"
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "Lähetä viesti"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "Suodatusperuste"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "Ei numeroa"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "Luo"
+
+msgid "IDS_HINTS_BODY_GET_MORE_OUT_OF_SHARING_YOUR_PROFILE_AND_PROMOTE_YOUR_BUSINESS_USING_A_BUSINESS_PROFILE_MSG"
+msgstr "Hyödynnä profiilin jakamista entistä tehokkaammin ja edistä liiketoimintaasi käyttämällä työprofiilia.\n\nVoit määrittää oman profiilin valitsemalla %1$sYhteystiedot%2$s ja napauttamalla merkittyä aluetta."
+
+msgid "IDS_HINTS_TMBODY_PROMOTE_YOURSELF"
+msgstr "Mainosta itseäsi"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "Kopioitu leikepöydälle."
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "Sähköposti (henk.koht.)"
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "Puhelin"
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "Luo ryhmä"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "Nimeä uud."
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "Järj. uud."
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "Tall. silti"
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "Aseta kuva"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "Jaa"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "Jaa profiili"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "Lisää kenttä"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "Lisää jäseniä"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "Luo profiili"
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "Poista yhteystiedot"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "Poista ryhmät"
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "Ryhmät"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "Tuo"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "Tuo/vie"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "Yhteystiet. hallinta ja varmuuskop."
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "Lisää asetuksia"
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "Nimi on jo käytössä"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "Tallenna yhteystieto"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "Val. yht.tiedot"
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "Valitse ryhmät"
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "Valitse kuva"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "Lisää jäseniä"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "Ryhmän nimi"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "Fon. etunimi"
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "Fon. sukunimi"
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "Fon. toinen nimi"
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "Yhteyshenkilön oletuskuvan tyyli"
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "Tapahtuma (esim. syntymäpäivä)"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "Ryhmät ja jäsenet"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "Vain ryhmät"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "Koti"
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "Pikaviestitili"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "Verkko-osoite"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "Yhteyshenkilön matkapuhelinnumero %1$s on muuttunut numeroksi %2$s. Yhteystiedot on päivitetty."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "Samanniminen yhteyshenkilö on jo olemassa. Napauta Tallenna silti, jos haluat tallentaa sen silti, tai napauta Nimeä uudelleen, jos haluat tallentaa yhteyshenkilön toisella nimellä."
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "Laitteen muisti ja kaikki tilit"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "Osoite (mukautettu)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "Osoite (koti)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "Osoite (muu)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "Osoite (työ)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "Yhtenä tiedostona"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "Näyttö"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "Sähköposti (mukautettu)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "Sähköposti (muu)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "Sähköposti (työ)"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "Tuo/vie"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "Siirrä laitteen yhteystiedot"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "1 yhteystieto viety."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "Poistetaan..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "Vienti peruutettiin."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "Yhteystietojen poistaminen epäonnistui. Yritä uudelleen."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "Ryhmän nimi on jo käytössä."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "Tuonti peruutettiin."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Merkkien enimmäismäärä on saavutettu."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "Ryhmän nimeä ei ole annettu."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "%d yhteystietoa viety."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "Käsitellään..."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Valitse lokit"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "Näyttöperuste"
+msgid "IDS_CLOG_OPT_ALL_CALLS_ABB"
+msgstr "Kaikki puhelut"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "Koti 2"
+msgid "IDS_KPD_OPT_ADD_WAIT"
+msgstr "Lisää odotus"
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "Siirto on valmis."
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "Foneettinen nimi"
 
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "Siirretään..."
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "Puhelin"
 
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 vahvistettu."
-
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 vahvistettu."
-
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "PIN-lukitus poistettu."
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2-lukitus poistettu."
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2-koodi vaihdettu."
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "PIN2-koodi lukittu."
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "PIN1-koodi vaihdettu."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "PIN1-koodi on lukittu."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "Väärä PIN2-koodi"
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "Uusi ja vahvistettu PIN2-koodi eivät täsmää."
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "Virheellinen PUK1-koodi"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "Virheellinen PUK1-koodi. %d yritystä jäljellä."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "Virheellinen PUK2-koodi. %d yritystä jäljellä."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN-koodi vaihdettu."
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "Aseta päivämäärä"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Yhteystiedot"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "Lisää tili"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "Merkkien enimmäismäärä saavutettu."
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "Tarkistetaan laitteita..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "Väärä PIN-koodi"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "VALMIS"
@@ -88,68 +235,14 @@ msgstr "PERUUTA"
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
 msgstr "POISTA"
 
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "Yhteysongelma tai virheellinen MMI-koodi."
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "Yksityinen numero"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "LÄHETÄ"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2-koodi lukittu. Ota yhteyttä palveluntarjoajaan (SIM PUK2 -koodi vaaditaan)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "Ei lokeja"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "Kun soitat/vastaanotat puhelun tai lähetät/vastaanotat viestin, lokit tulevat näyttöön."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "SIM-kortti on varattu. Yritä myöhemmin uudelleen"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "SIM/RUIM-kortti on lukittu."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "SIM-korttia ei löytynyt. Aseta SIM-kortti puhelimeen."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "Verkon tai SIM-kortin virhe."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "Värinäpalaute käytössä."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "Värinäpalaute poistettu käytöstä."
-
-msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
-msgstr "Numeroon ei voi soittaa. %d ei ole hätänumero."
-
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
 msgstr "Pikavalintanumero %d on poistettu."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "Pikavalintanumero määritetty."
 
-msgid "IDS_KPD_TPOP_ENTER_NUMBER"
-msgstr "Anna numero."
-
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "PIN-koodin on oltava %1$d–%2$d merkkiä pitkä. Yritä uudelleen."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "PIN2-koodin on oltava %1$d–%2$d merkkiä pitkä. Yritä uudelleen."
-
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
 msgstr "Tähän pikavalintanumeroon ei ole liitetty yhteystietoa. Lisää se nyt napauttamalla OK."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "PIN-koodi on poistettu käytöstä. Ota PIN-koodi ennen sen muuttamista käyttöön."
-
-msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
-msgstr "Vastaaja"
 
 msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
 msgstr "Päiv. yht.tieto"
@@ -157,17 +250,11 @@ msgstr "Päiv. yht.tieto"
 msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
 msgstr "Pikavalinta-aset."
 
-msgid "IDS_KPD_OPT_REMOVE"
-msgstr "Poista"
-
 msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
 msgstr "Luo yhteystieto"
 
 msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
 msgstr "Puheluasetukset"
-
-msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
-msgstr "Lisää odotus"
 
 msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
 msgstr "Lisää 2 sekunnin tauko"
@@ -175,41 +262,17 @@ msgstr "Lisää 2 sekunnin tauko"
 msgid "IDS_KPD_ITAB3_KEYPAD"
 msgstr "Näppäim."
 
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "Verkkoyht. ei voi muodostaa"
-
-msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Valitse SIM-kortti puheluille"
-
 msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
 msgstr "Hakutulokset (%d)"
-
-msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
-msgstr "Hätäpuhelu"
 
 msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
 msgstr "Määritä pikavalintanumeroksi"
 
-msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
-msgstr "Määritä numero"
-
 msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
 msgstr "Läh. viesti"
 
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "Peruuta"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "Lisää yhteystietoihin"
-
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "Salasanat eivät ole samat."
-
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "PIN-koodi on lukittu. Anna PUK-koodi."
-
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "SIM-kortti estetty."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "Ei tallennettu"
@@ -226,122 +289,26 @@ msgstr "Epäonnistui"
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "Peruutettu"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "%d lokikohdetta poistetaan."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Kaikki lokikohteet poistetaan."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "1 lokikohde poistetaan."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "Näytä yhteystiedot"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "Lähetä numero"
-
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "Vastaamattomat puhelut"
-
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "Poista"
-
-msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
-msgstr "Puheluiden kestot"
-
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "Vastaamattomat puhelut"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "Älä näytä uudelleen"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "Tuntem. numero"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "Tuntematon"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "Valitse kaikki"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "Lokit"
-
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "Eilen"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "Tänään"
 
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "%d valittu"
 
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "Poista %d lokia"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "Poista lokikohteet"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "Poista loki"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "Poista"
-
-msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
-msgstr "Päiv. yht.tieto"
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "Poista"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "Luo yht.tieto"
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "Peruuta"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "Äänipuhelut"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "Videopuhelut"
-
-msgid "IDS_LOGS_BODY_SIM_CARD"
-msgstr "SIM-kortti"
-
-msgid "IDS_LOGS_BODY_ALL_CALLS"
-msgstr "Kaikki puhelut"
-
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
 msgstr "Kun olet soittanut tai vastaanottanut puheluita, ne kirjataan tänne."
-
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "Kun olet soittanut tai vastaanottanut puheluita, lokikohteet näytetään täällä."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "MUOKKAA"
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "Kirjoita teksti"
-
-msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
-msgstr "Jotkin yhteystiedot näyttävät olevan kahdennettuja."
 
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "%d yhteystietoa tuotu."
 
-msgid "IDS_PB_TPOP_CONTACTS_LINKED"
-msgstr "Yhteystiedot liitetty."
-
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "1 numero poistettu automaattisen hylkäyksen luettelosta."
-
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "1 yhteystieto tuotu."
-
-msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
-msgstr "Palvelunumerot"
 
 msgid "IDS_PB_TMBODY_NAME_FORMAT"
 msgstr "Nimen muoto"
@@ -351,15 +318,6 @@ msgstr "Liitä yhteystiedot"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
 msgstr "Näytettävät yhteystiedot"
-
-msgid "IDS_PB_SK_SET"
-msgstr "Aseta"
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "Luo"
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "L. kentt."
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "Tuodaan yhteystietoja..."
@@ -379,98 +337,14 @@ msgstr "Yhteystiedot tuotu"
 msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
 msgstr "Yhteystiedot viety"
 
-msgid "IDS_PB_SBODY_ALL_CONTACTS"
-msgstr "Kaikki yhteystiedot"
-
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "Vain luku -muotoisilla tileillä olevia yhteystietoja ei voi poistaa, mutta ne voi piilottaa yhteystietoihin."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
-msgstr "Kun Synkronoi-toiminto on käytössä, tämä yhteystieto poistetaan kaikilta synkronoiduilta tileiltä, joille se on tallennettu."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
-msgstr "Kun Synkronoi-toiminto on käytössä, tämä yhteystieto ja kaikki siihen liitetyt, muilla synkronoiduilla tileillä olevat yhteystiedot poistetaan, tai tiedot piilotetaan, jos ne ovat peräisin vain luku -muotoiselta tililtä."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
-msgstr "Kun Synkronoi-toiminto on käytössä, tämä yhteystieto ja kaikki siihen liitetyt, muilla synkronoiduilla tileillä olevat yhteystiedot poistetaan."
-
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "Päivitetään palveluntarjoajan tietoja..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Yhteyshenkilöä ei voi lisätä. Liitettävissä olevien yhteyshenkilöiden enimmäismäärä (%d) on saavutettu."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Yhteyshenkilöitä ei voi lisätä. Liitettävissä olevien yhteyshenkilöiden enimmäismäärä (%d) on saavutettu."
-
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Tämä yhteystieto poistetaan."
-
-msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Tämä yhteystieto ja kaikki siihen liittyvät yhteystiedot poistetaan."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "Valittavissa olevien kohteiden enimmäismäärä (%d) on ylitetty."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
-msgstr "Kerralla jaettavissa olevien yhteystietojen enimmäismäärä (%1$d) on ylitetty. Vain %2$d ensimmäistä yhteystietoa jaetaan."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "Chamada Certa -toiminnon avulla voit tunnistaa yhteyshenkilöiden palveluntarjoajat ja näyttää ne yhteystietoluettelossa. Voit tehdä tämän myöhemmin painamalla valikkonäppäintä ja valitsemalla Päivitä palveluntarjoajan tiedot. Napauta OK, jos haluat tunnistaa yhteyshenkilöiden palveluntarjoajat nyt."
-
-msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
-msgstr "Lopeta yhteystietojen tuonti SIM-kortilta napauttamalla OK."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Lopeta yhteystietojen vienti kohteeseen %s napauttamalla OK."
 
-msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Valitse vietävät yhteystiedot napauttamalla Vie. Jotkin yhteystiedot voivat kadota."
-
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "Joitakin tai kaikkia yhteystietoja ei ehkä ole päivitetty."
-
-msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Joitakin yhteystietoja voi hävitä."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "SIM-kortin muisti on täynnä."
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "Poistetaan..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "%d puhelinnumeroa on päivitetty."
-
-msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
-msgstr "%d yhteystietoa poistetaan."
-
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "%1$d yhteystietoa on viety tiedostoon %2$s."
-
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d yhteystietoa viety kohteeseen Laite/Yhteystiedot/Tuotu/%2$s.vcf."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "Ei tarpeeksi muistia."
-
-msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
-msgstr "Uudet yhteystiedot tallennetaan laitteen Yhteystiedot-kohtaan."
-
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "Sallitut numerot -tila päällä."
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "Epäonnistui."
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "Hylätäänkö muutokset?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "Poistetaan yhteystietoja..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "Yhteystietojen poistaminen on peruutettu. Jotkin yhteystiedot on jo mahdollisesti poistettu."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "Yhteystietojen tuonti kohteesta %s lopetetaan."
@@ -478,53 +352,14 @@ msgstr "Yhteystietojen tuonti kohteesta %s lopetetaan."
 msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
 msgstr "On jo olemassa."
 
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Kaikki liitetyt yhteystiedot poistetaan."
-
-msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
-msgstr "Kaikki yhteystiedot poistetaan."
-
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "Kaikki muutokset hylätään."
-
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "Lisätään..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "1 puhelinnumero on päivitetty."
-
-msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
-msgstr "1 yhteystieto poistetaan."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "1 yhteystieto poistettu."
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "Työ"
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "Äänipuhelu"
 
-msgid "IDS_PB_OPT_VIDEO_CALL"
-msgstr "Videopuhelu"
-
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "Päivitä palveluntarjoajan tiedot"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "Poista yhteyst. linkitys"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "Poista yhteyshenkilöiden liitokset"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
 msgstr "Ota kuva"
-
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
-msgstr "Ota valokuva"
 
 msgid "IDS_PB_OPT_SPOUSE"
 msgstr "Puoliso"
@@ -535,26 +370,11 @@ msgstr "Skype"
 msgid "IDS_PB_OPT_SISTER"
 msgstr "Sisko"
 
-msgid "IDS_PB_OPT_SIM_CARD"
-msgstr "SIM-kortti"
-
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "Jakotapa"
-
 msgid "IDS_PB_OPT_SHARE"
 msgstr "Jaa"
 
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "Asetukset"
-
-msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
-msgstr "Valitse yhteystiedoista"
-
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "SD-kort."
-
-msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
-msgstr "Tallenna yhteystieto kohteeseen"
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "Soittoääni"
 
 msgid "IDS_PB_OPT_REORDER"
 msgstr "Järjestä uudelleen"
@@ -580,23 +400,11 @@ msgstr "Kumppani"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "Vanhempi"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "Hakulaite"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "Muu"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
 msgstr "Organisaatio"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "Äiti"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "Matkapuhelin"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "Viesti"
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Hallitse suosikkeja"
@@ -610,20 +418,11 @@ msgstr "Pää"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "Sukunimi ensin"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "Sukunimi"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "Koti"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "Koti"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangouts"
@@ -637,12 +436,6 @@ msgstr "Ystävä"
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "Etunimi ensin"
 
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "Etunimi"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "Sallittu numero"
-
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "Faksi (työ)"
 
@@ -655,14 +448,8 @@ msgstr "Isä"
 msgid "IDS_PB_OPT_EDIT"
 msgstr "Muokkaa"
 
-msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
-msgstr "Älä näytä uudelleen"
-
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "Avopuoliso"
-
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "Laite"
 
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "Mukautettu"
@@ -676,9 +463,6 @@ msgstr "Lapsi"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "Veli"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "Syntymäpäivä"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "Avustaja"
 
@@ -688,56 +472,26 @@ msgstr "Vuosipäivä"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "Lisää kenttä"
+msgid "IDS_PB_OPT_ADD_TO_BLOCK_LIST_ABB"
+msgstr "Lisää estoluetteloon"
 
 msgid "IDS_PB_OPT_ADD"
 msgstr "Lisää"
 
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "Tili"
-
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "Hae"
-
-msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
-msgstr "Ei palvelunumeroita"
 
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "Tuloksia ei löytynyt"
 
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "Hätäyhteyshenkilöitä ei ole"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "Yhteystietoja ei ole"
-
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "Lajitteluperuste"
-
-msgid "IDS_PB_MBODY_SET_PROFILE"
-msgstr "Määritä profiili"
 
 msgid "IDS_PB_MBODY_SET_MY_PROFILE"
 msgstr "Määritä oma profiili"
 
-msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
-msgstr "Lähetä yhdessä"
-
-msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
-msgstr "Lähetä yksitellen"
-
-msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Lähetä yhteystiedot"
-
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "Valitse kaikki"
-
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "%d yhteystietoa"
-
-msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
-msgstr "Vain puh.num. yht.tiedot"
 
 msgid "IDS_PB_MBODY_IMPORT"
 msgstr "Tuo"
@@ -748,82 +502,22 @@ msgstr "Vie"
 msgid "IDS_PB_MBODY_EVENT"
 msgstr "Tapahtuma"
 
-msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
-msgstr "Näytä yhteystiedot numeroilla"
-
 msgid "IDS_PB_MBODY_1_CONTACT_ABB"
 msgstr "1 yhteystieto"
 
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "Yht.tiedot"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "USB-muisti ei ole käytettävissä"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "Ei voi lisätä"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "Lisääminen ei onnistu"
-
-msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
-msgstr "Ehdotetut yhteystiedot"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "Jakotapa"
-
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "Aseta yhteyshenkilön kuva"
-
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "Asetukset"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "Palveluntarjoaja"
-
-msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Lähetä yhteystiedot"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "Valitse SIM-kortti puhelua varten"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "Valitse SIM-kortti soittamista varten"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Valitse SIM-kortti puheluille"
 
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "Valitse yhteystieto"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "Valitse"
-
-msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
-msgstr "Tallenna yhteystiedot koht."
-
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "Järjestä uudelleen"
 
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "Poista"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
-msgstr "Ensisij. yhteyshenk. (%d)"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
-msgstr "Ensisij. yhteyshenk. (%1$d/%2$d)"
-
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "Puhelin"
-
-msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
-msgstr "Henkilökohtaiset yhteystiedot"
-
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
-msgstr "%d valittu"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
 msgstr "%d valittu"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
@@ -832,29 +526,14 @@ msgstr "Nimen muoto"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "Useimmin käytetyt yhteystiedot"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "Minä"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "Hallitse suosikkeja"
-
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "Yhteystietoluettelo"
-
-msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
-msgstr "Liit. yhteystiedot"
 
 msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
 msgstr "Tuo yhteystiedot"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "Tuo"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "Suosikit"
-
-msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
-msgstr "Vie yhteystiedot SIM-kortille"
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
 msgstr "Vie yhteystiedot"
@@ -865,17 +544,8 @@ msgstr "Vie"
 msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
 msgstr "Anna mukautettu selite"
 
-msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
-msgstr "Hätäpalvelut"
-
-msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
-msgstr "Hätäyhteyshenkilöt"
-
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "Muokkaa"
-
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "Nimien näyttöperuste"
 
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "Näyttö"
@@ -883,38 +553,14 @@ msgstr "Näyttö"
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
 msgstr "Hylkää muutokset"
 
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "Poista kohde"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "Luo"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "Yhteyshenkilön kuva"
-
-msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
-msgstr "Näytettävät yhteystiedot"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "Yhteystiedot"
-
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "Yhteystiedot viety"
-
-msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
-msgstr "Vaihda tallennussijainti"
 
 msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
 msgstr "Peruuta tuonti"
 
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "Peruuta vienti"
-
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "Yritä uudelleen"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "Tallenna"
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "Puhelin"
@@ -924,9 +570,6 @@ msgstr "OK"
 
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "M.panot"
-
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "Muut"
 
 msgid "IDS_PB_BUTTON_EXPORT"
 msgstr "Vie"
@@ -946,68 +589,11 @@ msgstr "Poista"
 msgid "IDS_PB_BUTTON_CREATE_ABB2"
 msgstr "Luo"
 
-msgid "IDS_PB_BUTTON_CHANGE_ABB"
-msgstr "Muuta"
-
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Peruuta"
-
-msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
-msgstr "Lisää tili"
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "Windows Live"
-
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "Sivusto"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "Päivitetään yhteystietoluetteloa..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "SIM-kortin virhe, ei voi tallentaa."
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "Nimi"
-
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Tämä yhteystieto poistetaan."
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "Valittujen yhteyshenkilöiden palveluntarjoajatiedot päivitetään. Tämä toiminto vaatii verkkoyhteyden ja voi aiheuttaa lisämaksuja. Prosessin suorittamiseen tarvittava aika vaihtelee verkkoyhteyden tilan mukaan."
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "Puhelin"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "Skype"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "SIM-korttia alustetaan..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "Palvelunumero"
-
-msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
-msgstr "Käyntikorttien lähettäminen yksitellen voi kestää tavallista pidempään, sillä vastaanottavan laitteen on hyväksyttävä ne yksitellen."
-
-msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
-msgstr "Useiden yhteystietojen lähettäminen kerralla vähentää tiedonsiirtoon tarvittavaa aikaa. Jos laite ei tue tätä toimintoa, laite lähettää kuitenkin vain yhdet yhteystiedot."
-
-msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
-msgstr "Valitse yhteystietojen lähetystapa."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "Valittu"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "Poista suosikeista"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "Valokuva"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "Puhelin. n."
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "Foneettinen nimi"
@@ -1021,32 +607,14 @@ msgstr "Foneettinen sukunimi"
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "Foneettinen etunimi"
 
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "Muut sähköpostiviestit"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "Ei hakutuloksia"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "Ei ryhmiä"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "Merkinnät"
-
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "Lempinimi"
 
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "Nimen jälkiliite"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "Nimen etuliite"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "Nimi"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "Omat yhteystiedot"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "Toinen nimi"
@@ -1057,77 +625,14 @@ msgstr "Sukunimi"
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
 msgstr "Työtehtävä"
 
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "Tuo SIM-kortilta"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "Tuo SIM2-kortilta"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "Tuodaan..."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "Kuva"
-
 msgid "IDS_PB_BODY_IM"
 msgstr "Pikaviesti"
-
-msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Jos palveluntarjoaja on ladannut palvelunumerot SIM-kortille valmiiksi, ne näytetään täällä."
-
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "Galleria"
 
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "Etunimi"
 
-msgid "IDS_PB_BODY_FAX"
-msgstr "Faksi"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "Vie SIM-kortille"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "Vie SIM2-kortille"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "Vie SD-kortille"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "Sähköposti"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "Hylkää muutokset"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "Ystävät"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "Perhe"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "Päivämäärä"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "Työtoverit"
-
-msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
-msgstr "Kahdennetuiksi todettuja yhteystietoja ehdotetaan automaattisesti."
-
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "Yhteystiedot"
-
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "Yritys"
-
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "Luettelon laajennuspainike"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "Automaattiset suositukset pystyvät hakemaan äänitiedostojen kohokohdat."
 
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Kun olet luonut yhteystiedot, ne näytetään täällä."
@@ -1135,87 +640,126 @@ msgstr "Kun olet luonut yhteystiedot, ne näytetään täällä."
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Kun olet lisännyt yhteystietoja, ne näytetään täällä."
 
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "Lisää Suosikkeihin"
-
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "Osoite"
 
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "Tilit"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Peruuta"
 
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "AB"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Poista"
 
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "PIN-koodi lukittu."
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Valitse kaikki"
 
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "Virheellinen PUK2-koodi"
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Eilen"
 
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "Virheellinen PIN1-koodi"
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Tänään"
 
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "Lisää nykyinen yhteystieto"
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
 
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "Ensisijaisia yhteyshenkilöitä ei ole"
+msgid "IDS_PB_OPT_WORK"
+msgstr "Työ"
 
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "Ensisij. yhteyshenkilöt"
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Asetukset"
 
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "Luo ensisijainen yhteyshenkilö"
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Hakulaite"
 
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "Lisää ensisijaisia yhteyshenk."
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Muu"
 
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "Aseta päivämäärä"
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Matkapuhelin"
 
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "Uusi ja vahvistettu PIN-koodi eivät täsmää."
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Viesti"
 
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Kun olet luonut ensisijaiset yhteystiedot, ne näytetään täällä."
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Sukunimi"
 
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "Lisää kohteita ei voi valita"
+msgid "IDS_PB_OPT_HOME"
+msgstr "Koti"
 
-msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
-msgstr "Aseta SIM-kortti."
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Etunimi"
 
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "Yhteyshenkilön operaattori on %1$s. Soita puhelu käyttämällä operaattorin %2$s SIM-korttia."
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Laite"
 
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "Käytä SIM-korttia %s"
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Syntymäpäivä"
 
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "Nykyinen SIM"
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Yhteystietoja ei ole"
 
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "Puhelinkioski"
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Valitse kaikki"
 
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "Virheellinen merkki"
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Asetukset"
 
-msgid "IDS_HS_BUTTON_PHONE_M_CALL"
-msgstr "Puhelin"
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "Valitse"
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "Lähtevä puhelu"
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Poista"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "Saapuva puhelu"
+msgid "IDS_PB_HEADER_ME"
+msgstr "Minä"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Suosikit"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Luo"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Tallenna"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Muut"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Peruuta"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Puhelin. n."
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Merkinnät"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "Sähköposti"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Päivämäärä"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Yhteystiedot"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
 msgstr "Vain %d ensimmäistä yhteystietoa näytetään."
 
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "Oma profiili"
-
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
 msgstr "Lisää pikavalinta napauttamalla tätä"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "MUOKKAA"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "Mukautettu tyyppi"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "Ryhmät"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "Aseta"
+
+msgid "IDS_LOGS_HEADER_FILTER_BY"
+msgstr "Suodatusperuste"
 

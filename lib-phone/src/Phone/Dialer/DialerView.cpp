@@ -130,7 +130,7 @@ void DialerView::onMenuPressed()
 		menu->addItem("IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB", [this] {
 			m_Entry->insert(',');
 		});
-		menu->addItem("IDS_KPD_OPT_ADD_WAIT_ABB", [this] {
+		menu->addItem("IDS_KPD_OPT_ADD_WAIT", [this] {
 			m_Entry->insert(';');
 		});
 	}
@@ -240,11 +240,11 @@ void DialerView::onResultSelected(SearchResultPtr result)
 		Ui::ListPopup *popup = new Ui::ListPopup();
 		popup->create(getEvasObject());
 		popup->setTitle("IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2");
-		popup->addItem("IDS_LOGS_BUTTON_CREATE_CONTACT_ABB", [this] {
+		popup->addItem("IDS_KPD_OPT_CREATE_CONTACT_ABB2", [this] {
 			m_AppControl = App::requestContactCreate(m_Entry->getNumber().c_str());
 			m_AppControl.launch();
 		});
-		popup->addItem("IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2", [this] {
+		popup->addItem("IDS_KPD_OPT_UPDATE_CONTACT_ABB", [this] {
 			m_AppControl = App::requestContactEdit(0, m_Entry->getNumber().c_str());
 			m_AppControl.launch();
 		});

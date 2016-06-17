@@ -39,7 +39,7 @@ namespace
 		/* [FieldNote]         = */ "IDS_PB_BUTTON_NOTES",
 		/* [FieldNickname]     = */ "IDS_PB_BODY_NICKNAME_ABB",
 		/* [FieldRelationship] = */ "IDS_PB_OPT_RELATIONSHIP_ABB2",
-		/* [FieldRingtone]     = */ "Ringtone",
+		/* [FieldRingtone]     = */ "IDS_PB_OPT_RINGTONE",
 	};
 
 	const char *childFieldNames[] = {
@@ -58,7 +58,7 @@ namespace
 		/* [FieldNote]         = */ "IDS_PB_BODY_NOTES",
 		/* [FieldNickname]     = */ "IDS_PB_BODY_NICKNAME_ABB",
 		/* [FieldRelationship] = */ "IDS_PB_BODY_NAME",
-		/* [FieldRingtone]     = */ "Ringtone",
+		/* [FieldRingtone]     = */ "IDS_PB_OPT_RINGTONE",
 
 		/* [CompanyFieldName]     = */ "IDS_PB_BODY_COMPANY_ABB",
 		/* [CompanyFieldJobTitle] = */ "IDS_PB_BODY_JOB_TITLE_ABB",

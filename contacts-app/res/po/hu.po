@@ -1,83 +1,230 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "Tárcsázott számok"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "Nincs napló"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "Legutóbbi hívás"
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "OK"
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "Fogadott hívások"
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "Üzenet küldése"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "Szűrés alapja"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "Nincs szám"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "Létrehoz"
+
+msgid "IDS_HINTS_BODY_GET_MORE_OUT_OF_SHARING_YOUR_PROFILE_AND_PROMOTE_YOUR_BUSINESS_USING_A_BUSINESS_PROFILE_MSG"
+msgstr "Kiaknázhatja a profilmegosztás lehetőségeit, és üzleti profillal reklámozhatja vállalkozását.\n\nVálassza a %1$sNévjegyzék%2$s lehetőséget, majd érintse meg a saját profil létrehozására szolgáló területet."
+
+msgid "IDS_HINTS_TMBODY_PROMOTE_YOURSELF"
+msgstr "Saját vállalkozás reklámozása"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "A vágólapra másolva."
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "E-mail (otthoni)"
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "Telefon"
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "Csoport létrehozása"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "Átnevezés"
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "Átrendezés"
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "Így is menti"
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "Kép beállítása"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "Megosztás"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "Profil megosztása"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "Mező hozzáadása"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "Tagok hozzáadása"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "Profil létrehozása"
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "Névjegyek törlése"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "Csoportok törl."
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "Csoportok"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "Importálás"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "Importálás/exportálás"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "Névjegyek kezelése és mentése"
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "Egyéb beállítások"
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "Már van ilyen név"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "Névjegy mentése"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "Névj. kijelölése"
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "Csop. kijelölése"
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "Kép kiválasztása"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "Tagok hozzáadása"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "Csoport neve"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "Fonetik. utónév"
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "Fonet. vez.név"
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "Fonet. köz. név"
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "Alapértelmezett névjegyképstílus"
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "Esemény (pl. születésnap)"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "Csoportok és tagjaik"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "Csak csoportok"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "Otthon"
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "IM-fiók"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "Webcím"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "Az ismerős korábbi mobilszáma (%1$s) a következőre változott: %2$s. A rendszer frissítette a névjegy adatait."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "Ilyen nevű névjegy már van. Érintse meg az Így is menti gombot, ha ennek ellenére menteni szeretné, vagy az Átnevezés gombot a más néven történő mentéshez."
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "Eszköz tárhelye és minden fiók"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "Cím (egyéni)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "Cím (otthoni)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "Cím (egyéb)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "Cím (munkahelyi)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "Egy fájlban"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "Megjelenítés"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "E-mail (egyéni)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "E-mail (egyéb)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "E-mail (munkahelyi)"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "Importálás/exportálás"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "Eszköz névjegyeinek áthelyezése"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "1 névjegyet exportált."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "Törlés..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "Exportálás megszakítva."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "Nem sikerült törölni a névjegyeket. Próbálja újra."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "Már van ilyen nevű csoport."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "Importálás megszakítva."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Elérte a karakterek maximális számát."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "Nem adott meg csoportnevet."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "%d névjegyet exportált."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "Feldolgozás..."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Naplók kiválasztása"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "Megtekintés"
+msgid "IDS_CLOG_OPT_ALL_CALLS_ABB"
+msgstr "Minden hívás"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "2. otthoni"
+msgid "IDS_KPD_OPT_ADD_WAIT"
+msgstr "Várakozás hozzáadása"
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "Áthelyezés befejezve."
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "Név fonetikusan"
 
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "Áthelyezés..."
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "Telefon"
 
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 ellenőrizve."
-
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 ellenőrizve."
-
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "A PIN blokkolás feloldva."
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2 feloldva."
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2 módosítva."
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "PIN2 blokkolva."
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "A PIN1 kód módosult."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "PIN1 kód blokkolva."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "Hibás PIN2-kód"
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "Az új PIN2 és a megerősített PIN2 nem egyezik"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "Helytelen PUK1 kód"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "Helytelen PUK1. Még %d próbálkozása van."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "Helytelen PUK2. Még %d próbálkozása van."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN megváltozott."
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "Dátum beállítása"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Névjegyek"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "Fiók hozzáadása"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "Nincs hely több karakternek."
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "Eszközök keresése..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "Helytelen PIN"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "KÉSZ"
@@ -88,68 +235,14 @@ msgstr "MÉGSE"
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
 msgstr "TÖRLÉS"
 
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "Csatlakozási probléma vagy érvénytelen MMI-kód"
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "Privát szám"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "KÜLDÉS"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2 blokkolva. Forduljon a szolgáltatóhoz (SIM PUK2 szükséges)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "Nincs napló"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "Hívás kezdeményezése vagy fogadása, illetve üzenet küldése vagy fogadása után megjelenik a napló."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "A SIM kártya foglalt. Próbálja meg később"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "SIM/RUIM kártya zárolva."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "Nincs SIM kártya a készülékben. Helyezzen be SIM kártyát."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "Hálózat vagy SIM kártya hibája."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "Bekapcsolta a rezgéses visszajelzést."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "Kikapcsolta a rezgéses visszajelzést."
-
-msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
-msgstr "A szám nem hívható. A(z) %d nem segélyhívó szám."
-
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
 msgstr "Eltávolította a(z) %d. gyorshívó számot."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "Hozzárendelte a gyorshívó számot."
 
-msgid "IDS_KPD_TPOP_ENTER_NUMBER"
-msgstr "Adja meg a számot."
-
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "A PIN-nek %1$d–%2$d számjegyből kell állnia. Próbálja újra."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "A PIN2-nek %1$d–%2$d számjegyből kell állnia. Próbálja újra."
-
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
 msgstr "Ehhez a gyorshívó számhoz nem rendelt névjegyet. Ha szeretne hozzárendelni, érintse meg az OK gombot."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "A PIN le van tiltva. A módosítás előtt engedélyezze a PIN-t."
-
-msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
-msgstr "Hangposta"
 
 msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
 msgstr "Névj. frissít."
@@ -157,17 +250,11 @@ msgstr "Névj. frissít."
 msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
 msgstr "Gyorsh. beállításai"
 
-msgid "IDS_KPD_OPT_REMOVE"
-msgstr "Eltávolítás"
-
 msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
 msgstr "Névjegy létreh."
 
 msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
 msgstr "Hívásbeállítások"
-
-msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
-msgstr "Várakozás hozzáadása"
 
 msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
 msgstr "2 másodperc szünet hozzáadása"
@@ -175,41 +262,17 @@ msgstr "2 másodperc szünet hozzáadása"
 msgid "IDS_KPD_ITAB3_KEYPAD"
 msgstr "Bil.tyűzet"
 
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "Nem lehet kapcs. a hálózathoz"
-
-msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Válasszon SIM-et a híváshoz"
-
 msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
 msgstr "Találatok (%d)"
-
-msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
-msgstr "Segélyhívás"
 
 msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
 msgstr "Hozzárend. gyorshívó számként"
 
-msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
-msgstr "Számbeállítás"
-
 msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
 msgstr "Üz. küldése"
 
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "Mégse"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "Felvétel a Névjegyzékbe"
-
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "A jelszavak nem egyeznek."
-
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "PIN letiltva. Írja be a PUK kódot."
-
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "SIM letiltva."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "Mentetlen"
@@ -226,122 +289,26 @@ msgstr "Sikertelen"
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "Megszakítva"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Törölni fog %d naplóbejegyzést."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Minden naplótételt törölni fog."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "Törölni fog 1 naplóbejegyzést."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "Névadatok megtekintése"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "Szám küldése"
-
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "Nem fogadott hívások"
-
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "Törlés"
-
-msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
-msgstr "Hívások időtartama"
-
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "Nem fogadott hívások"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "Ne jelenjen meg újra"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "Ismeretlen szám"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "Ismeretlen"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "Összes kijelölése"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "Naplók"
-
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "Tegnap"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "Ma"
 
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "%d kijelölve"
 
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "%d napló törlése"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "Naplótételek törlése"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "Napló törlése"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "Törlés"
-
-msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
-msgstr "Névjegy friss."
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "Törlés"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "Névj. létreh."
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "Mégse"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "Hanghívások"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "Videohívások"
-
-msgid "IDS_LOGS_BODY_SIM_CARD"
-msgstr "SIM kártya"
-
-msgid "IDS_LOGS_BODY_ALL_CALLS"
-msgstr "Összes hívás"
-
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
 msgstr "Itt jelenik majd meg az indított és fogadott hívások naplója."
-
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "Itt jelenik majd meg az indított és fogadott hívások naplója."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "SZERK."
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "Szöveg beírása"
-
-msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
-msgstr "Névjegyei között duplikátumok találhatók."
 
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "%d névjegyet importált."
 
-msgid "IDS_PB_TPOP_CONTACTS_LINKED"
-msgstr "Névjegyek csatolva."
-
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "1 számot eltávolított az automatikus elutasítási listáról."
-
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "1 névjegyet importált."
-
-msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
-msgstr "Szolgáltatáshívó számok"
 
 msgid "IDS_PB_TMBODY_NAME_FORMAT"
 msgstr "Névformátum"
@@ -351,15 +318,6 @@ msgstr "Névjegyek összekapcsolása"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
 msgstr "Megjelenítendő névjegyek"
-
-msgid "IDS_PB_SK_SET"
-msgstr "Beállít"
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "Új"
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "Új mező"
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "Névjegyek importálása..."
@@ -379,98 +337,14 @@ msgstr "Importálta a névjegyeket"
 msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
 msgstr "Exportálta a névjegyeket"
 
-msgid "IDS_PB_SBODY_ALL_CONTACTS"
-msgstr "Összes partner"
-
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "Írásvédett fiókból nem lehet névjegyet törölni, de a névjegyzékben elrejthetőek."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
-msgstr "Ha a Szinkronizálás be van kapcsolva, akkor valamennyi szinkronizált fiókból törli a névjegyet."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
-msgstr "Ha a Szinkronizálás be van kapcsolva, akkor törli a névjegyet és a vele összekapcsolt valamennyi névjegyet az egyéb szinkronizált fiókokból, illetve elrejti azokat, ha írásvédett fiókról van szó."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
-msgstr "Ha a Szinkronizálás be van kapcsolva, akkor törli a névjegyet és a vele összekapcsolt valamennyi névjegyet az egyéb szinkronizált fiókokból."
-
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "Szolgáltató adatainak frissítése..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Nem lehet hozzáadni a névjegyet. Elérte a csatolható névjegyek maximális számát (%d)."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Nem lehet hozzáadni a névjegyeket. Elérte a csatolható névjegyek maximális számát (%d)."
-
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Törli ezt a névjegyet?"
-
-msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Törli a névjegyet és a vele összekapcsolt valamennyi névjegyet."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "Túllépte a kijelölhető elemek maximális számát (%d)."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
-msgstr "Túllépte az egyszerre megosztható névjegyek maximális számát (%1$d). Csak az első %2$d névjegy megosztására kerül sor."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "A Chamada Certa funkció segítségével azonosíthatja partnerei szolgáltatóit, és megjelenítheti azokat a névjegyzékben. Ezt később megteheti a Menü gomb megnyomásával és a Szolgáltatók adatainak frissítése menüpont kiválasztásával. Érintse meg az OK gombot partnerei szolgáltatóinak azonosításához most."
-
-msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
-msgstr "A névjegyek SIM kártyáról történő importálásának leállításához érintse meg az OK gombot."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "A névjegyek %s fájlba történő exportálásának leállításához ér. meg az OK gombot."
 
-msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Az exportálni kívánt névjegyek kijelöléséhez érintse meg az Exportálás gombot. Bizonyos névjegyadatok elveszhetnek."
-
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "Lehet, hogy egy névjegy sem frissült."
-
-msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Bizonyos névjegyadatok elveszhetnek."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "A SIM-memória megtelt."
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "Eltávolítás..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "%d telefonszám frissült."
-
-msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
-msgstr "%d névjegyet törölni fog."
-
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "%1$d névjegyet exportált a(z) %2$s fájlba."
-
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d névjegyet exportált az Eszköz/Névjegyzék/Importálva/%2$s.vcf fájlba."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "Kevés a memória."
-
-msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
-msgstr "Az új névjegyek az eszköz Névjegyzékébe kerülnek."
-
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "Fixlista mód bekapcsolva."
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "Sikertelen"
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "Elveti a változtatásokat?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "Névjegyek törlése..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "Névjegyek törlése megszakítva. Lehet, hogy bizonyos névjegyeket már töröltek."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "Leáll a névjegyek importálása a(z) %s fájlból."
@@ -478,53 +352,14 @@ msgstr "Leáll a névjegyek importálása a(z) %s fájlból."
 msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
 msgstr "Már létezik."
 
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Minden csatolt névjegyet törölni fog."
-
-msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
-msgstr "Minden névjegyet törölni fog."
-
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "Minden változtatás elvetése"
-
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "Hozzáadás..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "1 telefonszám frissült."
-
-msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
-msgstr "Törölni fog 1 névjegyet."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "1 névjegy eltávolítva."
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "Munkahelyi"
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "Hanghívás"
 
-msgid "IDS_PB_OPT_VIDEO_CALL"
-msgstr "Videohívás"
-
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "Szolgáltató adatainak frissítése"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "Névjegy csatol. megszünt."
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "Névjegyek csatolásának megszüntetése"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
 msgstr "Kép készítése"
-
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
-msgstr "Fénykép készítése"
 
 msgid "IDS_PB_OPT_SPOUSE"
 msgstr "Házastárs"
@@ -535,26 +370,11 @@ msgstr "Skype"
 msgid "IDS_PB_OPT_SISTER"
 msgstr "Lánytestvér"
 
-msgid "IDS_PB_OPT_SIM_CARD"
-msgstr "SIM kártya"
-
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "Megosztás"
-
 msgid "IDS_PB_OPT_SHARE"
 msgstr "Megosztás"
 
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "Beállítások"
-
-msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
-msgstr "Kiválasztás a névjegyzékből"
-
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "SD-kártya"
-
-msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
-msgstr "Névjegy mentése"
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "Csengőhang"
 
 msgid "IDS_PB_OPT_REORDER"
 msgstr "Átrendezés"
@@ -580,23 +400,11 @@ msgstr "Társ"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "Szülő"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "Személyhívó"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "Egyéb"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
 msgstr "Szervezet"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "Anya"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "Mobil"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "Üzenet"
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Kedvencek kezelése"
@@ -610,20 +418,11 @@ msgstr "Fő"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "Vezetéknév áll elöl"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "Vezetéknév"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "Otthoni"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "Otthoni"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangouts"
@@ -637,12 +436,6 @@ msgstr "Barát"
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "Utónév áll elöl"
 
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "Keresztnév"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "Fixlista bejegyzés"
-
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "Fax (munkahelyi)"
 
@@ -655,14 +448,8 @@ msgstr "Apa"
 msgid "IDS_PB_OPT_EDIT"
 msgstr "Szerkesztés"
 
-msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
-msgstr "Ne jelenjen meg újra"
-
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "Élettárs"
-
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "Eszköz"
 
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "Egyedi"
@@ -676,9 +463,6 @@ msgstr "Gyermek"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "Fiútestvér"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "Születésnap"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "Titkár"
 
@@ -688,56 +472,26 @@ msgstr "Évforduló"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "Mező hozzáadása"
+msgid "IDS_PB_OPT_ADD_TO_BLOCK_LIST_ABB"
+msgstr "Hozzáadás a tiltólistához"
 
 msgid "IDS_PB_OPT_ADD"
 msgstr "Hozzáadás"
 
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "Fiók"
-
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "Keresés"
-
-msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
-msgstr "Nincs szolgáltatáshívó szám"
 
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "Nincs találat"
 
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "Nincs segélykérési névjegy"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "Nincs névjegy"
-
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "Rendezés szempontja"
-
-msgid "IDS_PB_MBODY_SET_PROFILE"
-msgstr "Profil beállítása"
 
 msgid "IDS_PB_MBODY_SET_MY_PROFILE"
 msgstr "Saját profil beállítása"
 
-msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
-msgstr "Küldés egyszerre"
-
-msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
-msgstr "Egyenkénti küldés"
-
-msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Névjegyadatok küldése"
-
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "Összes kijelölése"
-
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "%d névjegy"
-
-msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
-msgstr "Csak ha van telefonszám"
 
 msgid "IDS_PB_MBODY_IMPORT"
 msgstr "Importálás"
@@ -748,82 +502,22 @@ msgstr "Exportálás"
 msgid "IDS_PB_MBODY_EVENT"
 msgstr "Esemény"
 
-msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
-msgstr "Tel.számot tart. névjegyek megj."
-
 msgid "IDS_PB_MBODY_1_CONTACT_ABB"
 msgstr "1 névjegy"
 
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "Névjegyzék"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "Nincs elérhető tárhely"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "Nem adható hozzá"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "Nem adható hozzá"
-
-msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
-msgstr "Javasolt névjegyek"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "Megosztás"
-
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "Névjegykép beállítása"
-
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "Beállítások"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "Szolgáltató"
-
-msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Névjegyadatok küldése"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "Válasszon SIM-et a híváshoz"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "Hívásra szolgáló SIM kiválasztása"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Válasszon SIM-et a híváshoz"
 
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "Névjegy kiválasztása"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "Választ"
-
-msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
-msgstr "Névjegyek mentési helye"
-
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "Átrendezés"
 
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "Eltávolít"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
-msgstr "Kiemelt névjegyek (%d)"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
-msgstr "Kiemelt névj. (%1$d/%2$d)"
-
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "Telefon"
-
-msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
-msgstr "Személyes névjegyek"
-
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
-msgstr "%d kijelölve"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
 msgstr "%d kijelölve"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
@@ -832,29 +526,14 @@ msgstr "Névformátum"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "Leggyakoribb névjegyek"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "Én"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "Kedvencek kezelése"
-
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "Névjegyzék"
-
-msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
-msgstr "Összekapcsolt névj."
 
 msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
 msgstr "Névj. importálása"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "Importálás"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "Kedvencek"
-
-msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
-msgstr "Névjegyek exp. SIM kártyára"
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
 msgstr "Névjegyek exportálása"
@@ -865,17 +544,8 @@ msgstr "Exportálás"
 msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
 msgstr "Egyéni címke megadása"
 
-msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
-msgstr "Segélyhívó szolgálat"
-
-msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
-msgstr "Segélykérési névjegyek"
-
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "Szerkesztés"
-
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "Nevek rendezésének alapja"
 
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "Megjelenítés"
@@ -883,38 +553,14 @@ msgstr "Megjelenítés"
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
 msgstr "Változtatások elvetése"
 
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "Tétel törlése"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "Létrehoz"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "Partner képe"
-
-msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
-msgstr "Megjelenítendő névjegyek"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "Névjegyzék"
-
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "Névjegyek exportálva"
-
-msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
-msgstr "Mentési hely módosítása"
 
 msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
 msgstr "Importálás megszakítása"
 
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "Exportálás megszakítása"
-
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "Próbálja újra"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "Mentés"
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "Telefon"
@@ -924,9 +570,6 @@ msgstr "OK"
 
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "Feljegyz."
-
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "Egyebek"
 
 msgid "IDS_PB_BUTTON_EXPORT"
 msgstr "Exportálás"
@@ -946,68 +589,11 @@ msgstr "Törlés"
 msgid "IDS_PB_BUTTON_CREATE_ABB2"
 msgstr "Létrehozás"
 
-msgid "IDS_PB_BUTTON_CHANGE_ABB"
-msgstr "Módosítás"
-
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Mégse"
-
-msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
-msgstr "Fiókot h.ad"
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "Windows Live"
-
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "Webhely"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "Névjegyzék frissítése..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "SIM-hiba miatt nem lehet menteni."
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "Cím"
-
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Törli ezt a névjegyet?"
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "Frissülni fognak a kiválasztott partnerek szolgáltatóadatai. A funkció hálózati kapcsolatot igényel, és további költséggel járhat. A folyamat végrehajtásához szükséges idő a hálózati kapcsolat állapotától függ."
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "Telefon"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "Skype"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "SIM kártya inicializálása..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "Szolgáltató számai"
-
-msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
-msgstr "Az egyenkénti névjegyküldés hosszabb időt igényelhet, mivel a másik eszköznek egyenként el kell fogadnia a névjegyeket."
-
-msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
-msgstr "Ha több névjegyet küld egyszerre, átviteli időt takaríthat meg. Ha azonban a másik eszköz nem támogatja ezt a funkciót, akkor csak egy névjegy lesz elküldve."
-
-msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
-msgstr "Kiválaszthatja a névjegyadatok küldési módját."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "Kiválasztott"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "Törlés a kedvencek közül"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "Fénykép"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "Telefonszám"
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "Név fonetikusan"
@@ -1021,32 +607,14 @@ msgstr "Vez.név fonetikusan"
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "Utónév fonetikusan"
 
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "Egyéb e-mailek"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "Nincs találat"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "Nincs csoport"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "Jegyzetek"
-
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "Becenév"
 
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "Névutótag"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "Névelőtag"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "Név"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "Saját névjegyzek"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "Középső név"
@@ -1057,77 +625,14 @@ msgstr "Vezetéknév"
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
 msgstr "Beosztás"
 
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "Importálás a SIM kártyáról"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "Importálás a SIM2 kártyáról"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "Importálás..."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "Kép"
-
 msgid "IDS_PB_BODY_IM"
 msgstr "IM"
-
-msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Itt jelennek meg a szolgáltató által előre a SIM kártyára töltött szolgáltatáshívó számok, ha vannak ilyenek."
-
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "Galéria"
 
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "Utónév"
 
-msgid "IDS_PB_BODY_FAX"
-msgstr "Fax"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "Exportálás a SIM-kártyára"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "Exportálás a SIM2-kártyára"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "Exportálás SD-kártyára"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "E-mail"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "Változtatások elvetése"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "Barátok"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "Család"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "Dátum"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "Munkatársak"
-
-msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
-msgstr "A másodpéldányokként azonosított névjegyeket automatikusan javasolja a program."
-
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "Névjegyek"
-
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "Cég"
-
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "Listakibontó gomb"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "Az automatikus javaslás kiválaszthatja a hangfájlok legfontosabb részeit."
 
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Itt jelennek majd meg a létrehozott névjegyek."
@@ -1135,87 +640,126 @@ msgstr "Itt jelennek majd meg a létrehozott névjegyek."
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Itt jelennek majd meg a hozzáadott névjegyek."
 
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "Hozzáad a kedvencekhez"
-
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "Cím"
 
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "Fiókok"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Mégse"
 
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "AB"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Törlés"
 
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "PIN blokkolva."
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Összes kijelölése"
 
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "Rossz PUK2-kód"
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Tegnap"
 
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "Helytelen PIN1 kód"
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Ma"
 
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "Meglévő névjegy hozzáadása"
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
 
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "Nincs kiemelt partner"
+msgid "IDS_PB_OPT_WORK"
+msgstr "Munkahelyi"
 
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "Kiemelt névjegyek"
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Beállítások"
 
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "Kiemelt névjegy létrehozása"
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Személyhívó"
 
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "Kiemelt névjegyek hozzáadása"
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Egyéb"
 
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "Dátumbeállítás"
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Mobil"
 
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "Az új PIN és a megerősített PIN nem egyezik."
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Üzenet"
 
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Itt jelennek majd meg a létrehozott kiemelt névjegyek."
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Vezetéknév"
 
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "Több tétel nem jelölhető ki"
+msgid "IDS_PB_OPT_HOME"
+msgstr "Otthoni"
 
-msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
-msgstr "Helyezzen be SIM kártyát."
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Keresztnév"
 
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "A hívott fél szolgáltatója a(z) %1$s. Érintse meg az OK gombot, ha a hívást a(z) %2$s SIM kártya segítségével szeretné indítani."
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Eszköz"
 
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "%s SIM kártya használata"
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Születésnap"
 
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "Jelenlegi SIM"
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Nincs névjegy"
 
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "Telefonfülke"
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Összes kijelölése"
 
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "Érvénytelen karakter"
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Beállítások"
 
-msgid "IDS_HS_BUTTON_PHONE_M_CALL"
-msgstr "Telefon"
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "Választ"
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "Kimenő hívás"
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Eltávolít"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "Bejövő hívás"
+msgid "IDS_PB_HEADER_ME"
+msgstr "Én"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Kedvencek"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Létrehoz"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Mentés"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Egyebek"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Mégse"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Telefonszám"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Jegyzetek"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "E-mail"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Dátum"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Névjegyek"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
 msgstr "Csak az első %d névjegy látható."
 
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "Saját profil"
-
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
 msgstr "Érintse meg parancsikon hozzáadásához"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "SZERKESZTÉS"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "Egyéni típus"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "Csoportok"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "Beállít"
+
+msgid "IDS_LOGS_HEADER_FILTER_BY"
+msgstr "Szűrés alapja"
 

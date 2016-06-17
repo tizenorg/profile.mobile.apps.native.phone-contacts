@@ -1,83 +1,230 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "Ringda samtal"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "Inga loggar"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "Sista samtal"
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "OK"
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "Mottagna samtal"
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "Skicka meddelande"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "Filtrera efter"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "Inget nummer"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "Skapa"
+
+msgid "IDS_HINTS_BODY_GET_MORE_OUT_OF_SHARING_YOUR_PROFILE_AND_PROMOTE_YOUR_BUSINESS_USING_A_BUSINESS_PROFILE_MSG"
+msgstr "Få ut mer av att du delar din profil och marknadsför ditt företag med en företagsprofil.\n\nÖppna %1$sKontakter%2$s och tryck sedan på det område som visas om du vill ställa in din profil."
+
+msgid "IDS_HINTS_TMBODY_PROMOTE_YOURSELF"
+msgstr "Flytta upp dig"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "Kopierat till Urklipp."
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "E-post (hem)"
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "Telefon"
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "Skapa en grupp"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "Byt namn"
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "Ordna om"
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "Spara ändå"
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "Ställ in bild"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "Dela"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "Dela profil"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "Lägg till fält"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "Lägg till medlemmar"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "Skapa profil"
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "Ta bort kontakter"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "Radera grupper"
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "Grupper"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "Importera"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "Importera/exportera"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "Hantera/säkerhetskopiera kontakter"
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "Fler inställningar"
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "Namnet används redan"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "Spara kontakten"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "Välj kontakter"
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "Välj grupper"
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "Välj bild"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "Lägg till medlemmar"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "Gruppnamn"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "Fon. förnamn"
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "Fon. efternamn"
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "Fon. mellannamn"
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "Standardkontaktbildsstil"
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "Händelse (t.ex. födelsedag)"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "Grupper och medlemmar"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "Endast grupper"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "Hem"
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "IM-konto"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "Webbadress"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "En kontakts mobilnummer har ändrats från %1$s till %2$s. Kontaktuppgifterna har uppdaterats."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "Det finns redan en kontakt med samma namn. Tryck på Spara ändå om du ändå vill spara den, eller tryck på Byt namn om du vill spara kontakten under ett annat namn."
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "Enhetslagring och alla konton"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "Adress (anpassad)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "Adress (hem)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "Adress (annan)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "Adress (arbete)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "Som en fil"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "Visning"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "E-post (anpassad)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "E-post (annan)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "E-post (arbete)"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "Importera/exportera"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "Flytta enhetskontakter"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "1 kontakt har exporterats."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "Tar bort ..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "Exporten avbröts."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "Det gick inte att radera kontakter. Försök igen."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "Gruppnamnet används redan."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "Importen avbröts."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Högsta antal tecken har uppnåtts."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "Inget gruppnamn har angetts."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "%d kontakter har exporterats."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "Bearbetar ..."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Välj loggar"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "Vy"
+msgid "IDS_CLOG_OPT_ALL_CALLS_ABB"
+msgstr "Alla samtal"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "Hemma 2"
+msgid "IDS_KPD_OPT_ADD_WAIT"
+msgstr "Lägg till väntetid"
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "Överföringen genomförd."
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "Fonetiskt namn"
 
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "Flyttar..."
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "Telefon"
 
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 har verifierats."
-
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 har verifierats."
-
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "PIN upplåst."
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2 upplåst."
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2 ändrad."
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "PIN2 låst."
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "PIN1-koden har ändrats."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "PIN1-koden har blockerats."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "Fel PIN2-kod."
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "Ny PIN2-kod och bekräftad PIN2-kod stämmer inte överens."
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "Felaktig PUK1-kod."
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "Felaktig PUK1. %d försök kvar."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "Felaktig PUK2. %d försök kvar."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN ändrad."
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "Ställ in datum"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Kontakter"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "Lägg till konto"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "Maximalt antal tecken har använts."
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "Söker igenom enhet..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "Felaktig PIN-kod"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "KLAR"
@@ -88,68 +235,14 @@ msgstr "AVBRYT"
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
 msgstr "TA BORT"
 
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "Anslutningsproblem eller ogiltig MMI-kod."
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "Hemligt nummer"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "SKICKA"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2 blockerad. Kontakta leverantören (PUK2-kod till SIM-kort krävs)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "Inga loggar"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "När du har ringt/tagit emot ett samtal eller skickat/tagit emot ett meddelande visas loggarna."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "SIM-kortet upptaget. Försök igen senare"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "SIM/RUIM-kortet är låst."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "Inget SIM-kort hittades. Sätt i ett SIM-kort i telefonen."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "Nätverks- eller SIM-kortfel."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "Vibrationsfeedback har aktiverats."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "Vibrationsfeedback har inaktiverats."
-
-msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
-msgstr "Det går inte att ringa numret. %d är inget nödnummer."
-
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
 msgstr "Kortnummer %d har tagits bort."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "Kortnummer har tilldelats."
 
-msgid "IDS_KPD_TPOP_ENTER_NUMBER"
-msgstr "Ange nummer."
-
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "Din PIN-kod måste vara mellan %1$d och %2$d siffror lång. Försök igen."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "Din PIN2-kod måste vara mellan %1$d och %2$d siffror. Försök igen."
-
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
 msgstr "Det finns ingen kontakt som tilldelats till det här kortnumret. Tryck på OK för att tilldela ett nu."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "PIN-koden har inaktiverats. Aktivera PIN-koden innan ändringar."
-
-msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
-msgstr "Röstbrevl"
 
 msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
 msgstr "Uppd. kontakt"
@@ -157,17 +250,11 @@ msgstr "Uppd. kontakt"
 msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
 msgstr "Kortnummerinställn."
 
-msgid "IDS_KPD_OPT_REMOVE"
-msgstr "Ta bort"
-
 msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
 msgstr "Skapa kontakt"
 
 msgid "IDS_KPD_OPT_CALL_SETTINGS_ABB"
 msgstr "Samtalsinställn."
-
-msgid "IDS_KPD_OPT_ADD_WAIT_ABB"
-msgstr "Lägg till väntetid"
 
 msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
 msgstr "Lägg till 2-sekund. paus"
@@ -175,41 +262,17 @@ msgstr "Lägg till 2-sekund. paus"
 msgid "IDS_KPD_ITAB3_KEYPAD"
 msgstr "Knappsats"
 
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "Kan inte ansluta till nät"
-
-msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Välj SIM-kort för samtal"
-
 msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
 msgstr "Sökresultat (%d)"
-
-msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
-msgstr "Nödsamtal"
 
 msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
 msgstr "Tilldela som kortnummer"
 
-msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
-msgstr "Ange nummer"
-
 msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
 msgstr "Sänd medd."
 
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "Avbryt"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "Lägg till i kontakter"
-
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "Lösenorden matchar inte."
-
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "Blockerad PIN-kod. Ange PUK-kod."
-
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "SIM har blockerats."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "Inte sparad"
@@ -226,122 +289,26 @@ msgstr "Misslyckades"
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "Avbruten"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "%d loggobjekt kommer att tas bort."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Alla loggobjekt kommer att tas bort."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "1 loggobjekt kommer att tas bort."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "Visa kontaktinformation"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "Skicka nummer"
-
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "Missade samtal"
-
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "Ta bort"
-
-msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
-msgstr "Samtalslängder"
-
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "Missade samtal"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "Visa inte igen"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "Okänt nummer"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "Okänd"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "Välj alla"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "Loggar"
-
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "Igår"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "Idag"
 
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "%d valda"
 
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "Ta bort %d loggar"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "Ta bort loggobjekt"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "Ta bort logg"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "Ta bort"
-
-msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
-msgstr "Uppd. kontakt"
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "Ta bort"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "Skapa kontakt"
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "Avbryt"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "Röstsamtal"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "Videosamtal"
-
-msgid "IDS_LOGS_BODY_SIM_CARD"
-msgstr "SIM-kort"
-
-msgid "IDS_LOGS_BODY_ALL_CALLS"
-msgstr "Alla samtal"
-
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
 msgstr "När du har ringt eller tagit emot samtal loggas de här."
-
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "När du har ringt eller tagit emot samtal visas loggposterna här."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "REDIGERA"
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "Ange text"
-
-msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
-msgstr "Vissa av dina kontakter verkar vara dubbletter."
 
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "%d kontakter har importerats."
 
-msgid "IDS_PB_TPOP_CONTACTS_LINKED"
-msgstr "Kontakter har länkats."
-
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "1 nummer har tagits bort från listan för automatisk avvisning."
-
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "1 kontakt har importerats."
-
-msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
-msgstr "Servicenummer"
 
 msgid "IDS_PB_TMBODY_NAME_FORMAT"
 msgstr "Namnformat"
@@ -351,15 +318,6 @@ msgstr "Länka kontakter"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
 msgstr "Kontakter som ska visas"
-
-msgid "IDS_PB_SK_SET"
-msgstr "Ange"
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "Skapa"
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "Lägg till fält"
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "Importerar kontakter ..."
@@ -379,98 +337,14 @@ msgstr "Importerade kontakter"
 msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
 msgstr "Exporterade kontakter"
 
-msgid "IDS_PB_SBODY_ALL_CONTACTS"
-msgstr "Alla kontakter"
-
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "Du kan inte ta bort kontakter från skrivskyddade konton men du kan dölja dem i kontakter."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
-msgstr "När Synkronisera aktiveras tas den här kontakten bort från alla synkroniserade konton där kontakten har sparats."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
-msgstr "När Synkronisera aktiveras tas den här kontakten och dess länkade kontakter i andra synkroniserade konton bort eller också döljs de om informationen kommer från ett skrivskyddat konto."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
-msgstr "När Synkronisera aktiveras tas den här kontakten och alla länkade kontakter i andra synkroniserade konton bort."
-
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "Uppdaterar information om tjänsteleverantör ..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Det går inte att lägga till kontakt. Högsta antalet kontakter som kan länkas (%d) har uppnåtts."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Det går inte att lägga till kontakter. Högsta antalet kontakter som kan länkas (%d) har uppnåtts."
-
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Denna kontakt kommer att tas bort."
-
-msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Den här kontakten och alla länkade kontakter tas bort."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "Det högsta antalet objekt som kan väljas (%d) har överskridits."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
-msgstr "Max antal kontakter som kan delas samtidigt (%1$d) har överskridits. Endast de %2$d första kommer att delas."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "Funktionen Chamada Certa kan användas för att identifiera kontaktens tjänsteleverantör och visa dem i din kontaktlista. Du kan göra detta senare genom att trycka på menyknappen och välja Uppdatera information om tjänsteleverantören. Tryck på OK för att identifiera din kontakts tjänsteleverantör nu."
-
-msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
-msgstr "Tryck på OK om du vill stoppa importen av kontakter från SIM-kortet."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Tryck på OK om du vill stoppa exporten av kontakter till %s."
 
-msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Tryck på Exportera om du vill välja vilka kontakter som ska exporteras. Viss kontaktinformation kan gå förlorad."
-
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "Vissa eller alla kontakter har eventuellt inte uppdaterats."
-
-msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Viss kontaktinformation kan förloras."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "SIM-minnet fullt."
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "Tar bort..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "%d telefonnummer har uppdaterats."
-
-msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
-msgstr "%d kontakter kommer att raderas."
-
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "%1$d kontakter har exporterats till %2$s."
-
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d kontakter har exporterats till Enhet/Kontakter/Importerad/%2$s.vcf."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "Minnet fullt."
-
-msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
-msgstr "Nya kontakter sparas i Kontakter på enheten."
-
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "FDN-läge aktiverat."
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "Misslyckades."
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "Ta bort ändringar?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "Raderar kontakter..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "Borttagning av kontakter avbröts. Vissa kontakter kan redan ha tagits bort."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "Kontakter slutar importeras från %s."
@@ -478,53 +352,14 @@ msgstr "Kontakter slutar importeras från %s."
 msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
 msgstr "Finns redan."
 
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Alla länkade kontakter tas bort."
-
-msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
-msgstr "Alla kontakter kommer att raderas."
-
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "Alla ändringar kommer att ignoreras."
-
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "Lägger till..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "1 telefonnummer har uppdaterats."
-
-msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
-msgstr "1 kontakt kommer att raderas."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "1 kontakt har tagits bort."
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "Arbete"
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "Röstsamtal"
 
-msgid "IDS_PB_OPT_VIDEO_CALL"
-msgstr "Videosamtal"
-
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "Uppdatera information om tjänsteleverantören"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "Ta bort länk för kontakt"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "Ta bort länk för kontakter"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
 msgstr "Ta foto"
-
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
-msgstr "Ta ett foto"
 
 msgid "IDS_PB_OPT_SPOUSE"
 msgstr "Make/maka"
@@ -535,26 +370,11 @@ msgstr "Skype"
 msgid "IDS_PB_OPT_SISTER"
 msgstr "Syster"
 
-msgid "IDS_PB_OPT_SIM_CARD"
-msgstr "SIM-kort"
-
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "Dela via"
-
 msgid "IDS_PB_OPT_SHARE"
 msgstr "Dela"
 
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "Inställningar"
-
-msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
-msgstr "Välj från kontakter"
-
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "SD-kort"
-
-msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
-msgstr "Spara kontakt i"
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "Ringsignal"
 
 msgid "IDS_PB_OPT_REORDER"
 msgstr "Ändra ordning"
@@ -580,23 +400,11 @@ msgstr "Partner"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "Förälder"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "Personsökare"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "Annat"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
 msgstr "Organisation"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "Mamma"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "Mobil"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "Meddelande"
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Hantera favoriter"
@@ -610,20 +418,11 @@ msgstr "Huvud"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "Efternamn först"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "Efternamn"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "Hem"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "Hem"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangouts"
@@ -637,12 +436,6 @@ msgstr "Vän"
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "Förnamn först"
 
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "Förnamn"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "FDN-kontakt"
-
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "Fax (arbete)"
 
@@ -655,14 +448,8 @@ msgstr "Pappa"
 msgid "IDS_PB_OPT_EDIT"
 msgstr "Redigera"
 
-msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
-msgstr "Visa inte igen"
-
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "Sambo"
-
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "Enhet"
 
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "Egen"
@@ -676,9 +463,6 @@ msgstr "Barn"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "Bror"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "Födelsedag"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "Assistent"
 
@@ -688,56 +472,26 @@ msgstr "Årsdag"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "Lägg till fält"
+msgid "IDS_PB_OPT_ADD_TO_BLOCK_LIST_ABB"
+msgstr "Lägg till i spärrlista"
 
 msgid "IDS_PB_OPT_ADD"
 msgstr "Lägg till"
 
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "Konto"
-
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "Sök"
-
-msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
-msgstr "Inga tjänstnummer"
 
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "Inga resultat hittades"
 
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "Inga nödkontakter"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "Inga kontakter"
-
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "Sortera efter"
-
-msgid "IDS_PB_MBODY_SET_PROFILE"
-msgstr "Ange profil"
 
 msgid "IDS_PB_MBODY_SET_MY_PROFILE"
 msgstr "Ställ in min profil"
 
-msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
-msgstr "Skicka tillsammans"
-
-msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
-msgstr "Skicka individuellt"
-
-msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Skicka kontaktinformation"
-
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "Välj alla"
-
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "%d kontakter"
-
-msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
-msgstr "End. kontakter m. telef."
 
 msgid "IDS_PB_MBODY_IMPORT"
 msgstr "Importera"
@@ -748,82 +502,22 @@ msgstr "Exportera"
 msgid "IDS_PB_MBODY_EVENT"
 msgstr "Händelse"
 
-msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
-msgstr "Visa kontakter med nummer"
-
 msgid "IDS_PB_MBODY_1_CONTACT_ABB"
 msgstr "1 kontakt"
 
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "Kontakter"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "USB-lagringen är ej tillgänglig"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "Kan inte lägga till"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "Det går inte att lägga till"
-
-msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
-msgstr "Föreslagna kontakter"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "Dela via"
-
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "Ange kontaktbild"
-
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "Inställningar"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "Tjänsteleverantör"
-
-msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Skicka kontaktinformation"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "Välj SIM för samtal"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "Välj SIM-kort att ringa upp med"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Välj SIM-kort för samtal"
 
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "Välj kontakt"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "Välj"
-
-msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
-msgstr "Spara kontakter i"
-
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "Ordna om"
 
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "Ta bort"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
-msgstr "Primära kontakter (%d)"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
-msgstr "Prim. kontakter (%1$d/%2$d)"
-
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "Telefon"
-
-msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
-msgstr "Privata kontakter"
-
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
-msgstr "%d valda"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
 msgstr "%d valda"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
@@ -832,29 +526,14 @@ msgstr "Namnformat"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "Oftast använda kontakter"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "Mig"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "Hantera favoriter"
-
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "Kontaktlista"
-
-msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
-msgstr "Länkade kontakter"
 
 msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
 msgstr "Importera kontakter"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "Importera"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "Favoriter"
-
-msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
-msgstr "Exp. kontakter till SIM-kort"
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
 msgstr "Exportera kontakter"
@@ -865,17 +544,8 @@ msgstr "Exportera"
 msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
 msgstr "Ange anpassad etikett"
 
-msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
-msgstr "Nödtjänster"
-
-msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
-msgstr "Nödkontakter"
-
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "Redigera"
-
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "Visa namn efter"
 
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "Visning"
@@ -883,38 +553,14 @@ msgstr "Visning"
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
 msgstr "Ignorera ändringar"
 
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "Ta bort objekt"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "Skapa"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "Bild på kontakt"
-
-msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
-msgstr "Kontakter som ska visas"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "Kontakter"
-
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "Exporterade kontakter"
-
-msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
-msgstr "Ändra lagringsplats"
 
 msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
 msgstr "Avbryt import"
 
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "Avbryt export"
-
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "Försök igen"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "Spara"
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "Telefon"
@@ -924,9 +570,6 @@ msgstr "OK"
 
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "Anteckn."
-
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "Mer"
 
 msgid "IDS_PB_BUTTON_EXPORT"
 msgstr "Exportera"
@@ -946,68 +589,11 @@ msgstr "Ta bort"
 msgid "IDS_PB_BUTTON_CREATE_ABB2"
 msgstr "Skapa"
 
-msgid "IDS_PB_BUTTON_CHANGE_ABB"
-msgstr "Ändra"
-
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Avbryt"
-
-msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
-msgstr "Lägg t konto"
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "Windows Live"
-
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "Webbplats"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "Uppdaterar kontaktlista..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "Kan inte spara p.g.a. SIM-kortsfel."
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "Titel"
-
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Denna kontakt kommer att raderas."
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "Informationen om tjänsteleverantören för vald kontakt kommer att uppdateras. Den här funktionen kräver en nätverksanslutning och kan medföra extra avgifter. Hur lång tid det tar att slutföra åtgärden beror på nätverksanslutningens status."
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "Telefon"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "Skype"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "Initierar SIM-kort..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "Tjänstnummer"
-
-msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
-msgstr "Det kan ta lång tid att överföra kontakter en och en eftersom de måste accepteras enskilt på den andra enheten"
-
-msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
-msgstr "Du kan minska överföringstiden genom att sända flera kontakter samtidigt. Men om den andra enheten inte stöder detta skickas endast en kontakt."
-
-msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
-msgstr "Välj hur du ska skicka kontaktinformation."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "Markerade"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "Ta bort från Favoriter"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "Foto"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "Tel.nummer"
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "Fonetiskt namn"
@@ -1021,32 +607,14 @@ msgstr "Fonetiskt efternamn"
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "Fonetiskt förnamn"
 
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "Övrig e-post"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "Inget sökresultat"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "Inga grupper"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "Anteckningar"
-
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "Smeknamn"
 
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "Namnsuffix"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "Namnprefix"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "Namn"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "Mina kontakter"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "Mellannamn"
@@ -1057,77 +625,14 @@ msgstr "Efternamn"
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
 msgstr "Befattning"
 
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "Importera från SIM-kort"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "Importera från SIM2-kort"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "Importerar..."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "Bild"
-
 msgid "IDS_PB_BODY_IM"
 msgstr "Chatt"
-
-msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Om din operatör har förinstallerat servicenummer på SIM-kortet visas de här."
-
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "Galleri"
 
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "Förnamn"
 
-msgid "IDS_PB_BODY_FAX"
-msgstr "Fax"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "Exportera till SIM-kort"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "Exportera till SIM2-kort"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "Exportera till SD-kort"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "E-post"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "Kassera ändringar"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "Vänner"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "Familj"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "Datum"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "Kollegor"
-
-msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
-msgstr "Kontakter som har identifierats som dubbletter kommer att föreslås automatiskt."
-
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "Kontakter"
-
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "Företag"
-
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "Knapp för att utöka listan"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "Automatiska rekommendationer kan extrahera höjdpunkter från ljudfiler."
 
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "När du har skapat kontakter visas de här."
@@ -1135,87 +640,126 @@ msgstr "När du har skapat kontakter visas de här."
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "När du har lagt till kontakter visas de här."
 
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "Lägg till i Favoriter"
-
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "Adress"
 
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "Konton"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Avbryt"
 
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "AB"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Ta bort"
 
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "PIN låst."
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Välj alla"
 
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "Fel PUK2-kod."
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Igår"
 
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "Felaktig PIN1-kod."
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Idag"
 
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "Lägg till befintlig kontakt"
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
 
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "Det finns inga primära kontakter"
+msgid "IDS_PB_OPT_WORK"
+msgstr "Arbete"
 
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "Primära kontakter"
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Inställningar"
 
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "Skapa primär nödkontakt"
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Personsökare"
 
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "Lägg till primära kontakter"
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Annat"
 
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "Ställ in datum"
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Mobil"
 
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "Ny PIN-kod och bekräftad PIN-kod stämmer inte överens."
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Meddelande"
 
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "När du har skapat primära kontakter visas de här."
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Efternamn"
 
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "Kan inte välja fler objekt"
+msgid "IDS_PB_OPT_HOME"
+msgstr "Hem"
 
-msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
-msgstr "Sätt i SIM-kortet."
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Förnamn"
 
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "Kontakten som du ringer använder operatören %1$s. Tryck på OK om du vill ringa samtalet med ditt SIM-kort från %2$s."
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Enhet"
 
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "Använd SIM-kort från %s"
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Födelsedag"
 
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "Aktuellt SIM"
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Inga kontakter"
 
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "Betaltelefon"
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Välj alla"
 
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "Ogiltigt tecken."
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Inställningar"
 
-msgid "IDS_HS_BUTTON_PHONE_M_CALL"
-msgstr "Telefon"
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "Välj"
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "Utgående samtal"
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Ta bort"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "Inkommande samtal"
+msgid "IDS_PB_HEADER_ME"
+msgstr "Mig"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Favoriter"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Skapa"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Spara"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Mer"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Avbryt"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Tel.nummer"
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Anteckningar"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "E-post"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Datum"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Kontakter"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
 msgstr "Endast de %d första kontakterna visas."
 
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "Min profil"
-
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
 msgstr "Tryck här om du vill lägga till en genväg"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "REDIGERA"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "Anpassad typ"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "Grupper"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "Ange"
+
+msgid "IDS_LOGS_HEADER_FILTER_BY"
+msgstr "Filtrera efter"
 
