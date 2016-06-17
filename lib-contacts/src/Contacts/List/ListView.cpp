@@ -338,7 +338,7 @@ Evas_Object *ListView::createEmptyLayout(Evas_Object *parent)
 
 void ListView::setEmptyState(bool isEmpty)
 {
-	setIndexState(!isEmpty);
+	updateIndex();
 
 	Evas_Object *genlist = m_Genlist->getEvasObject();
 	if (isEmpty) {
@@ -356,12 +356,6 @@ void ListView::setEmptyState(bool isEmpty)
 		evas_object_hide(m_NoContent);
 		elm_box_unpack(m_Box, m_NoContent);
 	}
-}
-
-void ListView::setIndexState(bool isVisible)
-{
-	const char *signal = isVisible ? "elm,state,fastscroll,show" : "elm,state,fastscroll,hide";
-	elm_layout_signal_emit(getEvasObject(), signal, "");
 }
 
 Ui::GenlistGroupItem *ListView::createSection(SectionId sectionId)
@@ -511,6 +505,13 @@ Evas_Object *ListView::createIndex(Evas_Object *parent)
 	return m_Index;
 }
 
+void ListView::updateIndex()
+{
+	bool isVisible = !m_PersonGroups.empty() && !m_IsSearching;
+	const char *signal = isVisible ? "elm,state,fastscroll,show" : "elm,state,fastscroll,hide";
+	elm_layout_signal_emit(getEvasObject(), signal, "");
+}
+
 Elm_Object_Item *ListView::insertIndexItem(const char *indexLetter, Elm_Object_Item *nextItem)
 {
 	Elm_Object_Item *indexItem = nextItem
@@ -568,15 +569,14 @@ PersonItem *ListView::createPersonItem(PersonSearchData &searchData)
 
 void ListView::insertPersonItem(PersonItem *item)
 {
-	if (m_PersonGroups.empty()) {
-		setEmptyState(false);
-	}
-
 	Person &person = item->getPerson();
 	PersonGroupItem *groupItem = getPersonGroupItem(person.getIndexLetter());
 	PersonItem *nextItem = getNextPersonItem(groupItem, person);
-
 	m_Genlist->insert(item, groupItem, nextItem);
+
+	if (m_PersonGroups.size() == 1) {
+		setEmptyState(false);
+	}
 }
 
 void ListView::updatePersonItem(PersonItem *item, int changes)
@@ -677,6 +677,7 @@ void ListView::onSearchChanged(const char *str)
 	bool isSearching = str && *str;
 	if (isSearching != m_IsSearching) {
 		m_IsSearching = isSearching;
+		updateIndex();
 		updateSections();
 	}
 
