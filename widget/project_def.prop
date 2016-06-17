@@ -47,7 +47,7 @@ USER_CPP_INC_FILES_ABS =
 
 # User Library Path
 USER_LIB_DIRS = 
-USER_LIB_DIRS_ABS = $(workspace_loc)/app-assist-efl/Debug $(workspace_loc)/lib-common/Debug
+USER_LIB_DIRS_ABS = $(workspace_loc)/app-assist-efl/${BUILD_CONFIG} $(workspace_loc)/lib-common/${BUILD_CONFIG}
 
 # EDC Resource Path
 USER_EDCS_IMAGE_DIRS = res 

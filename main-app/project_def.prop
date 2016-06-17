@@ -47,7 +47,7 @@ USER_CPP_INC_FILES_ABS =
 
 # User Library Path
 USER_LIB_DIRS = 
-USER_LIB_DIRS_ABS = $(workspace_loc)/app-assist-efl/Debug $(workspace_loc)/lib-common/Debug $(workspace_loc)/lib-contact/Debug $(workspace_loc)/lib-phone/Debug
+USER_LIB_DIRS_ABS = $(workspace_loc)/app-assist-efl/${BUILD_CONFIG} $(workspace_loc)/lib-common/${BUILD_CONFIG} $(workspace_loc)/lib-contact/${BUILD_CONFIG} $(workspace_loc)/lib-phone/${BUILD_CONFIG}
 
 # EDC Resource Path
 USER_EDCS_IMAGE_DIRS = res/contacts/images res/phone/images 
