@@ -70,8 +70,7 @@ ListView::ListView(Model::PersonProvider *provider)
 	auto strings = Common::getSelectViewStrings();
 	strings.titleDefault = "IDS_PB_TAB_CONTACTS";
 	strings.titleSingle = "IDS_PB_HEADER_SELECT_CONTACT_ABB2";
-	/* FIXME: Use different title for multi mode */
-	strings.titleMulti = "IDS_PB_HEADER_SELECT_CONTACT_ABB2";
+	strings.titleMulti = "IDS_PB_HEADER_SELECT_CONTACTS_ABB";
 	setStrings(strings);
 }
 
@@ -152,7 +151,7 @@ void ListView::onMenuPressed()
 	menu->create(getEvasObject());
 
 	if (!m_PersonGroups.empty()) {
-		menu->addItem("Groups", [this] {
+		menu->addItem("IDS_PB_OPT_GROUPS", [this] {
 			Groups::GroupsView *groupsView = new Groups::GroupsView();
 			getNavigator()->navigateTo(groupsView);
 		});
@@ -198,7 +197,7 @@ void ListView::onDeleteSelected()
 			contacts_disconnect_on_thread();
 		};
 
-		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_POP_DELETING_CONTACTS_ING");
+		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_DELETING_ING_ABB");
 		new Thread(std::bind(task, std::move(results)), [view, popup] {
 			delete popup;
 			view->getPage()->close();

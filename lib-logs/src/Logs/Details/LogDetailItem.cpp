@@ -52,7 +52,8 @@ LogDetailItem::LogDetailItem(Log *log)
 char *LogDetailItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_LOG_TYPE) == 0) {
-		return getTypeString(m_Log->getType(), m_Log->getDuration());
+		time_t duration = m_Log->getDuration();
+		return strdup(formatDuration(*gmtime(&duration)).c_str());
 	} else if (strcmp(part, PART_LOG_TIME) == 0) {
 		return strdup(formatTime(m_Log->getTime()).c_str());
 	}
@@ -120,43 +121,3 @@ const char *LogDetailItem::getImagePath(int type)
 	return path;
 }
 
-char *LogDetailItem::getTypeString(int type, time_t duration)
-{
-	const char *str = nullptr;
-
-	if (duration > 0) {
-		switch (type) {
-			case CONTACTS_PLOG_TYPE_VOICE_OUTGOING:
-				str = "IDS_ST_BODY_OUTGOING_CALL";
-				break;
-			case CONTACTS_PLOG_TYPE_VOICE_INCOMING:
-				str = "IDS_CALL_BODY_INCOMING_CALL";
-				break;
-		}
-
-		if (str) {
-			return appendDuration(str, duration);
-		}
-	}
-
-	switch (type) {
-		case CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN:
-		case CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN:
-			str = "IDS_LOGS_SBODY_MISSEDM_CALL_STATUS";
-			break;
-		case CONTACTS_PLOG_TYPE_VOICE_REJECT:
-		case CONTACTS_PLOG_TYPE_VOICE_BLOCKED:
-		default:
-			str = "IDS_LOGS_SBODY_CANCELLED_M_STATUS";
-			break;
-	}
-
-	return strdup(_(str));
-}
-
-char *LogDetailItem::appendDuration(const char *typeStr, time_t duration)
-{
-	char buffer[BUFFER_SIZE];
-	snprintf(buffer, sizeof(buffer), "%s, %s", _(typeStr), formatDuration(*gmtime(&duration)).c_str());
-	return strdup(buffer);
-}
