@@ -20,6 +20,7 @@
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
 #include "Contacts/List/Model/FavoritesProvider.h"
+#include "Contacts/List/RemoveFavView.h"
 #include "Contacts/List/ReorderView.h"
 
 #include "Ui/Navigator.h"
@@ -83,9 +84,7 @@ void ManageFavoritesPopup::onReorderSelected()
 
 void ManageFavoritesPopup::onRemoveSelected()
 {
-	//todo Should be created ListView with Favorites and MFC sections only
-	ListView *view = new ListView();
-	view->setSelectMode(Ux::SelectMulti);
+	RemoveFavView *view = new RemoveFavView();
 
 	//todo Implement separate controller to handle callback, because object is destroyed after popup close.
 	auto &onMfcUpdated = m_OnMfcUpdated;
