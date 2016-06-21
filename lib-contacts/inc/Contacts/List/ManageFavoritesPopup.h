@@ -42,6 +42,11 @@ namespace Contacts
 			typedef std::function<void()> MfcUpdateCallback;
 
 			/**
+			 * @brief Notifies that Favorites contacts were reordered
+			 */
+			typedef std::function<void(int, int)> ReorderCallback;
+
+			/**
 			 * @brief Creates new popup
 			 * @param[in]   navigator   Current navigator. Is needed to move to the next view.
 			 */
@@ -52,6 +57,12 @@ namespace Contacts
 			 * @param[in]   callback    Mfc update callback
 			 */
 			void setMfcUpdateCallback(MfcUpdateCallback callback);
+
+			/**
+			 * @brief Set favorites reorder callback
+			 * @param[in]   callback    Favorites reorder callback
+			 */
+			void setReorderCallback(ReorderCallback callback);
 
 		protected:
 			/**
@@ -72,6 +83,7 @@ namespace Contacts
 
 			Ui::Navigator *m_Navigator;
 			MfcUpdateCallback m_OnMfcUpdated;
+			ReorderCallback m_OnFavoritesReordered;
 		};
 	}
 }
