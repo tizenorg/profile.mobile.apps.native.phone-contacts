@@ -47,7 +47,9 @@ char *ContactRingtoneFieldItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text") == 0) {
 		char *value = getRingtonePath();
-		return strcpy(value, basename(value));
+		char *substr = strdup(basename(value));
+		free(value);
+		return substr;
 	} else if (strcmp(part, "elm.text.sub") == 0) {
 		const char *name = Common::getContactFieldName(ContactFieldId(getObject().getId()));
 		return Utils::safeDup(_(name));
