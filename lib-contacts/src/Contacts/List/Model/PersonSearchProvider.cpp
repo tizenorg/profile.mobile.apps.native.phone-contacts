@@ -47,6 +47,11 @@ void PersonSearchProvider::search(const char *query)
 	m_SearchEngine.search(query ? query : "");
 }
 
+bool PersonSearchProvider::empty() const
+{
+	return m_SearchEngine.empty();
+}
+
 const PersonSearchProvider::DataList &PersonSearchProvider::getDataList()
 {
 	if (m_ContactList.empty()) {
@@ -84,8 +89,8 @@ SearchData &PersonSearchProvider::insertPerson(Person &person)
 void PersonSearchProvider::onInserted(Person &person)
 {
 	SearchData &searchData = insertPerson(person);
-	onInserted(searchData);
 	m_SearchEngine.insertSearchData(&searchData);
+	onInserted(searchData);
 }
 
 void PersonSearchProvider::onUpdated(PersonSearchData &searchData, int changes)
@@ -97,9 +102,9 @@ void PersonSearchProvider::onUpdated(PersonSearchData &searchData, int changes)
 void PersonSearchProvider::onDeleted(DataList::iterator personIt)
 {
 	PersonSearchData *searchData = static_cast<PersonSearchData *>(*personIt);
-	searchData->onDeleted();
-
-	delete searchData;
 	m_ContactList.erase(personIt);
 	m_SearchEngine.deleteSearchData(searchData);
+
+	searchData->onDeleted();
+	delete searchData;
 }
