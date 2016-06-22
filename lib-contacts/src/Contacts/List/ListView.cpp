@@ -168,7 +168,7 @@ void ListView::onMenuPressed()
 					createSection(SectionMfc);
 				}
 			});
-
+			manageFavPopup->setReorderCallback(std::bind(&ListView::updateReorderedItem, this, _1, _2));
 			manageFavPopup->create(getEvasObject());
 		});
 	}
@@ -257,7 +257,7 @@ Ui::GenlistGroupItem *ListView::createListSection(SectionId sectionId)
 	switch (sectionId) {
 		case SectionFavorites:
 			title = "IDS_PB_HEADER_FAVOURITES";
-			provider = new FavoritesProvider(FavoritesProvider::ModeOnly, m_PersonProvider->getFilterType());
+			provider = new FavoritesProvider(FavoritesProvider::ModeDefault, m_PersonProvider->getFilterType());
 			break;
 		case SectionMfc:
 			title = "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2";
@@ -633,6 +633,35 @@ void ListView::linkPersonItems(PersonItem *sectionItem)
 				break;
 			}
 		}
+	}
+}
+
+void ListView::updateReorderedItem(int reorderedId, int previousId)
+{
+	if (!m_Sections[SectionFavorites]) {
+		return;
+	}
+	PersonItem *reorderedItem = nullptr;
+	PersonItem *previousItem = nullptr;
+
+	for (auto &&item : *m_Sections[SectionFavorites]) {
+		PersonItem *favoriteItem = static_cast<PersonItem *>(item);
+		int id = favoriteItem->getContactData().getId();
+		if (id == reorderedId) {
+			reorderedItem = favoriteItem;
+			if (previousItem) {
+				break;
+			}
+		} else if (id == previousId) {
+			previousItem = favoriteItem;
+			if (reorderedItem) {
+				break;
+			}
+		}
+	}
+	if (reorderedItem) {
+		reorderedItem->pop();
+		m_Genlist->insert(reorderedItem, m_Sections[SectionFavorites], previousItem, Ui::GenContainer::After);
 	}
 }
 

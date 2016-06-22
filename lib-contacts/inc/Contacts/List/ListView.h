@@ -122,6 +122,8 @@ namespace Contacts
 			PersonItem *getNextPersonItem(PersonGroupItem *group, const Model::Person &person);
 			void linkPersonItems(PersonItem *sectionItem);
 
+			void updateReorderedItem(int reorderedId, int previousId);
+
 			void onAddPressed(Evas_Object *button, void *eventInfo);
 
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
