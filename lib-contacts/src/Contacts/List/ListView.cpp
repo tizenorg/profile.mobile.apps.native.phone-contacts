@@ -175,7 +175,7 @@ void ListView::onMenuPressed()
 				}
 			});
 			manageFavPopup->setReorderCallback(std::bind(&ListSection::reorderItem,
-					static_cast<ListSection *>(m_Sections[SectionFavorites]), _1, _2));
+					static_cast<ListSection *>(m_Sections[SectionFavorites].m_Item), _1, _2));
 			manageFavPopup->create(getEvasObject());
 		});
 	}
