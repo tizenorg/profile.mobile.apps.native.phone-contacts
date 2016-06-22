@@ -63,7 +63,8 @@ using namespace std::placeholders;
 
 ListView::ListView(Model::PersonProvider *provider)
 	: m_Box(nullptr), m_NoContent(nullptr), m_Genlist(nullptr),
-	  m_Index(nullptr), m_AddButton(nullptr), m_IsCurrentView(false), m_IsSearching(false),
+	  m_Index(nullptr), m_AddButton(nullptr),
+	  m_IsCurrentView(false), m_IsSearching(false), m_IsEmpty(false),
 	  m_SearchItem(nullptr), m_Sections{ nullptr },
 	  m_PersonProvider(provider), m_SearchProvider(*m_PersonProvider)
 {
@@ -301,9 +302,7 @@ void ListView::fillPersonList()
 			addSelectItem(item);
 		}
 
-		if (m_PersonGroups.empty()) {
-			setEmptyState(true);
-		}
+		updateEmptyState();
 	}
 }
 
@@ -336,8 +335,25 @@ Evas_Object *ListView::createEmptyLayout(Evas_Object *parent)
 	return layout;
 }
 
-void ListView::setEmptyState(bool isEmpty)
+void ListView::updateEmptyLayout()
 {
+	if (m_IsSearching) {
+		elm_object_translatable_part_text_set(m_NoContent, "elm.text", "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB");
+		elm_object_translatable_part_text_set(m_NoContent, "elm.help.text", "");
+	} else {
+		elm_object_translatable_part_text_set(m_NoContent, "elm.text", "IDS_PB_NPBODY_NO_CONTACTS");
+		elm_object_translatable_part_text_set(m_NoContent, "elm.help.text",
+				"IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE");
+	}
+}
+
+void ListView::updateEmptyState()
+{
+	bool isEmpty = m_IsSearching ? m_SearchProvider.empty() : m_PersonGroups.empty();
+	if (isEmpty == m_IsEmpty) {
+		return;
+	}
+
 	updateIndex();
 
 	Evas_Object *genlist = m_Genlist->getEvasObject();
@@ -356,6 +372,7 @@ void ListView::setEmptyState(bool isEmpty)
 		evas_object_hide(m_NoContent);
 		elm_box_unpack(m_Box, m_NoContent);
 	}
+	m_IsEmpty = isEmpty;
 }
 
 Ui::GenlistGroupItem *ListView::createSection(SectionId sectionId)
@@ -573,10 +590,6 @@ void ListView::insertPersonItem(PersonItem *item)
 	PersonGroupItem *groupItem = getPersonGroupItem(person.getIndexLetter());
 	PersonItem *nextItem = getNextPersonItem(groupItem, person);
 	m_Genlist->insert(item, groupItem, nextItem);
-
-	if (m_PersonGroups.size() == 1) {
-		setEmptyState(false);
-	}
 }
 
 void ListView::updatePersonItem(PersonItem *item, int changes)
@@ -605,9 +618,7 @@ void ListView::deletePersonItem(PersonItem *item)
 		deletePersonGroupItem(oldGroup);
 	}
 
-	if (m_PersonGroups.empty()) {
-		setEmptyState(true);
-	}
+	updateEmptyState();
 }
 
 PersonItem *ListView::getNextPersonItem(PersonGroupItem *group, const Person &person)
@@ -658,6 +669,7 @@ void ListView::onPersonInserted(::Model::DataItem &data)
 	auto item = createPersonItem(static_cast<PersonSearchData &>(data));
 	insertPersonItem(item);
 	addSelectItem(item);
+	updateEmptyState();
 }
 
 void ListView::onSectionUpdated(ContactItem *item, ::Common::ChangeType change, SectionId sectionId)
@@ -678,9 +690,11 @@ void ListView::onSearchChanged(const char *str)
 	if (isSearching != m_IsSearching) {
 		m_IsSearching = isSearching;
 		updateIndex();
+		updateEmptyLayout();
 		updateSections();
 	}
 
 	m_SearchProvider.search(str);
 	elm_genlist_filter_set(m_Genlist->getEvasObject(), (void *) str);
+	updateEmptyState();
 }

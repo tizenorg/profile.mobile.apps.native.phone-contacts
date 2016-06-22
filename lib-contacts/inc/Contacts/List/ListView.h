@@ -91,7 +91,8 @@ namespace Contacts
 
 			Ui::Genlist *createGenlist(Evas_Object *parent);
 			Evas_Object *createEmptyLayout(Evas_Object *parent);
-			void setEmptyState(bool isEmpty);
+			void updateEmptyLayout();
+			void updateEmptyState();
 
 			Ui::GenlistGroupItem *createSection(SectionId sectionId);
 			void insertSection(Ui::GenlistGroupItem *section, SectionId sectionId);
@@ -138,6 +139,7 @@ namespace Contacts
 			Evas_Object *m_AddButton;
 			bool m_IsCurrentView;
 			bool m_IsSearching;
+			bool m_IsEmpty;
 
 			SearchItem *m_SearchItem;
 			Ui::GenlistGroupItem *m_Sections[SectionMax];

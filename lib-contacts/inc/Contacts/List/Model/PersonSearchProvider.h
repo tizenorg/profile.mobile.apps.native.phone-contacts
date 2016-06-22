@@ -53,6 +53,11 @@ namespace Contacts
 				void search(const char *query);
 
 				/**
+				 * @return Whether there is no results for the current query.
+				 */
+				bool empty() const;
+
+				/**
 				 * @return Found data items
 				 */
 				virtual const DataList &getDataList() override;
