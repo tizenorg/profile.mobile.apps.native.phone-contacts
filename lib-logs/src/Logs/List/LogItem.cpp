@@ -17,7 +17,6 @@
 
 #include "Logs/List/LogItem.h"
 #include "Logs/Model/Log.h"
-#include "Logs/Model/LogGroup.h"
 #include "Logs/Common/Utils.h"
 #include "Logs/Details/DetailsView.h"
 
@@ -62,6 +61,13 @@ LogItem::LogItem(LogGroup *group)
 	: m_Group(group)
 {
 	setUpdateCallback();
+}
+
+LogItem::~LogItem()
+{
+	if (m_Group) {
+		m_Group->removeChangeCallback(m_GroupChangeCbHandle);
+	}
 }
 
 void LogItem::setDeleteCallback(DeleteCallback callback)
@@ -237,9 +243,10 @@ void LogItem::updateItem(int type)
 
 void LogItem::setUpdateCallback()
 {
-	m_Group->addChangeCallback([this](int type){
+	m_GroupChangeCbHandle = m_Group->addChangeCallback([this](int type){
 		if (type & LogGroup::ChangeRemoved) {
 			if (m_OnDelete) {
+				m_Group = nullptr;
 				m_OnDelete(this);
 			}
 		} else {
