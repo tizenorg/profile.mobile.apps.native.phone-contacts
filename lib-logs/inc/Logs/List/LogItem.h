@@ -18,6 +18,7 @@
 #ifndef LOGS_LIST_LOG_ITEM_H
 #define LOGS_LIST_LOG_ITEM_H
 
+#include "Logs/Model/LogGroup.h"
 #include "Ux/SelectItem.h"
 
 #define PART_LOG_TIME           "elm.text.sub.end"
@@ -49,6 +50,7 @@ namespace Logs
 			 * @param[in]   group       Log group
 			 */
 			LogItem(Model::LogGroup *group);
+			virtual ~LogItem() override;
 
 			/**
 			 * @brief Set delete item callback
@@ -79,6 +81,7 @@ namespace Logs
 			DeleteCallback m_OnDelete;
 			DetailsCallback m_OnDetails;
 			Model::LogGroup *m_Group;
+			Model::LogGroup::ChangeCbHandle m_GroupChangeCbHandle;
 		};
 	}
 }
