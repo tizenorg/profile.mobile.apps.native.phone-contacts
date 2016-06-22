@@ -65,8 +65,8 @@ ListView::ListView(Model::PersonProvider *provider)
 	: m_Box(nullptr), m_NoContent(nullptr), m_Genlist(nullptr),
 	  m_Index(nullptr), m_AddButton(nullptr),
 	  m_IsCurrentView(false), m_IsSearching(false), m_IsEmpty(false),
-	  m_SearchItem(nullptr), m_Sections{ nullptr },
-	  m_PersonProvider(provider), m_SearchProvider(*m_PersonProvider)
+	  m_SearchItem(nullptr), m_PersonProvider(provider),
+	  m_SearchProvider(*m_PersonProvider)
 {
 	auto strings = Common::getSelectViewStrings();
 	strings.titleDefault = "IDS_PB_TAB_CONTACTS";
@@ -84,6 +84,12 @@ ListView::ListView(int filterType)
 ListView::~ListView()
 {
 	delete m_PersonProvider;
+}
+
+void ListView::setSectionVisibility(SectionId section, bool isVisible)
+{
+	m_Sections[section].m_IsVisible = isVisible;
+	updateSection(section);
 }
 
 Evas_Object *ListView::onCreate(Evas_Object *parent)
@@ -120,8 +126,8 @@ void ListView::onCreated()
 void ListView::onDestroy()
 {
 	for (auto &&section : m_Sections) {
-		if (section && !section->isInserted()) {
-			delete section;
+		if (section.m_Item && !section.m_Item->isInserted()) {
+			delete section.m_Item;
 		}
 	}
 }
@@ -163,8 +169,8 @@ void ListView::onMenuPressed()
 			auto manageFavPopup = new ManageFavoritesPopup(getNavigator());
 			manageFavPopup->setMfcUpdateCallback([this] {
 
-				if (m_Sections[SectionMfc]) {
-					static_cast<ListSection *>(m_Sections[SectionMfc])->update();
+				if (m_Sections[SectionMfc].m_Item) {
+					static_cast<ListSection *>(m_Sections[SectionMfc].m_Item)->update();
 				} else {
 					createSection(SectionMfc);
 				}
@@ -390,7 +396,7 @@ Ui::GenlistGroupItem *ListView::createSection(SectionId sectionId)
 			break;
 	}
 
-	m_Sections[sectionId] = section;
+	m_Sections[sectionId].m_Item = section;
 	return section;
 }
 
@@ -402,7 +408,7 @@ void ListView::insertSection(Ui::GenlistGroupItem *section, SectionId sectionId)
 
 void ListView::updateSection(SectionId sectionId)
 {
-	Ui::GenlistGroupItem *section = m_Sections[sectionId];
+	Ui::GenlistGroupItem *section = m_Sections[sectionId].m_Item;
 	if (!section) {
 		if (getSectionVisibility(sectionId)) {
 			createSection(sectionId);
@@ -434,8 +440,8 @@ void ListView::updateSections()
 Ui::GenlistItem *ListView::getNextSectionItem(SectionId sectionId)
 {
 	for (unsigned section = sectionId + 1; section < SectionMax; ++section) {
-		if (m_Sections[section] && m_Sections[section]->isInserted()) {
-			return m_Sections[section];
+		if (m_Sections[section].m_Item && m_Sections[section].m_Item->isInserted()) {
+			return m_Sections[section].m_Item;
 		}
 	}
 
@@ -462,7 +468,10 @@ bool ListView::getSectionVisibility(SectionId sectionId)
 		}
 	};
 
-	return !m_IsSearching ? sectionVisibility[getSelectMode()][sectionId] : false;
+	bool isVisible = sectionVisibility[getSelectMode()][sectionId] &&
+			m_Sections[sectionId].m_IsVisible;
+
+	return !m_IsSearching ? isVisible : false;
 }
 
 SearchItem *ListView::createSearchItem()
