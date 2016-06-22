@@ -37,7 +37,7 @@ namespace Contacts
 				 */
 				enum Mode
 				{
-					ModeOnly,                   /**< Only favorites are displayed */
+					ModeDefault,                /**< Only favorites are displayed */
 					ModeExclude                 /**< Displayed all contacts without favorites */
 				};
 
@@ -46,7 +46,7 @@ namespace Contacts
 				 * @param[in]    mode          The mode
 				 * @param[in]    filterType    The filter
 				 */
-				explicit FavoritesProvider(Mode mode = ModeOnly, int filterType = FilterNone);
+				explicit FavoritesProvider(Mode mode = ModeDefault, int filterType = FilterNone);
 
 				/**
 				 * @brief Destructor

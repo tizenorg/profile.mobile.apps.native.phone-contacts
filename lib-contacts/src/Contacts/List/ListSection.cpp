@@ -51,6 +51,32 @@ void ListSection::update()
 	m_Provider->reload();
 }
 
+void ListSection::reorderItem(int reorderedId, int previousId)
+{
+	ContactItem *reorderedItem = nullptr;
+	ContactItem *previousItem = nullptr;
+
+	for (auto &&item : *this) {
+		ContactItem *contactItem = static_cast<ContactItem *>(item);
+		int id = contactItem->getContactData().getId();
+		if (id == reorderedId) {
+			reorderedItem = contactItem;
+			if (previousItem) {
+				break;
+			}
+		} else if (id == previousId) {
+			previousItem = contactItem;
+			if (reorderedItem) {
+				break;
+			}
+		}
+	}
+	if (reorderedItem) {
+		reorderedItem->pop();
+		insertSubItem(reorderedItem, previousItem, Ui::GenContainer::After);
+	}
+}
+
 char *ListSection::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text") == 0) {

@@ -74,6 +74,13 @@ namespace Contacts
 			 */
 			void update();
 
+			/**
+			 * @brief Reorder contact item
+			 * @param[in]   reorderedId     Id of the contact that was reordered
+			 * @param[in]   previousId      Id of the previous contact
+			 */
+			void reorderItem(int reorderedId, int previousId);
+
 		protected:
 			void onPersonInserted(::Model::DataItem &person);
 			ContactItem *createItem(Model::Person &person);
