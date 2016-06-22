@@ -72,7 +72,7 @@ Ui::GenlistGroupItem *RemoveFavView::createListSection(SectionId sectionId)
 	switch (sectionId) {
 		case SectionFavorites:
 			title = "IDS_PB_HEADER_FAVOURITES";
-			provider = new FavoritesProvider(FavoritesProvider::ModeOnly);
+			provider = new FavoritesProvider(FavoritesProvider::ModeDefault);
 			break;
 		case SectionMfc:
 			title = "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2";

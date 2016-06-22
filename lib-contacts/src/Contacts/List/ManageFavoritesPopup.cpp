@@ -41,6 +41,11 @@ void ManageFavoritesPopup::setMfcUpdateCallback(MfcUpdateCallback callback)
 	m_OnMfcUpdated = std::move(callback);
 }
 
+void ManageFavoritesPopup::setReorderCallback(ReorderCallback callback)
+{
+	m_OnFavoritesReordered = std::move(callback);
+}
+
 void ManageFavoritesPopup::onCreated()
 {
 	ListPopup::onCreated();
@@ -79,7 +84,9 @@ void ManageFavoritesPopup::onAddSelected()
 
 void ManageFavoritesPopup::onReorderSelected()
 {
-	m_Navigator->navigateTo(new ReorderView());
+	ReorderView *view = new ReorderView();
+	view->setItemReorderCallback(std::move(m_OnFavoritesReordered));
+	m_Navigator->navigateTo(view);
 }
 
 void ManageFavoritesPopup::onRemoveSelected()

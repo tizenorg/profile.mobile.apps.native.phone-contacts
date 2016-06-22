@@ -168,7 +168,8 @@ void ListView::onMenuPressed()
 					createSection(SectionMfc);
 				}
 			});
-
+			manageFavPopup->setReorderCallback(std::bind(&ListSection::reorderItem,
+					static_cast<ListSection *>(m_Sections[SectionFavorites]), _1, _2));
 			manageFavPopup->create(getEvasObject());
 		});
 	}
@@ -257,7 +258,7 @@ Ui::GenlistGroupItem *ListView::createListSection(SectionId sectionId)
 	switch (sectionId) {
 		case SectionFavorites:
 			title = "IDS_PB_HEADER_FAVOURITES";
-			provider = new FavoritesProvider(FavoritesProvider::ModeOnly, m_PersonProvider->getFilterType());
+			provider = new FavoritesProvider(FavoritesProvider::ModeDefault, m_PersonProvider->getFilterType());
 			break;
 		case SectionMfc:
 			title = "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2";
