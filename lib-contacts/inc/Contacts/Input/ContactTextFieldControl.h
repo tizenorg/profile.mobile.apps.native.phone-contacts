@@ -80,6 +80,7 @@ namespace Contacts
 
 		private:
 			virtual void onCreated() override;
+			static Ui::GenlistItem *findNextItem(Ui::GenlistItem *item);
 			void setNextItem(Ui::GenlistItem *item);
 			void unsetNextItem();
 

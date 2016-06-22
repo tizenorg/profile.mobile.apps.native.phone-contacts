@@ -21,13 +21,13 @@
 #include "Ui/GenlistGroupItem.h"
 #include "Common/DataTypes.h"
 
+namespace Model
+{
+	class DataItem;
+}
+
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactData;
-	}
-
 	namespace List
 	{
 		namespace Model
@@ -69,14 +69,26 @@ namespace Contacts
 			 */
 			void setUpdateCallback(UpdateCallback callback);
 
+			/**
+			 * @brief Update section content manually
+			 */
+			void update();
+
+			/**
+			 * @brief Reorder contact item
+			 * @param[in]   reorderedId     Id of the contact that was reordered
+			 * @param[in]   previousId      Id of the previous contact
+			 */
+			void reorderItem(int reorderedId, int previousId);
+
 		protected:
-			void onInserted(Contacts::Model::ContactData &person);
+			void onPersonInserted(::Model::DataItem &person);
 			ContactItem *createItem(Model::Person &person);
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 
-			void onDeleted(ContactItem *item);
+			void onPersonDeleted(ContactItem *item);
 
 			std::string m_Title;
 			UpdateCallback m_OnUpdated;

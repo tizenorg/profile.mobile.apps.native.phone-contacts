@@ -20,6 +20,7 @@
 
 #include "Logs/Model/LogGroup.h"
 #include "Ux/SelectView.h"
+#include "Logs/Model/NumberLogProvider.h"
 
 namespace Ui
 {
@@ -52,15 +53,13 @@ namespace Logs
 		public:
 			/**
 			 * @brief Create log details view.
-			 * @param[in]   group   Log group
+			 * @param[in]   number   Number
 			 */
-			DetailsView(Model::LogGroup *group);
+			explicit DetailsView(const char *number);
 
 		private:
-			virtual ~DetailsView() override;
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
-			virtual bool onBackPressed() override;
 			virtual void onMenuPressed() override;
 
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
@@ -69,22 +68,28 @@ namespace Logs
 			void fillGenList();
 			void insertBasicInfoItem();
 			void insertActionItem();
-			void insertLogGroupItem();
+			void insertLogGroupList();
+			void insertLogGroupItem(Model::LogGroup *group);
+			void insertLogDetailItems(Model::LogGroup *group);
 			void insertLogDetailItem(Model::Log *log);
-			void insertLogDetailItems();
+
+			List::LogGroupItem *getLastGroupItem();
+			void setLastGroupItem(List::LogGroupItem *groupItem);
 
 			bool onSelected(Ux::SelectResults results);
 			bool onCanceled();
-			void onGroupChanged(int type);
+
+			void onLogGroupInserted(Model::LogGroup *group);
+			void onGroupChanged(Model::LogGroup *group, List::LogGroupItem *groupItem, int type);
 			void onLogAdded(Model::Log *log);
 			void onLogRemoved(LogDetailItem *logItem);
 
 			Model::LogGroup *m_Group;
+			Model::NumberLogProvider m_LogProvider;
 			Ui::Genlist *m_Genlist;
 			BasicInfoItem *m_BasicInfoItem;
 			ActionItem *m_ActionItem;
-			List::LogGroupItem *m_GroupItem;
-			Model::LogGroup::ChangeCbHandle m_GroupChangeCbHandle;
+			List::LogGroupItem *m_LastGroupItem;
 		};
 	}
 }

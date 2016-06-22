@@ -123,13 +123,7 @@ size_t SelectView::getSelectCount() const
 	return m_SelectCount;
 }
 
-void SelectView::onPageAttached(Ui::NavigatorPage *page)
-{
-	updatePageTitle();
-	updatePageButtons();
-}
-
-void SelectView::onItemInserted(SelectItem *item)
+void SelectView::addSelectItem(SelectItem *item)
 {
 	item->m_SelectView = this;
 	item->setSelectMode(m_SelectMode);
@@ -140,7 +134,7 @@ void SelectView::onItemInserted(SelectItem *item)
 	}
 }
 
-void SelectView::onItemRemove(SelectItem *item)
+void SelectView::removeSelectItem(SelectItem *item)
 {
 	auto it = std::find(m_Items.begin(), m_Items.end(), item);
 	if (it != m_Items.end()) {
@@ -151,6 +145,23 @@ void SelectView::onItemRemove(SelectItem *item)
 		updateItemCount(CountDecrement, item);
 	}
 	item->m_SelectView = nullptr;
+}
+
+void SelectView::onPageAttached(Ui::NavigatorPage *page)
+{
+	updatePageTitle();
+	updatePageButtons();
+}
+
+bool SelectView::onBackPressed()
+{
+	if (m_SelectMode != SelectNone) {
+		if (m_OnCanceled && !m_OnCanceled()) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 void SelectView::updatePageTitle()
@@ -216,7 +227,6 @@ void SelectView::updateSelectAllItem()
 			m_SelectAllItem->setCheckCallback(std::bind(&SelectView::onSelectAllChecked, this, _1));
 			m_SelectAllItem->setDestroyCallback(std::bind(&SelectView::onSelectAllDestroy, this));
 			onSelectAllInsert(m_SelectAllItem.get());
-			m_SelectAllItem->scrollTo();
 		}
 
 		updateSelectAllState();
@@ -319,7 +329,7 @@ void SelectView::onItemSelected(SelectItem *item)
 {
 	if  (m_SelectMode == SelectSingle) {
 		SelectResult result = item->getSelectResult();
-		if (m_OnSelected && m_OnSelected({ &result, 1 })) {
+		if (m_OnSelected && m_OnSelected({ result })) {
 			getPage()->close();
 		}
 	}
@@ -377,7 +387,7 @@ void SelectView::onDonePressed(Evas_Object *button, void *eventInfo)
 		}
 	}
 
-	if (m_OnSelected && m_OnSelected({ results.data(), results.size()})) {
+	if (m_OnSelected && m_OnSelected(std::move(results))) {
 		getPage()->close();
 	}
 }

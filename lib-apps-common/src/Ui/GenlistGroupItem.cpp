@@ -42,12 +42,12 @@ GenlistItem *GenlistGroupItem::getLastItem() const
 	return (GenlistItem *) elm_object_item_data_get(item);
 }
 
-GenlistIterator GenlistGroupItem::begin()
+GenIterator GenlistGroupItem::begin()
 {
 	return getFirstItem();
 }
 
-GenlistIterator GenlistGroupItem::end()
+GenIterator GenlistGroupItem::end()
 {
 	GenlistItem *lastItem = getLastItem();
 	return lastItem ? lastItem->getNextItem() : nullptr;
@@ -82,7 +82,7 @@ bool GenlistGroupItem::isExpanded() const
 GenlistGroupItem *GenlistGroupItem::getNextGroupItem() const
 {
 	GenlistItem *lastItem = getLastItem();
-	GenlistItem *item = lastItem ? lastItem->getNextItem() : getNextItem();
+	GenlistItem *item = static_cast<GenlistItem *>(lastItem ? lastItem->getNextItem() : getNextItem());
 	if (item && item->isGroupItem()) {
 		return dynamic_cast<GenlistGroupItem *>(item);
 	}
@@ -92,7 +92,7 @@ GenlistGroupItem *GenlistGroupItem::getNextGroupItem() const
 
 GenlistGroupItem *GenlistGroupItem::getPrevGroupItem() const
 {
-	GenlistItem *item = getPrevItem();
+	GenlistItem *item = static_cast<GenlistItem *>(getPrevItem());
 	if (item) {
 		if (item->isGroupItem()) {
 			return dynamic_cast<GenlistGroupItem *>(item);
@@ -111,7 +111,7 @@ void GenlistGroupItem::insertSubItem(GenlistItem *item, GenlistItem *sibling,
 		return;
 	}
 
-	Genlist *genlist = getParent();
+	Genlist *genlist = static_cast<Genlist *>(getParent());
 	if (genlist && isExpanded()) {
 		genlist->insert(item, this, sibling, position);
 	} else {
@@ -163,7 +163,7 @@ void GenlistGroupItem::onExpanded(bool isExpanded)
 
 void GenlistGroupItem::insertSubItems()
 {
-	Genlist *genlist = getParent();
+	Genlist *genlist = static_cast<Genlist *>(getParent());
 	if (genlist) {
 		for (auto &&item : m_ItemsCache) {
 			genlist->insert(item, this);
@@ -175,7 +175,7 @@ void GenlistGroupItem::insertSubItems()
 void GenlistGroupItem::popSubItems()
 {
 	for (auto it = begin(), endIt = end(); it != endIt; ) {
-		GenlistItem *item = *it++;
+		GenlistItem *item = static_cast<GenlistItem *>(*it++);
 		item->pop();
 		m_ItemsCache.push_back(item);
 	}

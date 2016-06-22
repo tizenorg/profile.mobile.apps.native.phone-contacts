@@ -19,6 +19,7 @@
 #include "Contacts/List/ListSection.h"
 #include "Contacts/List/ReorderItem.h"
 #include "Contacts/List/ReorderView.h"
+#include "Contacts/Model/ContactData.h"
 
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
@@ -29,6 +30,11 @@ using namespace Contacts::List::Model;
 ReorderView::ReorderView()
 	: m_CancelButton(nullptr), m_DoneButton(nullptr), m_Genlist(nullptr), m_Section(nullptr)
 {}
+
+void ReorderView::setItemReorderCallback(ReorderItemCallback callback)
+{
+	m_OnItemReordered = std::move(callback);
+}
 
 Evas_Object *ReorderView::onCreate(Evas_Object *parent)
 {
@@ -48,11 +54,11 @@ Evas_Object *ReorderView::onCreate(Evas_Object *parent)
 
 void ReorderView::onPageAttached(Ui::NavigatorPage *page)
 {
-	page->setTitle("IDS_PB_OPT_REORDER");;
+	page->setTitle("IDS_PB_OPT_REORDER");
 
 	createPageButtons();
-	page->setContent("title_right_btn", m_DoneButton);
 	page->setContent("title_left_btn", m_CancelButton);
+	page->setContent("title_right_btn", m_DoneButton);
 }
 
 void ReorderView::createPageButtons()
@@ -111,6 +117,9 @@ void ReorderView::onDonePressed(Evas_Object *button, void *eventInfo)
 	for (auto &&reorderData : m_ReorderDatas) {
 		contacts_person_set_favorite_order(reorderData.personId,
 				reorderData.prevPersonId, reorderData.nextPersonId);
+		if (m_OnItemReordered) {
+			m_OnItemReordered(reorderData.personId, reorderData.prevPersonId);
+		}
 	}
 
 	Ui::NavigatorPage *page = getPage();

@@ -43,6 +43,7 @@ namespace Contacts
 			FieldNote,
 			FieldNickname,
 			FieldRelationship,
+			FieldRingtone,
 			FieldEnd
 		};
 

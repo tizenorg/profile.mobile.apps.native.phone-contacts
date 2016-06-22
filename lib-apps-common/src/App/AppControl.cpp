@@ -25,6 +25,13 @@ AppControl::AppControl()
 {
 }
 
+AppControl::AppControl(const char *appId)
+	: AppControl()
+{
+	app_control_create(&m_AppControl);
+	app_control_set_app_id(m_AppControl, appId);
+}
+
 AppControl::AppControl(const char *operation, const char *mime, const char *uri)
 	: AppControl()
 {

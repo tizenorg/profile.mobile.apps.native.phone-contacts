@@ -15,10 +15,11 @@
  *
  */
 
-#include "Contacts/List/Model/SearchProvider.h"
+#include "Contacts/List/Model/PersonSearchProvider.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/List/Model/PersonProvider.h"
 #include "Contacts/List/Model/PersonSearchData.h"
+
 #include "Utils/Range.h"
 
 using namespace Contacts::Model;
@@ -26,27 +27,32 @@ using namespace Contacts::List::Model;
 using namespace Utils;
 using namespace std::placeholders;
 
-SearchProvider::SearchProvider(PersonProvider &provider)
+PersonSearchProvider::PersonSearchProvider(PersonProvider &provider)
 	: m_Provider(provider), m_SearchEngine(m_ContactList)
 {
-	m_Provider.setInsertCallback([this](ContactData &contactData) {
-		onInserted(static_cast<Person &>(contactData));
+	m_Provider.setInsertCallback([this](::Model::DataItem &data) {
+		onInserted(static_cast<Person &>(data));
 	});
 }
 
-SearchProvider::~SearchProvider()
+PersonSearchProvider::~PersonSearchProvider()
 {
 	for (auto &&person : m_ContactList) {
 		delete person;
 	}
 }
 
-void SearchProvider::search(const char *query)
+void PersonSearchProvider::search(const char *query)
 {
 	m_SearchEngine.search(query ? query : "");
 }
 
-const SearchProvider::DataList &SearchProvider::getDataList()
+bool PersonSearchProvider::empty() const
+{
+	return m_SearchEngine.empty();
+}
+
+const PersonSearchProvider::DataList &PersonSearchProvider::getDataList()
 {
 	if (m_ContactList.empty()) {
 		for (auto &&data : m_Provider.getDataList()) {
@@ -58,7 +64,7 @@ const SearchProvider::DataList &SearchProvider::getDataList()
 	return m_ContactList;
 }
 
-void SearchProvider::clearDataList()
+void PersonSearchProvider::clearDataList()
 {
 	for (auto &&contactData : m_ContactList) {
 		delete contactData;
@@ -67,35 +73,38 @@ void SearchProvider::clearDataList()
 	m_Provider.clearDataList();
 }
 
-ContactData &SearchProvider::insertPerson(Person &person)
+SearchData &PersonSearchProvider::insertPerson(Person &person)
 {
 	auto searchData = new PersonSearchData(person);
 	m_ContactList.push_back(searchData);
 
 	DataList::iterator personIt = --m_ContactList.end();
 
-	person.setUpdateCallback(std::bind(&SearchProvider::onUpdated, this, std::ref(*searchData), _1));
-	person.setDeleteCallback(std::bind(&SearchProvider::onDeleted, this, personIt));
+	person.setUpdateCallback(std::bind(&PersonSearchProvider::onUpdated, this, std::ref(*searchData), _1));
+	person.setDeleteCallback(std::bind(&PersonSearchProvider::onDeleted, this, personIt));
 
 	return *searchData;
 }
 
-void SearchProvider::onInserted(Person &person)
+void PersonSearchProvider::onInserted(Person &person)
 {
-	ContactData &searchData = insertPerson(person);
+	SearchData &searchData = insertPerson(person);
+	m_SearchEngine.insertSearchData(&searchData);
 	onInserted(searchData);
 }
 
-void SearchProvider::onUpdated(PersonSearchData &searchData, int changes)
+void PersonSearchProvider::onUpdated(PersonSearchData &searchData, int changes)
 {
+	m_SearchEngine.updateSearchData(&searchData);
 	searchData.onUpdated(changes);
 }
 
-void SearchProvider::onDeleted(DataList::iterator personIt)
+void PersonSearchProvider::onDeleted(DataList::iterator personIt)
 {
 	PersonSearchData *searchData = static_cast<PersonSearchData *>(*personIt);
-	searchData->onDeleted();
-
-	delete searchData;
 	m_ContactList.erase(personIt);
+	m_SearchEngine.deleteSearchData(searchData);
+
+	searchData->onDeleted();
+	delete searchData;
 }

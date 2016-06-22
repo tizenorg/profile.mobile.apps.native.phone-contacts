@@ -47,9 +47,19 @@ BasicInfoItem::~BasicInfoItem()
 	}
 }
 
+
 void BasicInfoItem::setBackCallback(BackCallback callback)
 {
 	m_OnBackPressed = std::move(callback);
+}
+
+void BasicInfoItem::updateGroup(LogGroup *group)
+{
+	m_Group = group;
+	if (m_Group) {
+		m_Log = m_Group->getLogList().back();
+		m_GroupChangeCbHandle = m_Group->addChangeCallback(std::bind(&BasicInfoItem::onGroupChanged, this, _1));
+	}
 }
 
 Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
@@ -163,10 +173,7 @@ void BasicInfoItem::onUpdatePressed()
 
 void BasicInfoItem::onGroupChanged(int type)
 {
-	if (type & LogGroup::ChangeRemoved) {
-		m_Group = nullptr;
-		delete this;
-	} else {
+	if (!(type & LogGroup::ChangeRemoved)) {
 		m_Log = m_Group->getLogList().back();
 		if (type & LogGroup::ChangePerson) {
 			elm_genlist_item_fields_update(getObjectItem(), STATE_SAVED, ELM_GENLIST_ITEM_FIELD_STATE);
@@ -180,3 +187,4 @@ void BasicInfoItem::onGroupChanged(int type)
 		}
 	}
 }
+

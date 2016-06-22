@@ -42,8 +42,14 @@ namespace Logs
 			 * @brief Create action item.
 			 * @param[in]   group    Log group for display
 			 */
-			ActionItem(Model::LogGroup *group);
-			virtual ~ActionItem();
+			explicit ActionItem(Model::LogGroup *group);
+			virtual ~ActionItem() override;
+
+			/**
+			 * @brief Update log and item fields.
+			 * @param[in]   group    Log group for display
+			 */
+			void updateGroup(Model::LogGroup *group);
 
 		protected:
 			/**

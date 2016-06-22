@@ -76,17 +76,7 @@ void ContactTextFieldControl::update()
 
 void ContactTextFieldControl::updateReturnKey()
 {
-	unsetNextItem();
-	for (auto item = m_ParentItem->getNextItem(); item; item = item->getNextItem()) {
-		if (item->isFocusable()) {
-			setNextItem(item);
-			break;
-		}
-	}
-
-	elm_entry_input_panel_return_key_type_set(getEntry(), m_NextItem
-			? ELM_INPUT_PANEL_RETURN_KEY_TYPE_NEXT
-			: ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE);
+	setNextItem(findNextItem(m_ParentItem));
 }
 
 void ContactTextFieldControl::updateEntryLayout()
@@ -128,10 +118,31 @@ void ContactTextFieldControl::onCreated()
 	update();
 }
 
+Ui::GenlistItem *ContactTextFieldControl::findNextItem(Ui::GenlistItem *item)
+{
+	while ((item = (Ui::GenlistItem *) item->getNextItem())) {
+		if (item->isFocusable()) {
+			return item;
+		}
+	}
+
+	return nullptr;
+}
+
 void ContactTextFieldControl::setNextItem(Ui::GenlistItem *item)
 {
+	unsetNextItem();
+	if (!item) {
+		elm_entry_input_panel_return_key_type_set(getEntry(), ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE);
+		return;
+	}
+
 	m_NextItem = item;
-	m_NextItem->setDestroyCallback(std::bind(&ContactTextFieldControl::updateReturnKey, this));
+	m_NextItem->setDestroyCallback([this] {
+		setNextItem(findNextItem(m_NextItem));
+	});
+
+	elm_entry_input_panel_return_key_type_set(getEntry(), ELM_INPUT_PANEL_RETURN_KEY_TYPE_NEXT);
 }
 
 void ContactTextFieldControl::unsetNextItem()

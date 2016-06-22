@@ -39,7 +39,7 @@ using namespace Phone;
 using namespace Phone::SpeedDial;
 
 SettingsItem::SettingsItem(int number)
-	: m_Number(number), m_Chooser(nullptr)
+	: m_Number(number)
 {
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2015 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,23 +15,20 @@
  *
  */
 
-#include "Contacts/Model/ContactDataProvider.h"
+#ifndef UI_GENGRID_ITEM_H
+#define UI_GENGRID_ITEM_H
 
-using namespace Contacts::Model;
+#include "Ui/GenItem.h"
 
-void ContactDataProvider::setInsertCallback(InsertCallback callback)
+namespace Ui
 {
-	m_OnInserted = std::move(callback);
+	class EXPORT_API GengridItem : public GenItem
+	{
+	public:
+		GengridItem()
+			: GenItem(GenContainer::TypeGengrid)
+		{ }
+	};
 }
 
-void ContactDataProvider::unsetInsertCallback()
-{
-	m_OnInserted = nullptr;
-}
-
-void ContactDataProvider::onInserted(ContactData &contactData)
-{
-	if (m_OnInserted) {
-		m_OnInserted(contactData);
-	}
-}
+#endif /* UI_GENGRID_ITEM_H */

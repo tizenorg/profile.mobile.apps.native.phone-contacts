@@ -18,15 +18,14 @@
 #ifndef WIDGET_GENGRID_ITEM_H
 #define WIDGET_GENGRID_ITEM_H
 
-#include <Elementary.h>
-#include <functional>
+#include "Ui/GengridItem.h"
 
 class WidgetItem;
 
 /**
  * @brief Widget gengrid item.
  */
-class WidgetGengridItem
+class WidgetGengridItem : public Ui::GengridItem
 {
 public:
 	typedef std::function<void()> DeleteCallback;
@@ -36,13 +35,6 @@ public:
 	 * @param[in]   Widget item associated with gengrid item
 	 */
 	WidgetGengridItem(WidgetItem &item);
-
-	/**
-	 * @brief Insert item before @a nextItem, or append if not specified.
-	 * @param[in]   gengrid	    Parent gengrid
-	 * @param[in]   nextItem    Next item to insert before it or nullptr to append.
-	 */
-	void insert(Evas_Object *gengrid, Elm_Object_Item *nextItem);
 
 	/**
 	 * @brief Set item edit mode.
@@ -61,29 +53,21 @@ public:
 	 */
 	WidgetItem &getItem() const;
 
-	/**
-	 * @return Underlying gengrid item.
-	 */
-	Elm_Object_Item *getObjectItem() const;
-
 private:
-	static Elm_Gengrid_Item_Class *getItemClass();
-
-	char *getText(Evas_Object *parent, const char *part);
-	Evas_Object *getContent(Evas_Object *parent, const char *part);
+	virtual Elm_Gengrid_Item_Class *getItemClass() const override;
+	virtual char *getText(Evas_Object *parent, const char *part) override;
+	virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 	Evas_Object *createThumbnail(Evas_Object *parent);
 	Evas_Object *createTypeIcon(Evas_Object *parent);
 	Evas_Object *createDeleteButton(Evas_Object *parent);
 
-	void onSelected(Evas_Object *obj, void *eventInfo);
+	virtual void onSelected() override;
 	void onDeletePressed(Evas_Object *obj, void *eventInfo);
 	void onItemChanged(int changes);
 
 	WidgetItem &m_Item;
 	bool m_EditMode;
-
-	Elm_Object_Item *m_ObjectItem;
 	DeleteCallback m_OnDelete;
 };
 

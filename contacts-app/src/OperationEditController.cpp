@@ -85,7 +85,7 @@ Ui::View *OperationEditController::createInputView(int personId)
 
 bool OperationEditController::onSelectResult(Ux::SelectResults results)
 {
-	Ui::View *view = createInputView(results.begin()->value.id);
+	Ui::View *view = createInputView(results.front().value.id);
 	getNavigator()->navigateTo(view);
 	return true;
 }

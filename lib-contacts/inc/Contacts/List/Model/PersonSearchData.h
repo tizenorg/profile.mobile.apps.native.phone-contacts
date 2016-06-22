@@ -53,7 +53,7 @@ namespace Contacts
 				virtual Contacts::Model::SearchResultPtr compare(const std::string &str) override;
 
 			private:
-				friend class SearchProvider;
+				friend class PersonSearchProvider;
 
 				Contacts::Model::SearchResultPtr compareName(const std::string &str);
 				Contacts::Model::SearchResultPtr compareNumber(const std::string &str);

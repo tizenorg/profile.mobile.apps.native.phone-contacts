@@ -19,7 +19,7 @@
 #define CONTACTS_LIST_MODEL_PERSON_PROVIDER_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Contacts/Model/ContactDataProvider.h"
+#include "Model/DataProvider.h"
 
 #include <contacts.h>
 
@@ -34,7 +34,7 @@ namespace Contacts
 			/**
 			 * @brief Provides list of person
 			 */
-			class PersonProvider : public Contacts::Model::ContactDataProvider
+			class PersonProvider : public ::Model::DataProvider
 			{
 			public:
 				/**
@@ -53,12 +53,19 @@ namespace Contacts
 				 * @brief Get person list
 				 * @return List of contact objects
 				 */
-				virtual const DataList &getDataList() override;
+				virtual const DataList &getDataList() override final;
 
 				/**
-				 * @see ContactDataProvider::clearDataList()
+				 * @see DataProvider::clearDataList()
 				 */
-				virtual void clearDataList() override;
+				virtual void clearDataList() override final;
+
+				/**
+				 * @brief Reload the person list.
+				 * Delete all persons, get new list from db and insert every person.
+				 * Delete and Insert callbacks will be invoked.
+				 */
+				void reload();
 
 				/**
 				 * @brief Enable or disable updates from database.
@@ -136,6 +143,10 @@ namespace Contacts
 			private:
 				static int getIdProperty(IdType idType);
 				void updatePersonList();
+
+				void subscribe();
+				void unsubscribe();
+				void resetDbVersion();
 
 				void onChanged(const char *uri);
 				void onSettingsChanged();

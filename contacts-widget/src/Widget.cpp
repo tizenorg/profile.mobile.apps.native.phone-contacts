@@ -20,12 +20,14 @@
 
 #include "App/AppControlRequest.h"
 #include "App/Path.h"
+#include "Ui/Gengrid.h"
 #include "Ui/Scale.h"
 #include "Ui/Window.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 
 #include "AppsCommonButtons.h"
+#include "AddButtonItem.h"
 #include "WidgetItemLayout.h"
 #include "WidgetLayout.h"
 #include "WidgetLayoutMetrics.h"
@@ -105,7 +107,7 @@ Evas_Object *Widget::createEmptyLayout(Evas_Object *parent)
 			(Edje_Signal_Cb) makeCallback(&Widget::onAddPressed), this);
 
 	elm_object_translatable_part_text_set(layout, PART_TITLE,
-			"IDS_PB_HEADER_CONTACTS_M_APPLICATION");
+			"IDS_PB_BODY_CONTACTS");
 	elm_object_translatable_part_text_set(layout, PART_HELP,
 			"IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT");
 
@@ -124,18 +126,19 @@ Evas_Object *Widget::createLayout(Evas_Object *parent)
 
 Evas_Object *Widget::createGengrid(Evas_Object *parent)
 {
-	m_Gengrid = elm_gengrid_add(parent);
-	elm_gengrid_align_set(m_Gengrid, 0.0, 0.0);
-	elm_gengrid_item_size_set(m_Gengrid, getWidth() / GRID_COLS, Ui::getScaledValue(ITEM_H));
+	m_Gengrid = new Ui::Gengrid();
+	m_Gengrid->create(parent);
+	elm_gengrid_align_set(m_Gengrid->getEvasObject(), 0.0, 0.0);
+	elm_gengrid_item_size_set(m_Gengrid->getEvasObject(), getWidth() / GRID_COLS, Ui::getScaledValue(ITEM_H));
 
-	return m_Gengrid;
+	return m_Gengrid->getEvasObject();
 }
 
 Evas_Object *Widget::createEditButton(Evas_Object *parent)
 {
 	m_EditButton = elm_button_add(parent);
 	elm_object_style_set(m_EditButton, BUTTON_STYLE_CUSTOM_SMALL);
-	elm_object_translatable_text_set(m_EditButton, "IDS_QP_ACBUTTON_EDIT_ABB");
+	elm_object_translatable_text_set(m_EditButton, "IDS_HS_ACBUTTON_EDIT");
 	evas_object_smart_callback_add(m_EditButton, "clicked",
 			makeCallback(&Widget::onEditPressed), this);
 
@@ -148,26 +151,6 @@ Evas_Object *Widget::createEditButton(Evas_Object *parent)
 			"font=Tizen:style=Regular", BUTTON_TEXT_SIZE);
 
 	return m_EditButton;
-}
-
-Elm_Gengrid_Item_Class *Widget::getAddButtonItemClass()
-{
-	static Elm_Gengrid_Item_Class itc = { 0 };
-	if (!itc.item_style) {
-		itc.version = ELM_GENGRID_ITEM_CLASS_VERSION;
-		itc.item_style = WIDGET_ITEM_STYLE;
-		itc.func.content_get = [](void *data, Evas_Object *obj, const char *part) -> Evas_Object* {
-			if (strcmp(part, PART_THUMBNAIL) == 0) {
-				Evas_Object *layout = elm_layout_add(obj);
-				elm_layout_file_set(layout, layoutPath.c_str(), GROUP_ICON_ADD);
-				return layout;
-			}
-
-			return nullptr;
-		};
-	}
-
-	return &itc;
 }
 
 void Widget::setEmptyMode(bool isEmpty)
@@ -195,13 +178,12 @@ void Widget::setEditMode(bool isEnabled)
 	m_EditMode = isEnabled;
 	elm_object_translatable_text_set(m_EditButton, m_EditMode
 			? "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
-			: "IDS_QP_ACBUTTON_EDIT_ABB");
+			: "IDS_HS_ACBUTTON_EDIT");
 
-	Elm_Object_Item *objectItem = elm_gengrid_first_item_get(m_Gengrid);
-	for (; objectItem; objectItem = elm_gengrid_item_next_get(objectItem)) {
-		if (objectItem != m_AddButton) {
-			auto item = (WidgetGengridItem *) elm_object_item_data_get(objectItem);
-			item->setEditMode(m_EditMode);
+	for (auto &&item : *m_Gengrid) {
+		if (item != m_AddButton) {
+			auto widgetItem = static_cast<WidgetGengridItem *>(item);
+			widgetItem->setEditMode(m_EditMode);
 		}
 	}
 
@@ -212,12 +194,15 @@ void Widget::updateAddButton()
 {
 	if (m_EditMode && m_Items.count() < m_MaxCount) {
 		if (!m_AddButton) {
-			m_AddButton = elm_gengrid_item_append(m_Gengrid, getAddButtonItemClass(), this,
-					makeCallback(&Widget::onAddPressed), this);
+			m_AddButton = new AddButtonItem();
+			m_AddButton->setSelectCallback([this] {
+				onAddPressed(nullptr, nullptr);
+			});
+			m_Gengrid->insert(m_AddButton);
 		}
 	} else {
 		if (m_AddButton) {
-			elm_object_item_del(m_AddButton);
+			delete m_AddButton;
 			m_AddButton = nullptr;
 		}
 	}
@@ -225,10 +210,6 @@ void Widget::updateAddButton()
 
 void Widget::onAddPressed(Evas_Object *obj, void *event_info)
 {
-	if (m_AddButton) {
-		elm_gengrid_item_selected_set(m_AddButton, EINA_FALSE);
-	}
-
 	m_AppControl = App::requestContactPick(APP_CONTROL_SELECT_SINGLE, APP_CONTROL_RESULT_ACTION);
 	m_AppControl.launch(makeCallbackWithLastParam(&Widget::onPickReply), this, false);
 }
@@ -266,7 +247,7 @@ void Widget::addItem(WidgetItem &item)
 	WidgetGengridItem *gridItem = new WidgetGengridItem(item);
 	gridItem->setEditMode(m_EditMode);
 	gridItem->setDeleteCallback(std::bind(&Widget::onRemoveItem, this, gridItem));
-	gridItem->insert(m_Gengrid, m_AddButton);
+	m_Gengrid->insert(gridItem, m_AddButton);
 
 	item.setDeleteCallback([this, gridItem] {
 		removeItem(gridItem);
@@ -277,9 +258,9 @@ void Widget::addItem(WidgetItem &item)
 
 void Widget::removeItem(WidgetGengridItem *item)
 {
-	elm_object_item_del(item->getObjectItem());
+	delete item;
 
-	int count = elm_gengrid_items_count(m_Gengrid);
+	int count = elm_gengrid_items_count(m_Gengrid->getEvasObject());
 	if (m_AddButton) {
 		--count;
 	}

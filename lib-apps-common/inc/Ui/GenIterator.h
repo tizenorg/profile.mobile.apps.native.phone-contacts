@@ -15,54 +15,54 @@
  *
  */
 
-#ifndef UI_GENLIST_ITERATOR_H
-#define UI_GENLIST_ITERATOR_H
+#ifndef UI_GEN_ITERATOR_H
+#define UI_GEN_ITERATOR_H
 
 #include <iterator>
 #include <tizen.h>
 
 namespace Ui
 {
-	class GenlistItem;
+	class GenItem;
 
 	/**
-	 * @brief Genlist items iterator.
+	 * @brief GenContainer items iterator.
 	 */
-	class EXPORT_API GenlistIterator :
-			public std::iterator<std::bidirectional_iterator_tag, GenlistItem *>
+	class EXPORT_API GenIterator :
+			public std::iterator<std::bidirectional_iterator_tag, GenItem *>
 	{
 	public:
 		/**
-		 * @brief Create genlist iterator
+		 * @brief Create iterator
 		 * @param[in]   item    Item pointed by iterator
 		 */
-		GenlistIterator(GenlistItem *item = nullptr);
+		GenIterator(GenItem *item = nullptr);
 
 		/**
 		 * @brief Increment iterator.
 		 */
-		GenlistIterator &operator++();
-		GenlistIterator operator++(int);
+		GenIterator &operator++();
+		GenIterator operator++(int);
 
 		/**
 		 * @brief Decrement iterator.
 		 */
-		GenlistIterator &operator--();
-		GenlistIterator operator--(int);
+		GenIterator &operator--();
+		GenIterator operator--(int);
 
 		/**
 		 * @brief Dereference iterator.
 		 */
-		GenlistItem *operator*() const;
+		GenItem *operator*() const;
 
 		/**
 		 * @brief Compare iterators for inequality.
 		 */
-		bool operator!=(const GenlistIterator &that) const;
+		bool operator!=(const GenIterator &that) const;
 
 	private:
-		GenlistItem *m_Item;
+		GenItem *m_Item;
 	};
 }
 
-#endif /* UI_GENLIST_ITERATOR_H */
+#endif /* UI_GEN_ITERATOR_H */

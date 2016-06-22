@@ -35,9 +35,22 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Notifies that Favorites contact was reordered
+			 * @param[in]   Id of the favorite contact that was reordered
+			 * @param[in]   Id of the previous contact
+			 */
+			typedef std::function<void(int, int)> ReorderItemCallback;
+
+			/**
 			 * @brief Create new reorder favorites contact list view
 			 */
 			ReorderView();
+
+			/**
+			 * @brief Set favorites item reorder callback
+			 * @param[in]   callback    Favorites item reorder callback
+			 */
+			void setItemReorderCallback(ReorderItemCallback callback);
 
 		private:
 			struct ReorderData
@@ -61,6 +74,7 @@ namespace Contacts
 			Ui::Genlist *m_Genlist;
 			Ui::GenlistItem *m_Section;
 			std::vector<ReorderData> m_ReorderDatas;
+			ReorderItemCallback m_OnItemReordered;
 		};
 	}
 }

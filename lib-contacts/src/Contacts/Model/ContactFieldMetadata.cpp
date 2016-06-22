@@ -106,6 +106,15 @@ const ContactObjectMetadata contactImage = {
 	_contacts_image._uri, _contacts_image.id, makeRange(contactImageFields)
 };
 
+/****************************** Ringtone Object *******************************/
+const ContactFieldMetadata contactRingtoneFields[] = {
+	{ FieldRingtone, _contacts_contact.ringtone_path, false, &contactRegularText }
+};
+const ContactObjectMetadata contactRingtone = {
+	{ TypeObject, ObjectTypeRingtone }, InterfaceNone,
+	_contacts_contact._uri, _contacts_contact.id, makeRange(contactRingtoneFields)
+};
+
 /****************************** Number Object *********************************/
 const int contactNumberTypeValues[] = {
 	CONTACTS_NUMBER_TYPE_CELL,
@@ -293,21 +302,22 @@ const ContactArrayMetadata contactMsgs = {
 
 /****************************** Contact Object ********************************/
 const ContactFieldMetadata contactFields[] = {
-	{ FieldFavorite,     _contacts_contact.is_favorite,  false, &contactBool },
-	{ FieldDisplayName,  _contacts_contact.display_name, false, &contactRegularText },
-	{ FieldImage,        _contacts_contact.image,        false, UPCAST(&contactImage) },
-	{ FieldName,         _contacts_contact.name,         true,  UPCAST(&contactName) },
-	{ FieldPhoneticName, _contacts_contact.name,         false, UPCAST(&contactPhName) },
-	{ FieldCompany,      _contacts_contact.company,      true,  UPCAST(&contactCompany) },
-	{ FieldNumber,       _contacts_contact.number,       true,  UPCAST(&contactNumbers) },
-	{ FieldEmail,        _contacts_contact.email,        true,  UPCAST(&contactEmails) },
-	{ FieldAddress,      _contacts_contact.address,      false, UPCAST(&contactAddrs) },
-	{ FieldUrl,          _contacts_contact.url,          false, UPCAST(&contactUrls) },
-	{ FieldMessenger,    _contacts_contact.messenger,    false, UPCAST(&contactMsgs) },
-	{ FieldEvent,        _contacts_contact.event,        false, UPCAST(&contactEvents) },
-	{ FieldNote,         _contacts_contact.note,         false, UPCAST(&contactNote) },
-	{ FieldNickname,     _contacts_contact.nickname,     true,  UPCAST(&contactNick) },
-	{ FieldRelationship, _contacts_contact.relationship, false, UPCAST(&contactRels) }
+	{ FieldFavorite,     _contacts_contact.is_favorite,     false, &contactBool },
+	{ FieldDisplayName,  _contacts_contact.display_name,    false, &contactRegularText },
+	{ FieldImage,        _contacts_contact.image,           false, UPCAST(&contactImage) },
+	{ FieldName,         _contacts_contact.name,            true,  UPCAST(&contactName) },
+	{ FieldPhoneticName, _contacts_contact.name,            false, UPCAST(&contactPhName) },
+	{ FieldCompany,      _contacts_contact.company,         true,  UPCAST(&contactCompany) },
+	{ FieldNumber,       _contacts_contact.number,          true,  UPCAST(&contactNumbers) },
+	{ FieldEmail,        _contacts_contact.email,           true,  UPCAST(&contactEmails) },
+	{ FieldAddress,      _contacts_contact.address,         false, UPCAST(&contactAddrs) },
+	{ FieldUrl,          _contacts_contact.url,             false, UPCAST(&contactUrls) },
+	{ FieldMessenger,    _contacts_contact.messenger,       false, UPCAST(&contactMsgs) },
+	{ FieldEvent,        _contacts_contact.event,           false, UPCAST(&contactEvents) },
+	{ FieldNote,         _contacts_contact.note,            false, UPCAST(&contactNote) },
+	{ FieldNickname,     _contacts_contact.nickname,        true,  UPCAST(&contactNick) },
+	{ FieldRelationship, _contacts_contact.relationship,    false, UPCAST(&contactRels) },
+	{ FieldRingtone,     _contacts_contact.ringtone_path,   false, UPCAST(&contactRingtone) }
 };
 const ContactObjectMetadata contactObject = {
 	{ TypeObject, ObjectTypeContact }, InterfaceNone,

@@ -15,15 +15,19 @@
  *
  */
 
-#ifndef CONTACTS_LIST_MODEL_SEARCH_PROVIDER_H
-#define CONTACTS_LIST_MODEL_SEARCH_PROVIDER_H
+#ifndef CONTACTS_LIST_MODEL_PERSON_SEARCH_PROVIDER_H
+#define CONTACTS_LIST_MODEL_PERSON_SEARCH_PROVIDER_H
 
-#include "Contacts/Model/ContactDataProvider.h"
 #include "Contacts/Model/SearchEngine.h"
 #include <unordered_map>
 
 namespace Contacts
 {
+	namespace Model
+	{
+		class ContactData;
+	}
+
 	namespace List
 	{
 		namespace Model
@@ -32,15 +36,15 @@ namespace Contacts
 			class PersonSearchData;
 			class PersonProvider;
 
-			class SearchProvider : public Contacts::Model::ContactDataProvider
+			class PersonSearchProvider : public ::Model::DataProvider
 			{
 			public:
 				/**
-				 * @brief Create SearchProvider
+				 * @brief Create PersonSearchProvider
 				 * @param[in]   provider    PersonProvider
 				 */
-				explicit SearchProvider(PersonProvider &provider);
-				virtual ~SearchProvider() override;
+				explicit PersonSearchProvider(PersonProvider &provider);
+				virtual ~PersonSearchProvider() override;
 
 				/**
 				 * @brief Invoke search
@@ -49,19 +53,24 @@ namespace Contacts
 				void search(const char *query);
 
 				/**
+				 * @return Whether there is no results for the current query.
+				 */
+				bool empty() const;
+
+				/**
 				 * @return Found data items
 				 */
 				virtual const DataList &getDataList() override;
 
 				/**
-				 * @see ContactDataProvider::clearDataList()
+				 * @see DataProvider::clearDataList()
 				 */
 				virtual void clearDataList() override;
 
 			private:
-				using ContactDataProvider::onInserted;
+				using DataProvider::onInserted;
 
-				Contacts::Model::ContactData &insertPerson(Person &person);
+				Contacts::Model::SearchData &insertPerson(Person &person);
 
 				void onInserted(Person &person);
 				void onUpdated(PersonSearchData &searchData, int changes);
@@ -75,4 +84,4 @@ namespace Contacts
 	}
 }
 
-#endif /* CONTACTS_LIST_MODEL_SEARCH_PROVIDER_H */
+#endif /* CONTACTS_LIST_MODEL_PERSON_SEARCH_PROVIDER_H */

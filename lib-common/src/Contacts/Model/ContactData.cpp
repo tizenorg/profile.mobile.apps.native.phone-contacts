@@ -18,6 +18,7 @@
 #include "Contacts/Model/ContactData.h"
 
 using namespace Contacts::Model;
+using namespace Model;
 
 ContactData::ContactData(Type type)
 	: m_Type(type)
@@ -27,38 +28,4 @@ ContactData::ContactData(Type type)
 ContactData::Type ContactData::getType() const
 {
 	return m_Type;
-}
-
-void ContactData::setUpdateCallback(UpdateCallback callback)
-{
-	m_OnUpdated = std::move(callback);
-}
-
-void ContactData::unsetUpdateCallback()
-{
-	m_OnUpdated = nullptr;
-}
-
-void ContactData::setDeleteCallback(DeleteCallback callback)
-{
-	m_OnDeleted = std::move(callback);
-}
-
-void ContactData::unsetDeleteCallback()
-{
-	m_OnDeleted = nullptr;
-}
-
-void ContactData::onUpdated(int changes)
-{
-	if (m_OnUpdated) {
-		m_OnUpdated(changes);
-	}
-}
-
-void ContactData::onDeleted()
-{
-	if (m_OnDeleted) {
-		m_OnDeleted();
-	}
 }

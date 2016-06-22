@@ -20,7 +20,6 @@
 #include "Contacts/List/ReorderItem.h"
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/List/Model/PersonProvider.h"
-#include "Utils/Logger.h"
 
 #include <app_i18n.h>
 
@@ -30,7 +29,7 @@ using namespace Contacts::List::Model;
 ListSection::ListSection(std::string title, PersonProvider *provider, SectionMode mode)
 	: m_Title(title), m_Provider(provider), m_Mode(mode)
 {
-	m_Provider->setInsertCallback(std::bind(&ListSection::onInserted, this, std::placeholders::_1));
+	m_Provider->setInsertCallback(std::bind(&ListSection::onPersonInserted, this, std::placeholders::_1));
 
 	for (auto &&contactData : m_Provider->getDataList()) {
 		insertSubItem(createItem(static_cast<Person &>(*contactData)));
@@ -47,6 +46,37 @@ void ListSection::setUpdateCallback(UpdateCallback callback)
 	m_OnUpdated = std::move(callback);
 }
 
+void ListSection::update()
+{
+	m_Provider->reload();
+}
+
+void ListSection::reorderItem(int reorderedId, int previousId)
+{
+	ContactItem *reorderedItem = nullptr;
+	ContactItem *previousItem = nullptr;
+
+	for (auto &&item : *this) {
+		ContactItem *contactItem = static_cast<ContactItem *>(item);
+		int id = contactItem->getContactData().getId();
+		if (id == reorderedId) {
+			reorderedItem = contactItem;
+			if (previousItem) {
+				break;
+			}
+		} else if (id == previousId) {
+			previousItem = contactItem;
+			if (reorderedItem) {
+				break;
+			}
+		}
+	}
+	if (reorderedItem) {
+		reorderedItem->pop();
+		insertSubItem(reorderedItem, previousItem, Ui::GenContainer::After);
+	}
+}
+
 char *ListSection::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text") == 0) {
@@ -56,7 +86,7 @@ char *ListSection::getText(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
-void ListSection::onInserted(Contacts::Model::ContactData &person)
+void ListSection::onPersonInserted(::Model::DataItem &person)
 {
 	ContactItem *item = createItem(static_cast<Person &>(person));
 	insertSubItem(item);
@@ -66,7 +96,7 @@ void ListSection::onInserted(Contacts::Model::ContactData &person)
 	}
 }
 
-void ListSection::onDeleted(ContactItem *item)
+void ListSection::onPersonDeleted(ContactItem *item)
 {
 	item->pop();
 	if (m_OnUpdated) {
@@ -85,6 +115,6 @@ ContactItem *ListSection::createItem(Person &person)
 		item = new PersonItem(person);
 	}
 	person.setUpdateCallback(std::bind(&ContactItem::update, item, std::placeholders::_1));
-	person.setDeleteCallback(std::bind(&ListSection::onDeleted, this, item));
+	person.setDeleteCallback(std::bind(&ListSection::onPersonDeleted, this, item));
 	return item;
 }

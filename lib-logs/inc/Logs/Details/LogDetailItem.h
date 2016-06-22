@@ -47,8 +47,6 @@ namespace Logs
 
 			static Evas_Object *createIcon(Evas_Object *parent, const char *path);
 			static const char *getImagePath(int type);
-			static char *getTypeString(int type, time_t duration);
-			static char *appendDuration(const char *typeStr, time_t duration);
 
 			Model::Log *m_Log;
 		};

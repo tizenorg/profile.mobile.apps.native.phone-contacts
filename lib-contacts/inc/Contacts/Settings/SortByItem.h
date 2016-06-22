@@ -37,7 +37,9 @@ namespace Contacts
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual void onSelected() override;
-			static void onSortingOrderChanged(contacts_name_sorting_order_e name_sorting_order, void *user_data);
+			void onSortOrderChanged(contacts_name_sorting_order_e order);
+
+			contacts_name_sorting_order_e m_Order;
 		};
 	}
 }

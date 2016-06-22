@@ -20,6 +20,7 @@
 #include "Contacts/Input/ContactCompoundFieldItem.h"
 #include "Contacts/Input/ContactImageFieldItem.h"
 #include "Contacts/Input/ContactRelationshipFieldItem.h"
+#include "Contacts/Input/ContactRingtoneFieldItem.h"
 #include "Contacts/Input/ContactTypedFieldItem.h"
 #include "Contacts/Details/DetailsView.h"
 
@@ -60,7 +61,8 @@ namespace
 		/* [FieldEvent]        = */ true,
 		/* [FieldNote]         = */ true,
 		/* [FieldNickname]     = */ true,
-		/* [FieldRelationship] = */ true
+		/* [FieldRelationship] = */ true,
+		/* [FieldRingtone]     = */ true
 	};
 }
 
@@ -115,14 +117,13 @@ Evas_Object *InputView::onCreate(Evas_Object *parent)
 
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
-	elm_genlist_select_mode_set(m_Genlist->getEvasObject(), ELM_OBJECT_SELECT_MODE_NONE);
 
 	m_AddFieldsItem = new AddFieldsItem();
 	m_AddFieldsItem->setAddFieldCallback(std::bind(&InputView::onAddField, this, _1));
 	m_Genlist->insert(m_AddFieldsItem);
 
 	for (unsigned id = FieldBegin; id < FieldEnd; ++id) {
-		if (!isFieldVisible[id]) {
+		if (!isFieldVisible[id] || !m_Contact.getFieldById(id)) {
 			m_AddFieldsItem->setAddFieldState(ContactFieldId(id), false);
 		}
 	}
@@ -200,6 +201,8 @@ ContactFieldItem *InputView::createFieldItem(ContactObject &field)
 		item = new ContactImageFieldItem(field);
 	} else if (field.getId() == FieldRelationship) {
 		item = new ContactRelationshipFieldItem(field);
+	} else if (field.getId() == FieldRingtone) {
+		item = new ContactRingtoneFieldItem(field);
 	} else if (field.getInterfaces() & InterfaceTypedObject) {
 		item = new ContactTypedFieldItem(field);
 	} else if (field.getInterfaces() & InterfaceCompoundObject) {
@@ -302,21 +305,16 @@ void InputView::onContactFilled(bool isFilled)
 void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 {
 	if (m_Contact.isNew() && !m_Contact.isUnique()) {
-		/* FIXME: Replace with translatable strings */
 		Ui::Popup *popup = new Ui::Popup();
 		popup->create(getEvasObject());
-		popup->setTitle("Name already in use");
-		popup->setText("A contact with the same name "
-				"already exists. Tap Save anyway "
-				"to save it anyway or tap Rename "
-				"to save this contact with a "
-				"different name.");
+		popup->setTitle("IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3");
+		popup->setText("IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG");
 
-		popup->addButton("Save anyway", [this] {
+		popup->addButton("IDS_PB_BUTTON_SAVE_ANYWAY_ABB2", [this] {
 			onSave();
 			return true;
 		});
-		popup->addButton("Rename", [this] {
+		popup->addButton("IDS_PB_BUTTON_RENAME_ABB4", [this] {
 			m_Items[Model::FieldName]->focus();
 			return true;
 		});

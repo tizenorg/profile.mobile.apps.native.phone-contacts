@@ -17,7 +17,6 @@
 
 #include "Logs/List/LogItem.h"
 #include "Logs/Model/Log.h"
-#include "Logs/Model/LogGroup.h"
 #include "Logs/Common/Utils.h"
 #include "Logs/Details/DetailsView.h"
 
@@ -64,6 +63,13 @@ LogItem::LogItem(LogGroup *group)
 	setUpdateCallback();
 }
 
+LogItem::~LogItem()
+{
+	if (m_Group) {
+		m_Group->removeChangeCallback(m_GroupChangeCbHandle);
+	}
+}
+
 void LogItem::setDeleteCallback(DeleteCallback callback)
 {
 	m_OnDelete = std::move(callback);
@@ -83,13 +89,15 @@ char *LogItem::getText(Evas_Object *parent, const char *part)
 	if (name == nullptr) {
 		name = number;
 		number = _("IDS_LOGS_SBODY_UNSAVED_M_STATUS");
+	} else if (strcmp(name, number) == 0){
+		number = _("IDS_LOGS_SBODY_SAVED_M_STATUS");
 	}
 
 	if (strcmp(part, PART_LOG_NAME) == 0) {
 		return strdup(name);
 	} else if (strcmp(part, PART_LOG_NUMBER) == 0) {
 		return strdup(number);
-	}  else if (strcmp(part, PART_LOG_COUNT) == 0) {
+	} else if (strcmp(part, PART_LOG_COUNT) == 0) {
 		if (m_Group->getLogList().size() == 1) {
 			return nullptr;
 		}
@@ -150,8 +158,7 @@ void LogItem::onInfoIconPressed()
 	if (!navigator) {
 		return;
 	}
-
-	navigator->navigateTo(new DetailsView(getGroup()));
+	navigator->navigateTo(new DetailsView(getGroup()->getLogList().back()->getNumber()));
 }
 
 Evas_Object *LogItem::createThumbnail(Evas_Object *parent)
@@ -236,9 +243,10 @@ void LogItem::updateItem(int type)
 
 void LogItem::setUpdateCallback()
 {
-	m_Group->addChangeCallback([this](int type){
+	m_GroupChangeCbHandle = m_Group->addChangeCallback([this](int type){
 		if (type & LogGroup::ChangeRemoved) {
 			if (m_OnDelete) {
+				m_Group = nullptr;
 				m_OnDelete(this);
 			}
 		} else {

@@ -1,83 +1,218 @@
-msgid "IDS_CLOG_BODY_DIALLED_CALLS"
-msgstr "Zvanītie numuri"
+msgid "IDS_CALL_NPBODY_NO_LOGS"
+msgstr "Nav žurnālu"
 
-msgid "IDS_CLOG_BODY_LAST_CALL"
-msgstr "Pēdējais zvans"
+msgid "IDS_KPD_BUTTON_OK_ABB2"
+msgstr "Labi"
 
-msgid "IDS_CLOG_BODY_RECEIVED_CALLS"
-msgstr "Saņemtie zvani"
+msgid "IDS_KPD_OPT_SEND_MESSAGE_ABB"
+msgstr "Sūtīt ziņu"
+
+msgid "IDS_LOGS_OPT_FILTER_BY_ABB"
+msgstr "Filtrēt pēc"
+
+msgid "IDS_LOGS_SBODY_NO_NUMBER_ABB"
+msgstr "Nav numura"
+
+msgid "IDS_PB_BUTTON_CREATE_M_FAVOURITE_ABB"
+msgstr "Izveidot"
+
+msgid "IDS_IME_TPOP_COPIED_TO_CLIPBOARD"
+msgstr "Kopēts starpliktuvē."
+
+msgid "IDS_PB_BODY_EMAIL_HHOME_M_PERSONAL"
+msgstr "E-pasta adrese (mājas)"
+
+msgid "IDS_PB_BODY_PHONE_ABB3"
+msgstr "Tālrun."
+
+msgid "IDS_PB_BUTTON_CREATE_GROUP_ABB"
+msgstr "Izveidot grupu"
+
+msgid "IDS_PB_BUTTON_RENAME_ABB4"
+msgstr "Pārdēvēt"
+
+msgid "IDS_PB_BUTTON_REORDER"
+msgstr "Pārkārtot"
+
+msgid "IDS_PB_BUTTON_SAVE_ANYWAY_ABB2"
+msgstr "Tomēr sagl."
+
+msgid "IDS_PB_BUTTON_SET_PICTURE_ABB"
+msgstr "Iestatīt attēlu"
+
+msgid "IDS_PB_BUTTON_SHARE_ABB6"
+msgstr "Kopīgot"
+
+msgid "IDS_PB_BUTTON_SHARE_PROFILE_ABB"
+msgstr "Kopīgot profilu"
+
+msgid "IDS_PB_HEADER_ADD_FIELD"
+msgstr "Pievienot lauku"
+
+msgid "IDS_PB_HEADER_ADD_MEMBERS_ABB"
+msgstr "Pievienot dalībniekus"
+
+msgid "IDS_PB_HEADER_CREATE_PROFILE_ABB"
+msgstr "Izveidot profilu"
+
+msgid "IDS_PB_HEADER_DELETE_CONTACTS_ABB"
+msgstr "Dzēst kontaktus"
+
+msgid "IDS_PB_HEADER_DELETE_GROUPS_ABB"
+msgstr "Dzēst grupas"
+
+msgid "IDS_PB_HEADER_GROUPS_ABB"
+msgstr "Grupas"
+
+msgid "IDS_PB_HEADER_IMPORT_ABB2"
+msgstr "Importēt"
+
+msgid "IDS_PB_HEADER_IMPORT_EXPORT_ABB"
+msgstr "Importēt/eksportēt"
+
+msgid "IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2"
+msgstr "Pārvaldīt un dublēt kontaktus"
+
+msgid "IDS_PB_HEADER_MORE_SETTINGS_ABB"
+msgstr "Citi iestatījumi"
+
+msgid "IDS_PB_HEADER_NAME_ALREADY_IN_USE_ABB3"
+msgstr "Vārds jau tiek lietots"
+
+msgid "IDS_PB_HEADER_SAVE_CONTACT_ABB"
+msgstr "Saglabāt kontaktu"
+
+msgid "IDS_PB_HEADER_SELECT_CONTACTS_ABB"
+msgstr "Izv. kontaktus"
+
+msgid "IDS_PB_HEADER_SELECT_GROUPS_ABB"
+msgstr "Izvēl. grupas"
+
+msgid "IDS_PB_HEADER_SELECT_IMAGE_ABB"
+msgstr "Izvēlēties attēlu"
+
+msgid "IDS_PB_MBODY_ADD_MEMBERS_ABB"
+msgstr "Pievien. dalībniekus"
+
+msgid "IDS_PB_MBODY_GROUP_NAME_ABB"
+msgstr "Grupas nosaukums"
+
+msgid "IDS_PB_NPBODY_PHON_1ST_NAME_ABB"
+msgstr "Vārds fonētiski"
+
+msgid "IDS_PB_NPBODY_PHON_LAST_NAME_ABB"
+msgstr "Uzv. fonētiski"
+
+msgid "IDS_PB_NPBODY_PHON_MID_NAME_ABB"
+msgstr "Otr.v.fonētiski"
+
+msgid "IDS_PB_OPT_DEFAULT_CONTACT_PICTURE_STYLE_ABB"
+msgstr "Noklus. kontakta attēla stils"
+
+msgid "IDS_PB_OPT_EVENT_HEG_BIRTHDAY_ABB"
+msgstr "Notikums (piem., dzimš. diena)"
+
+msgid "IDS_PB_OPT_GROUPS_AND_MEMBERS_ABB"
+msgstr "Grupas un dalībnieki"
+
+msgid "IDS_PB_OPT_GROUPS_ONLY_ABB"
+msgstr "Tikai grupas"
+
+msgid "IDS_PB_OPT_HOME_ABB2"
+msgstr "Mājas"
+
+msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
+msgstr "IM konts"
+
+msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
+msgstr "Tīmekļa adrese"
+
+msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_THEIR_CONTACT_DETAILS_HAVE_BEEN_UPDATED"
+msgstr "Šī kontakta mobilā tālruņa numurs ir mainīts no %1$s uz %2$s. Viņa kontaktinformācija ir atjaunināta."
+
+msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
+msgstr "Kontakts ar šādu vārdu jau pastāv. Pieskarieties pie Tomēr saglabāt, lai tomēr saglabātu šo kontaktu, vai pie Pārdēvēt, lai saglabātu to ar citu vārdu."
+
+msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
+msgstr "Ierīces krātuve un visi konti"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HCUSTOM_ABB"
+msgstr "Adrese (pielāgota)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HHOME_ABB"
+msgstr "Adrese (mājas)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HOTHER_ABB"
+msgstr "Adrese (cita)"
+
+msgid "IDS_PB_TMBODY_ADDRESS_HWORK_ABB"
+msgstr "Adrese (darba)"
+
+msgid "IDS_PB_TMBODY_AS_1_FILE"
+msgstr "Kā 1 failu"
+
+msgid "IDS_PB_TMBODY_DISPLAY"
+msgstr "Rādīšana"
+
+msgid "IDS_PB_TMBODY_EMAIL_HCUSTOM_ABB"
+msgstr "E-pasta adrese (pielāgota)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HOTHER_ABB"
+msgstr "E-pasta adrese (cita)"
+
+msgid "IDS_PB_TMBODY_EMAIL_HWORK_ABB"
+msgstr "E-pasta adrese (darba)"
+
+msgid "IDS_PB_TMBODY_IMPORT_EXPORT"
+msgstr "Importēt/eksportēt"
+
+msgid "IDS_PB_TMBODY_MOVE_DEVICE_CONTACTS"
+msgstr "Pārvietot ierīces kontaktus"
+
+msgid "IDS_PB_TPOP_1_CONTACT_EXPORTED"
+msgstr "Eksportēts 1 kontakts."
+
+msgid "IDS_PB_TPOP_DELETING_ING_ABB"
+msgstr "Dzēš..."
+
+msgid "IDS_PB_TPOP_EXPORTING_CANCELLED"
+msgstr "Eksportēšana atcelta."
+
+msgid "IDS_PB_TPOP_FAILED_TO_DELETE_CONTACTS_TRY_AGAIN"
+msgstr "Neizdevās izdzēst kontaktus. Mēģiniet vēlreiz."
+
+msgid "IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"
+msgstr "Grupas nosaukums jau tiek lietots."
+
+msgid "IDS_PB_TPOP_IMPORTING_CANCELLED"
+msgstr "Importēšana ir atcelta."
+
+msgid "IDS_PB_TPOP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
+msgstr "Sasniegts maksimālais rakstzīmju skaits."
+
+msgid "IDS_PB_TPOP_NO_GROUP_NAME_ENTERED"
+msgstr "Nav ievadīts grupas nosaukums."
+
+msgid "IDS_PB_TPOP_PD_CONTACTS_EXPORTED"
+msgstr "Eksportēti %d kontakti."
+
+msgid "IDS_PB_TPOP_PROCESSING_ING"
+msgstr "Apstrādā..."
 
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Izvēlēties žurnālus"
 
-msgid "IDS_CLOG_OPT_VIEW_BY"
-msgstr "Skatīt pēc"
+msgid "IDS_PB_BODY_PHONETIC_NAME"
+msgstr "Vārds fonētiski"
 
-msgid "IDS_PB_BODY_HOME_2"
-msgstr "Mājas 2"
+msgid "IDS_PB_BUTTON_PHONE_ABB"
+msgstr "Tālrunis"
 
-msgid "IDS_PB_POP_MOVE_COMPLETED"
-msgstr "Pārvietošana pabeigta."
-
-msgid "IDS_PB_BODY_MOVING_ING"
-msgstr "Pārvieto..."
-
-msgid "IDS_ST_POP_PUK2_VERIFIED"
-msgstr "PUK2 verificēts."
-
-msgid "IDS_ST_POP_PUK1_VERIFIED"
-msgstr "PUK1 verificēts."
-
-msgid "IDS_ST_POP_PIN_UNBLOCKED"
-msgstr "PIN atbloķēts."
-
-msgid "IDS_ST_POP_PIN2_UNBLOCKED"
-msgstr "PIN2 kods atbloķēts."
-
-msgid "IDS_ST_POP_PIN2_CHANGED"
-msgstr "PIN2 kods nomainīts."
-
-msgid "IDS_ST_POP_PIN2_BLOCKED"
-msgstr "PIN2 kods bloķēts."
-
-msgid "IDS_ST_POP_PIN1_CHANGED"
-msgstr "PIN1 kods mainīts."
-
-msgid "IDS_ST_POP_PIN1_BLOCKED"
-msgstr "PIN1 kods bloķēts."
-
-msgid "IDS_ST_POP_INCORRECT_PIN2"
-msgstr "Nepareizs PIN2."
-
-msgid "IDS_ST_BODY_NEW_PIN2_AND_CONFIRM_PIN2_DO_NOT_MATCH"
-msgstr "Jaunais PIN2 kods un apstiprinājuma PIN2 kods nesakrīt"
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_CODE"
-msgstr "Nepareizs PUK1 kods."
-
-msgid "IDS_ST_POP_INCORRECT_PUK1_PD_ATTEMPTS_LEFT"
-msgstr "Nepareizs PUK1. Atlikuši %d mēģinājumi."
-
-msgid "IDS_ST_POP_INCORRECT_PUK2_PD_ATTEMPTS_LEFT"
-msgstr "Nepareizs PUK2. Atlikuši %d mēģinājumi."
-
-msgid "IDS_ST_POP_PIN_CHANGED"
-msgstr "PIN kods nomainīts."
+msgid "IDS_TPLATFORM_HEADER_SET_DATE"
+msgstr "Iestatīt datumu"
 
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Kontakti"
-
-msgid "IDS_PB_BODY_ADD_ACCOUNT"
-msgstr "Konta pievienošana"
-
-msgid "IDS_PB_POP_MAXIMUM_NUMBER_OF_CHARACTERS_REACHED"
-msgstr "Sasniegts maksimālais rakstzīmju skaits."
-
-msgid "IDS_PB_MBODY_SCANNING_DEVICES_ING"
-msgstr "Meklē ierīces..."
-
-msgid "IDS_LCKSCN_HEADER_INCORRECT_PIN_ABB"
-msgstr "Nepareizs PIN kods"
 
 msgid "IDS_TPLATFORM_ACBUTTON_DONE_ABB"
 msgstr "GATAVS"
@@ -88,77 +223,20 @@ msgstr "ATCELT"
 msgid "IDS_TPLATFORM_ACBUTTON_DELETE_ABB"
 msgstr "DZĒST"
 
-msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
-msgstr "Savienojuma problēma vai nederīgs MMI kods."
-
-msgid "IDS_COM_BODY_PRIVATE_NUMBER"
-msgstr "Privāts numurs"
-
-msgid "IDS_TPLATFORM_ACBUTTON_SEND_ABB"
-msgstr "SŪTĪT"
-
-msgid "IDS_CLOG_BODY_PIN2_BLOCKED_CONTACT_PROVIDER_HSIM_PUK2_REQUIRED"
-msgstr "PIN2 bloķēts. Sazinieties ar pakalpojumu sniedzēju (nepieciešams SIM PUK2 kods)."
-
-msgid "IDS_CLOG_BODY_NO_LOGS"
-msgstr "Nav žurnālu"
-
-msgid "IDS_CLOG_BODY_AFTER_YOU_MAKE_RECEIVE_A_CALL_OR_SEND_RECEIVE_A_MESSAGE_LOGS_WILL_BE_SHOWN"
-msgstr "Pēc tam, kad veiksit/saņemsit zvanu vai nosūtīsit/saņemsit ziņu, tiks parādīti žurnāli."
-
-msgid "IDS_COM_OPT_SIM_CARD_BUSY_TRY_LATER_VODA"
-msgstr "SIM karte aizņemta. Mēģiniet vēlāk"
-
-msgid "IDS_COM_BODY_SIM_RUIM_CARD_LOCKED"
-msgstr "SIM/RUIM karte ir bloķēta."
-
-msgid "IDS_COM_BODY_NO_SIM_CARD_FOUND_PLEASE_INSERT_A_SIM_CARD_INTO_THE_PHONE"
-msgstr "SIM karte nav atrasta. Lūdzu, ievietojiet tālrunī SIM karti."
-
-msgid "IDS_COM_BODY_NETWORK_OR_SIM_CARD_ERROR"
-msgstr "Tīkla vai SIM kartes kļūda."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_ENABLED"
-msgstr "Vibrācijas atbilde ir aktivizēta."
-
-msgid "IDS_KPD_TPOP_VIBRATION_FEEDBACK_DISABLED"
-msgstr "Vibrācijas atbilde ir deaktivizēta."
-
-msgid "IDS_KPD_TPOP_UNABLE_TO_CALL_NUMBER_PD_NOT_EMERGENCY_NUMBER"
-msgstr "Nevar izsaukt numuru. %d nav ārkārtas režīma numurs."
-
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_PD_REMOVED"
 msgstr "Ātrā zvana numurs %d noņemts."
 
 msgid "IDS_KPD_TPOP_SPEED_DIAL_NUMBER_ASSIGNED"
 msgstr "Ātrā zvana numurs ir piešķirts."
 
-msgid "IDS_KPD_TPOP_ENTER_NUMBER"
-msgstr "Ievadiet numuru."
-
-msgid "IDS_KPD_POP_YOUR_PIN_MUST_BE_BETWEEN_P1SD_AND_P2SD_DIGITS_LONG_TRY_AGAIN"
-msgstr "Jūsu PIN kodā ir jābūt %1$d–%2$d cipariem. Mēģiniet vēlreiz."
-
-msgid "IDS_KPD_POP_YOUR_PIN2_MUST_BE_P1SD_TO_P2SD_DIGITS_TRY_AGAIN"
-msgstr "PIN2 kodā jābūt no %1$d līdz %2$d cipariem. Mēģiniet vēlreiz."
-
 msgid "IDS_KPD_POP_THERE_IS_NO_CONTACT_ASSIGNED_TO_THIS_SPEED_DIAL_NUMBER_TAP_OK_TO_ASSIGN_ONE_NOW"
 msgstr "Šim ātrā zvana numuram nav piešķirts neviens kontakts. Pieskarieties pie Labi, lai piešķirtu to tagad."
-
-msgid "IDS_KPD_POP_PIN_HAS_BEEN_DISABLED_ENABLE_PIN_BEFORE_CHANGING"
-msgstr "PIN kods ir deaktivizēts. Pirms mainīšanas aktivizējiet PIN kodu."
-
-msgid "IDS_KPD_OPT_VOICEMAIL_ABB"
-msgstr "B. pasts"
 
 msgid "IDS_KPD_OPT_UPDATE_CONTACT_ABB"
 msgstr "Atjaun.kontaktu"
 
 msgid "IDS_KPD_OPT_SPEED_DIAL_SETTINGS_ABB2"
 msgstr "Ātrā zvana iestat."
-
-msgid "IDS_KPD_OPT_REMOVE"
-msgstr "Noņemt"
 
 msgid "IDS_KPD_OPT_CREATE_CONTACT_ABB2"
 msgstr "Izv. kontaktu"
@@ -173,43 +251,16 @@ msgid "IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB"
 msgstr "Pievienot 2 sekunžu pauzi"
 
 msgid "IDS_KPD_ITAB3_KEYPAD"
-msgstr "Tastatūra"
-
-msgid "IDS_KPD_HEADER_UNABLE_TO_CONNECT_TO_NETWORK_ABB"
-msgstr "Nevar izveidot savien.ar tīklu"
-
-msgid "IDS_KPD_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Izvēlēties SIM karti zvanam"
+msgstr "Cipartast."
 
 msgid "IDS_KPD_HEADER_SEARCH_RESULTS_HPD_ABB"
 msgstr "Meklēšanas rezultāti (%d)"
 
-msgid "IDS_KPD_HEADER_EMERGENCY_CALL_ABB2"
-msgstr "Ārkārtas zvans"
-
 msgid "IDS_KPD_HEADER_ASSIGN_AS_SPEED_DIAL_NUMBER_ABB"
 msgstr "Piešķirt kā ātrā zvana numuru"
 
-msgid "IDS_KPD_BUTTON_SET_NUMBER_ABB"
-msgstr "Iestat. numuru"
-
-msgid "IDS_KPD_BUTTON_SEND_MESSAGE"
-msgstr "Sūtīt ziņu"
-
-msgid "IDS_KPD_BUTTON_CANCEL_ABB"
-msgstr "Atcelt"
-
 msgid "IDS_KPD_BUTTON_ADD_TO_CONTACTS_ABB2"
 msgstr "Pievienot kontaktiem"
-
-msgid "IDS_CST_POP_PASSWORDS_DO_NOT_MATCH"
-msgstr "Paroles nav vienādas."
-
-msgid "IDS_STU_POP_PIN_BLOCKED_ENTER_PUK_CODE"
-msgstr "PIN kods bloķēts. Ievadiet PUK kodu."
-
-msgid "IDS_IDLE_BODY_SIM_BLOCKED"
-msgstr "SIM bloķēta."
 
 msgid "IDS_LOGS_SBODY_UNSAVED_M_STATUS"
 msgstr "Nesaglabātie"
@@ -226,122 +277,29 @@ msgstr "Neizdevās"
 msgid "IDS_LOGS_SBODY_CANCELLED_M_STATUS"
 msgstr "Atcelts"
 
-msgid "IDS_LOGS_POP_PD_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "%d žurnāla objekti tiks dzēsti."
-
-msgid "IDS_LOGS_POP_ALL_LOG_ITEMS_WILL_BE_DELETED"
-msgstr "Visi žurnāla objekti tiks dzēsti."
-
-msgid "IDS_LOGS_POP_1_LOG_ITEM_WILL_BE_DELETED"
-msgstr "Tiks izdzēsts 1 žurnāla objekts."
-
-msgid "IDS_LOGS_OPT_VIEW_CONTACT_DETAILS_ABB"
-msgstr "Skatīt kontakta datus"
-
-msgid "IDS_LOGS_OPT_SEND_NUMBER"
-msgstr "Sūtīt numuru"
-
 msgid "IDS_LOGS_OPT_MISSED_CALLS"
 msgstr "Neatbildētie zvani"
-
-msgid "IDS_LOGS_OPT_DELETE"
-msgstr "Dzēst"
-
-msgid "IDS_LOGS_OPT_CALL_DURATIONS_ABB"
-msgstr "Sarunu ilgums"
-
-msgid "IDS_LOGS_NPBODY_MISSED_CALLS_ABB"
-msgstr "Neatbildētie zvani"
-
-msgid "IDS_LOGS_NPBODY_DO_NOT_SHOW_AGAIN_ABB"
-msgstr "Vairs nerādīt"
-
-msgid "IDS_LOGS_MBODY_UNKNOWN_NUMBER_ABB"
-msgstr "Nezināms numurs"
 
 msgid "IDS_LOGS_MBODY_UNKNOWN"
 msgstr "Nezināms"
 
-msgid "IDS_LOGS_MBODY_SELECT_ALL"
-msgstr "Izvēlēties visu"
-
 msgid "IDS_LOGS_ITAB3_LOGS"
 msgstr "Žurnāli"
-
-msgid "IDS_LOGS_HEADER_YESTERDAY"
-msgstr "Vakar"
-
-msgid "IDS_LOGS_HEADER_TODAY"
-msgstr "Šodien"
 
 msgid "IDS_LOGS_HEADER_PD_SELECTED_ABB3"
 msgstr "Izvēlēti %d"
 
-msgid "IDS_LOGS_HEADER_DELETE_PD_LOGS_ABB"
-msgstr "Dzēst %d žurnālus"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ITEMS_ABB"
-msgstr "Dzēst žurnāla objektus"
-
-msgid "IDS_LOGS_HEADER_DELETE_LOG_ABB"
-msgstr "Dzēst žurnālu"
-
-msgid "IDS_LOGS_HEADER_DELETE"
-msgstr "Dzēst"
-
 msgid "IDS_LOGS_BUTTON_UPDATE_CONTACT_ABB2"
 msgstr "Atj. kontaktu"
-
-msgid "IDS_LOGS_BUTTON_DELETE_ABB4"
-msgstr "Dzēst"
-
-msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
-msgstr "Izv. kontaktu"
-
-msgid "IDS_LOGS_BUTTON_CANCEL_ABB3"
-msgstr "Atcelt"
-
-msgid "IDS_LOGS_BODY_VOICE_CALLS_ABB"
-msgstr "Balss zvani"
-
-msgid "IDS_LOGS_BODY_VIDEO_CALLS_ABB"
-msgstr "Videozvani"
-
-msgid "IDS_LOGS_BODY_SIM_CARD"
-msgstr "SIM karte"
-
-msgid "IDS_LOGS_BODY_ALL_CALLS"
-msgstr "Visi zvani"
 
 msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_THEY_WILL_BE_LOGGED_HERE"
 msgstr "Kad būsit veicis vai saņēmis zvanus, tie tiks reģistrēti šeit."
 
-msgid "IDS_LOGS_BODY_AFTER_YOU_MAKE_OR_RECEIVE_CALLS_LOG_ITEMS_WILL_BE_SHOWN_HERE"
-msgstr "Kad būsit veicis vai saņēmis zvanus, šeit tiks parādīti žurnāla objekti."
-
-msgid "IDS_QP_ACBUTTON_EDIT_ABB"
-msgstr "REDIĢĒT"
-
-msgid "IDS_MF_POP_INPUT_TEXT"
-msgstr "Ievadiet tekstu"
-
-msgid "IDS_PB_TPOP_SOME_OF_YOUR_CONTACTS_APPEAR_TO_BE_DUPLICATES"
-msgstr "Šķiet, ka daži jūsu kontakti ir dublikāti."
-
 msgid "IDS_PB_TPOP_PD_CONTACTS_IMPORTED"
 msgstr "Importēti %d kontakti."
 
-msgid "IDS_PB_TPOP_CONTACTS_LINKED"
-msgstr "Kontakti ir saistīti."
-
-msgid "IDS_PB_TPOP_1_NUMBER_REMOVED_FROM_AUTO_REJECT_LIST"
-msgstr "1 numurs ir noņemts no automātiski noraidāmo saraksta."
-
 msgid "IDS_PB_TPOP_1_CONTACT_IMPORTED"
 msgstr "Importēts 1 kontakts."
-
-msgid "IDS_PB_TMBODY_SERVICE_NUMBERS"
-msgstr "Pakalpojuma numuri"
 
 msgid "IDS_PB_TMBODY_NAME_FORMAT"
 msgstr "Vārda formāts"
@@ -351,15 +309,6 @@ msgstr "Saistīt kontaktus"
 
 msgid "IDS_PB_TMBODY_CONTACTS_TO_DISPLAY"
 msgstr "Kontakti, ko parādīt"
-
-msgid "IDS_PB_SK_SET"
-msgstr "Iestatīt"
-
-msgid "IDS_PB_SK_CREATE_ABB"
-msgstr "Izveidot"
-
-msgid "IDS_PB_SK_ADD_FIELDS"
-msgstr "Pievienot laukus"
 
 msgid "IDS_PB_SBODY_IMPORTING_CONTACTS_ING_ABB"
 msgstr "Importē kontaktus..."
@@ -379,98 +328,14 @@ msgstr "Kontakti ir importēti"
 msgid "IDS_PB_SBODY_CONTACTS_EXPORTED_M_STATUS_ABB"
 msgstr "Kontakti ir eksportēti"
 
-msgid "IDS_PB_SBODY_ALL_CONTACTS"
-msgstr "Visi kontakti"
-
-msgid "IDS_PB_POP_YOU_CANNOT_DELETE_CONTACTS_FROM_READ_ONLY_ACCOUNTS_BUT_YOU_CAN_HIDE_THEM_IN_CONTACTS"
-msgstr "Nevar izdzēst kontaktus no tikai lasāmiem kontiem, taču tos var paslēpt kontaktu sadaļā."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_WILL_BE_DELETED_FROM_ANY_SYNCED_ACCOUNTS_IT_IS_SAVED_IN"
-msgstr "Kad sinhronizācija ir aktivizēta, šis kontakts tiks izdzēsts no visiem sinhronizētajiem kontiem, kuros tas ir saglabāts."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED_OR_HIDDEN_IF_THE_INFORMATION_MSG"
-msgstr "Kad sinhronizācija ir aktivizēta, šis kontakts un visi tā saistītie kontakti citos sinhronizētajos kontos tiks izdzēsti vai paslēpti, ja informācija ir no tikai lasāma konta."
-
-msgid "IDS_PB_POP_WHEN_SYNC_IS_ENABLED_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_IN_OTHER_SYNCED_ACCOUNTS_WILL_BE_DELETED"
-msgstr "Kad sinhronizācija ir aktivizēta, šis kontakts un visi tā saistītie kontakti citos sinhronizētajos kontos tiks izdzēsti."
-
-msgid "IDS_PB_POP_UPDATING_SERVICE_PROVIDER_INFO_ING"
-msgstr "Atjaunina pakalpojumu sniedzēja datus..."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACT_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Nevar pievienot kontaktu. Sasniegts maksimālais saistāmo kontaktu skaits (%d)."
-
-msgid "IDS_PB_POP_UNABLE_TO_ADD_CONTACTS_MAXIMUM_NUMBER_OF_LINKABLE_CONTACTS_HPD_REACHED"
-msgstr "Nevar pievienot kontaktus. Sasniegts maksimālais saistāmo kontaktu skaits (%d)."
-
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Šis kontakts tiks dzēsts."
-
-msgid "IDS_PB_POP_THIS_CONTACT_AND_ALL_ITS_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Tiks izdzēsts šis kontakts un visi ar to saistītie kontakti."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "Pārsniegts maksimālais objektu skaits (%d), kurus var izvēlēties."
-
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_CONTACTS_THAT_CAN_BE_SHARED_AT_ONE_TIME_HP1SD_HAS_BEEN_EXCEEDED_ONLY_THE_FIRST_P2SD_WILL_BE_SHARED"
-msgstr "Ir pārsniegts maksimālais kontaktu skaits (%1$d), ko var vienlaikus kopīgot. Tiks kopīgoti tikai pirmie %2$d kontakti."
-
-msgid "IDS_PB_POP_THE_CHAMADA_CERTA_FEATURE_CAN_BE_USED_TO_IDENTIFY_YOUR_CONTACTS_SERVICE_PROVIDERS_AND_DISPLAY_THEM_IN_YOUR_CONTACT_LIST_MSG"
-msgstr "Funkciju Chamada Certa var izmantot, lai noteiktu jūsu kontaktu pakalpojumu sniedzējus un parādītu tos jūsu kontaktu sarakstā. Lai to noteiktu vēlāk, nospiediet izvēlnes taustiņu un izvēlieties Atjaunināt pakalpojumu sniedzēja informāciju. Lai noteiktu savu kontaktu pakalpojumu sniedzējus tūlīt, pieskarieties pie Labi."
-
-msgid "IDS_PB_POP_TAP_OK_TO_STOP_IMPORTING_CONTACTS_FROM_SIM_CARD"
-msgstr "Pieskarieties pie Labi, lai pārtrauktu kontaktu importēšanu no SIM kartes."
 
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Pieskarieties pie Labi, lai pārtrauktu kontaktu eksportēšanu uz %s."
 
-msgid "IDS_PB_POP_TAP_EXPORT_TO_SELECT_WHICH_CONTACTS_TO_EXPORT_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Pieskarieties pie Eksportēt, lai izvēlētos kontaktus, ko eksportēt. Daļa kontaktinformācijas var tikt zaudēta."
-
-msgid "IDS_PB_POP_SOME_OR_ALL_CONTACTS_MAY_NOT_HAVE_BEEN_UPDATED"
-msgstr "Daži vai visi kontakti, iespējams, nav atjaunināti."
-
-msgid "IDS_PB_POP_SOME_CONTACT_INFORMATION_MAY_BE_LOST"
-msgstr "Daļa kontaktinformācijas, iespējams, tiks zaudēta."
-
-msgid "IDS_PB_POP_SIM_MEMROY_FULL"
-msgstr "SIM atmiņa pilna."
-
-msgid "IDS_PB_POP_REMOVING"
-msgstr "Noņem..."
-
-msgid "IDS_PB_POP_PD_PHONE_NUMBERS_HAVE_BEEN_UPDATED"
-msgstr "Ir atjaunināti %d tālruņu numuri."
-
-msgid "IDS_PB_POP_PD_CONTACTS_WILL_BE_DELETED"
-msgstr "Tiks izdzēsti %d kontakti."
-
 msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_P2SS"
 msgstr "%1$d kontakti ir eksportēti uz %2$s."
-
-msgid "IDS_PB_POP_P1SD_CONTACTS_HAVE_BEEN_EXPORTED_TO_DEVICE_CONTACTS_IMPORTED_P2SSVCF"
-msgstr "%1$d kontakti ir eksportēti uz Device/Contacts/Imported/%2$s.vcf."
-
-msgid "IDS_PB_POP_NOT_ENOUGH_MEMORY"
-msgstr "Atmiņa pilna."
-
-msgid "IDS_PB_POP_NEW_CONTACTS_WILL_BE_SAVED_IN_CONTACTS_ON_YOUR_DEVICE"
-msgstr "Jaunie kontakti tiks saglabāti ierīces mapē Kontakti."
-
-msgid "IDS_PB_POP_FDN_MODE_ACTIVATED"
-msgstr "Fiksēto numuru režīms aktivizēts."
-
-msgid "IDS_PB_POP_FAILED"
-msgstr "Neizdevās."
-
-msgid "IDS_PB_POP_DISCARD_CHANGES_Q"
-msgstr "Vai atmest izmaiņas?"
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_ING"
-msgstr "Dzēš kontaktus..."
-
-msgid "IDS_PB_POP_DELETING_CONTACTS_CANCELLED_SOME_CONTACTS_MAY_ALREADY_HAVE_BEEN_DELETED"
-msgstr "Kontaktu dzēšana atcelta. Daži kontakti, iespējams, jau ir izdzēsti."
 
 msgid "IDS_PB_POP_CONTACTS_WILL_STOP_BEING_IMPORTED_FROM_PS"
 msgstr "Tiks apturēta kontaktu importēšana no %s."
@@ -478,52 +343,13 @@ msgstr "Tiks apturēta kontaktu importēšana no %s."
 msgid "IDS_PB_POP_ALREADY_EXISTS_LC"
 msgstr "Jau pastāv."
 
-msgid "IDS_PB_POP_ALL_LINKED_CONTACTS_WILL_BE_DELETED"
-msgstr "Visi saistītie kontakti tiks izdzēsti."
-
-msgid "IDS_PB_POP_ALL_CONTACTS_WILL_BE_DELETED"
-msgstr "Visi kontakti tiks izdzēsti."
-
 msgid "IDS_PB_POP_ALL_CHANGES_WILL_BE_DISCARDED"
 msgstr "Visas izmaiņas tiks atmestas."
-
-msgid "IDS_PB_POP_ADDING_ING"
-msgstr "Pievieno..."
-
-msgid "IDS_PB_POP_1_PHONE_NUMBER_HAS_BEEN_UPDATED"
-msgstr "Tika atjaunināts 1 tālruņa numurs."
-
-msgid "IDS_PB_POP_1_CONTACT_WILL_BE_DELETED"
-msgstr "Viens kontakts tiks dzēsts."
-
-msgid "IDS_PB_POP_1_CONTACT_REMOVED"
-msgstr "1 kontakts ir noņemts."
-
-msgid "IDS_PB_OPT_YAHOO_E"
-msgstr "Yahoo!"
-
-msgid "IDS_PB_OPT_WORK"
-msgstr "Darba"
 
 msgid "IDS_PB_OPT_VOICE_CALL"
 msgstr "Balss zvans"
 
-msgid "IDS_PB_OPT_VIDEO_CALL"
-msgstr "Videozvans"
-
-msgid "IDS_PB_OPT_UPDATE_SERVICE_PROVIDER_INFO"
-msgstr "Atjaunināt pakalpojumu sniedzēja informāciju"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACT_ABB"
-msgstr "Noņemt kontakta piesaisti"
-
-msgid "IDS_PB_OPT_UNLINK_CONTACTS"
-msgstr "Noņemt kontaktu saistījumu"
-
 msgid "IDS_PB_OPT_TAKE_PICTURE_ABB"
-msgstr "Fotografēt"
-
-msgid "IDS_PB_OPT_TAKE_A_PHOTO"
 msgstr "Fotografēt"
 
 msgid "IDS_PB_OPT_SPOUSE"
@@ -535,26 +361,11 @@ msgstr "Skype"
 msgid "IDS_PB_OPT_SISTER"
 msgstr "Māsa"
 
-msgid "IDS_PB_OPT_SIM_CARD"
-msgstr "SIM karte"
-
-msgid "IDS_PB_OPT_SHARE_VIA"
-msgstr "Kopīgot, izmantojot"
-
 msgid "IDS_PB_OPT_SHARE"
 msgstr "Kopīgot"
 
-msgid "IDS_PB_OPT_SETTINGS"
-msgstr "Iestatījumi"
-
-msgid "IDS_PB_OPT_SELECT_FROM_CONTACTS_ABB"
-msgstr "Izvēlēties no kontaktiem"
-
-msgid "IDS_PB_OPT_SD_CARD"
-msgstr "SD karte"
-
-msgid "IDS_PB_OPT_SAVE_CONTACT_TO"
-msgstr "Saglabāt kontaktu pie"
+msgid "IDS_PB_OPT_RINGTONE"
+msgstr "Zvana signāls"
 
 msgid "IDS_PB_OPT_REORDER"
 msgstr "Pārkārtot"
@@ -580,23 +391,11 @@ msgstr "Partneris"
 msgid "IDS_PB_OPT_PARENT"
 msgstr "Vecāks"
 
-msgid "IDS_PB_OPT_PAGER"
-msgstr "Peidžera numurs"
-
-msgid "IDS_PB_OPT_OTHER"
-msgstr "Cita"
-
 msgid "IDS_PB_OPT_ORGANISATION_ABB"
 msgstr "Organizācija"
 
 msgid "IDS_PB_OPT_MOTHER"
 msgstr "Māte"
-
-msgid "IDS_PB_OPT_MOBILE"
-msgstr "Mobilais"
-
-msgid "IDS_PB_OPT_MESSAGE"
-msgstr "Ziņa"
 
 msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Pārvaldīt izlasi"
@@ -610,20 +409,11 @@ msgstr "Galvenā"
 msgid "IDS_PB_OPT_LAST_NAME_FIRST_ABB"
 msgstr "Vispirms uzvārds"
 
-msgid "IDS_PB_OPT_LAST_NAME"
-msgstr "Uzvārds"
-
 msgid "IDS_PB_OPT_JABBER"
 msgstr "Jabber"
 
 msgid "IDS_PB_OPT_ICQ"
 msgstr "ICQ"
-
-msgid "IDS_PB_OPT_HOME_ABB"
-msgstr "Mājas"
-
-msgid "IDS_PB_OPT_HOME"
-msgstr "Mājās"
 
 msgid "IDS_PB_OPT_HANGOUTS"
 msgstr "Hangouts"
@@ -637,12 +427,6 @@ msgstr "Draugs"
 msgid "IDS_PB_OPT_FIRST_NAME_FIRST_ABB"
 msgstr "Vispirms vārds"
 
-msgid "IDS_PB_OPT_FIRST_NAME"
-msgstr "Vārds"
-
-msgid "IDS_PB_OPT_FDN_CONTACT"
-msgstr "FDN kontakts"
-
 msgid "IDS_PB_OPT_FAX_HWORK_ABB"
 msgstr "Faksa numurs (darbā)"
 
@@ -655,14 +439,8 @@ msgstr "Tēvs"
 msgid "IDS_PB_OPT_EDIT"
 msgstr "Rediģēt"
 
-msgid "IDS_PB_OPT_DO_NOT_SHOW_AGAIN_ABB2"
-msgstr "Vairs nerādīt"
-
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
 msgstr "Vietējais partneris"
-
-msgid "IDS_PB_OPT_DEVICE"
-msgstr "Ierīce"
 
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "Pielāgot"
@@ -676,9 +454,6 @@ msgstr "Bērns"
 msgid "IDS_PB_OPT_BROTHER"
 msgstr "Brālis"
 
-msgid "IDS_PB_OPT_BIRTHDAY"
-msgstr "Dzimšanas diena"
-
 msgid "IDS_PB_OPT_ASSISTANT_M_CONTACTS"
 msgstr "Palīgs"
 
@@ -688,56 +463,23 @@ msgstr "Jubileja"
 msgid "IDS_PB_OPT_AIM"
 msgstr "AIM"
 
-msgid "IDS_PB_OPT_ADD_FIELD"
-msgstr "Pievienot lauku"
-
 msgid "IDS_PB_OPT_ADD"
 msgstr "Pievienot"
-
-msgid "IDS_PB_OPT_ACCOUNT"
-msgstr "Konts"
 
 msgid "IDS_PB_NPBODY_SEARCH"
 msgstr "Meklēt"
 
-msgid "IDS_PB_NPBODY_NO_SERVICE_NUMBERS"
-msgstr "Nav pakalpojuma numuru"
-
 msgid "IDS_PB_NPBODY_NO_RESULTS_FOUND_ABB"
 msgstr "Nav atrasts neviens rezultāts"
-
-msgid "IDS_PB_NPBODY_NO_EMERGENCY_CONTACTS"
-msgstr "Nav neviena ārkārtas situāciju kontakta"
-
-msgid "IDS_PB_NPBODY_NO_CONTACTS"
-msgstr "Nav kontaktu"
 
 msgid "IDS_PB_MBODY_SORT_BY"
 msgstr "Kārtot pēc"
 
-msgid "IDS_PB_MBODY_SET_PROFILE"
-msgstr "Iestatīt profilu"
-
 msgid "IDS_PB_MBODY_SET_MY_PROFILE"
 msgstr "Iestatīt manu profilu"
 
-msgid "IDS_PB_MBODY_SEND_TOGETHER_ABB"
-msgstr "Sūtīt kopā"
-
-msgid "IDS_PB_MBODY_SEND_INDIVIDUALLY_ABB"
-msgstr "Sūtīt atsevišķi"
-
-msgid "IDS_PB_MBODY_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Sūtīt kontaktinformāciju"
-
-msgid "IDS_PB_MBODY_SELECT_ALL"
-msgstr "Izvēlēties visu"
-
 msgid "IDS_PB_MBODY_PD_CONTACTS_ABB"
 msgstr "%d kontakti"
-
-msgid "IDS_PB_MBODY_ONLY_CONTACTS_WITH_PHONES"
-msgstr "Tikai kontaktus ar tālr."
 
 msgid "IDS_PB_MBODY_IMPORT"
 msgstr "Importēt"
@@ -748,83 +490,23 @@ msgstr "Eksportēt"
 msgid "IDS_PB_MBODY_EVENT"
 msgstr "Notikums"
 
-msgid "IDS_PB_MBODY_DISPLAY_CONTACTS_WITH_NUMBERS_ABB"
-msgstr "Rādīt kontaktus ar numuriem"
-
 msgid "IDS_PB_MBODY_1_CONTACT_ABB"
 msgstr "1 kontakts"
 
 msgid "IDS_PB_ITAB3_CONTACTS"
 msgstr "Kontakti"
 
-msgid "IDS_PB_HEADER_USB_STORAGE_NOT_AVAILABLE"
-msgstr "Ierīces iekšējā atmiņa nav pieejama"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD_ABB"
-msgstr "Nevar pievienot"
-
-msgid "IDS_PB_HEADER_UNABLE_TO_ADD"
-msgstr "Nevar pievienot"
-
-msgid "IDS_PB_HEADER_SUGGESTED_CONTACTS_ABB"
-msgstr "Ieteiktie kontakti"
-
-msgid "IDS_PB_HEADER_SHARE_VIA"
-msgstr "Kopīgot, izmantojot"
-
 msgid "IDS_PB_HEADER_SET_CONTACT_PICTURE_ABB"
 msgstr "Iestatīt kontakta attēlu"
-
-msgid "IDS_PB_HEADER_SETTINGS"
-msgstr "Iestatījumi"
-
-msgid "IDS_PB_HEADER_SERVICE_PROVIDER"
-msgstr "Pakalpojumu sniedzējs"
-
-msgid "IDS_PB_HEADER_SEND_CONTACT_INFORMATION_ABB"
-msgstr "Sūtīt kontaktinformāciju"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_FOR_CALL"
-msgstr "Izvēlēties SIM karti zvanam"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
-msgstr "Lai zvanītu, izvēlieties SIM karti"
-
-msgid "IDS_PB_HEADER_SELECT_SIM_CARD_FOR_CALL_ABB"
-msgstr "Izvēlēties SIM karti zvanam"
 
 msgid "IDS_PB_HEADER_SELECT_CONTACT_ABB2"
 msgstr "Izvēlēties kontaktu"
 
-msgid "IDS_PB_HEADER_SELECT"
-msgstr "Izvēlēties"
-
-msgid "IDS_PB_HEADER_SAVE_CONTACTS_TO_ABB"
-msgstr "Saglabāt kontaktus"
-
 msgid "IDS_PB_HEADER_REORDER"
 msgstr "Pārkārtot"
 
-msgid "IDS_PB_HEADER_REMOVE"
-msgstr "Noņemt"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HPD_ABB"
-msgstr "Primārie kontakti (%d)"
-
-msgid "IDS_PB_HEADER_PRIMARY_CONTACTS_HP1SD_P2SD_ABB"
-msgstr "Prim. kontakti (%1$d/%2$d)"
-
-msgid "IDS_PB_HEADER_PHONE_M_CALL"
-msgstr "Tālrunis"
-
-msgid "IDS_PB_HEADER_PERSONAL_CONTACTS_ABB"
-msgstr "Personiskie kontakti"
-
 msgid "IDS_PB_HEADER_PD_SELECTED_ABB3"
 msgstr "Izvēlēti %d"
-
-msgid "IDS_PB_HEADER_PD_SELECTED_ABB"
-msgstr "Izvēlēts: %d"
 
 msgid "IDS_PB_HEADER_NAME_FORMAT_ABB"
 msgstr "Vārda formāts"
@@ -832,29 +514,14 @@ msgstr "Vārda formāts"
 msgid "IDS_PB_HEADER_MOST_FREQUENT_CONTACTS_ABB2"
 msgstr "Biežāk lietotie kontakti"
 
-msgid "IDS_PB_HEADER_ME"
-msgstr "Mans"
-
 msgid "IDS_PB_HEADER_MANAGE_FAVOURITES_ABB"
 msgstr "Pārvaldīt izlasi"
-
-msgid "IDS_PB_HEADER_MAINLIST"
-msgstr "Kontaktu saraksts"
-
-msgid "IDS_PB_HEADER_LINKED_CONTACTS_ABB"
-msgstr "Saistītie kontakti"
 
 msgid "IDS_PB_HEADER_IMPORT_CONTACTS_ABB2"
 msgstr "Importēt kontaktus"
 
 msgid "IDS_PB_HEADER_IMPORT"
 msgstr "Importēšana"
-
-msgid "IDS_PB_HEADER_FAVOURITES"
-msgstr "Izlases"
-
-msgid "IDS_PB_HEADER_EXPORT_CONTACTS_TO_SIM_CARD_ABB"
-msgstr "Eksportēt kont. uz SIM karti"
 
 msgid "IDS_PB_HEADER_EXPORT_CONTACTS_ABB"
 msgstr "Eksportēt kontaktus"
@@ -865,17 +532,8 @@ msgstr "Eksportēšana"
 msgid "IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB"
 msgstr "Ievadīt pielāgotu etiķeti"
 
-msgid "IDS_PB_HEADER_EMERGENCY_SERVICES_ABB"
-msgstr "Ārkārtas pakalpojumi"
-
-msgid "IDS_PB_HEADER_EMERGENCY_CONTACTS_ABB2"
-msgstr "Ārkārtas situāc. kontakti"
-
 msgid "IDS_PB_HEADER_EDIT"
 msgstr "Rediģēt"
-
-msgid "IDS_PB_HEADER_DISPLAY_NAMES_BY"
-msgstr "Rādīt vārdus pēc"
 
 msgid "IDS_PB_HEADER_DISPLAY"
 msgstr "Displejs"
@@ -883,38 +541,14 @@ msgstr "Displejs"
 msgid "IDS_PB_HEADER_DISCARD_CHANGES_ABB"
 msgstr "Atmest izmaiņas"
 
-msgid "IDS_PB_HEADER_DELETE_ITEM"
-msgstr "Dzēst objektu"
-
-msgid "IDS_PB_HEADER_CREATE"
-msgstr "Izveidot"
-
-msgid "IDS_PB_HEADER_CONTACT_IMAGE"
-msgstr "Kontakta attēls"
-
-msgid "IDS_PB_HEADER_CONTACTS_TO_DISPLAY_ABB"
-msgstr "Kontakti, ko parādīt"
-
-msgid "IDS_PB_HEADER_CONTACTS_M_APPLICATION"
-msgstr "Kontakti"
-
 msgid "IDS_PB_HEADER_CONTACTS_EXPORTED_ABB"
 msgstr "Kontakti ir eksportēti"
-
-msgid "IDS_PB_HEADER_CHANGE_SAVE_LOCATION_ABB"
-msgstr "Saglabāšanas vietas maiņa"
 
 msgid "IDS_PB_HEADER_CANCEL_IMPORTING_ABB"
 msgstr "Atcelt importēšanu"
 
 msgid "IDS_PB_HEADER_CANCEL_EXPORTING_ABB"
 msgstr "Atcelt eksportēšanu"
-
-msgid "IDS_PB_BUTTON_TRY_AGAIN"
-msgstr "Mēģiniet vēlreiz"
-
-msgid "IDS_PB_BUTTON_SAVE"
-msgstr "Saglabāt"
 
 msgid "IDS_PB_BUTTON_PHONE"
 msgstr "Tālrunis"
@@ -924,9 +558,6 @@ msgstr "Labi"
 
 msgid "IDS_PB_BUTTON_NOTES"
 msgstr "Piezīmes"
-
-msgid "IDS_PB_BUTTON_MORE"
-msgstr "Vēl"
 
 msgid "IDS_PB_BUTTON_EXPORT"
 msgstr "Eksportēt"
@@ -946,68 +577,11 @@ msgstr "Dzēst"
 msgid "IDS_PB_BUTTON_CREATE_ABB2"
 msgstr "Izveidot"
 
-msgid "IDS_PB_BUTTON_CHANGE_ABB"
-msgstr "Mainīt"
-
-msgid "IDS_PB_BUTTON_CANCEL"
-msgstr "Atcelt"
-
-msgid "IDS_PB_BUTTON_ADD_ACCOUNT_ABB2"
-msgstr "Piev. kontu"
-
-msgid "IDS_PB_BODY_WINDOWS_LIVE_UC"
-msgstr "Windows Live"
-
 msgid "IDS_PB_BODY_WEBSITE_ABB"
 msgstr "Tīmekļa vietne"
 
-msgid "IDS_PB_BODY_UPDATING_CONTACT_LIST_ING"
-msgstr "Atjaunina kontaktu sarakstu..."
-
-msgid "IDS_PB_BODY_UNABLE_TO_SAVE_DUE_TO_SIM_ERROR"
-msgstr "Nevar saglabāt SIM kļūdas dēļ."
-
 msgid "IDS_PB_BODY_TITLE_M_NAMEPREFIX"
 msgstr "Uzruna"
-
-msgid "IDS_PB_BODY_THIS_CONTACT_WILL_BE_DELETED"
-msgstr "Šis kontakts tiks dzēsts."
-
-msgid "IDS_PB_BODY_THE_SERVICE_PROVIDER_INFORMATION_OF_THE_SELECTED_CONTACTS_WILL_BE_UPDATED_MSG"
-msgstr "Izvēlēto kontaktpersonu pakalpojumu sniedzēja informācija tiks atjaunināta. Šai funkcijai ir nepieciešams tīkla savienojums, un tas var radīt papildu izmaksas. Procesa pabeigšanas ilgums būs atkarīgs no tīkla savienojuma statusa."
-
-msgid "IDS_PB_BODY_TELEPHONE"
-msgstr "Tālrunis"
-
-msgid "IDS_PB_BODY_SKYPE"
-msgstr "Skype"
-
-msgid "IDS_PB_BODY_SIM_CARD_INITIALISING_ING"
-msgstr "Inicializē SIM karti..."
-
-msgid "IDS_PB_BODY_SERVICE_NUMBER"
-msgstr "Pakalpojuma numurs"
-
-msgid "IDS_PB_BODY_SENDING_NAME_CARDS_INDIVIDUALLY_MAY_TAKE_LONGER_BECAUSE_THE_RECEIVING_DEVICE_MUST_ACCEPT_THEM_ONE_AT_A_TIME"
-msgstr "Atsevišķu vizītkaršu sūtīšanai var būt nepieciešams ilgāks laiks, jo saņemošajai ierīcei tās ir jāpieņem pa vienai."
-
-msgid "IDS_PB_BODY_SENDING_A_NUMBER_OF_CONTACTS_TOGETHER_REDUCES_TRANSMISSION_TIME_HOWEVER_IF_THE_OTHER_DEVICE_DOES_NOT_SUPPORT_THIS_ONLY_ONE_CONTACT_WILL_BE_SENT"
-msgstr "Vienlaikus sūtot vairākus kontaktus, tiek saīsināts pārsūtīšanas ilgums. Tomēr, ja otra ierīce to neatbalsta, tiks nosūtīts tikai viens kontakts."
-
-msgid "IDS_PB_BODY_SELECT_HOW_TO_SEND_CONTACT_INFORMATION"
-msgstr "Izvēlieties, kā nosūtīt kontaktinformāciju."
-
-msgid "IDS_PB_BODY_SELECTED_MADJ"
-msgstr "Izvēlēts"
-
-msgid "IDS_PB_BODY_REMOVE_FROM_FAVOURITES"
-msgstr "Izņemt no izlases"
-
-msgid "IDS_PB_BODY_PHOTO"
-msgstr "Fotoattēls"
-
-msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
-msgstr "Tālruņa num."
 
 msgid "IDS_PB_BODY_PHONETIC_NAME_ABB"
 msgstr "Vārds fonētiski"
@@ -1021,32 +595,14 @@ msgstr "Uzvārda izruna"
 msgid "IDS_PB_BODY_PHONETIC_FIRST_NAME_ABB"
 msgstr "Vārds fonētiski"
 
-msgid "IDS_PB_BODY_OTHER_EMAILS"
-msgstr "Citas e-pasta adreses"
-
-msgid "IDS_PB_BODY_NO_SEARCH_RESULT"
-msgstr "Rezultāta nav"
-
-msgid "IDS_PB_BODY_NO_GROUPS"
-msgstr "Nav grupu"
-
-msgid "IDS_PB_BODY_NOTES"
-msgstr "Piezīmes"
-
 msgid "IDS_PB_BODY_NICKNAME_ABB"
 msgstr "Segvārds"
 
 msgid "IDS_PB_BODY_NAME_SUFFIX_ABB"
 msgstr "Tituls"
 
-msgid "IDS_PB_BODY_NAME_PREFIX"
-msgstr "Uzruna"
-
 msgid "IDS_PB_BODY_NAME"
 msgstr "Vārds"
-
-msgid "IDS_PB_BODY_MY_CONTACTS"
-msgstr "Mani kontakti"
 
 msgid "IDS_PB_BODY_MIDDLE_NAME_ABB"
 msgstr "Otrs vārds"
@@ -1057,77 +613,14 @@ msgstr "Uzvārds"
 msgid "IDS_PB_BODY_JOB_TITLE_ABB"
 msgstr "Amata nosaukums"
 
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM_CARD"
-msgstr "Importēt no SIM kartes"
-
-msgid "IDS_PB_BODY_IMPORT_FROM_SIM2_CARD"
-msgstr "Importēt no SIM2 kartes"
-
-msgid "IDS_PB_BODY_IMPORTING_ING"
-msgstr "Importē..."
-
-msgid "IDS_PB_BODY_IMAGE"
-msgstr "Attēls"
-
 msgid "IDS_PB_BODY_IM"
 msgstr "IM"
-
-msgid "IDS_PB_BODY_IF_YOUR_SERVICE_PROVIDER_HAS_PRELOADED_SERVICE_NUMBERS_ON_YOUR_SIM_CARD_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Ja jūsu pakalpojumu sniedzējs ir sākotnēji ielādējis pakalpojumu numurus jūsu SIM kartē, tie tiks parādīti šeit."
-
-msgid "IDS_PB_BODY_GALLERY"
-msgstr "Galerija"
 
 msgid "IDS_PB_BODY_FIRST_NAME_ABB"
 msgstr "Vārds"
 
-msgid "IDS_PB_BODY_FAX"
-msgstr "Fakss"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM_CARD"
-msgstr "Eksportēt uz SIM karti"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SIM2_CARD"
-msgstr "Eksportēt uz SIM2 karti"
-
-msgid "IDS_PB_BODY_EXPORT_TO_SD_CARD"
-msgstr "Eksportēt uz SD karti"
-
-msgid "IDS_PB_BODY_EMAIL"
-msgstr "E-pasts"
-
-msgid "IDS_PB_BODY_DISCARD_CHANGES"
-msgstr "Izmest izmaiņas"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FRIENDS"
-msgstr "Draugi"
-
-msgid "IDS_PB_BODY_DEFAULT_GROUP_FAMILY"
-msgstr "Ģimene"
-
-msgid "IDS_PB_BODY_DATE"
-msgstr "Datums"
-
-msgid "IDS_PB_BODY_CO_WORKERS"
-msgstr "Darba biedri"
-
-msgid "IDS_PB_BODY_CONTACTS_THAT_HAVE_BEEN_IDENTIFIED_AS_BEING_DUPLICATES_WILL_BE_SUGGESTED_AUTOMATICALLY"
-msgstr "Kontakti, kas tiks noteikti kā dublikāti, tiks ieteikti automātiski."
-
-msgid "IDS_PB_BODY_CONTACTS"
-msgstr "Kontakti"
-
 msgid "IDS_PB_BODY_COMPANY_ABB"
 msgstr "Uzņēmums"
-
-msgid "IDS_PB_BODY_CHAMADA_CERTA_APPLICATION_IDENTIFIES_THE_SERVICE_PROVIDER_OF_YOUR_CONTACTS_AND_CHOOSES_A_SIM_CARD_OF_THE_SAME_SERVICE_PROVIDER_TO_MAKE_A_CALL_MSG_LAX"
-msgstr "Chamada Certa application identifies the service provider of your contacts and chooses a SIM card of the same service provider to make a call.\n\nA data connection is required for Chamada Certa feature which may result in additional charges.\n\nThis application will read the contact list phone numbers and will assign each number with its current service provider, saving this information alongside with the other details.\n\nWhen making a call, Chamada Certa can suggest, based on the current SIM cards and the contact's service provider, the best SIM card for this. If the application is not able to suggest another SIM card, the call will proceed with the current SIM card.\n\nChamada Certa uses informations from National Telecommunications Agency - ANATEL and Administrator of Number Portability in Brazil, entitled Brazilian Association of Telecommunications - ABR Telecom. ANATEL and ABR Telecom are responsible for the accuracy and update of the information provided."
-
-msgid "IDS_PB_BODY_BUTTON_FOR_EXPANDING_THE_LIST_T_TTS"
-msgstr "Saraksta izvēršanas poga"
-
-msgid "IDS_PB_BODY_AUTO_RECOMMENDATIONS_CAN_EXTRACT_THE_HIGHLIGHTS_FROM_SOUND_FILES"
-msgstr "Automātiskie ieteikumi var palīdzēt izgūt spilgtākās skaņu failu vietas."
 
 msgid "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Pēc kontaktu izveides tie tiks parādīti šeit."
@@ -1135,87 +628,132 @@ msgstr "Pēc kontaktu izveides tie tiks parādīti šeit."
 msgid "IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
 msgstr "Pēc kontaktu pievienošanas tie tiks parādīti šeit."
 
-msgid "IDS_PB_BODY_ADD_TO_FAVOURITES"
-msgstr "Pievienot izlasei"
-
 msgid "IDS_PB_BODY_ADDRESS_ABB2"
 msgstr "Adrese"
 
-msgid "IDS_PB_BODY_ACCOUNTS"
-msgstr "Konti"
+msgid "IDS_KPD_BUTTON_CANCEL_ABB"
+msgstr "Atcelt"
 
-msgid "IDS_PB_BODY_AB_M_BLOOD"
-msgstr "AB"
+msgid "IDS_LOGS_OPT_DELETE"
+msgstr "Dzēst"
 
-msgid "IDS_ST_POP_PIN_BLOCKED"
-msgstr "PIN kods bloķēts."
+msgid "IDS_LOGS_MBODY_SELECT_ALL"
+msgstr "Izvēlēties visu"
 
-msgid "IDS_ST_POP_INCORRECT_PUK2_CODE"
-msgstr "Nepareizs PUK2 kods."
+msgid "IDS_LOGS_HEADER_YESTERDAY"
+msgstr "Vakar"
 
-msgid "IDS_ST_POP_INCORRECT_PIN1"
-msgstr "Nepareizs PIN1 kods."
+msgid "IDS_LOGS_HEADER_TODAY"
+msgstr "Šodien"
 
-msgid "IDS_ST_OPT_ADD_EXISTING_CONTACT_ABB"
-msgstr "Pievienot esošu kontaktu"
+msgid "IDS_LOGS_BUTTON_CREATE_CONTACT_ABB"
+msgstr "Izv. kontaktu"
 
-msgid "IDS_ST_NPBODY_NO_PRIMARY_CONTACTS"
-msgstr "Nav primāro kontaktu"
+msgid "IDS_PB_OPT_YAHOO_E"
+msgstr "Yahoo!"
 
-msgid "IDS_ST_HEADER_PRIMARY_CONTACTS_ABB"
-msgstr "Primārie kontakti"
+msgid "IDS_PB_OPT_WORK"
+msgstr "Darba"
 
-msgid "IDS_ST_HEADER_CREATE_PRIMARY_CONTACT_ABB"
-msgstr "Primārā kontakta izveide"
+msgid "IDS_PB_OPT_SETTINGS"
+msgstr "Iestatījumi"
 
-msgid "IDS_ST_HEADER_ADD_PRIMARY_CONTACTS_ABB2"
-msgstr "Pievienot primāros kontaktus"
+msgid "IDS_PB_OPT_PAGER"
+msgstr "Peidžera numurs"
 
-msgid "IDS_ST_BODY_SET_DATE"
-msgstr "Iestatīt datumu"
+msgid "IDS_PB_OPT_OTHER"
+msgstr "Cita"
 
-msgid "IDS_ST_BODY_NEW_PIN_AND_CONFIRM_PIN_DO_NOT_MATCH"
-msgstr "Jaunais PIN kods un apstiprinājuma PIN kods nesakrīt."
+msgid "IDS_PB_OPT_MOBILE"
+msgstr "Mobilais"
 
-msgid "IDS_ST_BODY_AFTER_YOU_CREATE_PRIMARY_CONTACTS_THEY_WILL_BE_SHOWN_HERE"
-msgstr "Pēc primāro kontaktu izveides tie tiks parādīti šeit."
+msgid "IDS_PB_OPT_MESSAGE"
+msgstr "Ziņa"
 
-msgid "IDS_WMGR_HEADER_UNABLE_TO_SELECT_MORE_ITEMS_ABB"
-msgstr "Nevar izvēlēt. vairāk objektu"
+msgid "IDS_PB_OPT_LAST_NAME"
+msgstr "Uzvārds"
 
-msgid "IDS_CALL_TPOP_INSERT_SIM_CARD"
-msgstr "Ievietojiet SIM karti."
+msgid "IDS_PB_OPT_HOME"
+msgstr "Mājās"
 
-msgid "IDS_CALL_POP_THE_SERVICE_PROVIDER_OF_THE_CONTACT_YOU_ARE_CALLING_IS_P1SS_TAP_OK_TO_MAKE_THIS_CALL_USING_YOUR_P2SS_SIM_CARD"
-msgstr "Kontakta, kuram zvanāt, pakalpojumu sniedzējs ir %1$s. Pieskarieties pie Labi, lai šo zvanu veiktu, izmantojot savu %2$s SIM karti."
+msgid "IDS_PB_OPT_FIRST_NAME"
+msgstr "Vārds"
 
-msgid "IDS_CALL_HEADER_USE_PS_SIM_CARD_ABB"
-msgstr "Izmantot %s SIM karti"
+msgid "IDS_PB_OPT_DEVICE"
+msgstr "Ierīce"
 
-msgid "IDS_CALL_BUTTON_CURRENT_SIM_ABB"
-msgstr "Pašreizējā SIM"
+msgid "IDS_PB_OPT_BIRTHDAY"
+msgstr "Dzimšanas diena"
 
-msgid "IDS_CALL_BODY_PAYPHONE"
-msgstr "Taksofons"
+msgid "IDS_PB_NPBODY_NO_CONTACTS"
+msgstr "Nav kontaktu"
 
-msgid "IDS_MUSIC_POP_INVALID_CHARACTER"
-msgstr "Nederīga rakstzīme."
+msgid "IDS_PB_MBODY_SELECT_ALL"
+msgstr "Izvēlēties visu"
 
-msgid "IDS_HS_BUTTON_PHONE_M_CALL"
-msgstr "Tālr."
+msgid "IDS_PB_HEADER_SETTINGS"
+msgstr "Iestatījumi"
 
-msgid "IDS_ST_BODY_OUTGOING_CALL"
-msgstr "Izejošais zvans"
+msgid "IDS_PB_HEADER_SELECT"
+msgstr "Izvēlēties"
 
-msgid "IDS_CALL_BODY_INCOMING_CALL"
-msgstr "Ienākošais zvans"
+msgid "IDS_PB_HEADER_REMOVE"
+msgstr "Noņemt"
+
+msgid "IDS_PB_HEADER_ME"
+msgstr "Mans"
+
+msgid "IDS_PB_HEADER_FAVOURITES"
+msgstr "Izlases"
+
+msgid "IDS_PB_HEADER_CREATE"
+msgstr "Izveidot"
+
+msgid "IDS_PB_BUTTON_SAVE"
+msgstr "Saglabāt"
+
+msgid "IDS_PB_BUTTON_MORE"
+msgstr "Vēl"
+
+msgid "IDS_PB_BUTTON_CANCEL"
+msgstr "Atcelt"
+
+msgid "IDS_PB_BODY_PHONE_NUMBER_ABB"
+msgstr "Tālruņa num."
+
+msgid "IDS_PB_BODY_NOTES"
+msgstr "Piezīmes"
+
+msgid "IDS_PB_BODY_EMAIL"
+msgstr "E-pasts"
+
+msgid "IDS_PB_BODY_DATE"
+msgstr "Datums"
+
+msgid "IDS_PB_BODY_CONTACTS"
+msgstr "Kontakti"
 
 msgid "IDS_PB_TPOP_ONLY_FIRST_PD_CONTACTS_DISPLAYED"
 msgstr "Tiek rādīti tikai %d pirmie kontakti."
 
-msgid "IDS_PB_BODY_MY_PROFILE"
-msgstr "Mans profils"
-
 msgid "IDS_PB_NPBODY_TAP_HERE_TO_ADD_SHORTCUT"
 msgstr "Pieskarieties šeit, lai pievienotu īsceļu"
+
+msgid "IDS_HS_ACBUTTON_EDIT"
+msgstr "REDIĢĒT"
+
+msgid "IDS_PB_NPBODY_CUSTOM_TYPE_ABB"
+msgstr "Pielāgots veids"
+
+msgid "IDS_PB_OPT_GROUPS"
+msgstr "Grupas"
+
+msgid "IDS_ST_BUTTON_SET"
+msgstr "Iestatīt"
+
+msgid "IDS_LOGS_HEADER_FILTER_BY"
+msgstr "Filtrēt pēc"
+
+msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
+msgstr "Visi zvani"
 

@@ -19,6 +19,7 @@
 #include "Common/Database/RecordIterator.h"
 #include "Common/Database/RecordUtils.h"
 #include "Contacts/List/Model/MfcProvider.h"
+#include "Contacts/List/Model/Person.h"
 
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
@@ -85,9 +86,7 @@ bool MfcProvider::insertPerson(int id, IdType idType)
 
 void MfcProvider::deletePerson(DataList::const_iterator personIt)
 {
-	contacts_list_h mfcList = getPersonList();
-	updateMfcList(mfcList);
-	contacts_list_destroy(mfcList, true);
+	reload();
 }
 
 contacts_list_h MfcProvider::getPersonUsageList() const
@@ -105,9 +104,19 @@ contacts_list_h MfcProvider::getPersonUsageList() const
 		if (filter) {
 			contacts_filter_add_int(filter, _contacts_person_usage.times_used, CONTACTS_MATCH_GREATER_THAN, 0);
 			contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-			contacts_filter_add_int(filter, _contacts_person_usage.usage_type, CONTACTS_MATCH_EQUAL, CONTACTS_USAGE_STAT_TYPE_OUTGOING_CALL);
-			contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
 			contacts_filter_add_bool(filter, _contacts_person_usage.is_favorite, false);
+
+			contacts_filter_h usageTypeFilter = nullptr;
+			contacts_filter_create(_contacts_person_usage._uri, &usageTypeFilter);
+			if (usageTypeFilter) {
+				contacts_filter_add_int(usageTypeFilter, _contacts_person_usage.usage_type, CONTACTS_MATCH_EQUAL, CONTACTS_USAGE_STAT_TYPE_OUTGOING_CALL);
+				contacts_filter_add_operator(usageTypeFilter, CONTACTS_FILTER_OPERATOR_OR);
+				contacts_filter_add_int(usageTypeFilter, _contacts_person_usage.usage_type, CONTACTS_MATCH_EQUAL, CONTACTS_USAGE_STAT_TYPE_INCOMING_CALL);
+
+				contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+				contacts_filter_add_filter(filter, usageTypeFilter);
+				contacts_filter_destroy(usageTypeFilter);
+			}
 
 			contacts_query_set_filter(query, filter);
 		}
@@ -139,12 +148,12 @@ bool MfcProvider::update()
 		contacts_list_first(mfcList);
 
 		if (!isEqual && count) {
-			updateMfcList(mfcList);
+			reload();
 			return true;
 		}
 
 	} else {
-		updateMfcList(mfcList);
+		reload();
 		return true;
 	}
 
@@ -152,18 +161,9 @@ bool MfcProvider::update()
 	return false;
 }
 
-bool MfcProvider::equalPredicate(Contacts::Model::ContactData *data, contacts_record_h record)
+bool MfcProvider::equalPredicate(::Model::DataItem *data, contacts_record_h record)
 {
-	return data->getId() == getRecordInt(record, _contacts_person.id);
+	Person *person = (Person *)data;
+	return person->getId() == getRecordInt(record, _contacts_person.id);
 }
 
-void MfcProvider::updateMfcList(contacts_list_h list)
-{
-	while (!getDataList().empty()) {
-		PersonProvider::deletePerson(getDataList().begin());
-	}
-
-	for (auto &&record : makeRange(list)) {
-		PersonProvider::insertPerson(getRecordInt(record, _contacts_person.id), PersonId);
-	}
-}

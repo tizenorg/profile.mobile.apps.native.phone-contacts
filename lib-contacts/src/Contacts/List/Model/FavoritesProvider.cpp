@@ -48,7 +48,7 @@ FavoritesProvider::~FavoritesProvider()
 Person *FavoritesProvider::createPerson(contacts_record_h record)
 {
 	Person *person = nullptr;
-	if (m_Mode == ModeOnly) {
+	if (m_Mode == ModeDefault) {
 		//TODO FavPerson should be created here
 		person = new Person(record);
 	} else {
@@ -60,14 +60,16 @@ Person *FavoritesProvider::createPerson(contacts_record_h record)
 
 contacts_filter_h FavoritesProvider::getFilter() const
 {
-	contacts_filter_h filter = PersonProvider::getFilter();
-	if (filter) {
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_person._uri, &filter);
+
+	if (auto baseFilter = PersonProvider::getFilter()) {
+		contacts_filter_add_filter(filter, baseFilter);
 		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-	} else {
-		contacts_filter_create(_contacts_person._uri, &filter);
+		contacts_filter_destroy(baseFilter);
 	}
 
-	contacts_filter_add_bool(filter, _contacts_person.is_favorite, m_Mode == ModeOnly);
+	contacts_filter_add_bool(filter, _contacts_person.is_favorite, m_Mode == ModeDefault);
 
 	return filter;
 }
@@ -75,7 +77,7 @@ contacts_filter_h FavoritesProvider::getFilter() const
 contacts_query_h FavoritesProvider::getQuery() const
 {
 	contacts_query_h query = PersonProvider::getQuery();
-	if (query && m_Mode == ModeOnly) {
+	if (query && m_Mode == ModeDefault) {
 		contacts_query_set_projection(query, projection, Utils::count(projection));
 		contacts_query_set_sort(query, _contacts_person.favorite_priority, true);
 	}

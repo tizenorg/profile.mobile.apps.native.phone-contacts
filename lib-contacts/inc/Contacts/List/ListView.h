@@ -19,8 +19,9 @@
 #define CONTACTS_LIST_LIST_VIEW_H
 
 #include "Contacts/Common/ContactSelectTypes.h"
-#include "Contacts/List/Model/SearchProvider.h"
+#include "Contacts/List/Model/PersonSearchProvider.h"
 
+#include "Common/DataTypes.h"
 #include "Ux/SelectView.h"
 #include "Utils/UniString.h"
 
@@ -48,6 +49,18 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Sections types
+			 */
+			enum SectionId
+			{
+				SectionFirst,
+				SectionMyProfile = SectionFirst,
+				SectionFavorites,
+				SectionMfc,
+				SectionMax
+			};
+
+			/**
 			 * @brief Create person list view
 			 * @param[in]   provider    Person provider
 			 */
@@ -60,14 +73,18 @@ namespace Contacts
 			explicit ListView(int filterType = FilterNone);
 			virtual ~ListView() override;
 
+			/**
+			 * @brief Set section visibility
+			 * @param[in]   section  Section
+			 * @param[in]   isVisible Visibility
+			 */
+			void setSectionVisibility(SectionId section, bool isVisible);
+
 		private:
-			enum SectionId
+			struct Section
 			{
-				SectionFirst,
-				SectionMyProfile = SectionFirst,
-				SectionFavorites,
-				SectionMfc,
-				SectionMax
+				Ui::GenlistGroupItem *m_Item = nullptr;
+				bool m_IsVisible = true;
 			};
 
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -90,9 +107,8 @@ namespace Contacts
 
 			Ui::Genlist *createGenlist(Evas_Object *parent);
 			Evas_Object *createEmptyLayout(Evas_Object *parent);
-
-			void setEmptyState(bool isEmpty);
-			void setIndexState(bool isVisible);
+			void updateEmptyLayout();
+			void updateEmptyState();
 
 			Ui::GenlistGroupItem *createSection(SectionId sectionId);
 			void insertSection(Ui::GenlistGroupItem *section, SectionId sectionId);
@@ -107,6 +123,7 @@ namespace Contacts
 			void updateAddButton();
 
 			Evas_Object *createIndex(Evas_Object *parent);
+			void updateIndex();
 			Elm_Index_Item *insertIndexItem(const char *indexLetter,
 					Elm_Index_Item *nextItem = nullptr);
 
@@ -127,7 +144,7 @@ namespace Contacts
 			void onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem);
 			void onIndexSelected(Evas_Object *index, Elm_Object_Item *indexItem);
 
-			void onPersonInserted(Contacts::Model::ContactData &person);
+			void onPersonInserted(::Model::DataItem &data);
 			void onSectionUpdated(ContactItem *item, ::Common::ChangeType change, SectionId sectionId);
 			void onSearchChanged(const char *str);
 
@@ -138,13 +155,15 @@ namespace Contacts
 			Evas_Object *m_AddButton;
 			bool m_IsCurrentView;
 			bool m_IsSearching;
+			bool m_IsEmpty;
+
 
 			SearchItem *m_SearchItem;
-			Ui::GenlistGroupItem *m_Sections[SectionMax];
+			Section m_Sections[SectionMax];
 
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
 			Model::PersonProvider *m_PersonProvider;
-			Model::SearchProvider m_SearchProvider;
+			Model::PersonSearchProvider m_SearchProvider;
 		};
 	}
 }
