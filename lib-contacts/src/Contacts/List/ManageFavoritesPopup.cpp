@@ -66,6 +66,7 @@ void ManageFavoritesPopup::onAddSelected()
 {
 	ListView *view = new ListView(new FavoritesProvider(FavoritesProvider::ModeExclude));
 	view->setSelectMode(Ux::SelectMulti);
+	view->setSectionVisibility(ListView::SectionFavorites, false);
 	view->setSelectCallback([view](Ux::SelectResults results) {
 		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_BODY_ADD_TO_FAVOURITES");
 		new Utils::Thread(std::bind(addFavorites, std::move(results)), [view, popup] {

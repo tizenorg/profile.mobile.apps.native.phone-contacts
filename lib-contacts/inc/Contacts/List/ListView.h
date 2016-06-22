@@ -49,6 +49,18 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Sections types
+			 */
+			enum SectionId
+			{
+				SectionFirst,
+				SectionMyProfile = SectionFirst,
+				SectionFavorites,
+				SectionMfc,
+				SectionMax
+			};
+
+			/**
 			 * @brief Create person list view
 			 * @param[in]   provider    Person provider
 			 */
@@ -61,14 +73,18 @@ namespace Contacts
 			explicit ListView(int filterType = FilterNone);
 			virtual ~ListView() override;
 
+			/**
+			 * @brief Set section visibility
+			 * @param[in]   section  Section
+			 * @param[in]   isVisible Visibility
+			 */
+			void setSectionVisibility(SectionId section, bool isVisible);
+
 		private:
-			enum SectionId
+			struct Section
 			{
-				SectionFirst,
-				SectionMyProfile = SectionFirst,
-				SectionFavorites,
-				SectionMfc,
-				SectionMax
+				Ui::GenlistGroupItem *m_Item = nullptr;
+				bool m_IsVisible = true;
 			};
 
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -139,8 +155,9 @@ namespace Contacts
 			bool m_IsCurrentView;
 			bool m_IsSearching;
 
+
 			SearchItem *m_SearchItem;
-			Ui::GenlistGroupItem *m_Sections[SectionMax];
+			Section m_Sections[SectionMax];
 
 			std::map<Utils::UniString, PersonGroupItem *> m_PersonGroups;
 			Model::PersonProvider *m_PersonProvider;
