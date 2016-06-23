@@ -118,6 +118,14 @@ namespace Logs
 			 */
 			static bool compareDate(const tm &firstDate, const tm &secondDate);
 
+			/**
+			 * @brief Compare number
+			 * @param[in]    firstNumber        First number
+			 * @param[in]    secondNumber       Second number
+			 * @return true if number are equal.
+			 */
+			static bool compareNumber(const char *firstNumber, const char *secondNumber);
+
 		protected:
 			virtual bool shouldGroupLogs(Log &log, Log &prevLog);
 			virtual contacts_filter_h getFilter();

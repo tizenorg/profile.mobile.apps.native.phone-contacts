@@ -16,6 +16,7 @@
  */
 
 #include "Logs/Model/NumberLogProvider.h"
+#include "Logs/Model/LogProvider.h"
 
 using namespace Logs::Model;
 
@@ -26,7 +27,8 @@ NumberLogProvider::NumberLogProvider(std::string number)
 
 bool NumberLogProvider::shouldGroupLogs(Log &log, Log &prevLog)
 {
-	return compareDate(log.getTime(), prevLog.getTime());
+	return compareNumber(log.getNumber(), prevLog.getNumber()) &&
+			compareDate(log.getTime(), prevLog.getTime());
 }
 
 contacts_filter_h NumberLogProvider::getFilter()

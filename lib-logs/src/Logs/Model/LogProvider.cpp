@@ -24,6 +24,8 @@
 
 #include <algorithm>
 
+#define NUMBER_REQUIRED_LENGTH 7
+
 using namespace Common::Database;
 using namespace Contacts;
 using namespace Logs::Model;
@@ -91,13 +93,36 @@ bool LogProvider::compareDate(const tm &firstDate, const tm &secondDate)
 	return false;
 }
 
+bool LogProvider::compareNumber(const char *firstNumber, const char *secondNumber)
+{
+	int firstLength = strlen(firstNumber);
+	int secondLength = strlen(secondNumber);
+	size_t minLength = std::min(firstLength, secondLength);
+
+	if (minLength < NUMBER_REQUIRED_LENGTH) {
+		return false;
+	}
+
+	std::reverse_iterator<const char *> rFirst(firstNumber + firstLength);
+	auto rEndFirst = rFirst + NUMBER_REQUIRED_LENGTH;
+	std::reverse_iterator<const char *> rSecond(secondNumber + secondLength);
+
+	for ( ; rFirst != rEndFirst; ++rFirst, ++rSecond) {
+		if (*rFirst != *rSecond) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 bool LogProvider::shouldGroupLogs(Log &log, Log &prevLog)
 {
 	int type = log.getType();
 	return (type == prevLog.getType()
 			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN
 			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN
-			&& strcmp(log.getNumber(), prevLog.getNumber()) == 0
+			&& compareNumber(log.getNumber(), prevLog.getNumber())
 			&& compareDate(log.getTime(), prevLog.getTime()));
 }
 
