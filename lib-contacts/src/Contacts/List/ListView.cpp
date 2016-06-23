@@ -60,6 +60,7 @@ using namespace Ux;
 using namespace std::placeholders;
 
 #define SYMBOL_MAGNIFIER "\U0001f50d"
+#define PROGRESS_RESULTS_LIMIT 40
 
 ListView::ListView(Model::PersonProvider *provider)
 	: m_Box(nullptr), m_NoContent(nullptr), m_Genlist(nullptr),
@@ -206,7 +207,10 @@ void ListView::onDeleteSelected()
 			contacts_disconnect_on_thread();
 		};
 
-		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_DELETING_ING_ABB");
+		Ui::ProcessPopup *popup = nullptr;
+		if (results.size() > PROGRESS_RESULTS_LIMIT) {
+			popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_DELETING_ING_ABB");
+		}
 		new Thread(std::bind(task, std::move(results)), [view, popup] {
 			delete popup;
 			view->getPage()->close();
