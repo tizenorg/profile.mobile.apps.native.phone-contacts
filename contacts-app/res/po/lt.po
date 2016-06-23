@@ -331,6 +331,9 @@ msgstr "Adresatai eksportuoti"
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Šis adresatas bus panaikintas."
 
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "Viršytas didžiausias elementų, kuriuos galite pasirinkti, skaičius (%d)."
+
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Bakstelėkite „Gerai“, kad sustabdytumėte adresatų eksportavimą į %s."
 
