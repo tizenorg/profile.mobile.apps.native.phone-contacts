@@ -1,5 +1,5 @@
 Name:       org.tizen.contacts
-VCS:         profile/mobile/apps/native/phone-contacts#07a317800aa635eff348e69da85cbf9887261922
+VCS:         profile/mobile/apps/native/phone-contacts#cc6c1b0cf5ab6cb61c61909e856d541e65f1466b
 #RS_Ver:    20160622_2 
 Summary:    Contacts and Phone Applications
 Version:    2.0.0
