@@ -108,9 +108,16 @@ void TabView::navigateToPage(NavigatorPage *page)
 	m_IsNavigating = true;
 	notifyNavigation(getCurrentPage(), false);
 
+	int currentIndex = 0;
+	elm_scroller_current_page_get(m_Scroller, &currentIndex, nullptr);
+
 	TabPage *tabPage = static_cast<TabPage *>(page);
-	elm_scroller_page_show(m_Scroller, tabPage->m_Index, 0);
-	elm_toolbar_item_selected_set(tabPage->m_TabItem, EINA_TRUE);
+	if (currentIndex != tabPage->m_Index) {
+		elm_scroller_page_show(m_Scroller, tabPage->m_Index, 0);
+	}
+	if (!elm_toolbar_item_selected_get(tabPage->m_TabItem)) {
+		elm_toolbar_item_selected_set(tabPage->m_TabItem, EINA_TRUE);
+	}
 	m_CurrentPage = tabPage;
 
 	m_IsNavigating = false;
