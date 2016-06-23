@@ -31,6 +31,8 @@ using namespace Common::Database;
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
+#define PROGRESS_RESULTS_LIMIT 40
+
 ManageFavoritesPopup::ManageFavoritesPopup(Ui::Navigator *navigator)
 	: m_Navigator(navigator)
 {
@@ -74,6 +76,9 @@ void ManageFavoritesPopup::onAddSelected()
 	view->setSectionVisibility(ListView::SectionFavorites, false);
 	view->setSelectCallback([view](Ux::SelectResults results) {
 		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
+		if (results.size() < PROGRESS_RESULTS_LIMIT) {
+			evas_object_hide(popup->getEvasObject());
+		}
 		new Utils::Thread(std::bind(addFavorites, std::move(results)), [view, popup] {
 			delete popup;
 			view->getPage()->close();
@@ -98,6 +103,10 @@ void ManageFavoritesPopup::onRemoveSelected()
 	auto &onMfcUpdated = m_OnMfcUpdated;
 	view->setSelectCallback([view, onMfcUpdated](Ux::SelectResults results) {
 		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
+		if (results.size() < PROGRESS_RESULTS_LIMIT) {
+
+			evas_object_hide(popup->getEvasObject());
+		}
 		new Utils::Thread(std::bind(removeFavorites, std::move(results), std::move(onMfcUpdated)), [view, popup] {
 			delete popup;
 			view->getPage()->close();
