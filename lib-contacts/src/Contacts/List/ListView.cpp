@@ -150,39 +150,34 @@ bool ListView::onBackPressed()
 
 void ListView::onMenuPressed()
 {
-	if (getSelectMode() != SelectNone) {
+	if (getSelectMode() != SelectNone || (m_IsSearching && m_PersonGroups.empty())) {
 		return;
 	}
 
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
 
-	if (!m_PersonGroups.empty()) {
+	if (!m_IsSearching) {
 		menu->addItem("IDS_PB_OPT_GROUPS", [this] {
-			Groups::GroupsView *groupsView = new Groups::GroupsView();
-			getNavigator()->navigateTo(groupsView);
-		});
-		menu->addItem("IDS_LOGS_OPT_DELETE", std::bind(&ListView::onDeleteSelected, this));
-		menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onShareSelected, this));
-		menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB", [this] {
-			auto manageFavPopup = new ManageFavoritesPopup(getNavigator());
-			manageFavPopup->setMfcUpdateCallback([this] {
-
-				if (m_Sections[SectionMfc].m_Item) {
-					static_cast<ListSection *>(m_Sections[SectionMfc].m_Item)->update();
-				} else {
-					createSection(SectionMfc);
-				}
-			});
-			manageFavPopup->setReorderCallback(std::bind(&ListSection::reorderItem,
-					static_cast<ListSection *>(m_Sections[SectionFavorites].m_Item), _1, _2));
-			manageFavPopup->create(getEvasObject());
+			getNavigator()->navigateTo(new Groups::GroupsView());
 		});
 	}
 
-	menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
-		getNavigator()->navigateTo(new Settings::MainView());
-	});
+	if (!m_PersonGroups.empty()) {
+		menu->addItem("IDS_LOGS_OPT_DELETE", std::bind(&ListView::onDeleteSelected, this));
+		menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onShareSelected, this));
+
+		if (!m_IsSearching) {
+			menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB",
+					std::bind(&ListView::onManageFavoritesSelected, this));
+		}
+	}
+
+	if (!m_IsSearching) {
+		menu->addItem("IDS_PB_OPT_SETTINGS", [this] {
+			getNavigator()->navigateTo(new Settings::MainView());
+		});
+	}
 
 	menu->show();
 }
@@ -237,6 +232,22 @@ void ListView::onShareSelected()
 		return true;
 	});
 	getNavigator()->navigateTo(view);
+}
+
+void ListView::onManageFavoritesSelected()
+{
+	auto manageFavPopup = new ManageFavoritesPopup(getNavigator());
+
+	manageFavPopup->setMfcUpdateCallback([this] {
+		if (m_Sections[SectionMfc].m_Item) {
+			static_cast<ListSection *>(m_Sections[SectionMfc].m_Item)->update();
+		} else {
+			createSection(SectionMfc);
+		}
+	});
+	manageFavPopup->setReorderCallback( std::bind(&ListSection::reorderItem,
+			static_cast<ListSection *>(m_Sections[SectionFavorites].m_Item), _1, _2));
+	manageFavPopup->create(getEvasObject());
 }
 
 void ListView::onSelectAllInsert(Ui::GenlistItem *item)
