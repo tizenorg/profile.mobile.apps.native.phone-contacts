@@ -81,6 +81,30 @@ void LogProvider::unsetInsertCallback()
 	m_InsertCallback = nullptr;
 }
 
+void LogProvider::resetMissedCalls()
+{
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(_contacts_phone_log._uri, &filter);
+	contacts_filter_add_int(filter, _contacts_phone_log.log_type,
+			CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN);
+
+	contacts_query_h query = nullptr;
+	contacts_query_create(_contacts_phone_log._uri, &query);
+	contacts_query_set_filter(query, filter);
+
+	contacts_list_h list = nullptr;
+	contacts_db_get_records_with_query(query, 0, 0, &list);
+	for (auto &&record : makeRange(list)) {
+		contacts_record_set_int(record, _contacts_phone_log.log_type,
+				CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN);
+	}
+
+	contacts_db_update_records(list);
+	contacts_list_destroy(list, true);
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+}
+
 bool LogProvider::compareDate(const tm &firstDate, const tm &secondDate)
 {
 	if (firstDate.tm_year == secondDate.tm_year &&

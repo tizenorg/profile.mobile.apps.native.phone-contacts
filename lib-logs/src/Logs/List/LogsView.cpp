@@ -28,7 +28,13 @@
 #include "Utils/Logger.h"
 #include "Utils/Callback.h"
 
+#include <badge.h>
+#include <notification.h>
+
+#define PHONE_APPID "org.tizen.phone"
+
 using namespace Ux;
+using namespace Common::Database;
 using namespace Logs::Model;
 using namespace Logs::List;
 using namespace std::placeholders;
@@ -65,6 +71,13 @@ void LogsView::onCreated()
 	m_LogProvider.setInsertCallback(std::bind(&LogsView::onLogInserted, this, _1));
 
 	fillLayout();
+}
+
+void LogsView::onNavigation(bool isCurrentView)
+{
+	if (isCurrentView) {
+		resetMissedCalls();
+	}
 }
 
 void LogsView::onMenuPressed()
@@ -114,6 +127,18 @@ void LogsView::onMenuPressed()
 void LogsView::onSelectAllInsert(Ui::GenlistItem *item)
 {
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
+}
+
+void LogsView::resetMissedCalls()
+{
+	unsigned count = 0;
+	badge_get_count(PHONE_APPID, &count);
+
+	if (count > 0) {
+		badge_set_count(PHONE_APPID, 0);
+		notification_delete_all(NOTIFICATION_TYPE_NOTI);
+		LogProvider::resetMissedCalls();
+	}
 }
 
 void LogsView::fillLayout()
