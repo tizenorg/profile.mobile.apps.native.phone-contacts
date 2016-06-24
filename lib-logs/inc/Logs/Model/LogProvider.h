@@ -111,6 +111,11 @@ namespace Logs
 			void unsetInsertCallback();
 
 			/**
+			 * @brief Mark all unseen missed calls as seen in database.
+			 */
+			static void resetMissedCalls();
+
+			/**
 			 * @brief Compare dates
 			 * @param[in]    firstDate        First date
 			 * @param[in]    secondDate       Second date

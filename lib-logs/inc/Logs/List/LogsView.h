@@ -62,9 +62,11 @@ namespace Logs
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
+			virtual void onNavigation(bool isCurrentView) override;
 			virtual void onMenuPressed() override;
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 
+			void resetMissedCalls();
 			void fillLayout();
 			void updateLayout(bool isEmpty);
 			Evas_Object *createNoContentsLayout(Evas_Object *parent);
