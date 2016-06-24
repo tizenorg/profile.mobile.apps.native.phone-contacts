@@ -39,6 +39,27 @@ size_t Navigator::getPageCount() const
 	return m_PageCount;
 }
 
+void Navigator::appendView(View *view)
+{
+	if (!view) {
+		return;
+	}
+
+	Navigator *stackNavi = m_StackNavi;
+	Navigator *tabNavi = m_TabNavi;
+	if (getType() == StackNavigator) {
+		stackNavi = this;
+	} else {
+		tabNavi = this;
+	}
+
+	NavigatorPage *page = attachView(view);
+	page->onNavigatorAttached(this, view);
+	view->onNavigatorAttached(stackNavi, tabNavi, page);
+
+	++m_PageCount;
+}
+
 void Navigator::navigateTo(View *view)
 {
 	if (!view) {
@@ -50,21 +71,9 @@ void Navigator::navigateTo(View *view)
 		return;
 	}
 
-	NavigatorType navigatorType = NavigatorType(getType());
-	if (view->getNavigator(navigatorType) != this) {
-		Navigator *stackNavi = m_StackNavi;
-		Navigator *tabNavi = m_TabNavi;
-		if (navigatorType == StackNavigator) {
-			stackNavi = this;
-		} else {
-			tabNavi = this;
-		}
-
-		page = attachView(view);
-		page->onNavigatorAttached(this, view);
-		view->onNavigatorAttached(stackNavi, tabNavi, page);
-
-		++m_PageCount;
+	if (view->getNavigator(NavigatorType(getType())) != this) {
+		appendView(view);
+		page = view->getPage();
 	}
 
 	navigateToPage(page);

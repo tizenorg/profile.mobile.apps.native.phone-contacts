@@ -49,6 +49,14 @@ namespace Ui
 		size_t getPageCount() const;
 
 		/**
+		 * @brief Add view to navigator.
+		 * @details Adding a view may also result in navigating to it
+		 *          if it's a first view or this is a #StackNavigator.
+		 * @param[in]   view    View to add
+		 */
+		void appendView(View *view);
+
+		/**
 		 * @brief Navigate to existing or new View.
 		 * @param[in]   view    View to navigate to
 		 */
