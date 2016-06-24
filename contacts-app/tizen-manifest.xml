@@ -56,6 +56,7 @@
         <icon>org.tizen.contacts.png</icon>
     </ui-application>
     <ui-application appid="org.tizen.phone" exec="contacts-app" hw-acceleration="on" multiple="false" nodisplay="false" process-pool="true" taskmanage="true" type="capp">
+        <metadata key="http://tizen.org/metadata/effective-appid" value="org.tizen.contacts"/>
         <label>Phone</label>
         <label xml:lang="ar-ae">الهاتف</label>
         <label xml:lang="az-az">Telefon</label>
