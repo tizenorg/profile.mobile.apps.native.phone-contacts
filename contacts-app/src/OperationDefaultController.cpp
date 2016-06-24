@@ -52,7 +52,7 @@ void OperationDefaultController::onCreate()
 	m_Tabs[TabContacts] = new Contacts::List::ListView();
 
 	for (auto &&tab : m_Tabs) {
-		m_Navigator->navigateTo(tab);
+		m_Navigator->appendView(tab);
 	}
 }
 
