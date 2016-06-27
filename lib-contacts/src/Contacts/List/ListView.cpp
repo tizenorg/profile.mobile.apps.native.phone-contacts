@@ -160,10 +160,10 @@ void ListView::onMenuPressed()
 	menu->create(getEvasObject());
 
 	if (!m_PersonGroups.empty()) {
-		menu->addItem("IDS_PB_OPT_GROUPS", [this] {
-			Groups::GroupsView *groupsView = new Groups::GroupsView();
-			getNavigator()->navigateTo(groupsView);
-		});
+//		TODO: It is hidden because of release testing. Will be uncommented when all Groups functionality will be done.
+//		menu->addItem("IDS_PB_OPT_GROUPS", [this] {
+//			getNavigator()->navigateTo(new Groups::GroupsView());
+//		});
 		menu->addItem("IDS_LOGS_OPT_DELETE", std::bind(&ListView::onDeleteSelected, this));
 		menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onShareSelected, this));
 		menu->addItem("IDS_PB_OPT_MANAGE_FAVOURITES_ABB", [this] {
