@@ -126,6 +126,7 @@ namespace Logs
 			void fillList();
 			size_t fillGroupList(LogIterator begin, LogIterator end);
 			bool mergeGroup(GroupIterator group);
+			bool compareNumber(const char *firstNumber, const char *secondNumber);
 
 			LogIterator updateLogs();
 			void updateGroups(LogIterator newBegin, LogIterator newEnd);
