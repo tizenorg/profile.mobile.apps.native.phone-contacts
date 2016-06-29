@@ -87,6 +87,12 @@ namespace Contacts
 				bool m_IsVisible = true;
 			};
 
+			enum State
+			{
+				StateSearching = 1 << 0,
+				StateSelecting = 1 << 1
+			};
+
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
 			virtual void onDestroy() override;
@@ -97,10 +103,13 @@ namespace Contacts
 
 			void onDeleteSelected();
 			void onShareSelected();
+			bool onSelectFinished();
 			void onManageFavoritesSelected();
 
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
+
+			void setState(State state, bool isEnabled);
 
 			Ui::GenlistGroupItem *createMyProfileSection();
 			Ui::GenlistGroupItem *createListSection(SectionId sectionId);
@@ -154,10 +163,11 @@ namespace Contacts
 			Ui::Genlist *m_Genlist;
 			Evas_Object *m_Index;
 			Evas_Object *m_AddButton;
+
 			bool m_IsCurrentView;
 			bool m_IsSearching;
 			bool m_IsEmpty;
-
+			std::vector<State> m_StateHistory;
 
 			SearchItem *m_SearchItem;
 			Section m_Sections[SectionMax];

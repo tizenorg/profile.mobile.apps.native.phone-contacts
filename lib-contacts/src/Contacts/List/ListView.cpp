@@ -48,6 +48,7 @@
 #include "Utils/Thread.h"
 
 #include "ListPath.h"
+#include <algorithm>
 #include <efl_extension.h>
 
 using namespace Contacts;
@@ -140,9 +141,14 @@ void ListView::onNavigation(bool isCurrent)
 
 bool ListView::onBackPressed()
 {
-	if (m_IsSearching) {
-		m_SearchItem->clear();
-		return false;
+	if (!m_StateHistory.empty()) {
+		switch (m_StateHistory.back()) {
+			case StateSearching:
+				m_SearchItem->clear();
+				return false;
+			case StateSelecting:
+				return SelectView::onBackPressed();
+		}
 	}
 
 	return true;
@@ -184,9 +190,9 @@ void ListView::onMenuPressed()
 
 void ListView::onDeleteSelected()
 {
-	ListView *view = new ListView();
-	view->setSelectMode(SelectMulti);
-	view->setSelectCallback([view](SelectResults results) {
+	setSelectMode(SelectMulti);
+	setCancelCallback(std::bind(&ListView::onSelectFinished, this));
+	setSelectCallback([this](SelectResults results) {
 		auto task = [](SelectResults results) {
 			std::vector<int> ids;
 			ids.reserve(results.size());
@@ -200,22 +206,21 @@ void ListView::onDeleteSelected()
 			contacts_disconnect_on_thread();
 		};
 
-		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_DELETING_ING_ABB");
-		new Thread(std::bind(task, std::move(results)), [view, popup] {
+		auto popup = Ui::ProcessPopup::create(getEvasObject(), "IDS_PB_TPOP_DELETING_ING_ABB");
+		new Thread(std::bind(task, std::move(results)), [this, popup] {
 			delete popup;
-			view->getPage()->close();
+			onSelectFinished();
 		});
 
 		return false;
 	});
-	getNavigator()->navigateTo(view);
 }
 
 void ListView::onShareSelected()
 {
-	ListView *view = new ListView();
-	view->setSelectMode(SelectMulti);
-	view->setSelectCallback([](SelectResults results) {
+	setSelectMode(SelectMulti);
+	setCancelCallback(std::bind(&ListView::onSelectFinished, this));
+	setSelectCallback([this](SelectResults results) {
 		size_t count = results.size();
 		std::vector<std::string> idString(count);
 		std::vector<const char *> ids(count);
@@ -229,9 +234,16 @@ void ListView::onShareSelected()
 		request.launch();
 		request.detach();
 
-		return true;
+		return onSelectFinished();
 	});
-	getNavigator()->navigateTo(view);
+}
+
+bool ListView::onSelectFinished()
+{
+	setSelectMode(SelectNone);
+	setCancelCallback(nullptr);
+	setSelectCallback(nullptr);
+	return false;
 }
 
 void ListView::onManageFavoritesSelected()
@@ -257,8 +269,24 @@ void ListView::onSelectAllInsert(Ui::GenlistItem *item)
 
 void ListView::onSelectModeChanged(SelectMode selectMode)
 {
+	if (Ui::NavigatorPage *page = getPage()) {
+		page->setExpanded(selectMode != SelectNone);
+	}
+
+	setState(StateSelecting, selectMode != SelectNone);
 	updateAddButton();
 	updateSections();
+}
+
+void ListView::setState(State state, bool isEnabled)
+{
+	auto it = std::find(m_StateHistory.begin(), m_StateHistory.end(), state);
+	if (it != m_StateHistory.end()) {
+		m_StateHistory.erase(it);
+	}
+	if (isEnabled) {
+		m_StateHistory.push_back(state);
+	}
 }
 
 Ui::GenlistGroupItem *ListView::createMyProfileSection()
@@ -710,6 +738,7 @@ void ListView::onSearchChanged(const char *str)
 	bool isSearching = str && *str;
 	if (isSearching != m_IsSearching) {
 		m_IsSearching = isSearching;
+		setState(StateSearching, m_IsSearching);
 		updateIndex();
 		updateEmptyLayout();
 		updateSections();
