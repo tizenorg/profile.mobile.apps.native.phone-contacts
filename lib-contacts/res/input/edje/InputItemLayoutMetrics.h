@@ -19,6 +19,8 @@
 #define INPUT_ITEM_LAYOUT_METRICS_H
 
 #define ITEM_H 120
+#define ITEM_T 33
+#define ITEM_B 20
 
 #define TYPE_L 32
 #define TYPE_W 180
