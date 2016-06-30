@@ -17,6 +17,7 @@ pkg_check_modules(TIZEN_PACKAGES REQUIRED
 	feedback
 	libtzplatform-config
 	notification
+	phonenumber-utils
 	sqlite3
 	storage
 	widget_service
