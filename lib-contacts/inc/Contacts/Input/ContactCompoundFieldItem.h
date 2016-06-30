@@ -45,7 +45,7 @@ namespace Contacts
 			 * @brief Disables auto-expansion.
 			 * @see ContactFieldItem::onInserted()
 			 */
-			virtual void onInserted() override { }
+			virtual void onInserted() override;
 
 			/**
 			 * @see GenlistItem::onExpanded()

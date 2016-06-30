@@ -42,22 +42,22 @@ collections
 
 		parts {
 			swallow { "swallow.bg"; }
-			spacer { "spacer.left"; scale;
+			spacer { "spacer.left_top"; scale;
 				desc { "default";
-					align: 0.0 0.5;
+					align: 0.0 0.0;
 					rel1.relative: 0.0 0.0;
-					rel2.relative: 0.0 1.0;
+					rel2.relative: 0.0 0.0;
 				}
 				desc { "visible";
 					inherit: "default";
-					min: TYPE_L 0;
+					min: TYPE_L ITEM_T;
 				}
 			}
 			swallow { PART_TYPE; scale;
 				desc { "default";
 					align: 0.0 0.5;
-					rel1 { relative: 1.0 0.5; to_x: "spacer.left"; }
-					rel2 { relative: 1.0 0.5; to_x: "spacer.left"; }
+					rel1 { relative: 1.0 1.0; to: "spacer.left_top"; }
+					rel2 { relative: 1.0 0.0; to_x: "spacer.left_top"; to_y: "spacer.right_bottom"; }
 				}
 				desc { "visible";
 					inherit: "default";
@@ -74,15 +74,15 @@ collections
 			swallow { PART_BUTTON; scale;
 				desc { "default";
 					align: 1.0 0.5;
-					rel1 { relative: 0.0 0.5; to_x: "spacer.right"; }
-					rel2 { relative: 0.0 0.5; to_x: "spacer.right"; }
+					rel1 { relative: 0.0 0.5; to_x: "spacer.right_bottom"; }
+					rel2 { relative: 0.0 0.5; to_x: "spacer.right_bottom"; }
 				}
 			}
-			spacer { "spacer.right"; scale;
+			spacer { "spacer.right_bottom"; scale;
 				desc { "default";
-					align: 1.0 0.5;
-					min: BUTTON_R 0;
-					rel1.relative: 1.0 0.0;
+					align: 1.0 1.0;
+					min: BUTTON_R ITEM_B;
+					rel1.relative: 1.0 1.0;
 					rel2.relative: 1.0 1.0;
 				}
 			}
@@ -93,14 +93,14 @@ collections
 				source: "elm";
 				action: STATE_SET "visible" 0.0;
 				target: PART_TYPE;
-				target: "spacer.left";
+				target: "spacer.left_top";
 			}
 			program {
 				signal: "elm,state,"PART_TYPE",passive";
 				source: "elm";
 				action: STATE_SET "default" 0.0;
 				target: PART_TYPE;
-				target: "spacer.left";
+				target: "spacer.left_top";
 			}
 		}
 	}
@@ -140,11 +140,6 @@ collections
 		data.item: "contents" "swallow.content";
 
 		parts {
-			rect { "rect.bg"; scale;
-				desc { "default";
-					color_class: "title_bg";
-				}
-			}
 			spacer { "spacer.base"; scale;
 				desc { "default";
 					min: 0 IMAGE_ITEM_H;
