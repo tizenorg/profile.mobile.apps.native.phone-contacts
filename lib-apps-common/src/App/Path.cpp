@@ -43,8 +43,8 @@ const std::string &App::getDataDir()
 			char *path = app_get_data_path();
 			if (path) {
 				dataDir = path;
+				free(path);
 			}
-			free(path);
 		#endif
 	}
 
@@ -59,8 +59,10 @@ const std::string &App::getResourceDir()
 			resDir = RES_DIR;
 		#else
 			char *path = app_get_resource_path();
-			resDir = path;
-			free(path);
+			if (path) {
+				resDir = path;
+				free(path);
+			}
 		#endif
 	}
 
