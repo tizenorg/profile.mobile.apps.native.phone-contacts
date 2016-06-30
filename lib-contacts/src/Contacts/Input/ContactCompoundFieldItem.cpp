@@ -52,6 +52,11 @@ Evas_Object *ContactCompoundFieldItem::getContent(Evas_Object *parent, const cha
 	}
 }
 
+void ContactCompoundFieldItem::onInserted()
+{
+	ContactFieldSubItem::onInserted();
+}
+
 void ContactCompoundFieldItem::onExpanded(bool isExpanded)
 {
 	auto control = static_cast<ContactCompoundFieldControl *>(getFieldControl());

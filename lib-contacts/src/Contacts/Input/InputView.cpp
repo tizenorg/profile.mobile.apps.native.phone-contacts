@@ -121,6 +121,7 @@ Evas_Object *InputView::onCreate(Evas_Object *parent)
 	m_AddFieldsItem = new AddFieldsItem();
 	m_AddFieldsItem->setAddFieldCallback(std::bind(&InputView::onAddField, this, _1));
 	m_Genlist->insert(m_AddFieldsItem);
+	elm_genlist_item_select_mode_set(m_AddFieldsItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 
 	for (unsigned id = FieldBegin; id < FieldEnd; ++id) {
 		if (!isFieldVisible[id] || !m_Contact.getFieldById(id)) {
