@@ -57,10 +57,11 @@ namespace Ui
 		 */
 		Evas_Object *getClearButton();
 
+		static void onChanged(Evas_Object *layout, Evas_Object *entry, void *eventInfo);
+
 	private:
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 
-		static void onChanged(Evas_Object *layout, Evas_Object *entry, void *eventInfo);
 		static void onFocused(Evas_Object *layout, Evas_Object *entry, void *eventInfo);
 		static void onUnfocused(Evas_Object *layout, Evas_Object *entry, void *eventInfo);
 		static void onClearPressed(Evas_Object *entry, Evas_Object *button, void *eventInfo);

@@ -15,11 +15,10 @@
  *
  */
 
-#ifndef CONTACTS_GROUPS_GROUPS_VIEW_H
-#define CONTACTS_GROUPS_GROUPS_VIEW_H
+#ifndef CONTACTS_GROUPS_INPUT_VIEW_H
+#define CONTACTS_GROUPS_INPUT_VIEW_H
 
 #include "Ui/View.h"
-#include "Contacts/Groups/Model/GroupsProvider.h"
 
 namespace Ui
 {
@@ -30,7 +29,9 @@ namespace Contacts
 {
 	namespace Groups
 	{
-		class GroupItem;
+		class AddMembersItem;
+		class NameItem;
+		class RingtoneItem;
 
 		namespace Model
 		{
@@ -38,29 +39,36 @@ namespace Contacts
 		}
 
 		/**
-		 * @brief Groups main view.
+		 * @brief Create/Edit group view.
 		 */
-		class GroupsView : public Ui::View
+		class InputView : public Ui::View
 		{
 		public:
-			GroupsView();
+			InputView();
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onPageAttached(Ui::NavigatorPage *page) override;
-			virtual void onMenuPressed() override;
 
-			void onInserted(::Model::DataItem &data);
-			GroupItem *createItem(Model::Group &group);
-			void insertItem(GroupItem *item);
-			void updateItem(GroupItem *item, int changes);
-			void deleteItem(GroupItem *item);
-			GroupItem *getNextItem(Model::Group &group);
+			void createPageButtons();
 
+			void onCancelPressed(Evas_Object *button, void *eventInfo);
+			void onDonePressed(Evas_Object *button, void *eventInfo);
+			void enableDoneButton(bool isDisabled);
+
+			bool isAlreadyExist();
+			void save();
+
+			static void onChanged(Evas_Object *layout, Evas_Object *entry, void *eventInfo);
+
+			Evas_Object *m_CancelButton;
+			Evas_Object *m_DoneButton;
 			Ui::Genlist *m_Genlist;
-			Model::GroupsProvider m_Provider;
+			AddMembersItem *m_AddMembersItem;
+			NameItem *m_NameItem;
+			RingtoneItem *m_RingtoneItem;
 		};
 	}
 }
 
-#endif /* CONTACTS_GROUPS_GROUPS_VIEW_H */
+#endif /* CONTACTS_GROUPS_INPUT_VIEW_H */
