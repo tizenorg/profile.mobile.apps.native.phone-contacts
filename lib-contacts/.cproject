@@ -29,7 +29,23 @@
 								<option id="sbi.gnu.cpp.compiler.option.2139488197" name="Tizen-Target" superClass="sbi.gnu.cpp.compiler.option" valueType="userObjs">
 									<listOptionValue builtIn="false" value="mobile-3.0-device.core_llvm36.armel.core.sharedLib"/>
 								</option>
-								<option id="sbi.gnu.cpp.compiler.option.frameworks_inc.core.883108156" name="Tizen-Frameworks-Include-Path" superClass="sbi.gnu.cpp.compiler.option.frameworks_inc.core" valueType="includePath">
+								<option id="sbi.gnu.cpp.compiler.option.frameworks_inc.core.883108156" name="Tizen-Frameworks-Include-Path" superClass="sbi.gnu.cpp.compiler.option.frameworks_inc.core" valueType="includePath"/>
+								<option id="sbi.gnu.cpp.compiler.option.frameworks_cflags.core.1666389238" name="Tizen-Frameworks-Other-Cflags" superClass="sbi.gnu.cpp.compiler.option.frameworks_cflags.core" valueType="stringList">
+									<listOptionValue builtIn="false" value="${TC_COMPILER_MISC}"/>
+									<listOptionValue builtIn="false" value="${RS_COMPILER_MISC}"/>
+									<listOptionValue builtIn="false" value="--sysroot=&quot;${SBI_SYSROOT}&quot;"/>
+									<listOptionValue builtIn="false" value="-mthumb"/>
+									<listOptionValue builtIn="false" value="-fvisibility=hidden"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.include.paths.1266295382" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-apps-common/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-apps-common/res/apps-common/edje}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-common/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-common/res/details/edje}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-contacts/res/details/edje}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-contacts/res/input/edje}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-contacts/res/list/edje}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/libxml2&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/appcore-agent&quot;"/>
@@ -112,23 +128,7 @@
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/wifi-direct&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/lib/dbus-1.0/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/lib/glib-2.0/include&quot;"/>
-								</option>
-								<option id="sbi.gnu.cpp.compiler.option.frameworks_cflags.core.1666389238" name="Tizen-Frameworks-Other-Cflags" superClass="sbi.gnu.cpp.compiler.option.frameworks_cflags.core" valueType="stringList">
-									<listOptionValue builtIn="false" value="${TC_COMPILER_MISC}"/>
-									<listOptionValue builtIn="false" value="${RS_COMPILER_MISC}"/>
-									<listOptionValue builtIn="false" value="--sysroot=&quot;${SBI_SYSROOT}&quot;"/>
-									<listOptionValue builtIn="false" value="-mthumb"/>
-									<listOptionValue builtIn="false" value="-fvisibility=hidden"/>
-								</option>
-								<option id="gnu.cpp.compiler.option.include.paths.1266295382" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-apps-common/inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-apps-common/res/apps-common/edje}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-common/inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-common/res/details/edje}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-contacts/res/details/edje}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-contacts/res/input/edje}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-contacts/res/list/edje}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-contacts/res/groups/edje}&quot;"/>
 								</option>
 								<option id="sbi.gnu.cpp.compiler.option.frameworks.core.708088795" name="Tizen-Frameworks" superClass="sbi.gnu.cpp.compiler.option.frameworks.core" valueType="userObjs">
 									<listOptionValue builtIn="false" value="Native_API"/>
