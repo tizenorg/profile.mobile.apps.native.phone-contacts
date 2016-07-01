@@ -82,7 +82,8 @@ void Chooser::onCreated()
 
 void Chooser::onPageAttached(Ui::NavigatorPage *page)
 {
-	page->setTitleVisibility(false);
+	/* FIXME: Disable naviframe item title by default */
+	page->setTitle(nullptr);
 }
 
 bool Chooser::onPersonChecked(SelectItem *item, bool isChecked, bool isSelectAll)

@@ -52,12 +52,6 @@ namespace Ui
 		virtual void setTitle(const char *title) = 0;
 
 		/**
-		 * @brief Set whether to show the page title.
-		 * @param[in]   isVisible   Whether page title is visible
-		 */
-		virtual void setTitleVisibility(bool isVisible) = 0;
-
-		/**
 		 * @brief Set page style.
 		 * @param[in]   style   Page style
 		 */
@@ -68,11 +62,6 @@ namespace Ui
 		 * @param[in]   content Content to set to page part
 		 */
 		virtual void setContent(const char *part, Evas_Object *content) = 0;
-
-		/**
-		 * @brief Set whether to show page's title instead of navigator's.
-		 */
-		virtual void setExpanded(bool isExpanded);
 
 		/**
 		 * @brief Close the page and destroy its content.

@@ -33,11 +33,6 @@ namespace Ui
 		virtual void setTitle(const char *title) override;
 
 		/**
-		 * @see NavigatorPage::setTitleVisibility()
-		 */
-		virtual void setTitleVisibility(bool isVisible) override;
-
-		/**
 		 * @see NavigatorPage::setStyle()
 		 */
 		virtual void setStyle(const char *style) override;

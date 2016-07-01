@@ -23,7 +23,6 @@
 #include "Utils/Range.h"
 
 #include <algorithm>
-#include <phone_number.h>
 
 using namespace Common::Database;
 using namespace Contacts;
@@ -34,13 +33,10 @@ LogProvider::LogProvider()
 	contacts_db_get_current_version(&m_DbVersion);
 	contacts_db_add_changed_cb(_contacts_phone_log._uri, makeCallbackWithLastParam(&LogProvider::onLogsChanged), this);
 	contacts_db_add_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&LogProvider::onContactChanged), this);
-	phone_number_connect();
 }
 
 LogProvider::~LogProvider()
 {
-	phone_number_disconnect();
-
 	contacts_db_remove_changed_cb(_contacts_phone_log._uri, makeCallbackWithLastParam(&LogProvider::onLogsChanged), this);
 	contacts_db_remove_changed_cb(_contacts_person._uri, makeCallbackWithLastParam(&LogProvider::onContactChanged), this);
 
@@ -125,8 +121,8 @@ bool LogProvider::shouldGroupLogs(Log &log, Log &prevLog)
 	return (type == prevLog.getType()
 			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN
 			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN
-			&& compareDate(log.getTime(), prevLog.getTime())
-			&& compareNumber(log.getNumber(), prevLog.getNumber()));
+			&& strcmp(log.getNumber(), prevLog.getNumber()) == 0
+			&& compareDate(log.getTime(), prevLog.getTime()));
 }
 
 contacts_filter_h LogProvider::getFilter()
@@ -194,23 +190,6 @@ bool LogProvider::mergeGroup(GroupIterator group)
 	}
 
 	return false;
-}
-
-bool LogProvider::compareNumber(const char *firstNumber, const char *secondNumber)
-{
-	char *numberFirst = nullptr;
-	char *numberSecond = nullptr;
-	bool isEqual = false;
-
-	phone_number_get_normalized_number(firstNumber, &numberFirst);
-	phone_number_get_normalized_number(secondNumber, &numberSecond);
-
-	isEqual = !strcmp(numberFirst, numberSecond);
-
-	free(numberFirst);
-	free(numberSecond);
-
-	return isEqual;
 }
 
 LogProvider::LogIterator LogProvider::updateLogs()

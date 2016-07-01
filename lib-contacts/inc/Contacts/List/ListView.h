@@ -97,7 +97,6 @@ namespace Contacts
 
 			void onDeleteSelected();
 			void onShareSelected();
-			void onManageFavoritesSelected();
 
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;

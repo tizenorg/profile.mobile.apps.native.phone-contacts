@@ -16,7 +16,6 @@
  */
 
 #include "Logs/Model/NumberLogProvider.h"
-#include <phone_number.h>
 
 using namespace Logs::Model;
 
@@ -33,13 +32,8 @@ bool NumberLogProvider::shouldGroupLogs(Log &log, Log &prevLog)
 contacts_filter_h NumberLogProvider::getFilter()
 {
 	contacts_filter_h filter = LogProvider::getFilter();
-
-	char *number = nullptr;
-	phone_number_get_normalized_number(m_Number.c_str(), &number);
-
 	contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-	contacts_filter_add_str(filter, _contacts_phone_log.normalized_address, CONTACTS_MATCH_FULLSTRING, number);
-	free(number);
+	contacts_filter_add_str(filter, _contacts_phone_log.address, CONTACTS_MATCH_EXACTLY, m_Number.c_str());
 
 	return filter;
 }

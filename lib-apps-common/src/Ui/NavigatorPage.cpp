@@ -42,14 +42,6 @@ View *NavigatorPage::getView() const
 	return m_View;
 }
 
-void NavigatorPage::setExpanded(bool isExpanded)
-{
-	setTitleVisibility(isExpanded);
-	if (m_Navigator) {
-		m_Navigator->getPage()->setTitleVisibility(!isExpanded);
-	}
-}
-
 void NavigatorPage::close()
 {
 	m_Navigator->navigateFrom(m_View);

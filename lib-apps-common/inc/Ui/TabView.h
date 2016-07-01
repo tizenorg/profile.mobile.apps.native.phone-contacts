@@ -37,12 +37,6 @@ namespace Ui
 		 */
 		virtual TabPage *getCurrentPage() const override;
 
-		/**
-		 * @brief Set whether navigation is allowed either by user or by calling navigateTo().
-		 * @param[in]   isEnabled   Whether navigation is enabled
-		 */
-		void setNavigationEnabled(bool isEnabled);
-
 	protected:
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 		virtual void onPageAttached(NavigatorPage *page) override;
@@ -64,7 +58,6 @@ namespace Ui
 		Evas_Coord m_Height;
 
 		bool m_IsNavigating;
-		bool m_IsNavigationEnabled;
 		TabPage *m_CurrentPage;
 		std::vector<TabPage *> m_Pages;
 	};
