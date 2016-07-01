@@ -31,8 +31,6 @@ using namespace Common::Database;
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
-#define PROGRESS_RESULTS_LIMIT 40
-
 ManageFavoritesPopup::ManageFavoritesPopup(Ui::Navigator *navigator)
 	: m_Navigator(navigator)
 {
@@ -75,10 +73,7 @@ void ManageFavoritesPopup::onAddSelected()
 	view->setSelectMode(Ux::SelectMulti);
 	view->setSectionVisibility(ListView::SectionFavorites, false);
 	view->setSelectCallback([view](Ux::SelectResults results) {
-		Ui::ProcessPopup *popup = nullptr;
-		if (results.size() > PROGRESS_RESULTS_LIMIT) {
-			popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
-		}
+		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
 		new Utils::Thread(std::bind(addFavorites, std::move(results)), [view, popup] {
 			delete popup;
 			view->getPage()->close();
@@ -102,10 +97,7 @@ void ManageFavoritesPopup::onRemoveSelected()
 	//todo Implement separate controller to handle callback, because object is destroyed after popup close.
 	auto &onMfcUpdated = m_OnMfcUpdated;
 	view->setSelectCallback([view, onMfcUpdated](Ux::SelectResults results) {
-		Ui::ProcessPopup *popup = nullptr;
-		if (results.size() > PROGRESS_RESULTS_LIMIT) {
-			popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
-		}
+		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
 		new Utils::Thread(std::bind(removeFavorites, std::move(results), std::move(onMfcUpdated)), [view, popup] {
 			delete popup;
 			view->getPage()->close();

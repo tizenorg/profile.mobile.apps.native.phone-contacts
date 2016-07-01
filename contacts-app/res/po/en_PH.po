@@ -331,9 +331,6 @@ msgstr "Contacts exported"
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "This contact will be deleted."
 
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "The maximum number of items that can be selected (%d) has been exceeded."
-
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Tap OK to stop exporting contacts to %s."
 

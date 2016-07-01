@@ -331,9 +331,6 @@ msgstr "Kontakty sa exportovali"
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Tento kontakt bude vymazaný."
 
-msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
-msgstr "Prekročil sa maximálny počet položiek, ktoré možno vybrať (%d)."
-
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Ťuknutím na tlačidlo OK zastavíte exportovanie kontaktov do súboru %s."
 

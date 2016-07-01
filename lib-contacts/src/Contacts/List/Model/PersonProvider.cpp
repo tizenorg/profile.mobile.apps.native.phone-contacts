@@ -347,5 +347,4 @@ void PersonProvider::onSortOrderChanged(contacts_name_sorting_order_e order, voi
 {
 	PersonProvider *provider = (PersonProvider *) data;
 	provider->onSettingsChanged();
-	provider->onUpdateFinished();
 }
