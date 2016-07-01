@@ -76,8 +76,8 @@ namespace Contacts
 
 			/**
 			 * @brief Reorder contact item
-			 * @param[in]   reorderedId     Id of the contact that was reordered
-			 * @param[in]   previousId      Id of the previous contact
+			 * @param[in]   reorderedId     Id of the person that was reordered
+			 * @param[in]   previousId      Id of the previous person
 			 */
 			void reorderItem(int reorderedId, int previousId);
 

@@ -71,6 +71,7 @@ make %{?_smp_mflags}
 %{_res_dir}/apps-common
 %{_res_dir}/details
 %{_res_dir}/dialer
+%{_res_dir}/groups
 %{_res_dir}/input
 %{_res_dir}/list
 %{_res_dir}/logs

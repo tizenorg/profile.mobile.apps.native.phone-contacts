@@ -16,9 +16,13 @@
  */
 
 #include "Contacts/Groups/GroupsView.h"
+
 #include "Contacts/Groups/GroupItem.h"
+#include "Contacts/Groups/InputView.h"
 #include "Contacts/Groups/Model/Group.h"
 #include "Ui/Genlist.h"
+#include "Ui/Menu.h"
+#include "Ui/Navigator.h"
 
 using namespace Contacts::Groups;
 using namespace Contacts::Groups::Model;
@@ -41,6 +45,18 @@ Evas_Object *GroupsView::onCreate(Evas_Object *parent)
 	}
 
 	return m_Genlist->getEvasObject();
+}
+
+void GroupsView::onMenuPressed()
+{
+	Ui::Menu *menu = new Ui::Menu();
+	menu->create(getEvasObject());
+
+	menu->addItem("IDS_PB_OPT_CREATE", [this] {
+		getNavigator()->navigateTo(new InputView());
+	});
+
+	menu->show();
 }
 
 void GroupsView::onPageAttached(Ui::NavigatorPage *page)
