@@ -69,6 +69,7 @@ void OperationDefaultController::onRequest(Operation operation, app_control_h re
 	} else if (appId && strcmp(appId, APP_CONTROL_PHONE_APPID) == 0) {
 		if (getBadgeCount(APP_CONTROL_PHONE_APPID) > 0) {
 			selectedTab = TabLogs;
+			static_cast<Logs::List::LogsView *>(m_Tabs[TabLogs])->resetMissedCalls();
 		} else {
 			selectedTab = getLastTab();
 		}

@@ -59,6 +59,11 @@ namespace Logs
 			LogsView(FilterType filterType = FilterAll);
 			virtual ~LogsView() override;
 
+			/**
+			 * @brief Reset missed calls
+			 */
+			void resetMissedCalls();
+
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onCreated() override;
@@ -66,7 +71,6 @@ namespace Logs
 			virtual void onMenuPressed() override;
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 
-			void resetMissedCalls();
 			void fillLayout();
 			void updateLayout(bool isEmpty);
 			Evas_Object *createNoContentsLayout(Evas_Object *parent);

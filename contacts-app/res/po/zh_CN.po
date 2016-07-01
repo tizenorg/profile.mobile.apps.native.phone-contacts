@@ -331,6 +331,9 @@ msgstr "联系人已导出"
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "此联系人将被删除。"
 
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "已超过可选择的最大项目数 (%d)。"
+
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "点击【确定】可停止将联系人导出至 %s。"
 

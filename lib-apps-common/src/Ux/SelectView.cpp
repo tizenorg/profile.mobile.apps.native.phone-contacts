@@ -171,7 +171,9 @@ void SelectView::updatePageTitle()
 		return;
 	}
 
+	char buffer[TITLE_BUFFER_SIZE];
 	const char *title = nullptr;
+
 	switch (m_SelectMode) {
 		case SelectNone:
 			title = m_Strings.titleDefault;
@@ -181,16 +183,18 @@ void SelectView::updatePageTitle()
 			break;
 		case SelectMulti:
 			if (m_SelectLimit) {
-				title = m_Strings.titleWithLimit;
+				snprintf(buffer, sizeof(buffer), _(m_Strings.titleWithLimit), m_SelectCount, m_SelectLimit);
+				title = buffer;
+			} else if (m_SelectCount) {
+				snprintf(buffer, sizeof(buffer), _(m_Strings.titleWithCount), m_SelectCount);
+				title = buffer;
 			} else {
-				title = m_SelectCount ? m_Strings.titleWithCount : m_Strings.titleMulti;
+				title = m_Strings.titleMulti;
 			}
 			break;
 	}
 
-	char buffer[TITLE_BUFFER_SIZE];
-	snprintf(buffer, sizeof(buffer), _(title), m_SelectCount, m_SelectLimit);
-	page->setTitle(buffer);
+	page->setTitle(title);
 }
 
 void SelectView::updatePageButtons()
