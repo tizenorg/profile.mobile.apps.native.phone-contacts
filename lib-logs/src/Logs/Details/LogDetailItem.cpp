@@ -28,9 +28,7 @@
 #define BUFFER_SIZE             64
 #define LOG_TYPE_SIZE           45
 
-#define PART_LOG_TIME           "elm.text"
 #define PART_LOG_TYPE           "elm.text.sub"
-
 #define PART_LOG_TYPE_ICON      "elm.swallow.icon"
 #define PART_CHECK              "elm.swallow.end"
 

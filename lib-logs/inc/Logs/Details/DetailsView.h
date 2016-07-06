@@ -22,6 +22,8 @@
 #include "Ux/SelectView.h"
 #include "Logs/Model/NumberLogProvider.h"
 
+#include <system_settings.h>
+
 namespace Ui
 {
 	class Genlist;
@@ -56,6 +58,7 @@ namespace Logs
 			 * @param[in]   number   Number
 			 */
 			explicit DetailsView(const char *number);
+			virtual ~DetailsView() override;
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -79,6 +82,7 @@ namespace Logs
 			bool onSelected(Ux::SelectResults results);
 			bool onCanceled();
 
+			void onTimeFormatChanged(system_settings_key_e key);
 			void onLogGroupInserted(Model::LogGroup *group);
 			void onGroupChanged(Model::LogGroup *group, List::LogGroupItem *groupItem, int type);
 			void onLogAdded(Model::Log *log);

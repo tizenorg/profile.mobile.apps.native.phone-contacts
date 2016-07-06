@@ -20,6 +20,8 @@
 
 #include "Ux/SelectItem.h"
 
+#define PART_LOG_TIME "elm.text"
+
 namespace Logs
 {
 	namespace Model

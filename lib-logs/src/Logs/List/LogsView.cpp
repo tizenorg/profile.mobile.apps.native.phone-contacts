@@ -20,6 +20,7 @@
 #include "Logs/List/LogItem.h"
 #include "Common/Strings.h"
 
+#include "System/Settings.h"
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
@@ -34,6 +35,7 @@
 #define PHONE_APPID "org.tizen.phone"
 
 using namespace Ux;
+using namespace System;
 using namespace Logs::Model;
 using namespace Logs::List;
 using namespace std::placeholders;
@@ -46,16 +48,22 @@ LogsView::LogsView(FilterType filterType)
 	strings.titleDefault = "IDS_LOGS_ITAB3_LOGS";
 	setStrings(strings);
 
-	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
-	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
-	system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_TIME_CHANGED, makeCallbackWithLastParam(&LogsView::onSettingsChanged), this);
+	Settings::addCallback(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR,
+			{ makeCallback(&LogsView::onSettingsChanged), this });
+	Settings::addCallback(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY,
+			{ makeCallback(&LogsView::onSettingsChanged), this });
+	Settings::addCallback(SYSTEM_SETTINGS_KEY_TIME_CHANGED,
+			{ makeCallback(&LogsView::onSettingsChanged), this });
 }
 
 LogsView::~LogsView()
 {
-	system_settings_unset_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR);
-	system_settings_unset_changed_cb(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY);
-	system_settings_unset_changed_cb(SYSTEM_SETTINGS_KEY_TIME_CHANGED);
+	Settings::removeCallback(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR,
+			{ makeCallback(&LogsView::onSettingsChanged), this });
+	Settings::removeCallback(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY,
+			{ makeCallback(&LogsView::onSettingsChanged), this });
+	Settings::removeCallback(SYSTEM_SETTINGS_KEY_TIME_CHANGED,
+			{ makeCallback(&LogsView::onSettingsChanged), this });
 }
 
 Evas_Object *LogsView::onCreate(Evas_Object *parent)
