@@ -331,6 +331,9 @@ msgstr "संपर्क निर्यात किए गए"
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "यह संपर्क हटाया जाएगा।"
 
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "चुने जा सकने वाली मदों की अधिकतम संख्या (%d) सीमा से अधिक हो गई है।"
+
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "%s में संपर्क निर्यात करने से रोकने के लिए “ओके” टैप करें।"
 

@@ -127,8 +127,6 @@ protected:
 	virtual void onRequest(Operation operation, app_control_h request) = 0;
 
 private:
-	static void onWindowLowered(void *data, Evas_Object *obj, void *eventInfo);
-
 	int m_SupportedOperations;
 	app_control_h m_Request;
 	bool m_IsMinimizable;

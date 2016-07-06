@@ -331,6 +331,9 @@ msgstr "聯絡人已匯出"
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "此聯絡人將被刪除。"
 
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "已超過可選擇的項目數量上限 (%d)。"
+
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "輕觸 [確定] 以停止將聯絡人匯出至 %s。"
 

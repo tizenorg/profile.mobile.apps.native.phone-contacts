@@ -25,8 +25,10 @@
 #include "Common/Strings.h"
 
 #include "App/Path.h"
+#include "System/Settings.h"
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
+#include "Utils/Callback.h"
 
 #include <algorithm>
 
@@ -35,6 +37,7 @@ using namespace Logs::Details;
 using namespace Logs::List;
 
 using namespace Ux;
+using namespace System;
 using namespace std::placeholders;
 
 DetailsView::DetailsView(const char *number)
@@ -52,6 +55,19 @@ DetailsView::DetailsView(const char *number)
 
 	setSelectCallback(std::bind(&DetailsView::onSelected, this, _1));
 	setCancelCallback(std::bind(&DetailsView::onCanceled, this));
+
+	Settings::addCallback(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR,
+			{ makeCallback(&DetailsView::onTimeFormatChanged), this });
+	Settings::addCallback(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY,
+			{ makeCallback(&DetailsView::onTimeFormatChanged), this });
+}
+
+DetailsView::~DetailsView()
+{
+	Settings::removeCallback(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR,
+			{ makeCallback(&DetailsView::onTimeFormatChanged), this });
+	Settings::removeCallback(SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY,
+			{ makeCallback(&DetailsView::onTimeFormatChanged), this });
 }
 
 Evas_Object *DetailsView::onCreate(Evas_Object *parent)
@@ -204,6 +220,11 @@ bool DetailsView::onCanceled()
 {
 	setSelectMode(SelectNone);
 	return false;
+}
+
+void DetailsView::onTimeFormatChanged(system_settings_key_e key)
+{
+	m_Genlist->update(PART_LOG_TIME, ELM_GENLIST_ITEM_FIELD_TEXT);
 }
 
 void DetailsView::onLogGroupInserted(LogGroup *group)

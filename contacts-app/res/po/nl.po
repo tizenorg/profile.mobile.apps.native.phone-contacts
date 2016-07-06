@@ -331,6 +331,9 @@ msgstr "Geëxporteerde contacten"
 msgid "IDS_PB_POP_THIS_CONTACT_WILL_BE_DELETED"
 msgstr "Deze contactpersoon wordt verwijderd."
 
+msgid "IDS_PB_POP_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_CAN_BE_SELECTED_HPD_HAS_BEEN_EXCEEDED"
+msgstr "Het maximumaantal items dat kan worden geselecteerd (%d), is overschreden."
+
 msgid "IDS_PB_POP_TAP_OK_TO_STOP_EXPORTING_CONTACTS_TO_PS"
 msgstr "Tik op OK om het exporteren van contacten naar %s te stoppen."
 
