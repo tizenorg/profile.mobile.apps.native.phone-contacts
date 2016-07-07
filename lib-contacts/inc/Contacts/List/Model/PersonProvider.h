@@ -72,13 +72,13 @@ namespace Contacts
 				 */
 				void setUpdateMode(bool isEnabled);
 
-			protected:
 				enum IdType
 				{
 					PersonId,
 					ContactId
 				};
 
+			protected:
 				/**
 				 * @brief Create Person object
 				 * @param[in]   record  Person record
@@ -140,8 +140,13 @@ namespace Contacts
 				 */
 				DataList::const_iterator findPerson(int id, IdType idType);
 
-			private:
+				/**
+				 * @param[in]   idType  Type of ID
+				 * @return Property id according to type.
+				 */
 				static int getIdProperty(IdType idType);
+
+			private:
 				void updatePersonList();
 
 				void subscribe();
