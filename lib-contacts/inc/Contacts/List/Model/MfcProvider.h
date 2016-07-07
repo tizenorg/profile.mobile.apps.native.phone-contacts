@@ -38,7 +38,7 @@ namespace Contacts
 			private:
 				virtual contacts_list_h getPersonList() const override;
 				virtual contacts_record_h getPersonRecord(int id, IdType idType) const override;
-				virtual bool insertPerson(int id, IdType idType) override;
+				virtual void insertPerson(contacts_record_h personRecord) override;
 				virtual void deletePerson(DataList::const_iterator personIt) override;
 
 				contacts_list_h getPersonUsageList() const;
