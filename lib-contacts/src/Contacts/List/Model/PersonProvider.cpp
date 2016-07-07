@@ -54,11 +54,24 @@ int PersonProvider::getFilterType() const
 const PersonProvider::DataList &PersonProvider::getDataList()
 {
 	if (!m_IsFilled) {
-		contacts_list_h list = getPersonList();
-		for (auto &&record : makeRange(list)) {
+		contacts_list_h persons = getPersonList();
+		for (auto &&record : makeRange(persons)) {
 			m_PersonList.push_back(createPerson(record));
 		}
-		contacts_list_destroy(list, false);
+		contacts_list_destroy(persons, false);
+
+		contacts_list_h contacts = nullptr;
+		contacts_db_get_all_records(_contacts_contact._uri, 0, 0, &contacts);
+		for (auto &&record : makeRange(contacts)) {
+			auto it = findPerson(getRecordInt(record, _contacts_contact.person_id), PersonId);
+			if (it != m_PersonList.end()) {
+				Person *person = static_cast<Person *>(*it);
+				person->addContact(record);
+			} else {
+				contacts_record_destroy(record, true);
+			}
+		}
+		contacts_list_destroy(contacts, false);
 
 		subscribe();
 		m_IsFilled = true;
@@ -222,6 +235,22 @@ bool PersonProvider::updatePerson(DataList::const_iterator personIt)
 	return false;
 }
 
+bool PersonProvider::updatePerson(DataList::const_iterator personIt, contacts_record_h personRecord, int contactId)
+{
+	Person *person = static_cast<Person *>(*personIt);
+	if (personRecord) {
+		person->update(personRecord);
+
+		contacts_record_h contactRecord = nullptr;
+		contacts_db_get_record(_contacts_contact._uri, contactId, &contactRecord);
+		person->addContact(contactRecord);
+	} else {
+		deletePerson(personIt);
+	}
+
+	return (bool) personRecord;
+}
+
 void PersonProvider::deletePerson(DataList::const_iterator personIt)
 {
 	Person *person = static_cast<Person *>(*personIt);
@@ -232,13 +261,25 @@ void PersonProvider::deletePerson(DataList::const_iterator personIt)
 
 PersonProvider::DataList::const_iterator PersonProvider::findPerson(int id, IdType idType)
 {
-	int propId = getIdProperty(idType);
-	return std::find_if(m_PersonList.begin(), m_PersonList.end(),
-		[id, propId](::Model::DataItem *data) {
-			Person *person = static_cast<Person *>(data);
-			return getRecordInt(person->getRecord(), propId) == id;
-		}
-	);
+	if (idType == PersonId) {
+		return std::find_if(m_PersonList.begin(), m_PersonList.end(),
+			[id](::Model::DataItem *data) {
+				Person *person = static_cast<Person *>(data);
+				return getRecordInt(person->getRecord(), _contacts_person.id) == id;
+			}
+		);
+	} else {
+		return std::find_if(m_PersonList.begin(), m_PersonList.end(),
+			[id](::Model::DataItem *data) {
+				Person *person = static_cast<Person *>(data);
+				return std::find_if(person->m_ContactRecords.begin(), person->m_ContactRecords.end(),
+					[id](contacts_record_h contactRecord) {
+						return getRecordInt(contactRecord, _contacts_contact.id) == id;
+					}
+				) != person->m_ContactRecords.end();
+			}
+		);
+	}
 }
 
 int PersonProvider::getIdProperty(IdType idType)
@@ -259,35 +300,63 @@ void PersonProvider::updatePersonList()
 		switch (changeType) {
 			case CONTACTS_CHANGE_INSERTED:
 			{
-				insertPerson(contactId, ContactId);
+				insertPerson(getPersonRecord(contactId, ContactId));
 				break;
 			}
 			case CONTACTS_CHANGE_UPDATED:
 			{
 				int personId = getPersonId(contactId);
+				contacts_record_h personRecord = getPersonRecord(contactId, ContactId);
 				auto personIt = findPerson(personId, PersonId);
+
 				if (personIt != m_PersonList.end()) {
-					if (!updatePerson(personIt)) {
-						deletePerson(personIt);
-					}
+					updatePerson(personIt, personRecord, contactId);
 				} else {
-					insertPerson(personId, PersonId);
+					insertPerson(personRecord);
 				}
 				break;
 			}
 			case CONTACTS_CHANGE_DELETED:
-			{
-				auto personIt = findPerson(contactId, ContactId);
-				if (personIt != m_PersonList.end()) {
-					deletePerson(personIt);
-				}
+				removeContact(contactId);
 				break;
-			}
 		}
 	}
 
 	contacts_list_destroy(changes, true);
 	onUpdateFinished();
+}
+
+void PersonProvider::insertPerson(contacts_record_h personRecord)
+{
+	if (personRecord) {
+		Person *person = createPerson(personRecord);
+
+		auto filter = getFilter();
+		contacts_list_h contacts = getRecordList(_contacts_contact._uri, _contacts_contact.person_id,
+				getRecordInt(personRecord, _contacts_person.id), filter);
+
+		for (auto &&contact : makeRange(contacts)) {
+			person->addContact(contact);
+		}
+
+		m_PersonList.push_back(person);
+		onInserted(*m_PersonList.back());
+
+		contacts_list_destroy(contacts, false);
+		contacts_filter_destroy(filter);
+	}
+}
+
+void PersonProvider::removeContact(int contactId)
+{
+	auto personIt = findPerson(contactId, ContactId);
+	if (personIt != m_PersonList.end()) {
+		Person &person = static_cast<Person &>(**personIt);
+		person.removeContact(contactId);
+		if (!person.getContactCount()) {
+			deletePerson(personIt);
+		}
+	}
 }
 
 void PersonProvider::subscribe()

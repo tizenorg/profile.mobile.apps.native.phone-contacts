@@ -18,8 +18,12 @@
 #ifndef COMMON_DATABASE_RECORD_UTILS_H
 #define COMMON_DATABASE_RECORD_UTILS_H
 
-#include <contacts.h>
 #include "Utils/String.h"
+#include "Common/Database/ChildRecordIterator.h"
+
+#include <contacts.h>
+#include <functional>
+#include <algorithm>
 
 #define CONTACTS_LIST_FOREACH(list, record) \
 	bool success = (contacts_list_get_current_record_p(list, &record) == CONTACTS_ERROR_NONE); \
@@ -63,6 +67,41 @@ namespace Common
 			bool value = 0;
 			contacts_record_get_bool(record, propertyId, &value);
 			return value;
+		}
+
+		/**
+		 * @brief Get first child record
+		 * @remark Good way to get single child record
+		 * @param[in]   record      Parent child record
+		 * @param[in]   property    @record property, that points to child DB view
+		 * @return Child record on success, otherwise nullptr
+		 */
+		inline contacts_record_h getChildRecord(contacts_record_h record, unsigned property)
+		{
+			contacts_record_h childRecord = nullptr;
+			contacts_record_get_child_record_at_p(record, property, 0, &childRecord);
+			return childRecord;
+		}
+
+		/**
+		 * @brief Get child record
+		 * @param[in]   record      Parent child record
+		 * @param[in]   property    @record property, that points to child DB view
+		 * @param[in]   predicate   Unary function, that accepts child record
+		 *                          from parent record range and returns bool value
+		 * @return Child record on success, otherwise nullptr
+		 */
+		template <typename Pred>
+		inline contacts_record_h getChildRecord(contacts_record_h record, unsigned property,
+				Pred predicate)
+		{
+			for (auto childRecord : makeRange(record, property)) {
+				if (predicate(childRecord)) {
+					return childRecord;
+				}
+			}
+
+			return nullptr;
 		}
 
 		/**

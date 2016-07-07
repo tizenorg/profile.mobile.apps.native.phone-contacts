@@ -47,6 +47,28 @@ namespace Common
 		 * @return _contacts_person ID.
 		 */
 		EXPORT_API int getPersonId(int contactId);
+
+		/**
+		 * @brief Get record list
+		 * @remark Return value MUST be destroyed with contacts_list_destroy by you
+		 * @param[in]   uri             Record uri
+		 * @param[in]   propertyId      Filter property ID
+		 * @param[in]   value           Value that should be equal to @a propertyId field value
+		 * @param[in]   parentFilter    Parent filter, optional
+		 * @return Contacts list on success, otherwise nullptr
+		 */
+		EXPORT_API contacts_list_h getRecordList(const char *uri, unsigned propertyId, int value, contacts_filter_h parentFilter = nullptr);
+
+		/**
+		 * @brief Get record list
+		 * @remark Return value MUST be destroyed with contacts_list_destroy by you
+		 * @param[in]   uri             Record uri
+		 * @param[in]   propertyId      Filter property ID
+		 * @param[in]   values          List of values, which should be equal with @a propertyId field value
+		 * @param[in]   parentFilter    Parent filter, optional
+		 * @return Contacts list on success, otherwise nullptr
+		 */
+		EXPORT_API contacts_list_h getRecordList(const char *uri, unsigned propertyId, Utils::Range<int *> values, contacts_filter_h parentFilter = nullptr);
 	}
 }
 

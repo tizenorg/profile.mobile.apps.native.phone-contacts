@@ -60,10 +60,10 @@ namespace Contacts
 			 */
 			enum ChangedInfo
 			{
-				ChangedNone     = 0,                /**< Nothing was changed */
-				ChangedName     = 1 << FieldName,   /**< Name has changed */
-				ChangedNumber   = 1 << FieldNumber, /**< Number has changed */
-				ChangedImage    = 1 << FieldImage   /**< Image path has changed */
+				ChangedNone     = 0,                    /**< Nothing was changed */
+				ChangedName     = 1 << FieldName,       /**< Name has changed */
+				ChangedImage    = 1 << FieldImage,      /**< Image path has changed */
+				ChangedContact  = 1 << (FieldImage + 1) /**< Changed whole contact */
 			};
 
 			/**

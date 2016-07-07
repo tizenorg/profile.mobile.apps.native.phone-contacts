@@ -20,7 +20,6 @@
 #include "Common/Database/Queries.h"
 #include "Common/Database/RecordUtils.h"
 #include "Common/Database/RecordIterator.h"
-#include "Common/Database/ChildRecordIterator.h"
 #include "Utils/Logger.h"
 
 using namespace Common::Database;
@@ -78,11 +77,19 @@ namespace
 
 		return record;
 	}
+
+	contacts_record_h getNumberRecord(contacts_record_h contactRecord)
+	{
+		return getChildRecord(contactRecord, _contacts_contact.number,
+			[](contacts_record_h record) {
+				return getRecordBool(record, _contacts_number.is_default);
+			});
+	}
 }
 
 Person::Person(contacts_record_h record)
 	: ContactData(TypePerson),
-	  m_Record(record), m_NameRecord(nullptr), m_NumberRecord(nullptr),
+	  m_Record(record), m_DefaultContactRecord(nullptr),
 	  m_SortProperty(getSortProperty())
 {
 	m_IndexLetter = getRecordStr(m_Record, _contacts_person.display_name_index);
@@ -93,8 +100,9 @@ Person::~Person()
 	for (auto &&number : m_Numbers) {
 		delete number;
 	}
-	contacts_record_destroy(m_NameRecord, true);
-	contacts_record_destroy(m_NumberRecord, true);
+	for (auto &&contact : m_ContactRecords) {
+		contacts_record_destroy(contact, true);
+	}
 	contacts_record_destroy(m_Record, true);
 }
 
@@ -110,10 +118,7 @@ const char *Person::getName() const
 
 const char *Person::getNumber() const
 {
-	if (!m_NumberRecord) {
-		m_NumberRecord = getNumberRecord(getId());
-	}
-	return getRecordStr(m_NumberRecord, _contacts_number.number);
+	return getRecordStr(getNumberRecord(m_DefaultContactRecord), _contacts_number.number);
 }
 
 const char *Person::getImagePath() const
@@ -161,40 +166,80 @@ bool Person::operator<(const Person &that) const
 	return getSortValue() < that.getSortValue();
 }
 
+void Person::addContact(contacts_record_h record)
+{
+	if (getContactId() == getRecordInt(record, _contacts_contact.id)) {
+		m_DefaultContactRecord = record;
+	}
+
+	if (!m_ContactRecords.empty()) {
+		auto it = std::find_if(m_ContactRecords.begin(), m_ContactRecords.end(),
+			[record](contacts_record_h contactRecord) {
+				return compareRecordsInt(contactRecord, record, _contacts_contact.id) == 0;
+			}
+		);
+
+		if (it != m_ContactRecords.end()) {
+			*it = record;
+			return;
+		}
+	}
+
+	m_ContactRecords.push_back(record);
+}
+
+void Person::removeContact(int id)
+{
+	auto it = std::find_if(m_ContactRecords.begin(), m_ContactRecords.end(),
+		[id](contacts_record_h contactRecord) {
+			return getRecordInt(contactRecord, _contacts_contact.id) == id;
+		}
+	);
+
+	if (it != m_ContactRecords.end()) {
+		if (*it == m_DefaultContactRecord) {
+			m_DefaultContactRecord = nullptr;
+		}
+
+		contacts_record_destroy(*it, true);
+		m_ContactRecords.erase(it);
+	}
+}
+
+size_t Person::getContactCount() const
+{
+	return m_ContactRecords.size();
+}
+
 const UniString &Person::getSortValue() const
 {
 	if (m_SortValue.getI18nStr().empty()) {
-		if (!m_NameRecord) {
-			m_NameRecord = getNameRecord(getContactId());
-		}
-
-		const char *value = getRecordStr(m_NameRecord, m_SortProperty);
+		contacts_record_h nameRecord = getChildRecord(m_DefaultContactRecord, _contacts_contact.name);
+		const char *value = getRecordStr(nameRecord, m_SortProperty);
 		m_SortValue = (value && *value) ? value : getName();
 	}
 
 	return m_SortValue;
 }
 
-void Person::update(contacts_record_h record)
+void Person::update(contacts_record_h personRecord)
 {
 	int changes = ChangedNone;
-	if (!compareRecordsStr(m_Record, record, _contacts_person.display_name)) {
+	if (!compareRecordsStr(m_Record, personRecord, _contacts_person.display_name)) {
 		changes |= ChangedName;
 	}
-	if (!compareRecordsStr(m_Record, record, _contacts_person.image_thumbnail_path)) {
+	if (!compareRecordsStr(m_Record, personRecord, _contacts_person.image_thumbnail_path)) {
 		changes |= ChangedImage;
 	}
 
 	unsigned sortProperty = getSortProperty();
 	if ((changes & ChangedName) || m_SortProperty != sortProperty) {
-		changes |= updateName(record, sortProperty);
+		changes |= updateName(personRecord, sortProperty);
 	}
-	if (m_NumberRecord) {
-		changes |= updateNumber(getId());
-	}
+	changes |= ChangedContact;
 
 	contacts_record_destroy(m_Record, true);
-	m_Record = record;
+	m_Record = personRecord;
 
 	onUpdated(changes);
 }
@@ -206,31 +251,14 @@ int Person::updateName(contacts_record_h record, unsigned sortProperty)
 
 	int changes = ChangedNone;
 	if (!Utils::safeCmp(
-			getRecordStr(m_NameRecord, m_SortProperty),
+			getRecordStr(getChildRecord(m_DefaultContactRecord, _contacts_contact.name), m_SortProperty),
 			getRecordStr(nameRecord, sortProperty))) {
 		changes |= ChangedSortValue;
 		m_SortValue.clear();
 		m_IndexLetter = getRecordStr(record, _contacts_person.display_name_index);
 	}
 
-	contacts_record_destroy(m_NameRecord, true);
-	m_NameRecord = nameRecord;
 	m_SortProperty = sortProperty;
-
-	return changes;
-}
-
-int Person::updateNumber(int personId)
-{
-	contacts_record_h numberRecord = getNumberRecord(personId);
-
-	int changes = ChangedNone;
-	if (!compareRecordsStr(m_NumberRecord, numberRecord, _contacts_number.number)) {
-		changes |= ChangedNumber;
-	}
-
-	contacts_record_destroy(m_NumberRecord, true);
-	m_NumberRecord = numberRecord;
 
 	return changes;
 }

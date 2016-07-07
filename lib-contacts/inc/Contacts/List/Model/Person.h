@@ -20,6 +20,7 @@
 
 #include "Contacts/Model/ContactData.h"
 #include "Utils/UniString.h"
+
 #include <contacts.h>
 #include <vector>
 
@@ -122,17 +123,22 @@ namespace Contacts
 				 */
 				bool operator<(const Person &that) const;
 
+				void addContact(contacts_record_h record);
+
+				void removeContact(int id);
+
+				size_t getContactCount() const;
+
 			private:
 				friend class PersonProvider;
 
 				const Utils::UniString &getSortValue() const;
-				void update(contacts_record_h record);
+				void update(contacts_record_h personRecord);
 				int updateName(contacts_record_h record, unsigned sortProperty);
-				int updateNumber(int personId);
 
 				contacts_record_h m_Record;
-				mutable contacts_record_h m_NameRecord;
-				mutable contacts_record_h m_NumberRecord;
+				contacts_record_h m_DefaultContactRecord;
+				std::vector<contacts_record_h> m_ContactRecords;
 
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;

@@ -126,6 +126,14 @@ namespace Contacts
 				virtual bool updatePerson(DataList::const_iterator personIt);
 
 				/**
+				 * @brief Update person from database.
+				 * @param[in]   personIt        Person iterator
+				 * @param[in]   personRecord    Person DB record
+				 * @param[in]   contactId       Updated contact ID
+				 */
+				virtual bool updatePerson(DataList::const_iterator personIt, contacts_record_h personRecord, int contactId);
+
+				/**
 				 * @brief Delete person from person list.
 				 * @param[in]   personIt    Person iterator
 				 * @return Whether update was successful.
@@ -143,6 +151,9 @@ namespace Contacts
 			private:
 				static int getIdProperty(IdType idType);
 				void updatePersonList();
+
+				void insertPerson(contacts_record_h personRecord);
+				void removeContact(int contactId);
 
 				void subscribe();
 				void unsubscribe();
