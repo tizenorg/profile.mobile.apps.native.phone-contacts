@@ -121,7 +121,7 @@ namespace Ui
 		void insertSubItems();
 		void popSubItems();
 
-		std::vector<GenlistItem *> m_ItemsCache;
+		std::vector<GenItemPtr> m_ItemsCache;
 	};
 }
 
