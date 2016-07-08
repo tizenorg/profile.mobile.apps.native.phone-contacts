@@ -65,3 +65,55 @@ int Database::getPersonId(int contactId)
 
 	return id;
 }
+
+contacts_list_h Database::getRecordList(const char *uri, unsigned propertyId, int value, contacts_filter_h parentFilter)
+{
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(uri, &filter);
+	contacts_filter_add_int(filter, propertyId, CONTACTS_MATCH_EQUAL, value);
+	if (parentFilter) {
+		contacts_filter_add_filter(parentFilter, filter);
+	}
+
+	contacts_query_h query = nullptr;
+	contacts_query_create(uri, &query);
+	contacts_query_set_filter(query, filter);
+
+	contacts_list_h list = nullptr;
+	int err = contacts_db_get_records_with_query(query, 0, 0, &list);
+	RETVM_IF_ERR(err, nullptr, "contacts_db_get_records_with_query failed.");
+
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+
+	return list;
+}
+
+contacts_list_h Database::getRecordList(const char *uri, unsigned propertyId, Utils::Range<int *> values, contacts_filter_h parentFilter)
+{
+	contacts_filter_h filter = nullptr;
+	contacts_filter_create(uri, &filter);
+	for (auto it = values.begin(); it != values.end(); ++it) {
+		if (it != values.begin()) {
+			contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_OR);
+		}
+
+		contacts_filter_add_int(filter, propertyId, CONTACTS_MATCH_EQUAL, *it);
+	}
+	if (parentFilter) {
+		contacts_filter_add_filter(parentFilter, filter);
+	}
+
+	contacts_query_h query = nullptr;
+	contacts_query_create(uri, &query);
+	contacts_query_set_filter(query, filter);
+
+	contacts_list_h list = nullptr;
+	int err = contacts_db_get_records_with_query(query, 0, 0, &list);
+	RETVM_IF_ERR(err, nullptr, "contacts_db_get_records_with_query failed.");
+
+	contacts_query_destroy(query);
+	contacts_filter_destroy(filter);
+
+	return list;
+}
