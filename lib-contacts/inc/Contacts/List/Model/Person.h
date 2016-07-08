@@ -19,6 +19,7 @@
 #define CONTACTS_LIST_MODEL_PERSON_H
 
 #include "Contacts/Model/ContactData.h"
+#include "Common/Database/ChildRecordIterator.h"
 #include "Utils/UniString.h"
 
 #include <contacts.h>
@@ -31,11 +32,6 @@ namespace Utils
 
 namespace Contacts
 {
-	namespace Model
-	{
-		class ContactNumberData;
-	}
-
 	namespace List
 	{
 		namespace Model
@@ -46,10 +42,7 @@ namespace Contacts
 			class Person : public Contacts::Model::ContactData
 			{
 			public:
-				/**
-				 * @brief Number objects list
-				 */
-				typedef std::vector<Contacts::Model::ContactNumberData *> Numbers;
+				typedef std::vector<Common::Database::ChildRecordRange> ContactChildRecords;
 
 				/**
 				 * @brief Complete ContactData::Field with person object fields
@@ -110,9 +103,34 @@ namespace Contacts
 				int getContactId() const;
 
 				/**
+				 * @return Nickname
+				 */
+				const char *getNickname() const;
+
+				/**
+				 * @return Note
+				 */
+				const char *getNotes() const;
+
+				/**
+				 * @return Organization record
+				 */
+				contacts_record_h getOrganization() const;
+
+				/**
+				 * @return Person address list
+				 */
+				const ContactChildRecords getAddresses() const;
+
+				/**
+				 * @return Person email list
+				 */
+				const ContactChildRecords getEmails() const;
+
+				/**
 				 * @return Person number list
 				 */
-				const Numbers &getNumbers();
+				const ContactChildRecords getNumbers() const;
 
 				/**
 				 * @return First letter from formatted person name
@@ -145,6 +163,10 @@ namespace Contacts
 			private:
 				friend class PersonProvider;
 
+				template<typename Pred>
+				contacts_record_h getContactChildRecord(unsigned propertyId, Pred predicate) const;
+				const ContactChildRecords getContactChildRecords(unsigned propertyId) const;
+
 				const Utils::UniString &getSortValue() const;
 				void update(contacts_record_h personRecord);
 				int updateName(contacts_record_h record, unsigned sortProperty);
@@ -156,7 +178,6 @@ namespace Contacts
 				Utils::UniString m_IndexLetter;
 				mutable Utils::UniString m_SortValue;
 				unsigned m_SortProperty;
-				Numbers m_Numbers;
 			};
 		}
 	}
