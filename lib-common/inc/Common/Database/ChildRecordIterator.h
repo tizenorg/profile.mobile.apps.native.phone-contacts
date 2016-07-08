@@ -20,6 +20,7 @@
 
 #include "Utils/Iterator.h"
 #include "Utils/Range.h"
+#include <contacts.h>
 
 namespace Common
 {
@@ -73,7 +74,12 @@ namespace Common
 			return { record, property, size_t(count) };
 		}
 
-		inline Utils::Range<ChildRecordIterator> makeRange(contacts_record_h record, int property)
+		/**
+		 * @brief Contact child record range
+		 */
+		typedef Utils::Range<ChildRecordIterator> ChildRecordRange;
+
+		inline ChildRecordRange makeRange(contacts_record_h record, int property)
 		{
 			return { begin(record, property), end(record, property) };
 		}
