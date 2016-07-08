@@ -105,8 +105,7 @@ Evas_Object *ListView::onCreate(Evas_Object *parent)
 	elm_object_part_content_set(layout, "elm.swallow.content", m_Box);
 	elm_object_part_content_set(layout, "elm.swallow.fastscroll", createIndex(layout));
 
-	// TODO Search is removed for beta release
-	//m_SearchItem = createSearchItem();
+	m_SearchItem = createSearchItem();
 	m_AddButton = createAddButton(layout);
 
 	return layout;
