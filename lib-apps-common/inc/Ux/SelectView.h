@@ -22,7 +22,6 @@
 #include "Ux/SelectAllItem.h"
 #include "Ux/SelectTypes.h"
 
-#include <memory>
 #include <vector>
 
 namespace Ui
@@ -68,6 +67,7 @@ namespace Ux
 		typedef std::function<bool(SelectItem *item, bool isChecked, bool isSelectAll)> CheckCallback;
 
 		SelectView();
+		virtual ~SelectView() override;
 
 		/**
 		 * @brief Set translatable strings for the view.
@@ -158,11 +158,6 @@ namespace Ux
 		virtual void onSelectAllInsert(Ui::GenlistItem *item) { }
 
 		/**
-		 * @brief Called when "Select All" item is about to be removed.
-		 */
-		virtual void onSelectAllRemove() { }
-
-		/**
 		 * @brief Called when selection mode was changed.
 		 * @param[in]   selectMode  New selection mode
 		 */
@@ -200,12 +195,11 @@ namespace Ux
 		void onItemSelected(SelectItem *item);
 		bool onItemChecked(SelectItem *item, bool isChecked);
 		bool onSelectAllChecked(bool isChecked);
-		void onSelectAllDestroy();
 
 		void onDonePressed(Evas_Object *button, void *eventInfo);
 		void onCancelPressed(Evas_Object *button, void *eventInfo);
 
-		std::unique_ptr<SelectAllItem> m_SelectAllItem;
+		Ui::GenItemPtr m_SelectAllItem;
 		std::vector<SelectItem *> m_Items;
 
 		Evas_Object *m_DoneButton;
