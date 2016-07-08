@@ -20,10 +20,15 @@
 
 #include "Ui/GenContainer.h"
 #include "Utils/String.h"
+
 #include <functional>
+#include <memory>
 
 namespace Ui
 {
+	class GenItem;
+	typedef std::weak_ptr<GenItem> GenItemPtr;
+
 	class EXPORT_API GenItem
 	{
 	public:
@@ -78,6 +83,11 @@ namespace Ui
 		 * @return Previous item in container or nullptr if none.
 		 */
 		GenItem *getPrevItem() const;
+
+		/**
+		 * @return GenItem weak pointer for safe referencing.
+		 */
+		GenItemPtr getWeakPtr();
 
 		/**
 		 * @brief Set item selection callback.
@@ -192,6 +202,7 @@ namespace Ui
 		bool m_Preserve;
 		bool m_IsRealized;
 
+		std::shared_ptr<GenItem> m_SelfPtr;
 		SelectCallback m_OnSelected;
 		DestroyCallback m_OnDestroy;
 		const struct GenItemApi *m_Api;

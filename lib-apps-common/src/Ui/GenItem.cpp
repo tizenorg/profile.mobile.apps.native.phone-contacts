@@ -99,6 +99,15 @@ GenItem *GenItem::getPrevItem() const
 	return (GenItem *) elm_object_item_data_get(item);
 }
 
+GenItemPtr GenItem::getWeakPtr()
+{
+	if (!m_SelfPtr) {
+		m_SelfPtr.reset(this, [](GenItem *){ });
+	}
+
+	return m_SelfPtr;
+}
+
 void GenItem::setSelectCallback(SelectCallback callback)
 {
 	m_OnSelected = std::move(callback);

@@ -38,6 +38,13 @@ SelectView::SelectView()
 {
 }
 
+SelectView::~SelectView()
+{
+	if (auto item = m_SelectAllItem.lock()) {
+		delete item.get();
+	}
+}
+
 void SelectView::setStrings(const Strings &strings)
 {
 	m_Strings = strings;
@@ -226,18 +233,18 @@ void SelectView::updatePageButtons()
 void SelectView::updateSelectAllItem()
 {
 	if (m_SelectMode == SelectMulti && m_TotalCount) {
-		if (!m_SelectAllItem) {
-			m_SelectAllItem.reset(new SelectAllItem(m_Strings.selectAll));
-			m_SelectAllItem->setCheckCallback(std::bind(&SelectView::onSelectAllChecked, this, _1));
-			m_SelectAllItem->setDestroyCallback(std::bind(&SelectView::onSelectAllDestroy, this));
-			onSelectAllInsert(m_SelectAllItem.get());
+		if (m_SelectAllItem.expired()) {
+			SelectAllItem *item = new SelectAllItem(m_Strings.selectAll);
+			item->setCheckCallback(std::bind(&SelectView::onSelectAllChecked, this, _1));
+
+			m_SelectAllItem = item->getWeakPtr();
+			onSelectAllInsert(item);
 		}
 
 		updateSelectAllState();
 	} else {
-		if (m_SelectAllItem) {
-			onSelectAllRemove();
-			m_SelectAllItem.reset();
+		if (auto item = m_SelectAllItem.lock()) {
+			delete item.get();
 		}
 	}
 }
@@ -249,8 +256,9 @@ void SelectView::updateDoneButtonState()
 
 void SelectView::updateSelectAllState()
 {
-	if (m_SelectAllItem) {
-		m_SelectAllItem->setChecked(m_SelectCount == getSelectMax());
+	if (auto item = m_SelectAllItem.lock()) {
+		auto selectAllItem = static_cast<SelectAllItem *>(item.get());
+		selectAllItem->setChecked(m_SelectCount == getSelectMax());
 	}
 }
 
@@ -375,11 +383,6 @@ bool SelectView::onSelectAllChecked(bool isChecked)
 	updatePageTitle();
 	updateDoneButtonState();
 	return true;
-}
-
-void SelectView::onSelectAllDestroy()
-{
-	m_SelectAllItem.release();
 }
 
 void SelectView::onDonePressed(Evas_Object *button, void *eventInfo)

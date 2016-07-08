@@ -23,8 +23,10 @@ using namespace Ui;
 
 GenlistGroupItem::~GenlistGroupItem()
 {
-	for (auto &&item : m_ItemsCache) {
-		delete item;
+	for (auto &&itemPtr : m_ItemsCache) {
+		if (auto item = itemPtr.lock()) {
+			delete item.get();
+		}
 	}
 }
 
@@ -55,14 +57,20 @@ GenIterator GenlistGroupItem::end()
 
 size_t GenlistGroupItem::getItemCount() const
 {
+	if (!m_ItemsCache.empty()) {
+		return std::count_if(m_ItemsCache.begin(), m_ItemsCache.end(),
+			[](const GenItemPtr &itemPtr) {
+				return !itemPtr.expired();
+			});
+	}
+
 	const Eina_List *subitems = elm_genlist_item_subitems_get(getObjectItem());
-	return subitems ? eina_list_count(subitems) : m_ItemsCache.size();
+	return eina_list_count(subitems);
 }
 
 bool GenlistGroupItem::isEmpty() const
 {
-	const Eina_List *subitems = elm_genlist_item_subitems_get(getObjectItem());
-	return subitems ? eina_list_count(subitems) == 0 : m_ItemsCache.empty();
+	return getItemCount() == 0;
 }
 
 bool GenlistGroupItem::isExpanded() const
@@ -117,7 +125,13 @@ void GenlistGroupItem::insertSubItem(GenlistItem *item, GenlistItem *sibling,
 	} else {
 		auto pos = m_ItemsCache.end();
 		if (sibling) {
-			pos = std::find(m_ItemsCache.begin(), m_ItemsCache.end(), sibling);
+			pos = std::find_if(m_ItemsCache.begin(), m_ItemsCache.end(),
+				[sibling](GenItemPtr &itemPtr) {
+					if (auto item = itemPtr.lock()) {
+						return item.get() == sibling;
+					}
+					return false;
+				});
 		}
 
 		if (pos != m_ItemsCache.end()) {
@@ -130,7 +144,7 @@ void GenlistGroupItem::insertSubItem(GenlistItem *item, GenlistItem *sibling,
 			}
 		}
 
-		m_ItemsCache.insert(pos, item);
+		m_ItemsCache.insert(pos, item->getWeakPtr());
 	}
 }
 
@@ -165,8 +179,10 @@ void GenlistGroupItem::insertSubItems()
 {
 	Genlist *genlist = static_cast<Genlist *>(getParent());
 	if (genlist) {
-		for (auto &&item : m_ItemsCache) {
-			genlist->insert(item, this);
+		for (auto &&itemPtr : m_ItemsCache) {
+			if (auto item = itemPtr.lock()) {
+				genlist->insert(item.get(), this);
+			}
 		}
 		m_ItemsCache.clear();
 	}
@@ -177,6 +193,6 @@ void GenlistGroupItem::popSubItems()
 	for (auto it = begin(), endIt = end(); it != endIt; ) {
 		GenlistItem *item = static_cast<GenlistItem *>(*it++);
 		item->pop();
-		m_ItemsCache.push_back(item);
+		m_ItemsCache.push_back(item->getWeakPtr());
 	}
 }
