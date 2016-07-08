@@ -44,7 +44,11 @@ namespace Contacts
 		class InputView : public Ui::View
 		{
 		public:
-			InputView();
+			/**
+			 * @brief Constructor.
+			 * @param[in]   id  Group id
+			 */
+			InputView(int id = 0);
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -59,6 +63,7 @@ namespace Contacts
 			bool isAlreadyExists();
 			void save();
 
+			int m_Id;
 			Evas_Object *m_CancelButton;
 			Evas_Object *m_DoneButton;
 			Ui::Genlist *m_Genlist;

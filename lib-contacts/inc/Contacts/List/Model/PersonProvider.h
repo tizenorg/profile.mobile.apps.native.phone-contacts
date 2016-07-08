@@ -72,13 +72,13 @@ namespace Contacts
 				 */
 				void setUpdateMode(bool isEnabled);
 
+			protected:
 				enum IdType
 				{
 					PersonId,
 					ContactId
 				};
 
-			protected:
 				/**
 				 * @brief Create Person object
 				 * @param[in]   record  Person record
