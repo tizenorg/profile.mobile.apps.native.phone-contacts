@@ -111,6 +111,7 @@ AppControl App::requestPickVcard(const char *path)
 {
 	/* FIXME: Replace with indirect request */
 	AppControl request("org.tizen.ug-myfile-efl");
+	request.addExtra( APP_CONTROL_DATA_SELECTION_MODE, APP_CONTROL_SELECT_MULTIPLE);
 	request.addExtra("path", path);
 	request.addExtra("select_type", "IMPORT_PATH_SELECT");
 	request.addExtra("file_type", "vcf");
