@@ -137,10 +137,11 @@ void SelectView::addSelectItem(SelectItem *item)
 void SelectView::removeSelectItem(SelectItem *item)
 {
 	auto it = std::find(m_Items.begin(), m_Items.end(), item);
-	if (it != m_Items.end()) {
-		m_Items.erase(it);
+	if (it == m_Items.end()) {
+		return;
 	}
 
+	m_Items.erase(it);
 	if (!item->isExcluded()) {
 		updateItemCount(CountDecrement, item);
 	}
