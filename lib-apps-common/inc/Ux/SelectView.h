@@ -140,6 +140,10 @@ namespace Ux
 		void removeSelectItem(SelectItem *item);
 
 		/**
+		 * @brief Remove all select items
+		 */
+		void removeAllSelectItems();
+		/**
 		 * @brief Creates "Done" and "Cancel" buttons in #SelectMulti mode.
 		 * @see View::onPageAttached()
 		 */

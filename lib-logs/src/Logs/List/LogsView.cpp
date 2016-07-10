@@ -285,15 +285,7 @@ void LogsView::onSettingsChanged(system_settings_key_e key)
 
 	if (key == SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY ||
 			key == SYSTEM_SETTINGS_KEY_TIME_CHANGED) {
-		for (auto &&item : *m_Genlist) {
-			auto genlistItem = static_cast<Ui::GenlistItem *>(item);
-			if (genlistItem && !genlistItem->isGroupItem()) {
-				auto logItem = dynamic_cast<Ui::GenlistCheckItem *>(genlistItem);
-				if (logItem) {
-					logItem->setChecked(false);
-				}
-			}
-		}
+		removeAllSelectItems();
 		elm_genlist_clear(m_Genlist->getEvasObject());
 		m_LogProvider.resetLogGroups();
 		fillGenlist();
