@@ -75,6 +75,10 @@ void Widget::onResize(int width, int height)
 {
 	bool isLarge = (getType() == WIDGET_SIZE_TYPE_4x4);
 	m_MaxCount = GRID_COLS * (isLarge ? LARGE_GRID_ROWS : SMALL_GRID_ROWS);
+
+	if (m_Gengrid) {
+		elm_gengrid_item_size_set(m_Gengrid->getEvasObject(), getWidth() / GRID_COLS, Ui::getScaledValue(ITEM_H));
+	}
 }
 
 void Widget::initializeItems(bundle *content)
