@@ -144,7 +144,22 @@ void SelectView::removeSelectItem(SelectItem *item)
 	if (!item->isExcluded()) {
 		updateItemCount(CountDecrement, item);
 	}
+
 	item->m_SelectView = nullptr;
+}
+
+void SelectView::removeAllSelectItems()
+{
+	while (m_Items.size()) {
+		SelectItem *item = m_Items.back();
+		m_Items.pop_back();
+
+		if (!item->isExcluded()) {
+			updateItemCount(CountDecrement, item);
+		}
+
+		item->m_SelectView = nullptr;
+	}
 }
 
 void SelectView::onPageAttached(Ui::NavigatorPage *page)
