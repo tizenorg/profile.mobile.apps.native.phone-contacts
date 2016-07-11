@@ -33,9 +33,13 @@ namespace Ui
 
 		/**
 		 * @brief Create popup.
-		 * @param[in]   size    Popup size
+		 * @param[in]   size            Popup size
+		 * @param[in]   showDelayTime   Delay before showing popup
+		 * @param[in]   showMinTime     Minimum time popup should be shown
 		 */
-		explicit ProcessPopup(Size size = SizeMedium);
+		explicit ProcessPopup(Size size = SizeMedium,
+				double showDelayTime = 0.2, double showMinTime = 1.0);
+		virtual ~ProcessPopup() override;
 
 		/**
 		 * @brief Allows method overload instead of shadowing
@@ -52,6 +56,11 @@ namespace Ui
 		static ProcessPopup *create(Evas_Object *parent, const char *text, Size size = SizeMedium);
 
 		/**
+		 * @brief Destroy the popup once minimum show time has elapsed.
+		 */
+		void destroy();
+
+		/**
 		 * @brief Set Popup text.
 		 * @param[in]   text    Popup text
 		 */
@@ -61,8 +70,15 @@ namespace Ui
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 
 	private:
+		Eina_Bool onShowDelayElapsed();
+		Eina_Bool onShowMinElapsed();
+
 		Size m_Size;
 		Evas_Object *m_Layout;
+
+		Ecore_Timer *m_ShowDelayTimer;
+		Ecore_Timer *m_ShowMinTimer;
+		bool m_IsDestroyPending;
 	};
 }
 
