@@ -205,6 +205,9 @@ msgstr "Hautatu erregistroak"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Izen fonetikoa"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Lehenetsia"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

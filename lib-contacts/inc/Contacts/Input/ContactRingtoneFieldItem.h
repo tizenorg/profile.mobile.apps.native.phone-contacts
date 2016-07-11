@@ -38,6 +38,11 @@ namespace Contacts
 			 */
 			virtual bool isFocusable() const override;
 
+			/**
+			 * @see ContactFieldSubItem::update()
+			 */
+			virtual void update() override;
+
 		private:
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
 			virtual char *getText(Evas_Object *parent, const char *part) override;
@@ -45,10 +50,6 @@ namespace Contacts
 
 			virtual void onInserted() override;
 			virtual void onSelected() override;
-			virtual void onFocused() override;
-
-			char *getRingtonePath() const;
-			void pickRingtone();
 			void onPickResult(app_control_h request, app_control_h reply,
 					app_control_result_e result);
 

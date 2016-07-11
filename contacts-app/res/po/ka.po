@@ -205,6 +205,9 @@ msgstr "აირჩიეთ ჩანაწერთა ჟურნალე�
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "ფონეტიკური სახელი"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "ნაგულისხმევი"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "ტელეფონი"
 

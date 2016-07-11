@@ -25,10 +25,13 @@
 #include "Contacts/Details/DetailsView.h"
 
 #include "Contacts/Model/ContactArray.h"
+#include "Contacts/Model/ContactDateField.h"
 #include "Contacts/Model/ContactTextField.h"
 #include "Contacts/Model/ContactCompoundObject.h"
 
+#include "App/AppControlRequest.h"
 #include "App/Path.h"
+#include "Ui/DatePopup.h"
 #include "Ui/Genlist.h"
 #include "Ui/Navigator.h"
 #include "Ui/Popup.h"
@@ -285,10 +288,50 @@ void InputView::removeFieldItem(ContactFieldItem *item)
 	delete item;
 }
 
+void InputView::addEventField()
+{
+	time_t now = time(nullptr);
+	Ui::DatePopup *popup = new Ui::DatePopup(*localtime(&now));
+	popup->setResultCallback([this](const tm &date) {
+		ContactObject &field = addField(FieldEvent);
+		field.getField<ContactDateField>(0)->setValue(date);
+		addFieldItem(field);
+	});
+	popup->create(getEvasObject());
+}
+
+void InputView::addRingtoneField()
+{
+	auto request = App::requestPickRingtone("default");
+	request.launch([](app_control_h request, app_control_h reply,
+			app_control_result_e result, void *data) {
+		InputView *view = (InputView *) data;
+
+		char *path = nullptr;
+		int err = app_control_get_extra_data(reply, "result", &path);
+		RETM_IF_ERR(err, "app_control_get_extra_data() failed.");
+
+		if (strcmp(path, "default") != 0) {
+			ContactObject &field = view->addField(FieldRingtone);
+			field.getField<ContactTextField>(0)->setValue(path);
+			view->addFieldItem(field);
+		}
+
+		free(path);
+	}, this);
+	request.detach();
+}
+
 void InputView::onAddField(ContactFieldId fieldId)
 {
-	ContactFieldItem *item = addFieldItem(addField(fieldId));
-	item->focus(ELM_GENLIST_ITEM_SCROLLTO_TOP);
+	if (fieldId == FieldRingtone) {
+		addRingtoneField();
+	} else if (fieldId == FieldEvent) {
+		addEventField();
+	} else {
+		ContactFieldItem *item = addFieldItem(addField(fieldId));
+		item->focus(ELM_GENLIST_ITEM_SCROLLTO_TOP);
+	}
 }
 
 void InputView::onRemoveField(ContactFieldItem *item)

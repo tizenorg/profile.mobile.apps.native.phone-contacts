@@ -205,6 +205,9 @@ msgstr "Välj loggar"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetiskt namn"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Standard"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

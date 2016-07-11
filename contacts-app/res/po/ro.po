@@ -205,6 +205,9 @@ msgstr "Selectare jurnale"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Nume fonetic"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Implicit"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

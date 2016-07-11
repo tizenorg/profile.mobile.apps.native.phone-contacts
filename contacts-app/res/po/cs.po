@@ -205,6 +205,9 @@ msgstr "Vybrat protokoly"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetické jméno"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Výchozí"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

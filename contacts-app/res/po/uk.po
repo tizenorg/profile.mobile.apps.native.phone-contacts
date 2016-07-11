@@ -205,6 +205,9 @@ msgstr "Вибір журналів"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Фонетичне ім’я"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Стандартний"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Телефон"
 

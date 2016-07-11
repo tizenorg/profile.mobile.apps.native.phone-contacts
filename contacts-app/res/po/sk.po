@@ -205,6 +205,9 @@ msgstr "Vybrať denníky"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Výslovnosť mena"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Predvolený"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefón"
 

@@ -205,6 +205,9 @@ msgstr "Избери регистри"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Фонетично име"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "По подразбиране"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Телефон"
 

@@ -37,6 +37,11 @@ bool ContactRingtoneFieldItem::isFocusable() const
 	return false;
 }
 
+void ContactRingtoneFieldItem::update()
+{
+	elm_genlist_item_fields_update(getObjectItem(), "elm.text", ELM_GENLIST_ITEM_FIELD_TEXT);
+}
+
 Elm_Genlist_Item_Class *ContactRingtoneFieldItem::getItemClass() const
 {
 	static Elm_Genlist_Item_Class itc = createItemClass("type2");
@@ -46,10 +51,13 @@ Elm_Genlist_Item_Class *ContactRingtoneFieldItem::getItemClass() const
 char *ContactRingtoneFieldItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.text") == 0) {
-		char *value = getRingtonePath();
-		char *substr = strdup(basename(value));
-		free(value);
-		return substr;
+		const char *value = getField().cast<ContactTextField>().getValue();
+		if (value) {
+			std::string path = value;
+			return strdup(basename(&path[0]));
+		}
+
+		return strdup(_("IDS_PB_BODY_DEFAULT"));
 	} else if (strcmp(part, "elm.text.sub") == 0) {
 		const char *name = Common::getContactFieldName(ContactFieldId(getObject().getId()));
 		return Utils::safeDup(_(name));
@@ -75,35 +83,9 @@ void ContactRingtoneFieldItem::onInserted()
 
 void ContactRingtoneFieldItem::onSelected()
 {
-	pickRingtone();
-}
-
-void ContactRingtoneFieldItem::onFocused()
-{
-	pickRingtone();
-}
-
-char *ContactRingtoneFieldItem::getRingtonePath() const
-{
-	char *value = nullptr;
-	const char *fieldValue = getField().cast<ContactTextField>().getValue();
-	if (fieldValue) {
-		value = strdup(fieldValue);
-	} else {
-		char *defaultValue = nullptr;
-		system_settings_get_value_string(SYSTEM_SETTINGS_KEY_INCOMING_CALL_RINGTONE, &defaultValue);
-		value = defaultValue;
-	}
-
-	return value;
-}
-
-void ContactRingtoneFieldItem::pickRingtone()
-{
-	char *value = getRingtonePath();
-	m_AppControl = App::requestPickRingtone(value);
+	const char *value = getField().cast<ContactTextField>().getValue();
+	m_AppControl = App::requestPickRingtone(value ? value : "default");
 	m_AppControl.launch(makeCallbackWithLastParam(&ContactRingtoneFieldItem::onPickResult), this);
-	free(value);
 }
 
 void ContactRingtoneFieldItem::onPickResult(app_control_h request, app_control_h reply,
@@ -113,6 +95,12 @@ void ContactRingtoneFieldItem::onPickResult(app_control_h request, app_control_h
 	int err = app_control_get_extra_data(reply, "result", &path);
 	WARN_IF_ERR(err, "app_control_get_extra_data() failed.");
 
-	getField().cast<ContactTextField>().setValue(path);
+	if (strcmp(path, "default") == 0) {
+		getField().reset();
+	} else {
+		getField().cast<ContactTextField>().setValue(path);
+	}
+
+	update();
 	free(path);
 }

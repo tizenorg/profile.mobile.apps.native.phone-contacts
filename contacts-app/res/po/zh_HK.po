@@ -205,6 +205,9 @@ msgstr "選擇記錄"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "語音名稱"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "預設"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "電話"
 

@@ -205,6 +205,9 @@ msgstr "Pasirinkite žurnalus"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetinis pavadinimas"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Numatytoji"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telef."
 

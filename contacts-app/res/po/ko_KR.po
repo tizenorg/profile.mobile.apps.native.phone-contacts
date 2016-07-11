@@ -205,6 +205,9 @@ msgstr "기록 선택"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "이름(소리나는 대로)"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "기본"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "휴대전화"
 

@@ -38,11 +38,6 @@ namespace Contacts
 			ContactDateFieldControl(Model::ContactDateField &field);
 
 			/**
-			 * @brief Show date picker popup.
-			 */
-			void showPicker();
-
-			/**
 			 * @brief Update the control using field's value.
 			 */
 			void update();

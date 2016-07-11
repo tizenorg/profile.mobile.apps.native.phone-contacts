@@ -205,6 +205,9 @@ msgstr "Select logs"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Phonetic name"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Default"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Phone"
 

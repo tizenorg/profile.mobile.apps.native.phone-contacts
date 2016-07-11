@@ -92,6 +92,9 @@ namespace Contacts
 			ContactFieldItem *addFieldItem(Model::ContactObject &field);
 			void removeFieldItem(ContactFieldItem *item);
 
+			void addEventField();
+			void addRingtoneField();
+
 			void onAddField(Model::ContactFieldId fieldId);
 			void onRemoveField(ContactFieldItem *item);
 			void onContactFilled(bool isFilled);

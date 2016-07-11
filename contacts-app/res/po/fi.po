@@ -205,6 +205,9 @@ msgstr "Valitse lokit"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Foneettinen nimi"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Oletus"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Puhelin"
 

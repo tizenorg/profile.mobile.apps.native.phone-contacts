@@ -205,6 +205,9 @@ msgstr "Izaberi dnevnike"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetski napisano ime"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Podrazumevano"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

@@ -205,6 +205,9 @@ msgstr "Одбери дневници"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Фонетско име"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Основно"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Телефон"
 

@@ -205,6 +205,9 @@ msgstr "Vali logid"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Häälduslik nimi"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Vaikimisi"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 
