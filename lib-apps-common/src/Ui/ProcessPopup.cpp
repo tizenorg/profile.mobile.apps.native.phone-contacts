@@ -19,16 +19,32 @@
 #include "Ui/Window.h"
 
 #include "App/Path.h"
+#include "Utils/Callback.h"
 #include "AppsCommonPopup.h"
-
-#include <efl_extension.h>
 
 using namespace Ui;
 
-ProcessPopup::ProcessPopup(Size size)
-	: m_Size(size), m_Layout(nullptr)
+ProcessPopup::ProcessPopup(Size size, double showDelayTime, double showMinTime)
+	: m_Size(size), m_Layout(nullptr),
+	  m_ShowDelayTimer(nullptr), m_ShowMinTimer(nullptr),
+	  m_IsDestroyPending(false)
 {
-	setBackCallback([]{ return false; });
+	m_ShowDelayTimer = ecore_timer_add(showDelayTime,
+			makeCallback(&ProcessPopup::onShowDelayElapsed), this);
+	ecore_timer_freeze(m_ShowDelayTimer);
+	m_ShowMinTimer = ecore_timer_add(showMinTime,
+			makeCallback(&ProcessPopup::onShowMinElapsed), this);
+	ecore_timer_freeze(m_ShowMinTimer);
+
+	setBackCallback([this] {
+		return m_IsDestroyPending;
+	});
+}
+
+ProcessPopup::~ProcessPopup()
+{
+	ecore_timer_del(m_ShowDelayTimer);
+	ecore_timer_del(m_ShowMinTimer);
 }
 
 ProcessPopup *ProcessPopup::create(Evas_Object *parent, const char *text, Size size)
@@ -37,6 +53,15 @@ ProcessPopup *ProcessPopup::create(Evas_Object *parent, const char *text, Size s
 	popup->create(parent);
 	popup->setText(text);
 	return popup;
+}
+
+void ProcessPopup::destroy()
+{
+	if (m_ShowMinTimer && !m_ShowDelayTimer) {
+		m_IsDestroyPending = true;
+	} else {
+		delete this;
+	}
 }
 
 void ProcessPopup::setText(const char *text)
@@ -50,7 +75,7 @@ Evas_Object *ProcessPopup::onCreate(Evas_Object *parent)
 		const char *layout;
 		const char *progress;
 	} styles[] = {
-		/* SizeSmall =  */ { GROUP_PROCESS_SMALL,  "process_small"  },
+		/* SizeSmall  = */ { GROUP_PROCESS_SMALL,  "process_small"  },
 		/* SizeMedium = */ { GROUP_PROCESS_MEDIUM, "process_medium" }
 	};
 
@@ -67,5 +92,30 @@ Evas_Object *ProcessPopup::onCreate(Evas_Object *parent)
 	elm_progressbar_pulse(progressbar, EINA_TRUE);
 	elm_object_content_set(m_Layout, progressbar);
 
+	if (m_ShowDelayTimer) {
+		evas_object_hide(popup);
+		ecore_timer_thaw(m_ShowDelayTimer);
+	} else {
+		ecore_timer_thaw(m_ShowMinTimer);
+	}
+
 	return popup;
+}
+
+Eina_Bool ProcessPopup::onShowDelayElapsed()
+{
+	evas_object_show(getEvasObject());
+	ecore_timer_thaw(m_ShowMinTimer);
+
+	m_ShowDelayTimer = nullptr;
+	return EINA_FALSE;
+}
+
+Eina_Bool ProcessPopup::onShowMinElapsed()
+{
+	m_ShowMinTimer = nullptr;
+	if (m_IsDestroyPending) {
+		delete this;
+	}
+	return EINA_FALSE;
 }
