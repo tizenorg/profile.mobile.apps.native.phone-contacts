@@ -205,6 +205,9 @@ msgstr "Επιλογή αρχείων καταγραφής"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Φωνητικό όνομα"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Προεπιλογή"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Τηλέφωνο"
 

@@ -205,6 +205,9 @@ msgstr "Roghnaigh logaí"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Ainm foghraíochta"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Réamhshocrú"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Fón"
 

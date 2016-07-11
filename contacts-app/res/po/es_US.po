@@ -205,6 +205,9 @@ msgstr "Seleccionar registros"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonética"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Predeterminado"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Teléfono"
 

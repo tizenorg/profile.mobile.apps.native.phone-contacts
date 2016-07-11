@@ -205,6 +205,9 @@ msgstr "تحديد السجلات"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "الاسم الصوتي"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "إفتراضي"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "الهاتف"
 

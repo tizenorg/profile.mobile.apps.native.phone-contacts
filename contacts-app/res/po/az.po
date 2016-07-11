@@ -205,6 +205,9 @@ msgstr "Tarixçələri seç"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetik ad"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "İlkin təyin olunan"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

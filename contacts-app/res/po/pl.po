@@ -205,6 +205,9 @@ msgstr "Wybór dzienników"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Nazwa fonetyczna"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Domyślnie"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

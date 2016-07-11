@@ -205,6 +205,9 @@ msgstr "Protokolle auswählen"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Phonetischer Name"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Standard"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

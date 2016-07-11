@@ -205,6 +205,9 @@ msgstr "选择记录"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "姓名发音"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "默认"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "手机"
 
@@ -443,7 +446,7 @@ msgid "IDS_PB_OPT_EDIT"
 msgstr "编辑"
 
 msgid "IDS_PB_OPT_DOMESTIC_PARTNER_ABB2"
-msgstr "同居伴侣"
+msgstr "室友"
 
 msgid "IDS_PB_OPT_CUSTOM"
 msgstr "自定义"

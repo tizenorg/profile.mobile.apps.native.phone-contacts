@@ -205,6 +205,9 @@ msgstr "Jurnallarni tanlash"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetik nomi"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Birlamchi"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

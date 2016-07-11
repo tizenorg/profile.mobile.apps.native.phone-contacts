@@ -205,6 +205,9 @@ msgstr "Naplók kiválasztása"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Név fonetikusan"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Alapértelmezett"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 

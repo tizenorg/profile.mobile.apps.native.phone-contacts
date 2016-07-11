@@ -205,6 +205,9 @@ msgstr "Izvēlēties žurnālus"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Vārds fonētiski"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Noklusējums"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Tālrunis"
 

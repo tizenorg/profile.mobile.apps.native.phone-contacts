@@ -18,6 +18,7 @@
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/Details/BasicInfoItem.h"
 #include "Contacts/Details/MultilineFieldItem.h"
+#include "Contacts/Details/RingtoneFieldItem.h"
 #include "Contacts/Details/TypedActionFieldItem.h"
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Model/ContactArray.h"
@@ -190,6 +191,8 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 	} else if (fieldId == FieldNote) {
 		/* FIXME: Use MultilineFieldItem when style will be available */
 		item = new FieldItem(field);
+	} else if (fieldId == FieldRingtone) {
+		item = new RingtoneFieldItem(field);
 	} else if (field.getInterfaces() & InterfaceTypedObject) {
 		item = new TypedFieldItem(field);
 	} else {

@@ -105,9 +105,6 @@ void ContactFieldSubItem::onFocused()
 		if (m_Field.getType() == TypeText) {
 			auto textControl = static_cast<ContactTextFieldControl *>(control);
 			elm_object_focus_set(textControl->getEntry(), EINA_TRUE);
-		} else if (m_Field.getType() == TypeDate) {
-			auto dateControl = static_cast<ContactDateFieldControl *>(control);
-			dateControl->showPicker();
 		}
 	}
 }

@@ -205,6 +205,9 @@ msgstr "Velja annála"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Hljóðritað nafn"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Sjálfgefið"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Í síma"
 

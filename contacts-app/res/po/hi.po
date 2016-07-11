@@ -205,6 +205,9 @@ msgstr "लॉग्स चुनें"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "फोनेटिक नाम"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "डिफॉल्ट"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "फोन"
 

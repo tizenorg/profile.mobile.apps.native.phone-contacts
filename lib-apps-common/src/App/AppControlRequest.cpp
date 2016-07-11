@@ -123,6 +123,7 @@ AppControl App::requestPickRingtone(const char *selectedPath)
 	AppControl request("setting-ringtone-efl");
 	request.addExtra("marked_mode", selectedPath);
 	request.addExtra("path", "/opt/share/settings/Ringtones");
+	request.addExtra("default", "default show");
 	return request;
 }
 

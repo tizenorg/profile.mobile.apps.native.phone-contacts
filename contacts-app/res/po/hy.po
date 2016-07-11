@@ -205,6 +205,9 @@ msgstr "Ընտրել մատյաններ"
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Հնչյունային անուն"
 
+msgid "IDS_PB_BODY_DEFAULT"
+msgstr "Լռելյայն"
+
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Հեռախոս"
 
