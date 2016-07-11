@@ -62,11 +62,32 @@ namespace Ui
 		void setFinishCallback(FinishCallback callback);
 
 	protected:
+		/**
+		 * @brief Called from another thread when progress runs.
+		 * For save using of contacts service use contacts_connect_on_thread(), contacts_disconnect_on_thread().
+		 */
 		virtual void onStart() = 0;
+
+		/**
+		 * @brief Called from main loop if the running progress is cancelled or fails to start.
+		 */
 		virtual void onCanceled() { }
+
+		/**
+		 * @brief Called when user cancel the progress.
+		 * @return true for further cancellation of progress's thread, false - do nothing.
+		 */
 		virtual bool onCancel();
 
+		/**
+		 * @brief Cancels the thread where progress is running.
+		 */
 		void cancel();
+
+		/**
+		 * @brief Sets progress value. You should launch this method from thread (onStart()).
+		 * @return false if progress's thread is pending cancellation, otherwise - true.
+		 */
 		bool onProgress(size_t value);
 
 	private:
