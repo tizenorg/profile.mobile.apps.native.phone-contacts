@@ -17,11 +17,12 @@
 
 #include "Contacts/List/Model/PersonSearchData.h"
 #include "Contacts/List/Model/Person.h"
-#include "Contacts/Model/ContactNumberData.h"
+#include "Common/Database/RecordUtils.h"
 #include <cstring>
 
 using namespace Contacts::Model;
 using namespace Contacts::List::Model;
+using namespace Common::Database;
 
 PersonSearchData::PersonSearchData(Person &person)
 	: SearchData(person)
@@ -78,10 +79,15 @@ SearchResultPtr PersonSearchData::compareName(const std::string &str)
 SearchResultPtr PersonSearchData::compareNumber(const std::string &str)
 {
 	auto &person = static_cast<Person &>(getContactData());
-	for (auto &&number : person.getNumbers()) {
-		const char *pos = strstr(number->getNumber(), str.c_str());
-		if (pos) {
-			return SearchResultPtr(new SearchResult(SearchResult::MatchedNumber, number->getNumber(), { pos, str.size() }));
+	for (auto &&numberRange : person.getNumbers()) {
+		for (auto &&numberRecord : numberRange) {
+			const char *number = getRecordStr(numberRecord, _contacts_number.number);
+			const char *pos = strstr(number, str.c_str());
+
+			if (pos) {
+				return SearchResultPtr(new SearchResult(SearchResult::MatchedNumber, number, { pos, str.size() }));
+			}
+
 		}
 	}
 

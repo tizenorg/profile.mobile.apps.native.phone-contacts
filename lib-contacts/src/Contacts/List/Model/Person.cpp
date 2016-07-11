@@ -16,7 +16,6 @@
  */
 
 #include "Contacts/List/Model/Person.h"
-#include "Contacts/Model/ContactNumberData.h"
 #include "Common/Database/Queries.h"
 #include "Common/Database/RecordUtils.h"
 #include "Common/Database/RecordIterator.h"
@@ -70,7 +69,7 @@ namespace
 		return record;
 	}
 
-	contacts_record_h getNumberRecord(contacts_record_h contactRecord)
+	contacts_record_h getDefaultNumberRecord(contacts_record_h contactRecord)
 	{
 		return getChildRecord(contactRecord, _contacts_contact.number,
 			[](contacts_record_h record) {
@@ -89,9 +88,6 @@ Person::Person(contacts_record_h record)
 
 Person::~Person()
 {
-	for (auto &&number : m_Numbers) {
-		delete number;
-	}
 	for (auto &&contact : m_ContactRecords) {
 		contacts_record_destroy(contact, true);
 	}
@@ -110,7 +106,7 @@ const char *Person::getName() const
 
 const char *Person::getNumber() const
 {
-	return getRecordStr(getNumberRecord(m_DefaultContactRecord), _contacts_number.number);
+	return getRecordStr(getDefaultNumberRecord(m_DefaultContactRecord), _contacts_number.number);
 }
 
 const char *Person::getImagePath() const
@@ -128,24 +124,51 @@ int Person::getContactId() const
 	return getRecordInt(m_Record, _contacts_person.display_contact_id);
 }
 
-const Person::Numbers &Person::getNumbers()
+const char *Person::getNickname() const
 {
-	unsigned projection[] = {
-		_contacts_contact.number
-	};
-
-	if (m_Numbers.empty()) {
-		contacts_list_h list = getPersonContacts(getId(), projection);
-		for (auto &&contact : makeRange(list)) {
-			for (auto &&number : makeRange(contact, _contacts_contact.number)) {
-				m_Numbers.push_back(new ContactNumberData(*this, number));
-			}
-			contacts_record_destroy(contact, false);
+	contacts_record_h record  = getContactChildRecord(_contacts_contact.nickname,
+		[](contacts_record_h record) {
+			return getRecordStr(record, _contacts_nickname.name) != nullptr;
 		}
-		contacts_list_destroy(list, false);
-	}
+	);
 
-	return m_Numbers;
+	return record ? getRecordStr(record, _contacts_nickname.name) : nullptr;
+}
+
+const char *Person::getNotes() const
+{
+	contacts_record_h record  = getContactChildRecord(_contacts_contact.note,
+		[](contacts_record_h record) {
+			return getRecordStr(record, _contacts_note.note) != nullptr;
+		}
+	);
+
+	return record ? getRecordStr(record, _contacts_note.note) : nullptr;
+}
+
+contacts_record_h Person::getOrganization() const
+{
+	return getContactChildRecord(_contacts_contact.company,
+		[](contacts_record_h record) {
+			return getRecordStr(record, _contacts_company.name) != nullptr
+				|| getRecordStr(record, _contacts_company.job_title) != nullptr;
+		}
+	);
+}
+
+const Person::ContactChildRecords Person::getAddresses() const
+{
+	return getContactChildRecords(_contacts_contact.address);
+}
+
+const Person::ContactChildRecords Person::getEmails() const
+{
+	return getContactChildRecords(_contacts_contact.email);
+}
+
+const Person::ContactChildRecords Person::getNumbers() const
+{
+	return getContactChildRecords(_contacts_contact.number);
 }
 
 const UniString &Person::getIndexLetter() const
@@ -216,6 +239,34 @@ void Person::removeContact(int id)
 size_t Person::getContactCount() const
 {
 	return m_ContactRecords.size();
+}
+
+template <typename Pred>
+contacts_record_h Person::getContactChildRecord(unsigned propertyId, Pred predicate) const
+{
+	contacts_record_h record = getChildRecord(m_DefaultContactRecord, propertyId);
+	if (record && predicate(record)) {
+		return record;
+	}
+
+	for (auto &&contact : m_ContactRecords) {
+		record = getChildRecord(contact, propertyId);
+		if (record && predicate(record)) {
+			return record;
+		}
+	}
+
+	return nullptr;
+}
+
+const Person::ContactChildRecords Person::getContactChildRecords(unsigned propertyId) const
+{
+	ContactChildRecords records;
+	for (auto &&contact : m_ContactRecords) {
+		records.push_back(makeRange(contact, propertyId));
+	}
+
+	return records;
 }
 
 const UniString &Person::getSortValue() const
