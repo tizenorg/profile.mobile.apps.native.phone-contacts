@@ -59,6 +59,7 @@ namespace Contacts
 				virtual contacts_record_h getPersonRecord(int id, IdType idType) const override;
 
 				contacts_list_h getMembersList() const;
+				contacts_query_h getFilteredQuery() const;
 
 				int m_GroupId;
 				Mode m_Mode;

@@ -17,17 +17,33 @@
 
 #include "Contacts/Groups/AddMembersItem.h"
 
+#include "Contacts/Groups/Model/MembersProvider.h"
+#include "Contacts/List/ListView.h"
 #include "GroupItemLayout.h"
+
+#include "Common/Database/RecordUtils.h"
+#include "Ui/Navigator.h"
+#include "Ui/ProcessPopup.h"
+#include "Utils/Logger.h"
+#include "Utils/Thread.h"
 
 #include <app_i18n.h>
 
 #define BUFFER_SIZE 32
 
+using namespace Common::Database;
 using namespace Contacts::Groups;
+using namespace Contacts::Groups::Model;
+using namespace Contacts::List;
 
-AddMembersItem::AddMembersItem()
-	: m_Count(0)
+AddMembersItem::AddMembersItem(int groupId)
+	: m_GroupId(groupId), m_Count(0)
 {
+}
+
+const std::vector<int> &AddMembersItem::getMemberIdList() const
+{
+	return m_ContactIdList;
 }
 
 Elm_Genlist_Item_Class *AddMembersItem::getItemClass() const
@@ -61,5 +77,51 @@ Evas_Object *AddMembersItem::getContent(Evas_Object *parent, const char *part)
 
 void AddMembersItem::onSelected()
 {
-	//TODO: Member selector.
+	Ui::Navigator *navigator = getParent()->findParent<Ui::Navigator>();
+	if (!navigator) {
+		return;
+	}
+
+	MembersProvider *provider = new MembersProvider(m_GroupId, MembersProvider::ModeExclude);
+	m_Count = provider->getMembersCount();
+	elm_genlist_item_fields_update(getObjectItem(),
+			PART_GROUP_ADD_MEMBERS_COUNTER, ELM_GENLIST_ITEM_FIELD_TEXT);
+	m_ContactIdList.clear();
+
+	ListView *view = new ListView(provider);
+	view->setSelectMode(Ux::SelectMulti);
+	view->setSectionVisibility(ListView::SectionFavorites, false);
+	view->setSelectCallback(std::bind(&AddMembersItem::onMembersSelected, this, view,
+			std::placeholders::_1));
+
+	navigator->navigateTo(view);
+}
+
+bool AddMembersItem::onMembersSelected(ListView *view, Ux::SelectResults results)
+{
+	auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
+	new Utils::Thread(std::bind(&AddMembersItem::addMembers, this, std::move(results)),
+			std::bind(&AddMembersItem::onAddMembersFinished, this, view, popup));
+	return false;
+}
+
+void AddMembersItem::addMembers(Ux::SelectResults results)
+{
+	contacts_connect_on_thread();
+	for (auto &&result : results) {
+		contacts_record_h record = nullptr;
+		contacts_db_get_record(_contacts_person._uri, result.value.id, &record);
+		m_ContactIdList.push_back(getRecordInt(record, _contacts_person.display_contact_id));
+		contacts_record_destroy(record, true);
+	}
+	m_Count += m_ContactIdList.size();
+	contacts_disconnect_on_thread();
+}
+
+void AddMembersItem::onAddMembersFinished(ListView *view, Ui::ProcessPopup *popup)
+{
+	delete popup;
+	view->getPage()->close();
+	elm_genlist_item_fields_update(getObjectItem(),
+			PART_GROUP_ADD_MEMBERS_COUNTER, ELM_GENLIST_ITEM_FIELD_TEXT);
 }

@@ -20,6 +20,8 @@
 
 #include "Ui/View.h"
 
+#include <contacts.h>
+
 namespace Ui
 {
 	class Genlist;
@@ -44,7 +46,12 @@ namespace Contacts
 		class InputView : public Ui::View
 		{
 		public:
-			InputView();
+			/**
+			 * @brief Create group input view..
+			 * @param[in]   id  Group id
+			 */
+			InputView(int id = 0);
+			virtual ~InputView() override;
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
@@ -59,6 +66,8 @@ namespace Contacts
 			bool isAlreadyExists();
 			void save();
 
+			int m_Id;
+			contacts_record_h m_Record;
 			Evas_Object *m_CancelButton;
 			Evas_Object *m_DoneButton;
 			Ui::Genlist *m_Genlist;

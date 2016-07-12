@@ -41,10 +41,14 @@ MembersProvider::MembersProvider(int groupId, Mode mode)
 
 const int MembersProvider::getMembersCount() const
 {
-	contacts_list_h list = getMembersList();
+	if (!m_GroupId) {
+		return 0;
+	}
+
+	contacts_query_h query = getFilteredQuery();
 	int count = 0;
-	contacts_list_get_count(list, &count);
-	contacts_list_destroy(list, true);
+	contacts_db_get_count_with_query(query, &count);
+	contacts_query_destroy(query);
 	return count;
 }
 
@@ -128,7 +132,16 @@ contacts_list_h MembersProvider::getMembersList() const
 	if (!m_GroupId) {
 		return nullptr;
 	}
+	contacts_query_h query = getFilteredQuery();
+	contacts_list_h list = nullptr;
+	contacts_db_get_records_with_query(query, 0, 0, &list);
 
+	contacts_query_destroy(query);
+	return list;
+}
+
+contacts_query_h MembersProvider::getFilteredQuery() const
+{
 	contacts_filter_h filter = nullptr;
 	contacts_filter_create(_contacts_person_group_assigned._uri, &filter);
 	contacts_filter_add_int(filter, _contacts_person_group_assigned.group_id,
@@ -138,10 +151,6 @@ contacts_list_h MembersProvider::getMembersList() const
 	contacts_query_create(_contacts_person_group_assigned._uri, &query);
 	contacts_query_set_filter(query, filter);
 
-	contacts_list_h list = nullptr;
-	contacts_db_get_records_with_query(query, 0, 0, &list);
-
 	contacts_filter_destroy(filter);
-	contacts_query_destroy(query);
-	return list;
+	return query;
 }
