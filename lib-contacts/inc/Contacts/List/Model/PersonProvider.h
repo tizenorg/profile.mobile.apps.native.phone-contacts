@@ -111,19 +111,19 @@ namespace Contacts
 				virtual contacts_record_h getPersonRecord(int id, IdType idType) const;
 
 				/**
-				 * @brief Fetch person from database by ID and insert it into person list.
-				 * @param[in]   id      Person or display contact ID
-				 * @param[in]   idType  Type of ID
-				 * @return Whether insert was successful.
+				 * @brief Insert person into person list.
+				 * @param[in]   personRecord    Person record
 				 */
-				virtual bool insertPerson(int id, IdType idType);
+				virtual void insertPerson(contacts_record_h personRecord);
 
 				/**
 				 * @brief Update person from database.
-				 * @param[in]   personIt    Person iterator
+				 * @param[in]   personIt        Person iterator
+				 * @param[in]   personRecord    Person DB record
+				 * @param[in]   contactId       Updated contact ID
 				 * @return Whether update was successful.
 				 */
-				virtual bool updatePerson(DataList::const_iterator personIt);
+				virtual bool updatePerson(DataList::const_iterator personIt, contacts_record_h personRecord, int contactId);
 
 				/**
 				 * @brief Delete person from person list.
@@ -148,6 +148,9 @@ namespace Contacts
 
 			private:
 				void updatePersonList();
+
+				void addContacts();
+				void removeContact(int contactId);
 
 				void subscribe();
 				void unsubscribe();

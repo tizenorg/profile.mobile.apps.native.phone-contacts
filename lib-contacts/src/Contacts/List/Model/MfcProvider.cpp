@@ -61,7 +61,7 @@ contacts_list_h MfcProvider::getPersonList() const
 contacts_record_h MfcProvider::getPersonRecord(int id, PersonProvider::IdType idType) const
 {
 	if (idType == ContactId) {
-		id = getPersonId(id);
+		return nullptr;
 	}
 
 	for (auto &&usageRecord : makeRange(getPersonUsageList())) {
@@ -75,13 +75,13 @@ contacts_record_h MfcProvider::getPersonRecord(int id, PersonProvider::IdType id
 	return nullptr;
 }
 
-bool MfcProvider::insertPerson(int id, IdType idType)
+void MfcProvider::insertPerson(contacts_record_h personRecord)
 {
-	if (idType == ContactId) {
-		return false;
+	if (!personRecord) {
+		return;
 	}
 
-	return update();
+	update();
 }
 
 void MfcProvider::deletePerson(DataList::const_iterator personIt)
