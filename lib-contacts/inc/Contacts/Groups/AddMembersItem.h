@@ -19,9 +19,22 @@
 #define CONTACTS_GROUPS_ADD_MEMBERS_ITEM_H
 
 #include "Ui/GenlistItem.h"
+#include "Ux/SelectTypes.h"
+
+#include <vector>
+
+namespace Ui
+{
+	class ProcessPopup;
+}
 
 namespace Contacts
 {
+	namespace List
+	{
+		class ListView;
+	}
+
 	namespace Groups
 	{
 		/**
@@ -30,7 +43,16 @@ namespace Contacts
 		class AddMembersItem : public Ui::GenlistItem
 		{
 		public:
-			AddMembersItem();
+			/**
+			 * @brief Constructor.
+			 * param[in]   groupId  Group id
+			 */
+			AddMembersItem(int groupId);
+
+			/**
+			 * @return the list of contact id added by user
+			 */
+			const std::vector<int> &getMemberIdList() const;
 
 		private:
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
@@ -38,7 +60,13 @@ namespace Contacts
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual void onSelected() override;
 
+			bool onMembersSelected(List::ListView *view, Ux::SelectResults results);
+			void addMembers(Ux::SelectResults results);
+			void onAddMembersFinished(List::ListView *view, Ui::ProcessPopup *popup);
+
+			int m_GroupId;
 			int m_Count;
+			std::vector<int> m_ContactIdList;
 		};
 	}
 }

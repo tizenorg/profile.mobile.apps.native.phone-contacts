@@ -35,10 +35,19 @@ using namespace Contacts::Groups;
 using namespace Contacts::Groups::Model;
 using namespace Common::Database;
 
-InputView::InputView()
-	: m_CancelButton(nullptr), m_DoneButton(nullptr), m_Genlist(nullptr),
+InputView::InputView(int id)
+	: m_Id(id), m_CancelButton(nullptr), m_DoneButton(nullptr), m_Genlist(nullptr),
 	  m_AddMembersItem(nullptr), m_NameItem(nullptr), m_RingtoneItem(nullptr)
 {
+	if (m_Id) {
+		contacts_db_get_record(_contacts_group._uri, m_Id, &m_Record);
+	} else {
+		contacts_record_create(_contacts_group._uri, &m_Record);
+	}
+}
+InputView::~InputView()
+{
+	contacts_record_destroy(m_Record, true);
 }
 
 Evas_Object *InputView::onCreate(Evas_Object *parent)
@@ -52,7 +61,7 @@ Evas_Object *InputView::onCreate(Evas_Object *parent)
 	m_NameItem->setFilledCallback(std::bind(&InputView::onNameFilled, this, std::placeholders::_1));
 	m_Genlist->insert(m_NameItem);
 
-	m_AddMembersItem = new AddMembersItem();
+	m_AddMembersItem = new AddMembersItem(m_Id);
 	m_Genlist->insert(m_AddMembersItem);
 
 	m_RingtoneItem = new RingtoneItem();
@@ -127,14 +136,18 @@ bool InputView::isAlreadyExists()
 
 void InputView::save()
 {
-	contacts_record_h record = nullptr;
-	contacts_record_create(_contacts_group._uri, &record);
-	contacts_record_set_str(record, _contacts_group.name,
+	contacts_record_set_str(m_Record, _contacts_group.name,
 			m_NameItem->getName().c_str());
-	contacts_record_set_str(record, _contacts_group.ringtone_path,
+	contacts_record_set_str(m_Record, _contacts_group.ringtone_path,
 			m_RingtoneItem->getPath().c_str());
 
-	int id = 0;
-	contacts_db_insert_record(record, &id);
-	contacts_record_destroy(record, true);
+	if (!m_Id) {
+		contacts_db_insert_record(m_Record, &m_Id);
+
+		for (auto &&contactId : m_AddMembersItem->getMemberIdList()) {
+			contacts_group_add_contact(m_Id, contactId);
+		}
+	}
+
+	contacts_db_update_record(m_Record);
 }
