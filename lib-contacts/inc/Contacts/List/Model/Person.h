@@ -110,7 +110,7 @@ namespace Contacts
 				/**
 				 * @return Note
 				 */
-				const char *getNotes() const;
+				const char *getNote() const;
 
 				/**
 				 * @return Organization record
@@ -145,9 +145,10 @@ namespace Contacts
 
 				/**
 				 * @brief Add contact to person
-				 * @param[in]   record  Contact record
+				 * @param[in]   record              Contact record
+				 * @param[in]   displayContactId    Display contact ID of new person record. Optional.
 				 */
-				void addContact(contacts_record_h record);
+				void addContact(contacts_record_h record, int displayContactId = 0);
 
 				/**
 				 * @brief Remove contact from person
@@ -170,6 +171,7 @@ namespace Contacts
 				const Utils::UniString &getSortValue() const;
 				void update(contacts_record_h personRecord);
 				int updateName(contacts_record_h record, unsigned sortProperty);
+				void updateDefaultContactRecord();
 
 				contacts_record_h m_Record;
 				contacts_record_h m_DefaultContactRecord;

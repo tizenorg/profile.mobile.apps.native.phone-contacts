@@ -37,14 +37,25 @@ char *PersonSearchItem::getText(Evas_Object *parent, const char *part)
 	if (searchResult) {
 		SearchResult::MatchedField matchedField = searchResult->getMatchedField();
 
-		if (matchedField == SearchResult::MatchedName) {
-			if (strcmp(part, PART_CONTACT_NAME) == 0) {
-				return strdup(getHighlightedStr().c_str());
-			}
-		} else if (matchedField == SearchResult::MatchedNumber) {
-			if (strcmp(part, PART_SUBTEXT) == 0) {
-				return strdup(getHighlightedStr().c_str());
-			}
+		switch (matchedField)
+		{
+			case SearchResult::MatchedName:
+				if (strcmp(part, PART_CONTACT_NAME) == 0) {
+					return strdup(getHighlightedStr().c_str());
+				}
+				break;
+			case SearchResult::MatchedNickname:
+			case SearchResult::MatchedOrganization:
+			case SearchResult::MatchedAddress:
+			case SearchResult::MatchedEmail:
+			case SearchResult::MatchedNote:
+			case SearchResult::MatchedNumber:
+				if (strcmp(part, PART_SUBTEXT) == 0) {
+					return strdup(getHighlightedStr().c_str());
+				}
+				break;
+			default:
+				break;
 		}
 
 		if (matchedField != SearchResult::MatchedNone) {

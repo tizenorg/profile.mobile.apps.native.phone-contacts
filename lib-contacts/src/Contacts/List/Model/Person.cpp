@@ -135,7 +135,7 @@ const char *Person::getNickname() const
 	return record ? getRecordStr(record, _contacts_nickname.name) : nullptr;
 }
 
-const char *Person::getNotes() const
+const char *Person::getNote() const
 {
 	contacts_record_h record  = getContactChildRecord(_contacts_contact.note,
 		[](contacts_record_h record) {
@@ -181,16 +181,20 @@ bool Person::operator<(const Person &that) const
 	return getSortValue() < that.getSortValue();
 }
 
-void Person::addContact(contacts_record_h record)
+void Person::addContact(contacts_record_h record, int displayContactId)
 {
-	if (getContactId() == getRecordInt(record, _contacts_contact.id)) {
+	if (!displayContactId) {
+		displayContactId = getContactId();
+	}
+
+	if (displayContactId == getRecordInt(record, _contacts_contact.id)) {
 		m_DefaultContactRecord = record;
 	}
 
 	if (!m_ContactRecords.empty()) {
 		auto it = std::find_if(m_ContactRecords.begin(), m_ContactRecords.end(),
 			[record](contacts_record_h contactRecord) {
-				return compareRecordsInt(contactRecord, record, _contacts_contact.id);
+				return compareRecordsInt(contactRecord, contactRecord, _contacts_contact.id);
 			}
 		);
 
@@ -223,15 +227,7 @@ void Person::removeContact(int id)
 			contacts_record_destroy(m_Record, true);
 			contacts_db_get_record(_contacts_person._uri, id, &m_Record);
 
-			int displayContactId = getRecordInt(m_Record, _contacts_person.display_contact_id);
-			auto it = std::find_if(m_ContactRecords.begin(), m_ContactRecords.end(),
-				[this, displayContactId](contacts_record_h contactRecord) {
-					return displayContactId == getRecordInt(contactRecord, _contacts_contact.id);
-				}
-			);
-			if (it != m_ContactRecords.end()) {
-				m_DefaultContactRecord = *it;
-			}
+			updateDefaultContactRecord();
 		}
 	}
 }
@@ -319,4 +315,18 @@ int Person::updateName(contacts_record_h record, unsigned sortProperty)
 	m_SortProperty = sortProperty;
 	contacts_record_destroy(nameRecord, true);
 	return changes;
+}
+
+
+void Person::updateDefaultContactRecord()
+{
+	int displayContactId = getRecordInt(m_Record, _contacts_person.display_contact_id);
+	auto it = std::find_if(m_ContactRecords.begin(), m_ContactRecords.end(),
+		[this, displayContactId](contacts_record_h contactRecord) {
+			return displayContactId == getRecordInt(contactRecord, _contacts_contact.id);
+		}
+	);
+	if (it != m_ContactRecords.end()) {
+		m_DefaultContactRecord = *it;
+	}
 }
