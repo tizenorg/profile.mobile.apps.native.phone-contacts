@@ -62,11 +62,33 @@ namespace Ui
 		void setFinishCallback(FinishCallback callback);
 
 	protected:
+		/**
+		 * @brief Called from another thread when progress starts.
+		 */
 		virtual void onStart() = 0;
+
+		/**
+		 * @brief Called from main loop if the running progress is canceled or failed to start.
+		 */
 		virtual void onCanceled() { }
+
+		/**
+		 * @brief Called when user cancels the progress.
+		 * @return true for further cancellation of progress's thread, false - do nothing.
+		 */
 		virtual bool onCancel();
 
+		/**
+		 * @brief Cancel the thread in which progress is running.
+		 */
 		void cancel();
+
+		/**
+		 * @brief Set progress value.
+		 * @remark Should be called from onStart().
+		 * @param[in]   value   The value that will be set to progress.
+		 * @return false if progress's thread is pending cancellation, otherwise - true.
+		 */
 		bool onProgress(size_t value);
 
 	private:
