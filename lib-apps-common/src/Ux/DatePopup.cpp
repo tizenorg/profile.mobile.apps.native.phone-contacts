@@ -15,13 +15,19 @@
  *
  */
 
-#include "Ui/DatePopup.h"
+#include "Ux/DatePopup.h"
 
-using namespace Ui;
+using namespace Ux;
 
-DatePopup::DatePopup(tm date)
-	: m_Date(date), m_DatePicker(nullptr)
+DatePopup::DatePopup(const char *format, tm date)
+	: m_Format(format ? format : ""), m_Date(date),
+	  m_DatePicker(nullptr), m_Strings{ nullptr }
 {
+}
+
+void DatePopup::setStrings(Strings strings)
+{
+	m_Strings = strings;
 }
 
 void DatePopup::setResultCallback(ResultCallback callback)
@@ -29,25 +35,29 @@ void DatePopup::setResultCallback(ResultCallback callback)
 	m_OnResult = std::move(callback);
 }
 
+Evas_Object *DatePopup::getDatePicker() const
+{
+	return m_DatePicker;
+}
+
 void DatePopup::onCreated()
 {
-	setTitle("IDS_TPLATFORM_HEADER_SET_DATE");
-	addButton("IDS_PB_BUTTON_CANCEL");
-	addButton("IDS_ST_BUTTON_SET", [this] {
-		onSetPressed();
-		return true;
-	});
+	setTitle(m_Strings.popupTitle);
+	addButton(m_Strings.buttonCancel);
+	addButton(m_Strings.buttonDone, std::bind(&DatePopup::onDonePressed, this));
 
 	m_DatePicker = elm_datetime_add(getEvasObject());
-	elm_datetime_format_set(m_DatePicker, "%%d %%b %%Y");
+	elm_datetime_format_set(m_DatePicker, m_Format.c_str());
 	elm_datetime_value_set(m_DatePicker, &m_Date);
 	setContent(m_DatePicker);
 }
 
-void DatePopup::onSetPressed()
+bool DatePopup::onDonePressed()
 {
 	if (m_OnResult) {
 		elm_datetime_value_get(m_DatePicker, &m_Date);
 		m_OnResult(m_Date);
 	}
+
+	return true;
 }

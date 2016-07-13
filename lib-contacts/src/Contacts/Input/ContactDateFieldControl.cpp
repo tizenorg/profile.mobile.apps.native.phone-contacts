@@ -18,7 +18,7 @@
 #include "Contacts/Input/ContactDateFieldControl.h"
 #include "Contacts/Model/ContactDateField.h"
 
-#include "Ui/DatePopup.h"
+#include "Ux/DatePopup.h"
 #include "Utils/Callback.h"
 
 #include "AppsCommonButtons.h"
@@ -65,7 +65,11 @@ void ContactDateFieldControl::onCreated()
 
 void ContactDateFieldControl::onButtonPressed(Evas_Object *button, void *eventInfo)
 {
-	Ui::DatePopup *popup = new Ui::DatePopup(m_Field.getValue());
+	Ux::DatePopup *popup = new Ux::DatePopup("%%d %%b %%Y", m_Field.getValue());
+	popup->setStrings({
+		"IDS_TPLATFORM_HEADER_SET_DATE",
+		"IDS_ST_BUTTON_SET",
+		"IDS_PB_BUTTON_CANCEL" });
 	popup->setResultCallback([this](const tm &date) {
 		m_Field.setValue(date);
 		update();
