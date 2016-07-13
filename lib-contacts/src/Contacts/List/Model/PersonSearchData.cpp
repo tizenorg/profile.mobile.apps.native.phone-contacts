@@ -16,13 +16,29 @@
  */
 
 #include "Contacts/List/Model/PersonSearchData.h"
-#include "Contacts/List/Model/Person.h"
 #include "Common/Database/RecordUtils.h"
+
 #include <cstring>
 
 using namespace Contacts::Model;
 using namespace Contacts::List::Model;
 using namespace Common::Database;
+using namespace std::placeholders;
+
+namespace
+{
+	enum PersonSubField
+	{
+		PersonName,
+		PersonNickname,
+		PersonOrganization,
+		PersonAddress,
+		PersonEmail,
+		PersonNote,
+		PersonNumber,
+		PersonMax
+	};
+}
 
 PersonSearchData::PersonSearchData(Person &person)
 	: SearchData(person)
@@ -52,8 +68,14 @@ SearchResultPtr PersonSearchData::compare(const std::string &str)
 		return SearchResultPtr(new SearchResult());
 	}
 
-	SearchResultPtr nameResult = compareName(str);
-	return nameResult ? std::move(nameResult) : std::move(compareNumber(str));
+	for (size_t subField = PersonName; subField < PersonMax; ++subField) {
+		SearchResultPtr result = getComparator(subField)(str);
+		if (result) {
+			return result;
+		}
+	}
+
+	return nullptr;
 }
 
 SearchResultPtr PersonSearchData::compareName(const std::string &str)
@@ -76,10 +98,38 @@ SearchResultPtr PersonSearchData::compareName(const std::string &str)
 	return nullptr;
 }
 
+SearchResultPtr PersonSearchData::compareNickname(const std::string &str)
+{
+	return caseCompare(getPerson().getNickname(), str, SearchResult::MatchedNickname);
+}
+
+SearchResultPtr PersonSearchData::compareNote(const std::string &str)
+{
+	return caseCompare(getPerson().getNote(), str, SearchResult::MatchedNote);
+}
+
+SearchResultPtr PersonSearchData::compareOrganization(const std::string &str)
+{
+	contacts_record_h record = getPerson().getOrganization();
+	auto nameResult = caseCompare(getRecordStr(record, _contacts_company.name), str, SearchResult::MatchedOrganization);
+
+	return nameResult ? std::move(nameResult) :
+		std::move(caseCompare(getRecordStr(record, _contacts_company.job_title), str, SearchResult::MatchedOrganization));
+}
+
+SearchResultPtr PersonSearchData::compareAddress(const std::string &str)
+{
+	return fieldsCompare(getPerson().getAddresses(), _contacts_address.street, str, SearchResult::MatchedAddress);
+}
+
+SearchResultPtr PersonSearchData::compareEmail(const std::string &str)
+{
+	return fieldsCompare(getPerson().getEmails(), _contacts_email.email, str, SearchResult::MatchedEmail);
+}
+
 SearchResultPtr PersonSearchData::compareNumber(const std::string &str)
 {
-	auto &person = static_cast<Person &>(getContactData());
-	for (auto &&numberRange : person.getNumbers()) {
+	for (auto &&numberRange : getPerson().getNumbers()) {
 		for (auto &&numberRecord : numberRange) {
 			const char *number = getRecordStr(numberRecord, _contacts_number.number);
 			const char *pos = strstr(number, str.c_str());
@@ -92,4 +142,46 @@ SearchResultPtr PersonSearchData::compareNumber(const std::string &str)
 	}
 
 	return nullptr;
+}
+
+SearchResultPtr PersonSearchData::caseCompare(const char *fieldValue, const std::string &str, SearchResult::MatchedField matchedField)
+{
+	if (fieldValue) {
+		if (strncasecmp(fieldValue, str.c_str(), str.size()) == 0) {
+			return SearchResultPtr(new SearchResult(matchedField, fieldValue, { fieldValue, str.size() }));
+		}
+	}
+
+	return nullptr;
+}
+
+SearchResultPtr PersonSearchData::fieldsCompare(Person::ContactChildRecords records,
+		unsigned propertyId, const std::string &str, SearchResult::MatchedField matchedField)
+{
+	for (auto &&range : records) {
+		for (auto &&record : range) {
+			SearchResultPtr result = caseCompare(getRecordStr(record, propertyId), str, matchedField);
+			if (result) {
+				return result;
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+
+const PersonSearchData::Comparator &PersonSearchData::getComparator(size_t index)
+{
+	static Comparator compMethods[] = {
+		/* PersonName         = */ std::bind(&PersonSearchData::compareName, this, _1),
+		/* PersonNickname     = */ std::bind(&PersonSearchData::compareNickname, this, _1),
+		/* PersonOrganization = */ std::bind(&PersonSearchData::compareOrganization, this, _1),
+		/* PersonAddress      = */ std::bind(&PersonSearchData::compareAddress, this, _1),
+		/* PersonEmail        = */ std::bind(&PersonSearchData::compareEmail, this, _1),
+		/* PersonNote         = */ std::bind(&PersonSearchData::compareNote, this, _1),
+		/* PersonNumber       = */ std::bind(&PersonSearchData::compareNumber, this, _1),
+	};
+
+	return compMethods[index];
 }
