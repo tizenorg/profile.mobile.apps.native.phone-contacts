@@ -36,11 +36,18 @@ namespace Utils
 		typedef std::basic_string<i18n_uchar> I18nString;
 
 		UniString() = default;
+
 		/**
 		 * @brief Create new object, based on @a utf8Str string
 		 * @param[in]   utf8Str     UTF8 multibyte unicode string
 		 */
 		UniString(const char *utf8Str);
+
+		/**
+		 * @brief Create new object, based on @a utf8Str string
+		 * @param[in]   utf8Str     UTF8 multibyte unicode string
+		 */
+		UniString(std::string utf8Str);
 
 		bool operator<(const UniString &that) const;
 		bool operator>(const UniString &that) const;
@@ -48,6 +55,13 @@ namespace Utils
 		bool operator!=(const UniString &that) const;
 		bool operator<=(const UniString &that) const;
 		bool operator>=(const UniString &that) const;
+
+		/**
+		 * @brief Generate UniString substring object
+		 * @param[in]   pos Position of the first character to be copied as substring
+		 * @param[in]   len Number of characters to include in the substring
+		 */
+		UniString substr(size_t pos = 0, size_t len = std::string::npos) const;
 
 		/**
 		 * @return I18n string
