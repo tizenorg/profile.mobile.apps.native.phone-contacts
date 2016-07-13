@@ -211,6 +211,12 @@ msgstr "Noklusējums"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Tālrunis"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Izveidot grupu"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Nav piešķirta"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Iestatīt datumu"
 

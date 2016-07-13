@@ -211,6 +211,12 @@ msgstr "डिफॉल्ट"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "फोन"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "समूह बनाएँ"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "सौंपा नहीं गया"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "तिथि सेट करें"
 

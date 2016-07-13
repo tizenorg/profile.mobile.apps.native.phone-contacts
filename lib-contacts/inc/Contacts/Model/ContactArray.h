@@ -35,6 +35,11 @@ namespace Contacts
 			using ContactFieldContainer::ContactFieldContainer;
 
 			/**
+			 * @see ContactField::reset()
+			 */
+			virtual void reset() override;
+
+			/**
 			 * @see ContactField::isChanged()
 			 */
 			virtual bool isChanged() const override;

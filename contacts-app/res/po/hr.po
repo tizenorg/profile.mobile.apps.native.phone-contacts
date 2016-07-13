@@ -211,6 +211,12 @@ msgstr "Zadano"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Nova grupa"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Nedodijeljeno"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Postavi datum"
 

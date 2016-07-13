@@ -211,6 +211,12 @@ msgstr "Réamhshocrú"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Fón"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Cruthaigh grúpa"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Neamhsannta"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Socraigh dáta"
 

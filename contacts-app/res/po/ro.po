@@ -211,6 +211,12 @@ msgstr "Implicit"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Creare grup"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Neatribuit"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Setați data"
 

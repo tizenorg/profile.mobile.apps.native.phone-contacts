@@ -18,6 +18,7 @@
 #include "Contacts/Input/InputView.h"
 #include "Contacts/Input/AddFieldsItem.h"
 #include "Contacts/Input/ContactCompoundFieldItem.h"
+#include "Contacts/Input/ContactGroupsFieldItem.h"
 #include "Contacts/Input/ContactImageFieldItem.h"
 #include "Contacts/Input/ContactRelationshipFieldItem.h"
 #include "Contacts/Input/ContactRingtoneFieldItem.h"
@@ -65,7 +66,8 @@ namespace
 		/* [FieldNote]         = */ true,
 		/* [FieldNickname]     = */ true,
 		/* [FieldRelationship] = */ true,
-		/* [FieldRingtone]     = */ true
+		/* [FieldRingtone]     = */ true,
+		/* [FieldGroups]       = */ true
 	};
 }
 
@@ -75,8 +77,7 @@ InputView::InputView(int recordId, Type type)
 	  m_Items{nullptr}, m_AddFieldsItem(nullptr)
 {
 	m_Contact.initialize(recordId);
-	m_Contact.setFillCallback(std::bind(&InputView::onContactFilled,
-				this, std::placeholders::_1));
+	m_Contact.setFillCallback(std::bind(&InputView::onContactFilled, this, _1));
 }
 
 void InputView::addField(Model::ContactFieldId fieldId, const char *value)
@@ -207,6 +208,8 @@ ContactFieldItem *InputView::createFieldItem(ContactObject &field)
 		item = new ContactRelationshipFieldItem(field);
 	} else if (field.getId() == FieldRingtone) {
 		item = new ContactRingtoneFieldItem(field);
+	} else if (field.getId() == FieldGroups) {
+		item = new ContactGroupsFieldItem(field);
 	} else if (field.getInterfaces() & InterfaceTypedObject) {
 		item = new ContactTypedFieldItem(field);
 	} else if (field.getInterfaces() & InterfaceCompoundObject) {

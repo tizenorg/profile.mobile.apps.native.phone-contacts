@@ -211,6 +211,12 @@ msgstr "İlkin təyin olunan"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Qrup yarat"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Təyin olunmamışdır"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Tarixi təyin et"
 

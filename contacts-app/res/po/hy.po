@@ -211,6 +211,12 @@ msgstr "Լռելյայն"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Հեռախոս"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Խումբ ստեղծել"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Նշանակված չէ"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Դնել թվական"
 

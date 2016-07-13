@@ -211,6 +211,12 @@ msgstr "기본"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "휴대전화"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "새 그룹 추가"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "지정 안 함"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "날짜 설정"
 

@@ -36,6 +36,9 @@ namespace
 /******************************** Bool type ***********************************/
 const ContactTypeMetadata contactBool = { TypeBool, 0 };
 
+/********************************* Int type ***********************************/
+const ContactTypeMetadata contactInt = { TypeInt, 0 };
+
 /******************************** Text types **********************************/
 const ContactTypeMetadata contactRegularText = { TypeText, TextTypeRegular };
 const ContactTypeMetadata contactNumberText = { TypeText, TextTypeNumber };
@@ -106,13 +109,35 @@ const ContactObjectMetadata contactImage = {
 	_contacts_image._uri, _contacts_image.id, makeRange(contactImageFields)
 };
 
-/****************************** Ringtone Object *******************************/
+/*************************** Ringtone Object (fake) ***************************/
 const ContactFieldMetadata contactRingtoneFields[] = {
 	{ FieldRingtone, _contacts_contact.ringtone_path, false, &contactRegularText }
 };
 const ContactObjectMetadata contactRingtone = {
 	{ TypeObject, ObjectTypeRingtone }, InterfaceNone,
 	_contacts_contact._uri, _contacts_contact.id, makeRange(contactRingtoneFields)
+};
+
+/**************************** Group Relation Item *****************************/
+const ContactFieldMetadata contactGroupRelFields[] = {
+	{ FieldGroups, _contacts_group_relation.group_id, false, &contactInt }
+};
+const ContactObjectMetadata contactGroupRel = {
+	{ TypeObject, ObjectTypeGroupRel }, InterfaceNone,
+	_contacts_group_relation._uri, _contacts_group_relation.id, makeRange(contactGroupRelFields)
+};
+
+/**************************** Groups Object (fake) ****************************/
+const ContactArrayMetadata contactGroupsArray = {
+	{ TypeArray, ObjectTypeGroupRel },
+	{ FieldGroups, _contacts_contact.group_relation, false, UPCAST(&contactGroupRel) }
+};
+const ContactFieldMetadata contactGroupsFields[] = {
+	{ FieldGroups, _contacts_contact.group_relation, false, UPCAST(&contactGroupsArray) },
+};
+const ContactObjectMetadata contactGroups = {
+	{ TypeObject, ObjectTypeGroups }, InterfaceNone,
+	_contacts_contact._uri, _contacts_contact.id, makeRange(contactGroupsFields)
 };
 
 /****************************** Number Object *********************************/
@@ -317,7 +342,8 @@ const ContactFieldMetadata contactFields[] = {
 	{ FieldNote,         _contacts_contact.note,            false, UPCAST(&contactNote) },
 	{ FieldNickname,     _contacts_contact.nickname,        true,  UPCAST(&contactNick) },
 	{ FieldRelationship, _contacts_contact.relationship,    false, UPCAST(&contactRels) },
-	{ FieldRingtone,     _contacts_contact.ringtone_path,   false, UPCAST(&contactRingtone) }
+	{ FieldRingtone,     _contacts_contact.ringtone_path,   false, UPCAST(&contactRingtone) },
+	{ FieldGroups,       _contacts_contact.group_relation,  false, UPCAST(&contactGroups) }
 };
 const ContactObjectMetadata contactObject = {
 	{ TypeObject, ObjectTypeContact }, InterfaceNone,
