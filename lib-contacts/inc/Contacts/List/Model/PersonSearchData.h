@@ -19,6 +19,8 @@
 #define CONTACTS_MODEL_PERSON_SEARCH_DATA_H
 
 #include "Contacts/Model/SearchData.h"
+#include "Contacts/List/Model/Person.h"
+#include <functional>
 
 namespace Contacts
 {
@@ -26,8 +28,6 @@ namespace Contacts
 	{
 		namespace Model
 		{
-			class Person;
-
 			class PersonSearchData : public Contacts::Model::SearchData
 			{
 			public:
@@ -54,9 +54,34 @@ namespace Contacts
 
 			private:
 				friend class PersonSearchProvider;
+				typedef std::function<Contacts::Model::SearchResultPtr (const std::string &)> Comparator;
+
+				enum PersonSubField
+				{
+					PersonName,
+					PersonNickname,
+					PersonOrganization,
+					PersonAddress,
+					PersonEmail,
+					PersonNote,
+					PersonNumber,
+					PersonMax
+				};
 
 				Contacts::Model::SearchResultPtr compareName(const std::string &str);
+				Contacts::Model::SearchResultPtr compareNickname(const std::string &str);
+				Contacts::Model::SearchResultPtr compareNote(const std::string &str);
+				Contacts::Model::SearchResultPtr compareOrganization(const std::string &str);
+				Contacts::Model::SearchResultPtr compareAddress(const std::string &str);
+				Contacts::Model::SearchResultPtr compareEmail(const std::string &str);
 				Contacts::Model::SearchResultPtr compareNumber(const std::string &str);
+
+				Contacts::Model::SearchResultPtr caseCompare(const char *fieldValue, const std::string &str,
+						Contacts::Model::SearchResult::MatchedField matchedField);
+				Contacts::Model::SearchResultPtr fieldsCompare(Person::ContactChildRecords records, unsigned propertyId,
+						const std::string &str, Contacts::Model::SearchResult::MatchedField matchedField);
+
+				Comparator m_CompMethods[PersonMax];
 			};
 		}
 	}
