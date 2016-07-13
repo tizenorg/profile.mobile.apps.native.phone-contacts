@@ -16,10 +16,11 @@
  */
 
 #include "Contacts/Input/ContactTypedFieldControl.h"
-#include "Contacts/Input/ContactTypedFieldLabelPopup.h"
 #include "Contacts/Model/ContactEnumField.h"
 #include "Contacts/Model/ContactTextField.h"
 #include "Common/Strings.h"
+
+#include "Ux/EditfieldPopup.h"
 #include "Utils/Logger.h"
 
 using namespace Common;
@@ -56,7 +57,12 @@ void ContactTypedFieldControl::onCreated()
 bool ContactTypedFieldControl::onSelected(int value)
 {
 	if (value == m_TypeField.getCustomValue()) {
-		auto popup = new ContactTypedFieldLabelPopup();
+		auto popup = new Ux::EditfieldPopup();
+		popup->setStrings({
+			"IDS_PB_HEADER_ENTER_CUSTOM_LABEL_ABB",
+			"IDS_PB_NPBODY_CUSTOM_TYPE_ABB",
+			"IDS_PB_BUTTON_CREATE_ABB2",
+			"IDS_PB_BUTTON_CANCEL" });
 		popup->setResultCallback([this, value](const char *label) {
 			m_TypeField.setValue(value);
 			m_LabelField.setValue(label);
