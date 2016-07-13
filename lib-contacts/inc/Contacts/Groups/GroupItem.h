@@ -22,6 +22,7 @@
 #include "Ux/SelectItem.h"
 
 #define PART_GROUP_NAME      "elm.text"
+#define PART_GROUP_CHECK     "elm.swallow.end"
 
 namespace Contacts
 {
@@ -52,6 +53,7 @@ namespace Contacts
 
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;
+			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual Ux::SelectResult getDefaultResult() const override;
 
 			Model::Group &m_Group;

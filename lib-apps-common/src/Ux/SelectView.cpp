@@ -106,6 +106,11 @@ void SelectView::setCheckCallback(CheckCallback callback)
 	m_OnChecked = std::move(callback);
 }
 
+const SelectView::SelectItems &SelectView::getSelectItems() const
+{
+	return m_Items;
+}
+
 SelectMode SelectView::getSelectMode() const
 {
 	return m_SelectMode;

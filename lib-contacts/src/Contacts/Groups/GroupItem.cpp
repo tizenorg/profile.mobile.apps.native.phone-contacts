@@ -46,6 +46,15 @@ char *GroupItem::getText(Evas_Object *parent, const char *part)
 	return nullptr;
 }
 
+Evas_Object *GroupItem::getContent(Evas_Object *parent, const char *part)
+{
+	if (strcmp(part, PART_GROUP_CHECK) == 0) {
+		return SelectItem::getContent(parent, part);
+	}
+
+	return nullptr;
+}
+
 Ux::SelectResult GroupItem::getDefaultResult() const
 {
 	return { 0, &m_Group };

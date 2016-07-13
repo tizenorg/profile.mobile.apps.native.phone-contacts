@@ -18,7 +18,7 @@
 #ifndef CONTACTS_GROUPS_GROUPS_VIEW_H
 #define CONTACTS_GROUPS_GROUPS_VIEW_H
 
-#include "Ui/View.h"
+#include "Ux/SelectView.h"
 #include "Contacts/Groups/Model/GroupsProvider.h"
 
 namespace Ui
@@ -40,15 +40,15 @@ namespace Contacts
 		/**
 		 * @brief Groups main view.
 		 */
-		class GroupsView : public Ui::View
+		class GroupsView : public Ux::SelectView
 		{
 		public:
 			GroupsView();
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
-			virtual void onPageAttached(Ui::NavigatorPage *page) override;
 			virtual void onMenuPressed() override;
+			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
 
 			void onInserted(::Model::DataItem &data);
 			GroupItem *createItem(Model::Group &group);

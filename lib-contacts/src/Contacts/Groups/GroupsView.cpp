@@ -20,6 +20,8 @@
 #include "Contacts/Groups/GroupItem.h"
 #include "Contacts/Groups/InputView.h"
 #include "Contacts/Groups/Model/Group.h"
+#include "Common/Strings.h"
+
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
@@ -31,6 +33,11 @@ using namespace std::placeholders;
 GroupsView::GroupsView()
 	: m_Genlist(nullptr)
 {
+	auto strings = Common::getSelectViewStrings();
+	strings.titleDefault = "IDS_PB_HEADER_GROUPS_ABB";
+	strings.titleMulti = "IDS_PB_HEADER_SELECT_GROUPS_ABB";
+	setStrings(strings);
+
 	m_Provider.setInsertCallback(std::bind(&GroupsView::onInserted, this, _1));
 }
 
@@ -59,9 +66,9 @@ void GroupsView::onMenuPressed()
 	menu->show();
 }
 
-void GroupsView::onPageAttached(Ui::NavigatorPage *page)
+void GroupsView::onSelectAllInsert(Ui::GenlistItem *item)
 {
-	page->setTitle("Groups");
+	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 }
 
 void GroupsView::onInserted(::Model::DataItem &data)
@@ -81,6 +88,7 @@ void GroupsView::insertItem(GroupItem *item)
 {
 	GroupItem *nextItem = getNextItem(item->getGroup());
 	m_Genlist->insert(item, nullptr, nextItem);
+	addSelectItem(item);
 }
 
 void GroupsView::updateItem(GroupItem *item, int changes)
@@ -93,12 +101,13 @@ void GroupsView::updateItem(GroupItem *item, int changes)
 
 void GroupsView::deleteItem(GroupItem *item)
 {
+	removeSelectItem(item);
 	delete item;
 }
 
 GroupItem *GroupsView::getNextItem(Group &group)
 {
-	for (auto &&item : *m_Genlist) {
+	for (auto &&item : getSelectItems()) {
 		GroupItem *groupItem = static_cast<GroupItem *>(item);
 		if (group < groupItem->getGroup()) {
 			return groupItem;

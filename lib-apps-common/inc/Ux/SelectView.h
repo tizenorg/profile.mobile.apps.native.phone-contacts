@@ -66,6 +66,11 @@ namespace Ux
 		 */
 		typedef std::function<bool(SelectItem *item, bool isChecked, bool isSelectAll)> CheckCallback;
 
+		/**
+		 * @brief Array of selectable items.
+		 */
+		typedef std::vector<SelectItem *> SelectItems;
+
 		SelectView();
 		virtual ~SelectView() override;
 
@@ -105,6 +110,11 @@ namespace Ux
 		 * @param[in]   callback    Check callback
 		 */
 		void setCheckCallback(CheckCallback callback);
+
+		/**
+		 * @return Selectable items managed by the view.
+		 */
+		const SelectItems &getSelectItems() const;
 
 	protected:
 		/**
@@ -200,7 +210,7 @@ namespace Ux
 		void onCancelPressed(Evas_Object *button, void *eventInfo);
 
 		Ui::GenItemPtr m_SelectAllItem;
-		std::vector<SelectItem *> m_Items;
+		SelectItems m_Items;
 
 		Evas_Object *m_DoneButton;
 		Evas_Object *m_CancelButton;
