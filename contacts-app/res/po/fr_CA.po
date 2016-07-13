@@ -211,6 +211,12 @@ msgstr "Par défaut"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Téléph."
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Créer un groupe"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Non affecté"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Définir la date"
 

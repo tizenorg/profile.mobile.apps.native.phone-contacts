@@ -211,6 +211,12 @@ msgstr "Sjálfgefið"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Í síma"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Búa til hóp"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Óúthlutað"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Veldu dag"
 

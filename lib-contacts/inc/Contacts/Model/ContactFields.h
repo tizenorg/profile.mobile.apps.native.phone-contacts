@@ -44,6 +44,7 @@ namespace Contacts
 			FieldNickname,
 			FieldRelationship,
 			FieldRingtone,
+			FieldGroups,
 			FieldEnd
 		};
 

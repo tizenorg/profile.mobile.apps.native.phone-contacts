@@ -28,6 +28,7 @@ namespace Contacts
 		enum ContactFieldType
 		{
 			TypeBool,   /**< Boolean type. @see ContactBoolField */
+			TypeInt,    /**< Integer type. @see ContactIntField */
 			TypeText,   /**< Text type. @see ContactTextField */
 			TypeDate,   /**< Date type. @see ContactDateField */
 			TypeEnum,   /**< Integer type with limited possible values. @see ContactEnumField */
@@ -65,7 +66,9 @@ namespace Contacts
 			ObjectTypeNickname,
 			ObjectTypeCompany,
 			ObjectTypePhoneticName,
-			ObjectTypeRingtone
+			ObjectTypeRingtone,
+			ObjectTypeGroups,
+			ObjectTypeGroupRel
 		};
 
 		/**

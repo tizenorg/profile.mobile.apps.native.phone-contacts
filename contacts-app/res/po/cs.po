@@ -211,6 +211,12 @@ msgstr "Výchozí"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Vytvořit skupinu"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Nepřiřazeno"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Nastavit datum"
 

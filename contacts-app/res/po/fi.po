@@ -211,6 +211,12 @@ msgstr "Oletus"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Puhelin"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Luo ryhmä"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Ei määritelty"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Aseta päivämäärä"
 

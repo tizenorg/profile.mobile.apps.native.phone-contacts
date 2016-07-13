@@ -74,13 +74,19 @@ contacts_record_h ContactObject::getChildRecord(contacts_record_h record,
 		return record;
 	}
 
+	const char *uri = ((const ContactObjectMetadata *) metadata.typeMetadata)->uri;
+	if (strcmp(uri, getObjectMetadata().uri) == 0) {
+		/* Return the same record for a fake object which is actually a different
+		   adaptor to the same record */
+		return record;
+	}
+
 	contacts_record_h childRecord = nullptr;
 	int err = contacts_record_get_child_record_at_p(record, metadata.propId, 0, &childRecord);
 	if (err == CONTACTS_ERROR_NO_DATA) {
-		const char *uri = ((const ContactObjectMetadata *) metadata.typeMetadata)->uri;
 		contacts_record_create(uri, &childRecord);
 		contacts_record_add_child_record(record, metadata.propId, childRecord);
 	}
 
-	return childRecord ? childRecord : record;
+	return childRecord;
 }

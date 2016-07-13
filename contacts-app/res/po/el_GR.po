@@ -211,6 +211,12 @@ msgstr "Προεπιλογή"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Τηλέφωνο"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Δημιουργία ομάδας"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Δεν έχει αντιστοιχηθεί"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ορισμός ημερομηνίας"
 

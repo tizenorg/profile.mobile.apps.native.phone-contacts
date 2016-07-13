@@ -20,6 +20,7 @@
 
 #include "Contacts/Model/ContactArray.h"
 #include "Contacts/Model/ContactBoolField.h"
+#include "Contacts/Model/ContactIntField.h"
 #include "Contacts/Model/ContactDateField.h"
 #include "Contacts/Model/ContactEnumField.h"
 #include "Contacts/Model/ContactTextField.h"
@@ -39,6 +40,8 @@ ContactFieldPtr ContactFieldFactory::createField(ContactFieldContainer *parent,
 	switch(typeMetadata->type) {
 		case TypeBool:
 			field = new ContactBoolField(parent, metadata); break;
+		case TypeInt:
+			field = new ContactIntField(parent, metadata); break;
 		case TypeEnum:
 			field = new ContactEnumField(parent, metadata); break;
 		case TypeText:

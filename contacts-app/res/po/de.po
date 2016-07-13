@@ -211,6 +211,12 @@ msgstr "Standard"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Gruppe erstellen"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Nicht zugewiesen"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Datum einstellen"
 

@@ -211,6 +211,12 @@ msgstr "Lehenetsia"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Taldea sortu"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Esleitu gabe"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ezarri data"
 

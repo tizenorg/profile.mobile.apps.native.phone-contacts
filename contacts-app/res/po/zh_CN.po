@@ -211,6 +211,12 @@ msgstr "默认"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "手机"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "创建群组"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "未分配"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "设置日期"
 

@@ -211,6 +211,12 @@ msgstr "Alapértelmezett"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telefon"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Csoport létrehozása"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Nincs hozzárendelve"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Dátum beállítása"
 

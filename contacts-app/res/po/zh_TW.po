@@ -211,6 +211,12 @@ msgstr "預設"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "電話"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "建立群組"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "未指定"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "設定日期"
 
