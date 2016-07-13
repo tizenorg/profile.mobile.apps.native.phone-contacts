@@ -203,11 +203,11 @@ void SearchEngine::historyFor(HistoryForFn function)
 	std::string query;
 	query.reserve(m_Query.size());
 
-	for (size_t i = 0; i < m_History.size(); ++i) {
+	for (int i = 0; i < m_History.size(); ++i) {
 		auto &list = m_History[i];
 		query.append(1, m_Query[i]);
 
-		if (i < (size_t)m_LastFoundIndex && list.empty()) {
+		if (i < m_LastFoundIndex && list.empty()) {
 			continue;
 		}
 
