@@ -211,6 +211,12 @@ msgstr "Predeterminat"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telèfon"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Crear grup"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "No assignat"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Definir data"
 

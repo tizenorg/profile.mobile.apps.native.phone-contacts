@@ -211,6 +211,12 @@ msgstr "إفتراضي"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "الهاتف"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "إنشاء مجموعة"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "غير محددة"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "اختر التاريخ"
 

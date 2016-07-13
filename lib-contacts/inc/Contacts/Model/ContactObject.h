@@ -76,7 +76,7 @@ namespace Contacts
 			virtual void onUpdate(contacts_record_h record) override;
 
 		private:
-			static contacts_record_h getChildRecord(contacts_record_h record,
+			contacts_record_h getChildRecord(contacts_record_h record,
 					const ContactFieldMetadata &metadata);
 		};
 

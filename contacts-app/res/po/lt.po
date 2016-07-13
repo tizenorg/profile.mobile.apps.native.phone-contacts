@@ -211,6 +211,12 @@ msgstr "Numatytoji"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Telef."
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Sukurti grupę"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Nepriskirti"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Nustatykite datą"
 

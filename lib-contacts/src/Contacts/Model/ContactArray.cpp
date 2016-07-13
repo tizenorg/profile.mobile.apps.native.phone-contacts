@@ -24,6 +24,13 @@ using namespace Common;
 using namespace Common::Database;
 using namespace Contacts::Model;
 
+void ContactArray::reset()
+{
+	while (auto field = getField(0)) {
+		removeField(*field);
+	}
+}
+
 bool ContactArray::isChanged() const
 {
 	if (getFieldCount() < m_InitialCount) {

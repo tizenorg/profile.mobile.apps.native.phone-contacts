@@ -211,6 +211,12 @@ msgstr "Стандартний"
 msgid "IDS_PB_BUTTON_PHONE_ABB"
 msgstr "Телефон"
 
+msgid "IDS_PB_HEADER_CREATE_GROUP"
+msgstr "Створити групу"
+
+msgid "IDS_PB_BODY_NOT_ASSIGNED"
+msgstr "Не призначено"
+
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Оберіть дату"
 
