@@ -27,6 +27,12 @@ UniString::UniString(const char *utf8Str)
 	m_UniStr = fromUtf8(m_Utf8Str);
 }
 
+UniString::UniString(std::string utf8Str)
+	: m_Utf8Str(std::move(utf8Str))
+{
+	m_UniStr = fromUtf8(m_Utf8Str);
+}
+
 bool UniString::operator<(const UniString &that) const
 {
 	return i18n_ustring_compare_code_point_order(m_UniStr.c_str(), that.m_UniStr.c_str()) < 0;
@@ -55,6 +61,11 @@ bool UniString::operator<=(const UniString &that) const
 bool UniString::operator>=(const UniString &that) const
 {
 	return i18n_ustring_compare_code_point_order(m_UniStr.c_str(), that.m_UniStr.c_str()) >= 0;
+}
+
+UniString UniString::substr(size_t pos, size_t len) const
+{
+	return UniString(m_Utf8Str.substr(pos, len));
 }
 
 const UniString::I18nString &UniString::getI18nStr() const

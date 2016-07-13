@@ -83,7 +83,7 @@ Person::Person(contacts_record_h record)
 	  m_Record(record), m_DefaultContactRecord(nullptr),
 	  m_SortProperty(getSortProperty())
 {
-	m_IndexLetter = getRecordStr(m_Record, _contacts_person.display_name_index);
+	m_IndexLetter = getSortValue().substr(0, 1);
 }
 
 Person::~Person()
@@ -305,7 +305,7 @@ int Person::updateName(contacts_record_h record, unsigned sortProperty)
 			getRecordStr(nameRecord, sortProperty))) {
 		changes |= ChangedSortValue;
 		m_SortValue.clear();
-		m_IndexLetter = getRecordStr(record, _contacts_person.display_name_index);
+		m_IndexLetter = getSortValue().substr(0, 1);
 	}
 
 	m_SortProperty = sortProperty;
