@@ -31,10 +31,10 @@
 
 #include "App/AppControlRequest.h"
 #include "App/Path.h"
-#include "Ui/DatePopup.h"
 #include "Ui/Genlist.h"
 #include "Ui/Navigator.h"
 #include "Ui/Popup.h"
+#include "Ux/DatePopup.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 #include "Utils/Range.h"
@@ -291,7 +291,11 @@ void InputView::removeFieldItem(ContactFieldItem *item)
 void InputView::addEventField()
 {
 	time_t now = time(nullptr);
-	Ui::DatePopup *popup = new Ui::DatePopup(*localtime(&now));
+	Ux::DatePopup *popup = new Ux::DatePopup("%%d %%b %%Y", *localtime(&now));
+	popup->setStrings({
+		"IDS_TPLATFORM_HEADER_SET_DATE",
+		"IDS_ST_BUTTON_SET",
+		"IDS_PB_BUTTON_CANCEL" });
 	popup->setResultCallback([this](const tm &date) {
 		ContactObject &field = addField(FieldEvent);
 		field.getField<ContactDateField>(0)->setValue(date);
