@@ -38,9 +38,14 @@ namespace Contacts
 			 */
 			enum MatchedField
 			{
-				MatchedNone,  /**< Not matched */
-				MatchedName,  /**< Matched by name */
-				MatchedNumber /**< Matched by number */
+				MatchedNone,         /**< Not matched */
+				MatchedName,         /**< Matched by name */
+				MatchedNickname,     /**< Matched by nickname */
+				MatchedOrganization, /**< Matched by organization */
+				MatchedAddress,      /**< Matched by contact address */
+				MatchedEmail,        /**< Matched by contact email */
+				MatchedNote,         /**< Matched by note field */
+				MatchedNumber        /**< Matched by number */
 			};
 
 			SearchResult();

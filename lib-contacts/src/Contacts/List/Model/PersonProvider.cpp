@@ -221,11 +221,12 @@ bool PersonProvider::updatePerson(DataList::const_iterator personIt, contacts_re
 {
 	Person *person = static_cast<Person *>(*personIt);
 	if (personRecord) {
-		person->update(personRecord);
-
 		contacts_record_h contactRecord = nullptr;
 		contacts_db_get_record(_contacts_contact._uri, contactId, &contactRecord);
-		person->addContact(contactRecord);
+		int displayContactId = getRecordInt(personRecord, _contacts_person.display_contact_id);
+
+		person->addContact(contactRecord, displayContactId == getRecordInt(contactRecord, _contacts_contact.id));
+		person->update(personRecord);
 	} else {
 		deletePerson(personIt);
 	}

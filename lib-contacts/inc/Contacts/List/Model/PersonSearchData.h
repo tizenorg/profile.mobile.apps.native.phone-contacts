@@ -19,6 +19,8 @@
 #define CONTACTS_MODEL_PERSON_SEARCH_DATA_H
 
 #include "Contacts/Model/SearchData.h"
+#include "Contacts/List/Model/Person.h"
+#include <functional>
 
 namespace Contacts
 {
@@ -26,8 +28,6 @@ namespace Contacts
 	{
 		namespace Model
 		{
-			class Person;
-
 			class PersonSearchData : public Contacts::Model::SearchData
 			{
 			public:
@@ -54,9 +54,22 @@ namespace Contacts
 
 			private:
 				friend class PersonSearchProvider;
+				typedef Contacts::Model::SearchResultPtr (*Comparator)(const Person &, const std::string &);
 
-				Contacts::Model::SearchResultPtr compareName(const std::string &str);
-				Contacts::Model::SearchResultPtr compareNumber(const std::string &str);
+				static Contacts::Model::SearchResultPtr compareName(const Person &person, const std::string &str);
+				static Contacts::Model::SearchResultPtr compareNickname(const Person &person, const std::string &str);
+				static Contacts::Model::SearchResultPtr compareNote(const Person &person, const std::string &str);
+				static Contacts::Model::SearchResultPtr compareOrganization(const Person &person, const std::string &str);
+				static Contacts::Model::SearchResultPtr compareAddress(const Person &person, const std::string &str);
+				static Contacts::Model::SearchResultPtr compareEmail(const Person &person, const std::string &str);
+				static Contacts::Model::SearchResultPtr compareNumber(const Person &person, const std::string &str);
+
+				static Contacts::Model::SearchResultPtr caseCompare(const char *fieldValue, const std::string &str,
+						Contacts::Model::SearchResult::MatchedField matchedField);
+				static Contacts::Model::SearchResultPtr fieldsCompare(Person::ContactChildRecords records, unsigned propertyId,
+						const std::string &str, Contacts::Model::SearchResult::MatchedField matchedField);
+
+				static Comparator getCompFunc(size_t i);
 			};
 		}
 	}
