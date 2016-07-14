@@ -73,9 +73,11 @@ void Widget::onDestroy(widget_app_destroy_type reason)
 
 void Widget::onResize(int width, int height)
 {
-	bool isLarge = (getType() == WIDGET_SIZE_TYPE_4x4);
-	m_MaxCount = GRID_COLS * (isLarge ? LARGE_GRID_ROWS : SMALL_GRID_ROWS);
-
+	/* FIXME: onResize() called twice with non-standard size (720x720) on the second time */
+	if (!m_MaxCount) {
+		bool isLarge = (getType() == WIDGET_SIZE_TYPE_4x4);
+		m_MaxCount = GRID_COLS * (isLarge ? LARGE_GRID_ROWS : SMALL_GRID_ROWS);
+	}
 	if (m_Gengrid) {
 		elm_gengrid_item_size_set(m_Gengrid->getEvasObject(), getWidth() / GRID_COLS, Ui::getScaledValue(ITEM_H));
 	}
