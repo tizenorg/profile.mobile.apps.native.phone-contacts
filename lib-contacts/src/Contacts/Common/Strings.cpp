@@ -60,7 +60,7 @@ namespace
 		/* [FieldNickname]     = */ "IDS_PB_BODY_NICKNAME_ABB",
 		/* [FieldRelationship] = */ "IDS_PB_BODY_NAME",
 		/* [FieldRingtone]     = */ "IDS_PB_OPT_RINGTONE",
-		/* [FieldGroups]       = */ "IDS_PB_OPT_GROUPS"
+		/* [FieldGroups]       = */ "IDS_PB_OPT_GROUPS",
 
 		/* [CompanyFieldName]     = */ "IDS_PB_BODY_COMPANY_ABB",
 		/* [CompanyFieldJobTitle] = */ "IDS_PB_BODY_JOB_TITLE_ABB",
