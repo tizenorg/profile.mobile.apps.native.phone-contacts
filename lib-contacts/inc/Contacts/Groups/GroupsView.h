@@ -24,6 +24,7 @@
 namespace Ui
 {
 	class Genlist;
+	class GenlistItem;
 }
 
 namespace Contacts
@@ -31,6 +32,7 @@ namespace Contacts
 	namespace Groups
 	{
 		class GroupItem;
+		class CreateGroupItem;
 
 		namespace Model
 		{
@@ -45,20 +47,31 @@ namespace Contacts
 		public:
 			GroupsView();
 
+			/**
+			 * @brief Set whether the view is used for assigning contacts to groups.
+			 * @param[in]   isEnabled   Whether "Assign Mode" is enabled
+			 */
+			void setAssignMode(bool isEnabled);
+
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onMenuPressed() override;
 			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			void updateCreateItem();
 
 			void onInserted(::Model::DataItem &data);
 			GroupItem *createItem(Model::Group &group);
 			void insertItem(GroupItem *item);
 			void updateItem(GroupItem *item, int changes);
 			void deleteItem(GroupItem *item);
-			GroupItem *getNextItem(Model::Group &group);
+			Ui::GenlistItem *getNextItem(Model::Group &group);
 
 			Ui::Genlist *m_Genlist;
+			CreateGroupItem *m_CreateItem;
 			Model::GroupsProvider m_Provider;
+
+			bool m_IsAssignMode;
+			int m_NewGroupId;
 		};
 	}
 }
