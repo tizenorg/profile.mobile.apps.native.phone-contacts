@@ -95,8 +95,8 @@ void ContactArray::onUpdate(contacts_record_h record)
 	}
 
 	while (fieldIt != end()) {
-		fieldIt->update(nullptr);
-		ContactFieldContainer::removeField(*fieldIt);
+		auto field = ContactFieldContainer::removeField(*fieldIt);
+		field->update(nullptr);
 	}
 
 	while (recordIt != recordEnd) {

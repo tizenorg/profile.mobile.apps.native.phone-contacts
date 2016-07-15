@@ -126,6 +126,9 @@ void ContactField::onUpdated(ContactField &field, contacts_changed_e change)
 	}
 
 	if (m_Parent) {
+		if (&field != this) {
+			change = CONTACTS_CHANGE_UPDATED;
+		}
 		m_Parent->onChildUpdated(*this, change);
 	}
 }
