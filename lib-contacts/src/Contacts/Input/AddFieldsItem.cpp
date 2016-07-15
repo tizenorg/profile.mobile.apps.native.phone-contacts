@@ -79,7 +79,6 @@ Evas_Object *AddFieldsItem::createButton(Evas_Object *parent, const char *text,
 	elm_object_style_set(button, "circle");
 	elm_object_translatable_text_set(button, text);
 	elm_object_part_content_set(button, "elm.swallow.content", image);
-	elm_object_focus_allow_set(button, EINA_FALSE);
 	evas_object_smart_callback_add(button, "clicked", callback, data);
 
 	evas_object_size_hint_weight_set(button, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
@@ -95,6 +94,7 @@ Evas_Object *AddFieldsItem::createAddFieldButton(Evas_Object *parent,
 	Evas_Object *button = createButton(parent, Common::getContactFieldName(fieldId), iconPath,
 			makeCallback(&AddFieldsItem::onAddButtonPressed), this);
 	evas_object_smart_data_set(button, (void *) fieldId);
+	elm_object_focus_allow_set(button, EINA_FALSE);
 	elm_object_disabled_set(button, !m_AddFieldStates[fieldId]);
 
 	m_Buttons[fieldId] = button;
