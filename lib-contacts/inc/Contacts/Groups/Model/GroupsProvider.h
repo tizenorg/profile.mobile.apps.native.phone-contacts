@@ -45,6 +45,8 @@ namespace Contacts
 
 			private:
 				void onChanged(const char *uri);
+				void onMembersChanged(const char *uri);
+
 				void insertGroup(int id);
 				void updateGroup(DataList::const_iterator groupIt);
 				void deleteGroup(DataList::const_iterator groupIt);
@@ -53,6 +55,7 @@ namespace Contacts
 				DataList::const_iterator findGroup(int id);
 
 				int m_DbVersion;
+				int m_MembersDbVersion;
 				DataList m_List;
 				bool m_IsFilled;
 			};

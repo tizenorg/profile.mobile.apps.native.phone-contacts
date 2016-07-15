@@ -17,6 +17,7 @@
 
 #include "Contacts/Groups/AddMembersItem.h"
 
+#include "Contacts/Groups/Model/Queries.h"
 #include "Contacts/Groups/Model/MembersProvider.h"
 #include "Contacts/List/ListView.h"
 #include "GroupItemLayout.h"
@@ -83,7 +84,7 @@ void AddMembersItem::onSelected()
 	}
 
 	MembersProvider *provider = new MembersProvider(m_GroupId, MembersProvider::ModeExclude);
-	m_Count = provider->getMembersCount();
+	m_Count = getDbMembersCount(m_GroupId);
 	elm_genlist_item_fields_update(getObjectItem(),
 			PART_GROUP_ADD_MEMBERS_COUNTER, ELM_GENLIST_ITEM_FIELD_TEXT);
 	m_ContactIdList.clear();

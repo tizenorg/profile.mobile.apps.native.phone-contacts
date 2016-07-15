@@ -80,6 +80,18 @@ namespace Contacts
 			 */
 			void setSectionVisibility(SectionId section, bool isVisible);
 
+			/**
+			 * @brief Enable/Disable add button
+			 * @param[in]   isEnabled   If true - Add button is enabled, false - disabled
+			 */
+			void enableAddButton(bool isEnabled);
+
+			/**
+			 * @brief Set help text for no content layout.
+			 * @param[in]   text    Help text
+			 */
+			void setNoContentHelpText(const char *text);
+
 		private:
 			struct Section
 			{
@@ -164,10 +176,14 @@ namespace Contacts
 			Evas_Object *m_Index;
 			Evas_Object *m_AddButton;
 
+			std::string m_NoContentHelpText;
+
 			bool m_IsCurrentView;
 			bool m_IsSearching;
 			bool m_IsEmpty;
+			bool m_IsAddButton;
 			std::vector<State> m_StateHistory;
+
 
 			SearchItem *m_SearchItem;
 			Section m_Sections[SectionMax];

@@ -26,6 +26,11 @@
 
 namespace Contacts
 {
+	namespace List
+	{
+		class ListView;
+	}
+
 	namespace Groups
 	{
 		/**
@@ -55,6 +60,9 @@ namespace Contacts
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual Ux::SelectResult getDefaultResult() const override;
+			virtual void onSelected() override;
+
+			void changeListTitle(List::ListView *view);
 
 			Model::Group &m_Group;
 		};

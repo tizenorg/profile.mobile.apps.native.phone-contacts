@@ -17,8 +17,19 @@
 
 #include "Contacts/Groups/GroupItem.h"
 
+#include "Contacts/Groups/Model/Queries.h"
+#include "Contacts/Groups/Model/MembersProvider.h"
+#include "Contacts/List/ListView.h"
+
+#include "Common/Strings.h"
+#include "Ui/Navigator.h"
+#include "Utils/Logger.h"
+
+#define BUFFER_SIZE 1024
+
 using namespace Contacts::Groups;
 using namespace Contacts::Groups::Model;
+using namespace Contacts::List;
 
 GroupItem::GroupItem(Group &group)
 	: m_Group(group)
@@ -41,7 +52,9 @@ void GroupItem::update(int changes)
 char *GroupItem::getText(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_GROUP_NAME) == 0) {
-		return Utils::safeDup(m_Group.getName());
+		char title[BUFFER_SIZE] = { 0, };
+		snprintf(title, sizeof(title), "%s (%d)", m_Group.getName(), m_Group.getMembersCount());
+		return strdup(title);
 	}
 	return nullptr;
 }
@@ -58,4 +71,46 @@ Evas_Object *GroupItem::getContent(Evas_Object *parent, const char *part)
 Ux::SelectResult GroupItem::getDefaultResult() const
 {
 	return { 0, &m_Group };
+}
+
+void GroupItem::onSelected()
+{
+	if (getSelectMode() != Ux::SelectNone) {
+		SelectItem::onSelected();
+		return;
+	}
+	Ui::Navigator *navigator = getParent()->findParent<Ui::Navigator>();
+	if (!navigator) {
+		return;
+	}
+
+	MembersProvider *provider = new MembersProvider(m_Group.getId());
+	ListView *view = new ListView(provider);
+	provider->setUpdateFinishedCallback(std::bind(&GroupItem::changeListTitle, this, view));
+
+	changeListTitle(view);
+	view->enableAddButton(false);
+	view->setNoContentHelpText("IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE");
+	for (size_t i = ListView::SectionFirst; i < ListView::SectionMax; ++i) {
+		view->setSectionVisibility(static_cast<ListView::SectionId>(i), false);
+	}
+
+	navigator->navigateTo(view);
+}
+
+void GroupItem::changeListTitle(ListView *view)
+{
+	RETM_IF(!view, "view is nullptr");
+	auto strings = Common::getSelectViewStrings();
+
+	char title[BUFFER_SIZE] = { 0, };
+	int count = getDbMembersCount(m_Group.getId());
+	if (count) {
+		snprintf(title, sizeof(title), "%s (%d)", m_Group.getName(), count);
+	} else {
+		snprintf(title, sizeof(title), "%s", m_Group.getName());
+	}
+
+	strings.titleDefault = strdup(title);
+	view->setStrings(strings);
 }
