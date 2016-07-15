@@ -80,7 +80,7 @@ namespace Contacts
 		protected:
 			ContactField &addField(contacts_record_h record,
 					const ContactFieldMetadata &metadata);
-			void removeField(ContactField &field);
+			ContactFieldPtr removeField(ContactField &field);
 
 		private:
 			friend ContactField;

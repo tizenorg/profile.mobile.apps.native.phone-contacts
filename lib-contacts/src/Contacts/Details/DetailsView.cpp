@@ -17,6 +17,7 @@
 
 #include "Contacts/Details/DetailsView.h"
 #include "Contacts/Details/BasicInfoItem.h"
+#include "Contacts/Details/GroupsFieldItem.h"
 #include "Contacts/Details/MultilineFieldItem.h"
 #include "Contacts/Details/RingtoneFieldItem.h"
 #include "Contacts/Details/TypedActionFieldItem.h"
@@ -63,7 +64,7 @@ namespace
 		/* [FieldNickname]     = */ true,
 		/* [FieldRelationship] = */ true,
 		/* [FieldRingtone]     = */ true,
-		/* [FieldGroups]       = */ false
+		/* [FieldGroups]       = */ true
 	};
 }
 
@@ -194,6 +195,8 @@ FieldItem *DetailsView::createFieldItem(ContactObject &field)
 		item = new FieldItem(field);
 	} else if (fieldId == FieldRingtone) {
 		item = new RingtoneFieldItem(field);
+	} else if (fieldId == FieldGroups) {
+		item = new GroupsFieldItem(field);
 	} else if (field.getInterfaces() & InterfaceTypedObject) {
 		item = new TypedFieldItem(field);
 	} else {

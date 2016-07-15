@@ -81,17 +81,24 @@ ContactField &ContactFieldContainer::addField(contacts_record_h record,
 	return *m_Fields.back();
 }
 
-void ContactFieldContainer::removeField(ContactField &field)
+ContactFieldPtr ContactFieldContainer::removeField(ContactField &field)
 {
-	auto comp = [&field](ContactFieldPtr &ptr) {
-		return ptr.get() == &field;
-	};
-
 	if (field.isFilled()) {
 		onChildFilled(field, false);
 	}
 
-	m_Fields.erase(std::remove_if(m_Fields.begin(), m_Fields.end(), comp), m_Fields.end());
+	auto it = std::find_if(m_Fields.begin(), m_Fields.end(),
+		[&field](ContactFieldPtr &fieldPtr) {
+			return fieldPtr.get() == &field;
+		});
+
+	if (it != m_Fields.end()) {
+		auto fieldPtr = std::move(*it);
+		m_Fields.erase(it);
+		return fieldPtr;
+	}
+
+	return nullptr;
 }
 
 void ContactFieldContainer::onChildUpdated(ContactField &field, contacts_changed_e change)
