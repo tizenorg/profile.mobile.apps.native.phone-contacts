@@ -17,6 +17,7 @@
 
 #include "Contacts/Groups/GroupsView.h"
 
+#include "Contacts/Groups/CreateGroupItem.h"
 #include "Contacts/Groups/GroupItem.h"
 #include "Contacts/Groups/InputView.h"
 #include "Contacts/Groups/Model/Group.h"
@@ -31,7 +32,8 @@ using namespace Contacts::Groups::Model;
 using namespace std::placeholders;
 
 GroupsView::GroupsView()
-	: m_Genlist(nullptr)
+	: m_Genlist(nullptr), m_CreateItem(nullptr),
+	  m_IsAssignMode(false), m_NewGroupId(0)
 {
 	auto strings = Common::getSelectViewStrings();
 	strings.titleDefault = "IDS_PB_HEADER_GROUPS_ABB";
@@ -39,6 +41,12 @@ GroupsView::GroupsView()
 	setStrings(strings);
 
 	m_Provider.setInsertCallback(std::bind(&GroupsView::onInserted, this, _1));
+}
+
+void GroupsView::setAssignMode(bool isEnabled)
+{
+	m_IsAssignMode = isEnabled;
+	updateCreateItem();
 }
 
 Evas_Object *GroupsView::onCreate(Evas_Object *parent)
@@ -51,11 +59,16 @@ Evas_Object *GroupsView::onCreate(Evas_Object *parent)
 		insertItem(createItem(*group));
 	}
 
+	updateCreateItem();
 	return m_Genlist->getEvasObject();
 }
 
 void GroupsView::onMenuPressed()
 {
+	if (getSelectMode() != Ux::SelectNone) {
+		return;
+	}
+
 	Ui::Menu *menu = new Ui::Menu();
 	menu->create(getEvasObject());
 
@@ -71,9 +84,39 @@ void GroupsView::onSelectAllInsert(Ui::GenlistItem *item)
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 }
 
+void GroupsView::updateCreateItem()
+{
+	if (!m_Genlist) {
+		return;
+	}
+
+	if (m_IsAssignMode) {
+		if (!m_CreateItem) {
+			m_CreateItem = new CreateGroupItem();
+			m_CreateItem->setResultCallback([this](int groupId) {
+				m_NewGroupId = groupId;
+			});
+			m_Genlist->insert(m_CreateItem);
+			elm_genlist_item_select_mode_set(m_CreateItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+		}
+	} else {
+		if (m_CreateItem) {
+			delete m_CreateItem;
+			m_CreateItem = nullptr;
+		}
+	}
+}
+
 void GroupsView::onInserted(::Model::DataItem &data)
 {
-	insertItem(createItem(static_cast<Group &>(data)));
+	Group &group = static_cast<Group &>(data);
+	GroupItem *item = createItem(group);
+	insertItem(item);
+
+	if (m_NewGroupId == group.getId()) {
+		m_NewGroupId = 0;
+		item->setChecked(true);
+	}
 }
 
 GroupItem *GroupsView::createItem(Group &group)
@@ -86,8 +129,7 @@ GroupItem *GroupsView::createItem(Group &group)
 
 void GroupsView::insertItem(GroupItem *item)
 {
-	GroupItem *nextItem = getNextItem(item->getGroup());
-	m_Genlist->insert(item, nullptr, nextItem);
+	m_Genlist->insert(item, nullptr, getNextItem(item->getGroup()));
 	addSelectItem(item);
 }
 
@@ -105,7 +147,7 @@ void GroupsView::deleteItem(GroupItem *item)
 	delete item;
 }
 
-GroupItem *GroupsView::getNextItem(Group &group)
+Ui::GenlistItem *GroupsView::getNextItem(Group &group)
 {
 	for (auto &&item : getSelectItems()) {
 		GroupItem *groupItem = static_cast<GroupItem *>(item);
@@ -113,5 +155,5 @@ GroupItem *GroupsView::getNextItem(Group &group)
 			return groupItem;
 		}
 	}
-	return nullptr;
+	return m_CreateItem;
 }

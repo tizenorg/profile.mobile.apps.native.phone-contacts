@@ -97,6 +97,7 @@ void ContactGroupsFieldItem::onSelected()
 	}
 
 	auto view = new GroupsView();
+	view->setAssignMode(true);
 	view->setSelectMode(Ux::SelectMulti);
 	view->setSelectCallback(std::bind(&ContactGroupsFieldItem::onGroupsSelected, this, _1));
 	navigator->navigateTo(view);
