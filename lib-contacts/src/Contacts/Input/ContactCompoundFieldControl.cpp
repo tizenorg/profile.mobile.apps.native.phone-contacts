@@ -48,6 +48,7 @@ void ContactCompoundFieldControl::updateEntryLayout()
 		elm_entry_autocapital_type_set(getEntry(), ELM_AUTOCAPITAL_TYPE_WORD);
 	} else {
 		ContactTextFieldControl::updateEntryLayout();
+		elm_entry_autocapital_type_set(getEntry(), ELM_AUTOCAPITAL_TYPE_SENTENCE);
 	}
 }
 
