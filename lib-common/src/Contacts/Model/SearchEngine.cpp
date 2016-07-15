@@ -207,7 +207,7 @@ void SearchEngine::historyFor(HistoryForFn function)
 		auto &list = m_History[i];
 		query.append(1, m_Query[i]);
 
-		if (i < (size_t)m_LastFoundIndex && list.empty()) {
+		if ((int) i < m_LastFoundIndex && list.empty()) {
 			continue;
 		}
 
