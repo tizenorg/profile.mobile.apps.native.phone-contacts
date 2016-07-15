@@ -494,6 +494,8 @@ SearchItem *ListView::createSearchItem()
 Evas_Object *ListView::createAddButton(Evas_Object *parent)
 {
 	Evas_Object *floatButton = eext_floatingbutton_add(parent);
+	elm_object_tree_focus_allow_set(floatButton, EINA_FALSE);
+
 	Evas_Object *button = elm_button_add(floatButton);
 	elm_object_part_content_set(floatButton, "button1", button);
 	evas_object_smart_callback_add(button, "clicked",
