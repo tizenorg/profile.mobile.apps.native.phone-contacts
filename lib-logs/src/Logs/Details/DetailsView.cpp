@@ -241,6 +241,8 @@ void DetailsView::onGroupChanged(LogGroup *group, LogGroupItem *groupItem, int t
 		if (m_LogProvider.getLogGroupList().empty()) {
 			m_BasicInfoItem->updateGroup(nullptr);
 			m_ActionItem->updateGroup(nullptr);
+			delete m_BasicInfoItem;
+			delete m_ActionItem;
 			getPage()->close();
 			return;
 		}

@@ -48,8 +48,11 @@ void ContactImageFieldControl::onCreated()
 void ContactImageFieldControl::onImageResult(app_control_h request, app_control_h reply,
 		app_control_result_e result)
 {
-	m_Field.setValue(App::getSingleExtraData(reply, APP_CONTROL_DATA_SELECTED).c_str());
-	update();
+	std::string value = App::getSingleExtraData(reply, APP_CONTROL_DATA_SELECTED);
+	if (!value.empty()) {
+		m_Field.setValue(value.c_str());
+		update();
+	}
 }
 
 void ContactImageFieldControl::onImagePressed(Evas_Object *image, void *eventInfo)

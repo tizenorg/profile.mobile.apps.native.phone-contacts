@@ -47,8 +47,12 @@ private:
 	virtual void onRequest(Operation operation, app_control_h request) override;
 
 	static unsigned getBadgeCount(const char *package);
+
 	void saveLastTab();
 	static TabId getLastTab();
+
+	void saveLogsFilter();
+	static int getLogsFilter();
 
 	Ui::Navigator *m_Navigator;
 	Ui::View *m_Tabs[TabMax];

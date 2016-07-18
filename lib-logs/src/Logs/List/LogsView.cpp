@@ -66,6 +66,11 @@ LogsView::~LogsView()
 			{ makeCallback(&LogsView::onSettingsChanged), this });
 }
 
+LogsView::FilterType LogsView::getFilterType() const
+{
+	return m_FilterType;
+}
+
 Evas_Object *LogsView::onCreate(Evas_Object *parent)
 {
 	Evas_Object *layout = elm_layout_add(parent);
@@ -285,6 +290,9 @@ void LogsView::onSettingsChanged(system_settings_key_e key)
 
 	if (key == SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY ||
 			key == SYSTEM_SETTINGS_KEY_TIME_CHANGED) {
+		for (auto &&item : *m_Genlist) {
+			removeSelectItem(static_cast<Ux::SelectItem *>(item));
+		}
 		elm_genlist_clear(m_Genlist->getEvasObject());
 		m_LogProvider.resetLogGroups();
 		fillGenlist();
