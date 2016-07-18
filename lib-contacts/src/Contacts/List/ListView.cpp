@@ -713,4 +713,13 @@ void ListView::onSearchChanged(const char *str)
 	m_SearchProvider.search(str);
 	elm_genlist_filter_set(m_Genlist->getEvasObject(), (void *) str);
 	updateEmptyState();
+
+	if (!isSearching) {
+		for (auto &&group : m_PersonGroups) {
+			for (auto &&item : *group.second) {
+				PersonItem *personItem = static_cast<PersonItem *>(item);
+				personItem->setExcluded(false);
+			}
+		}
+	}
 }

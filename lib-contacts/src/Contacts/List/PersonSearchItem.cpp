@@ -62,11 +62,9 @@ Eina_Bool PersonSearchItem::compare(Evas_Object *parent, void *filter)
 	const char *str = (const char *) filter;
 	if (str && *str) {
 		bool isEqual = (bool) m_SearchData.getSearchResult();
-		setExcluded(!isEqual);
 		return isEqual;
 	}
 
-	setExcluded(false);
 	return true;
 }
 
@@ -81,4 +79,5 @@ void PersonSearchItem::onSearchDataChanged()
 {
 	elm_genlist_item_fields_update(getObjectItem(), PART_CONTACT_NAME, ELM_GENLIST_ITEM_FIELD_TEXT);
 	elm_genlist_item_fields_update(getObjectItem(), PART_SUBTEXT, ELM_GENLIST_ITEM_FIELD_TEXT);
+	setExcluded(m_SearchData.getSearchResult() == nullptr);
 }
