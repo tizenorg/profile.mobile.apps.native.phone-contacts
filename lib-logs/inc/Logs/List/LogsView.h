@@ -60,6 +60,11 @@ namespace Logs
 			virtual ~LogsView() override;
 
 			/**
+			 * @return Current filter type.
+			 */
+			FilterType getFilterType() const;
+
+			/**
 			 * @brief Reset missed calls
 			 */
 			void resetMissedCalls();

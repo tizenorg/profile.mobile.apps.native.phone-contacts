@@ -66,6 +66,11 @@ LogsView::~LogsView()
 			{ makeCallback(&LogsView::onSettingsChanged), this });
 }
 
+LogsView::FilterType LogsView::getFilterType() const
+{
+	return m_FilterType;
+}
+
 Evas_Object *LogsView::onCreate(Evas_Object *parent)
 {
 	Evas_Object *layout = elm_layout_add(parent);

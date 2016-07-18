@@ -29,7 +29,12 @@
 #define APP_CONTROL_PHONE_APPID "org.tizen.phone"
 #define APP_CONTROL_URI_DIAL "tel:"
 
-#define PREFERENCE_KEY_LAST_TAB "last_tab"
+#define PREFERENCE_KEY_LAST_TAB     "last_tab"
+#define PREFERENCE_KEY_LOGS_FILTER  "logs_filter"
+
+using Contacts::List::ListView;
+using Logs::List::LogsView;
+using Phone::Dialer::DialerView;
 
 OperationDefaultController::OperationDefaultController()
 	: OperationController(OperationDefault | OperationDial, true),
@@ -39,6 +44,7 @@ OperationDefaultController::OperationDefaultController()
 
 OperationDefaultController::~OperationDefaultController()
 {
+	saveLogsFilter();
 	saveLastTab();
 }
 
@@ -47,9 +53,9 @@ void OperationDefaultController::onCreate()
 	m_Navigator = new Ui::TabView();
 	getNavigator()->navigateTo(m_Navigator);
 
-	m_Tabs[TabDialer] = new Phone::Dialer::DialerView();
-	m_Tabs[TabLogs] = new Logs::List::LogsView();
-	m_Tabs[TabContacts] = new Contacts::List::ListView();
+	m_Tabs[TabDialer] = new DialerView();
+	m_Tabs[TabLogs] = new LogsView(LogsView::FilterType(getLogsFilter()));
+	m_Tabs[TabContacts] = new ListView();
 
 	for (auto &&tab : m_Tabs) {
 		m_Navigator->appendView(tab);
@@ -63,13 +69,13 @@ void OperationDefaultController::onRequest(Operation operation, app_control_h re
 
 	TabId selectedTab = TabContacts;
 	if (operation == OperationDial) {
-		auto dialer = static_cast<Phone::Dialer::DialerView *>(m_Tabs[TabDialer]);
+		auto dialer = static_cast<DialerView *>(m_Tabs[TabDialer]);
 		dialer->setNumber(getUrn(APP_CONTROL_URI_DIAL));
 		selectedTab = TabDialer;
 	} else if (appId && strcmp(appId, APP_CONTROL_PHONE_APPID) == 0) {
 		if (getBadgeCount(APP_CONTROL_PHONE_APPID) > 0) {
 			selectedTab = TabLogs;
-			static_cast<Logs::List::LogsView *>(m_Tabs[TabLogs])->resetMissedCalls();
+			static_cast<LogsView *>(m_Tabs[TabLogs])->resetMissedCalls();
 		} else {
 			selectedTab = getLastTab();
 		}
@@ -106,4 +112,17 @@ OperationDefaultController::TabId OperationDefaultController::getLastTab()
 	TabId lastTab = TabDialer;
 	preference_get_int(PREFERENCE_KEY_LAST_TAB, (int *) &lastTab);
 	return lastTab;
+}
+
+void OperationDefaultController::saveLogsFilter()
+{
+	auto logsView = static_cast<LogsView *>(m_Tabs[TabLogs]);
+	preference_set_int(PREFERENCE_KEY_LOGS_FILTER, (int) logsView->getFilterType());
+}
+
+int OperationDefaultController::getLogsFilter()
+{
+	int filterType = LogsView::FilterAll;
+	preference_get_int(PREFERENCE_KEY_LOGS_FILTER, &filterType);
+	return filterType;
 }
