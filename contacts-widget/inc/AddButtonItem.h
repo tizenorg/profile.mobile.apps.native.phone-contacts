@@ -18,10 +18,13 @@
 #ifndef ADD_BUTTON_ITEM_H
 #define ADD_BUTTON_ITEM_H
 
-#include "Ui/GengridItem.h"
+#include "Ui/GenItem.h"
 
-class AddButtonItem : public Ui::GengridItem
+class AddButtonItem : public Ui::GenItem
 {
+public:
+	AddButtonItem();
+
 private:
 	virtual Elm_Gengrid_Item_Class *getItemClass() const override;
 	virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;

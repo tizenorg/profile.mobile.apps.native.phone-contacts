@@ -37,7 +37,7 @@ namespace Contacts
 
 		protected:
 			/**
-			 * @see GenlistItem::getContent()
+			 * @see GenItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
@@ -48,7 +48,7 @@ namespace Contacts
 			virtual void onInserted() override;
 
 			/**
-			 * @see GenlistItem::onExpanded()
+			 * @see GenItem::onExpanded()
 			 */
 			virtual void onExpanded(bool isExpanded) override;
 

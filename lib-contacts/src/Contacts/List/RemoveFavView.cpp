@@ -60,12 +60,12 @@ void RemoveFavView::onDestroy()
 	}
 }
 
-void RemoveFavView::onSelectAllInsert(Ui::GenlistItem *item)
+void RemoveFavView::onSelectAllInsert(Ui::GenItem *item)
 {
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 }
 
-Ui::GenlistGroupItem *RemoveFavView::createListSection(SectionId sectionId)
+Ui::GenGroupItem *RemoveFavView::createListSection(SectionId sectionId)
 {
 	const char *title = nullptr;
 	PersonProvider *provider = nullptr;
@@ -102,7 +102,7 @@ void RemoveFavView::createSections()
 	}
 }
 
-void RemoveFavView::insertSection(Ui::GenlistGroupItem *section, SectionId sectionId)
+void RemoveFavView::insertSection(Ui::GenGroupItem *section, SectionId sectionId)
 {
 	m_Genlist->insert(section, nullptr, getNextSectionItem(sectionId));
 	elm_genlist_item_select_mode_set(section->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
@@ -110,7 +110,7 @@ void RemoveFavView::insertSection(Ui::GenlistGroupItem *section, SectionId secti
 
 void RemoveFavView::updateSection(SectionId sectionId)
 {
-	Ui::GenlistGroupItem *section = m_Sections[sectionId];
+	Ui::GenGroupItem *section = m_Sections[sectionId];
 
 	if (!section->isEmpty()) {
 		if (!section->isInserted()) {
@@ -130,7 +130,7 @@ void RemoveFavView::updateSections()
 	}
 }
 
-Ui::GenlistItem *RemoveFavView::getNextSectionItem(SectionId sectionId)
+Ui::GenItem *RemoveFavView::getNextSectionItem(SectionId sectionId)
 {
 	for (unsigned section = sectionId + 1; section < SectionMax; ++section) {
 		if (m_Sections[section] && m_Sections[section]->isInserted()) {

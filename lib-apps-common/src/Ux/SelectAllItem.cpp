@@ -39,7 +39,7 @@ char *SelectAllItem::getText(Evas_Object *parent, const char *part)
 Evas_Object *SelectAllItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, "elm.swallow.end") == 0) {
-		return GenlistCheckItem::getContent(parent, part);
+		return CheckItem::getContent(parent, part);
 	}
 
 	return nullptr;

@@ -18,7 +18,7 @@
 #ifndef CONTACTS_SETTINGS_NAME_FORMAT_ITEM_H
 #define CONTACTS_SETTINGS_NAME_FORMAT_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 #include <contacts_setting.h>
 
 namespace Contacts
@@ -28,7 +28,7 @@ namespace Contacts
 		/**
 		 * @brief Name format item
 		 */
-		class NameFormatItem : public Ui::GenlistItem
+		class NameFormatItem : public Ui::GenItem
 		{
 		public:
 			NameFormatItem();

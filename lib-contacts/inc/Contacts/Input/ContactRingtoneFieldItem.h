@@ -34,7 +34,7 @@ namespace Contacts
 			using ContactFieldItem::ContactFieldItem;
 
 			/**
-			 * @see GenlistItem::isFocusable()
+			 * @see GenItem::isFocusable()
 			 */
 			virtual bool isFocusable() const override;
 

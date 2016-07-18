@@ -24,7 +24,7 @@
 namespace Ui
 {
 	class Genlist;
-	class GenlistGroupItem;
+	class GenGroupItem;
 }
 
 namespace Contacts
@@ -56,20 +56,20 @@ namespace Contacts
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onDestroy() override;
 
-			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onSelectAllInsert(Ui::GenItem *item) override;
 
-			Ui::GenlistGroupItem *createListSection(SectionId sectionId);
+			Ui::GenGroupItem *createListSection(SectionId sectionId);
 			void createSections();
-			void insertSection(Ui::GenlistGroupItem *section, SectionId sectionId);
+			void insertSection(Ui::GenGroupItem *section, SectionId sectionId);
 			void updateSection(SectionId sectionId);
 			void updateSections();
 
-			Ui::GenlistItem *getNextSectionItem(SectionId sectionId);
+			Ui::GenItem *getNextSectionItem(SectionId sectionId);
 
 			void onSectionUpdated(ContactItem *item, ::Common::ChangeType change, SectionId sectionId);
 
 			Ui::Genlist *m_Genlist;
-			Ui::GenlistGroupItem *m_Sections[SectionMax];
+			Ui::GenGroupItem *m_Sections[SectionMax];
 		};
 	}
 }

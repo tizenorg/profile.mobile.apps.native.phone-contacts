@@ -58,7 +58,7 @@ Evas_Object *VcardView::onCreate(Evas_Object *parent)
 	return m_Genlist->getEvasObject();
 }
 
-void VcardView::onSelectAllInsert(Ui::GenlistItem *item)
+void VcardView::onSelectAllInsert(Ui::GenItem *item)
 {
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 }

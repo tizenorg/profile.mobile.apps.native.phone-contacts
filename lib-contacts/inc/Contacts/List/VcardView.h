@@ -46,7 +46,7 @@ namespace Contacts
 
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
-			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onSelectAllInsert(Ui::GenItem *item) override;
 
 			bool onSelectResult(Ux::SelectResults results);
 			void onImportFinished(Settings::ImportController *importer);

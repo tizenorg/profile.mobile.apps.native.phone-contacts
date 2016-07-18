@@ -62,7 +62,7 @@ void ContactCompoundFieldItem::onExpanded(bool isExpanded)
 	auto control = static_cast<ContactCompoundFieldControl *>(getFieldControl());
 	control->save();
 
-	GenlistGroupItem::onExpanded(isExpanded);
+	GenGroupItem::onExpanded(isExpanded);
 	updateExpandIcon(isExpanded);
 	control->setCompoundMode(!isExpanded);
 

@@ -18,14 +18,14 @@
 #ifndef UX_SELECT_ALL_ITEM_H
 #define UX_SELECT_ALL_ITEM_H
 
-#include "Ui/GenlistCheckItem.h"
+#include "Ui/CheckItem.h"
 
 namespace Ux
 {
 	/**
 	 * @brief "Select all" genlist item
 	 */
-	class SelectAllItem : public Ui::GenlistCheckItem
+	class SelectAllItem : public Ui::CheckItem
 	{
 	public:
 		/**
@@ -36,12 +36,12 @@ namespace Ux
 
 	protected:
 		/**
-		 * @see GenlistItem::getText()
+		 * @see GenItem::getText()
 		 */
 		virtual char *getText(Evas_Object *parent, const char *part) override;
 
 		/**
-		 * @see GenlistItem::getContent()
+		 * @see GenItem::getContent()
 		 */
 		virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 

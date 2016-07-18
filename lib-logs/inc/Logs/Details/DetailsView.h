@@ -66,7 +66,7 @@ namespace Logs
 			virtual void onMenuPressed() override;
 
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
-			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onSelectAllInsert(Ui::GenItem *item) override;
 
 			void fillGenList();
 			void insertBasicInfoItem();

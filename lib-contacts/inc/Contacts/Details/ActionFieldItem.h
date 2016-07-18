@@ -41,12 +41,12 @@ namespace Contacts
 
 		protected:
 			/**
-			 * @see GenlistItem::getContent()
+			 * @see GenItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::onSelected()
+			 * @see GenItem::onSelected()
 			 */
 			virtual void onSelected() override;
 

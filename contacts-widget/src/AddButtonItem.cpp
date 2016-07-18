@@ -26,6 +26,11 @@ namespace
 	const std::string layoutPath = App::getResourcePath(WIDGET_LAYOUT_EDJ);
 }
 
+AddButtonItem::AddButtonItem()
+	: GenItem(Ui::GenContainer::TypeGengrid)
+{
+}
+
 Elm_Gengrid_Item_Class *AddButtonItem::getItemClass() const
 {
 	static Elm_Gengrid_Item_Class itc = createItemClass(WIDGET_ITEM_STYLE);

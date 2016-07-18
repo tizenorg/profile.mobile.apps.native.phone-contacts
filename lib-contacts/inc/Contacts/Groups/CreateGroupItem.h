@@ -18,7 +18,7 @@
 #ifndef CONTACTS_GROUPS_CREATE_GROUP_ITEM_H
 #define CONTACTS_GROUPS_CREATE_GROUP_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 
 namespace Contacts
 {
@@ -27,7 +27,7 @@ namespace Contacts
 		/**
 		 * @brief "Create Group" genlist item.
 		 */
-		class CreateGroupItem : public Ui::GenlistItem
+		class CreateGroupItem : public Ui::GenItem
 		{
 		public:
 			/**

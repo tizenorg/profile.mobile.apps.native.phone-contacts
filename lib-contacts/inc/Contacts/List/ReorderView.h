@@ -72,7 +72,7 @@ namespace Contacts
 			Evas_Object *m_CancelButton;
 			Evas_Object *m_DoneButton;
 			Ui::Genlist *m_Genlist;
-			Ui::GenlistItem *m_Section;
+			Ui::GenItem *m_Section;
 			std::vector<ReorderData> m_ReorderDatas;
 			ReorderItemCallback m_OnItemReordered;
 		};

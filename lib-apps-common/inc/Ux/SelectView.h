@@ -26,7 +26,7 @@
 
 namespace Ui
 {
-	class GenlistItem;
+	class GenItem;
 }
 
 namespace Ux
@@ -165,7 +165,7 @@ namespace Ux
 		 * @brief Called when "Select All" item should be inserted.
 		 * @param[in]   item    "Select All" genlist item
 		 */
-		virtual void onSelectAllInsert(Ui::GenlistItem *item) { }
+		virtual void onSelectAllInsert(Ui::GenItem *item) { }
 
 		/**
 		 * @brief Called when selection mode was changed.

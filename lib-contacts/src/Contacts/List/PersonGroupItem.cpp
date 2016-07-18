@@ -44,7 +44,7 @@ Elm_Object_Item *PersonGroupItem::getIndexItem() const
 void PersonGroupItem::setIndexItem(Elm_Object_Item *item)
 {
 	m_IndexItem = item;
-	elm_object_item_data_set(m_IndexItem, static_cast<GenlistItem *>(this));
+	elm_object_item_data_set(m_IndexItem, static_cast<GenItem *>(this));
 }
 
 char *PersonGroupItem::getText(Evas_Object *parent, const char *part)

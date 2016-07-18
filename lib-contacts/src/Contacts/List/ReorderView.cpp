@@ -21,6 +21,7 @@
 #include "Contacts/List/ReorderView.h"
 #include "Contacts/Model/ContactData.h"
 
+#include "Ui/Genlist.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 

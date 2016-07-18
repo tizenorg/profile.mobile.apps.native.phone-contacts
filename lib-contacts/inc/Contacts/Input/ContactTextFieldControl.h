@@ -24,7 +24,7 @@
 
 namespace Ui
 {
-	class GenlistItem;
+	class GenItem;
 }
 
 namespace Contacts
@@ -42,7 +42,7 @@ namespace Contacts
 			 * @param[in]   parent  Parent genlist item
 			 * @param[in]   field   Contact text field to edit
 			 */
-			ContactTextFieldControl(Ui::GenlistItem *parent,
+			ContactTextFieldControl(Ui::GenItem *parent,
 					Model::ContactTextField &field);
 			virtual ~ContactTextFieldControl() override;
 
@@ -80,8 +80,8 @@ namespace Contacts
 
 		private:
 			virtual void onCreated() override;
-			static Ui::GenlistItem *findNextItem(Ui::GenlistItem *item);
-			void setNextItem(Ui::GenlistItem *item);
+			static Ui::GenItem *findNextItem(Ui::GenItem *item);
+			void setNextItem(Ui::GenItem *item);
 			void unsetNextItem();
 
 			void onChanged(Evas_Object *entry, void *eventInfo);
@@ -89,8 +89,8 @@ namespace Contacts
 			void onUnfocused(Evas_Object *entry, void *eventInfo);
 			void onActivated(Evas_Object *entry, void *eventInfo);
 
-			Ui::GenlistItem *m_ParentItem;
-			Ui::GenlistItem *m_NextItem;
+			Ui::GenItem *m_ParentItem;
+			Ui::GenItem *m_NextItem;
 			Model::ContactTextField &m_Field;
 
 			bool m_IsEmpty;

@@ -116,7 +116,7 @@ void DetailsView::onSelectModeChanged(SelectMode selectMode)
 	}
 }
 
-void DetailsView::onSelectAllInsert(Ui::GenlistItem *item)
+void DetailsView::onSelectAllInsert(Ui::GenItem *item)
 {
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 }
@@ -184,7 +184,7 @@ LogGroupItem *DetailsView::getLastGroupItem()
 {
 	if (!m_LastGroupItem) {
 		for (auto &&item : *m_Genlist) {
-			if (((Ui::GenlistItem *)item)->isGroupItem()) {
+			if (((Ui::GenItem *)item)->isGroupItem()) {
 				setLastGroupItem(dynamic_cast<LogGroupItem *>(item));
 				break;
 			}

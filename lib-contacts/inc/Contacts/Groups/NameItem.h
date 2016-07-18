@@ -18,7 +18,7 @@
 #ifndef CONTACTS_GROUPS_NAME_ITEM_H
 #define CONTACTS_GROUPS_NAME_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 
 #include <string>
 
@@ -31,7 +31,7 @@ namespace Contacts
 {
 	namespace Groups
 	{
-		class NameItem : public Ui::GenlistItem
+		class NameItem : public Ui::GenItem
 		{
 		public:
 			/**

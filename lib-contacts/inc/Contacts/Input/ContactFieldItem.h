@@ -19,7 +19,7 @@
 #define CONTACTS_INPUT_CONTACT_FIELD_ITEM_H
 
 #include "Contacts/Input/ContactFieldSubItem.h"
-#include "Ui/GenlistGroupItem.h"
+#include "Ui/GenGroupItem.h"
 #include <functional>
 
 namespace Contacts
@@ -37,7 +37,7 @@ namespace Contacts
 		 * @brief Genlist item representing ContactObject and its first field.
 		 */
 		class ContactFieldItem :
-			public Ui::GenlistGroupItem,
+			public Ui::GenGroupItem,
 			public ContactFieldSubItem
 		{
 		public:
@@ -74,22 +74,22 @@ namespace Contacts
 			friend class ContactFieldSubItem;
 
 			/**
-			 * @see GenlistItem::getType()
+			 * @see GenItem::getType()
 			 */
 			virtual Elm_Genlist_Item_Type getType() const override { return ELM_GENLIST_ITEM_TREE; }
 
 			/**
-			 * @see GenlistItem::getItemClass()
+			 * @see GenItem::getItemClass()
 			 */
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
 
 			/**
-			 * @see GenlistItem::getContent()
+			 * @see GenItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::onInserted()
+			 * @see GenItem::onInserted()
 			 */
 			virtual void onInserted() override;
 

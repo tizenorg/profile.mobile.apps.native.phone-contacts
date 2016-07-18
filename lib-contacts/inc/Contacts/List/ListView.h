@@ -30,7 +30,7 @@
 namespace Ui
 {
 	class Genlist;
-	class GenlistGroupItem;
+	class GenGroupItem;
 }
 
 namespace Contacts
@@ -83,7 +83,7 @@ namespace Contacts
 		private:
 			struct Section
 			{
-				Ui::GenlistGroupItem *m_Item = nullptr;
+				Ui::GenGroupItem *m_Item = nullptr;
 				bool m_IsVisible = true;
 			};
 
@@ -106,13 +106,13 @@ namespace Contacts
 			bool onSelectFinished();
 			void onManageFavoritesSelected();
 
-			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onSelectAllInsert(Ui::GenItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
 			void setState(State state, bool isEnabled);
 
-			Ui::GenlistGroupItem *createMyProfileSection();
-			Ui::GenlistGroupItem *createListSection(SectionId sectionId);
+			Ui::GenGroupItem *createMyProfileSection();
+			Ui::GenGroupItem *createListSection(SectionId sectionId);
 			void fillPersonList();
 
 			Ui::Genlist *createGenlist(Evas_Object *parent);
@@ -120,12 +120,12 @@ namespace Contacts
 			void updateEmptyLayout();
 			void updateEmptyState();
 
-			Ui::GenlistGroupItem *createSection(SectionId sectionId);
-			void insertSection(Ui::GenlistGroupItem *section, SectionId sectionId);
+			Ui::GenGroupItem *createSection(SectionId sectionId);
+			void insertSection(Ui::GenGroupItem *section, SectionId sectionId);
 			void updateSection(SectionId sectionId);
 			void updateSections();
 
-			Ui::GenlistItem *getNextSectionItem(SectionId sectionId);
+			Ui::GenItem *getNextSectionItem(SectionId sectionId);
 			bool getSectionVisibility(SectionId sectionId);
 
 			SearchItem *createSearchItem();

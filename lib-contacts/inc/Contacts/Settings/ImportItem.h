@@ -19,7 +19,7 @@
 #define CONTACTS_SETTINGS_IMPORT_ITEM_H
 
 #include "App/AppControl.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 
 namespace Contacts
 {
@@ -30,7 +30,7 @@ namespace Contacts
 		/**
 		 * @brief Import item
 		 */
-		class ImportItem : public Ui::GenlistItem
+		class ImportItem : public Ui::GenItem
 		{
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;

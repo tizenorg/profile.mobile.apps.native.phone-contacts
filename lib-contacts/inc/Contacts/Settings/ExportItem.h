@@ -19,7 +19,7 @@
 #define CONTACTS_SETTINGS_EXPORT_ITEM_H
 
 #include "App/AppControl.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 
 namespace Contacts
 {
@@ -30,7 +30,7 @@ namespace Contacts
 		/**
 		 * @brief Export item
 		 */
-		class ExportItem : public Ui::GenlistItem
+		class ExportItem : public Ui::GenItem
 		{
 		private:
 			virtual char *getText(Evas_Object *parent, const char *part) override;

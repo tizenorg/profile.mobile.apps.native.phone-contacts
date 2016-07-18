@@ -19,7 +19,7 @@
 #define LOGS_DETAILS_ACTION_ITEM_H
 
 #include "Logs/Model/LogGroup.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 #include "Common/Actions.h"
 
 namespace Logs
@@ -35,7 +35,7 @@ namespace Logs
 		 * @brief Genlist item representing a item which value can be used to
 		 *        initiate some external action.
 		 */
-		class ActionItem : public Ui::GenlistItem
+		class ActionItem : public Ui::GenItem
 		{
 		public:
 			/**
@@ -53,22 +53,22 @@ namespace Logs
 
 		protected:
 			/**
-			 * @see GenlistItem::getItemClass()
+			 * @see GenItem::getItemClass()
 			 */
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
 
 			/**
-			 * @see GenlistItem::getText()
+			 * @see GenItem::getText()
 			 */
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::getContent()
+			 * @see GenItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::onSelected()
+			 * @see GenItem::onSelected()
 			 */
 			virtual void onSelected() override;
 

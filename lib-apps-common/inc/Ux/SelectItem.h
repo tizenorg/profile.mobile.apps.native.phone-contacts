@@ -18,7 +18,7 @@
 #ifndef UX_SELECT_ITEM_H
 #define UX_SELECT_ITEM_H
 
-#include "Ui/GenlistCheckItem.h"
+#include "Ui/CheckItem.h"
 #include "Ux/SelectTypes.h"
 
 namespace Ux
@@ -26,9 +26,9 @@ namespace Ux
 	class SelectView;
 
 	/**
-	 * @brief Genlist item for SelectView that supports selection mode switching.
+	 * @brief GenContainer item for SelectView that supports selection mode switching.
 	 */
-	class EXPORT_API SelectItem : public Ui::GenlistCheckItem
+	class EXPORT_API SelectItem : public Ui::CheckItem
 	{
 	public:
 		SelectItem();
@@ -81,17 +81,17 @@ namespace Ux
 		virtual SelectResult getDefaultResult() const = 0;
 
 		/**
-		 * @see GenlistItem::getContent()
+		 * @see GenItem::getContent()
 		 */
 		virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 		/**
-		 * @see GenlistItem::onSelected()
+		 * @see GenItem::onSelected()
 		 */
 		virtual void onSelected() override;
 
 		/**
-		 * @see GenlistCheckItem::onChecked()
+		 * @see CheckItem::onChecked()
 		 */
 		virtual bool onChecked(bool isChecked) override;
 

@@ -50,7 +50,7 @@ namespace Contacts
 
 		protected:
 			/**
-			 * @see GenlistItem::getText()
+			 * @see GenItem::getText()
 			 */
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 

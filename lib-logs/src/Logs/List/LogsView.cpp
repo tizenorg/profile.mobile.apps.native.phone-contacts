@@ -136,7 +136,7 @@ void LogsView::onMenuPressed()
 	menu->show();
 }
 
-void LogsView::onSelectAllInsert(Ui::GenlistItem *item)
+void LogsView::onSelectAllInsert(Ui::GenItem *item)
 {
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 }
@@ -259,9 +259,8 @@ LogGroupItem *LogsView::getLastGroupItem()
 {
 	if (!m_LastGroupItem) {
 		for (auto &&item : *m_Genlist) {
-			auto genlistItem = static_cast<Ui::GenlistItem *>(item);
-			if (genlistItem->isGroupItem()) {
-				setLastGroupItem(dynamic_cast<LogGroupItem *>(genlistItem));
+			if (item->isGroupItem()) {
+				setLastGroupItem(dynamic_cast<LogGroupItem *>(item));
 				break;
 			}
 		}
@@ -332,7 +331,7 @@ void LogsView::onLogInserted(LogGroup *group)
 
 void LogsView::onLogItemDelete(LogItem *item)
 {
-	Ui::GenlistGroupItem *groupItem = item->getParentItem();
+	Ui::GenGroupItem *groupItem = item->getParentItem();
 	removeSelectItem(item);
 	delete item;
 

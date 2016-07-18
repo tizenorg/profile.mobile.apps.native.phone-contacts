@@ -33,7 +33,7 @@ namespace
 }
 
 WidgetGengridItem::WidgetGengridItem(WidgetItem &item)
-	: m_Item(item),  m_EditMode(false)
+	: GenItem(Ui::GenContainer::TypeGengrid), m_Item(item),  m_EditMode(false)
 {
 	m_Item.setChangeCallback(std::bind(&WidgetGengridItem::onItemChanged, this, _1));
 }

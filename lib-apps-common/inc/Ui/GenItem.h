@@ -27,6 +27,7 @@
 namespace Ui
 {
 	class GenItem;
+	class GenGroupItem;
 	typedef std::weak_ptr<GenItem> GenItemPtr;
 
 	class EXPORT_API GenItem
@@ -46,7 +47,7 @@ namespace Ui
 		 * @brief Create generic container item.
 		 * @param[in]   type    Parent container type
 		 */
-		GenItem(GenContainer::Type type);
+		GenItem(GenContainer::Type type = GenContainer::TypeGenlist);
 		virtual ~GenItem();
 
 		/**
@@ -58,6 +59,16 @@ namespace Ui
 		 * @return Whether the item is inserted into container.
 		 */
 		bool isInserted() const;
+
+		/**
+		 * @return Whether the item is a group item.
+		 */
+		virtual bool isGroupItem() const { return false; }
+
+		/**
+		 * @return Whether the item can receive focus.
+		 */
+		virtual bool isFocusable() const { return false; }
 
 		/**
 		 * @return Item type.
@@ -73,6 +84,11 @@ namespace Ui
 		 * @return Parent container.
 		 */
 		GenContainer *getParent() const;
+
+		/**
+		 * @return Parent group item or nullptr if none.
+		 */
+		GenGroupItem *getParentItem() const;
 
 		/**
 		 * @return Next item in container or nullptr if none.
@@ -102,12 +118,19 @@ namespace Ui
 		void setDestroyCallback(SelectCallback callback);
 
 		/**
-		 * @brief Scroll genlist to item.
+		 * @brief Scroll to the item.
 		 * @param[in]   position    Item position on screen
 		 * @param[in]   isAnimated  Whether scrolling is animated or immediate
 		 * @see Elm_Genlist_Item_Scrollto_Type or Elm_Gengrid_Item_Scrollto_Type
 		 */
 		void scrollTo(int position = ELM_GENLIST_ITEM_SCROLLTO_IN,
+				bool isAnimated = false);
+
+		/**
+		 * @brief Scroll to the item and give it focus.
+		 * @see GenItem::scrollTo()
+		 */
+		void focus(Elm_Genlist_Item_Scrollto_Type position = ELM_GENLIST_ITEM_SCROLLTO_IN,
 				bool isAnimated = false);
 
 		/**
@@ -189,6 +212,11 @@ namespace Ui
 		 */
 		virtual void onUnrealized() { }
 
+		/**
+		 * @brief Called when item is focused by calling focus().
+		 */
+		virtual void onFocused() { }
+
 	private:
 		friend class GenContainer;
 		void onInserted(Elm_Object_Item *item);
@@ -201,6 +229,7 @@ namespace Ui
 		Elm_Object_Item *m_Item;
 		bool m_Preserve;
 		bool m_IsRealized;
+		bool m_IsFocusPending;
 
 		std::shared_ptr<GenItem> m_SelfPtr;
 		SelectCallback m_OnSelected;

@@ -17,6 +17,7 @@
 
 #include "Ui/GenItem.h"
 #include "Ui/GenContainer.h"
+#include "Ui/GenGroupItem.h"
 #include "Utils/Callback.h"
 
 using namespace Ui;
@@ -25,6 +26,7 @@ typedef void(*ScrollFunc)(Elm_Object_Item *item, int type);
 
 struct Ui::GenItemApi
 {
+	Elm_Object_Item *(*getParent)(const Elm_Object_Item *item);
 	Elm_Object_Item *(*getNext)(const Elm_Object_Item *item);
 	Elm_Object_Item *(*getPrev)(const Elm_Object_Item *item);
 	ScrollFunc bringIn;
@@ -35,13 +37,15 @@ struct Ui::GenItemApi
 namespace
 {
 	const GenItemApi api[] = {
-		{ elm_genlist_item_next_get,
+		{ elm_genlist_item_parent_get,
+		  elm_genlist_item_next_get,
 		  elm_genlist_item_prev_get,
 		  (ScrollFunc) elm_genlist_item_bring_in,
 		  (ScrollFunc) elm_genlist_item_show,
 		  elm_genlist_item_selected_set },
 
-		{ elm_gengrid_item_next_get,
+		{ [](const Elm_Object_Item *item) -> Elm_Object_Item * { return nullptr; },
+		  elm_gengrid_item_next_get,
 		  elm_gengrid_item_prev_get,
 		  (ScrollFunc) elm_gengrid_item_bring_in,
 		  (ScrollFunc) elm_gengrid_item_show,
@@ -50,7 +54,7 @@ namespace
 }
 
 GenItem::GenItem(GenContainer::Type type)
-	: m_Item(nullptr), m_Preserve(false), m_IsRealized(false),
+	: m_Item(nullptr), m_Preserve(false), m_IsRealized(false), m_IsFocusPending(false),
 	  m_Api(&api[type])
 {
 }
@@ -79,6 +83,13 @@ bool GenItem::isInserted() const
 Elm_Object_Item *GenItem::getObjectItem() const
 {
 	return m_Item;
+}
+
+GenGroupItem *GenItem::getParentItem() const
+{
+	Elm_Object_Item *objectItem = m_Api->getParent(getObjectItem());
+	GenItem *item = (GenItem *) elm_object_item_data_get(objectItem);
+	return dynamic_cast<GenGroupItem *>(item);
 }
 
 GenContainer *GenItem::getParent() const
@@ -122,6 +133,16 @@ void GenItem::scrollTo(int position, bool isAnimated)
 {
 	auto scroll = isAnimated ? m_Api->bringIn : m_Api->show;
 	scroll(getObjectItem(), position);
+}
+
+void GenItem::focus(Elm_Genlist_Item_Scrollto_Type position, bool isAnimated)
+{
+	scrollTo(position, isAnimated);
+	if (isRealized()) {
+		onFocused();
+	} else {
+		m_IsFocusPending = true;
+	}
 }
 
 void GenItem::pop()
@@ -186,6 +207,11 @@ void GenItem::onRealized(Elm_Object_Item *item)
 	}
 
 	m_IsRealized = true;
+	if (m_IsFocusPending) {
+		onFocused();
+		m_IsFocusPending = false;
+	}
+
 	onRealized();
 }
 

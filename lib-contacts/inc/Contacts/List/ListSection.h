@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_LIST_SECTION_H
 #define CONTACTS_LIST_LIST_SECTION_H
 
-#include "Ui/GenlistGroupItem.h"
+#include "Ui/GenGroupItem.h"
 #include "Common/DataTypes.h"
 
 namespace Model
@@ -40,7 +40,7 @@ namespace Contacts
 		/**
 		 * @brief Represents list section containing genlist items.
 		 */
-		class ListSection : public Ui::GenlistGroupItem
+		class ListSection : public Ui::GenGroupItem
 		{
 		public:
 			enum SectionMode {

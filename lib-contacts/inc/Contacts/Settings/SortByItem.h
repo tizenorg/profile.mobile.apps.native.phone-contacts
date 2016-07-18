@@ -18,7 +18,7 @@
 #ifndef CONTACTS_SETTINGS_SORT_BY_ITEM_H
 #define CONTACTS_SETTINGS_SORT_BY_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 #include <contacts_setting.h>
 
 namespace Contacts
@@ -28,7 +28,7 @@ namespace Contacts
 		/**
 		 * @brief SortBy item
 		 */
-		class SortByItem : public Ui::GenlistItem
+		class SortByItem : public Ui::GenItem
 		{
 		public:
 			SortByItem();

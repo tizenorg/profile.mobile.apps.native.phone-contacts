@@ -24,7 +24,7 @@
 namespace Ui
 {
 	class Genlist;
-	class GenlistItem;
+	class GenItem;
 }
 
 namespace Contacts
@@ -56,7 +56,7 @@ namespace Contacts
 		private:
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onMenuPressed() override;
-			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onSelectAllInsert(Ui::GenItem *item) override;
 			void updateCreateItem();
 
 			void onInserted(::Model::DataItem &data);
@@ -64,7 +64,7 @@ namespace Contacts
 			void insertItem(GroupItem *item);
 			void updateItem(GroupItem *item, int changes);
 			void deleteItem(GroupItem *item);
-			Ui::GenlistItem *getNextItem(Model::Group &group);
+			Ui::GenItem *getNextItem(Model::Group &group);
 
 			Ui::Genlist *m_Genlist;
 			CreateGroupItem *m_CreateItem;

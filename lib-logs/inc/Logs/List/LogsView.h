@@ -74,7 +74,7 @@ namespace Logs
 			virtual void onCreated() override;
 			virtual void onNavigation(bool isCurrentView) override;
 			virtual void onMenuPressed() override;
-			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onSelectAllInsert(Ui::GenItem *item) override;
 
 			void fillLayout();
 			void updateLayout(bool isEmpty);

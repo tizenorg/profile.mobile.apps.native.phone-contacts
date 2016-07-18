@@ -15,17 +15,17 @@
  *
  */
 
-#ifndef UI_GENLIST_CHECK_ITEM
-#define UI_GENLIST_CHECK_ITEM
+#ifndef UI_CHECK_ITEM
+#define UI_CHECK_ITEM
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 
 namespace Ui
 {
 	/**
-	 * @brief Genlist check item
+	 * @brief GenContainer check item
 	 */
-	class EXPORT_API GenlistCheckItem : public Ui::GenlistItem
+	class EXPORT_API CheckItem : public Ui::GenItem
 	{
 	public:
 		/**
@@ -35,8 +35,8 @@ namespace Ui
 		 */
 		typedef std::function<bool(bool)> CheckCallback;
 
-		GenlistCheckItem();
-		virtual ~GenlistCheckItem() override;
+		CheckItem();
+		virtual ~CheckItem() override;
 
 		/**
 		 * @return Whether the item is checked.
@@ -60,7 +60,7 @@ namespace Ui
 		 * @brief Set item which "checked" state should be synchronized with this item.
 		 * @param[in]   item    Item to link with
 		 */
-		void setLinkedItem(GenlistCheckItem *item);
+		void setLinkedItem(CheckItem *item);
 
 		/**
 		 * @brief Unset linked item.
@@ -74,13 +74,13 @@ namespace Ui
 		void updateCheckPart();
 
 		/**
-		 * @see GenlistItem::getContent()
+		 * @see GenItem::getContent()
 		 * @remark Use it in derived class to create check component
 		 */
 		virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 		/**
-		 * @see GenlistItem::onSelected()
+		 * @see GenItem::onSelected()
 		 */
 		virtual void onSelected() override;
 
@@ -99,8 +99,8 @@ namespace Ui
 		Eina_Bool m_IsChecked;
 		bool m_IsChecking;
 		CheckCallback m_OnChecked;
-		GenlistCheckItem *m_LinkedItem;
+		CheckItem *m_LinkedItem;
 	};
 }
 
-#endif /* UI_GENLIST_CHECK_ITEM */
+#endif /* UI_CHECK_ITEM */

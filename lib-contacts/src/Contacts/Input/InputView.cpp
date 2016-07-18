@@ -223,7 +223,7 @@ ContactFieldItem *InputView::createFieldItem(ContactObject &field)
 	return item;
 }
 
-Ui::GenlistItem *InputView::getNextFieldItem(ContactFieldId fieldId)
+Ui::GenItem *InputView::getNextFieldItem(ContactFieldId fieldId)
 {
 	for (unsigned id = fieldId + 1; id < Utils::count(m_Items); ++id) {
 		if (m_Items[id]) {

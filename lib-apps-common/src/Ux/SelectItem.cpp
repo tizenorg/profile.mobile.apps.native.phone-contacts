@@ -82,7 +82,7 @@ void SelectItem::unsetCustomResult()
 Evas_Object *SelectItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (m_SelectMode == SelectMulti) {
-		return GenlistCheckItem::getContent(parent, part);
+		return CheckItem::getContent(parent, part);
 	}
 
 	return nullptr;
@@ -95,7 +95,7 @@ void SelectItem::onSelected()
 			m_SelectView->onItemSelected(this);
 		}
 	} else if (m_SelectMode == SelectMulti) {
-		GenlistCheckItem::onSelected();
+		CheckItem::onSelected();
 	}
 }
 

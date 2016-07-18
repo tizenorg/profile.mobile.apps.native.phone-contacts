@@ -15,29 +15,29 @@
  *
  */
 
-#ifndef UI_GENLIST_GROUP_ITEM_H
-#define UI_GENLIST_GROUP_ITEM_H
+#ifndef UI_GEN_GROUP_ITEM_H
+#define UI_GEN_GROUP_ITEM_H
 
-#include "Ui/Genlist.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenContainer.h"
+#include "Ui/GenItem.h"
 #include <vector>
 
 namespace Ui
 {
-	class EXPORT_API GenlistGroupItem : virtual public GenlistItem
+	class EXPORT_API GenGroupItem : virtual public GenItem
 	{
 	public:
-		virtual ~GenlistGroupItem() override;
+		virtual ~GenGroupItem() override;
 
 		/**
 		 * @return Group first child Item.
 		 */
-		GenlistItem *getFirstItem() const;
+		GenItem *getFirstItem() const;
 
 		/**
 		 * @return Group last child Item.
 		 */
-		GenlistItem *getLastItem() const;
+		GenItem *getLastItem() const;
 
 		/**
 		 * @return Group begin iterator.
@@ -67,46 +67,45 @@ namespace Ui
 		/**
 		 * @return Group item of the next group or nullptr if none.
 		 */
-		GenlistGroupItem *getNextGroupItem() const;
+		GenGroupItem *getNextGroupItem() const;
 
 		/**
 		 * @return Group item of the previous group or nullptr if none.
 		 */
-		GenlistGroupItem *getPrevGroupItem() const;
+		GenGroupItem *getPrevGroupItem() const;
 
 		/**
 		 * @brief Insert sub item to the group.
 		 * @details If group item is not yet inserted itself, sub item is cached
-		 *          and inserted into genlist when it's parent is inserted.
-		 * @see Genlist::insert()
+		 *          and inserted into container when it's parent is inserted.
+		 * @see GenContainer::insert()
 		 */
-		void insertSubItem(GenlistItem *item,
-				GenlistItem *sibling = nullptr,
-				Genlist::Position position = Genlist::Before);
+		void insertSubItem(GenItem *item, GenItem *sibling = nullptr,
+				GenContainer::Position position = GenContainer::Before);
 
 	protected:
 		/**
-		 * @see GenlistItem::isGroupItem()
+		 * @see GenItem::isGroupItem()
 		 */
 		virtual bool isGroupItem() const override { return true; }
 
 		/**
-		 * @see GenlistItem::getType()
+		 * @see GenItem::getType()
 		 */
 		virtual Elm_Genlist_Item_Type getType() const override { return ELM_GENLIST_ITEM_GROUP; }
 
 		/**
-		 * @see GenlistItem::getItemClass()
+		 * @see GenItem::getItemClass()
 		 */
-		virtual Elm_Genlist_Item_Class *getItemClass() const override;
+		virtual Elm_Gen_Item_Class *getItemClass() const override;
 
 		/**
-		 * @see GenlistItem::onInserted()
+		 * @see GenItem::onInserted()
 		 */
 		virtual void onInserted() override;
 
 		/**
-		 * @see GenlistItem::onPop()
+		 * @see GenItem::onPop()
 		 */
 		virtual void onPop() override;
 
@@ -125,4 +124,4 @@ namespace Ui
 	};
 }
 
-#endif /* UI_GENLIST_GROUP_ITEM_H */
+#endif /* UI_GEN_GROUP_ITEM_H */

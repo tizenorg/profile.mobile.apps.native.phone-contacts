@@ -24,7 +24,7 @@
 namespace Ui
 {
 	class Genlist;
-	class GenlistItem;
+	class GenItem;
 }
 
 namespace Contacts
@@ -84,7 +84,7 @@ namespace Contacts
 			virtual bool onBackPressed() override;
 
 			ContactFieldItem *createFieldItem(Model::ContactObject &field);
-			Ui::GenlistItem *getNextFieldItem(Model::ContactFieldId fieldId);
+			Ui::GenItem *getNextFieldItem(Model::ContactFieldId fieldId);
 
 			Model::ContactObject &addField(Model::ContactFieldId fieldId);
 			void removeField(Model::ContactObject &field);

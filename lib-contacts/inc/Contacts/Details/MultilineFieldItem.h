@@ -34,12 +34,12 @@ namespace Contacts
 
 		protected:
 			/**
-			 * @see GenlistItem::getItemClass()
+			 * @see GenItem::getItemClass()
 			 */
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
 
 			/**
-			 * @see GenlistItem::getText()
+			 * @see GenItem::getText()
 			 */
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 

@@ -18,7 +18,7 @@
 #ifndef LOGS_DETAILS_BASIC_INFO_ITEM_H
 #define LOGS_DETAILS_BASIC_INFO_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 #include "App/AppControl.h"
 #include "Logs/Model/LogGroup.h"
 
@@ -35,7 +35,7 @@ namespace Logs
 		/**
 		 * @brief Genlist item displaying contact's image, name.
 		 */
-		class BasicInfoItem : public Ui::GenlistItem
+		class BasicInfoItem : public Ui::GenItem
 		{
 		public:
 			/**
@@ -64,27 +64,27 @@ namespace Logs
 
 		protected:
 			/**
-			 * @see GenlistItem::getItemClass()
+			 * @see GenItem::getItemClass()
 			 */
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
 
 			/**
-			 * @see GenlistItem::getText()
+			 * @see GenItem::getText()
 			 */
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::getContent()
+			 * @see GenItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::getState()
+			 * @see GenItem::getState()
 			 */
 			virtual Eina_Bool getState(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::onSelected()
+			 * @see GenItem::onSelected()
 			 */
 			virtual void onSelected() override;
 

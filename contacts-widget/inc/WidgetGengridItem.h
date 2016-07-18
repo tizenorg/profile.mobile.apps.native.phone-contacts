@@ -18,14 +18,14 @@
 #ifndef WIDGET_GENGRID_ITEM_H
 #define WIDGET_GENGRID_ITEM_H
 
-#include "Ui/GengridItem.h"
+#include "Ui/GenItem.h"
 
 class WidgetItem;
 
 /**
  * @brief Widget gengrid item.
  */
-class WidgetGengridItem : public Ui::GengridItem
+class WidgetGengridItem : public Ui::GenItem
 {
 public:
 	typedef std::function<void()> DeleteCallback;

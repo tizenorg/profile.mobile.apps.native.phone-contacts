@@ -19,7 +19,7 @@
 #define CONTACTS_INPUT_ADD_FIELDS_ITEM_H
 
 #include "Contacts/Model/ContactFields.h"
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 #include <functional>
 
 namespace Contacts
@@ -29,7 +29,7 @@ namespace Contacts
 		/**
 		 * @brief Genlist item with buttons for adding contact fields.
 		 */
-		class AddFieldsItem : public Ui::GenlistItem
+		class AddFieldsItem : public Ui::GenItem
 		{
 		public:
 			/**

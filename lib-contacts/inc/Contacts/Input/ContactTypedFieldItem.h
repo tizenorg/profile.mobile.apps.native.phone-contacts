@@ -50,12 +50,12 @@ namespace Contacts
 			const Model::ContactTypedObject &getTypedObject() const;
 
 			/**
-			 * @see GenlistItem::getContent()
+			 * @see GenItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::getState()
+			 * @see GenItem::getState()
 			 */
 			virtual Eina_Bool getState(Evas_Object *parent, const char *part) override;
 

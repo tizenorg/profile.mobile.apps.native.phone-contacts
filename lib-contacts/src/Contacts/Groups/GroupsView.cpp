@@ -79,7 +79,7 @@ void GroupsView::onMenuPressed()
 	menu->show();
 }
 
-void GroupsView::onSelectAllInsert(Ui::GenlistItem *item)
+void GroupsView::onSelectAllInsert(Ui::GenItem *item)
 {
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
 }
@@ -147,7 +147,7 @@ void GroupsView::deleteItem(GroupItem *item)
 	delete item;
 }
 
-Ui::GenlistItem *GroupsView::getNextItem(Group &group)
+Ui::GenItem *GroupsView::getNextItem(Group &group)
 {
 	for (auto &&item : getSelectItems()) {
 		GroupItem *groupItem = static_cast<GroupItem *>(item);

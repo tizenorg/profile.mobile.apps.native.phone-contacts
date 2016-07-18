@@ -18,7 +18,7 @@
 #ifndef CONTACTS_GROUPS_RINGTONE_ITEM_H
 #define CONTACTS_GROUPS_RINGTONE_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 
 #include "App/AppControl.h"
 
@@ -31,7 +31,7 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing group's ringtone item
 		 */
-		class RingtoneItem : public Ui::GenlistItem
+		class RingtoneItem : public Ui::GenItem
 		{
 		public:
 			/**

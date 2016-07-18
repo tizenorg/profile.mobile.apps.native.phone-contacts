@@ -262,7 +262,7 @@ void ListView::onManageFavoritesSelected()
 	manageFavPopup->create(getEvasObject());
 }
 
-void ListView::onSelectAllInsert(Ui::GenlistItem *item)
+void ListView::onSelectAllInsert(Ui::GenItem *item)
 {
 	m_Genlist->insert(item, nullptr, m_SearchItem, Ui::Genlist::After);
 }
@@ -289,14 +289,14 @@ void ListView::setState(State state, bool isEnabled)
 	}
 }
 
-Ui::GenlistGroupItem *ListView::createMyProfileSection()
+Ui::GenGroupItem *ListView::createMyProfileSection()
 {
 	MyProfileGroup *section = new MyProfileGroup();
 	insertSection(section, SectionMyProfile);
 	return section;
 }
 
-Ui::GenlistGroupItem *ListView::createListSection(SectionId sectionId)
+Ui::GenGroupItem *ListView::createListSection(SectionId sectionId)
 {
 	const char *title = nullptr;
 	PersonProvider *provider = nullptr;
@@ -420,9 +420,9 @@ void ListView::updateEmptyState()
 	m_IsEmpty = isEmpty;
 }
 
-Ui::GenlistGroupItem *ListView::createSection(SectionId sectionId)
+Ui::GenGroupItem *ListView::createSection(SectionId sectionId)
 {
-	Ui::GenlistGroupItem *section = nullptr;
+	Ui::GenGroupItem *section = nullptr;
 	switch (sectionId) {
 		case SectionMyProfile:
 			section = createMyProfileSection();
@@ -439,7 +439,7 @@ Ui::GenlistGroupItem *ListView::createSection(SectionId sectionId)
 	return section;
 }
 
-void ListView::insertSection(Ui::GenlistGroupItem *section, SectionId sectionId)
+void ListView::insertSection(Ui::GenGroupItem *section, SectionId sectionId)
 {
 	m_Genlist->insert(section, nullptr, getNextSectionItem(sectionId));
 	elm_genlist_item_select_mode_set(section->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
@@ -447,7 +447,7 @@ void ListView::insertSection(Ui::GenlistGroupItem *section, SectionId sectionId)
 
 void ListView::updateSection(SectionId sectionId)
 {
-	Ui::GenlistGroupItem *section = m_Sections[sectionId].m_Item;
+	Ui::GenGroupItem *section = m_Sections[sectionId].m_Item;
 	if (!section) {
 		if (getSectionVisibility(sectionId)) {
 			createSection(sectionId);
@@ -476,7 +476,7 @@ void ListView::updateSections()
 	}
 }
 
-Ui::GenlistItem *ListView::getNextSectionItem(SectionId sectionId)
+Ui::GenItem *ListView::getNextSectionItem(SectionId sectionId)
 {
 	for (unsigned section = sectionId + 1; section < SectionMax; ++section) {
 		if (m_Sections[section].m_Item && m_Sections[section].m_Item->isInserted()) {
@@ -522,7 +522,7 @@ SearchItem *ListView::createSearchItem()
 	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 
 	Elm_Object_Item *indexItem = insertIndexItem(SYMBOL_MAGNIFIER, nullptr);
-	elm_object_item_data_set(indexItem, static_cast<Ui::GenlistItem *>(item));
+	elm_object_item_data_set(indexItem, static_cast<Ui::GenItem *>(item));
 	return item;
 }
 
@@ -706,7 +706,7 @@ void ListView::onAddPressed(Evas_Object *button, void *eventInfo)
 
 void ListView::onIndexChanged(Evas_Object *index, Elm_Object_Item *indexItem)
 {
-	Ui::GenlistItem *item = (Ui::GenlistItem *) elm_object_item_data_get(indexItem);
+	Ui::GenItem *item = (Ui::GenItem *) elm_object_item_data_get(indexItem);
 	item->scrollTo(ELM_GENLIST_ITEM_SCROLLTO_TOP);
 }
 

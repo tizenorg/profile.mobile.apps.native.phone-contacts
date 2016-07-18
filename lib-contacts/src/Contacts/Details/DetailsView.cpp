@@ -167,7 +167,7 @@ void DetailsView::onMenuPressed()
 	menu->show();
 }
 
-void DetailsView::onSelectAllInsert(Ui::GenlistItem *item)
+void DetailsView::onSelectAllInsert(Ui::GenItem *item)
 {
 	m_Genlist->insert(item, nullptr, m_BasicInfoItem, Ui::Genlist::After);
 }

@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_CONTACT_SEARCH_ITEM_H
 #define CONTACTS_LIST_CONTACT_SEARCH_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 #include <string>
 
 namespace Contacts
@@ -28,7 +28,7 @@ namespace Contacts
 		/**
 		 * @brief Contact search item
 		 */
-		class SearchItem : public Ui::GenlistItem
+		class SearchItem : public Ui::GenItem
 		{
 		public:
 			/**

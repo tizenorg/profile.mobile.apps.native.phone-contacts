@@ -42,7 +42,7 @@ namespace Contacts
 			ContactGroupsFieldItem(Model::ContactObject &object);
 
 			/**
-			 * @see GenlistItem::isFocusable()
+			 * @see GenItem::isFocusable()
 			 */
 			virtual bool isFocusable() const override;
 

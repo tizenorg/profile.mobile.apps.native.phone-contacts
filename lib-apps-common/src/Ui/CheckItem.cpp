@@ -15,28 +15,28 @@
  *
  */
 
-#include "Ui/GenlistCheckItem.h"
+#include "Ui/CheckItem.h"
 #include "Utils/Callback.h"
 
 using namespace Ui;
 
-GenlistCheckItem::GenlistCheckItem()
+CheckItem::CheckItem()
 	: m_CheckPart("*"), m_IsChecked(false), m_IsChecking(false),
 	  m_LinkedItem(nullptr)
 {
 }
 
-GenlistCheckItem::~GenlistCheckItem()
+CheckItem::~CheckItem()
 {
 	unsetLinkedItem();
 }
 
-bool GenlistCheckItem::isChecked() const
+bool CheckItem::isChecked() const
 {
 	return m_IsChecked;
 }
 
-bool GenlistCheckItem::setChecked(bool isChecked)
+bool CheckItem::setChecked(bool isChecked)
 {
 	if (isChecked == m_IsChecked) {
 		return true;
@@ -56,12 +56,12 @@ bool GenlistCheckItem::setChecked(bool isChecked)
 	return true;
 }
 
-void GenlistCheckItem::setCheckCallback(CheckCallback callback)
+void CheckItem::setCheckCallback(CheckCallback callback)
 {
 	m_OnChecked = std::move(callback);
 }
 
-void GenlistCheckItem::setLinkedItem(GenlistCheckItem *item)
+void CheckItem::setLinkedItem(CheckItem *item)
 {
 	if (!item) {
 		return;
@@ -75,7 +75,7 @@ void GenlistCheckItem::setLinkedItem(GenlistCheckItem *item)
 	m_LinkedItem = item;
 }
 
-void GenlistCheckItem::unsetLinkedItem()
+void CheckItem::unsetLinkedItem()
 {
 	if (m_LinkedItem) {
 		m_LinkedItem->m_LinkedItem = nullptr;
@@ -83,12 +83,12 @@ void GenlistCheckItem::unsetLinkedItem()
 	}
 }
 
-void GenlistCheckItem::updateCheckPart()
+void CheckItem::updateCheckPart()
 {
 	elm_genlist_item_fields_update(getObjectItem(), m_CheckPart.c_str(), ELM_GENLIST_ITEM_FIELD_CONTENT);
 }
 
-Evas_Object *GenlistCheckItem::getContent(Evas_Object *parent, const char *part)
+Evas_Object *CheckItem::getContent(Evas_Object *parent, const char *part)
 {
 	m_CheckPart = part;
 
@@ -97,24 +97,24 @@ Evas_Object *GenlistCheckItem::getContent(Evas_Object *parent, const char *part)
 	elm_check_state_pointer_set(check, &m_IsChecked);
 	evas_object_propagate_events_set(check, EINA_FALSE);
 	evas_object_smart_callback_add(check, "changed",
-			makeCallback(&GenlistCheckItem::onCheckChanged), this);
+			makeCallback(&CheckItem::onCheckChanged), this);
 
 	return check;
 }
 
-void GenlistCheckItem::onSelected()
+void CheckItem::onSelected()
 {
 	setChecked(!m_IsChecked);
 }
 
-void GenlistCheckItem::onCheckChanged(Evas_Object *check, void *eventInfo)
+void CheckItem::onCheckChanged(Evas_Object *check, void *eventInfo)
 {
 	if (!notifyCheck()) {
 		elm_check_state_set(check, !m_IsChecked);
 	}
 }
 
-bool GenlistCheckItem::notifyCheck()
+bool CheckItem::notifyCheck()
 {
 	if (m_IsChecking) {
 		return false;

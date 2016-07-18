@@ -63,7 +63,7 @@ namespace Contacts
 			virtual void onCreated() override;
 			virtual void onMenuPressed() override;
 
-			virtual void onSelectAllInsert(Ui::GenlistItem *item) override;
+			virtual void onSelectAllInsert(Ui::GenItem *item) override;
 			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
 			FieldItem *createFieldItem(Model::ContactObject &field);

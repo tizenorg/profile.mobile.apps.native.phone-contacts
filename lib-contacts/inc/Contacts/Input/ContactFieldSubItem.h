@@ -18,7 +18,7 @@
 #ifndef CONTACTS_INPUT_CONTACT_FIELD_SUB_ITEM_H
 #define CONTACTS_INPUT_CONTACT_FIELD_SUB_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 
 namespace Ui
 {
@@ -37,7 +37,7 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing contact field of TypeText or TypeDate type.
 		 */
-		class ContactFieldSubItem : virtual public Ui::GenlistItem
+		class ContactFieldSubItem : virtual public Ui::GenItem
 		{
 		public:
 			/**
@@ -57,7 +57,7 @@ namespace Contacts
 			Ui::Control *getFieldControl() const;
 
 			/**
-			 * @see GenlistItem::isFocusable()
+			 * @see GenItem::isFocusable()
 			 */
 			virtual bool isFocusable() const override;
 
@@ -68,27 +68,27 @@ namespace Contacts
 
 		protected:
 			/**
-			 * @see GenlistItem::getItemClass()
+			 * @see GenItem::getItemClass()
 			 */
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
 
 			/**
-			 * @see GenlistItem::getContent()
+			 * @see GenItem::getContent()
 			 */
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::getState()
+			 * @see GenItem::getState()
 			 */
 			virtual Eina_Bool getState(Evas_Object *parent, const char *part) override;
 
 			/**
-			 * @see GenlistItem::onInserted()
+			 * @see GenItem::onInserted()
 			 */
 			virtual void onInserted() override;
 
 			/**
-			 * @see GenlistItem::onFocused()
+			 * @see GenItem::onFocused()
 			 */
 			virtual void onFocused() override;
 

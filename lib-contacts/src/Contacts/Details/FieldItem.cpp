@@ -79,7 +79,7 @@ Evas_Object *FieldItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (getSelectMode() == Ux::SelectMulti) {
 		if (strcmp(part, "elm.swallow.end") == 0) {
-			return GenlistCheckItem::getContent(parent, part);
+			return CheckItem::getContent(parent, part);
 		}
 	}
 

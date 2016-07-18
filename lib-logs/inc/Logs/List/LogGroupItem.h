@@ -18,7 +18,7 @@
 #ifndef LOGS_LIST_LOG_GROUP_ITEM_H
 #define LOGS_LIST_LOG_GROUP_ITEM_H
 
-#include "Ui/GenlistGroupItem.h"
+#include "Ui/GenGroupItem.h"
 #include <time.h>
 
 namespace Logs
@@ -28,7 +28,7 @@ namespace Logs
 		/**
 		 * @brief Group log item object
 		 */
-		class LogGroupItem : public Ui::GenlistGroupItem
+		class LogGroupItem : public Ui::GenGroupItem
 		{
 		public:
 			/**

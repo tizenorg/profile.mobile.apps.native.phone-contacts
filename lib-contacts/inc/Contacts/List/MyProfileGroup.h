@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_MY_PROFILE_GROUP_H
 #define CONTACTS_LIST_MY_PROFILE_GROUP_H
 
-#include "Ui/GenlistGroupItem.h"
+#include "Ui/GenGroupItem.h"
 
 namespace Contacts
 {
@@ -27,7 +27,7 @@ namespace Contacts
 		/**
 		 * @brief Represents the group containing "My Profile" genlist item.
 		 */
-		class MyProfileGroup : public Ui::GenlistGroupItem
+		class MyProfileGroup : public Ui::GenGroupItem
 		{
 		public:
 			MyProfileGroup();

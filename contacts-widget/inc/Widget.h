@@ -28,7 +28,7 @@
 namespace Ui
 {
 	class Gengrid;
-	class GengridItem;
+	class GenItem;
 }
 
 class WidgetGengridItem;
@@ -74,7 +74,7 @@ private:
 	Evas_Object *m_Layout;
 	Evas_Object *m_EditButton;
 	Ui::Gengrid *m_Gengrid;
-	Ui::GengridItem *m_AddButton;
+	Ui::GenItem *m_AddButton;
 };
 
 #endif /* WIDGET_H */

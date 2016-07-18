@@ -22,7 +22,7 @@
 using namespace Contacts::Input;
 using namespace Contacts::Model;
 
-ContactCompoundFieldControl::ContactCompoundFieldControl(Ui::GenlistItem *parent,
+ContactCompoundFieldControl::ContactCompoundFieldControl(Ui::GenItem *parent,
 		ContactCompoundObject &object)
 	: ContactTextFieldControl(parent, *object.getField<ContactTextField>(0)),
 	  m_Object(object), m_IsCompoundMode(true)

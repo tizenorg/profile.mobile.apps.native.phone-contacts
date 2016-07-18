@@ -19,7 +19,7 @@
 #include "Contacts/Model/ContactTextField.h"
 #include "Contacts/Common/Strings.h"
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 #include "Utils/Callback.h"
 #include "Utils/Range.h"
 
@@ -38,7 +38,7 @@ namespace
 	};
 }
 
-ContactTextFieldControl::ContactTextFieldControl(Ui::GenlistItem *parent,
+ContactTextFieldControl::ContactTextFieldControl(Ui::GenItem *parent,
 		Model::ContactTextField &field)
 	: m_ParentItem(parent), m_NextItem(nullptr), m_Field(field),
 	  m_IsEmpty(true), m_IsChanged(false), m_IsUpdating(false)
@@ -118,9 +118,9 @@ void ContactTextFieldControl::onCreated()
 	update();
 }
 
-Ui::GenlistItem *ContactTextFieldControl::findNextItem(Ui::GenlistItem *item)
+Ui::GenItem *ContactTextFieldControl::findNextItem(Ui::GenItem *item)
 {
-	while ((item = (Ui::GenlistItem *) item->getNextItem())) {
+	while ((item = (Ui::GenItem *) item->getNextItem())) {
 		if (item->isFocusable()) {
 			return item;
 		}
@@ -129,7 +129,7 @@ Ui::GenlistItem *ContactTextFieldControl::findNextItem(Ui::GenlistItem *item)
 	return nullptr;
 }
 
-void ContactTextFieldControl::setNextItem(Ui::GenlistItem *item)
+void ContactTextFieldControl::setNextItem(Ui::GenItem *item)
 {
 	unsetNextItem();
 	if (!item) {

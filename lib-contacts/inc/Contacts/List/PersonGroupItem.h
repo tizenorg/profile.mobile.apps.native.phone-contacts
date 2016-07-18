@@ -18,7 +18,7 @@
 #ifndef CONTACTS_LIST_PERSON_GROUP_ITEM_H
 #define CONTACTS_LIST_PERSON_GROUP_ITEM_H
 
-#include "Ui/GenlistGroupItem.h"
+#include "Ui/GenGroupItem.h"
 #include "Utils/UniString.h"
 #include <string>
 
@@ -29,7 +29,7 @@ namespace Contacts
 		/**
 		 * @brief Person alphabet group item
 		 */
-		class PersonGroupItem : public Ui::GenlistGroupItem
+		class PersonGroupItem : public Ui::GenGroupItem
 		{
 		public:
 			/**

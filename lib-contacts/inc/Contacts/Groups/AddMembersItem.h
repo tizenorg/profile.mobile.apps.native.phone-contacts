@@ -18,7 +18,7 @@
 #ifndef CONTACTS_GROUPS_ADD_MEMBERS_ITEM_H
 #define CONTACTS_GROUPS_ADD_MEMBERS_ITEM_H
 
-#include "Ui/GenlistItem.h"
+#include "Ui/GenItem.h"
 #include "Ux/SelectTypes.h"
 
 #include <vector>
@@ -40,7 +40,7 @@ namespace Contacts
 		/**
 		 * @brief Genlist item representing group's add members item
 		 */
-		class AddMembersItem : public Ui::GenlistItem
+		class AddMembersItem : public Ui::GenItem
 		{
 		public:
 			/**

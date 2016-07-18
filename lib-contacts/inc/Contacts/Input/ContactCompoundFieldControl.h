@@ -36,7 +36,7 @@ namespace Contacts
 			 * @param[in]   parent  Parent genlist item
 			 * @param[in]   object  Contact compound object
 			 */
-			ContactCompoundFieldControl(Ui::GenlistItem *parent,
+			ContactCompoundFieldControl(Ui::GenItem *parent,
 					Model::ContactCompoundObject &object);
 
 			/**

@@ -16,7 +16,7 @@
  */
 
 #include "Ui/Genlist.h"
-#include "Ui/GenlistGroupItem.h"
+#include "Ui/GenGroupItem.h"
 
 using namespace Ui;
 
@@ -39,9 +39,9 @@ void Genlist::onCreated()
 
 void Genlist::onItemExpanded(void *data, Evas_Object *obj, Elm_Object_Item *objectItem)
 {
-	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
+	GenItem *item = (GenItem *) elm_object_item_data_get(objectItem);
 	if (item && item->isGroupItem()) {
-		GenlistGroupItem *groupItem = dynamic_cast<GenlistGroupItem *>(item);
+		GenGroupItem *groupItem = dynamic_cast<GenGroupItem *>(item);
 		if (groupItem) {
 			groupItem->onExpanded(true);
 		}
@@ -50,9 +50,9 @@ void Genlist::onItemExpanded(void *data, Evas_Object *obj, Elm_Object_Item *obje
 
 void Genlist::onItemContracted(void *data, Evas_Object *obj, Elm_Object_Item *objectItem)
 {
-	GenlistItem *item = (GenlistItem *) elm_object_item_data_get(objectItem);
+	GenItem *item = (GenItem *) elm_object_item_data_get(objectItem);
 	if (item && item->isGroupItem()) {
-		GenlistGroupItem *groupItem = dynamic_cast<GenlistGroupItem *>(item);
+		GenGroupItem *groupItem = dynamic_cast<GenGroupItem *>(item);
 		if (groupItem) {
 			groupItem->onExpanded(false);
 		}
