@@ -149,7 +149,7 @@ void GroupsView::deleteItem(GroupItem *item)
 
 Ui::GenlistItem *GroupsView::getNextItem(Group &group)
 {
-	for (auto &&item : getSelectItems()) {
+	for (auto &&item : *m_Genlist) {
 		GroupItem *groupItem = static_cast<GroupItem *>(item);
 		if (group < groupItem->getGroup()) {
 			return groupItem;

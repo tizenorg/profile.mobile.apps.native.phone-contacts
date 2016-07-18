@@ -37,8 +37,9 @@ namespace Contacts
 				 */
 				enum ChangedInfo
 				{
-					ChangedNone     = 0,    /**< Nothing was changed */
-					ChangedName     = 1,    /**< Name has changed */
+					ChangedNone         = 0,    /**< Nothing was changed */
+					ChangedName         = 1,    /**< Name has changed */
+					ChangedMembersCount = 2,    /**< Members count has changed */
 				};
 
 				/**
@@ -64,6 +65,11 @@ namespace Contacts
 				const char *getRingtone() const;
 
 				/**
+				 * @return Members count
+				 */
+				const int getMembersCount() const;
+
+				/**
 				 * @return Group record
 				 */
 				contacts_record_h getRecord() const;
@@ -79,9 +85,11 @@ namespace Contacts
 
 				const Utils::UniString &getSortValue() const;
 				void update(contacts_record_h record);
+				void updateMembersCount();
 
 				contacts_record_h m_Record;
 				mutable Utils::UniString m_SortValue;
+				int m_MembersCount;
 			};
 		}
 	}
