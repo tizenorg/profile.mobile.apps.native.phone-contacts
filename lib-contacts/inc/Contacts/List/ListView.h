@@ -80,6 +80,26 @@ namespace Contacts
 			 */
 			void setSectionVisibility(SectionId section, bool isVisible);
 
+			/**
+			 * @brief Set add button visibility
+			 * @param[in]   isVisible   Visibility
+			 */
+			void setAddButtonVisibility(bool isVisible);
+
+			/**
+			 * @brief Set help text for no content layout.
+			 * @param[in]   text    Help text
+			 */
+			void setNoContentHelpText(const char *text);
+
+		protected:
+			Model::PersonProvider *getProvider() const;
+
+			/**
+			 * @brief Called when updating is finished.
+			 */
+			virtual void onUpdateFinished();
+
 		private:
 			struct Section
 			{
@@ -164,9 +184,12 @@ namespace Contacts
 			Evas_Object *m_Index;
 			Evas_Object *m_AddButton;
 
+			std::string m_NoContentHelpText;
+
 			bool m_IsCurrentView;
 			bool m_IsSearching;
 			bool m_IsEmpty;
+			bool m_HasAddButton;
 			std::vector<State> m_StateHistory;
 
 			SearchItem *m_SearchItem;

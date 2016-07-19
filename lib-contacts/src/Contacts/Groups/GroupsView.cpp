@@ -19,10 +19,11 @@
 
 #include "Contacts/Groups/CreateGroupItem.h"
 #include "Contacts/Groups/GroupItem.h"
+#include "Contacts/Groups/GroupsItem.h"
 #include "Contacts/Groups/InputView.h"
 #include "Contacts/Groups/Model/Group.h"
-#include "Common/Strings.h"
 
+#include "Common/Strings.h"
 #include "Ui/Genlist.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
@@ -32,7 +33,7 @@ using namespace Contacts::Groups::Model;
 using namespace std::placeholders;
 
 GroupsView::GroupsView()
-	: m_Genlist(nullptr), m_CreateItem(nullptr),
+	: m_Genlist(nullptr), m_CreateItem(nullptr), m_GroupsItem(nullptr),
 	  m_IsAssignMode(false), m_NewGroupId(0)
 {
 	auto strings = Common::getSelectViewStrings();
@@ -54,9 +55,10 @@ Evas_Object *GroupsView::onCreate(Evas_Object *parent)
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
 
+	m_GroupsItem = new GroupsItem("IDS_PB_OPT_GROUPS");
+	m_Genlist->insert(m_GroupsItem);
 	for (auto &&data : m_Provider.getDataList()) {
-		Group *group = static_cast<Group *>(data);
-		insertItem(createItem(*group));
+		insertItem(createItem(*static_cast<Group *>(data)));
 	}
 
 	updateCreateItem();
@@ -129,7 +131,7 @@ GroupItem *GroupsView::createItem(Group &group)
 
 void GroupsView::insertItem(GroupItem *item)
 {
-	m_Genlist->insert(item, nullptr, getNextItem(item->getGroup()));
+	m_GroupsItem->insertSubItem(item, getNextItem(item->getGroup()));
 	addSelectItem(item);
 }
 
@@ -149,7 +151,7 @@ void GroupsView::deleteItem(GroupItem *item)
 
 Ui::GenItem *GroupsView::getNextItem(Group &group)
 {
-	for (auto &&item : getSelectItems()) {
+	for (auto &&item : *m_GroupsItem) {
 		GroupItem *groupItem = static_cast<GroupItem *>(item);
 		if (group < groupItem->getGroup()) {
 			return groupItem;

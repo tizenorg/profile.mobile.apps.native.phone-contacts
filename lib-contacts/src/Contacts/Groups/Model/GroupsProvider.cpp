@@ -28,7 +28,7 @@ using namespace Common::Database;
 using namespace Model;
 
 GroupsProvider::GroupsProvider()
-	: m_DbVersion(0), m_IsFilled(false)
+	: m_DbVersion(0), m_MembersDbVersion(0), m_IsFilled(false)
 {
 }
 
@@ -41,8 +41,11 @@ const DataProvider::DataList &GroupsProvider::getDataList()
 {
 	if (!m_IsFilled) {
 		contacts_db_get_current_version(&m_DbVersion);
+		m_MembersDbVersion = m_DbVersion;
 		contacts_db_add_changed_cb(_contacts_group._uri,
 				makeCallbackWithLastParam(&GroupsProvider::onChanged), this);
+		contacts_db_add_changed_cb(_contacts_group_relation._uri,
+				makeCallbackWithLastParam(&GroupsProvider::onMembersChanged), this);
 
 		contacts_list_h list = nullptr;
 		contacts_db_get_all_records(_contacts_group._uri, 0, 0, &list);
@@ -59,6 +62,8 @@ void GroupsProvider::clearDataList()
 {
 	contacts_db_remove_changed_cb(_contacts_group._uri,
 			makeCallbackWithLastParam(&GroupsProvider::onChanged), this);
+	contacts_db_remove_changed_cb(_contacts_group_relation._uri,
+			makeCallbackWithLastParam(&GroupsProvider::onMembersChanged), this);
 
 	for (auto &&groupData : m_List) {
 		delete groupData;
@@ -101,6 +106,25 @@ void GroupsProvider::onChanged(const char *uri)
 			}
 		}
 	}
+
+	contacts_list_destroy(changes, true);
+}
+
+void GroupsProvider::onMembersChanged(const char *uri)
+{
+	contacts_list_h changes = nullptr;
+	contacts_db_get_changes_by_version(_contacts_grouprel_updated_info._uri, 0,
+			m_MembersDbVersion, &changes, &m_MembersDbVersion);
+
+	for (auto &&record : makeRange(changes)) {
+		auto groupIt = findGroup(getRecordInt(record, _contacts_grouprel_updated_info.group_id));
+		if (groupIt != m_List.end()) {
+			Group *group = static_cast<Group *>(*groupIt);
+			group->updateMembersCount();
+		}
+	}
+
+	contacts_list_destroy(changes, true);
 }
 
 void GroupsProvider::insertGroup(int id)

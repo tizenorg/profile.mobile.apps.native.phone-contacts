@@ -47,11 +47,7 @@ namespace Contacts
 				 * @param[in]   mode        Members mode
 				 */
 				explicit MembersProvider(int groupId, Mode mode = ModeDefault);
-
-				/**
-				 * @return count of group's members.
-				 */
-				const int getMembersCount() const;
+				virtual ~MembersProvider() override;
 
 			private:
 				virtual contacts_filter_h getFilter() const override;
@@ -59,10 +55,14 @@ namespace Contacts
 				virtual contacts_record_h getPersonRecord(int id, IdType idType) const override;
 
 				contacts_list_h getMembersList() const;
-				contacts_query_h getFilteredQuery() const;
+
+				void onChanged(const char *uri);
+				void onGroupChanged(const char *uri);
 
 				int m_GroupId;
 				Mode m_Mode;
+				int m_DbVersion;
+				int m_GroupDbVersion;
 			};
 		}
 	}

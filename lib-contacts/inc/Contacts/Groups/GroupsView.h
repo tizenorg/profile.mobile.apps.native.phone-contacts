@@ -32,6 +32,7 @@ namespace Contacts
 	namespace Groups
 	{
 		class GroupItem;
+		class GroupsItem;
 		class CreateGroupItem;
 
 		namespace Model
@@ -69,6 +70,7 @@ namespace Contacts
 			Ui::Genlist *m_Genlist;
 			CreateGroupItem *m_CreateItem;
 			Model::GroupsProvider m_Provider;
+			GroupsItem *m_GroupsItem;
 
 			bool m_IsAssignMode;
 			int m_NewGroupId;
