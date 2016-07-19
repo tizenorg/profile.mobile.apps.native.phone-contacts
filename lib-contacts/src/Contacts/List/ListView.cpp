@@ -65,8 +65,9 @@ using namespace std::placeholders;
 ListView::ListView(Model::PersonProvider *provider)
 	: m_Box(nullptr), m_NoContent(nullptr), m_Genlist(nullptr),
 	  m_Index(nullptr), m_AddButton(nullptr),
+	  m_NoContentHelpText("IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE"),
 	  m_IsCurrentView(false), m_IsSearching(false), m_IsEmpty(false),
-	  m_SearchItem(nullptr), m_PersonProvider(provider),
+	  m_HasAddButton(true), m_SearchItem(nullptr), m_PersonProvider(provider),
 	  m_SearchProvider(*m_PersonProvider)
 {
 	auto strings = Common::getSelectViewStrings();
@@ -90,6 +91,28 @@ void ListView::setSectionVisibility(SectionId section, bool isVisible)
 {
 	m_Sections[section].m_IsVisible = isVisible;
 	updateSection(section);
+}
+
+void ListView::setAddButtonVisibility(bool isVisible)
+{
+	m_HasAddButton = isVisible;
+	updateAddButton();
+}
+
+void ListView::setNoContentHelpText(const char *text)
+{
+	m_NoContentHelpText = text;
+	elm_object_translatable_part_text_set(m_NoContent, "elm.help.text", text);
+}
+
+PersonProvider *ListView::getProvider() const
+{
+	return m_PersonProvider;
+}
+
+void ListView::onUpdateFinished()
+{
+	elm_index_level_go(m_Index, 0);
 }
 
 Evas_Object *ListView::onCreate(Evas_Object *parent)
@@ -118,9 +141,7 @@ void ListView::onCreated()
 	elm_index_level_go(m_Index, 0);
 
 	m_SearchProvider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
-	m_PersonProvider->setUpdateFinishedCallback([this] {
-		elm_index_level_go(m_Index, 0);
-	});
+	m_PersonProvider->setUpdateFinishedCallback(std::bind(&ListView::onUpdateFinished, this));
 }
 
 void ListView::onDestroy()
@@ -130,6 +151,7 @@ void ListView::onDestroy()
 			delete section.m_Item;
 		}
 	}
+	delete m_SearchItem;
 }
 
 void ListView::onNavigation(bool isCurrent)
@@ -372,7 +394,7 @@ Evas_Object *ListView::createEmptyLayout(Evas_Object *parent)
 	evas_object_size_hint_align_set(layout, EVAS_HINT_FILL, EVAS_HINT_FILL);
 
 	elm_object_translatable_part_text_set(layout, "elm.text", "IDS_PB_NPBODY_NO_CONTACTS");
-	elm_object_translatable_part_text_set(layout, "elm.help.text", "IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE");
+	elm_object_translatable_part_text_set(layout, "elm.help.text", m_NoContentHelpText.c_str());
 
 	elm_layout_signal_emit(layout, "text,disabled", "");
 	elm_layout_signal_emit(layout, "align.center", "elm");
@@ -387,8 +409,7 @@ void ListView::updateEmptyLayout()
 		elm_object_translatable_part_text_set(m_NoContent, "elm.help.text", "");
 	} else {
 		elm_object_translatable_part_text_set(m_NoContent, "elm.text", "IDS_PB_NPBODY_NO_CONTACTS");
-		elm_object_translatable_part_text_set(m_NoContent, "elm.help.text",
-				"IDS_PB_BODY_AFTER_YOU_CREATE_CONTACTS_THEY_WILL_BE_SHOWN_HERE");
+		elm_object_translatable_part_text_set(m_NoContent, "elm.help.text", m_NoContentHelpText.c_str());
 	}
 }
 
@@ -409,6 +430,8 @@ void ListView::updateEmptyState()
 
 		evas_object_show(m_NoContent);
 		elm_box_pack_end(m_Box, m_NoContent);
+
+		m_SearchItem->pop();
 	} else {
 		elm_scroller_content_min_limit(genlist, EINA_FALSE, EINA_FALSE);
 		evas_object_size_hint_weight_set(genlist, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
@@ -416,6 +439,8 @@ void ListView::updateEmptyState()
 
 		evas_object_hide(m_NoContent);
 		elm_box_unpack(m_Box, m_NoContent);
+
+		m_Genlist->insert(m_SearchItem, nullptr, nullptr, Ui::Genlist::After);
 	}
 	m_IsEmpty = isEmpty;
 }
@@ -550,7 +575,7 @@ void ListView::updateAddButton()
 		return;
 	}
 
-	if (m_IsCurrentView && getSelectMode() == SelectNone) {
+	if (m_IsCurrentView && getSelectMode() == SelectNone && m_HasAddButton) {
 		elm_object_part_content_set(window->getBaseLayout(), "elm.swallow.floatingbutton", m_AddButton);
 	} else {
 		elm_object_part_content_unset(window->getBaseLayout(), "elm.swallow.floatingbutton");

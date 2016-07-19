@@ -17,8 +17,11 @@
 
 #include "Contacts/Groups/Model/MembersProvider.h"
 
+#include "Contacts/Groups/Model/Queries.h"
+
 #include "Common/Database/RecordIterator.h"
 #include "Common/Database/RecordUtils.h"
+#include "Utils/Callback.h"
 
 using namespace Common::Database;
 using namespace Contacts::Groups::Model;
@@ -37,19 +40,20 @@ namespace
 MembersProvider::MembersProvider(int groupId, Mode mode)
 	: m_GroupId(groupId), m_Mode(mode)
 {
+	contacts_db_get_current_version(&m_DbVersion);
+	m_GroupDbVersion = m_DbVersion;
+	contacts_db_add_changed_cb(_contacts_group_relation._uri,
+			makeCallbackWithLastParam(&MembersProvider::onChanged), this);
+	contacts_db_add_changed_cb(_contacts_group._uri,
+			makeCallbackWithLastParam(&MembersProvider::onGroupChanged), this);
 }
 
-const int MembersProvider::getMembersCount() const
+MembersProvider::~MembersProvider()
 {
-	if (!m_GroupId) {
-		return 0;
-	}
-
-	contacts_query_h query = getFilteredQuery();
-	int count = 0;
-	contacts_db_get_count_with_query(query, &count);
-	contacts_query_destroy(query);
-	return count;
+	contacts_db_remove_changed_cb(_contacts_group_relation._uri,
+			makeCallbackWithLastParam(&MembersProvider::onChanged), this);
+	contacts_db_remove_changed_cb(_contacts_group._uri,
+			makeCallbackWithLastParam(&MembersProvider::onGroupChanged), this);
 }
 
 contacts_filter_h MembersProvider::getFilter() const
@@ -132,7 +136,7 @@ contacts_list_h MembersProvider::getMembersList() const
 	if (!m_GroupId) {
 		return nullptr;
 	}
-	contacts_query_h query = getFilteredQuery();
+	contacts_query_h query = getMembersQuery(m_GroupId);
 	contacts_list_h list = nullptr;
 	contacts_db_get_records_with_query(query, 0, 0, &list);
 
@@ -140,17 +144,62 @@ contacts_list_h MembersProvider::getMembersList() const
 	return list;
 }
 
-contacts_query_h MembersProvider::getFilteredQuery() const
+void MembersProvider::onChanged(const char *uri)
 {
-	contacts_filter_h filter = nullptr;
-	contacts_filter_create(_contacts_person_group_assigned._uri, &filter);
-	contacts_filter_add_int(filter, _contacts_person_group_assigned.group_id,
-			CONTACTS_MATCH_EQUAL, m_GroupId);
+	contacts_list_h changes = nullptr;
+	contacts_db_get_changes_by_version(_contacts_grouprel_updated_info._uri, 0,
+			m_DbVersion, &changes, &m_DbVersion);
+	bool isChanged = false;
 
-	contacts_query_h query = nullptr;
-	contacts_query_create(_contacts_person_group_assigned._uri, &query);
-	contacts_query_set_filter(query, filter);
+	for (auto &&record : makeRange(changes)) {
+		if (getRecordInt(record, _contacts_grouprel_updated_info.group_id) != m_GroupId) {
+			continue;
+		}
 
-	contacts_filter_destroy(filter);
-	return query;
+		int contactId = getRecordInt(record, _contacts_grouprel_updated_info.contact_id);
+		int changeType = getRecordInt(record, _contacts_grouprel_updated_info.type);
+		switch (changeType) {
+			case CONTACTS_CHANGE_INSERTED:
+				insertPerson(getPersonRecord(contactId, ContactId));
+				break;
+
+			case CONTACTS_CHANGE_DELETED:
+				auto personIt = findPerson(contactId, ContactId);
+				if (personIt != getDataList().end()) {
+					deletePerson(personIt);
+				}
+				break;
+		}
+		isChanged = true;
+	}
+	contacts_list_destroy(changes, true);
+
+	if (isChanged) {
+		onUpdateFinished();
+	}
+}
+
+void MembersProvider::onGroupChanged(const char *uri)
+{
+	contacts_list_h changes = nullptr;
+	contacts_db_get_changes_by_version(_contacts_group_updated_info._uri, 0,
+			m_GroupDbVersion, &changes, &m_GroupDbVersion);
+	bool isChanged = false;
+
+	for (auto &&record : makeRange(changes)) {
+		if (getRecordInt(record, _contacts_group_updated_info.group_id) != m_GroupId) {
+			continue;
+		}
+		int changeType = getRecordInt(record, _contacts_group_updated_info.type);
+		switch (changeType) {
+			case CONTACTS_CHANGE_UPDATED:
+				isChanged = true;
+				break;
+		}
+	}
+	contacts_list_destroy(changes, true);
+
+	if (isChanged) {
+		onUpdateFinished();
+	}
 }

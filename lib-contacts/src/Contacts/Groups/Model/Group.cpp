@@ -16,6 +16,8 @@
  */
 
 #include "Contacts/Groups/Model/Group.h"
+
+#include "Contacts/Groups/Model/Queries.h"
 #include "Common/Database/RecordUtils.h"
 
 using namespace Contacts::Groups::Model;
@@ -24,6 +26,7 @@ using namespace Common::Database;
 Group::Group(contacts_record_h record)
 	: m_Record(record)
 {
+	m_MembersCount = Model::getMembersCount(getId());
 }
 
 Group::~Group()
@@ -44,6 +47,11 @@ const char *Group::getName() const
 const char *Group::getRingtone() const
 {
 	return getRecordStr(m_Record, _contacts_group.ringtone_path);
+}
+
+int Group::getMembersCount() const
+{
+	return m_MembersCount;
 }
 
 contacts_record_h Group::getRecord() const
@@ -76,4 +84,10 @@ void Group::update(contacts_record_h record)
 	m_Record = record;
 
 	onUpdated(changes);
+}
+
+void Group::updateMembersCount()
+{
+	m_MembersCount = Model::getMembersCount(getId());
+	onUpdated(ChangedMembersCount);
 }
