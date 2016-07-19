@@ -55,6 +55,7 @@ namespace Contacts
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual Ux::SelectResult getDefaultResult() const override;
+			virtual void onSelected() override;
 
 			Model::Group &m_Group;
 		};
