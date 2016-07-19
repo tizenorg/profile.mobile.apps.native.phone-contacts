@@ -45,7 +45,9 @@ LogsView::LogsView(FilterType filterType)
 	  m_Genlist(nullptr), m_LastGroupItem(nullptr)
 {
 	auto strings = Common::getSelectViewStrings();
+	strings.buttonDone = "IDS_TPLATFORM_ACBUTTON_DELETE_ABB";
 	strings.titleDefault = "IDS_LOGS_ITAB3_LOGS";
+	strings.titleMulti = "IDS_CLOG_HEADER_SELECT_LOGS";
 	setStrings(strings);
 
 	Settings::addCallback(SYSTEM_SETTINGS_KEY_LOCALE_TIMEFORMAT_24HOUR,
@@ -102,30 +104,11 @@ void LogsView::onMenuPressed()
 	menu->create(getEvasObject());
 
 	if (!m_LogProvider.getLogGroupList().empty()) {
-		menu->addItem("IDS_LOGS_OPT_FILTER_BY_ABB", [this] {
-			onSelectViewBy();
-		});
+		menu->addItem("IDS_LOGS_OPT_FILTER_BY_ABB", std::bind(&LogsView::onFilterBySelected, this));
 	}
 
 	if (m_Genlist && elm_genlist_items_count(m_Genlist->getEvasObject())) {
-		menu->addItem("IDS_LOGS_OPT_DELETE", [this] {
-			auto strings = Common::getSelectViewStrings();
-			strings.buttonDone = "IDS_TPLATFORM_ACBUTTON_DELETE_ABB";
-			strings.titleMulti = "IDS_CLOG_HEADER_SELECT_LOGS";
-
-			LogsView *view = new LogsView(m_FilterType);
-			view->setStrings(strings);
-			view->setSelectMode(SelectMulti);
-			view->setSelectCallback([](SelectResults results) {
-						for (auto &&result : results) {
-							LogGroup *group = (LogGroup *) result.value.data;
-							group->remove();
-						}
-
-						return true;
-					});
-			getNavigator()->navigateTo(view);
-		});
+		menu->addItem("IDS_LOGS_OPT_DELETE", std::bind(&LogsView::onDeleteSelected, this));
 	}
 
 	menu->addItem("IDS_KPD_OPT_CALL_SETTINGS_ABB", [this] {
@@ -136,9 +119,55 @@ void LogsView::onMenuPressed()
 	menu->show();
 }
 
+void LogsView::onFilterBySelected()
+{
+	Ui::RadioPopup *popup = new Ui::RadioPopup();
+	popup->create(getEvasObject());
+	popup->setTitle("IDS_LOGS_HEADER_FILTER_BY");
+	popup->addItem("IDS_LOGS_OPT_ALL_CALLS_ABB", (void *) FilterAll);
+	popup->addItem("IDS_LOGS_OPT_MISSED_CALLS", (void *) FilterMissed);
+	popup->setSelectedItem(m_FilterType);
+	popup->setSelectedCallback([this](void *data) {
+		auto filter = (FilterType)(long)data;
+		if (m_FilterType != filter) {
+			m_FilterType = filter;
+			fillLayout();
+		}
+	});
+}
+
+void LogsView::onDeleteSelected()
+{
+	setSelectMode(SelectMulti);
+	setCancelCallback(std::bind(&LogsView::onSelectFinished, this));
+	setSelectCallback([this](SelectResults results) {
+		for (auto &&result : results) {
+			LogGroup *group = (LogGroup *) result.value.data;
+			group->remove();
+		}
+
+		return onSelectFinished();
+	});
+}
+
+bool LogsView::onSelectFinished()
+{
+	setSelectMode(SelectNone);
+	setCancelCallback(nullptr);
+	setSelectCallback(nullptr);
+	return false;
+}
+
 void LogsView::onSelectAllInsert(Ui::GenItem *item)
 {
 	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
+}
+
+void LogsView::onSelectModeChanged(Ux::SelectMode selectMode)
+{
+	if (Ui::NavigatorPage *page = getPage()) {
+		page->setExpanded(selectMode != SelectNone);
+	}
 }
 
 void LogsView::resetMissedCalls()
@@ -156,12 +185,12 @@ void LogsView::resetMissedCalls()
 void LogsView::fillLayout()
 {
 	if (m_Genlist) {
-		elm_genlist_clear(m_Genlist->getEvasObject());
+		clearList();
 	} else {
 		updateLayout(false);
 	}
 
-	fillGenlist();
+	fillList();
 
 	if (!elm_genlist_items_count(m_Genlist->getEvasObject())) {
 		updateLayout(true);
@@ -195,7 +224,7 @@ Evas_Object *LogsView::createNoContentsLayout(Evas_Object *parent)
 	return layout;
 }
 
-void LogsView::fillGenlist()
+void LogsView::fillList()
 {
 	for (auto &&group : m_LogProvider.getLogGroupList()) {
 		if (shouldDisplayLogs(group.get())) {
@@ -207,6 +236,14 @@ void LogsView::fillGenlist()
 	if (item) {
 		item->scrollTo();
 	}
+}
+
+void LogsView::clearList()
+{
+	for (auto &&item : *m_Genlist) {
+		removeSelectItem(static_cast<Ux::SelectItem *>(item));
+	}
+	elm_genlist_clear(m_Genlist->getEvasObject());
 }
 
 bool LogsView::shouldDisplayLogs(const LogGroup *group) const
@@ -289,32 +326,12 @@ void LogsView::onSettingsChanged(system_settings_key_e key)
 
 	if (key == SYSTEM_SETTINGS_KEY_LOCALE_COUNTRY ||
 			key == SYSTEM_SETTINGS_KEY_TIME_CHANGED) {
-		for (auto &&item : *m_Genlist) {
-			removeSelectItem(static_cast<Ux::SelectItem *>(item));
-		}
-		elm_genlist_clear(m_Genlist->getEvasObject());
+		clearList();
 		m_LogProvider.resetLogGroups();
-		fillGenlist();
+		fillList();
 	} else {
 		m_Genlist->update(PART_LOG_TIME, ELM_GENLIST_ITEM_FIELD_TEXT);
 	}
-}
-
-void LogsView::onSelectViewBy()
-{
-	Ui::RadioPopup *popup = new Ui::RadioPopup();
-	popup->create(getEvasObject());
-	popup->setTitle("IDS_LOGS_HEADER_FILTER_BY");
-	popup->addItem("IDS_LOGS_OPT_ALL_CALLS_ABB", (void *) FilterAll);
-	popup->addItem("IDS_LOGS_OPT_MISSED_CALLS", (void *) FilterMissed);
-	popup->setSelectedItem(m_FilterType);
-	popup->setSelectedCallback([this](void *data) {
-		auto filter = (FilterType)(long)data;
-		if (m_FilterType != filter) {
-			m_FilterType = filter;
-			fillLayout();
-		}
-	});
 }
 
 void LogsView::onLogInserted(LogGroup *group)

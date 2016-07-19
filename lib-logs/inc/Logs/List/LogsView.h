@@ -74,12 +74,19 @@ namespace Logs
 			virtual void onCreated() override;
 			virtual void onNavigation(bool isCurrentView) override;
 			virtual void onMenuPressed() override;
+
+			void onFilterBySelected();
+			void onDeleteSelected();
+			bool onSelectFinished();
+
 			virtual void onSelectAllInsert(Ui::GenItem *item) override;
+			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 
 			void fillLayout();
 			void updateLayout(bool isEmpty);
 			Evas_Object *createNoContentsLayout(Evas_Object *parent);
-			void fillGenlist();
+			void fillList();
+			void clearList();
 
 			bool shouldDisplayLogs(const Model::LogGroup *logGroup) const;
 			LogItem *createLogItem(Model::LogGroup *logGroup);
@@ -90,7 +97,6 @@ namespace Logs
 			void setLastGroupItem(LogGroupItem *groupItem);
 
 			void onSettingsChanged(system_settings_key_e key);
-			void onSelectViewBy();
 			void onLogInserted(Model::LogGroup *group);
 			void onLogItemDelete(LogItem *item);
 
