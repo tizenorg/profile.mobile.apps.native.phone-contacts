@@ -18,7 +18,7 @@
 #ifndef CONTACTS_GROUPS_GROUPS_ITEM_H
 #define CONTACTS_GROUPS_GROUPS_ITEM_H
 
-#include "Ui/GenlistGroupItem.h"
+#include "Ui/GenGroupItem.h"
 
 namespace Contacts
 {
@@ -27,7 +27,7 @@ namespace Contacts
 		/**
 		 * @brief Represents the group containing groups genlist items.
 		 */
-		class GroupsItem : public Ui::GenlistGroupItem
+		class GroupsItem : public Ui::GenGroupItem
 		{
 		public:
 			/**
