@@ -16,15 +16,14 @@
  */
 
 #include "Ui/TabPage.h"
-#include "Ui/TabView.h"
 #include "Utils/Callback.h"
 
 #define BUFFER_SIZE 64
 
 using namespace Ui;
 
-TabPage::TabPage(size_t index)
-	: m_Index(index), m_TabItem(nullptr), m_Sizer(nullptr), m_Page(nullptr)
+TabPage::TabPage()
+	: m_TabItem(nullptr), m_Page(nullptr)
 {
 }
 
@@ -35,20 +34,12 @@ TabPage::~TabPage()
 
 Evas_Object *TabPage::onCreate(Evas_Object *parent)
 {
-	Evas_Object *layout = elm_layout_add(parent);
-	elm_layout_theme_set(layout, "layout", "application", "default");
-
-	m_Sizer = evas_object_rectangle_add(evas_object_evas_get(layout));
-	evas_object_color_set(m_Sizer, 0, 0, 0, 0);
-	elm_object_part_content_set(layout, "elm.swallow.bg", m_Sizer);
-
 	m_Page = elm_layout_add(parent);
 	elm_layout_theme_set(m_Page, "naviframe", "item", "basic/default");
 	elm_layout_signal_emit(m_Page, "elm,state,title,hide", "elm");
 	elm_layout_signal_emit(m_Page, "elm,state,toolbar,hide", "elm");
-	elm_object_part_content_set(layout, "elm.swallow.content", m_Page);
 
-	return layout;
+	return m_Page;
 }
 
 void TabPage::setTitle(const char *title)
@@ -77,11 +68,9 @@ void TabPage::setContent(const char *part, Evas_Object *content)
 	elm_object_part_content_set(m_Page, part, content);
 }
 
-void TabPage::setExpanded(bool isExpanded)
+Elm_Object_Item *TabPage::getTabItem() const
 {
-	auto navigator = static_cast<TabView *>(getNavigator());
-	navigator->setNavigationEnabled(!isExpanded);
-	NavigatorPage::setExpanded(isExpanded);
+	return m_TabItem;
 }
 
 void TabPage::onTabAttached(Elm_Object_Item *tabItem)

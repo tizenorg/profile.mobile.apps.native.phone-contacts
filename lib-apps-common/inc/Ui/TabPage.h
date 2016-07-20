@@ -26,7 +26,7 @@ namespace Ui
 	class EXPORT_API TabPage : public Control, public NavigatorPage
 	{
 	public:
-		TabPage(size_t index);
+		TabPage();
 		virtual ~TabPage() override;
 
 		/**
@@ -49,21 +49,27 @@ namespace Ui
 		 */
 		virtual void setContent(const char *part, Evas_Object *content) override;
 
+	protected:
 		/**
-		 * @see NavigatorPage::setExpanded()
+		 * @return Attached tab item.
 		 */
-		virtual void setExpanded(bool isExpanded) override;
+		Elm_Object_Item *getTabItem() const;
+
+		/**
+		 * @brief Creates page layout.
+		 * @see Control::onCreate()
+		 */
+		virtual Evas_Object *onCreate(Evas_Object *parent) override;
+
+		/**
+		 * @brief Called when tab item is attached to this Page.
+		 */
+		void onTabAttached(Elm_Object_Item *tabItem);
 
 	private:
-		friend class TabView;
-		virtual Evas_Object *onCreate(Evas_Object *parent) override;
-		void onTabAttached(Elm_Object_Item *tabItem);
 		void onTabDestroy(Evas_Object *obj, void *eventInfo);
 
-		size_t m_Index;
 		Elm_Object_Item *m_TabItem;
-
-		Evas_Object *m_Sizer;
 		Evas_Object *m_Page;
 	};
 }

@@ -21,7 +21,7 @@
 #include "Contacts/List/ListView.h"
 #include "Logs/List/LogsView.h"
 #include "Phone/Dialer/DialerView.h"
-#include "Ui/TabView.h"
+#include "Ui/ScrollNavigator.h"
 
 #include <app_preference.h>
 #include <badge.h>
@@ -50,7 +50,7 @@ OperationDefaultController::~OperationDefaultController()
 
 void OperationDefaultController::onCreate()
 {
-	m_Navigator = new Ui::TabView();
+	m_Navigator = new Ui::ScrollNavigator();
 	getNavigator()->navigateTo(m_Navigator);
 
 	m_Tabs[TabDialer] = new DialerView();

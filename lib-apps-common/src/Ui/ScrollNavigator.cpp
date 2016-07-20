@@ -15,14 +15,14 @@
  *
  */
 
-#include "Ui/TabView.h"
-#include "Ui/TabPage.h"
+#include "Ui/ScrollNavigator.h"
+#include "Ui/ScrollPage.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 
 using namespace Ui;
 
-TabView::TabView()
+ScrollNavigator::ScrollNavigator()
 	: Navigator(TabNavigator),
 	  m_Tabbar(nullptr), m_Scroller(nullptr), m_Box(nullptr),
 	  m_Width(0), m_Height(0),
@@ -31,12 +31,12 @@ TabView::TabView()
 {
 }
 
-TabPage *TabView::getCurrentPage() const
+ScrollPage *ScrollNavigator::getCurrentPage() const
 {
 	return m_CurrentPage;
 }
 
-void TabView::setNavigationEnabled(bool isEnabled)
+void ScrollNavigator::setNavigationEnabled(bool isEnabled)
 {
 	m_IsNavigationEnabled = isEnabled;
 	if (isEnabled) {
@@ -48,7 +48,7 @@ void TabView::setNavigationEnabled(bool isEnabled)
 	}
 }
 
-Evas_Object *TabView::onCreate(Evas_Object *parent)
+Evas_Object *ScrollNavigator::onCreate(Evas_Object *parent)
 {
 	m_Scroller = elm_scroller_add(parent);
 	elm_scroller_page_relative_set(m_Scroller, 1.0, 0.0);
@@ -58,9 +58,9 @@ Evas_Object *TabView::onCreate(Evas_Object *parent)
 	elm_object_scroll_lock_y_set(m_Scroller, EINA_TRUE);
 
 	evas_object_event_callback_add(m_Scroller, EVAS_CALLBACK_RESIZE,
-			makeCallback(&TabView::onResize), this);
+			makeCallback(&ScrollNavigator::onResize), this);
 	evas_object_smart_callback_add(m_Scroller, "scroll,page,changed",
-			makeCallback(&TabView::onPageChanged), this);
+			makeCallback(&ScrollNavigator::onPageChanged), this);
 
 	m_Box = elm_box_add(m_Scroller);
 	elm_box_horizontal_set(m_Box, EINA_TRUE);
@@ -69,22 +69,22 @@ Evas_Object *TabView::onCreate(Evas_Object *parent)
 	return m_Scroller;
 }
 
-void TabView::onPageAttached(NavigatorPage *page)
+void ScrollNavigator::onPageAttached(NavigatorPage *page)
 {
 	m_Tabbar = elm_toolbar_add(getEvasObject());
 	elm_toolbar_shrink_mode_set(m_Tabbar, ELM_TOOLBAR_SHRINK_EXPAND);
 	elm_toolbar_select_mode_set(m_Tabbar, ELM_OBJECT_SELECT_MODE_ALWAYS);
 	elm_toolbar_transverse_expanded_set(m_Tabbar, EINA_TRUE);
 	evas_object_smart_callback_add(m_Tabbar, "selected",
-			(Evas_Smart_Cb) makeCallback(&TabView::onTabSelected), this);
+			(Evas_Smart_Cb) makeCallback(&ScrollNavigator::onTabSelected), this);
 
 	page->setStyle("tabbar/notitle");
 	page->setContent("tabbar", m_Tabbar);
 }
 
-TabPage *TabView::attachView(View *view)
+ScrollPage *ScrollNavigator::attachView(View *view)
 {
-	TabPage *page = new TabPage(m_Pages.size());
+	ScrollPage *page = new ScrollPage(m_Pages.size());
 	m_Pages.push_back(page);
 
 	Elm_Object_Item *item = elm_toolbar_item_append(m_Tabbar, nullptr, nullptr, nullptr, page);
@@ -99,7 +99,7 @@ TabPage *TabView::attachView(View *view)
 	return page;
 }
 
-void TabView::navigateToPage(NavigatorPage *page)
+void ScrollNavigator::navigateToPage(NavigatorPage *page)
 {
 	if (!m_IsNavigationEnabled) {
 		return;
@@ -111,12 +111,12 @@ void TabView::navigateToPage(NavigatorPage *page)
 	size_t currentIndex = 0;
 	elm_scroller_current_page_get(m_Scroller, (int *) &currentIndex, nullptr);
 
-	TabPage *tabPage = static_cast<TabPage *>(page);
+	ScrollPage *tabPage = static_cast<ScrollPage *>(page);
 	if (currentIndex != tabPage->m_Index) {
 		elm_scroller_page_show(m_Scroller, tabPage->m_Index, 0);
 	}
-	if (!elm_toolbar_item_selected_get(tabPage->m_TabItem)) {
-		elm_toolbar_item_selected_set(tabPage->m_TabItem, EINA_TRUE);
+	if (!elm_toolbar_item_selected_get(tabPage->getTabItem())) {
+		elm_toolbar_item_selected_set(tabPage->getTabItem(), EINA_TRUE);
 	}
 	m_CurrentPage = tabPage;
 
@@ -124,9 +124,9 @@ void TabView::navigateToPage(NavigatorPage *page)
 	notifyNavigation(tabPage, true);
 }
 
-void TabView::navigateFromPage(NavigatorPage *page)
+void ScrollNavigator::navigateFromPage(NavigatorPage *page)
 {
-	size_t index = static_cast<TabPage *>(page)->m_Index;
+	size_t index = static_cast<ScrollPage *>(page)->m_Index;
 	m_Pages.erase(m_Pages.begin() + index);
 
 	for (; index < m_Pages.size(); ++index) {
@@ -136,15 +136,15 @@ void TabView::navigateFromPage(NavigatorPage *page)
 	delete page;
 }
 
-void TabView::onTabSelected(Evas_Object *obj, Elm_Object_Item *selectedItem)
+void ScrollNavigator::onTabSelected(Evas_Object *obj, Elm_Object_Item *selectedItem)
 {
 	if (!m_IsNavigating) {
-		TabPage *page = (TabPage *) elm_object_item_data_get(selectedItem);
+		ScrollPage *page = (ScrollPage *) elm_object_item_data_get(selectedItem);
 		navigateTo(page->getView());
 	}
 }
 
-void TabView::onPageChanged(Evas_Object *obj, void *eventInfo)
+void ScrollNavigator::onPageChanged(Evas_Object *obj, void *eventInfo)
 {
 	if (!m_IsNavigating) {
 		int index = 0;
@@ -153,7 +153,7 @@ void TabView::onPageChanged(Evas_Object *obj, void *eventInfo)
 	}
 }
 
-void TabView::onResize(Evas *e, Evas_Object *obj, void *eventInfo)
+void ScrollNavigator::onResize(Evas *e, Evas_Object *obj, void *eventInfo)
 {
 	evas_object_geometry_get(obj, nullptr, nullptr, &m_Width, &m_Height);
 	for (auto &&page : m_Pages) {

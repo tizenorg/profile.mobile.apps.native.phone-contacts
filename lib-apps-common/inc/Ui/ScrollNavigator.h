@@ -15,27 +15,27 @@
  *
  */
 
-#ifndef UI_TAB_VIEW_H
-#define UI_TAB_VIEW_H
+#ifndef UI_SCROLL_NAVIGATOR_H
+#define UI_SCROLL_NAVIGATOR_H
 
 #include "Ui/Navigator.h"
-#include "Ui/TabPage.h"
+#include "Ui/ScrollPage.h"
 #include <vector>
 
 namespace Ui
 {
 	/**
-	 * @brief Scrollable tab navigator
+	 * @brief Scrollable page navigator.
 	 */
-	class EXPORT_API TabView : public Navigator
+	class EXPORT_API ScrollNavigator : public Navigator
 	{
 	public:
-		TabView();
+		ScrollNavigator();
 
 		/**
 		 * @see Navigator::getCurrentPage()
 		 */
-		virtual TabPage *getCurrentPage() const override;
+		virtual ScrollPage *getCurrentPage() const override;
 
 		/**
 		 * @brief Set whether navigation is allowed either by user or by calling navigateTo().
@@ -47,7 +47,7 @@ namespace Ui
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 		virtual void onPageAttached(NavigatorPage *page) override;
 
-		virtual TabPage *attachView(View *view) override;
+		virtual ScrollPage *attachView(View *view) override;
 		virtual void navigateToPage(NavigatorPage *page) override;
 		virtual void navigateFromPage(NavigatorPage *page) override;
 
@@ -65,9 +65,9 @@ namespace Ui
 
 		bool m_IsNavigating;
 		bool m_IsNavigationEnabled;
-		TabPage *m_CurrentPage;
-		std::vector<TabPage *> m_Pages;
+		ScrollPage *m_CurrentPage;
+		std::vector<ScrollPage *> m_Pages;
 	};
 }
 
-#endif /* UI_TAB_VIEW_H */
+#endif /* UI_SCROLL_NAVIGATOR_H */
