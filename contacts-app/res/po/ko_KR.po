@@ -769,3 +769,12 @@ msgstr "필터 적용"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "모든 통화"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "공유"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "텍스트"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "연락처 파일(VCF)"
+

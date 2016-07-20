@@ -769,3 +769,12 @@ msgstr "Զտել՝ ըստ"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Բոլոր կանչերը"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Համատեղ օգտագործում"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Տեքստ"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCard ֆայլ (VCF)"
+

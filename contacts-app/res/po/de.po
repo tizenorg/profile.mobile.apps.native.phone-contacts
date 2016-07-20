@@ -769,3 +769,12 @@ msgstr "Filtern nach"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Alle Anrufe"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Senden"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Text"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCard-Datei (VCF)"
+

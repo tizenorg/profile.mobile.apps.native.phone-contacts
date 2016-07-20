@@ -18,6 +18,7 @@
 #include "Contacts/List/ListView.h"
 #include "Contacts/List/ListSection.h"
 #include "Contacts/List/ManageFavoritesPopup.h"
+#include "Contacts/List/SharePopup.h"
 
 #include "Contacts/List/Model/FavoritesProvider.h"
 #include "Contacts/List/Model/MfcProvider.h"
@@ -244,6 +245,16 @@ void ListView::onShareSelected()
 	setCancelCallback(std::bind(&ListView::onSelectFinished, this));
 	setSelectCallback([this](SelectResults results) {
 		size_t count = results.size();
+
+		if (count == 1) {
+			SharePopup *popup = new SharePopup(results[0].value.id);
+			popup->create(getEvasObject());
+			popup->setSelectedCallback([this](void *data) {
+				onSelectFinished();
+			});
+			return false;
+		}
+
 		std::vector<std::string> idString(count);
 		std::vector<const char *> ids(count);
 

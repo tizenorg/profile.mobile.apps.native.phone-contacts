@@ -769,3 +769,12 @@ msgstr "görə filtrlə"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Bütün zənglər"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Paylaş"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Mətn"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCard faylı (VCF)"
+
