@@ -20,6 +20,6 @@
 
 int main(int argc, char *argv[])
 {
-	Utils::setLogTag("contacts");
+	Utils::setLogTag("CONTACTS_APP");
 	return MainApp().run(argc, argv);
 }
