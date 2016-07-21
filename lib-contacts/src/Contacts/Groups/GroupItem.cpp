@@ -21,7 +21,6 @@
 #include "Contacts/Groups/Model/Queries.h"
 
 #include "Ui/Navigator.h"
-#include "Utils/Logger.h"
 
 #define BUFFER_SIZE 1024
 

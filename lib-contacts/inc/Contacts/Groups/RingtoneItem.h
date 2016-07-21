@@ -35,6 +35,12 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Create group's ringtone item
+			 * @param   path    Ringtone path
+			 */
+			RingtoneItem(std::string path = "");
+
+			/**
 			 * @return ringtone path
 			 */
 			const std::string &getPath() const;

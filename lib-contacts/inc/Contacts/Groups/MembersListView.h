@@ -37,11 +37,29 @@ namespace Contacts
 			MembersListView(int groupId);
 
 		private:
+			enum EditType {
+				EditAdd,
+				EditRemove,
+			};
+
+			enum ComposerType {
+				ComposerMessage,
+				ComposerEmail
+			};
+
 			virtual void onPageAttached(Ui::NavigatorPage *page) override;
 			virtual void onMenuPressed() override;
 			virtual void onUpdateFinished() override;
 
 			std::string getTitle() const;
+
+			void onAddSelected();
+			void onRemoveSelected();
+			bool onRemoveFinished();
+
+			void selectMembers(Ux::SelectResults results, EditType type);
+			void addSelectView(ComposerType composerType);
+			bool launchComposer(Ux::SelectResults results, ComposerType type);
 
 			int m_GroupId;
 		};

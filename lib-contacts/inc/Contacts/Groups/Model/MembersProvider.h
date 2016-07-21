@@ -42,11 +42,22 @@ namespace Contacts
 				};
 
 				/**
+			     * @brief Determines which additional filter to use.
+				 */
+				enum FilterType
+				{
+					FilterNone,         /**< No additional filter */
+					FilterNumber,       /**< Filter person by availability of phone number */
+					FilterEmail         /**< Filter person by availability of email */
+				};
+
+				/**
 				 * @brief Constructor.
 				 * @param[in]   groupId     Group id
 				 * @param[in]   mode        Members mode
 				 */
-				explicit MembersProvider(int groupId, Mode mode = ModeDefault);
+				explicit MembersProvider(int groupId, Mode mode = ModeDefault,
+						FilterType type = FilterNone);
 				virtual ~MembersProvider() override;
 
 			private:
@@ -61,6 +72,7 @@ namespace Contacts
 
 				int m_GroupId;
 				Mode m_Mode;
+				FilterType m_FilterType;
 				int m_DbVersion;
 				int m_GroupDbVersion;
 			};

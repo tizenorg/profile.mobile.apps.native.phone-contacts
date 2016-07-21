@@ -83,15 +83,19 @@ namespace App
 	AppControl EXPORT_API requestCallSettings();
 
 	/**
-	 * @brief Request message composer
-	 * @param[in]   scheme      URI scheme (e.g. sms:, mmsto: or mailto:)
-	 * @param[in]   to          Message recipient
-	 * @param[in]   subject     Message subject
-	 * @param[in]   text        Message text
+	 * @brief Request message or email composer.
+	 * @remark If you want to specify multiple recipients don't fill @p to.
+	 * @param[in]   scheme      URI scheme (e.g. sms: or mmsto: for message, mailto: for email)
+	 * @param[in]   to          Recipient
+	 * @param[in]   subject     Subject
+	 * @param[in]   text        Text
+	 * @param[in]   recipients  Multiple recipients
+	 * @param[in]   length      Number of the recipients
 	 * @return AppControl wrapper
 	 */
-	AppControl EXPORT_API requestMessageComposer(const char *scheme, const char *to,
-			const char *subject = nullptr, const char *text = nullptr);
+	AppControl EXPORT_API requestComposer(const char *scheme, const char *to,
+			const char *subject = nullptr, const char *text = nullptr,
+			const char **recipients = nullptr, int length = 0);
 
 	/**
 	 * @brief Request camera image capture

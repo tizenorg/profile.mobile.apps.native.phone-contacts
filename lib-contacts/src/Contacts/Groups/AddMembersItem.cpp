@@ -98,6 +98,13 @@ void AddMembersItem::onSelected()
 	navigator->navigateTo(view);
 }
 
+void AddMembersItem::onInserted()
+{
+	m_Count = getMembersCount(m_GroupId);
+	elm_genlist_item_fields_update(getObjectItem(),
+			PART_GROUP_ADD_MEMBERS_COUNTER, ELM_GENLIST_ITEM_FIELD_TEXT);
+}
+
 bool AddMembersItem::onMembersSelected(ListView *view, Ux::SelectResults results)
 {
 	auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");

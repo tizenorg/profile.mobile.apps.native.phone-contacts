@@ -37,8 +37,8 @@ namespace
 	};
 }
 
-MembersProvider::MembersProvider(int groupId, Mode mode)
-	: m_GroupId(groupId), m_Mode(mode)
+MembersProvider::MembersProvider(int groupId, Mode mode, FilterType type)
+	: m_GroupId(groupId), m_Mode(mode), m_FilterType(type)
 {
 	contacts_db_get_current_version(&m_DbVersion);
 	m_GroupDbVersion = m_DbVersion;
@@ -70,6 +70,13 @@ contacts_filter_h MembersProvider::getFilter() const
 	contacts_filter_create(_contacts_person._uri, &filter);
 	if (m_Mode == ModeExclude) {
 		contacts_filter_add_bool(filter, _contacts_person.is_favorite, false);
+		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+	}
+	if (m_FilterType == FilterNumber) {
+		contacts_filter_add_bool(filter, _contacts_person.has_phonenumber, true);
+		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+	} else if (m_FilterType == FilterEmail) {
+		contacts_filter_add_bool(filter, _contacts_person.has_email, true);
 		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
 	}
 

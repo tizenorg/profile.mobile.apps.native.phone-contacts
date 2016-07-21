@@ -116,6 +116,11 @@ void ListView::onUpdateFinished()
 	elm_index_level_go(m_Index, 0);
 }
 
+bool ListView::isListEmpty()
+{
+	return m_IsEmpty;
+}
+
 Evas_Object *ListView::onCreate(Evas_Object *parent)
 {
 	Evas_Object *layout = elm_layout_add(parent);

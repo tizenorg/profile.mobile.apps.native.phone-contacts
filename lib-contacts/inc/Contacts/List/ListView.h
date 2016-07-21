@@ -87,7 +87,7 @@ namespace Contacts
 			void setAddButtonVisibility(bool isVisible);
 
 			/**
-			 * @brief Set help text for no content layout.
+			 * @brief Set help text for no content layout
 			 * @param[in]   text    Help text
 			 */
 			void setNoContentHelpText(const char *text);
@@ -96,9 +96,14 @@ namespace Contacts
 			Model::PersonProvider *getProvider() const;
 
 			/**
-			 * @brief Called when updating is finished.
+			 * @brief Called when updating is finished
 			 */
 			virtual void onUpdateFinished();
+
+			/**
+			 * @return True if list is empty, false - otherwise
+			 */
+			bool isListEmpty();
 
 		private:
 			struct Section

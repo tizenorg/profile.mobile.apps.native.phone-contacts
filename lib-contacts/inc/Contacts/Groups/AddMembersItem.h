@@ -59,6 +59,7 @@ namespace Contacts
 			virtual char *getText(Evas_Object *parent, const char *part) override;
 			virtual Evas_Object *getContent(Evas_Object *parent, const char *part) override;
 			virtual void onSelected() override;
+			virtual void onInserted() override;
 
 			bool onMembersSelected(List::ListView *view, Ux::SelectResults results);
 			void addMembers(Ux::SelectResults results);

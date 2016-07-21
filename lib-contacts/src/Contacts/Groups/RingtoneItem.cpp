@@ -26,6 +26,11 @@
 
 using namespace Contacts::Groups;
 
+RingtoneItem::RingtoneItem(std::string path)
+	: m_Path(path)
+{
+}
+
 const std::string &RingtoneItem::getPath() const
 {
 	return m_Path;

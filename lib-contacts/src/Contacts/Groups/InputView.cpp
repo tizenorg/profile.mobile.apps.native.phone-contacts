@@ -17,7 +17,6 @@
 
 #include "Contacts/Groups/InputView.h"
 
-#include "Common/Database/RecordIterator.h"
 #include "Common/Database/RecordUtils.h"
 #include "Contacts/Groups/AddMembersItem.h"
 #include "Contacts/Groups/NameItem.h"
@@ -31,9 +30,9 @@
 #include <app_i18n.h>
 #include <notification.h>
 
+using namespace Common::Database;
 using namespace Contacts::Groups;
 using namespace Contacts::Groups::Model;
-using namespace Common::Database;
 
 InputView::InputView(int id)
 	: m_Id(id), m_CancelButton(nullptr), m_DoneButton(nullptr), m_Genlist(nullptr),
@@ -57,14 +56,16 @@ Evas_Object *InputView::onCreate(Evas_Object *parent)
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
 
-	m_NameItem = new NameItem();
+	const char *name = getRecordStr(m_Record, _contacts_group.name);
+	m_NameItem = new NameItem(name ? name : "");
 	m_NameItem->setFilledCallback(std::bind(&InputView::onNameFilled, this, std::placeholders::_1));
 	m_Genlist->insert(m_NameItem);
 
 	m_AddMembersItem = new AddMembersItem(m_Id);
 	m_Genlist->insert(m_AddMembersItem);
 
-	m_RingtoneItem = new RingtoneItem();
+	const char *path = getRecordStr(m_Record, _contacts_group.ringtone_path);
+	m_RingtoneItem = new RingtoneItem(path ? path : "");
 	m_Genlist->insert(m_RingtoneItem);
 
 	return m_Genlist->getEvasObject();
@@ -102,7 +103,10 @@ void InputView::onCancelPressed(Evas_Object *button, void *eventInfo)
 
 void InputView::onDonePressed(Evas_Object *button, void *eventInfo)
 {
-	if (isAlreadyExists()) {
+	bool wasNotInUse = !m_Id || !Utils::safeCmp(m_NameItem->getName().c_str(),
+			getRecordStr(m_Record, _contacts_group.name));
+
+	if (wasNotInUse && isAlreadyExists()) {
 		notification_status_message_post(_("IDS_PB_TPOP_GROUP_NAME_ALREADY_IN_USE"));
 		return;
 	}
