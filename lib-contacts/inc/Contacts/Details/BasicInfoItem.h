@@ -18,6 +18,7 @@
 #ifndef CONTACTS_DETAILS_BASIC_INFO_ITEM_H
 #define CONTACTS_DETAILS_BASIC_INFO_ITEM_H
 
+#include "App/AppControl.h"
 #include "Ui/GenItem.h"
 #include "Ux/SelectTypes.h"
 
@@ -96,6 +97,7 @@ namespace Contacts
 
 			void onBackPressed(Evas_Object *button, void *eventInfo);
 			void onFavChanged(Evas_Object *check, void *eventInfo);
+			void onImageClicked(Evas_Object *image, void *eventInfo);
 			void onFieldUpdated(Model::ContactField &field, contacts_changed_e change);
 
 			Model::Contact &m_Contact;
@@ -113,6 +115,8 @@ namespace Contacts
 
 			Ux::SelectMode m_SelectMode;
 			BackCallback m_OnBackPressed;
+
+			App::AppControl m_Request;
 		};
 	}
 }

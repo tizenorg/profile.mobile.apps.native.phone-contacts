@@ -24,7 +24,10 @@
 
 #define APP_CONTROL_OPERATION_SETTING_CALL "http://tizen.org/appcontrol/operation/setting/call"
 
-#define APP_CONTROL_MIME_CONTACT "application/vnd.tizen.contact"
+#define APP_CONTROL_MIME_CONTACT    "application/vnd.tizen.contact"
+#define APP_CONTROL_MIME_IMAGE      "image/*"
+
+#define APP_CONTROL_URI_SCHEME_FILE "file://"
 
 #define APP_CONTROL_SELECT_SINGLE   "single"
 #define APP_CONTROL_SELECT_MULTIPLE "multiple"
@@ -104,6 +107,13 @@ namespace App
 	 * @return AppControl wrapper
 	 */
 	AppControl EXPORT_API requestGalleryImage();
+
+	/**
+	 * @brief Request view image
+	 * @param[in]   path    Path to image file
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestViewImage(const char *path);
 
 	/**
 	 * @brief Request share contact via other application
