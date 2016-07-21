@@ -442,7 +442,9 @@ void ListView::updateEmptyState()
 		evas_object_show(m_NoContent);
 		elm_box_pack_end(m_Box, m_NoContent);
 
-		m_SearchItem->pop();
+		if (getSelectItems().empty()) {
+			m_SearchItem->pop();
+		}
 	} else {
 		elm_scroller_content_min_limit(genlist, EINA_FALSE, EINA_FALSE);
 		evas_object_size_hint_weight_set(genlist, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
@@ -451,7 +453,9 @@ void ListView::updateEmptyState()
 		evas_object_hide(m_NoContent);
 		elm_box_unpack(m_Box, m_NoContent);
 
-		m_Genlist->insert(m_SearchItem, nullptr, nullptr, Ui::Genlist::After);
+		if (!getSelectItems().empty()) {
+			m_Genlist->insert(m_SearchItem, nullptr, nullptr, Ui::Genlist::After);
+		}
 	}
 	m_IsEmpty = isEmpty;
 }
