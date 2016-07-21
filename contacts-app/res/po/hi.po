@@ -769,3 +769,12 @@ msgstr "इसके द्वारा फिल्टर करें"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "सभी कॉल्स"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "साझा करें"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "टेक्‍स्‍ट"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCard फाइल (VCF)"
+

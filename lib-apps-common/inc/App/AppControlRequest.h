@@ -113,6 +113,13 @@ namespace App
 	AppControl EXPORT_API requestShareContact(int personId);
 
 	/**
+	 * @brief Request share contact in text representation via other application
+	 * @param[in]   text    All person information in text representation
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestShareContactAsText(const char *text);
+
+	/**
 	 * @brief Request share "My Profile" via other application
 	 * @param[in]   recordId    "My Profile" record ID
 	 * @return AppControl wrapper

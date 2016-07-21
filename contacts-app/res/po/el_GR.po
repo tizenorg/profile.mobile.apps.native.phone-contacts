@@ -769,3 +769,12 @@ msgstr "Φιλτράρισμα κατά"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Όλες οι κλήσεις"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Κοινή χρήση"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Κείμενο"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "Αρχείο vCard (VCF)"
+

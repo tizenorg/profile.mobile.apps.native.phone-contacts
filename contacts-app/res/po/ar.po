@@ -769,3 +769,12 @@ msgstr "التصفية حسب"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "جميع المكالمات"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "مشاركة"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "النص"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "ملف vCard ‏(VCF)"
+

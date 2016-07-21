@@ -769,3 +769,12 @@ msgstr "Filtriraj prema"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Svi pozivi"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Podeli"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Tekst"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCard fajl (VCF)"
+

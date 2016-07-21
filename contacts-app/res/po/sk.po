@@ -769,3 +769,12 @@ msgstr "Filtrovať podľa"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Všetky hovory"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Zdieľať"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Text"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "Súbor vizitky (VCF)"
+

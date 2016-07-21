@@ -769,3 +769,12 @@ msgstr "Filtrimisalus"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Kõik kõned"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Jaga"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Tekst"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCardi fail (VCF)"
+
