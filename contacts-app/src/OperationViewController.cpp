@@ -28,8 +28,6 @@
 #include <string.h>
 #include <sys/stat.h>
 
-#define APP_CONTROL_URI_PATH "file://"
-
 using namespace Common::Database;
 using namespace Contacts;
 using namespace Contacts::Details;
@@ -52,7 +50,7 @@ void OperationViewController::onRequest(Operation operation, app_control_h reque
 			view = new DetailsView(getDisplayContactId(personId));
 		}
 	} else {
-		std::string path = getUrn(APP_CONTROL_URI_PATH);
+		std::string path = getUrn(APP_CONTROL_URI_SCHEME);
 		struct stat buffer;
 		if (stat(path.c_str(), &buffer) == 0) {
 			view = new VcardView(path);

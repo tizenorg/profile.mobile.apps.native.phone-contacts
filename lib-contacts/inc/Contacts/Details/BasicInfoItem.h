@@ -96,6 +96,7 @@ namespace Contacts
 
 			void onBackPressed(Evas_Object *button, void *eventInfo);
 			void onFavChanged(Evas_Object *check, void *eventInfo);
+			void onImageClicked(Evas_Object *image, void *eventInfo);
 			void onFieldUpdated(Model::ContactField &field, contacts_changed_e change);
 
 			Model::Contact &m_Contact;
