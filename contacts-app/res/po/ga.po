@@ -769,3 +769,12 @@ msgstr "Scag de réir"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Gach glao"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Comhroinn"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Téacs"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "Comhad vCard (VCF)"
+

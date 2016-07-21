@@ -769,3 +769,12 @@ msgstr "Filtriraj po"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Vsi klici"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Deli"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Besedilo"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "Datoteka vCard (VCF)"
+

@@ -769,3 +769,12 @@ msgstr "过滤方式"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "全部通话"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "分享"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "文本"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCard 文件 (VCF)"
+
