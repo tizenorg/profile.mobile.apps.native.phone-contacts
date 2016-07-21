@@ -769,3 +769,12 @@ msgstr "Filtruoti pagal"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Visi skambučiai"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Dalytis"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Tekstas"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "„vCard“ failas (VCF)"
+

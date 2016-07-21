@@ -769,3 +769,12 @@ msgstr "Филтрирај според"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Сите повици"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Сподели"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Текст"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "Датотека vCard (VCF)"
+

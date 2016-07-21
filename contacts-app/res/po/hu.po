@@ -769,3 +769,12 @@ msgstr "Szűrés alapja"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Minden hívás"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Megosztás"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Szöveges üzenet"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCard-fájl (VCF)"
+

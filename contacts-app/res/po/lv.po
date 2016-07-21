@@ -769,3 +769,12 @@ msgstr "Filtrēt pēc"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Visi zvani"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Koplietot"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Teksts"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCard fails (VCF)"
+

@@ -93,6 +93,13 @@ AppControl App::requestShareContact(int personId)
 	return request;
 }
 
+AppControl App::requestShareText(const char *text)
+{
+	AppControl request(APP_CONTROL_OPERATION_SHARE_TEXT, nullptr);
+	request.addExtra(APP_CONTROL_DATA_TEXT, text);
+	return request;
+}
+
 AppControl App::requestShareMyProfile(int recordId)
 {
 	AppControl request = requestShareContact(recordId);

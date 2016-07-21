@@ -769,3 +769,12 @@ msgstr "Iragazi honela"
 msgid "IDS_LOGS_OPT_ALL_CALLS_ABB"
 msgstr "Dei guztiak"
 
+msgid "IDS_PB_HEADER_SHARE"
+msgstr "Partekatu"
+
+msgid "IDS_PB_OPT_TEXT"
+msgstr "Testua"
+
+msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
+msgstr "vCard fitxategia (VCF)"
+
