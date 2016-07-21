@@ -21,6 +21,7 @@
 #include "Contacts/Model/ContactCompoundObject.h"
 #include "Contacts/Model/ContactTextField.h"
 
+#include "App/AppControlRequest.h"
 #include "Ui/Genlist.h"
 #include "Ui/Thumbnail.h"
 #include "Utils/Callback.h"
@@ -94,6 +95,9 @@ Evas_Object *BasicInfoItem::getContent(Evas_Object *parent, const char *part)
 	if (strcmp(part, PART_THUMBNAIL) == 0) {
 		auto control = Ui::Thumbnail::create(parent, Ui::Thumbnail::SizeLarge);
 		control->setImagePath(m_ImagePath.getValue());
+		evas_object_smart_callback_add(control->getImage(), "clicked",
+			makeCallback(&BasicInfoItem::onImageClicked), this);
+
 		return control->getEvasObject();
 	}
 
@@ -161,6 +165,13 @@ void BasicInfoItem::onFavChanged(Evas_Object *check, void *eventInfo)
 {
 	m_Favorite->setValue(elm_check_state_get(check));
 	m_Contact.save();
+}
+
+void BasicInfoItem::onImageClicked(Evas_Object *, void *)
+{
+	App::AppControl request = App::requestViewImage(m_ImagePath.getValue());
+	request.launch();
+	request.detach();
 }
 
 void BasicInfoItem::onFieldUpdated(ContactField &field, contacts_changed_e change)

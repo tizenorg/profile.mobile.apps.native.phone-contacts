@@ -28,8 +28,6 @@
 #include <string.h>
 #include <sys/stat.h>
 
-#define APP_CONTROL_URI_PATH "file://"
-
 using namespace Common::Database;
 using namespace Contacts;
 using namespace Contacts::Details;

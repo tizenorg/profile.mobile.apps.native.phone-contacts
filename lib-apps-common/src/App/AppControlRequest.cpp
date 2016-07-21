@@ -76,14 +76,20 @@ AppControl App::requestMessageComposer(const char *scheme, const char *to,
 
 AppControl App::requestCameraImage()
 {
-	return AppControl(APP_CONTROL_OPERATION_CREATE_CONTENT, "image/*");
+	return AppControl(APP_CONTROL_OPERATION_CREATE_CONTENT, APP_CONTROL_MIME_IMAGE);
 }
 
 AppControl App::requestGalleryImage()
 {
-	AppControl request(APP_CONTROL_OPERATION_PICK, "image/*");
+	AppControl request(APP_CONTROL_OPERATION_PICK, APP_CONTROL_MIME_IMAGE);
 	app_control_set_app_id(request.getHandle(), "org.tizen.ug-gallery-efl");
 	return request;
+}
+
+AppControl App::requestViewImage(const char *path)
+{
+	return AppControl(APP_CONTROL_OPERATION_VIEW, APP_CONTROL_MIME_IMAGE,
+			std::string(APP_CONTROL_URI_PATH).append(path).c_str());
 }
 
 AppControl App::requestShareContact(int personId)
