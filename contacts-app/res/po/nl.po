@@ -124,6 +124,9 @@ msgstr "Thuis"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "IM-account"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Bericht verzenden"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Webadres"
 
@@ -202,6 +205,9 @@ msgstr "Verwerken..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Logbestanden selecteren"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Alle contacten"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Naam fonetisch"
 
@@ -214,8 +220,14 @@ msgstr "Telefoon"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Nieuwe groep"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Groepen"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Niet toegewezen"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "E-mail verzenden"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Datum instellen"
@@ -777,4 +789,10 @@ msgstr "Tekst"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard-bestand (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Verwijderen"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Contact delen als"
 

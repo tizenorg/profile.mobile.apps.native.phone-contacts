@@ -124,6 +124,9 @@ msgstr "المنزل"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "حساب IM"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "إرسال رسالة"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "عنوان الويب"
 
@@ -202,6 +205,9 @@ msgstr "جارٍ المعالجة..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "تحديد السجلات"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "جميع جهات الإتصال"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "الاسم الصوتي"
 
@@ -214,8 +220,14 @@ msgstr "الهاتف"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "إنشاء مجموعة"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "مجموعات"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "غير محددة"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "إرسال بريد إلكتروني"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "اختر التاريخ"
@@ -777,4 +789,10 @@ msgstr "النص"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "ملف vCard ‏(VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "حذف"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "مشاركة جهة الاتصال كـ"
 

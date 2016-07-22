@@ -124,6 +124,9 @@ msgstr "სახლი"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "IM ანგარიში"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "შეტყობინების გაგზავნა"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "ვებ-მისამართი"
 
@@ -202,6 +205,9 @@ msgstr "მუშავდება..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "აირჩიეთ ჩანაწერთა ჟურნალები"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "ყველა კონტაქტი"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "ფონეტიკური სახელი"
 
@@ -214,8 +220,14 @@ msgstr "ტელეფონი"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "ჯგუფის შექმნა"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "ჯგუფები"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "არ არის მინიჭებული"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "ელ. წერილის გაგზავნა"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "თარიღის დაყენება"
@@ -777,4 +789,10 @@ msgstr "ტექსტი"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard ფაილი (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "წაშლა"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "კონტაქტის გაზიარება, როგორც"
 

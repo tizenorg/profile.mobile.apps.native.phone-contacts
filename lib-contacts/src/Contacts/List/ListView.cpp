@@ -193,7 +193,7 @@ void ListView::onMenuPressed()
 	}
 
 	if (!m_PersonGroups.empty()) {
-		menu->addItem("IDS_LOGS_OPT_DELETE", std::bind(&ListView::onDeleteSelected, this));
+		menu->addItem("IDS_PB_OPT_DELETE", std::bind(&ListView::onDeleteSelected, this));
 		menu->addItem("IDS_PB_OPT_SHARE", std::bind(&ListView::onShareSelected, this));
 
 		if (!m_IsSearching) {
