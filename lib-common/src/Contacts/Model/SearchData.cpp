@@ -59,6 +59,10 @@ const SearchResult *SearchData::getSearchResult() const
 
 void SearchData::setSearchResult(SearchResult *searchResult)
 {
+	if (m_SearchResult == searchResult) {
+		return;
+	}
+
 	m_SearchResult = searchResult;
 
 	if (m_OnChanged) {
