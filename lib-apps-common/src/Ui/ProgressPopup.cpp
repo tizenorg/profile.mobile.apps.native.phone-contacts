@@ -32,8 +32,8 @@ namespace
 	const std::string layoutFilePath = App::getResourcePath(APPS_COMMON_PROGRESSBAR_LAYOUT_EDJ);
 }
 
-ProgressPopup::ProgressPopup(size_t maxValue)
-	: m_MaxValue(maxValue), m_Progressbar(nullptr)
+ProgressPopup::ProgressPopup(size_t maxValue, bool isVisible)
+	: Popup(isVisible), m_MaxValue(maxValue), m_Progressbar(nullptr)
 {
 }
 

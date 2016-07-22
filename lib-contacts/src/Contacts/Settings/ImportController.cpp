@@ -45,7 +45,7 @@ size_t ImportController::getTotalCount() const
 
 void ImportController::createCancelPopup(Evas_Object *parent)
 {
-	m_CancelPopup = new Ui::Popup();
+	m_CancelPopup = new Ui::Popup(false);
 	m_CancelPopup->create(parent);
 	m_CancelPopup->setTitle("IDS_PB_HEADER_CANCEL_IMPORTING_ABB");
 
@@ -54,7 +54,6 @@ void ImportController::createCancelPopup(Evas_Object *parent)
 	m_CancelPopup->addButton("IDS_PB_BUTTON_CANCEL", onContinueFunction);
 	m_CancelPopup->addButton("IDS_PB_BUTTON_OK_ABB2", std::bind(&ImportController::onPopupCancel, this));
 
-	evas_object_hide(m_CancelPopup->getEvasObject());
 }
 
 bool ImportController::onPopupContinue()

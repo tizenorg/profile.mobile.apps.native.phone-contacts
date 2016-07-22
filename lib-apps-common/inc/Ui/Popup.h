@@ -40,7 +40,11 @@ namespace Ui
 		 */
 		typedef std::function<bool()> BackCallback;
 
-		Popup();
+		/**
+		 * @brief Create popup
+		 * @param[in]   isVisible   Popup visibility on start
+		 */
+		Popup(bool isVisible = true);
 
 		/**
 		 * @brief Allows method overload instead of shadowing
@@ -99,6 +103,7 @@ namespace Ui
 
 		ButtonCallback m_ButtonCbs[POPUP_BUTTON_MAX_COUNT];
 		size_t m_ButtonCount;
+		bool m_IsVisible;
 		BackCallback m_OnBack;
 	};
 }

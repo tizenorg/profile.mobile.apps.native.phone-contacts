@@ -20,7 +20,7 @@
 #include "Ui/ProgressPopup.h"
 #include "Utils/Logger.h"
 
-#define PROGRESS_VALUE_LIMIT 40
+#define PROGRESS_VALUE_LIMIT 10
 
 using namespace Ui;
 
@@ -71,7 +71,7 @@ bool ProgressController::onProgress(size_t value)
 
 void ProgressController::createProgressPopup(Evas_Object *parent, const char *title, int maxValue)
 {
-	m_ProgressPopup = new Ui::ProgressPopup(maxValue);
+	m_ProgressPopup = new Ui::ProgressPopup(maxValue, false);
 	RETM_IF(!m_ProgressPopup, "m_ProgressPopup is NULL");
 
 	m_ProgressPopup->create(parent);
@@ -88,8 +88,8 @@ void ProgressController::createProgressPopup(Evas_Object *parent, const char *ti
 
 	elm_popup_orient_set(m_ProgressPopup->getEvasObject(), ELM_POPUP_ORIENT_BOTTOM);
 
-	if (maxValue < PROGRESS_VALUE_LIMIT) {
-		evas_object_hide(m_ProgressPopup->getEvasObject());
+	if (maxValue > PROGRESS_VALUE_LIMIT) {
+		evas_object_show(m_ProgressPopup->getEvasObject());
 	}
 }
 

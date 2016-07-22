@@ -30,8 +30,8 @@ namespace
 	const char *buttonParts[POPUP_BUTTON_MAX_COUNT] = { "button1", "button2", "button3" };
 }
 
-Popup::Popup()
-	: m_ButtonCount(0)
+Popup::Popup(bool isVisible)
+	: m_ButtonCount(0), m_IsVisible(isVisible)
 {
 }
 
@@ -97,7 +97,9 @@ Evas_Object *Popup::onCreate(Evas_Object *parent)
 	elm_popup_align_set(popup, ELM_NOTIFY_ALIGN_FILL, 1.0);
 	eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK,
 			makeCallback(&Popup::onBackPressed), this);
-	evas_object_show(popup);
+	if (m_IsVisible) {
+		evas_object_show(popup);
+	}
 
 	return popup;
 }
