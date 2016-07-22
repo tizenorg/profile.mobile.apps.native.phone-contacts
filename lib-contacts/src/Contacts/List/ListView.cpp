@@ -139,6 +139,7 @@ void ListView::onCreated()
 {
 	fillPersonList();
 	updateSections();
+	updateEmptyState();
 	elm_index_level_go(m_Index, 0);
 
 	m_SearchProvider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
@@ -379,8 +380,6 @@ void ListView::fillPersonList()
 			m_Genlist->insert(item, group);
 			addSelectItem(item);
 		}
-
-		updateEmptyState();
 	}
 }
 
@@ -427,11 +426,13 @@ void ListView::updateEmptyLayout()
 void ListView::updateEmptyState()
 {
 	bool isEmpty = m_IsSearching ? m_SearchProvider.empty() : m_PersonGroups.empty();
+
+	updateIndex();
+	updateSearchItem();
+
 	if (isEmpty == m_IsEmpty) {
 		return;
 	}
-
-	updateIndex();
 
 	Evas_Object *genlist = m_Genlist->getEvasObject();
 	if (isEmpty) {
@@ -441,8 +442,6 @@ void ListView::updateEmptyState()
 
 		evas_object_show(m_NoContent);
 		elm_box_pack_end(m_Box, m_NoContent);
-
-		m_SearchItem->pop();
 	} else {
 		elm_scroller_content_min_limit(genlist, EINA_FALSE, EINA_FALSE);
 		evas_object_size_hint_weight_set(genlist, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
@@ -450,10 +449,23 @@ void ListView::updateEmptyState()
 
 		evas_object_hide(m_NoContent);
 		elm_box_unpack(m_Box, m_NoContent);
-
-		m_Genlist->insert(m_SearchItem, nullptr, nullptr, Ui::Genlist::After);
 	}
 	m_IsEmpty = isEmpty;
+}
+
+void ListView::updateSearchItem()
+{
+	if (m_IsSearching) {
+		return;
+	}
+
+	size_t count = elm_genlist_items_count(m_Genlist->getEvasObject());
+	if (m_SearchItem->isInserted() && count == 1) {
+		m_SearchItem->pop();
+	} else if (!m_SearchItem->isInserted() && count > 0) {
+		m_Genlist->insert(m_SearchItem, nullptr, nullptr, Ui::Genlist::After);
+		elm_genlist_item_select_mode_set(m_SearchItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+	}
 }
 
 Ui::GenGroupItem *ListView::createSection(SectionId sectionId)
@@ -479,6 +491,8 @@ void ListView::insertSection(Ui::GenGroupItem *section, SectionId sectionId)
 {
 	m_Genlist->insert(section, nullptr, getNextSectionItem(sectionId));
 	elm_genlist_item_select_mode_set(section->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+
+	updateSearchItem();
 }
 
 void ListView::updateSection(SectionId sectionId)
@@ -499,6 +513,7 @@ void ListView::updateSection(SectionId sectionId)
 	} else {
 		if (section->isInserted()) {
 			section->pop();
+			updateSearchItem();
 		}
 	}
 }
@@ -553,9 +568,6 @@ SearchItem *ListView::createSearchItem()
 {
 	SearchItem *item = new SearchItem();
 	item->setChangeCallback(std::bind(&ListView::onSearchChanged, this, _1));
-
-	m_Genlist->insert(item, nullptr, nullptr, Ui::Genlist::After);
-	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 
 	Elm_Object_Item *indexItem = insertIndexItem(SYMBOL_MAGNIFIER, nullptr);
 	elm_object_item_data_set(indexItem, static_cast<Ui::GenItem *>(item));
@@ -676,8 +688,6 @@ void ListView::insertPersonItem(PersonItem *item)
 	PersonGroupItem *groupItem = getPersonGroupItem(person.getIndexLetter());
 	PersonItem *nextItem = getNextPersonItem(groupItem, person);
 	m_Genlist->insert(item, groupItem, nextItem);
-
-	updateEmptyState();
 }
 
 void ListView::updatePersonItem(PersonItem *item, int changes)
@@ -757,6 +767,7 @@ void ListView::onPersonInserted(::Model::DataItem &data)
 	auto item = createPersonItem(static_cast<PersonSearchData &>(data));
 	insertPersonItem(item);
 	addSelectItem(item);
+	updateEmptyState();
 }
 
 void ListView::onSectionUpdated(ContactItem *item, ::Common::ChangeType change, SectionId sectionId)
