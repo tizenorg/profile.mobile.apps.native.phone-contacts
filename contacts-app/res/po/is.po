@@ -124,6 +124,9 @@ msgstr "Heima"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "Spjallreikn."
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Senda skilaboð"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Veffang"
 
@@ -202,6 +205,9 @@ msgstr "Í vinnslu..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Velja annála"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Allir tengiliðir"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Hljóðritað nafn"
 
@@ -214,8 +220,14 @@ msgstr "Í síma"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Búa til hóp"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Hópar"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Óúthlutað"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Senda tölvupóst"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Veldu dag"
@@ -777,4 +789,10 @@ msgstr "Texti"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard-skrá (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Eyða"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Deila tengilið sem"
 

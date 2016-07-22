@@ -124,6 +124,9 @@ msgstr "住宅"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "即时信息帐户"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "发送信息"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "网址"
 
@@ -202,6 +205,9 @@ msgstr "正在处理..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "选择记录"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "全部联系人"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "姓名发音"
 
@@ -214,8 +220,14 @@ msgstr "手机"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "创建群组"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "群组"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "未分配"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "发送邮件"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "设置日期"
@@ -777,4 +789,10 @@ msgstr "文本"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard 文件 (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "删除"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "分享联系人为"
 

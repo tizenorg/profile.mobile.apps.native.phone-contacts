@@ -124,6 +124,9 @@ msgstr "住家"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "即時訊息帳戶"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "發送訊息"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "網址"
 
@@ -202,6 +205,9 @@ msgstr "正在處理..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "選擇記錄"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "全部聯絡人"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "語音名稱"
 
@@ -214,8 +220,14 @@ msgstr "電話"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "建立群組"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "群組"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "無指定"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "發送電子郵件"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "設定日期"
@@ -777,4 +789,10 @@ msgstr "文字"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard 檔案 (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "刪除"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "共享聯絡人為"
 

@@ -124,6 +124,9 @@ msgstr "Doma"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "Račun za NS"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Pošlji sporočilo"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Spletni naslov"
 
@@ -202,6 +205,9 @@ msgstr "Obdelava ..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Izberi dnevnike"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Vse vizitke"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetsko ime"
 
@@ -214,8 +220,14 @@ msgstr "Telefon"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Ustvari skupino"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Skupine"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Ni dodeljeno"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Pošlji e-pošto"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Nastavite datum"
@@ -777,4 +789,10 @@ msgstr "Besedilo"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "Datoteka vCard (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Izbriši"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Delite stik kot"
 

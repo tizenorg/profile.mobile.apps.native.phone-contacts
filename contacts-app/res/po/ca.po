@@ -124,6 +124,9 @@ msgstr "Casa"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "Compte MI"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Enviar missatge"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Adreça web"
 
@@ -202,6 +205,9 @@ msgstr "Processant..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Seleccionar registres"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Tots els contactes"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Nom fonètic"
 
@@ -214,8 +220,14 @@ msgstr "Telèfon"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Crear grup"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Grups"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "No assignat"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Envia missatge o correu electrònic"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Definir data"
@@ -777,4 +789,10 @@ msgstr "Text"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "Fitxer vCard (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Esborrar"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Compartir contacte com a"
 

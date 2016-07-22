@@ -124,6 +124,9 @@ msgstr "Etxea"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "IM kontua"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Bidali mezua"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Web helbidea"
 
@@ -202,6 +205,9 @@ msgstr "Prozesatzen..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Hautatu erregistroak"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Kontaktu guztiak"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Izen fonetikoa"
 
@@ -214,8 +220,14 @@ msgstr "Telefon"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Taldea sortu"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Taldeak"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Esleitu gabe"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Bidali mezu elektronikoa"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ezarri data"
@@ -777,4 +789,10 @@ msgstr "Testua"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard fitxategia (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Ezabatu"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Partekatu kontaktua honela"
 
