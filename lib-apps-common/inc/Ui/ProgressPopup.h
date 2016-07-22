@@ -28,8 +28,9 @@ namespace Ui
 		/**
 		 * @brief Create progress popup.
 		 * @param[in]   maxValue    Max value of progressbar
+		 * @param[in]   isVisible   Popup visibility on start
 		 */
-		ProgressPopup(size_t maxValue);
+		ProgressPopup(size_t maxValue, bool isVisible = true);
 
 		/**
 		 * @brief Set progress of the progressbar
