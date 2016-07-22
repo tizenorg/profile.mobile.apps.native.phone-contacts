@@ -124,6 +124,9 @@ msgstr "Ana"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "IM hesabı"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Mesaj gönder"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Web adresi"
 
@@ -202,6 +205,9 @@ msgstr "İşleniyor..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Kayıtları seç"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Tüm kişiler"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetik ad"
 
@@ -214,8 +220,14 @@ msgstr "Telefon"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Grup oluştur"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Gruplar"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Atanmadı"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "E-posta gönder"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Tarihi ayarla"
@@ -777,4 +789,10 @@ msgstr "Metin"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard dosyası (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Sil"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Kişiyi şu şekilde paylaş"
 

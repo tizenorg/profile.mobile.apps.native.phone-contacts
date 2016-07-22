@@ -124,6 +124,9 @@ msgstr "Hjem"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "Chatkonto"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Send besked"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Webadresse"
 
@@ -202,6 +205,9 @@ msgstr "Behandler ..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Vælg opkaldslogger"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Alle kontakter"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetisk navn"
 
@@ -214,8 +220,14 @@ msgstr "Telefon"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Opret gruppe"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Grupper"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Ikke tildelt"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Send e-mail"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Angiv dato"
@@ -777,4 +789,10 @@ msgstr "Tekst"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard-fil (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Slet"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Del kontakt som"
 

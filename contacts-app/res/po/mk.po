@@ -124,6 +124,9 @@ msgstr "Дома"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "Сметка за ИП"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Прати порака"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Интернет-адреса"
 
@@ -202,6 +205,9 @@ msgstr "Се обработува..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Одбери дневници"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Сите записи"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Фонетско име"
 
@@ -214,8 +220,14 @@ msgstr "Телефон"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Нова група"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Групи"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Не е назначено"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Прати е-пошта"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Одреди датум"
@@ -777,4 +789,10 @@ msgstr "Текст"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "Датотека vCard (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Избриши"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Сподели контакт како"
 

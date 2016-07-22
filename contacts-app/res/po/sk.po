@@ -124,6 +124,9 @@ msgstr "Domov"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "Konto ok. správ"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Odoslať správu"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Webová adresa"
 
@@ -202,6 +205,9 @@ msgstr "Spracováva sa..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Vybrať denníky"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Všetky kontakty"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Výslovnosť mena"
 
@@ -214,8 +220,14 @@ msgstr "Telefón"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Vytvoriť skupinu"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Skupiny"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Nepriradené"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Odoslať e-mail"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Nastavte dátum"
@@ -777,4 +789,10 @@ msgstr "Text"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "Súbor vizitky (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Odstrániť"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Zdieľanie kontaktu ako"
 

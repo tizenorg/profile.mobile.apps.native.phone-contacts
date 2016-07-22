@@ -124,6 +124,9 @@ msgstr "Pradž."
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "IM paskyra"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Siųsti žinutę"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Žiniatinklio adresas"
 
@@ -202,6 +205,9 @@ msgstr "Apdorojama..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Pasirinkite žurnalus"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Visi adresatai"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetinis pavadinimas"
 
@@ -214,8 +220,14 @@ msgstr "Telef."
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Sukurti grupę"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Grupės"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Nepriskirti"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Siųsti el. laišką"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Nustatykite datą"
@@ -777,4 +789,10 @@ msgstr "Tekstas"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "„vCard“ failas (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Trinti"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Bendrinti adresatą kaip"
 

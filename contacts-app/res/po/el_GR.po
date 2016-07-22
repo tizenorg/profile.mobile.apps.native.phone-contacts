@@ -124,6 +124,9 @@ msgstr "Οικία"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "Λογαριασμός IM"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Αποστολή μηνύματος"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Διεύθυνση Web"
 
@@ -202,6 +205,9 @@ msgstr "Επεξεργασία..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Επιλογή αρχείων καταγραφής"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Όλες οι επαφές"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Φωνητικό όνομα"
 
@@ -214,8 +220,14 @@ msgstr "Τηλέφωνο"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Δημιουργία ομάδας"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Ομάδες"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Δεν έχει αντιστοιχηθεί"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Αποστολή email"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ορισμός ημερομηνίας"
@@ -777,4 +789,10 @@ msgstr "Κείμενο"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "Αρχείο vCard (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Διαγραφή"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Κοινή χρήση επαφής ως"
 

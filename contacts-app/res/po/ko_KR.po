@@ -124,6 +124,9 @@ msgstr "집"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "IM 계정"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "메시지 보내기"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "웹 주소"
 
@@ -202,6 +205,9 @@ msgstr "진행 중..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "기록 선택"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "모든 연락처"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "이름(소리나는 대로)"
 
@@ -214,8 +220,14 @@ msgstr "휴대전화"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "새 그룹 추가"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "그룹"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "지정 안 함"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "이메일 보내기"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "날짜 설정"
@@ -777,4 +789,10 @@ msgstr "텍스트"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "연락처 파일(VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "삭제"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "연락처 공유 형식"
 

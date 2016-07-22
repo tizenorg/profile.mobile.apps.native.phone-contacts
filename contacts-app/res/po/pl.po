@@ -124,6 +124,9 @@ msgstr "Dom"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "Konto komunik."
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Wyślij wiadomość"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Adres WWW"
 
@@ -202,6 +205,9 @@ msgstr "Przetwarzanie..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Wybór dzienników"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Wszystkie kontakty"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Nazwa fonetyczna"
 
@@ -214,8 +220,14 @@ msgstr "Telefon"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Utwórz grupę"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Grupy"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Nieprzypisane"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Wyślij e-mail"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ustaw datę"
@@ -777,4 +789,10 @@ msgstr "SMS"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "plik vCard (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Usuń"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Udostępnianie kontaktu jako"
 

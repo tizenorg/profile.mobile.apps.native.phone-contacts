@@ -124,6 +124,9 @@ msgstr "Hem"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "IM-konto"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Skicka meddelande"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Webbadress"
 
@@ -202,6 +205,9 @@ msgstr "Bearbetar ..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Välj loggar"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Alla kontakter"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetiskt namn"
 
@@ -214,8 +220,14 @@ msgstr "Telefon"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Skapa grupp"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Grupper"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Inte tilldelad"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "Skicka e-post"
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ställ in datum"
@@ -777,4 +789,10 @@ msgstr "Text"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard-fil (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "Ta bort"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Dela kontakt som"
 

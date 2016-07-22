@@ -124,6 +124,9 @@ msgstr "Asosiy"
 msgid "IDS_PB_OPT_IM_ACCOUNT_ABB"
 msgstr "IM hisob/qayd"
 
+msgid "IDS_PB_OPT_SEND_MESSAGE_ABB2"
+msgstr "Xabar yuborish"
+
 msgid "IDS_PB_OPT_WEB_ADDRESS_ABB"
 msgstr "Veb-manzil"
 
@@ -202,6 +205,9 @@ msgstr "Jarayonda..."
 msgid "IDS_CLOG_HEADER_SELECT_LOGS"
 msgstr "Jurnallarni tanlash"
 
+msgid "IDS_PB_BODY_ALL_CONTACTS"
+msgstr "Barcha kontaktlar"
+
 msgid "IDS_PB_BODY_PHONETIC_NAME"
 msgstr "Fonetik nomi"
 
@@ -214,8 +220,14 @@ msgstr "Telefon"
 msgid "IDS_PB_HEADER_CREATE_GROUP"
 msgstr "Guruh yaratish"
 
+msgid "IDS_PB_BODY_GROUPS"
+msgstr "Guruhlar"
+
 msgid "IDS_PB_BODY_NOT_ASSIGNED"
 msgstr "Tayinlanmagan"
+
+msgid "IDS_PB_OPT_SEND_EMAIL"
+msgstr "E-pochta yub."
 
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Sana o‘rnatish"
@@ -777,4 +789,10 @@ msgstr "Matn"
 
 msgid "IDS_PB_OPT_VCARD_FILE_HVCF"
 msgstr "vCard fayli (VCF)"
+
+msgid "IDS_PB_OPT_DELETE"
+msgstr "O'chirish"
+
+msgid "IDS_PB_HEADER_SHARE_CONTACT_AS"
+msgstr "Kontaktni quyidagi sifatida ulashish"
 
