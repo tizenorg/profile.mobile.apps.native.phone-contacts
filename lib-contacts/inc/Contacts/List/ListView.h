@@ -139,6 +139,7 @@ namespace Contacts
 			Evas_Object *createEmptyLayout(Evas_Object *parent);
 			void updateEmptyLayout();
 			void updateEmptyState();
+			void updateSearchItem();
 
 			Ui::GenGroupItem *createSection(SectionId sectionId);
 			void insertSection(Ui::GenGroupItem *section, SectionId sectionId);
