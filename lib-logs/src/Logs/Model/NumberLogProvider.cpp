@@ -19,8 +19,8 @@
 
 using namespace Logs::Model;
 
-NumberLogProvider::NumberLogProvider(std::string number)
-	: m_Number(std::move(number))
+NumberLogProvider::NumberLogProvider(const char *number)
+	: m_Number(number)
 {
 }
 
@@ -29,11 +29,21 @@ bool NumberLogProvider::shouldGroupLogs(Log &log, Log &prevLog)
 	return compareDate(log.getTime(), prevLog.getTime());
 }
 
+bool NumberLogProvider::shouldExist(Log &log)
+{
+	if (!m_Number && log.getNumber()) {
+		return false;
+	}
+	return true;
+}
+
 contacts_filter_h NumberLogProvider::getFilter()
 {
 	contacts_filter_h filter = LogProvider::getFilter();
-	contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
-	contacts_filter_add_str(filter, _contacts_phone_log.address, CONTACTS_MATCH_EXACTLY, m_Number.c_str());
+	if (m_Number) {
+		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+		contacts_filter_add_str(filter, _contacts_phone_log.address, CONTACTS_MATCH_EXACTLY, m_Number);
+	}
 
 	return filter;
 }

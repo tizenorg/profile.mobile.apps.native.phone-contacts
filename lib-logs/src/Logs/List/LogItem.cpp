@@ -152,9 +152,12 @@ void LogItem::onSelected()
 	}
 
 	const Log *log = m_Group->getLogList().back();
-	App::AppControl appControl = App::requestTelephonyCall(log->getNumber());
-	appControl.launch(nullptr, nullptr, false);
-	appControl.detach();
+	const char *number = log->getNumber();
+	if (number) {
+		App::AppControl appControl = App::requestTelephonyCall(number);
+		appControl.launch(nullptr, nullptr, false);
+		appControl.detach();
+	}
 }
 
 void LogItem::onInfoIconPressed()

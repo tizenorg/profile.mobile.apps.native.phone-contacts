@@ -164,6 +164,9 @@ size_t LogProvider::fillGroupList(LogIterator begin, LogIterator end)
 
 	for (auto &&contactData : Utils::makeRange(begin, end)) {
 		Log *log = static_cast<Log *>(contactData);
+		if (!shouldExist(*log)) {
+			continue;
+		}
 		if (lastLogGroup && shouldGroupLogs(*log, lastLogGroup->getFirstLog())) {
 			lastLogGroup->addLog(log);
 		} else {

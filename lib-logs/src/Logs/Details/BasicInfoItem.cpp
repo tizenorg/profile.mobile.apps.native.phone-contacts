@@ -29,6 +29,8 @@
 #include "LogsDetailsItemLayout.h"
 #include "LogsDetailsItemLayoutMetrics.h"
 
+#include <app_i18n.h>
+
 using namespace Logs::Details;
 using namespace Logs::Model;
 using namespace std::placeholders;
@@ -70,8 +72,13 @@ Elm_Genlist_Item_Class *BasicInfoItem::getItemClass() const
 
 char *BasicInfoItem::getText(Evas_Object *parent, const char *part)
 {
-	if (isSavedLog() && strcmp(part, PART_NAME) == 0) {
-		return Utils::safeDup(m_Log->getName());
+	if (strcmp(part, PART_NAME) == 0) {
+		if (!m_Log->getNumber()) {
+			return strdup(_("IDS_LOGS_MBODY_UNKNOWN"));
+		}
+		if (isSavedLog()) {
+			return Utils::safeDup(m_Log->getName());
+		}
 	}
 
 	return nullptr;
@@ -84,7 +91,7 @@ Evas_Object *BasicInfoItem::getContent(Evas_Object *parent, const char *part)
 	} else if (strcmp(part, PART_THUMBNAIL) == 0) {
 		auto control = Ui::Thumbnail::create(parent, Ui::Thumbnail::SizeLarge, m_Log->getImagePath());
 		return control->getEvasObject();
-	} else if (!isSavedLog() && strcmp(part, PART_UNSAVED_BTNS) == 0) {
+	} else if (!isSavedLog() && m_Log->getNumber() && strcmp(part, PART_UNSAVED_BTNS) == 0) {
 		return createUnsavedButtons(parent);
 	}
 	return nullptr;

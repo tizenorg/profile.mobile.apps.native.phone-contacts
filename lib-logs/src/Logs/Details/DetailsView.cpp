@@ -141,6 +141,9 @@ void DetailsView::insertBasicInfoItem()
 
 void DetailsView::insertActionItem()
 {
+	if (!m_Group->getLogList().back()->getNumber()) {
+		return;
+	}
 	m_ActionItem = new ActionItem(m_Group);
 	m_Genlist->insert(m_ActionItem, nullptr, m_BasicInfoItem, Ui::Genlist::After);
 	elm_genlist_item_select_mode_set(m_ActionItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
@@ -239,10 +242,10 @@ void DetailsView::onGroupChanged(LogGroup *group, LogGroupItem *groupItem, int t
 {
 	if (type & LogGroup::ChangeRemoved) {
 		if (m_LogProvider.getLogGroupList().empty()) {
-			m_BasicInfoItem->updateGroup(nullptr);
-			m_ActionItem->updateGroup(nullptr);
 			delete m_BasicInfoItem;
-			delete m_ActionItem;
+			if (m_ActionItem) {
+				delete m_ActionItem;
+			}
 			getPage()->close();
 			return;
 		}
@@ -250,7 +253,9 @@ void DetailsView::onGroupChanged(LogGroup *group, LogGroupItem *groupItem, int t
 		if (m_Group == group) {
 			m_Group = m_LogProvider.getLogGroupList().back().get();
 			m_BasicInfoItem->updateGroup(m_Group);
-			m_ActionItem->updateGroup(m_Group);
+			if (m_ActionItem) {
+				m_ActionItem->updateGroup(m_Group);
+			}
 		}
 	}
 }
