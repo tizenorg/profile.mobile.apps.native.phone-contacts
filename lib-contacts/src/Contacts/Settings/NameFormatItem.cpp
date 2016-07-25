@@ -68,8 +68,6 @@ void NameFormatItem::onSelected()
 	popup->setSelectedCallback([](void *data) {
 		contacts_setting_set_name_display_order((contacts_name_display_order_e) (long) data);
 	});
-
-	elm_popup_orient_set(popup->getEvasObject(), ELM_POPUP_ORIENT_CENTER);
 }
 
 void NameFormatItem::onNameOrderChanged(contacts_name_display_order_e order)

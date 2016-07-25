@@ -63,5 +63,5 @@ void SpeedDialPopup::onPickResult(app_control_h request, app_control_h reply,
 				: "IDS_PB_POP_ALREADY_EXISTS_LC"));
 	}
 
-	delete popup;
+	popup->close();
 }

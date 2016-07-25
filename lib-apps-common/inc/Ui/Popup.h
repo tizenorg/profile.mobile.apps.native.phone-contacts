@@ -94,6 +94,11 @@ namespace Ui
 		 */
 		void setBackCallback(BackCallback callback);
 
+		/**
+		 * @brief Close popup with animation.
+		 */
+		void close();
+
 	protected:
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 

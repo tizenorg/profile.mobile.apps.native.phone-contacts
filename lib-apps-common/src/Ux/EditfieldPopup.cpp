@@ -78,7 +78,7 @@ bool EditfieldPopup::onDoneButtonPressed()
 void EditfieldPopup::onDoneKeyPressed(Evas_Object *entry, void *eventInfo)
 {
 	onDoneButtonPressed();
-	delete this;
+	close();
 }
 
 void EditfieldPopup::onEntryChanged(Evas_Object *button, Evas_Object *entry, void *eventInfo)

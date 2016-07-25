@@ -113,9 +113,5 @@ void ListPopup::onSelected(ListPopup *popup, Evas_Object *genlist, Elm_Object_It
 	}
 
 	elm_genlist_item_selected_set(item, EINA_FALSE);
-
-	/* FIXME: Destroying genlist from it's "selected" callback causes crash. */
-	ecore_job_add([](void *data) {
-		delete (ListPopup *) data;
-	}, popup);
+	popup->close();
 }

@@ -21,7 +21,7 @@
 
 #include <efl_extension.h>
 
-#define PART_POPUP_TITLE "title,text"
+#define POPUP_ANIM_TIME 0.5
 
 using namespace Ui;
 
@@ -48,7 +48,7 @@ Popup *Popup::create(Evas_Object *parent, const char *title,
 
 void Popup::setTitle(const char *title)
 {
-	elm_object_translatable_part_text_set(getEvasObject(), PART_POPUP_TITLE, title);
+	elm_object_translatable_part_text_set(getEvasObject(), "title,text", title);
 }
 
 void Popup::setText(const char *text)
@@ -86,6 +86,15 @@ void Popup::setBackCallback(BackCallback callback)
 	m_OnBack = std::move(callback);
 }
 
+void Popup::close()
+{
+	evas_object_hide(getEvasObject());
+	ecore_timer_add(POPUP_ANIM_TIME, [](void *data) {
+		delete (Popup *) data;
+		return EINA_FALSE;
+	}, this);
+}
+
 Evas_Object *Popup::onCreate(Evas_Object *parent)
 {
 	Window *window = findParent<Window>(parent);
@@ -108,13 +117,13 @@ void Popup::onButtonPressed(Evas_Object *obj, void *eventInfo)
 {
 	ButtonCallback &callback = *(ButtonCallback *) evas_object_smart_data_get(obj);
 	if (!callback || callback()) {
-		delete this;
+		close();
 	}
 }
 
 void Popup::onBackPressed(Evas_Object *obj, void *eventInfo)
 {
 	if (!m_OnBack || m_OnBack()) {
-		delete this;
+		close();
 	}
 }

@@ -56,9 +56,9 @@ namespace Ui
 		static ProcessPopup *create(Evas_Object *parent, const char *text, Size size = SizeMedium);
 
 		/**
-		 * @brief Destroy the popup once minimum show time has elapsed.
+		 * @brief Close the popup once minimum show time has elapsed.
 		 */
-		void destroy();
+		void close();
 
 		/**
 		 * @brief Set Popup text.

@@ -25,7 +25,8 @@
 using namespace Ui;
 
 ProcessPopup::ProcessPopup(Size size, double showDelayTime, double showMinTime)
-	: m_Size(size), m_Layout(nullptr),
+	: Popup(false),
+	  m_Size(size), m_Layout(nullptr),
 	  m_ShowDelayTimer(nullptr), m_ShowMinTimer(nullptr),
 	  m_IsDestroyPending(false)
 {
@@ -55,12 +56,14 @@ ProcessPopup *ProcessPopup::create(Evas_Object *parent, const char *text, Size s
 	return popup;
 }
 
-void ProcessPopup::destroy()
+void ProcessPopup::close()
 {
-	if (m_ShowMinTimer && !m_ShowDelayTimer) {
+	if (m_ShowDelayTimer) {
+		delete this;
+	} else if (m_ShowMinTimer) {
 		m_IsDestroyPending = true;
 	} else {
-		delete this;
+		Popup::close();
 	}
 }
 
@@ -92,13 +95,7 @@ Evas_Object *ProcessPopup::onCreate(Evas_Object *parent)
 	elm_progressbar_pulse(progressbar, EINA_TRUE);
 	elm_object_content_set(m_Layout, progressbar);
 
-	if (m_ShowDelayTimer) {
-		evas_object_hide(popup);
-		ecore_timer_thaw(m_ShowDelayTimer);
-	} else {
-		ecore_timer_thaw(m_ShowMinTimer);
-	}
-
+	ecore_timer_thaw(m_ShowDelayTimer);
 	return popup;
 }
 
@@ -115,7 +112,7 @@ Eina_Bool ProcessPopup::onShowMinElapsed()
 {
 	m_ShowMinTimer = nullptr;
 	if (m_IsDestroyPending) {
-		delete this;
+		Popup::close();
 	}
 	return EINA_FALSE;
 }

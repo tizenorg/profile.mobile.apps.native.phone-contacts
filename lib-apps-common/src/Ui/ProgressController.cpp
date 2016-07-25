@@ -32,7 +32,7 @@ ProgressController::ProgressController(Evas_Object *parent, const char *title, i
 
 ProgressController::~ProgressController()
 {
-	delete m_ProgressPopup;
+	m_ProgressPopup->close();
 }
 
 void ProgressController::run()
@@ -85,8 +85,6 @@ void ProgressController::createProgressPopup(Evas_Object *parent, const char *ti
 	};
 	m_ProgressPopup->addButton("IDS_PB_BUTTON_CANCEL", cancelFunction);
 	m_ProgressPopup->setBackCallback(cancelFunction);
-
-	elm_popup_orient_set(m_ProgressPopup->getEvasObject(), ELM_POPUP_ORIENT_BOTTOM);
 
 	if (maxValue > PROGRESS_VALUE_LIMIT) {
 		evas_object_show(m_ProgressPopup->getEvasObject());

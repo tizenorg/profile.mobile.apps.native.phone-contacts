@@ -121,7 +121,7 @@ void AddMembersItem::addMembers(Ux::SelectResults results)
 
 void AddMembersItem::onAddMembersFinished(ListView *view, Ui::ProcessPopup *popup)
 {
-	delete popup;
+	popup->close();
 	view->getPage()->close();
 	elm_genlist_item_fields_update(getObjectItem(),
 			PART_GROUP_ADD_MEMBERS_COUNTER, ELM_GENLIST_ITEM_FIELD_TEXT);

@@ -248,8 +248,6 @@ void DialerView::onResultSelected(SearchResultPtr result)
 			m_AppControl = App::requestContactEdit(0, m_Entry->getNumber().c_str());
 			m_AppControl.launch();
 		});
-
-		elm_popup_orient_set(popup->getEvasObject(), ELM_POPUP_ORIENT_CENTER);
 	}
 }
 

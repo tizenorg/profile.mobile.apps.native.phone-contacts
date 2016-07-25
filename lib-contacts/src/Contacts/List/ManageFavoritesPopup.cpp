@@ -75,7 +75,7 @@ void ManageFavoritesPopup::onAddSelected()
 	view->setSelectCallback([view](Ux::SelectResults results) {
 		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
 		new Utils::Thread(std::bind(addFavorites, std::move(results)), [view, popup] {
-			popup->destroy();
+			popup->close();
 			view->getPage()->close();
 		});
 		return false;
@@ -99,7 +99,7 @@ void ManageFavoritesPopup::onRemoveSelected()
 	view->setSelectCallback([view, onMfcUpdated](Ux::SelectResults results) {
 		auto popup = Ui::ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
 		new Utils::Thread(std::bind(removeFavorites, std::move(results), std::move(onMfcUpdated)), [view, popup] {
-			popup->destroy();
+			popup->close();
 			view->getPage()->close();
 		});
 		return false;

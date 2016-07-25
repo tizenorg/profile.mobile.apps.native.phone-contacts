@@ -140,6 +140,9 @@ void ListView::onCreated()
 	fillPersonList();
 	updateSections();
 	updateEmptyState();
+	if (auto item = m_Genlist->getFirstItem()) {
+		item->scrollTo();
+	}
 	elm_index_level_go(m_Index, 0);
 
 	m_SearchProvider.setInsertCallback(std::bind(&ListView::onPersonInserted, this, _1));
@@ -232,7 +235,7 @@ void ListView::onDeleteSelected()
 
 		auto popup = Ui::ProcessPopup::create(getEvasObject(), "IDS_PB_TPOP_DELETING_ING_ABB");
 		new Thread(std::bind(task, std::move(results)), [this, popup] {
-			popup->destroy();
+			popup->close();
 			onSelectFinished();
 		});
 
