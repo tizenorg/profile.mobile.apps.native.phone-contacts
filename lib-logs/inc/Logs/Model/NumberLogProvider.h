@@ -34,11 +34,12 @@ namespace Logs
 			 * @brief Create Number log provider.
 			 * @param[in]   number   Log number
 			 */
-			explicit NumberLogProvider(std::string number);
+			explicit NumberLogProvider(const char *number);
 
 		private:
 			virtual contacts_filter_h getFilter() override;
 			virtual bool shouldGroupLogs(Log &log, Log &prevLog) override;
+			virtual bool shouldExist(Log &log) override;
 
 			std::string m_Number;
 		};

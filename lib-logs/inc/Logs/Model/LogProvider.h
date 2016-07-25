@@ -125,6 +125,7 @@ namespace Logs
 
 		protected:
 			virtual bool shouldGroupLogs(Log &log, Log &prevLog);
+			virtual bool shouldExist(Log &log) {return true;}
 			virtual contacts_filter_h getFilter();
 
 		private:
