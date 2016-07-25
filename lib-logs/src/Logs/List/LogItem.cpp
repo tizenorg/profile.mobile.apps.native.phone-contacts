@@ -86,17 +86,22 @@ char *LogItem::getText(Evas_Object *parent, const char *part)
 	const char *name = log->getName();
 	const char *number = log->getNumber();
 
-	if (name == nullptr) {
-		name = number;
-		number = _("IDS_LOGS_SBODY_UNSAVED_M_STATUS");
-	} else if (strcmp(name, number) == 0){
+	if (!name) {
+		if (number) {
+			name = number;
+			number = _("IDS_LOGS_SBODY_UNSAVED_M_STATUS");
+		} else {
+			name = _("IDS_LOGS_MBODY_UNKNOWN");
+			number = _("IDS_LOGS_SBODY_NO_NUMBER_ABB");
+		}
+	} else if (Utils::safeCmp(name, number)){
 		number = _("IDS_LOGS_SBODY_SAVED_M_STATUS");
 	}
 
 	if (strcmp(part, PART_LOG_NAME) == 0) {
-		return strdup(name);
+		return Utils::safeDup(name);
 	} else if (strcmp(part, PART_LOG_NUMBER) == 0) {
-		return strdup(number);
+		return Utils::safeDup(number);
 	} else if (strcmp(part, PART_LOG_COUNT) == 0) {
 		if (m_Group->getLogList().size() == 1) {
 			return nullptr;

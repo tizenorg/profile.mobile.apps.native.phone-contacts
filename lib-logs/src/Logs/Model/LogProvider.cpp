@@ -18,9 +18,9 @@
 #include "Logs/Model/LogProvider.h"
 #include "Common/Database/RecordIterator.h"
 #include "Common/Database/RecordUtils.h"
-#include "Utils/Logger.h"
 #include "Utils/Callback.h"
 #include "Utils/Range.h"
+#include "Utils/String.h"
 
 #include <algorithm>
 
@@ -121,7 +121,7 @@ bool LogProvider::shouldGroupLogs(Log &log, Log &prevLog)
 	return (type == prevLog.getType()
 			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN
 			&& type != CONTACTS_PLOG_TYPE_VOICE_INCOMING_SEEN
-			&& strcmp(log.getNumber(), prevLog.getNumber()) == 0
+			&& Utils::safeCmp(log.getNumber(), prevLog.getNumber())
 			&& compareDate(log.getTime(), prevLog.getTime()));
 }
 
