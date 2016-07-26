@@ -23,6 +23,7 @@
 using namespace Ui;
 
 typedef void(*ScrollFunc)(Elm_Object_Item *item, int type);
+typedef void(*UpdateFieldsFunc)(Elm_Object_Item *item, const char *parts, int fieldType);
 
 struct Ui::GenItemApi
 {
@@ -32,6 +33,7 @@ struct Ui::GenItemApi
 	ScrollFunc bringIn;
 	ScrollFunc show;
 	void(*setSelected)(Elm_Object_Item *item, Eina_Bool selected);
+	UpdateFieldsFunc updateFields;
 };
 
 namespace
@@ -42,14 +44,16 @@ namespace
 		  elm_genlist_item_prev_get,
 		  (ScrollFunc) elm_genlist_item_bring_in,
 		  (ScrollFunc) elm_genlist_item_show,
-		  elm_genlist_item_selected_set },
+		  elm_genlist_item_selected_set,
+		  (UpdateFieldsFunc) elm_genlist_item_fields_update },
 
 		{ [](const Elm_Object_Item *item) -> Elm_Object_Item * { return nullptr; },
 		  elm_gengrid_item_next_get,
 		  elm_gengrid_item_prev_get,
 		  (ScrollFunc) elm_gengrid_item_bring_in,
 		  (ScrollFunc) elm_gengrid_item_show,
-		  elm_gengrid_item_selected_set }
+		  elm_gengrid_item_selected_set,
+		  (UpdateFieldsFunc) elm_gengrid_item_fields_update }
 	};
 }
 
@@ -143,6 +147,11 @@ void GenItem::focus(Elm_Genlist_Item_Scrollto_Type position, bool isAnimated)
 	} else {
 		m_IsFocusPending = true;
 	}
+}
+
+void GenItem::update(const char *parts, int partType)
+{
+	m_Api->updateFields(m_Item, parts, partType);
 }
 
 void GenItem::pop()

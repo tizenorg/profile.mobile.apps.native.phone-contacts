@@ -31,7 +31,7 @@ namespace Ux
 	class EXPORT_API SelectItem : public Ui::CheckItem
 	{
 	public:
-		SelectItem();
+		SelectItem(Ui::GenContainer::Type type = Ui::GenContainer::TypeGenlist);
 
 		/**
 		 * @return Whether item is excluded from multiple selection.

@@ -134,6 +134,12 @@ namespace Ui
 				bool isAnimated = false);
 
 		/**
+		* @brief Update item part.
+		* @see elm_gelist_item_fields_update or elm_gengrid_item_fields_update
+		*/
+		void update(const char *parts, int partType);
+
+		/**
 		 * @brief Remove item from genlist without destroying it.
 		 */
 		void pop();

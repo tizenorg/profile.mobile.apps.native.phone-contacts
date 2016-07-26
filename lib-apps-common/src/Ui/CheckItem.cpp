@@ -20,8 +20,9 @@
 
 using namespace Ui;
 
-CheckItem::CheckItem()
-	: m_CheckPart("*"), m_IsChecked(false), m_IsChecking(false),
+CheckItem::CheckItem(GenContainer::Type type)
+	: GenItem(type),
+	  m_CheckPart("*"), m_IsChecked(false), m_IsChecking(false),
 	  m_LinkedItem(nullptr)
 {
 }
@@ -85,7 +86,7 @@ void CheckItem::unsetLinkedItem()
 
 void CheckItem::updateCheckPart()
 {
-	elm_genlist_item_fields_update(getObjectItem(), m_CheckPart.c_str(), ELM_GENLIST_ITEM_FIELD_CONTENT);
+	update(m_CheckPart.c_str(), ELM_GENLIST_ITEM_FIELD_CONTENT);
 }
 
 Evas_Object *CheckItem::getContent(Evas_Object *parent, const char *part)

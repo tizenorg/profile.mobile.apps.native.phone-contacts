@@ -19,9 +19,11 @@
 #include "Ux/SelectView.h"
 
 using namespace Ux;
+using namespace Ui;
 
-SelectItem::SelectItem()
-	: m_SelectView(nullptr), m_SelectMode(SelectNone),
+SelectItem::SelectItem(GenContainer::Type type)
+	: CheckItem(type),
+	  m_SelectView(nullptr), m_SelectMode(SelectNone),
 	  m_CustomResult{ 0, 0 }, m_HasCustomResult(false),
 	  m_IsExcluded(false)
 {

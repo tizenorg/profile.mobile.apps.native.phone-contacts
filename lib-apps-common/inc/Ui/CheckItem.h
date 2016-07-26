@@ -35,7 +35,7 @@ namespace Ui
 		 */
 		typedef std::function<bool(bool)> CheckCallback;
 
-		CheckItem();
+		CheckItem(GenContainer::Type type = GenContainer::TypeGenlist);
 		virtual ~CheckItem() override;
 
 		/**
