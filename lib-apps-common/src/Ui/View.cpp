@@ -29,7 +29,8 @@ namespace Ui
 }
 
 View::View(int type)
-	: Control(type), m_StackNavi(nullptr), m_TabNavi(nullptr), m_Page(nullptr)
+	: Control(type),
+	  m_StackNavi(nullptr), m_TabNavi(nullptr), m_Page(nullptr), m_Rotation(-1)
 {
 }
 
@@ -43,6 +44,11 @@ NavigatorPage *View::getPage() const
 	return m_Page;
 }
 
+int View::getRotation() const
+{
+	return m_Rotation;
+}
+
 void View::onNavigatorAttached(Navigator *stackNavi, Navigator *tabNavi, NavigatorPage *page)
 {
 	m_StackNavi = stackNavi;
@@ -54,4 +60,21 @@ void View::onNavigatorAttached(Navigator *stackNavi, Navigator *tabNavi, Navigat
 
 	m_Page = page;
 	onPageAttached(m_Page);
+}
+
+void View::onNavigation(bool isCurrent, int degree)
+{
+	if (isCurrent) {
+		onRotation(degree);
+	}
+
+	onNavigation(isCurrent);
+}
+
+void View::onRotation(int degree)
+{
+	if (m_Rotation != degree) {
+		m_Rotation = degree;
+		onRotationChanged(degree);
+	}
 }

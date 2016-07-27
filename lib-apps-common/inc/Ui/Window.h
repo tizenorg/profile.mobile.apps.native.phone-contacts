@@ -64,6 +64,7 @@ namespace Ui
 	private:
 		void onBackPressed(Evas_Object *obj, void *eventInfo);
 		void onMenuPressed(Evas_Object *obj, void *eventInfo);
+		void onRotationChanged(Evas_Object *obj, void *eventInfo);
 
 		Evas_Object *m_Conform;
 		Evas_Object *m_Layout;

@@ -18,6 +18,7 @@
 #include "Ui/Window.h"
 #include "Ui/View.h"
 #include "Utils/Callback.h"
+#include "Utils/Range.h"
 
 #include <efl_extension.h>
 
@@ -51,6 +52,7 @@ void Window::attachView(View *view)
 {
 	m_MainView = view;
 	elm_object_part_content_set(m_Layout, "elm.swallow.content", view->create(m_Layout));
+	onRotationChanged(getEvasObject(), nullptr);
 }
 
 Evas_Object *Window::onCreate(Evas_Object *parent)
@@ -86,7 +88,15 @@ Evas_Object *Window::onWindowCreate()
 	Evas_Object *window = elm_win_add(nullptr, nullptr, ELM_WIN_BASIC);
 	elm_win_indicator_mode_set(window, ELM_WIN_INDICATOR_SHOW);
 	elm_win_conformant_set(window, EINA_TRUE);
+
+	int rotations[] = {0, 90, 180, 270};
+	elm_win_wm_rotation_available_rotations_set(window, rotations, Utils::count(rotations));
+
+	evas_object_smart_callback_add(window, "rotation,changed",
+			makeCallback(&Window::onRotationChanged), this);
+
 	evas_object_show(window);
+
 	return window;
 }
 
@@ -102,4 +112,9 @@ void Window::onMenuPressed(Evas_Object *obj, void *eventInfo)
 	if (m_MainView) {
 		m_MainView->onMenuPressed();
 	}
+}
+
+void Window::onRotationChanged(Evas_Object *obj, void *eventInfo)
+{
+	m_MainView->onRotation(elm_win_rotation_get(obj));
 }

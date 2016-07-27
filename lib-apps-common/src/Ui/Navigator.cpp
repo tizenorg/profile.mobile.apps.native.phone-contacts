@@ -114,13 +114,21 @@ void Navigator::unsetLastPageCallback()
 void Navigator::notifyNavigation(NavigatorPage *page, bool isCurrent)
 {
 	if (page) {
-		page->getView()->onNavigation(isCurrent);
+		page->getView()->onNavigation(isCurrent, getRotation());
 	}
 }
 
 void Navigator::onNavigation(bool isCurrent)
 {
 	notifyNavigation(getCurrentPage(), isCurrent);
+}
+
+void Navigator::onRotationChanged(int degree)
+{
+	NavigatorPage *page = getCurrentPage();
+	if (page) {
+		page->getView()->onRotation(degree);
+	}
 }
 
 bool Navigator::onBackPressed()

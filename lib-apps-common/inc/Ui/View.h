@@ -55,12 +55,23 @@ namespace Ui
 		 */
 		NavigatorPage *getPage() const;
 
+		/**
+		 * @return Rotation degree.
+		 */
+		int getRotation() const;
+
 	protected:
 		/**
 		 * @brief Called after Navigator has navigated to or from this View
 		 * @param[in]   isCurrent   Specifies the new state of this View
 		 */
 		virtual void onNavigation(bool isCurrent) { }
+
+		/**
+		 * @brief Called when device orientation is changed
+		 * @param[in]   degree   Rotation angle
+		 */
+		virtual void onRotationChanged(int degree) { }
 
 		/**
 		 * @brief Called when NavigatorPage is attached to this View
@@ -82,10 +93,14 @@ namespace Ui
 		friend class Window;
 		friend class Navigator;
 		void onNavigatorAttached(Navigator *stackNavi, Navigator *tabNavi, NavigatorPage *page);
+		void onNavigation(bool isCurrent, int degree);
+		void onRotation(int degree);
 
 		Navigator     *m_StackNavi;
 		Navigator     *m_TabNavi;
 		NavigatorPage *m_Page;
+
+		int           m_Rotation;
 	};
 }
 

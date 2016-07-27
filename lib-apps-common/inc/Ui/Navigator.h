@@ -115,6 +115,11 @@ namespace Ui
 		virtual void onNavigation(bool isCurrent) override;
 
 		/**
+		 * @brief Called when device orientation is changed
+		 */
+		virtual void onRotationChanged(int degree) override;
+
+		/**
 		 * @see View::onBackPressed()
 		 */
 		virtual bool onBackPressed() override;
