@@ -83,6 +83,7 @@ namespace Ui
 		Ecore_Thread *m_MainThread;
 		FinishCallback m_OnFinish;
 		ProgressPopup *m_ProgressPopup;
+		Evas_Object *m_CancelButton;
 		Ecore_Thread *m_Thread;
 	};
 }
