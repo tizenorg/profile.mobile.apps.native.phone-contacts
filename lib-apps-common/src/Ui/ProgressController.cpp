@@ -25,7 +25,7 @@
 using namespace Ui;
 
 ProgressController::ProgressController(Evas_Object *parent, const char *title, int maxValue)
-	: m_MainThread(nullptr), m_ProgressPopup(nullptr), m_Thread(nullptr)
+	: m_MainThread(nullptr), m_ProgressPopup(nullptr), m_CancelButton(nullptr), m_Thread(nullptr)
 {
 	createProgressPopup(parent, title, maxValue);
 }
@@ -53,6 +53,7 @@ bool ProgressController::onCancel()
 void ProgressController::cancel()
 {
 	ecore_thread_cancel(m_MainThread);
+	elm_object_disabled_set(m_CancelButton, EINA_TRUE);
 }
 
 bool ProgressController::onProgress(size_t value)
@@ -78,12 +79,14 @@ void ProgressController::createProgressPopup(Evas_Object *parent, const char *ti
 	m_ProgressPopup->setTitle(title);
 
 	auto cancelFunction = [this] {
-		if (onCancel()) {
-			cancel();
+		if (!ecore_thread_check(m_Thread)) {
+			if (onCancel()) {
+				cancel();
+			}
 		}
 		return false;
 	};
-	m_ProgressPopup->addButton("IDS_PB_BUTTON_CANCEL", cancelFunction);
+	m_CancelButton = m_ProgressPopup->addButton("IDS_PB_BUTTON_CANCEL", cancelFunction);
 	m_ProgressPopup->setBackCallback(cancelFunction);
 
 	elm_popup_orient_set(m_ProgressPopup->getEvasObject(), ELM_POPUP_ORIENT_BOTTOM);
