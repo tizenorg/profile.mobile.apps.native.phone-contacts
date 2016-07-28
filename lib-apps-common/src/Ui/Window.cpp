@@ -48,6 +48,17 @@ Evas_Object *Window::getBaseLayout() const
 	return m_Layout;
 }
 
+void Window::setRotationEnabled(bool isEnabled)
+{
+	if (isEnabled) {
+		int rotations[] = { 0, 90, 180, 270 };
+		elm_win_wm_rotation_available_rotations_set(getEvasObject(), rotations, Utils::count(rotations));
+	} else {
+		int rotations[] = { 0 };
+		elm_win_wm_rotation_available_rotations_set(getEvasObject(), rotations, Utils::count(rotations));
+	}
+}
+
 void Window::attachView(View *view)
 {
 	m_MainView = view;
@@ -75,6 +86,8 @@ Evas_Object *Window::onCreate(Evas_Object *parent)
 	evas_object_show(bg);
 	elm_object_part_content_set(m_Layout, "elm.swallow.bg", bg);
 
+	evas_object_smart_callback_add(window, "rotation,changed",
+			makeCallback(&Window::onRotationChanged), this);
 	eext_object_event_callback_add(m_Layout, EEXT_CALLBACK_BACK,
 			makeCallback(&Window::onBackPressed), this);
 	eext_object_event_callback_add(m_Layout, EEXT_CALLBACK_MORE,
@@ -88,15 +101,7 @@ Evas_Object *Window::onWindowCreate()
 	Evas_Object *window = elm_win_add(nullptr, nullptr, ELM_WIN_BASIC);
 	elm_win_indicator_mode_set(window, ELM_WIN_INDICATOR_SHOW);
 	elm_win_conformant_set(window, EINA_TRUE);
-
-	int rotations[] = {0, 90, 180, 270};
-	elm_win_wm_rotation_available_rotations_set(window, rotations, Utils::count(rotations));
-
-	evas_object_smart_callback_add(window, "rotation,changed",
-			makeCallback(&Window::onRotationChanged), this);
-
 	evas_object_show(window);
-
 	return window;
 }
 

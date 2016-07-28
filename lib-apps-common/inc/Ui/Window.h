@@ -44,6 +44,12 @@ namespace Ui
 		Evas_Object *getBaseLayout() const;
 
 		/**
+		 * @brief Set whether windows supports rotation.
+		 * @param[in]   isEnabled   Whether rotation is enabled
+		 */
+		void setRotationEnabled(bool isEnabled);
+
+		/**
 		 * @brief Attach main View to be displayed in the Window.
 		 * @param[in]   view    Window main View
 		 */
