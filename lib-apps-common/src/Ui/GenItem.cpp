@@ -58,7 +58,8 @@ namespace
 }
 
 GenItem::GenItem(GenContainer::Type type)
-	: m_Item(nullptr), m_Preserve(false), m_IsRealized(false), m_IsFocusPending(false),
+	: m_Item(nullptr), m_Preserve(false),
+	  m_IsRealized(false), m_IsFocusPending(false), m_IsLongpressed(false),
 	  m_Api(&api[type])
 {
 }
@@ -202,11 +203,21 @@ void GenItem::onDestroy(Evas_Object *genlist)
 void GenItem::onSelected(Elm_Object_Item *item)
 {
 	m_Api->setSelected(item, EINA_FALSE);
+	if (m_IsLongpressed) {
+		m_IsLongpressed = false;
+		return;
+	}
+
 	onSelected();
 
 	if (m_OnSelected) {
 		m_OnSelected();
 	}
+}
+
+void GenItem::onLongpressed(Elm_Object_Item *item)
+{
+	m_IsLongpressed = onLongpressed();
 }
 
 void GenItem::onRealized(Elm_Object_Item *item)

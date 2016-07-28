@@ -91,6 +91,7 @@ namespace Ui
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 
 		static void onItemSelected(void *data, Evas_Object *obj, Elm_Object_Item *objectItem);
+		static void onItemLongpressed(void *data, Evas_Object *obj, Elm_Object_Item *objectItem);
 		static void onItemRealized(void *data, Evas_Object *obj, Elm_Object_Item *objectItem);
 		static void onItemUnrealized(void *data, Evas_Object *obj, Elm_Object_Item *objectItem);
 

@@ -208,6 +208,12 @@ namespace Ui
 		virtual void onSelected() { }
 
 		/**
+		 * @brief Called when item is longpressed.
+		 * @return Whether event is handled and onSelected() shouldn't be called.
+		 */
+		virtual bool onLongpressed() { return false; }
+
+		/**
 		 * @brief Called when item is realized (became visible).
 		 */
 		virtual void onRealized() { }
@@ -229,6 +235,7 @@ namespace Ui
 		void onDestroy(Evas_Object *genlist);
 
 		void onSelected(Elm_Object_Item *item);
+		void onLongpressed(Elm_Object_Item *item);
 		void onRealized(Elm_Object_Item *item);
 		void onUnrealized(Elm_Object_Item *item);
 
@@ -236,6 +243,7 @@ namespace Ui
 		bool m_Preserve;
 		bool m_IsRealized;
 		bool m_IsFocusPending;
+		bool m_IsLongpressed;
 
 		std::shared_ptr<GenItem> m_SelfPtr;
 		SelectCallback m_OnSelected;

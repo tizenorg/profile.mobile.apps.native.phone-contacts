@@ -82,6 +82,8 @@ Evas_Object *GenContainer::onCreate(Evas_Object *parent)
 
 	evas_object_smart_callback_add(obj, "selected",
 			(Evas_Smart_Cb) &GenContainer::onItemSelected, this);
+	evas_object_smart_callback_add(obj, "longpressed",
+			(Evas_Smart_Cb) &GenContainer::onItemLongpressed, this);
 	evas_object_smart_callback_add(obj, "realized",
 			(Evas_Smart_Cb) &GenContainer::onItemRealized, this);
 	evas_object_smart_callback_add(obj, "unrealized",
@@ -152,6 +154,14 @@ void GenContainer::onItemSelected(void *data, Evas_Object *obj, Elm_Object_Item 
 	GenItem *item = (GenItem *) elm_object_item_data_get(objectItem);
 	if (item) {
 		item->onSelected(objectItem);
+	}
+}
+
+void GenContainer::onItemLongpressed(void *data, Evas_Object *obj, Elm_Object_Item *objectItem)
+{
+	GenItem *item = (GenItem *) elm_object_item_data_get(objectItem);
+	if (item) {
+		item->onLongpressed(objectItem);
 	}
 }
 
