@@ -15,35 +15,28 @@
  *
  */
 
-#ifndef UI_HOVERSEL_H
-#define UI_HOVERSEL_H
+#ifndef UI_TABBAR_H
+#define UI_TABBAR_H
 
 #include "Ui/Selector.h"
 
 namespace Ui
 {
-	class EXPORT_API Hoversel : public Selector
+	/**
+	 * @brief Selector control for switching between tabs.
+	 */
+	class EXPORT_API Tabbar : public Selector
 	{
 	public:
-		/**
-		 * @brief Add item with text.
-		 * @param[in]   text        Item text
-		 * @param[in]   value       Item data
-		 * @return Added item on success, otherwise nullptr.
-		 * @see Selector::addItem()
-		 */
-		Elm_Object_Item *addItem(const char *text, void *data);
-
 		/**
 		 * @see Selector::addItem()
 		 */
 		virtual Elm_Object_Item *addItem(void *data) override;
 
 		/**
-		 * @brief Set text of currently selected item.
-		 * @param[in]   text        Text to be displayed in hoversel button
+		 * @see Selector::setSelectEnabled()
 		 */
-		void setText(const char *text);
+		virtual void setSelectEnabled(bool isEnabled) override;
 
 		/**
 		 * @see Selector::setSelectedItem()
@@ -51,14 +44,14 @@ namespace Ui
 		virtual void setSelectedItem(Elm_Object_Item *item) override;
 
 	protected:
+		/**
+		 * @see Control::onCreate()
+		 */
 		virtual Evas_Object *onCreate(Evas_Object *parent) override;
 
 	private:
-		void onSelected(Evas_Object *hoversel, Elm_Object_Item *item);
-		static void onExpanded(void *data, Evas_Object *hoversel, void *eventInfo);
-		static void onDismissed(void *data, Evas_Object *hoversel, void *eventInfo);
-		static void onBackPressed(void *data, Evas_Object *hoversel, void *eventInfo);
+		void onSelected(Evas_Object *tabbar, Elm_Object_Item *item);
 	};
 }
 
-#endif /* UI_HOVERSEL_H */
+#endif /* UI_TABBAR_H */

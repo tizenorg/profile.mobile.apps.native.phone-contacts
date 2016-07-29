@@ -39,7 +39,7 @@ void ContactTypedFieldControl::onCreated()
 
 	auto pairs = getEnumValueNames(EnumType(m_TypeField.getSubType()));
 	for (auto &&pair : pairs) {
-		addItem(pair.name, pair.value);
+		addItem(pair.name, (void *) (long) pair.value);
 
 		if (pair.value == currentValue) {
 			setText(pair.name);
@@ -50,12 +50,13 @@ void ContactTypedFieldControl::onCreated()
 		setText(m_LabelField.getValue());
 	}
 
-	setSelectedCallback(std::bind(&ContactTypedFieldControl::onSelected, this,
+	setSelectCallback(std::bind(&ContactTypedFieldControl::onSelected, this,
 			std::placeholders::_1));
 }
 
-bool ContactTypedFieldControl::onSelected(int value)
+bool ContactTypedFieldControl::onSelected(void *data)
 {
+	int value = (long) data;
 	if (value == m_TypeField.getCustomValue()) {
 		auto popup = new Ux::EditfieldPopup();
 		popup->setStrings({

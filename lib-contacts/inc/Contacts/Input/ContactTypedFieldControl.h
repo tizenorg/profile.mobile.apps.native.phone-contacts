@@ -44,7 +44,7 @@ namespace Contacts
 
 		private:
 			virtual void onCreated() override;
-			bool onSelected(int value);
+			bool onSelected(void *data);
 
 			Model::ContactEnumField &m_TypeField;
 			Model::ContactTextField &m_LabelField;
