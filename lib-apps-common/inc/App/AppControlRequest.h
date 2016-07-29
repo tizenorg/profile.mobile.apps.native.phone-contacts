@@ -26,6 +26,7 @@
 
 #define APP_CONTROL_MIME_CONTACT    "application/vnd.tizen.contact"
 #define APP_CONTROL_MIME_IMAGE      "image/*"
+#define APP_CONTROL_MIME_VCARD      "text/vcard"
 
 #define APP_CONTROL_URI_SCHEME_FILE "file://"
 

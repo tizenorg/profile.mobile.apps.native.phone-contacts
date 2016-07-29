@@ -682,6 +682,9 @@ msgstr "Ish"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Parametrlar"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-karta"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Peyjer"
 

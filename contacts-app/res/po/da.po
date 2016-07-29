@@ -682,6 +682,9 @@ msgstr "Arbejde"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Indstillinger"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-kort"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Personsøger"
 

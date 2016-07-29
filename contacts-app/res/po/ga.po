@@ -682,6 +682,9 @@ msgstr "Obair"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Socruithe"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Cárta SD"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Glaoire"
 

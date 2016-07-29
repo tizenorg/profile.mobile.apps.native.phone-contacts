@@ -682,6 +682,9 @@ msgstr "Posao"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Postavke"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD kartica"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pager"
 

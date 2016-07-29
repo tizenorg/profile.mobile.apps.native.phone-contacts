@@ -682,6 +682,9 @@ msgstr "Traballo"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Axustes"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Tarx. SD"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Busca"
 

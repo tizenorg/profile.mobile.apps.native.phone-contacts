@@ -682,6 +682,9 @@ msgstr "Personal"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ajustaments"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Targ SD"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Cercapersones"
 

@@ -682,6 +682,9 @@ msgstr "Arbeit"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Einstellungen"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-Karte"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pager"
 

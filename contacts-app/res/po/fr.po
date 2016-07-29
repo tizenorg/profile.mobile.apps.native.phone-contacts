@@ -682,6 +682,9 @@ msgstr "Pro."
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Paramètres"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Carte SD"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pager"
 

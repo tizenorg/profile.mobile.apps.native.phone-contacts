@@ -682,6 +682,9 @@ msgstr "Työ"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Asetukset"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-kort."
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Hakulaite"
 

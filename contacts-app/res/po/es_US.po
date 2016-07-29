@@ -682,6 +682,9 @@ msgstr "Trabajo"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ajustes"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Tarjeta de memoria"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Localizador"
 

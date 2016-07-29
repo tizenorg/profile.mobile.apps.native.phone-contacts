@@ -682,6 +682,9 @@ msgstr "სამსახური"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "პარამეტრები"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SDბარათი"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "პეიჯერი"
 

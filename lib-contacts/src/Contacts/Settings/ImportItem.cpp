@@ -17,18 +17,20 @@
 
 #include "Contacts/Settings/ImportItem.h"
 #include "Contacts/Settings/ImportController.h"
-#include "Contacts/Common/Utils.h"
+#include "Contacts/Settings/Model/Storage.h"
 
 #include "App/AppControlRequest.h"
 #include "Ui/Genlist.h"
+#include "Ui/ListPopup.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 
 #include <app_i18n.h>
 #include <notification.h>
 
-using namespace Contacts::Common;
 using namespace Contacts::Settings;
+using namespace Contacts::Settings::Model;
+using namespace Ui;
 
 #define BUFFER_SIZE 1024
 
@@ -43,35 +45,34 @@ char *ImportItem::getText(Evas_Object *parent, const char *part)
 
 void ImportItem::onSelected()
 {
-	m_AppControl = App::requestPickVcard(getDirectoryPath(STORAGE_TYPE_INTERNAL, STORAGE_DIRECTORY_MAX).c_str());
-	m_AppControl.launch(makeCallbackWithLastParam(&ImportItem::onPickResult), this);
+	auto launchPick = [this](void *data) {
+		storage_type_e storageType = (storage_type_e) (long int) data;
+
+		m_AppControl = App::requestPickVcard(getDirectoryPath(storageType, STORAGE_DIRECTORY_MAX).c_str());
+		m_AppControl.launch(makeCallbackWithLastParam(&ImportItem::onPickResult), this);
+	};
+
+	if (isAccessGranted(STORAGE_TYPE_EXTERNAL, StorageAccessRead)) {
+		ListPopup *popup = new ListPopup();
+		popup->create(getParent()->getEvasObject());
+		popup->setTitle("IDS_PB_HEADER_IMPORT");
+		popup->addItem("IDS_PB_OPT_SD_CARD", (void *) STORAGE_TYPE_EXTERNAL);
+		popup->addItem("IDS_PB_OPT_DEVICE", (void *) STORAGE_TYPE_INTERNAL);
+		popup->setSelectedCallback(launchPick);
+	} else {
+		launchPick((void *) STORAGE_TYPE_INTERNAL);
+	}
 }
 
 void ImportItem::onPickResult(app_control_h request, app_control_h reply,
 		app_control_result_e result)
 {
-	char *extraResult = nullptr;
-	int err = app_control_get_extra_data(reply, "result", &extraResult);
-	RETM_IF_ERR(err, "app_control_get_extra_data() failed.");
-
-	char *pathEnd = nullptr;
-	char *path = strtok_r(extraResult, "?", &pathEnd);
-
 	std::vector<std::string> paths;
-	int totalCount = 0;
-	while (path) {
-		int count = 0;
-		err = contacts_vcard_get_entity_count(path, &count);
-		WARN_IF_ERR(err, "contacts_vcard_get_entity_count() failed.");
-		totalCount += count;
-
-		paths.push_back(path);
-		path = strtok_r(nullptr, "?", &pathEnd);
-	}
-	free(extraResult);
+	size_t contactsCount = 0;
+	getImportResult(reply, paths, contactsCount);
 
 	ImportController *importer = new ImportController(getParent()->getEvasObject(),
-			"IDS_PB_HEADER_IMPORT_CONTACTS_ABB2", totalCount, std::move(paths));
+			"IDS_PB_HEADER_IMPORT_CONTACTS_ABB2", contactsCount, std::move(paths));
 	importer->setFinishCallback(std::bind(&ImportItem::onImportFinish, this, importer));
 	importer->run();
 }

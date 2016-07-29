@@ -15,11 +15,12 @@
  *
  */
 
-#include "Contacts/Common/Utils.h"
+#include "Contacts/Settings/Model/Storage.h"
 #include "Utils/Logger.h"
+#include <contacts.h>
 
-using namespace Contacts::Common;
 using namespace Contacts;
+using namespace Contacts::Settings;
 
 namespace
 {
@@ -51,7 +52,7 @@ namespace
 	}
 }
 
-std::string Common::getDirectoryPath(storage_type_e storageType, storage_directory_e dirType)
+std::string Model::getDirectoryPath(storage_type_e storageType, storage_directory_e dirType)
 {
 	char *dirPath = nullptr;
 	int error = STORAGE_ERROR_NONE;
@@ -67,4 +68,36 @@ std::string Common::getDirectoryPath(storage_type_e storageType, storage_directo
 	free(dirPath);
 
 	return res;
+}
+
+bool Model::isAccessGranted(storage_type_e storageType, StorageAccessType accessType)
+{
+	storage_state_e state = STORAGE_STATE_REMOVED;
+	storage_get_state(getStorageId(storageType), &state);
+
+	if (accessType == StorageAccessRead) {
+		return state == STORAGE_STATE_MOUNTED_READ_ONLY || state == STORAGE_STATE_MOUNTED;
+	}
+
+	return state == STORAGE_STATE_MOUNTED;
+}
+
+void Model::getImportResult(app_control_h reply, std::vector<std::string> &paths, size_t &contactsCount)
+{
+	int err = 0;
+	char **array = nullptr;
+	int count = 0;
+
+	app_control_get_extra_data_array(reply, APP_CONTROL_DATA_SELECTED, &array, &count);
+
+	for (size_t i = 0; i < count; ++i) {
+		int count = 0;
+		err = contacts_vcard_get_entity_count(array[i], &count);
+		WARN_IF_ERR(err, "contacts_vcard_get_entity_count() failed.");
+
+		contactsCount += count;
+		paths.push_back(array[i]);
+		free(array[i]);
+	}
+	free(array);
 }
