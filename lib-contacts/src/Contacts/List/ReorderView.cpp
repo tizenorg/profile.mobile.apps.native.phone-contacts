@@ -46,7 +46,6 @@ Evas_Object *ReorderView::onCreate(Evas_Object *parent)
 			new FavoritesProvider(), ListSection::ReorderMode);
 
 	m_Genlist->insert(m_Section);
-	elm_genlist_item_select_mode_set(m_Section->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 	evas_object_smart_callback_add(m_Genlist->getEvasObject(), "moved",
 			makeCallback(&ReorderView::onReorder), this);
 

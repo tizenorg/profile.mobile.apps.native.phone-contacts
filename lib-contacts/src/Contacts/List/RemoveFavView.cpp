@@ -105,7 +105,6 @@ void RemoveFavView::createSections()
 void RemoveFavView::insertSection(Ui::GenGroupItem *section, SectionId sectionId)
 {
 	m_Genlist->insert(section, nullptr, getNextSectionItem(sectionId));
-	elm_genlist_item_select_mode_set(section->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 }
 
 void RemoveFavView::updateSection(SectionId sectionId)

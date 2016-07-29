@@ -21,13 +21,11 @@
 #include "Contacts/List/Model/Person.h"
 #include "Contacts/List/Model/PersonProvider.h"
 
-#include <app_i18n.h>
-
 using namespace Contacts::List;
 using namespace Contacts::List::Model;
 
-ListSection::ListSection(std::string title, PersonProvider *provider, SectionMode mode)
-	: m_Title(title), m_Provider(provider), m_Mode(mode)
+ListSection::ListSection(const char *title, PersonProvider *provider, SectionMode mode)
+	: GenGroupItem(title), m_Provider(provider), m_Mode(mode)
 {
 	m_Provider->setInsertCallback(std::bind(&ListSection::onPersonInserted, this, std::placeholders::_1));
 
@@ -75,15 +73,6 @@ void ListSection::reorderItem(int reorderedId, int previousId)
 		reorderedItem->pop();
 		insertSubItem(reorderedItem, previousItem, Ui::GenContainer::After);
 	}
-}
-
-char *ListSection::getText(Evas_Object *parent, const char *part)
-{
-	if (strcmp(part, "elm.text") == 0) {
-		return strdup(_(m_Title.c_str()));
-	}
-
-	return nullptr;
 }
 
 void ListSection::onPersonInserted(::Model::DataItem &person)

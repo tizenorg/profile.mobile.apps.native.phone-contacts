@@ -26,7 +26,7 @@
 #include "Contacts/List/Model/PersonProvider.h"
 #include "Contacts/List/Model/PersonSearchData.h"
 
-#include "Contacts/List/MyProfileGroup.h"
+#include "Contacts/List/MyProfileItem.h"
 #include "Contacts/List/PersonGroupItem.h"
 #include "Contacts/List/PersonSearchItem.h"
 #include "Contacts/List/SearchItem.h"
@@ -328,7 +328,8 @@ void ListView::setState(State state, bool isEnabled)
 
 Ui::GenGroupItem *ListView::createMyProfileSection()
 {
-	MyProfileGroup *section = new MyProfileGroup();
+	auto section = new Ui::GenGroupItem("IDS_PB_HEADER_ME");
+	section->insertSubItem(new MyProfileItem());
 	insertSection(section, SectionMyProfile);
 	return section;
 }
@@ -493,8 +494,6 @@ Ui::GenGroupItem *ListView::createSection(SectionId sectionId)
 void ListView::insertSection(Ui::GenGroupItem *section, SectionId sectionId)
 {
 	m_Genlist->insert(section, nullptr, getNextSectionItem(sectionId));
-	elm_genlist_item_select_mode_set(section->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
-
 	updateSearchItem();
 }
 
@@ -666,7 +665,6 @@ PersonGroupItem *ListView::insertPersonGroupItem(const Utils::UniString &indexLe
 	PersonGroupItem *item = new PersonGroupItem(indexLetter);
 	item->setIndexItem(indexItem);
 	m_Genlist->insert(item, nullptr, nextGroupItem);
-	elm_genlist_item_select_mode_set(item->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 
 	return item;
 }

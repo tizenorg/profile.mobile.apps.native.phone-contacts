@@ -59,7 +59,7 @@ namespace Contacts
 			 * @param[in]   provider    Section provider
 			 *
 			 */
-			ListSection(std::string title, Model::PersonProvider *provider,
+			ListSection(const char *title, Model::PersonProvider *provider,
 					SectionMode mode = DefaultMode);
 			virtual ~ListSection() override;
 
@@ -83,14 +83,9 @@ namespace Contacts
 
 		protected:
 			void onPersonInserted(::Model::DataItem &person);
+			void onPersonDeleted(ContactItem *item);
 			ContactItem *createItem(Model::Person &person);
 
-		private:
-			virtual char *getText(Evas_Object *parent, const char *part) override;
-
-			void onPersonDeleted(ContactItem *item);
-
-			std::string m_Title;
 			UpdateCallback m_OnUpdated;
 			Model::PersonProvider *m_Provider;
 			SectionMode m_Mode;

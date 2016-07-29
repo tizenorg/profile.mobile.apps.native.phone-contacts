@@ -17,8 +17,16 @@
 
 #include "Ui/GenGroupItem.h"
 #include <algorithm>
+#include <app_i18n.h>
 
 using namespace Ui;
+
+GenGroupItem::GenGroupItem(const char *title)
+{
+	if (title) {
+		m_Title = title;
+	}
+}
 
 GenGroupItem::~GenGroupItem()
 {
@@ -153,8 +161,20 @@ Elm_Gen_Item_Class *GenGroupItem::getItemClass() const
 	return &itc;
 }
 
+char *GenGroupItem::getText(Evas_Object *parent, const char *part)
+{
+	if (strcmp(part, "elm.text") == 0) {
+		return strdup(_(m_Title.c_str()));
+	}
+
+	return nullptr;
+}
+
 void GenGroupItem::onInserted()
 {
+	if (getType() == ELM_GENLIST_ITEM_GROUP) {
+		elm_genlist_item_select_mode_set(getObjectItem(), ELM_OBJECT_SELECT_MODE_DISPLAY_ONLY);
+	}
 	if (isExpanded()) {
 		insertSubItems();
 	}

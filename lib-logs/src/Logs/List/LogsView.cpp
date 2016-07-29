@@ -286,8 +286,6 @@ LogGroupItem *LogsView::insertGroupItem(tm date)
 {
 	LogGroupItem *groupItem = new LogGroupItem(date);
 	m_Genlist->insert(groupItem, nullptr, getLastGroupItem());
-	elm_genlist_item_select_mode_set(groupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
-
 	setLastGroupItem(groupItem);
 	return groupItem;
 }

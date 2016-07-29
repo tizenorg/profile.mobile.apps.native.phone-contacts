@@ -159,7 +159,7 @@ void DetailsView::insertLogGroupItem(LogGroup *group)
 	Log *log = group->getLogList().back();
 	LogGroupItem *groupItem = new LogGroupItem(log->getTime());
 	m_Genlist->insert(groupItem, nullptr, getLastGroupItem());
-	elm_genlist_item_select_mode_set(groupItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
+
 	setLastGroupItem(groupItem);
 	group->setLogAddCallback(std::bind(&DetailsView::onLogAdded, this, _1));
 	group->addChangeCallback(std::bind(&DetailsView::onGroupChanged, this, group, groupItem, _1));

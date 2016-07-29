@@ -20,6 +20,8 @@
 
 #include "Ui/GenContainer.h"
 #include "Ui/GenItem.h"
+
+#include <string>
 #include <vector>
 
 namespace Ui
@@ -27,6 +29,11 @@ namespace Ui
 	class EXPORT_API GenGroupItem : virtual public GenItem
 	{
 	public:
+		/**
+		 * @brief Create group item.
+		 * @param[in]   title   Item title (can be translatable)
+		 */
+		explicit GenGroupItem(const char *title = nullptr);
 		virtual ~GenGroupItem() override;
 
 		/**
@@ -100,11 +107,19 @@ namespace Ui
 		virtual Elm_Gen_Item_Class *getItemClass() const override;
 
 		/**
+		 * @brief Sets item title into "elm.text" part.
+		 * @see GenItem::getText()
+		 */
+		virtual char *getText(Evas_Object *parent, const char *part) override;
+
+		/**
+		 * @brief Inserts all subitems.
 		 * @see GenItem::onInserted()
 		 */
 		virtual void onInserted() override;
 
 		/**
+		 * @brief Pops all subitems.
 		 * @see GenItem::onPop()
 		 */
 		virtual void onPop() override;
@@ -120,6 +135,7 @@ namespace Ui
 		void insertSubItems();
 		void popSubItems();
 
+		std::string m_Title;
 		std::vector<GenItemPtr> m_ItemsCache;
 	};
 }

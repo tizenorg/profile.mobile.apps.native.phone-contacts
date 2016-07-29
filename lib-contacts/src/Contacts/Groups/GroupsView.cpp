@@ -19,12 +19,12 @@
 
 #include "Contacts/Groups/CreateGroupItem.h"
 #include "Contacts/Groups/GroupItem.h"
-#include "Contacts/Groups/GroupsItem.h"
 #include "Contacts/Groups/InputView.h"
 #include "Contacts/Groups/Model/Group.h"
 
 #include "Common/Strings.h"
 #include "Ui/Genlist.h"
+#include "Ui/GenGroupItem.h"
 #include "Ui/Menu.h"
 #include "Ui/Navigator.h"
 
@@ -55,7 +55,7 @@ Evas_Object *GroupsView::onCreate(Evas_Object *parent)
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
 
-	m_GroupsItem = new GroupsItem("IDS_PB_OPT_GROUPS");
+	m_GroupsItem = new Ui::GenGroupItem("IDS_PB_OPT_GROUPS");
 	m_Genlist->insert(m_GroupsItem);
 	for (auto &&data : m_Provider.getDataList()) {
 		insertItem(createItem(*static_cast<Group *>(data)));

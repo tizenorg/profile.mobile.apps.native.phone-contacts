@@ -20,7 +20,9 @@
 #include "Contacts/Settings/NameFormatItem.h"
 #include "Contacts/Settings/ExportItem.h"
 #include "Contacts/Settings/ImportItem.h"
+
 #include "Ui/Genlist.h"
+#include "Ui/GenGroupItem.h"
 
 using namespace Contacts::Settings;
 
@@ -33,10 +35,16 @@ Evas_Object *MainView::onCreate(Evas_Object *parent)
 {
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
-	m_Genlist->insert(new SortByItem());
-	m_Genlist->insert(new NameFormatItem());
-	m_Genlist->insert(new ExportItem());
-	m_Genlist->insert(new ImportItem());
+
+	auto groupItem = new Ui::GenGroupItem("IDS_PB_HEADER_MANAGE_AND_BACK_UP_CONTACTS_ABB2");
+	m_Genlist->insert(groupItem);
+	m_Genlist->insert(new ExportItem(), groupItem);
+	m_Genlist->insert(new ImportItem(), groupItem);
+
+	groupItem = new Ui::GenGroupItem("IDS_PB_HEADER_DISPLAY");
+	m_Genlist->insert(groupItem);
+	m_Genlist->insert(new SortByItem(), groupItem);
+	m_Genlist->insert(new NameFormatItem(), groupItem);
 
 	return m_Genlist->getEvasObject();
 }
