@@ -17,8 +17,6 @@
 
 #include "Contacts/Groups/InputView.h"
 
-#include "Common/Database/RecordIterator.h"
-#include "Common/Database/RecordUtils.h"
 #include "Contacts/Groups/AddMembersItem.h"
 #include "Contacts/Groups/NameItem.h"
 #include "Contacts/Groups/RingtoneItem.h"
@@ -33,7 +31,6 @@
 
 using namespace Contacts::Groups;
 using namespace Contacts::Groups::Model;
-using namespace Common::Database;
 
 InputView::InputView(int id)
 	: m_Id(id), m_CancelButton(nullptr), m_DoneButton(nullptr), m_Genlist(nullptr),
@@ -57,14 +54,14 @@ Evas_Object *InputView::onCreate(Evas_Object *parent)
 	m_Genlist = new Ui::Genlist();
 	m_Genlist->create(parent);
 
-	m_NameItem = new NameItem();
+	m_NameItem = new NameItem(m_Record);
 	m_NameItem->setFilledCallback(std::bind(&InputView::onNameFilled, this, std::placeholders::_1));
 	m_Genlist->insert(m_NameItem);
 
 	m_AddMembersItem = new AddMembersItem(m_Id);
 	m_Genlist->insert(m_AddMembersItem);
 
-	m_RingtoneItem = new RingtoneItem();
+	m_RingtoneItem = new RingtoneItem(m_Record);
 	m_Genlist->insert(m_RingtoneItem);
 
 	return m_Genlist->getEvasObject();
@@ -121,7 +118,12 @@ bool InputView::isAlreadyExists()
 	contacts_filter_h filter = nullptr;
 	contacts_filter_create(_contacts_group._uri, &filter);
 	contacts_filter_add_str(filter, _contacts_group.name,
-			CONTACTS_MATCH_EXACTLY, m_NameItem->getName().c_str());
+			CONTACTS_MATCH_EXACTLY, m_NameItem->getName());
+
+	if (m_Id) {
+		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+		contacts_filter_add_int(filter, _contacts_group.id, CONTACTS_MATCH_NOT_EQUAL, m_Id);
+	}
 
 	contacts_query_h query = nullptr;
 	contacts_query_create(_contacts_group._uri, &query);
@@ -131,22 +133,17 @@ bool InputView::isAlreadyExists()
 	int count = 0;
 	contacts_db_get_count_with_query(query, &count);
 	contacts_query_destroy(query);
+
 	return count != 0;
 }
 
 void InputView::save()
 {
-	contacts_record_set_str(m_Record, _contacts_group.name,
-			m_NameItem->getName().c_str());
-	contacts_record_set_str(m_Record, _contacts_group.ringtone_path,
-			m_RingtoneItem->getPath().c_str());
-
 	if (!m_Id) {
 		contacts_db_insert_record(m_Record, &m_Id);
-
-		for (auto &&contactId : m_AddMembersItem->getMemberIdList()) {
-			contacts_group_add_contact(m_Id, contactId);
-		}
+	}
+	for (auto &&contactId : m_AddMembersItem->getMemberIdList()) {
+		contacts_group_add_contact(m_Id, contactId);
 	}
 
 	contacts_db_update_record(m_Record);

@@ -22,7 +22,7 @@
 
 #include "App/AppControl.h"
 
-#include <string>
+#include <contacts.h>
 
 namespace Contacts
 {
@@ -35,9 +35,15 @@ namespace Contacts
 		{
 		public:
 			/**
+			 * @brief Create group's ringtone item
+			 * @param   path    Ringtone path
+			 */
+			RingtoneItem(contacts_record_h record);
+
+			/**
 			 * @return ringtone path
 			 */
-			const std::string &getPath() const;
+			const char *getPath() const;
 
 		private:
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
@@ -50,7 +56,7 @@ namespace Contacts
 					app_control_result_e result);
 
 			App::AppControl m_AppControl;
-			std::string m_Path;
+			contacts_record_h m_Record;
 		};
 	}
 }

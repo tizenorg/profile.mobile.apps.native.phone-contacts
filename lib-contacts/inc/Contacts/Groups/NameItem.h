@@ -20,7 +20,7 @@
 
 #include "Ui/GenItem.h"
 
-#include <string>
+#include <contacts.h>
 
 namespace Ui
 {
@@ -42,9 +42,9 @@ namespace Contacts
 
 			/**
 			 * @brief Genlist item representing group's name item
-			 * @param[in]   name    value that will be set to entry
+			 * @param[in]   record  Group's record
 			 */
-			NameItem(std::string name = "");
+			NameItem(contacts_record_h record);
 
 			/**
 			 * @brief Set item filled callback.
@@ -55,7 +55,7 @@ namespace Contacts
 			/**
 			 * @return group name
 			 */
-			const std::string &getName() const;
+			const char *getName() const;
 
 		private:
 			virtual Elm_Genlist_Item_Class *getItemClass() const override;
@@ -65,7 +65,7 @@ namespace Contacts
 
 			void onChanged(Evas_Object *entry, void *eventInfo);
 
-			std::string m_Name;
+			contacts_record_h m_Record;
 			FilledCallback m_OnFilled;
 		};
 	}

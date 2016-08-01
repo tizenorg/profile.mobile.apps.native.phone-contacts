@@ -64,13 +64,17 @@ AppControl App::requestCallSettings()
 	return AppControl(APP_CONTROL_OPERATION_SETTING_CALL, nullptr);
 }
 
-AppControl App::requestMessageComposer(const char *scheme, const char *to,
-		const char *subject, const char *text)
+AppControl App::requestComposer(const char *scheme, const char *to,
+		const char *subject, const char *text, const char **recipients, int length)
 {
-	AppControl request(APP_CONTROL_OPERATION_COMPOSE, nullptr,
-			std::string(scheme).append(to).c_str());
+	std::string uri = scheme;
+	if (to) {
+		uri.append(to);
+	}
+	AppControl request(APP_CONTROL_OPERATION_COMPOSE, nullptr, uri.c_str());
 	request.addExtra(APP_CONTROL_DATA_TITLE, subject);
 	request.addExtra(APP_CONTROL_DATA_TEXT, text);
+	request.addExtra(APP_CONTROL_DATA_TO, recipients, length);
 	return request;
 }
 

@@ -38,8 +38,11 @@ using namespace Contacts::Groups::Model;
 using namespace Contacts::List;
 
 AddMembersItem::AddMembersItem(int groupId)
-	: m_GroupId(groupId), m_Count(0)
+	: m_GroupId(groupId)
 {
+	m_Count = getMembersCount(m_GroupId);
+	elm_genlist_item_fields_update(getObjectItem(),
+			PART_GROUP_ADD_MEMBERS_COUNTER, ELM_GENLIST_ITEM_FIELD_TEXT);
 }
 
 const std::vector<int> &AddMembersItem::getMemberIdList() const

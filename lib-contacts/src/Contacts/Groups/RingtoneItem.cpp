@@ -18,6 +18,7 @@
 #include "Contacts/Groups/RingtoneItem.h"
 
 #include "App/AppControlRequest.h"
+#include "Common/Database/RecordUtils.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
 
@@ -26,9 +27,14 @@
 
 using namespace Contacts::Groups;
 
-const std::string &RingtoneItem::getPath() const
+RingtoneItem::RingtoneItem(contacts_record_h record)
+	: m_Record(record)
 {
-	return m_Path;
+}
+
+const char *RingtoneItem::getPath() const
+{
+	return Common::Database::getRecordStr(m_Record, _contacts_group.ringtone_path);
 }
 
 Elm_Genlist_Item_Class *RingtoneItem::getItemClass() const
@@ -58,8 +64,8 @@ void RingtoneItem::onSelected()
 char *RingtoneItem::getRingtonePath() const
 {
 	char *value = nullptr;
-	if (!m_Path.empty()) {
-		value = strdup(m_Path.c_str());
+	if (getPath()) {
+		value = strdup(getPath());
 	} else {
 		char *defaultValue = nullptr;
 		system_settings_get_value_string(SYSTEM_SETTINGS_KEY_INCOMING_CALL_RINGTONE, &defaultValue);
@@ -83,6 +89,6 @@ void RingtoneItem::onPickResult(app_control_h request, app_control_h reply,
 	char *path = nullptr;
 	int err = app_control_get_extra_data(reply, "result", &path);
 	WARN_IF_ERR(err, "app_control_get_extra_data() failed.");
-	m_Path = path ? path : "";
+	contacts_record_set_str(m_Record, _contacts_group.ringtone_path, path ? path : "");
 	free(path);
 }
