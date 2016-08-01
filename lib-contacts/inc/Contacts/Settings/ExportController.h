@@ -22,7 +22,6 @@
 #include <vector>
 
 #include "Ui/ProgressController.h"
-#include "Contacts/Common/Utils.h"
 
 namespace Contacts
 {

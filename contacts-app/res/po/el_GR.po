@@ -682,6 +682,9 @@ msgstr "Εργασία"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ρυθμίσεις"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Κάρτα SD"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Συσκευή τηλεειδοποίησης"
 

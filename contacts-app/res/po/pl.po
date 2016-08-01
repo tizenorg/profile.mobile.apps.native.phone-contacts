@@ -682,6 +682,9 @@ msgstr "Praca"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ustawienia"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Karta pamięci"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pager"
 

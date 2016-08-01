@@ -682,6 +682,9 @@ msgstr "직장"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "설정"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD 카드"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "호출기"
 

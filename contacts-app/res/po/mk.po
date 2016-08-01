@@ -682,6 +682,9 @@ msgstr "Работа"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Поставувања"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-карт."
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Пејџер"
 

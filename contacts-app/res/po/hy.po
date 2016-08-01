@@ -682,6 +682,9 @@ msgstr "Աշխատանք"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Պարամետրեր"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD քարտ"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Հեռատող"
 

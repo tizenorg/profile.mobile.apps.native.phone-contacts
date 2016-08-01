@@ -134,7 +134,7 @@ msgid "IDS_PB_POP_A_CONTACTS_MOBILE_PHONE_NUMBER_HAS_CHANGED_FROM_P1SS_TO_P2SS_T
 msgstr "Номер мобильного телефона контакта изменился с %1$s на %2$s. Контактные данные обновлены."
 
 msgid "IDS_PB_POP_A_CONTACT_WITH_THE_SAME_NAME_ALREADY_EXISTS_MSG"
-msgstr "Контакт с таким именем уже существует. Коснитесь “Сохранить”, чтобы сохранить контакт, несмотря на это предупреждение, или “Переименовать”, чтобы сохранить его под другим именем."
+msgstr "Контакт с таким именем уже существует. Коснитесь пункта СОХРАНИТЬ, чтобы сохранить контакт, несмотря на это предупреждение, или ПЕРЕИМЕНОВАТЬ, чтобы сохранить его под другим именем."
 
 msgid "IDS_PB_SBODY_DEVICE_STORAGE_AND_ALL_ACCOUNTS_ABB"
 msgstr "Память устр. и все уч. записи"
@@ -681,6 +681,9 @@ msgstr "Рабочий"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Настройки"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Карта памяти"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Пейджер"

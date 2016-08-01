@@ -682,6 +682,9 @@ msgstr "工作"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "設定"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD 卡"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "傳呼機"
 

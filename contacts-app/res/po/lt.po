@@ -682,6 +682,9 @@ msgstr "Darbo"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Nustatymai"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD kortelė"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pranešimų gaviklis"
 

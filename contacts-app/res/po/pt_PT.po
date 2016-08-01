@@ -682,6 +682,9 @@ msgstr "Empresa"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Definições"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Cartão SD"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pager"
 

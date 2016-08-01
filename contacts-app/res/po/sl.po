@@ -682,6 +682,9 @@ msgstr "Službeni"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Nastavitve"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Kartica SD"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pozivnik"
 

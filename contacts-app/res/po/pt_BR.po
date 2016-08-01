@@ -425,7 +425,7 @@ msgid "IDS_PB_OPT_MANAGE_FAVOURITES_ABB"
 msgstr "Gerenciar favoritos"
 
 msgid "IDS_PB_OPT_MANAGER"
-msgstr "Gerenciador"
+msgstr "Gerente"
 
 msgid "IDS_PB_OPT_MAIN"
 msgstr "Principal"
@@ -681,6 +681,9 @@ msgstr "Trabalho"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Configurações"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Cartão SD"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pager"
