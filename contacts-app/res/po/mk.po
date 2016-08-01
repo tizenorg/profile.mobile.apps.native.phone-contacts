@@ -232,6 +232,9 @@ msgstr "Прати е-пошта"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Одреди датум"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Копирај"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Именик"
 

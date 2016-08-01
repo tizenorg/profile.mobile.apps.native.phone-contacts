@@ -232,6 +232,9 @@ msgstr "E-mail küldése"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Dátum beállítása"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Másol"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Névjegyek"
 

@@ -232,6 +232,9 @@ msgstr "E-posta gönder"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Tarihi ayarla"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopyala"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Rehber"
 

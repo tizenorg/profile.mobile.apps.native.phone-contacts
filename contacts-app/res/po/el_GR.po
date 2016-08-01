@@ -232,6 +232,9 @@ msgstr "Αποστολή email"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ορισμός ημερομηνίας"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Αντιγραφή"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Επαφές"
 

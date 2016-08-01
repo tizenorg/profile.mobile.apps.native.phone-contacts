@@ -232,6 +232,9 @@ msgstr "ელ. წერილის გაგზავნა"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "თარიღის დაყენება"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "ასლი"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "კონტაქტები"
 

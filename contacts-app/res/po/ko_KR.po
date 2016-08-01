@@ -232,6 +232,9 @@ msgstr "이메일 보내기"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "날짜 설정"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "복사"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "연락처"
 

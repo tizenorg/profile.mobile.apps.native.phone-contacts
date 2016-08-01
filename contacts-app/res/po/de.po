@@ -232,6 +232,9 @@ msgstr "E-Mail senden"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Datum einstellen"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopieren"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Kontakte"
 

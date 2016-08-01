@@ -232,6 +232,9 @@ msgstr "メール送信"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "日付を設定"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "コピー"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "連絡先"
 

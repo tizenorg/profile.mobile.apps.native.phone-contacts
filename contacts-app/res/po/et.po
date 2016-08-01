@@ -232,6 +232,9 @@ msgstr "Saada e-kiri"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Määra kuupäev"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopeeri"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Kontaktid"
 

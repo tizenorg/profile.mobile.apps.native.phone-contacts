@@ -232,6 +232,9 @@ msgstr "Отправить E-mail"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Выберите дату"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Копировать"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Контакты"
 

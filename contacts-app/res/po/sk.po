@@ -232,6 +232,9 @@ msgstr "Odoslať e-mail"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Nastavte dátum"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopírovať"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Kontakty"
 

@@ -232,6 +232,9 @@ msgstr "發送電子郵件"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "設定日期"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "複製"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "聯絡人"
 

@@ -232,6 +232,9 @@ msgstr "Lähetä sähköpostiviesti"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Aseta päivämäärä"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopioi"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Yhteystiedot"
 
