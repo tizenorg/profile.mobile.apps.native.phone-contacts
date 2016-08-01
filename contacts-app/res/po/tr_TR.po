@@ -682,6 +682,9 @@ msgstr "İş"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ayarlar"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD kart"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Çağrı cihazı"
 

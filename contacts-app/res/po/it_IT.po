@@ -682,6 +682,9 @@ msgstr "Ufficio"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Impostaz."
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Scheda SD"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Cercapersone"
 

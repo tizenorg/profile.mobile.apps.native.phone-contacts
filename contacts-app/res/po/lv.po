@@ -682,6 +682,9 @@ msgstr "Darba"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Iestatījumi"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD karte"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Peidžera numurs"
 

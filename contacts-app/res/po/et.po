@@ -682,6 +682,9 @@ msgstr "Töö"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Seaded"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-kaart"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Piipar"
 

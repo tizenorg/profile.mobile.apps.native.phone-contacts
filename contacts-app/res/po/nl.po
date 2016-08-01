@@ -682,6 +682,9 @@ msgstr "Zakelijk"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Instellingen"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-kaart"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pieper"
 

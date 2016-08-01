@@ -682,6 +682,9 @@ msgstr "Lana"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ezarpenak"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD txar."
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Bilagailua"
 

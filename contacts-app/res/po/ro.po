@@ -682,6 +682,9 @@ msgstr "Serviciu"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Setări"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Cartelă SD"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pager"
 

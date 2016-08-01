@@ -122,11 +122,9 @@ AppControl App::requestMultiShareContacts(const char **personIds, int count)
 
 AppControl App::requestPickVcard(const char *path)
 {
-	/* FIXME: Replace with indirect request */
-	AppControl request("org.tizen.ug-myfile-efl");
-	request.addExtra("path", path);
-	request.addExtra("select_type", "IMPORT_PATH_SELECT");
-	request.addExtra("file_type", "vcf");
+	AppControl request(APP_CONTROL_OPERATION_PICK, APP_CONTROL_MIME_VCARD,
+			std::string(APP_CONTROL_URI_SCHEME_FILE).append(path).c_str());
+	request.addExtra(APP_CONTROL_DATA_SELECTION_MODE, APP_CONTROL_SELECT_MULTIPLE);
 	return request;
 }
 

@@ -15,7 +15,7 @@
  *
  */
 
-#include "Contacts/Common/Utils.h"
+#include "Contacts/Settings/Model/Storage.h"
 #include "Contacts/Settings/ExportController.h"
 #include "Ui/Popup.h"
 #include "Utils/Logger.h"
@@ -23,8 +23,8 @@
 #include <contacts.h>
 #include <notification.h>
 
-using namespace Contacts::Common;
 using namespace Contacts::Settings;
+using namespace Contacts::Settings::Model;
 
 #define BUFFER_SIZE        1024
 

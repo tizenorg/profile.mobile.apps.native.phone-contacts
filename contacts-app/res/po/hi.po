@@ -682,6 +682,9 @@ msgstr "काम"
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "सेटिंग्स"
 
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD कार्ड"
+
 msgid "IDS_PB_OPT_PAGER"
 msgstr "पेजर"
 
