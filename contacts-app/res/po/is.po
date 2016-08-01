@@ -232,6 +232,9 @@ msgstr "Senda tölvupóst"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Veldu dag"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Afrita"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Tengiliðir"
 
@@ -681,6 +684,9 @@ msgstr "Vinna"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Stillingar"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-kort"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Símboði"

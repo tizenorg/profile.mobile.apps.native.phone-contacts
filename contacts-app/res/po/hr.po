@@ -232,6 +232,9 @@ msgstr "Pošalji email"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Postavi datum"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopiraj"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Imenik"
 
@@ -681,6 +684,9 @@ msgstr "Posao"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Postavke"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD kartica"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pager"
