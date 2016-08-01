@@ -232,6 +232,9 @@ msgstr "Saada e-kiri"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Määra kuupäev"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopeeri"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Kontaktid"
 
@@ -681,6 +684,9 @@ msgstr "Töö"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Seaded"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-kaart"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Piipar"

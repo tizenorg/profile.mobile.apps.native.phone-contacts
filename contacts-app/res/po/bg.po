@@ -232,6 +232,9 @@ msgstr "Изпращане на еmail"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Задаване на дата"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Копиране"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Телефонен указател"
 
@@ -681,6 +684,9 @@ msgstr "Служебен"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Настройки"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD карта"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Пейджър"

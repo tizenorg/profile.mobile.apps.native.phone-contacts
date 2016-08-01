@@ -232,6 +232,9 @@ msgstr "Wyślij e-mail"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ustaw datę"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopiuj"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Kontakty"
 
@@ -681,6 +684,9 @@ msgstr "Praca"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ustawienia"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Karta pamięci"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pager"

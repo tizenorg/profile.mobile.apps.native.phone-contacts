@@ -232,6 +232,9 @@ msgstr "Envoyer un courriel"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Définir la date"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Copier"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Contacts"
 
@@ -681,6 +684,9 @@ msgstr "Professionnel"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Réglages"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Carte SD"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Téléavertisseur"

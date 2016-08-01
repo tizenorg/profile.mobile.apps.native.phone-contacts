@@ -232,6 +232,9 @@ msgstr "Siųsti el. laišką"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Nustatykite datą"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopijuoti"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Adresatai"
 
@@ -681,6 +684,9 @@ msgstr "Darbo"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Nustatymai"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD kortelė"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pranešimų gaviklis"

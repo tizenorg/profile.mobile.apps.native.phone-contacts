@@ -232,6 +232,9 @@ msgstr "Αποστολή email"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ορισμός ημερομηνίας"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Αντιγραφή"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Επαφές"
 
@@ -681,6 +684,9 @@ msgstr "Εργασία"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ρυθμίσεις"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Κάρτα SD"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Συσκευή τηλεειδοποίησης"

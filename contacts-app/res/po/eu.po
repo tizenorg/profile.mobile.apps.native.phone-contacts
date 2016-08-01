@@ -232,6 +232,9 @@ msgstr "Bidali mezu elektronikoa"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Ezarri data"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopiatu"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Kontaktuak"
 
@@ -681,6 +684,9 @@ msgstr "Lana"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ezarpenak"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD txar."
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Bilagailua"

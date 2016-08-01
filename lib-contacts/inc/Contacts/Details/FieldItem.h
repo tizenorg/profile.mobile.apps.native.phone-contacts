@@ -77,13 +77,21 @@ namespace Contacts
 			virtual Ux::SelectResult getDefaultResult() const override;
 
 			/**
+			 * @see GenItem::onLongpressed()
+			 */
+			virtual bool onLongpressed() override;
+
+			/**
 			 * @see ContactField::UpdatedCallback
 			 */
 			virtual void onFieldUpdated(Model::ContactField &field, contacts_changed_e change);
 
 		private:
+			void onMenuDismissed(Evas_Object *obj, void *eventInfo);
+			void updateSelecting(bool isSelecting);
 			Model::ContactObject &m_Object;
 			Model::ContactField &m_Field;
+			bool m_IsSelecting;
 		};
 	}
 }

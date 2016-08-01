@@ -232,6 +232,9 @@ msgstr "Lähetä sähköpostiviesti"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Aseta päivämäärä"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopioi"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Yhteystiedot"
 
@@ -681,6 +684,9 @@ msgstr "Työ"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Asetukset"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-kort."
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Hakulaite"

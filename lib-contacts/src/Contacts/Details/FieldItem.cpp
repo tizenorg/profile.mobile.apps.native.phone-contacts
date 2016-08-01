@@ -20,6 +20,9 @@
 #include "Contacts/Model/ContactObject.h"
 #include "Contacts/Model/ContactTextField.h"
 #include "Contacts/Common/Strings.h"
+#include "Ui/Menu.h"
+#include "Ui/Window.h"
+#include "Utils/Callback.h"
 
 #include <app_i18n.h>
 
@@ -29,9 +32,11 @@ using namespace Contacts::Model;
 using namespace std::placeholders;
 
 #define DATE_BUFFER_SIZE 32
+#define TEXT_BUFFER_SIZE 128
+#define TAG_BACKING "<backing=on><backing_color=#00ddff99>"
 
 FieldItem::FieldItem(ContactObject &object)
-	: m_Object(object), m_Field(*object.getField(0))
+	: m_Object(object), m_Field(*object.getField(0)), m_IsSelecting(false)
 {
 }
 
@@ -56,7 +61,14 @@ char *FieldItem::getText(Evas_Object *parent, const char *part)
 	if (strcmp(part, "elm.text") == 0) {
 		switch (m_Field.getType()) {
 			case TypeText:
+			{
+				if (m_IsSelecting) {
+					char buffer[TEXT_BUFFER_SIZE];
+					snprintf(buffer, sizeof(buffer), TAG_BACKING "%s", m_Field.cast<ContactTextField>().getValue());
+					return strdup(buffer);
+				}
 				return Utils::safeDup(m_Field.cast<ContactTextField>().getValue());
+			}
 			case TypeDate:
 			{
 				tm date = m_Field.cast<ContactDateField>().getValue();
@@ -91,9 +103,50 @@ Ux::SelectResult FieldItem::getDefaultResult() const
 	return { m_Object.getSubType(), m_Object.getRecordId() };
 }
 
+bool FieldItem::onLongpressed()
+{
+	updateSelecting(true);
+
+	auto menu = new Ui::Menu();
+	menu->create(getParent()->getEvasObject());
+	evas_object_smart_callback_add(menu->getEvasObject(), "dismissed",
+			makeCallback(&FieldItem::onMenuDismissed), this);
+	menu->addItem("IDS_TPLATFORM_OPT_COPY", [this] {
+		const char *text = m_Field.cast<ContactTextField>().getValue();
+		Ui::Window *window = getParent()->findParent<Ui::Window>();
+		elm_cnp_selection_set(window->getBaseLayout(), ELM_SEL_TYPE_CLIPBOARD, ELM_SEL_FORMAT_MARKUP, text, strlen(text));
+	});
+
+	int x, y, w, h;
+	auto rect = elm_object_item_track(getObjectItem());
+	evas_object_geometry_get(rect, &x, &y, &w, &h);
+	elm_object_item_untrack(getObjectItem());
+
+	auto obj = menu->getEvasObject();
+	elm_ctxpopup_horizontal_set(obj, EINA_TRUE);
+	elm_object_style_set(obj, "default");
+	evas_object_move(obj, x, y + h / 2);
+	evas_object_show(obj);
+
+	return true;
+}
+
 void FieldItem::onFieldUpdated(ContactField &field, contacts_changed_e change)
 {
 	if (&field == &m_Field) {
+		elm_genlist_item_fields_update(getObjectItem(), "elm.text", ELM_GENLIST_ITEM_FIELD_TEXT);
+	}
+}
+
+void FieldItem::onMenuDismissed(Evas_Object *obj, void *eventInfo)
+{
+	updateSelecting(false);
+}
+
+void FieldItem::updateSelecting(bool isSelecting)
+{
+	if (m_IsSelecting != isSelecting) {
+		m_IsSelecting = isSelecting;
 		elm_genlist_item_fields_update(getObjectItem(), "elm.text", ELM_GENLIST_ITEM_FIELD_TEXT);
 	}
 }

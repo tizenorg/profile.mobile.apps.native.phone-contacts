@@ -232,6 +232,9 @@ msgstr "Ուղարկել էլ. փոստ"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Դնել թվական"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Պատճենել"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Կոնտակտներ"
 
@@ -681,6 +684,9 @@ msgstr "Աշխատանք"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Պարամետրեր"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD քարտ"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Հեռատող"

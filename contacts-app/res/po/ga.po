@@ -232,6 +232,9 @@ msgstr "Seol r-phost"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Socraigh dáta"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Cóipeáil"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Teagmhálaithe"
 
@@ -681,6 +684,9 @@ msgstr "Obair"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Socruithe"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Cárta SD"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Glaoire"
