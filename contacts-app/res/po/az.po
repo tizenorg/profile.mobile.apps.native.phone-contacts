@@ -232,6 +232,9 @@ msgstr "Elektron məktubu göndər"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Tarixi təyin et"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Köçür"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Adlar"
 
@@ -681,6 +684,9 @@ msgstr "İş"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Parametrlər"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD kartı"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Peycer"

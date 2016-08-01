@@ -232,6 +232,9 @@ msgstr "Envia missatge o correu electrònic"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Definir data"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Copia"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Contactes"
 
@@ -681,6 +684,9 @@ msgstr "Personal"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Ajustaments"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Targ SD"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Cercapersones"

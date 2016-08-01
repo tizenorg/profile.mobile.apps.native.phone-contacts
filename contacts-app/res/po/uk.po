@@ -232,6 +232,9 @@ msgstr "Надіслати Email"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Оберіть дату"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Копіювати"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Контакти"
 
@@ -681,6 +684,9 @@ msgstr "Робота"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Налаштування"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-карта"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Пейджер"

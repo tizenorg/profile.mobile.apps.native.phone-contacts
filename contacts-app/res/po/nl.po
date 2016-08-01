@@ -232,6 +232,9 @@ msgstr "E-mail verzenden"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Datum instellen"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Kopiëren"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Contacten"
 
@@ -681,6 +684,9 @@ msgstr "Zakelijk"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Instellingen"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD-kaart"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Pieper"

@@ -232,6 +232,9 @@ msgstr "Invia e-mail"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Imposta data"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Copia"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Rubrica"
 
@@ -681,6 +684,9 @@ msgstr "Ufficio"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Impostaz."
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "Scheda SD"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Cercapersone"

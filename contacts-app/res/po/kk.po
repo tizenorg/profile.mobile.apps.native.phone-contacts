@@ -232,6 +232,9 @@ msgstr "Email жіберу"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "Күнді орнату"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "Көшіру"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "Контактілер"
 
@@ -681,6 +684,9 @@ msgstr "Жұмыс"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "Қондырғылар"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD карта"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "Пейджер"

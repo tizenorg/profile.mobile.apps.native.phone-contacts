@@ -232,6 +232,9 @@ msgstr "ईमेल भेजें"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "तिथि सेट करें"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "कॉपी करें"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "संपर्क"
 
@@ -681,6 +684,9 @@ msgstr "काम"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "सेटिंग्स"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "SD कार्ड"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "पेजर"

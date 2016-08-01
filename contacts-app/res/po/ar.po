@@ -232,6 +232,9 @@ msgstr "إرسال بريد إلكتروني"
 msgid "IDS_TPLATFORM_HEADER_SET_DATE"
 msgstr "اختر التاريخ"
 
+msgid "IDS_TPLATFORM_OPT_COPY"
+msgstr "نسخ"
+
 msgid "IDS_PB_TAB_CONTACTS"
 msgstr "الأسماء"
 
@@ -681,6 +684,9 @@ msgstr "العمل"
 
 msgid "IDS_PB_OPT_SETTINGS"
 msgstr "الضبط"
+
+msgid "IDS_PB_OPT_SD_CARD"
+msgstr "بطاقة SD"
 
 msgid "IDS_PB_OPT_PAGER"
 msgstr "جهاز المناداة"
