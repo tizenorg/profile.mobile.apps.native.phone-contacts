@@ -52,8 +52,8 @@ void EditfieldPopup::onCreated()
 
 	Evas_Object *button = addButton(m_Strings.buttonDone, std::bind(&EditfieldPopup::onDoneButtonPressed, this));
 	Evas_Object *entry = m_Editfield->getEntry();
-	elm_entry_input_panel_return_key_autoenabled_set(entry, EINA_TRUE);
 	elm_entry_input_panel_return_key_type_set(entry, ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE);
+	elm_entry_input_panel_return_key_disabled_set(entry, EINA_TRUE);
 
 	evas_object_smart_callback_add(entry, "changed",
 			(Evas_Smart_Cb) &EditfieldPopup::onEntryChanged, button);
@@ -83,5 +83,17 @@ void EditfieldPopup::onDoneKeyPressed(Evas_Object *entry, void *eventInfo)
 
 void EditfieldPopup::onEntryChanged(Evas_Object *button, Evas_Object *entry, void *eventInfo)
 {
-	elm_object_disabled_set(button, elm_entry_is_empty(entry));
+	bool isEmpty = true;
+	const char *str = elm_entry_entry_get(entry);
+	if (str) {
+		for (; *str; ++str) {
+			if (!isspace(*str)) {
+				isEmpty = false;
+				break;
+			}
+		}
+	}
+
+	elm_object_disabled_set(button, isEmpty);
+	elm_entry_input_panel_return_key_disabled_set(entry, isEmpty);
 }
