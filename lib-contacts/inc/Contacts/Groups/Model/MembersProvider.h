@@ -45,8 +45,10 @@ namespace Contacts
 				 * @brief Constructor.
 				 * @param[in]   groupId     Group id
 				 * @param[in]   mode        Members mode
+				 * @param[in]   type        Fiter type
 				 */
-				explicit MembersProvider(int groupId, Mode mode = ModeDefault);
+				explicit MembersProvider(int groupId, Mode mode = ModeDefault,
+						int type = FilterNone);
 				virtual ~MembersProvider() override;
 
 			private:
@@ -56,12 +58,10 @@ namespace Contacts
 
 				contacts_list_h getMembersList() const;
 
-				void onChanged(const char *uri);
 				void onGroupChanged(const char *uri);
 
 				int m_GroupId;
 				Mode m_Mode;
-				int m_DbVersion;
 				int m_GroupDbVersion;
 			};
 		}

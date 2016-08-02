@@ -19,9 +19,9 @@
 
 #include "Contacts/Groups/MembersListView.h"
 #include "Contacts/Groups/Model/Queries.h"
+#include "Contacts/Groups/Model/MembersProvider.h"
 
 #include "Ui/Navigator.h"
-#include "Utils/Logger.h"
 
 #define BUFFER_SIZE 1024
 
@@ -81,5 +81,6 @@ void GroupItem::onSelected()
 		return;
 	}
 
-	navigator->navigateTo(new MembersListView(m_Group.getId()));
+	navigator->navigateTo(new MembersListView(m_Group.getId(),
+			new MembersProvider(m_Group.getId())));
 }

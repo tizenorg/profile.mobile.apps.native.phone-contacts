@@ -24,6 +24,11 @@ namespace Contacts
 {
 	namespace Groups
 	{
+		namespace Model
+		{
+			class MembersProvider;
+		}
+
 		/**
 		 * @brief Group members list view.
 		 */
@@ -33,15 +38,34 @@ namespace Contacts
 			/**
 			 * @brief Create members list view.
 			 * @param[in]   groupId     Group id
+			 * @param[in]   provider    Group provider
 			 */
-			MembersListView(int groupId);
+			MembersListView(int groupId, Model::MembersProvider *provider);
 
 		private:
+			enum EditType {
+				EditAdd,
+				EditRemove,
+			};
+
+			enum ComposerType {
+				ComposerMessage,
+				ComposerEmail
+			};
+
 			virtual void onPageAttached(Ui::NavigatorPage *page) override;
 			virtual void onMenuPressed() override;
 			virtual void onUpdateFinished() override;
 
 			std::string getTitle() const;
+
+			void onAddSelected();
+			void onRemoveSelected();
+			bool onRemoveFinished();
+
+			void onMembersSelected(Ux::SelectResults results, EditType type);
+			void onSendSelected(ComposerType composerType);
+			bool onRecipientsSelected(Ux::SelectResults results, ComposerType type);
 
 			int m_GroupId;
 		};

@@ -17,18 +17,45 @@
 
 #include "Contacts/Groups/MembersListView.h"
 
-#include "Contacts/Groups/Model/Queries.h"
+#include "Contacts/Common/ContactSelectTypes.h"
+#include "Contacts/Groups/InputView.h"
 #include "Contacts/Groups/Model/MembersProvider.h"
 
+#include "App/AppControlRequest.h"
 #include "Common/Database/RecordUtils.h"
+#include "Ui/Menu.h"
+#include "Ui/Navigator.h"
+#include "Ui/ProcessPopup.h"
+#include "Utils/Thread.h"
 
 #define BUFFER_SIZE 1024
 
+using namespace Common::Database;
 using namespace Contacts::Groups;
+using namespace Contacts::Groups::Model;
 using namespace Contacts::List;
+using namespace Ui;
+using namespace Ux;
+using namespace std::placeholders;
 
-MembersListView::MembersListView(int groupId)
-	: ListView(new Model::MembersProvider(groupId)), m_GroupId(groupId)
+namespace
+{
+	struct ComposerData {
+		int type;
+		contacts_person_property_e propertyType;
+		const char *uri;
+		unsigned int propertyId;
+		const char *scheme;
+	} composerData[] = {
+		/*ComposerMessage = */ { Contacts::FilterNumber, CONTACTS_PERSON_PROPERTY_NUMBER,
+				_contacts_number._uri, _contacts_number.number, "sms:" },
+		/*ComposerEmail   = */ { Contacts::FilterEmail, CONTACTS_PERSON_PROPERTY_EMAIL,
+				_contacts_email._uri, _contacts_email.email, "mailto:" }
+	};
+}
+
+MembersListView::MembersListView(int groupId, Model::MembersProvider *provider)
+	: ListView(provider), m_GroupId(groupId)
 {
 	setAddButtonVisibility(false);
 	setNoContentHelpText("IDS_PB_BODY_AFTER_YOU_ADD_CONTACTS_THEY_WILL_BE_SHOWN_HERE");
@@ -37,22 +64,47 @@ MembersListView::MembersListView(int groupId)
 	}
 }
 
-void MembersListView::onPageAttached(Ui::NavigatorPage *page)
+void MembersListView::onPageAttached(NavigatorPage *page)
 {
-	if (getSelectMode() == Ux::SelectNone) {
+	if (getSelectMode() == SelectNone) {
 		page->setTitle(getTitle().c_str());
+	} else {
+		SelectView::onPageAttached(page);
 	}
 }
 
 void MembersListView::onMenuPressed()
 {
+	if (getSelectMode() != SelectNone) {
+		return;
+	}
+
+	Menu *menu = new Menu();
+	menu->create(getEvasObject());
+
+	menu->addItem("IDS_PB_OPT_EDIT", [this] {
+		getNavigator()->navigateTo(new InputView(m_GroupId));
+	});
+
+	menu->addItem("IDS_PB_OPT_ADD", std::bind(&MembersListView::onAddSelected, this));
+
+	if (!isListEmpty()) {
+		menu->addItem("IDS_PB_OPT_REMOVE",
+				std::bind(&MembersListView::onRemoveSelected, this));
+		menu->addItem("IDS_PB_OPT_SEND_MESSAGE_ABB2",
+				std::bind(&MembersListView::onSendSelected, this, ComposerMessage));
+		menu->addItem("IDS_PB_OPT_SEND_EMAIL",
+				std::bind(&MembersListView::onSendSelected, this, ComposerEmail));
+	}
+
+	menu->show();
 }
 
 void MembersListView::onUpdateFinished()
 {
 	ListView::onUpdateFinished();
 
-	if (getSelectMode() == Ux::SelectNone) {
+	if (getSelectMode() == SelectNone) {
 		getPage()->setTitle(getTitle().c_str());
 	}
 }
@@ -61,7 +113,7 @@ std::string MembersListView::getTitle() const
 {
 	contacts_record_h record = nullptr;
 	contacts_db_get_record(_contacts_group._uri, m_GroupId, &record);
-	const char *name = Common::Database::getRecordStr(record, _contacts_group.name);
+	const char *name = getRecordStr(record, _contacts_group.name);
 
 	char title[BUFFER_SIZE] = { 0, };
 	int count = getProvider()->getDataList().size();
@@ -72,4 +124,111 @@ std::string MembersListView::getTitle() const
 	}
 	contacts_record_destroy(record, true);
 	return std::string(title);
+}
+
+void MembersListView::onAddSelected()
+{
+	ListView *view = new ListView(new Model::MembersProvider(m_GroupId,
+			Model::MembersProvider::ModeExclude));
+	view->setSelectMode(SelectMulti);
+	view->setNoContentHelpText("");
+	view->setSectionVisibility(ListView::SectionFavorites, false);
+
+	view->setSelectCallback([this, view](SelectResults results) {
+		auto popup = ProcessPopup::create(view->getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
+		new Utils::Thread(std::bind(&MembersListView::onMembersSelected, this, std::move(results), EditAdd),
+				[view, popup] {
+					popup->close();
+					view->getPage()->close();
+				});
+		return false;
+	});
+
+	getNavigator()->navigateTo(view);
+}
+
+void MembersListView::onRemoveSelected()
+{
+	setSelectMode(SelectMulti);
+	setCancelCallback(std::bind(&MembersListView::onRemoveFinished, this));
+
+	setSelectCallback([this](SelectResults results) {
+		auto popup = ProcessPopup::create(getEvasObject(), "IDS_PB_TPOP_PROCESSING_ING");
+		new Utils::Thread(std::bind(&MembersListView::onMembersSelected, this, std::move(results), EditRemove),
+				[this, popup] {
+					popup->close();
+					onRemoveFinished();
+				});
+		return false;
+	});
+}
+
+bool MembersListView::onRemoveFinished()
+{
+	setSelectMode(SelectNone);
+	getPage()->setTitleVisibility(true);
+	getPage()->setTitle(getTitle().c_str());
+	setCancelCallback(nullptr);
+	setSelectCallback(nullptr);
+	return false;
+}
+
+void MembersListView::onMembersSelected(SelectResults results, EditType type)
+{
+	contacts_connect_on_thread();
+	for (auto &&result : results) {
+		contacts_record_h record = nullptr;
+		contacts_db_get_record(_contacts_person._uri, result.value.id, &record);
+		if (type == EditAdd) {
+			contacts_group_add_contact(m_GroupId, getRecordInt(record,
+					_contacts_person.display_contact_id));
+		} else {
+			contacts_group_remove_contact(m_GroupId, getRecordInt(record,
+					_contacts_person.display_contact_id));
+		}
+		contacts_record_destroy(record, true);
+	}
+	contacts_disconnect_on_thread();
+}
+
+void MembersListView::onSendSelected(ComposerType composerType)
+{
+	MembersListView *view = new MembersListView(m_GroupId, new MembersProvider(m_GroupId,
+			MembersProvider::ModeDefault, composerData[composerType].type));
+	view->setSelectMode(SelectMulti);
+	view->setNoContentHelpText("");
+	view->setSelectCallback(std::bind(&MembersListView::onRecipientsSelected,
+			this, _1, composerType));
+
+	getNavigator()->navigateTo(view);
+}
+
+bool MembersListView::onRecipientsSelected(SelectResults results, ComposerType type)
+{
+	int length = results.size();
+	std::vector<std::string> recipientsString(length);
+	std::vector<const char *> recipients(length);
+
+	int index = 0;
+	for (auto &&result : results) {
+		int id = 0;
+		contacts_person_get_default_property(composerData[type].propertyType,
+				result.value.id, &id);
+
+		contacts_record_h record = nullptr;
+		contacts_db_get_record(composerData[type].uri, id, &record);
+
+		recipientsString[index] = getRecordStr(record, composerData[type].propertyId);
+		recipients[index] = recipientsString[index].c_str();
+
+		++index;
+		contacts_record_destroy(record, true);
+	}
+
+	App::AppControl request = App::requestComposer(composerData[type].scheme, nullptr,
+			nullptr, nullptr, recipients.data(), length);
+	request.launch();
+	request.detach();
+
+	return true;
 }

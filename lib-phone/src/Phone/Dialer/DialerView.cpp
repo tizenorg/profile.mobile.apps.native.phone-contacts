@@ -124,7 +124,7 @@ void DialerView::onMenuPressed()
 
 	if (!m_Entry->getNumber().empty()) {
 		menu->addItem("IDS_KPD_OPT_SEND_MESSAGE_ABB", [this] {
-			m_AppControl = App::requestMessageComposer("sms:", m_Entry->getNumber().c_str());
+			m_AppControl = App::requestComposer("sms:", m_Entry->getNumber().c_str());
 			m_AppControl.launch();
 		});
 		menu->addItem("IDS_KPD_OPT_ADD_2_SECOND_PAUSE_ABB", [this] {
