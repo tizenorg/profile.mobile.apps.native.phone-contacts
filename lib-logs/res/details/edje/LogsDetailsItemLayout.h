@@ -22,18 +22,12 @@
 #include "../../../../lib-common/res/details/edje/DetailsItemLayout.h"
 
 #define LOGS_DETAILS_ITEM_STYLE          "logs_details_item"
-#define LOGS_DETAILS_ACTION_ITEM_STYLE   "logs_details_action_item"
 
 #define STATE_SAVED                      "state_saved"
 #define PART_UNSAVED_BTNS                "swallow.unsaved_btns"
 
 #define COLOR_UNSAVED_BUTTON_NORMAL       0, 0, 0, 40
 #define COLOR_UNSAVED_BUTTON_PRESSED      0, 0, 0, 67
-
-#define PART_NUMBER_TYPE                  "text.number_type"
-#define PART_NUMBER                       "swallow.number"
-#define PART_ICON_CALL                    "swallow.icon_call"
-#define PART_ICON_MESSAGE                 "swallow.icon_message"
 
 #define GROUP_ICON_CALL                  "icon_call"
 #define GROUP_ICON_MESSAGE               "icon_message"

@@ -143,7 +143,6 @@ void DetailsView::insertActionItem()
 {
 	m_ActionItem = new ActionItem(m_Group);
 	m_Genlist->insert(m_ActionItem, nullptr, m_BasicInfoItem, Ui::Genlist::After);
-	elm_genlist_item_select_mode_set(m_ActionItem->getObjectItem(), ELM_OBJECT_SELECT_MODE_NONE);
 }
 
 void DetailsView::insertLogGroupList()

@@ -72,19 +72,26 @@ namespace Logs
 			 */
 			virtual void onSelected() override;
 
+			/**
+			 * @see GenItem::onLongpressed()
+			 */
+			virtual bool onLongpressed() override;
+
 		private:
 			bool isSavedLog();
 			char *getStrNumberType();
-			Evas_Object *createEntryNumber(Evas_Object *parent);
 			Evas_Object *createActionButton(Evas_Object *parent, Common::ActionType actionType);
 			void executeAction(Common::ActionType actionType);
 			void onButtonPressed(Evas_Object *button, void *eventInfo);
 			void onGroupChanged(int type);
+			void onMenuDismissed(Evas_Object *obj, void *eventInfo);
+			void updateSelecting(bool isSelecting);
 
 			Model::LogGroup *m_Group;
 			Model::Log *m_Log;
 			App::AppControl m_AppControl;
 			Model::LogGroup::ChangeCbHandle m_GroupChangeCbHandle;
+			bool m_IsSelecting;
 		};
 	}
 }
