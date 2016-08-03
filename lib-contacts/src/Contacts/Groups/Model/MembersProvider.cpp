@@ -37,21 +37,16 @@ namespace
 	};
 }
 
-MembersProvider::MembersProvider(int groupId, Mode mode)
-	: m_GroupId(groupId), m_Mode(mode)
+MembersProvider::MembersProvider(int groupId, Mode mode, int type)
+	: PersonProvider(type), m_GroupId(groupId), m_Mode(mode)
 {
-	contacts_db_get_current_version(&m_DbVersion);
-	m_GroupDbVersion = m_DbVersion;
-	contacts_db_add_changed_cb(_contacts_group_relation._uri,
-			makeCallbackWithLastParam(&MembersProvider::onChanged), this);
+	contacts_db_get_current_version(&m_GroupDbVersion);
 	contacts_db_add_changed_cb(_contacts_group._uri,
 			makeCallbackWithLastParam(&MembersProvider::onGroupChanged), this);
 }
 
 MembersProvider::~MembersProvider()
 {
-	contacts_db_remove_changed_cb(_contacts_group_relation._uri,
-			makeCallbackWithLastParam(&MembersProvider::onChanged), this);
 	contacts_db_remove_changed_cb(_contacts_group._uri,
 			makeCallbackWithLastParam(&MembersProvider::onGroupChanged), this);
 }
@@ -66,8 +61,13 @@ contacts_filter_h MembersProvider::getFilter() const
 		return nullptr;
 	}
 
-	contacts_filter_h filter = nullptr;
-	contacts_filter_create(_contacts_person._uri, &filter);
+	contacts_filter_h filter = PersonProvider::getFilter();
+	if (filter) {
+		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
+	} else {
+		contacts_filter_create(_contacts_person._uri, &filter);
+	}
+
 	if (m_Mode == ModeExclude) {
 		contacts_filter_add_bool(filter, _contacts_person.is_favorite, false);
 		contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_AND);
@@ -142,41 +142,6 @@ contacts_list_h MembersProvider::getMembersList() const
 
 	contacts_query_destroy(query);
 	return list;
-}
-
-void MembersProvider::onChanged(const char *uri)
-{
-	contacts_list_h changes = nullptr;
-	contacts_db_get_changes_by_version(_contacts_grouprel_updated_info._uri, 0,
-			m_DbVersion, &changes, &m_DbVersion);
-	bool isChanged = false;
-
-	for (auto &&record : makeRange(changes)) {
-		if (getRecordInt(record, _contacts_grouprel_updated_info.group_id) != m_GroupId) {
-			continue;
-		}
-
-		int contactId = getRecordInt(record, _contacts_grouprel_updated_info.contact_id);
-		int changeType = getRecordInt(record, _contacts_grouprel_updated_info.type);
-		switch (changeType) {
-			case CONTACTS_CHANGE_INSERTED:
-				insertPerson(getPersonRecord(contactId, ContactId));
-				break;
-
-			case CONTACTS_CHANGE_DELETED:
-				auto personIt = findPerson(contactId, ContactId);
-				if (personIt != getDataList().end()) {
-					deletePerson(personIt);
-				}
-				break;
-		}
-		isChanged = true;
-	}
-	contacts_list_destroy(changes, true);
-
-	if (isChanged) {
-		onUpdateFinished();
-	}
 }
 
 void MembersProvider::onGroupChanged(const char *uri)

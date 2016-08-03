@@ -19,6 +19,8 @@
 #define APP_APP_CONTROL_REQUEST_H
 
 #include "App/AppControl.h"
+#include "Utils/Range.h"
+
 #include <string>
 #include <vector>
 
@@ -87,14 +89,25 @@ namespace App
 	AppControl EXPORT_API requestCallSettings();
 
 	/**
-	 * @brief Request message composer
-	 * @param[in]   scheme      URI scheme (e.g. sms:, mmsto: or mailto:)
-	 * @param[in]   to          Message recipient
-	 * @param[in]   subject     Message subject
-	 * @param[in]   text        Message text
+	 * @brief Request message or email composer for single recipient.
+	 * @param[in]   scheme      URI scheme (e.g. sms: or mmsto: for message, mailto: for email)
+	 * @param[in]   to          Recipient
+	 * @param[in]   subject     Subject
+	 * @param[in]   text        Text
 	 * @return AppControl wrapper
 	 */
-	AppControl EXPORT_API requestMessageComposer(const char *scheme, const char *to,
+	AppControl EXPORT_API requestComposer(const char *scheme, const char *to,
+			const char *subject = nullptr, const char *text = nullptr);
+
+	/**
+	 * @brief Request message or email composer for multiple recipients.
+	 * @param[in]   scheme      URI scheme (e.g. sms: or mmsto: for message, mailto: for email)
+	 * @param[in]   recipients  Multiple recipients
+	 * @param[in]   subject     Subject
+	 * @param[in]   text        Text
+	 * @return AppControl wrapper
+	 */
+	AppControl EXPORT_API requestComposer(const char *scheme, Utils::Range<const char **> recipients,
 			const char *subject = nullptr, const char *text = nullptr);
 
 	/**

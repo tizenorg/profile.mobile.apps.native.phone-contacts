@@ -19,21 +19,18 @@
 
 #include "GroupItemLayout.h"
 
+#include "Common/Database/RecordUtils.h"
 #include "Ui/Editfield.h"
 #include "Utils/Callback.h"
 
 #include <app_i18n.h>
 
+using namespace Common::Database;
 using namespace Contacts::Groups;
 
-NameItem::NameItem(std::string name)
-	: m_Name(name)
+NameItem::NameItem(contacts_record_h record)
+	: m_Record(record)
 {
-}
-
-const std::string &NameItem::getName() const
-{
-	return m_Name;
 }
 
 void NameItem::setFilledCallback(FilledCallback callback)
@@ -59,7 +56,7 @@ Evas_Object *NameItem::getContent(Evas_Object *parent, const char *part)
 {
 	if (strcmp(part, PART_GROUP_NAME_VALUE) == 0) {
 		Ui::Editfield *edit = Ui::Editfield::create(parent, "IDS_PB_MBODY_GROUP_NAME_ABB");
-		char *name = elm_entry_utf8_to_markup(m_Name.c_str());
+		char *name = elm_entry_utf8_to_markup(getRecordStr(m_Record, _contacts_group.name));
 		elm_entry_entry_set(edit->getEntry(), name);
 		free(name);
 		evas_object_smart_callback_add(edit->getEntry(), "changed",
@@ -77,7 +74,7 @@ void NameItem::onInserted()
 void NameItem::onChanged(Evas_Object *entry, void *eventInfo)
 {
 	char *text = elm_entry_markup_to_utf8(elm_entry_entry_get(entry));
-	m_Name = text ? text : "";
+	contacts_record_set_str(m_Record, _contacts_group.name, text ? text : "");
 	free(text);
 
 	m_OnFilled(!elm_entry_is_empty(entry));
