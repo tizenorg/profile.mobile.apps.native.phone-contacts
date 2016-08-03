@@ -32,8 +32,6 @@ namespace Contacts
 	namespace Groups
 	{
 		class AddMembersItem;
-		class NameItem;
-		class RingtoneItem;
 
 		namespace Model
 		{
@@ -73,8 +71,6 @@ namespace Contacts
 			Ui::Genlist *m_Genlist;
 
 			AddMembersItem *m_AddMembersItem;
-			NameItem *m_NameItem;
-			RingtoneItem *m_RingtoneItem;
 		};
 	}
 }

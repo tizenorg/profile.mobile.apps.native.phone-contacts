@@ -38,8 +38,9 @@ using namespace Contacts::Groups::Model;
 using namespace Contacts::List;
 
 AddMembersItem::AddMembersItem(int groupId)
-	: m_GroupId(groupId), m_Count(0)
+	: m_GroupId(groupId)
 {
+	m_Count = getMembersCount(m_GroupId);
 }
 
 const std::vector<int> &AddMembersItem::getMemberIdList() const

@@ -140,6 +140,8 @@ void GroupsView::updateItem(GroupItem *item, int changes)
 	if (changes & Group::ChangedName) {
 		item->pop();
 		insertItem(item);
+	} else {
+		item->update(changes);
 	}
 }
 
