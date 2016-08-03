@@ -67,7 +67,7 @@ Evas_Object *GroupItem::getContent(Evas_Object *parent, const char *part)
 
 Ux::SelectResult GroupItem::getDefaultResult() const
 {
-	return { 0, &m_Group };
+	return { 0, m_Group.getId() };
 }
 
 void GroupItem::onSelected()
