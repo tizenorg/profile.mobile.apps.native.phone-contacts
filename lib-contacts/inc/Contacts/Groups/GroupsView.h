@@ -21,6 +21,8 @@
 #include "Ux/SelectView.h"
 #include "Contacts/Groups/Model/GroupsProvider.h"
 
+#include <vector>
+
 namespace Ui
 {
 	class Genlist;
@@ -58,6 +60,7 @@ namespace Contacts
 			virtual Evas_Object *onCreate(Evas_Object *parent) override;
 			virtual void onMenuPressed() override;
 			virtual void onSelectAllInsert(Ui::GenItem *item) override;
+			virtual void onSelectModeChanged(Ux::SelectMode selectMode) override;
 			void updateCreateItem();
 
 			void onInserted(::Model::DataItem &data);
@@ -67,10 +70,16 @@ namespace Contacts
 			void deleteItem(GroupItem *item);
 			Ui::GenItem *getNextItem(Model::Group &group);
 
+			bool onDeleteFinished();
+			void onDeleteSelected(Ux::SelectResults results, void *data);
+			void deleteGroups(Ux::SelectResults results, bool shouldDeleteMembers);
+			void deleteMembers(const std::vector<int> &groupIds);
+
 			Ui::Genlist *m_Genlist;
 			CreateGroupItem *m_CreateItem;
 			Model::GroupsProvider m_Provider;
 			Ui::GenGroupItem *m_GroupsItem;
+			std::vector<GroupItem *> m_MainItems;
 
 			bool m_IsAssignMode;
 			int m_NewGroupId;
