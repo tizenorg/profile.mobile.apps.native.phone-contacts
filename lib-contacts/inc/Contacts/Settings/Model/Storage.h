@@ -32,7 +32,7 @@ namespace Contacts
 			enum StorageAccessType
 			{
 				StorageAccessRead,
-				StorageAccessReadWrite
+				StorageAccessWrite
 			};
 
 			/**

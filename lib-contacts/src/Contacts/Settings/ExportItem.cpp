@@ -17,9 +17,11 @@
 
 #include "Contacts/Settings/ExportItem.h"
 #include "Contacts/Settings/ExportController.h"
+#include "Contacts/Settings/Model/Storage.h"
 
 #include "App/AppControlRequest.h"
 #include "Ui/Genlist.h"
+#include "Ui/ListPopup.h"
 #include "Ui/Popup.h"
 #include "Utils/Callback.h"
 #include "Utils/Logger.h"
@@ -29,6 +31,8 @@
 #define BUFFER_SIZE 1024
 
 using namespace Contacts::Settings;
+using namespace Contacts::Settings::Model;
+using namespace std::placeholders;
 
 char *ExportItem::getText(Evas_Object *parent, const char *part)
 {
@@ -50,12 +54,20 @@ void ExportItem::onPickResult(app_control_h request, app_control_h reply,
 {
 	std::vector<int> ids = App::getIntExtraDataArray(reply, APP_CONTROL_DATA_SELECTED);
 	RETM_IF(ids.empty(), "Person id list is empty.");
+	StorageType storageType = StorageDevice;
 
-	ExportController *exporter = new ExportController(
-			getParent()->getEvasObject(), "IDS_PB_HEADER_EXPORT_CONTACTS_ABB",
-			std::move(ids), StorageDevice);
-	exporter->setFinishCallback(std::bind(&ExportItem::onExportFinish, this, exporter));
-	exporter->run();
+	if (isAccessGranted(STORAGE_TYPE_EXTERNAL, StorageAccessWrite)) {
+		Ui::ListPopup *popup = new Ui::ListPopup();
+		popup->create(getParent()->getEvasObject());
+		popup->setTitle("IDS_PB_HEADER_IMPORT");
+		popup->addItem("IDS_PB_OPT_SD_CARD", (void *) StorageSdCard);
+		popup->addItem("IDS_PB_OPT_DEVICE", (void *) StorageDevice);
+		popup->setSelectedCallback(std::bind(&ExportItem::runExporter, this, _1, std::move(ids)));
+
+		return;
+	}
+
+	runExporter((void *) storageType, std::move(ids));
 }
 
 void ExportItem::onExportFinish(ExportController *exporter)
@@ -69,4 +81,15 @@ void ExportItem::onExportFinish(ExportController *exporter)
 	finishPopup->setTitle("IDS_PB_HEADER_CONTACTS_EXPORTED_ABB");
 	finishPopup->setText(text);
 	finishPopup->addButton("IDS_PB_BUTTON_OK_ABB2");
+}
+
+void ExportItem::runExporter(void *data, std::vector<int> ids)
+{
+	auto storageType = (StorageType) (long) data;
+	ExportController *exporter = new ExportController(
+			getParent()->getEvasObject(), "IDS_PB_HEADER_EXPORT_CONTACTS_ABB",
+			std::move(ids), storageType);
+
+	exporter->setFinishCallback(std::bind(&ExportItem::onExportFinish, this, exporter));
+	exporter->run();
 }

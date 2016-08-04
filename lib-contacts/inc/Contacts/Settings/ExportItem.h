@@ -20,6 +20,7 @@
 
 #include "App/AppControl.h"
 #include "Ui/GenItem.h"
+#include <vector>
 
 namespace Contacts
 {
@@ -38,6 +39,7 @@ namespace Contacts
 			void onPickResult(app_control_h request, app_control_h reply,
 					app_control_result_e result);
 			void onExportFinish(ExportController *exporter);
+			void runExporter(void *data, std::vector<int> ids);
 
 			App::AppControl m_AppControl;
 		};
